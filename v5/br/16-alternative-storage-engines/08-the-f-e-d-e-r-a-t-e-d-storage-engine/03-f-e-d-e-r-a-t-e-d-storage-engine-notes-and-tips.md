@@ -1,56 +1,56 @@
-### 15.8.3 FEDERATED Storage Engine Notes and Tips
+### 15.8.3 Notas e Dicas sobre o Storage Engine FEDERATED
 
-You should be aware of the following points when using the `FEDERATED` storage engine:
+Você deve estar ciente dos seguintes pontos ao usar o storage engine `FEDERATED`:
 
-* `FEDERATED` tables may be replicated to other replicas, but you must ensure that the replica servers are able to use the user/password combination that is defined in the `CONNECTION` string (or the row in the `mysql.servers` table) to connect to the remote server.
+*   Tabelas `FEDERATED` podem ser replicadas para outras replicas, mas você deve garantir que os replica servers sejam capazes de usar a combinação de user/password definida na `CONNECTION` string (ou a linha na tabela `mysql.servers`) para se conectar ao remote server.
 
-The following items indicate features that the `FEDERATED` storage engine does and does not support:
+Os itens a seguir indicam os recursos que o storage engine `FEDERATED` suporta e não suporta:
 
-* The remote server must be a MySQL server.
-* The remote table that a `FEDERATED` table points to *must* exist before you try to access the table through the `FEDERATED` table.
+*   O remote server deve ser um MySQL server.
+*   A remote table para a qual uma tabela `FEDERATED` aponta *deve* existir antes que você tente acessar a tabela através da tabela `FEDERATED`.
 
-* It is possible for one `FEDERATED` table to point to another, but you must be careful not to create a loop.
+*   É possível que uma tabela `FEDERATED` aponte para outra, mas você deve tomar cuidado para não criar um loop.
 
-* A `FEDERATED` table does not support indexes in the usual sense; because access to the table data is handled remotely, it is actually the remote table that makes use of indexes. This means that, for a query that cannot use any indexes and so requires a full table scan, the server fetches all rows from the remote table and filters them locally. This occurs regardless of any `WHERE` or `LIMIT` used with this `SELECT` statement; these clauses are applied locally to the returned rows.
+*   Uma tabela `FEDERATED` não suporta indexes no sentido usual; como o acesso aos dados da tabela é tratado remotamente, é de fato a remote table que utiliza os indexes. Isso significa que, para uma Query que não pode usar indexes e, portanto, requer um full table scan, o server busca todas as linhas da remote table e as filtra localmente. Isso ocorre independentemente de qualquer cláusula `WHERE` ou `LIMIT` usada com esta instrução `SELECT`; essas cláusulas são aplicadas localmente às linhas retornadas.
 
-  Queries that fail to use indexes can thus cause poor performance and network overload. In addition, since returned rows must be stored in memory, such a query can also lead to the local server swapping, or even hanging.
+    Queries que falham ao usar indexes podem, portanto, causar baixo desempenho e sobrecarga de rede. Além disso, como as linhas retornadas devem ser armazenadas na memória, essa Query também pode levar ao swapping do local server, ou até mesmo ao travamento (hanging).
 
-* Care should be taken when creating a `FEDERATED` table since the index definition from an equivalent `MyISAM` or other table may not be supported. For example, creating a `FEDERATED` table with an index prefix fails for `VARCHAR`, `TEXT` or `BLOB` columns. The following definition in `MyISAM` is valid:
+*   Deve-se ter cuidado ao criar uma tabela `FEDERATED`, pois a index definition de uma tabela `MyISAM` ou outra tabela equivalente pode não ser suportada. Por exemplo, criar uma tabela `FEDERATED` com um index prefix falha para colunas `VARCHAR`, `TEXT` ou `BLOB`. A seguinte definição em `MyISAM` é válida:
 
-  ```sql
+    ```sql
   CREATE TABLE `T1`(`A` VARCHAR(100),UNIQUE KEY(`A`(30))) ENGINE=MYISAM;
   ```
 
-  The key prefix in this example is incompatible with the `FEDERATED` engine, and the equivalent statement fails:
+    O key prefix neste exemplo é incompatível com o engine `FEDERATED`, e a instrução equivalente falha:
 
-  ```sql
+    ```sql
   CREATE TABLE `T1`(`A` VARCHAR(100),UNIQUE KEY(`A`(30))) ENGINE=FEDERATED
     CONNECTION='MYSQL://127.0.0.1:3306/TEST/T1';
   ```
 
-  If possible, you should try to separate the column and index definition when creating tables on both the remote server and the local server to avoid these index issues.
+    Se possível, você deve tentar separar a coluna e a index definition ao criar tabelas tanto no remote server quanto no local server para evitar esses problemas de index.
 
-* Internally, the implementation uses `SELECT`, `INSERT`, `UPDATE`, and `DELETE`, but not `HANDLER`.
+*   Internamente, a implementação usa `SELECT`, `INSERT`, `UPDATE` e `DELETE`, mas não `HANDLER`.
 
-* The `FEDERATED` storage engine supports `SELECT`, `INSERT`, `UPDATE`, `DELETE`, `TRUNCATE TABLE`, and indexes. It does not support `ALTER TABLE`, or any Data Definition Language statements that directly affect the structure of the table, other than `DROP TABLE`. The current implementation does not use prepared statements.
+*   O storage engine `FEDERATED` suporta `SELECT`, `INSERT`, `UPDATE`, `DELETE`, `TRUNCATE TABLE` e indexes. Não suporta `ALTER TABLE` ou quaisquer instruções Data Definition Language que afetem diretamente a estrutura da tabela, exceto `DROP TABLE`. A implementação atual não usa prepared statements.
 
-* `FEDERATED` accepts `INSERT ... ON DUPLICATE KEY UPDATE` statements, but if a duplicate-key violation occurs, the statement fails with an error.
+*   `FEDERATED` aceita instruções `INSERT ... ON DUPLICATE KEY UPDATE`, mas se ocorrer uma violação de duplicate-key, a instrução falhará com um erro.
 
-* Transactions are not supported.
-* `FEDERATED` performs bulk-insert handling such that multiple rows are sent to the remote table in a batch, which improves performance. Also, if the remote table is transactional, it enables the remote storage engine to perform statement rollback properly should an error occur. This capability has the following limitations:
+*   Transactions não são suportadas.
+*   `FEDERATED` realiza o tratamento de bulk-insert de modo que múltiplas linhas são enviadas para a remote table em lote (batch), o que melhora o desempenho. Além disso, se a remote table for transactional, isso permite que o remote storage engine execute o statement rollback corretamente em caso de erro. Essa capacidade tem as seguintes limitações:
 
-  + The size of the insert cannot exceed the maximum packet size between servers. If the insert exceeds this size, it is broken into multiple packets and the rollback problem can occur.
+    + O tamanho do insert não pode exceder o maximum packet size entre servers. Se o insert exceder esse tamanho, ele é dividido em múltiplos packets e o problema de rollback pode ocorrer.
 
-  + Bulk-insert handling does not occur for `INSERT ... ON DUPLICATE KEY UPDATE`.
+    + O tratamento de bulk-insert não ocorre para `INSERT ... ON DUPLICATE KEY UPDATE`.
 
-* There is no way for the `FEDERATED` engine to know if the remote table has changed. The reason for this is that this table must work like a data file that would never be written to by anything other than the database system. The integrity of the data in the local table could be breached if there was any change to the remote database.
+*   Não há como o engine `FEDERATED` saber se a remote table foi alterada. A razão para isso é que esta tabela deve funcionar como um arquivo de dados que nunca seria gravado por nada além do sistema Database. A integridade dos dados na tabela local poderia ser comprometida se houvesse qualquer alteração no remote database.
 
-* When using a `CONNECTION` string, you cannot use an '@' character in the password. You can get round this limitation by using the `CREATE SERVER` statement to create a server connection.
+*   Ao usar uma `CONNECTION` string, você não pode usar o caractere '@' na password. Você pode contornar essa limitação usando a instrução `CREATE SERVER` para criar uma server connection.
 
-* The `insert_id` and `timestamp` options are not propagated to the data provider.
+*   As opções `insert_id` e `timestamp` não são propagadas para o data provider.
 
-* Any `DROP TABLE` statement issued against a `FEDERATED` table drops only the local table, not the remote table.
+*   Qualquer instrução `DROP TABLE` emitida contra uma tabela `FEDERATED` descarta apenas a tabela local, não a remote table.
 
-* `FEDERATED` tables do not work with the query cache.
+*   Tabelas `FEDERATED` não funcionam com o Query Cache.
 
-* User-defined partitioning is not supported for `FEDERATED` tables.
+*   User-defined partitioning não é suportado para tabelas `FEDERATED`.

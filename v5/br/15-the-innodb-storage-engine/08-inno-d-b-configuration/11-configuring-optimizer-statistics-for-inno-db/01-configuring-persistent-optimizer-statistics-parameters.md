@@ -1,36 +1,36 @@
-#### 14.8.11.1 Configuring Persistent Optimizer Statistics Parameters
+#### 14.8.11.1 Configurando Parâmetros de Estatísticas Persistentes do Optimizer
 
-The persistent optimizer statistics feature improves plan stability by storing statistics to disk and making them persistent across server restarts so that the optimizer is more likely to make consistent choices each time for a given query.
+O recurso de estatísticas persistentes do optimizer melhora a estabilidade do plano de execução, armazenando as estatísticas em disco e as tornando persistentes entre as reinicializações do servidor, de modo que o optimizer tenha maior probabilidade de fazer escolhas consistentes para uma dada Query a cada vez.
 
-Optimizer statistics are persisted to disk when `innodb_stats_persistent=ON` or when individual tables are defined with `STATS_PERSISTENT=1`. `innodb_stats_persistent` is enabled by default.
+As estatísticas do optimizer são persistidas em disco quando `innodb_stats_persistent=ON` ou quando tabelas individuais são definidas com `STATS_PERSISTENT=1`. `innodb_stats_persistent` está habilitada por padrão.
 
-Formerly, optimizer statistics were cleared when restarting the server and after some other types of operations, and recomputed on the next table access. Consequently, different estimates could be produced when recalculating statistics leading to different choices in query execution plans and variation in query performance.
+Anteriormente, as estatísticas do optimizer eram limpas ao reiniciar o servidor e após alguns outros tipos de operações, sendo recalculadas no próximo acesso à tabela. Consequentemente, estimativas diferentes podiam ser produzidas ao recalcular as estatísticas, levando a diferentes escolhas nos planos de execução de Querys e variação no desempenho da Query.
 
-Persistent statistics are stored in the `mysql.innodb_table_stats` and `mysql.innodb_index_stats` tables. See Section 14.8.11.1.5, “InnoDB Persistent Statistics Tables”.
+As estatísticas persistentes são armazenadas nas tabelas `mysql.innodb_table_stats` e `mysql.innodb_index_stats`. Veja Seção 14.8.11.1.5, “Tabelas de Estatísticas Persistentes do InnoDB”.
 
-If you prefer not to persist optimizer statistics to disk, see Section 14.8.11.2, “Configuring Non-Persistent Optimizer Statistics Parameters”
+Se você preferir não persistir as estatísticas do optimizer em disco, veja Seção 14.8.11.2, “Configurando Parâmetros de Estatísticas Não Persistentes do Optimizer”.
 
-##### 14.8.11.1.1 Configuring Automatic Statistics Calculation for Persistent Optimizer Statistics
+##### 14.8.11.1.1 Configurando o Cálculo Automático de Estatísticas para Estatísticas Persistentes do Optimizer
 
-The `innodb_stats_auto_recalc` variable, which is enabled by default, controls whether statistics are calculated automatically when a table undergoes changes to more than 10% of its rows. You can also configure automatic statistics recalculation for individual tables by specifying the `STATS_AUTO_RECALC` clause when creating or altering a table.
+A variável `innodb_stats_auto_recalc`, que está habilitada por padrão, controla se as estatísticas são calculadas automaticamente quando uma tabela sofre alterações em mais de 10% de suas linhas. Você também pode configurar o recálculo automático de estatísticas para tabelas individuais, especificando a cláusula `STATS_AUTO_RECALC` ao criar ou alterar uma tabela.
 
-Because of the asynchronous nature of automatic statistics recalculation, which occurs in the background, statistics may not be recalculated instantly after running a DML operation that affects more than 10% of a table, even when `innodb_stats_auto_recalc` is enabled. Statistics recalculation can be delayed by few seconds in some cases. If up-to-date statistics are required immediately, run `ANALYZE TABLE` to initiate a synchronous (foreground) recalculation of statistics.
+Devido à natureza assíncrona do recálculo automático de estatísticas, que ocorre em segundo plano, as estatísticas podem não ser recalculadas instantaneamente após executar uma operação DML que afeta mais de 10% de uma tabela, mesmo quando `innodb_stats_auto_recalc` está habilitada. O recálculo das estatísticas pode ser atrasado por alguns segundos em certos casos. Se estatísticas atualizadas forem necessárias imediatamente, execute `ANALYZE TABLE` para iniciar um recálculo síncrono (em primeiro plano) das estatísticas.
 
-If `innodb_stats_auto_recalc` is disabled, you can ensure the accuracy of optimizer statistics by executing the `ANALYZE TABLE` statement after making substantial changes to indexed columns. You might also consider adding `ANALYZE TABLE` to setup scripts that you run after loading data, and running `ANALYZE TABLE` on a schedule at times of low activity.
+Se `innodb_stats_auto_recalc` estiver desabilitada, você pode garantir a precisão das estatísticas do optimizer executando a instrução `ANALYZE TABLE` após fazer alterações substanciais em colunas indexadas. Você também pode considerar adicionar `ANALYZE TABLE` a scripts de configuração que você executa após carregar dados, e executar `ANALYZE TABLE` em um cronograma em momentos de baixa atividade.
 
-When an index is added to an existing table, or when a column is added or dropped, index statistics are calculated and added to the `innodb_index_stats` table regardless of the value of `innodb_stats_auto_recalc`.
+Quando um Index é adicionado a uma tabela existente, ou quando uma coluna é adicionada ou descartada, as estatísticas do Index são calculadas e adicionadas à tabela `innodb_index_stats`, independentemente do valor de `innodb_stats_auto_recalc`.
 
-##### 14.8.11.1.2 Configuring Optimizer Statistics Parameters for Individual Tables
+##### 14.8.11.1.2 Configurando Parâmetros de Estatísticas do Optimizer para Tabelas Individuais
 
-`innodb_stats_persistent`, `innodb_stats_auto_recalc`, and `innodb_stats_persistent_sample_pages` are global variables. To override these system-wide settings and configure optimizer statistics parameters for individual tables, you can define `STATS_PERSISTENT`, `STATS_AUTO_RECALC`, and `STATS_SAMPLE_PAGES` clauses in `CREATE TABLE` or `ALTER TABLE` statements.
+`innodb_stats_persistent`, `innodb_stats_auto_recalc`, e `innodb_stats_persistent_sample_pages` são variáveis globais. Para substituir essas configurações em todo o sistema e configurar parâmetros de estatísticas do optimizer para tabelas individuais, você pode definir as cláusulas `STATS_PERSISTENT`, `STATS_AUTO_RECALC` e `STATS_SAMPLE_PAGES` nas instruções `CREATE TABLE` ou `ALTER TABLE`.
 
-* `STATS_PERSISTENT` specifies whether to enable persistent statistics for an `InnoDB` table. The value `DEFAULT` causes the persistent statistics setting for the table to be determined by the `innodb_stats_persistent` setting. A value of `1` enables persistent statistics for the table, while a value of `0` disables the feature. After enabling persistent statistics for an individual table, use `ANALYZE TABLE` to calculate statistics after table data is loaded.
+* `STATS_PERSISTENT` especifica se deve habilitar estatísticas persistentes para uma tabela `InnoDB`. O valor `DEFAULT` faz com que a configuração de estatísticas persistentes para a tabela seja determinada pela configuração `innodb_stats_persistent`. Um valor de `1` habilita estatísticas persistentes para a tabela, enquanto um valor de `0` desabilita o recurso. Após habilitar estatísticas persistentes para uma tabela individual, use `ANALYZE TABLE` para calcular as estatísticas após o carregamento dos dados da tabela.
 
-* `STATS_AUTO_RECALC` specifies whether to automatically recalculate persistent statistics. The value `DEFAULT` causes the persistent statistics setting for the table to be determined by the `innodb_stats_auto_recalc` setting. A value of `1` causes statistics to be recalculated when 10% of table data has changed. A value `0` prevents automatic recalculation for the table. When using a value of 0, use `ANALYZE TABLE` to recalculate statistics after making substantial changes to the table.
+* `STATS_AUTO_RECALC` especifica se deve recalcular automaticamente as estatísticas persistentes. O valor `DEFAULT` faz com que a configuração de estatísticas persistentes para a tabela seja determinada pela configuração `innodb_stats_auto_recalc`. Um valor de `1` faz com que as estatísticas sejam recalculadas quando 10% dos dados da tabela tiverem sido alterados. Um valor `0` impede o recálculo automático para a tabela. Ao usar o valor 0, use `ANALYZE TABLE` para recalcular as estatísticas após fazer alterações substanciais na tabela.
 
-* `STATS_SAMPLE_PAGES` specifies the number of index pages to sample when cardinality and other statistics are calculated for an indexed column, by an `ANALYZE TABLE` operation, for example.
+* `STATS_SAMPLE_PAGES` especifica o número de páginas de Index a serem amostradas quando a cardinalidade e outras estatísticas são calculadas para uma coluna indexada, por uma operação `ANALYZE TABLE`, por exemplo.
 
-All three clauses are specified in the following `CREATE TABLE` example:
+Todas as três cláusulas são especificadas no seguinte exemplo de `CREATE TABLE`:
 
 ```sql
 CREATE TABLE `t1` (
@@ -45,45 +45,61 @@ INDEX `DATE_IX` (`date`)
   STATS_SAMPLE_PAGES=25;
 ```
 
-##### 14.8.11.1.3 Configuring the Number of Sampled Pages for InnoDB Optimizer Statistics
+##### 14.8.11.1.3 Configurando o Número de Páginas Amostradas para Estatísticas do Optimizer do InnoDB
 
-The optimizer uses estimated statistics about key distributions to choose the indexes for an execution plan, based on the relative selectivity of the index. Operations such as `ANALYZE TABLE` cause `InnoDB` to sample random pages from each index on a table to estimate the cardinality of the index. This sampling technique is known as a random dive.
+O optimizer usa estatísticas estimadas sobre distribuições de chave para escolher os Indexes para um plano de execução, baseado na seletividade relativa do Index. Operações como `ANALYZE TABLE` fazem com que o `InnoDB` amostre páginas aleatórias de cada Index em uma tabela para estimar a cardinalidade do Index. Esta técnica de amostragem é conhecida como *random dive* (mergulho aleatório).
 
-The `innodb_stats_persistent_sample_pages` controls the number of sampled pages. You can adjust the setting at runtime to manage the quality of statistics estimates used by the optimizer. The default value is 20. Consider modifying the setting when encountering the following issues:
+A variável `innodb_stats_persistent_sample_pages` controla o número de páginas amostradas. Você pode ajustar a configuração em tempo de execução para gerenciar a qualidade das estimativas de estatísticas usadas pelo optimizer. O valor padrão é 20. Considere modificar a configuração ao encontrar os seguintes problemas:
 
-1. *Statistics are not accurate enough and the optimizer chooses suboptimal plans*, as shown in `EXPLAIN` output. You can check the accuracy of statistics by comparing the actual cardinality of an index (determined by running `SELECT DISTINCT` on the index columns) with the estimates in the `mysql.innodb_index_stats` table.
+1. *As estatísticas não são precisas o suficiente e o optimizer escolhe planos não ideais*, conforme mostrado na saída de `EXPLAIN`. Você pode verificar a precisão das estatísticas comparando a cardinalidade real de um Index (determinada pela execução de `SELECT DISTINCT` nas colunas do Index) com as estimativas na tabela `mysql.innodb_index_stats`.
 
-   If it is determined that statistics are not accurate enough, the value of `innodb_stats_persistent_sample_pages` should be increased until the statistics estimates are sufficiently accurate. Increasing `innodb_stats_persistent_sample_pages` too much, however, could cause `ANALYZE TABLE` to run slowly.
+   Se for determinado que as estatísticas não são precisas o suficiente, o valor de `innodb_stats_persistent_sample_pages` deve ser aumentado até que as estimativas de estatísticas sejam suficientemente precisas. Aumentar demais `innodb_stats_persistent_sample_pages`, no entanto, pode fazer com que `ANALYZE TABLE` seja executado lentamente.
 
-2. *`ANALYZE TABLE` is too slow*. In this case `innodb_stats_persistent_sample_pages` should be decreased until `ANALYZE TABLE` execution time is acceptable. Decreasing the value too much, however, could lead to the first problem of inaccurate statistics and suboptimal query execution plans.
+2. *`ANALYZE TABLE` está muito lento*. Neste caso, `innodb_stats_persistent_sample_pages` deve ser diminuído até que o tempo de execução de `ANALYZE TABLE` seja aceitável. Diminuir demais o valor, no entanto, pode levar ao primeiro problema de estatísticas imprecisas e planos de execução de Querys não ideais.
 
-   If a balance cannot be achieved between accurate statistics and `ANALYZE TABLE` execution time, consider decreasing the number of indexed columns in the table or limiting the number of partitions to reduce `ANALYZE TABLE` complexity. The number of columns in the table's primary key is also important to consider, as primary key columns are appended to each nonunique index.
+   Se um equilíbrio não puder ser alcançado entre estatísticas precisas e o tempo de execução de `ANALYZE TABLE`, considere diminuir o número de colunas indexadas na tabela ou limitar o número de partições para reduzir a complexidade de `ANALYZE TABLE`. O número de colunas na Primary Key da tabela também é importante a considerar, pois as colunas da Primary Key são anexadas a cada Index não exclusivo.
 
-   For related information, see Section 14.8.11.3, “Estimating ANALYZE TABLE Complexity for InnoDB Tables”.
+   Para informações relacionadas, veja Seção 14.8.11.3, “Estimando a Complexidade de ANALYZE TABLE para Tabelas InnoDB”.
 
-##### 14.8.11.1.4 Including Delete-marked Records in Persistent Statistics Calculations
+##### 14.8.11.1.4 Incluindo Registros Marcados para Exclusão em Cálculos de Estatísticas Persistentes
 
-By default, `InnoDB` reads uncommitted data when calculating statistics. In the case of an uncommitted transaction that deletes rows from a table, delete-marked records are excluded when calculating row estimates and index statistics, which can lead to non-optimal execution plans for other transactions that are operating on the table concurrently using a transaction isolation level other than `READ UNCOMMITTED`. To avoid this scenario, `innodb_stats_include_delete_marked` can be enabled to ensure that delete-marked records are included when calculating persistent optimizer statistics.
+Por padrão, o `InnoDB` lê dados não confirmados ao calcular estatísticas. No caso de uma transação não confirmada que exclui linhas de uma tabela, os registros marcados para exclusão são excluídos ao calcular estimativas de linha e estatísticas de Index, o que pode levar a planos de execução não ideais para outras transações que estão operando na tabela simultaneamente usando um nível de isolamento de transação diferente de `READ UNCOMMITTED`. Para evitar esse cenário, `innodb_stats_include_delete_marked` pode ser habilitada para garantir que os registros marcados para exclusão sejam incluídos ao calcular estatísticas persistentes do optimizer.
 
-When `innodb_stats_include_delete_marked` is enabled, `ANALYZE TABLE` considers delete-marked records when recalculating statistics.
+Quando `innodb_stats_include_delete_marked` está habilitada, `ANALYZE TABLE` considera registros marcados para exclusão ao recalcular estatísticas.
 
-`innodb_stats_include_delete_marked` is a global setting that affects all `InnoDB` tables, and it is only applicable to persistent optimizer statistics.
+`innodb_stats_include_delete_marked` é uma configuração global que afeta todas as tabelas `InnoDB` e é aplicável apenas a estatísticas persistentes do optimizer.
 
-`innodb_stats_include_delete_marked` was introduced in MySQL 5.7.16.
+`innodb_stats_include_delete_marked` foi introduzida no MySQL 5.7.16.
 
-##### 14.8.11.1.5 InnoDB Persistent Statistics Tables
+##### 14.8.11.1.5 Tabelas de Estatísticas Persistentes do InnoDB
 
-The persistent statistics feature relies on the internally managed tables in the `mysql` database, named `innodb_table_stats` and `innodb_index_stats`. These tables are set up automatically in all install, upgrade, and build-from-source procedures.
+O recurso de estatísticas persistentes depende das tabelas gerenciadas internamente no Database `mysql`, chamadas `innodb_table_stats` e `innodb_index_stats`. Essas tabelas são configuradas automaticamente em todos os procedimentos de instalação, atualização e compilação a partir do código-fonte (*build-from-source*).
 
-**Table 14.4 Columns of innodb_table_stats**
+**Tabela 14.4 Colunas de innodb_table_stats**
 
-<table summary="Columns of the mysql.innodb_table_stats table."><thead><tr> <th>Column name</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>database_name</code></td> <td>Database name</td> </tr><tr> <td><code>table_name</code></td> <td>Table name, partition name, or subpartition name</td> </tr><tr> <td><code>last_update</code></td> <td>A timestamp indicating the last time the row was updated</td> </tr><tr> <td><code>n_rows</code></td> <td>The number of rows in the table</td> </tr><tr> <td><code>clustered_index_size</code></td> <td>The size of the primary index, in pages</td> </tr><tr> <td><code>sum_of_other_index_sizes</code></td> <td>The total size of other (non-primary) indexes, in pages</td> </tr></tbody></table>
+| Nome da Coluna | Descrição |
+| :--- | :--- |
+| `database_name` | Nome do Database |
+| `table_name` | Nome da tabela, nome da partição ou nome da subpartição |
+| `last_update` | Um timestamp indicando a última vez que a linha foi atualizada |
+| `n_rows` | O número de linhas na tabela |
+| `clustered_index_size` | O tamanho do Primary Index, em páginas |
+| `sum_of_other_index_sizes` | O tamanho total de outros Indexes (não primários), em páginas |
 
-**Table 14.5 Columns of innodb_index_stats**
+**Tabela 14.5 Colunas de innodb_index_stats**
 
-<table summary="Columns of the mysql.innodb_index_stats table."><thead><tr> <th>Column name</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>database_name</code></td> <td>Database name</td> </tr><tr> <td><code>table_name</code></td> <td>Table name, partition name, or subpartition name</td> </tr><tr> <td><code>index_name</code></td> <td>Index name</td> </tr><tr> <td><code>last_update</code></td> <td>A timestamp indicating the last time that <code>InnoDB</code> updated this row</td> </tr><tr> <td><code>stat_name</code></td> <td>The name of the statistic, whose value is reported in the <code>stat_value</code> column</td> </tr><tr> <td><code>stat_value</code></td> <td>The value of the statistic that is named in <code>stat_name</code> column</td> </tr><tr> <td><code>sample_size</code></td> <td>The number of pages sampled for the estimate provided in the <code>stat_value</code> column</td> </tr><tr> <td><code>stat_description</code></td> <td>Description of the statistic that is named in the <code>stat_name</code> column</td> </tr></tbody></table>
+| Nome da Coluna | Descrição |
+| :--- | :--- |
+| `database_name` | Nome do Database |
+| `table_name` | Nome da tabela, nome da partição ou nome da subpartição |
+| `index_name` | Nome do Index |
+| `last_update` | Um timestamp indicando a última vez que o `InnoDB` atualizou esta linha |
+| `stat_name` | O nome da estatística, cujo valor é relatado na coluna `stat_value` |
+| `stat_value` | O valor da estatística que é nomeada na coluna `stat_name` |
+| `sample_size` | O número de páginas amostradas para a estimativa fornecida na coluna `stat_value` |
+| `stat_description` | Descrição da estatística que é nomeada na coluna `stat_name` |
 
-The `innodb_table_stats` and `innodb_index_stats` tables include a `last_update` column that shows when index statistics were last updated:
+As tabelas `innodb_table_stats` e `innodb_index_stats` incluem uma coluna `last_update` que mostra quando as estatísticas do Index foram atualizadas pela última vez:
 
 ```sql
 mysql> SELECT * FROM innodb_table_stats \G
@@ -110,15 +126,15 @@ mysql> SELECT * FROM innodb_index_stats \G
      ...
 ```
 
-The `innodb_table_stats` and `innodb_index_stats` tables can be updated manually, which makes it possible to force a specific query optimization plan or test alternative plans without modifying the database. If you manually update statistics, use the `FLUSH TABLE tbl_name` statement to load the updated statistics.
+As tabelas `innodb_table_stats` e `innodb_index_stats` podem ser atualizadas manualmente, o que possibilita forçar um plano de otimização de Query específico ou testar planos alternativos sem modificar o Database. Se você atualizar estatísticas manualmente, use a instrução `FLUSH TABLE tbl_name` para carregar as estatísticas atualizadas.
 
-Persistent statistics are considered local information, because they relate to the server instance. The `innodb_table_stats` and `innodb_index_stats` tables are therefore not replicated when automatic statistics recalculation takes place. If you run `ANALYZE TABLE` to initiate a synchronous recalculation of statistics, this statement is replicated (unless you suppressed logging for it), and recalculation takes place on the replicas.
+As estatísticas persistentes são consideradas informações locais, pois se relacionam à instância do servidor. As tabelas `innodb_table_stats` e `innodb_index_stats` não são, portanto, replicadas quando o recálculo automático de estatísticas ocorre. Se você executar `ANALYZE TABLE` para iniciar um recálculo síncrono de estatísticas, essa instrução será replicada (a menos que você tenha suprimido o registro dela) e o recálculo ocorrerá nas réplicas.
 
-##### 14.8.11.1.6 InnoDB Persistent Statistics Tables Example
+##### 14.8.11.1.6 Exemplo de Tabelas de Estatísticas Persistentes do InnoDB
 
-The `innodb_table_stats` table contains one row for each table. The following example demonstrates the type of data collected.
+A tabela `innodb_table_stats` contém uma linha para cada tabela. O exemplo a seguir demonstra o tipo de dados coletados.
 
-Table `t1` contains a primary index (columns `a`, `b`) secondary index (columns `c`, `d`), and unique index (columns `e`,`f`):
+A Tabela `t1` contém um Primary Index (colunas `a`, `b`), um Secondary Index (colunas `c`, `d`), e um Unique Index (colunas `e`,`f`):
 
 ```sql
 CREATE TABLE t1 (
@@ -127,7 +143,7 @@ PRIMARY KEY (a, b), KEY i1 (c, d), UNIQUE KEY i2uniq (e, f)
 ) ENGINE=INNODB;
 ```
 
-After inserting five rows of sample data, table `t1` appears as follows:
+Após inserir cinco linhas de dados de exemplo, a tabela `t1` aparece da seguinte forma:
 
 ```sql
 mysql> SELECT * FROM t1;
@@ -142,7 +158,7 @@ mysql> SELECT * FROM t1;
 +---+---+------+------+------+------+
 ```
 
-To immediately update statistics, run `ANALYZE TABLE` (if `innodb_stats_auto_recalc` is enabled, statistics are updated automatically within a few seconds assuming that the 10% threshold for changed table rows is reached):
+Para atualizar as estatísticas imediatamente, execute `ANALYZE TABLE` (se `innodb_stats_auto_recalc` estiver habilitada, as estatísticas são atualizadas automaticamente em poucos segundos, assumindo que o limite de 10% para linhas de tabela alteradas seja atingido):
 
 ```sql
 mysql> ANALYZE TABLE t1;
@@ -153,7 +169,7 @@ mysql> ANALYZE TABLE t1;
 +---------+---------+----------+----------+
 ```
 
-Table statistics for table `t1` show the last time `InnoDB` updated the table statistics (`2014-03-14 14:36:34`), the number of rows in the table (`5`), the clustered index size (`1` page), and the combined size of the other indexes (`2` pages).
+As estatísticas da tabela `t1` mostram a última vez que o `InnoDB` atualizou as estatísticas da tabela (`2014-03-14 14:36:34`), o número de linhas na tabela (`5`), o tamanho do clustered Index (`1` página) e o tamanho combinado dos outros Indexes (`2` páginas).
 
 ```sql
 mysql> SELECT * FROM mysql.innodb_table_stats WHERE table_name like 't1'\G
@@ -166,7 +182,7 @@ mysql> SELECT * FROM mysql.innodb_table_stats WHERE table_name like 't1'\G
 sum_of_other_index_sizes: 2
 ```
 
-The `innodb_index_stats` table contains multiple rows for each index. Each row in the `innodb_index_stats` table provides data related to a particular index statistic which is named in the `stat_name` column and described in the `stat_description` column. For example:
+A tabela `innodb_index_stats` contém múltiplas linhas para cada Index. Cada linha na tabela `innodb_index_stats` fornece dados relacionados a uma estatística de Index específica que é nomeada na coluna `stat_name` e descrita na coluna `stat_description`. Por exemplo:
 
 ```sql
 mysql> SELECT index_name, stat_name, stat_value, stat_description
@@ -191,15 +207,15 @@ mysql> SELECT index_name, stat_name, stat_value, stat_description
 +------------+--------------+------------+-----------------------------------+
 ```
 
-The `stat_name` column shows the following types of statistics:
+A coluna `stat_name` mostra os seguintes tipos de estatísticas:
 
-* `size`: Where `stat_name`=`size`, the `stat_value` column displays the total number of pages in the index.
+* `size`: Onde `stat_name`=`size`, a coluna `stat_value` exibe o número total de páginas no Index.
 
-* `n_leaf_pages`: Where `stat_name`=`n_leaf_pages`, the `stat_value` column displays the number of leaf pages in the index.
+* `n_leaf_pages`: Onde `stat_name`=`n_leaf_pages`, a coluna `stat_value` exibe o número de páginas *leaf* (folha) no Index.
 
-* `n_diff_pfxNN`: Where `stat_name`=`n_diff_pfx01`, the `stat_value` column displays the number of distinct values in the first column of the index. Where `stat_name`=`n_diff_pfx02`, the `stat_value` column displays the number of distinct values in the first two columns of the index, and so on. Where `stat_name`=`n_diff_pfxNN`, the `stat_description` column shows a comma separated list of the index columns that are counted.
+* `n_diff_pfxNN`: Onde `stat_name`=`n_diff_pfx01`, a coluna `stat_value` exibe o número de valores distintos na primeira coluna do Index. Onde `stat_name`=`n_diff_pfx02`, a coluna `stat_value` exibe o número de valores distintos nas duas primeiras colunas do Index, e assim por diante. Onde `stat_name`=`n_diff_pfxNN`, a coluna `stat_description` mostra uma lista separada por vírgulas das colunas do Index que são contadas.
 
-To further illustrate the `n_diff_pfxNN` statistic, which provides cardinality data, consider once again the `t1` table example that was introduced previously. As shown below, the `t1` table is created with a primary index (columns `a`, `b`), a secondary index (columns `c`, `d`), and a unique index (columns `e`, `f`):
+Para ilustrar ainda mais a estatística `n_diff_pfxNN`, que fornece dados de cardinalidade, considere novamente o exemplo da tabela `t1` que foi introduzido anteriormente. Conforme mostrado abaixo, a tabela `t1` é criada com um Primary Index (colunas `a`, `b`), um Secondary Index (colunas `c`, `d`), e um Unique Index (colunas `e`, `f`):
 
 ```sql
 CREATE TABLE t1 (
@@ -208,7 +224,7 @@ CREATE TABLE t1 (
 ) ENGINE=INNODB;
 ```
 
-After inserting five rows of sample data, table `t1` appears as follows:
+Após inserir cinco linhas de dados de exemplo, a tabela `t1` aparece da seguinte forma:
 
 ```sql
 mysql> SELECT * FROM t1;
@@ -223,7 +239,7 @@ mysql> SELECT * FROM t1;
 +---+---+------+------+------+------+
 ```
 
-When you query the `index_name`, `stat_name`, `stat_value`, and `stat_description`, where `stat_name LIKE 'n_diff%'`, the following result set is returned:
+Quando você consulta `index_name`, `stat_name`, `stat_value` e `stat_description`, onde `stat_name LIKE 'n_diff%'`, o seguinte conjunto de resultados é retornado:
 
 ```sql
 mysql> SELECT index_name, stat_name, stat_value, stat_description
@@ -243,35 +259,35 @@ mysql> SELECT index_name, stat_name, stat_value, stat_description
 +------------+--------------+------------+------------------+
 ```
 
-For the `PRIMARY` index, there are two `n_diff%` rows. The number of rows is equal to the number of columns in the index.
+Para o Index `PRIMARY`, existem duas linhas `n_diff%`. O número de linhas é igual ao número de colunas no Index.
 
-Note
+Nota
 
-For nonunique indexes, `InnoDB` appends the columns of the primary key.
+Para Indexes não exclusivos, o `InnoDB` anexa as colunas da Primary Key.
 
-* Where `index_name`=`PRIMARY` and `stat_name`=`n_diff_pfx01`, the `stat_value` is `1`, which indicates that there is a single distinct value in the first column of the index (column `a`). The number of distinct values in column `a` is confirmed by viewing the data in column `a` in table `t1`, in which there is a single distinct value (`1`). The counted column (`a`) is shown in the `stat_description` column of the result set.
+* Onde `index_name`=`PRIMARY` e `stat_name`=`n_diff_pfx01`, o `stat_value` é `1`, o que indica que há um único valor distinto na primeira coluna do Index (coluna `a`). O número de valores distintos na coluna `a` é confirmado visualizando os dados na coluna `a` na tabela `t1`, na qual há um único valor distinto (`1`). A coluna contada (`a`) é mostrada na coluna `stat_description` do conjunto de resultados.
 
-* Where `index_name`=`PRIMARY` and `stat_name`=`n_diff_pfx02`, the `stat_value` is `5`, which indicates that there are five distinct values in the two columns of the index (`a,b`). The number of distinct values in columns `a` and `b` is confirmed by viewing the data in columns `a` and `b` in table `t1`, in which there are five distinct values: (`1,1`), (`1,2`), (`1,3`), (`1,4`) and (`1,5`). The counted columns (`a,b`) are shown in the `stat_description` column of the result set.
+* Onde `index_name`=`PRIMARY` e `stat_name`=`n_diff_pfx02`, o `stat_value` é `5`, o que indica que há cinco valores distintos nas duas colunas do Index (`a,b`). O número de valores distintos nas colunas `a` e `b` é confirmado visualizando os dados nas colunas `a` e `b` na tabela `t1`, na qual há cinco valores distintos: (`1,1`), (`1,2`), (`1,3`), (`1,4`) e (`1,5`). As colunas contadas (`a,b`) são mostradas na coluna `stat_description` do conjunto de resultados.
 
-For the secondary index (`i1`), there are four `n_diff%` rows. Only two columns are defined for the secondary index (`c,d`) but there are four `n_diff%` rows for the secondary index because `InnoDB` suffixes all nonunique indexes with the primary key. As a result, there are four `n_diff%` rows instead of two to account for the both the secondary index columns (`c,d`) and the primary key columns (`a,b`).
+Para o Secondary Index (`i1`), existem quatro linhas `n_diff%`. Apenas duas colunas são definidas para o Secondary Index (`c,d`), mas existem quatro linhas `n_diff%` para o Secondary Index porque o `InnoDB` sufixa todos os Indexes não exclusivos com a Primary Key. Como resultado, existem quatro linhas `n_diff%` em vez de duas para contabilizar tanto as colunas do Secondary Index (`c,d`) quanto as colunas da Primary Key (`a,b`).
 
-* Where `index_name`=`i1` and `stat_name`=`n_diff_pfx01`, the `stat_value` is `1`, which indicates that there is a single distinct value in the first column of the index (column `c`). The number of distinct values in column `c` is confirmed by viewing the data in column `c` in table `t1`, in which there is a single distinct value: (`10`). The counted column (`c`) is shown in the `stat_description` column of the result set.
+* Onde `index_name`=`i1` e `stat_name`=`n_diff_pfx01`, o `stat_value` é `1`, o que indica que há um único valor distinto na primeira coluna do Index (coluna `c`). O número de valores distintos na coluna `c` é confirmado visualizando os dados na coluna `c` na tabela `t1`, na qual há um único valor distinto: (`10`). A coluna contada (`c`) é mostrada na coluna `stat_description` do conjunto de resultados.
 
-* Where `index_name`=`i1` and `stat_name`=`n_diff_pfx02`, the `stat_value` is `2`, which indicates that there are two distinct values in the first two columns of the index (`c,d`). The number of distinct values in columns `c` an `d` is confirmed by viewing the data in columns `c` and `d` in table `t1`, in which there are two distinct values: (`10,11`) and (`10,12`). The counted columns (`c,d`) are shown in the `stat_description` column of the result set.
+* Onde `index_name`=`i1` e `stat_name`=`n_diff_pfx02`, o `stat_value` é `2`, o que indica que há dois valores distintos nas duas primeiras colunas do Index (`c,d`). O número de valores distintos nas colunas `c` e `d` é confirmado visualizando os dados nas colunas `c` e `d` na tabela `t1`, na qual há dois valores distintos: (`10,11`) e (`10,12`). As colunas contadas (`c,d`) são mostradas na coluna `stat_description` do conjunto de resultados.
 
-* Where `index_name`=`i1` and `stat_name`=`n_diff_pfx03`, the `stat_value` is `2`, which indicates that there are two distinct values in the first three columns of the index (`c,d,a`). The number of distinct values in columns `c`, `d`, and `a` is confirmed by viewing the data in column `c`, `d`, and `a` in table `t1`, in which there are two distinct values: (`10,11,1`) and (`10,12,1`). The counted columns (`c,d,a`) are shown in the `stat_description` column of the result set.
+* Onde `index_name`=`i1` e `stat_name`=`n_diff_pfx03`, o `stat_value` é `2`, o que indica que há dois valores distintos nas três primeiras colunas do Index (`c,d,a`). O número de valores distintos nas colunas `c`, `d` e `a` é confirmado visualizando os dados nas colunas `c`, `d` e `a` na tabela `t1`, na qual há dois valores distintos: (`10,11,1`) e (`10,12,1`). As colunas contadas (`c,d,a`) são mostradas na coluna `stat_description` do conjunto de resultados.
 
-* Where `index_name`=`i1` and `stat_name`=`n_diff_pfx04`, the `stat_value` is `5`, which indicates that there are five distinct values in the four columns of the index (`c,d,a,b`). The number of distinct values in columns `c`, `d`, `a` and `b` is confirmed by viewing the data in columns `c`, `d`, `a`, and `b` in table `t1`, in which there are five distinct values: (`10,11,1,1`), (`10,11,1,2`), (`10,11,1,3`), (`10,12,1,4`), and (`10,12,1,5`). The counted columns (`c,d,a,b`) are shown in the `stat_description` column of the result set.
+* Onde `index_name`=`i1` e `stat_name`=`n_diff_pfx04`, o `stat_value` é `5`, o que indica que há cinco valores distintos nas quatro colunas do Index (`c,d,a,b`). O número de valores distintos nas colunas `c`, `d`, `a` e `b` é confirmado visualizando os dados nas colunas `c`, `d`, `a` e `b` na tabela `t1`, na qual há cinco valores distintos: (`10,11,1,1`), (`10,11,1,2`), (`10,11,1,3`), (`10,12,1,4`) e (`10,12,1,5`). As colunas contadas (`c,d,a,b`) são mostradas na coluna `stat_description` do conjunto de resultados.
 
-For the unique index (`i2uniq`), there are two `n_diff%` rows.
+Para o Unique Index (`i2uniq`), existem duas linhas `n_diff%`.
 
-* Where `index_name`=`i2uniq` and `stat_name`=`n_diff_pfx01`, the `stat_value` is `2`, which indicates that there are two distinct values in the first column of the index (column `e`). The number of distinct values in column `e` is confirmed by viewing the data in column `e` in table `t1`, in which there are two distinct values: (`100`) and (`200`). The counted column (`e`) is shown in the `stat_description` column of the result set.
+* Onde `index_name`=`i2uniq` e `stat_name`=`n_diff_pfx01`, o `stat_value` é `2`, o que indica que há dois valores distintos na primeira coluna do Index (coluna `e`). O número de valores distintos na coluna `e` é confirmado visualizando os dados na coluna `e` na tabela `t1`, na qual há dois valores distintos: (`100`) e (`200`). A coluna contada (`e`) é mostrada na coluna `stat_description` do conjunto de resultados.
 
-* Where `index_name`=`i2uniq` and `stat_name`=`n_diff_pfx02`, the `stat_value` is `5`, which indicates that there are five distinct values in the two columns of the index (`e,f`). The number of distinct values in columns `e` and `f` is confirmed by viewing the data in columns `e` and `f` in table `t1`, in which there are five distinct values: (`100,101`), (`200,102`), (`100,103`), (`200,104`), and (`100,105`). The counted columns (`e,f`) are shown in the `stat_description` column of the result set.
+* Onde `index_name`=`i2uniq` e `stat_name`=`n_diff_pfx02`, o `stat_value` é `5`, o que indica que há cinco valores distintos nas duas colunas do Index (`e,f`). O número de valores distintos nas colunas `e` e `f` é confirmado visualizando os dados nas colunas `e` e `f` na tabela `t1`, na qual há cinco valores distintos: (`100,101`), (`200,102`), (`100,103`), (`200,104`) e (`100,105`). As colunas contadas (`e,f`) são mostradas na coluna `stat_description` do conjunto de resultados.
 
-##### 14.8.11.1.7 Retrieving Index Size Using the innodb_index_stats Table
+##### 14.8.11.1.7 Recuperando o Tamanho do Index Usando a Tabela innodb_index_stats
 
-You can retrieve the index size for tables, partitions, or subpartitions can using the `innodb_index_stats` table. In the following example, index sizes are retrieved for table `t1`. For a definition of table `t1` and corresponding index statistics, see Section 14.8.11.1.6, “InnoDB Persistent Statistics Tables Example”.
+Você pode recuperar o tamanho do Index para tabelas, partições ou subpartições usando a tabela `innodb_index_stats`. No exemplo a seguir, os tamanhos dos Indexes são recuperados para a tabela `t1`. Para uma definição da tabela `t1` e estatísticas de Index correspondentes, veja Seção 14.8.11.1.6, “Exemplo de Tabelas de Estatísticas Persistentes do InnoDB”.
 
 ```sql
 mysql> SELECT SUM(stat_value) pages, index_name,
@@ -287,7 +303,7 @@ mysql> SELECT SUM(stat_value) pages, index_name,
 +-------+------------+-------+
 ```
 
-For partitions or subpartitions, you can use the same query with a modified `WHERE` clause to retrieve index sizes. For example, the following query retrieves index sizes for partitions of table `t1`:
+Para partições ou subpartições, você pode usar a mesma Query com uma cláusula `WHERE` modificada para recuperar os tamanhos dos Indexes. Por exemplo, a seguinte Query recupera os tamanhos dos Indexes para partições da tabela `t1`:
 
 ```sql
 mysql> SELECT SUM(stat_value) pages, index_name,

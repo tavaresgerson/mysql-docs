@@ -1,60 +1,60 @@
-#### 26.4.3.21 The metrics View
+#### 26.4.3.21 A View metrics
 
-This view summarizes MySQL server metrics to show variable names, values, types, and whether they are enabled. By default, rows are sorted by variable type and name.
+Esta View sumariza as metrics do servidor MySQL para exibir nomes de Variable, values, tipos e se elas estão habilitadas. Por padrão, as linhas são ordenadas pelo tipo e nome da Variable.
 
-The `metrics` view includes this information:
+A View `metrics` inclui as seguintes informações:
 
-* Global status variables from the Performance Schema `global_status` table
+* Global status variables da table `global_status` do Performance Schema
 
-* `InnoDB` metrics from the `INFORMATION_SCHEMA` `INNODB_METRICS` table
+* `InnoDB` metrics da table `INNODB_METRICS` do `INFORMATION_SCHEMA`
 
-* Current and total memory allocation, based on the Performance Schema memory instrumentation
+* Alocação de memory atual e total, baseada na instrumentação de memory do Performance Schema
 
-* The current time (human readable and Unix timestamp formats)
+* O tempo atual (formatos legível por humanos e Unix timestamp)
 
-There is some duplication of information between the `global_status` and `INNODB_METRICS` tables, which the `metrics` view eliminates.
+Há alguma duplicação de informação entre as tables `global_status` e `INNODB_METRICS`, que a View `metrics` elimina.
 
-The `metrics` view has these columns:
+A View `metrics` possui estas Columns:
 
 * `Variable_name`
 
-  The metric name. The metric type determines the source from which the name is taken:
+  O nome da metric. O tipo da metric determina a origem de onde o nome é retirado:
 
-  + For global status variables: The `VARIABLE_NAME` column of the `global_status` table
+  + Para global status variables: A Column `VARIABLE_NAME` da table `global_status`
 
-  + For `InnoDB` metrics: The `NAME` column of the `INNODB_METRICS` table
+  + Para `InnoDB` metrics: A Column `NAME` da table `INNODB_METRICS`
 
-  + For other metrics: A view-provided descriptive string
+  + Para outras metrics: Uma string descritiva fornecida pela View
 * `Variable_value`
 
-  The metric value. The metric type determines the source from which the value is taken:
+  O value da metric. O tipo da metric determina a origem de onde o value é retirado:
 
-  + For global status variables: The `VARIABLE_VALUE` column of the `global_status` table
+  + Para global status variables: A Column `VARIABLE_VALUE` da table `global_status`
 
-  + For `InnoDB` metrics: The `COUNT` column of the `INNODB_METRICS` table
+  + Para `InnoDB` metrics: A Column `COUNT` da table `INNODB_METRICS`
 
-  + For memory metrics: The relevant column from the Performance Schema `memory_summary_global_by_event_name` table
+  + Para memory metrics: A Column relevante da table `memory_summary_global_by_event_name` do Performance Schema
 
-  + For the current time: The value of `NOW(3)` or `UNIX_TIMESTAMP(NOW(3))`
+  + Para o tempo atual: O value de `NOW(3)` ou `UNIX_TIMESTAMP(NOW(3))`
 
 * `Type`
 
-  The metric type:
+  O tipo da metric:
 
-  + For global status variables: `Global Status`
+  + Para global status variables: `Global Status`
 
-  + For `InnoDB` metrics: `InnoDB Metrics - %`, where `%` is replaced by the value of the `SUBSYSTEM` column of the `INNODB_METRICS` table
+  + Para `InnoDB` metrics: `InnoDB Metrics - %`, onde `%` é substituído pelo value da Column `SUBSYSTEM` da table `INNODB_METRICS`
 
-  + For memory metrics: `Performance Schema`
+  + Para memory metrics: `Performance Schema`
 
-  + For the current time: `System Time`
+  + Para o tempo atual: `System Time`
 * `Enabled`
 
-  Whether the metric is enabled:
+  Se a metric está habilitada:
 
-  + For global status variables: `YES`
-  + For `InnoDB` metrics: `YES` if the `STATUS` column of the `INNODB_METRICS` table is `enabled`, `NO` otherwise
+  + Para global status variables: `YES`
+  + Para `InnoDB` metrics: `YES` se a Column `STATUS` da table `INNODB_METRICS` estiver `enabled` (habilitada), `NO` (NÃO) caso contrário
 
-  + For memory metrics: `NO`, `YES`, or `PARTIAL` (currently, `PARTIAL` occurs only for memory metrics and indicates that not all `memory/%` instruments are enabled; Performance Schema memory instruments are always enabled)
+  + Para memory metrics: `NO`, `YES` ou `PARTIAL` (atualmente, `PARTIAL` ocorre apenas para memory metrics e indica que nem todos os instrumentos `memory/%` estão enabled; os instrumentos de memory do Performance Schema estão sempre enabled)
 
-  + For the current time: `YES`
+  + Para o tempo atual: `YES`

@@ -1,24 +1,24 @@
-### 24.3.31 The INFORMATION_SCHEMA VIEWS Table
+### 24.3.31 A Tabela VIEWS do INFORMATION_SCHEMA
 
-The [`VIEWS`](information-schema-views-table.html "24.3.31 The INFORMATION_SCHEMA VIEWS Table") table provides information about views in databases. You must have the [`SHOW VIEW`](privileges-provided.html#priv_show-view) privilege to access this table.
+A tabela [`VIEWS`](information-schema-views-table.html "24.3.31 A Tabela VIEWS do INFORMATION_SCHEMA") fornece informações sobre as views em Databases. Você deve ter o privilégio [`SHOW VIEW`](privileges-provided.html#priv_show-view) para acessar esta tabela.
 
-The [`VIEWS`](information-schema-views-table.html "24.3.31 The INFORMATION_SCHEMA VIEWS Table") table has these columns:
+A tabela [`VIEWS`](information-schema-views-table.html "24.3.31 A Tabela VIEWS do INFORMATION_SCHEMA") possui estas colunas:
 
 * `TABLE_CATALOG`
 
-  The name of the catalog to which the view belongs. This value is always `def`.
+  O nome do Catalog ao qual a view pertence. Este valor é sempre `def`.
 
 * `TABLE_SCHEMA`
 
-  The name of the schema (database) to which the view belongs.
+  O nome do Schema (Database) ao qual a view pertence.
 
 * `TABLE_NAME`
 
-  The name of the view.
+  O nome da view.
 
 * `VIEW_DEFINITION`
 
-  The [`SELECT`](select.html "13.2.9 SELECT Statement") statement that provides the definition of the view. This column has most of what you see in the `Create Table` column that [`SHOW CREATE VIEW`](show-create-view.html "13.7.5.13 SHOW CREATE VIEW Statement") produces. Skip the words before [`SELECT`](select.html "13.2.9 SELECT Statement") and skip the words `WITH CHECK OPTION`. Suppose that the original statement was:
+  A instrução [`SELECT`](select.html "13.2.9 SELECT Statement") que fornece a definição da view. Esta coluna contém a maior parte do que você vê na coluna `Create Table` produzida por [`SHOW CREATE VIEW`](show-create-view.html "13.7.5.13 SHOW CREATE VIEW Statement"). Omita as palavras antes de [`SELECT`](select.html "13.2.9 SELECT Statement") e omita as palavras `WITH CHECK OPTION`. Suponha que a instrução original fosse:
 
   ```sql
   CREATE VIEW v AS
@@ -28,7 +28,7 @@ The [`VIEWS`](information-schema-views-table.html "24.3.31 The INFORMATION_SCHE
     WITH CHECK OPTION;
   ```
 
-  Then the view definition looks like this:
+  Então, a definição da view se parece com isto:
 
   ```sql
   SELECT s2,s1 FROM t WHERE s1 > 5 ORDER BY s1
@@ -36,35 +36,35 @@ The [`VIEWS`](information-schema-views-table.html "24.3.31 The INFORMATION_SCHE
 
 * `CHECK_OPTION`
 
-  The value of the `CHECK_OPTION` attribute. The value is one of `NONE`, `CASCADE`, or `LOCAL`.
+  O valor do atributo `CHECK_OPTION`. O valor é um de `NONE`, `CASCADE` ou `LOCAL`.
 
 * `IS_UPDATABLE`
 
-  MySQL sets a flag, called the view updatability flag, at [`CREATE VIEW`](create-view.html "13.1.21 CREATE VIEW Statement") time. The flag is set to `YES` (true) if [`UPDATE`](update.html "13.2.11 UPDATE Statement") and [`DELETE`](delete.html "13.2.2 DELETE Statement") (and similar operations) are legal for the view. Otherwise, the flag is set to `NO` (false). The `IS_UPDATABLE` column in the [`VIEWS`](information-schema-views-table.html "24.3.31 The INFORMATION_SCHEMA VIEWS Table") table displays the status of this flag.
+  O MySQL define um flag, chamado flag de updatability da view, no momento da instrução [`CREATE VIEW`](create-view.html "13.1.21 CREATE VIEW Statement"). O flag é definido como `YES` (verdadeiro) se [`UPDATE`](update.html "13.2.11 UPDATE Statement") e [`DELETE`](delete.html "13.2.2 DELETE Statement") (e operações similares) forem legais para a view. Caso contrário, o flag é definido como `NO` (falso). A coluna `IS_UPDATABLE` na tabela [`VIEWS`](information-schema-views-table.html "24.3.31 A Tabela VIEWS do INFORMATION_SCHEMA") exibe o status deste flag.
 
-  If a view is not updatable, statements such [`UPDATE`](update.html "13.2.11 UPDATE Statement"), [`DELETE`](delete.html "13.2.2 DELETE Statement"), and [`INSERT`](insert.html "13.2.5 INSERT Statement") are illegal and are rejected. (Even if a view is updatable, it might not be possible to insert into it; for details, refer to [Section 23.5.3, “Updatable and Insertable Views”](view-updatability.html "23.5.3 Updatable and Insertable Views").)
+  Se uma view não for updatable, instruções como [`UPDATE`](update.html "13.2.11 UPDATE Statement"), [`DELETE`](delete.html "13.2.2 DELETE Statement") e [`INSERT`](insert.html "13.2.5 INSERT Statement") são ilegais e são rejeitadas. (Mesmo que uma view seja updatable, pode não ser possível inserir dados nela; para detalhes, consulte a [Seção 23.5.3, “Views Updatable e Insertable”](view-updatability.html "23.5.3 Updatable and Insertable Views").)
 
-  The `IS_UPDATABLE` flag may be unreliable if a view depends on one or more other views, and one of these underlying views is updated. Regardless of the `IS_UPDATABLE` value, the server keeps track of the updatability of a view and correctly rejects data change operations to views that are not updatable. If the `IS_UPDATABLE` value for a view has become inaccurate to due to changes to underlying views, the value can be updated by deleting and re-creating the view.
+  O flag `IS_UPDATABLE` pode não ser confiável se uma view depender de uma ou mais outras views, e uma dessas views subjacentes for atualizada. Independentemente do valor de `IS_UPDATABLE`, o servidor mantém o rastreamento da updatability de uma view e rejeita corretamente as operações de alteração de dados em views que não são updatable. Se o valor de `IS_UPDATABLE` para uma view se tornar impreciso devido a alterações em views subjacentes, o valor pode ser atualizado excluindo e recriando a view.
 
 * `DEFINER`
 
-  The account of the user who created the view, in `'user_name'@'host_name'` format.
+  A conta do usuário que criou a view, no formato `'user_name'@'host_name'`.
 
 * `SECURITY_TYPE`
 
-  The view `SQL SECURITY` characteristic. The value is one of `DEFINER` or `INVOKER`.
+  A característica `SQL SECURITY` da view. O valor é um de `DEFINER` ou `INVOKER`.
 
 * `CHARACTER_SET_CLIENT`
 
-  The session value of the [`character_set_client`](server-system-variables.html#sysvar_character_set_client) system variable when the view was created.
+  O valor de sessão da variável de sistema [`character_set_client`](server-system-variables.html#sysvar_character_set_client) quando a view foi criada.
 
 * `COLLATION_CONNECTION`
 
-  The session value of the [`collation_connection`](server-system-variables.html#sysvar_collation_connection) system variable when the view was created.
+  O valor de sessão da variável de sistema [`collation_connection`](server-system-variables.html#sysvar_collation_connection) quando a view foi criada.
 
-#### Notes
+#### Notas
 
-MySQL permits different [`sql_mode`](server-system-variables.html#sysvar_sql_mode) settings to tell the server the type of SQL syntax to support. For example, you might use the [`ANSI`](sql-mode.html#sqlmode_ansi) SQL mode to ensure MySQL correctly interprets the standard SQL concatenation operator, the double bar (`||`), in your queries. If you then create a view that concatenates items, you might worry that changing the [`sql_mode`](server-system-variables.html#sysvar_sql_mode) setting to a value different from [`ANSI`](sql-mode.html#sqlmode_ansi) could cause the view to become invalid. But this is not the case. No matter how you write out a view definition, MySQL always stores it the same way, in a canonical form. Here is an example that shows how the server changes a double bar concatenation operator to a [`CONCAT()`](string-functions.html#function_concat) function:
+O MySQL permite diferentes configurações de [`sql_mode`](server-system-variables.html#sysvar_sql_mode) para informar ao servidor o tipo de sintaxe SQL a ser suportada. Por exemplo, você pode usar o SQL mode [`ANSI`](sql-mode.html#sqlmode_ansi) para garantir que o MySQL interprete corretamente o operador de concatenação SQL padrão, a barra dupla (`||`), nas suas Queries. Se você então criar uma view que concatena itens, você pode se preocupar que mudar a configuração de [`sql_mode`](server-system-variables.html#sysvar_sql_mode) para um valor diferente de [`ANSI`](sql-mode.html#sqlmode_ansi) possa fazer com que a view se torne inválida. Mas este não é o caso. Não importa como você escreva a definição de uma view, o MySQL sempre a armazena da mesma forma, em um formato canônico. Aqui está um exemplo que mostra como o servidor altera um operador de concatenação de barra dupla para uma função [`CONCAT()`](string-functions.html#function_concat):
 
 ```sql
 mysql> SET sql_mode = 'ANSI';
@@ -83,4 +83,4 @@ mysql> SELECT VIEW_DEFINITION FROM INFORMATION_SCHEMA.VIEWS
 1 row in set (0.00 sec)
 ```
 
-The advantage of storing a view definition in canonical form is that changes made later to the value of [`sql_mode`](server-system-variables.html#sysvar_sql_mode) do not affect the results from the view. However, an additional consequence is that comments prior to [`SELECT`](select.html "13.2.9 SELECT Statement") are stripped from the definition by the server.
+A vantagem de armazenar uma definição de view em formato canônico é que as alterações feitas posteriormente no valor de [`sql_mode`](server-system-variables.html#sysvar_sql_mode) não afetam os resultados da view. No entanto, uma consequência adicional é que os comentários anteriores à instrução [`SELECT`](select.html "13.2.9 SELECT Statement") são removidos da definição pelo servidor.

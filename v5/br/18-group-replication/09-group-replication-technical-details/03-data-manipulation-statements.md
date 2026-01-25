@@ -1,11 +1,11 @@
-### 17.9.3 Data Manipulation Statements
+### 17.9.3 Instruções de Manipulação de Dados
 
-As there are no primary servers (sources) for any particular data set, every server in the group is allowed to execute transactions at any time, even transactions that change state (RW transactions).
+Como não há servers primários (sources) para nenhum conjunto de dados (data set) específico, todo server no grupo tem permissão para executar transactions a qualquer momento, mesmo transactions que alteram o estado (RW transactions).
 
-Any server may execute a transaction without any *a priori* coordination. But, at commit time, it coordinates with the rest of the servers in the group to reach a decision on the fate of that transaction. This coordination serves two purposes: (i) check whether the transaction should commit or not; (ii) and propagate the changes so that other servers can apply the transaction as well.
+Qualquer server pode executar uma transaction sem nenhuma coordenação *a priori*. Mas, no momento do commit, ele coordena com o restante dos servers no grupo para chegar a uma decisão sobre o destino dessa transaction. Essa coordenação serve a dois propósitos: (i) verificar se a transaction deve fazer commit ou não; (ii) e propagar as mudanças para que outros servers também possam aplicar a transaction.
 
-As a transaction is sent through an atomic broadcast, either all servers in the group receive the transaction or none do. If they receive it, then they all receive it in the same order with respect to other transactions that were sent before. Conflict detection is carried out by inspecting and comparing write sets of transactions. Thus, they are detected at the row level. Conflict resolution follows the first committer wins rule. If t1 and t2 execute concurrently at different sites, because t2 is ordered before t1, and both changed the same row, then t2 wins the conflict and t1 aborts. In other words, t1 was trying to change data that had been rendered stale by t2.
+Como uma transaction é enviada através de um broadcast atômico, ou todos os servers no grupo recebem a transaction, ou nenhum a recebe. Se eles a recebem, então todos a recebem na mesma ordem em relação a outras transactions que foram enviadas anteriormente. A detecção de conflitos (Conflict detection) é realizada inspecionando e comparando os *write sets* (conjuntos de escrita) das transactions. Assim, eles são detectados no nível da linha (row level). A resolução de conflitos segue a regra do "primeiro a fazer commit vence" (*first committer wins*). Se t1 e t2 executam concorrentemente em sites diferentes, e t2 é ordenada antes de t1, e ambas alteraram a mesma linha (row), então t2 vence o conflito e t1 aborta. Em outras palavras, t1 estava tentando alterar dados que haviam sido invalidados (*stale*) por t2.
 
-Note
+Nota
 
-If two transactions are bound to conflict more often than not, then it is a good practice to start them on the same server. They then have a chance to synchronize on the local lock manager instead of aborting later in the replication protocol.
+Se duas transactions estão fadadas a conflitar na maioria das vezes, é uma boa prática iniciá-las no mesmo server. Elas terão, então, a chance de sincronizar no gerenciador de lock (lock manager) local, em vez de abortar mais tarde no protocolo de Replication.

@@ -1,5 +1,5 @@
-## 28.6 MySQL Enterprise Thread Pool Overview
+## 28.6 Visão Geral do MySQL Enterprise Thread Pool
 
-MySQL Enterprise Edition includes MySQL Enterprise Thread Pool, implemented using a server plugin. The default thread-handling model in MySQL Server executes statements using one thread per client connection. As more clients connect to the server and execute statements, overall performance degrades. In MySQL Enterprise Edition, a thread pool plugin provides an alternative thread-handling model designed to reduce overhead and improve performance. The plugin implements a thread pool that increases server performance by efficiently managing statement execution threads for large numbers of client connections.
+O MySQL Enterprise Edition inclui o MySQL Enterprise Thread Pool, implementado usando um *plugin* de servidor. O modelo padrão de gerenciamento de *thread* no MySQL Server executa instruções usando uma *thread* por *connection* de cliente. À medida que mais clientes se conectam ao *server* e executam instruções, o desempenho geral se degrada. No MySQL Enterprise Edition, um *plugin* de *thread pool* fornece um modelo alternativo de gerenciamento de *thread* projetado para reduzir a sobrecarga e melhorar o desempenho. O *plugin* implementa um *thread pool* que aumenta o desempenho do *server* gerenciando de forma eficiente as *threads* de execução de instruções para um grande número de *connections* de clientes.
 
-For more information, see Section 5.5.3, “MySQL Enterprise Thread Pool”.
+Para mais informações, consulte a Seção 5.5.3, “MySQL Enterprise Thread Pool”.

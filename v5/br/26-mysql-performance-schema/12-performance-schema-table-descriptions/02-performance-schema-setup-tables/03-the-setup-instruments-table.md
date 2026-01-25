@@ -1,6 +1,6 @@
-#### 25.12.2.3 The setup_instruments Table
+#### 25.12.2.3 A Tabela setup_instruments
 
-The [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table lists classes of instrumented objects for which events can be collected:
+A tabela [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") lista classes de objetos instrumentados para os quais eventos podem ser coletados:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_instruments;
@@ -35,28 +35,28 @@ mysql> SELECT * FROM performance_schema.setup_instruments;
 ...
 ```
 
-Each instrument added to the source code provides a row for the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table, even when the instrumented code is not executed. When an instrument is enabled and executed, instrumented instances are created, which are visible in the `xxx_instances` tables, such as [`file_instances`](performance-schema-file-instances-table.html "25.12.3.2 The file_instances Table") or [`rwlock_instances`](performance-schema-rwlock-instances-table.html "25.12.3.4 The rwlock_instances Table").
+Cada instrument que é adicionado ao código-fonte fornece uma linha para a tabela [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table"), mesmo quando o código instrumentado não é executado. Quando um instrument é habilitado e executado, `instances` instrumentadas são criadas, que são visíveis nas tabelas `xxx_instances`, como [`file_instances`](performance-schema-file-instances-table.html "25.12.3.2 The file_instances Table") ou [`rwlock_instances`](performance-schema-rwlock-instances-table.html "25.12.3.4 The rwlock_instances Table").
 
-Modifications to most [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") rows affect monitoring immediately. For some instruments, modifications are effective only at server startup; changing them at runtime has no effect. This affects primarily mutexes, conditions, and rwlocks in the server, although there may be other instruments for which this is true.
+Modificações na maioria das linhas de [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") afetam o monitoramento imediatamente. Para alguns instruments, as modificações são eficazes apenas na inicialização do server; alterá-los em tempo de execução (`runtime`) não tem efeito. Isso afeta principalmente `mutexes`, `conditions` e `rwlocks` no server, embora possa haver outros instruments para os quais isso seja verdade.
 
-For more information about the role of the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table in event filtering, see [Section 25.4.3, “Event Pre-Filtering”](performance-schema-pre-filtering.html "25.4.3 Event Pre-Filtering").
+Para mais informações sobre o papel da tabela [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") na filtragem de eventos, consulte [Seção 25.4.3, “Pré-Filtragem de Eventos”](performance-schema-pre-filtering.html "25.4.3 Event Pre-Filtering").
 
-The [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table has these columns:
+A tabela [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") possui estas colunas:
 
 * `NAME`
 
-  The instrument name. Instrument names may have multiple parts and form a hierarchy, as discussed in [Section 25.6, “Performance Schema Instrument Naming Conventions”](performance-schema-instrument-naming.html "25.6 Performance Schema Instrument Naming Conventions"). Events produced from execution of an instrument have an `EVENT_NAME` value that is taken from the instrument `NAME` value. (Events do not really have a “name,” but this provides a way to associate events with instruments.)
+  O nome do instrument. Nomes de instruments podem ter múltiplas partes e formar uma hierarquia, conforme discutido em [Seção 25.6, “Convenções de Nomenclatura de Instruments do Performance Schema”](performance-schema-instrument-naming.html "25.6 Performance Schema Instrument Naming Conventions"). Eventos produzidos a partir da execução de um instrument têm um valor `EVENT_NAME` que é derivado do valor `NAME` do instrument. (Os eventos na verdade não têm um “nome”, mas isso fornece uma maneira de associar eventos a instruments.)
 
 * `ENABLED`
 
-  Whether the instrument is enabled. The value is `YES` or `NO`. A disabled instrument produces no events. This column can be modified, although setting `ENABLED` has no effect for instruments that have already been created.
+  Indica se o instrument está habilitado. O valor é `YES` ou `NO`. Um instrument desabilitado não produz eventos. Esta coluna pode ser modificada, embora definir `ENABLED` não tenha efeito para instruments que já foram criados.
 
 * `TIMED`
 
-  Whether the instrument is timed. The value is `YES` or `NO`. This column can be modified, although setting `TIMED` has no effect for instruments that have already been created.
+  Indica se o instrument é cronometrado (`timed`). O valor é `YES` ou `NO`. Esta coluna pode ser modificada, embora definir `TIMED` não tenha efeito para instruments que já foram criados.
 
-  For memory instruments, the `TIMED` column in [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") is ignored because memory operations are not timed.
+  Para instruments de memória, a coluna `TIMED` em [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") é ignorada porque operações de memória não são cronometradas.
 
-  If an enabled instrument is not timed, the instrument code is enabled, but the timer is not. Events produced by the instrument have `NULL` for the `TIMER_START`, `TIMER_END`, and `TIMER_WAIT` timer values. This in turn causes those values to be ignored when calculating the sum, minimum, maximum, and average time values in summary tables.
+  Se um instrument habilitado não for cronometrado, o código do instrument estará habilitado, mas o `timer` não. Os eventos produzidos pelo instrument terão `NULL` para os valores de timer `TIMER_START`, `TIMER_END` e `TIMER_WAIT`. Isso, por sua vez, faz com que esses valores sejam ignorados ao calcular a soma, mínimo, máximo e a média dos valores de tempo nas tabelas de Summary.
 
-[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not permitted for the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table.
+O [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") não é permitido para a tabela [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table").

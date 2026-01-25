@@ -1,54 +1,54 @@
-### 14.8.2 Configuring InnoDB for Read-Only Operation
+### 14.8.2 Configurando o InnoDB para Operação Read-Only
 
-You can query `InnoDB` tables where the MySQL data directory is on read-only media by enabling the `--innodb-read-only` configuration option at server startup.
+Você pode executar Query em tabelas `InnoDB` onde o diretório de dados do MySQL está em mídia read-only (somente leitura), habilitando a opção de configuração `--innodb-read-only` na inicialização do server.
 
-#### How to Enable
+#### Como Habilitar
 
-To prepare an instance for read-only operation, make sure all the necessary information is flushed to the data files before storing it on the read-only medium. Run the server with change buffering disabled (`innodb_change_buffering=0`) and do a slow shutdown.
+Para preparar uma instância para operação read-only, certifique-se de que todas as informações necessárias sejam descarregadas (flushed) para os arquivos de dados antes de armazená-la na mídia read-only. Execute o server com o change buffering desabilitado (`innodb_change_buffering=0`) e realize um slow shutdown (desligamento lento).
 
-To enable read-only mode for an entire MySQL instance, specify the following configuration options at server startup:
+Para habilitar o modo read-only para uma instância MySQL inteira, especifique as seguintes opções de configuração na inicialização do server:
 
 * `--innodb-read-only=1`
-* If the instance is on read-only media such as a DVD or CD, or the `/var` directory is not writeable by all: `--pid-file=path_on_writeable_media` and `--event-scheduler=disabled`
+* Se a instância estiver em mídia read-only, como um DVD ou CD, ou se o diretório `/var` não for gravável (writeable) por todos: `--pid-file=path_on_writeable_media` e `--event-scheduler=disabled`
 
-* `--innodb-temp-data-file-path`. This option specifies the path, file name, and file size for `InnoDB` temporary tablespace data files. The default setting is `ibtmp1:12M:autoextend`, which creates the `ibtmp1` temporary tablespace data file in the data directory. To prepare an instance for read-only operation, set `innodb_temp_data_file_path` to a location outside of the data directory. The path must be relative to the data directory. For example:
+* `--innodb-temp-data-file-path`. Esta opção especifica o path, o nome do arquivo e o tamanho do arquivo para os arquivos de dados do temporary tablespace do `InnoDB`. A configuração padrão é `ibtmp1:12M:autoextend`, que cria o arquivo de dados do temporary tablespace `ibtmp1` no data directory. Para preparar uma instância para operação read-only, defina `innodb_temp_data_file_path` para um local fora do data directory. O path deve ser relativo ao data directory. Por exemplo:
 
   ```sql
   --innodb-temp-data-file-path=../../../tmp/ibtmp1:12M:autoextend
   ```
 
-#### Usage Scenarios
+#### Cenários de Uso
 
-This mode of operation is appropriate in situations such as:
+Este modo de operação é apropriado em situações como:
 
-* Distributing a MySQL application, or a set of MySQL data, on a read-only storage medium such as a DVD or CD.
+* Distribuir uma aplicação MySQL, ou um conjunto de dados MySQL, em uma mídia de armazenamento read-only, como um DVD ou CD.
 
-* Multiple MySQL instances querying the same data directory simultaneously, typically in a data warehousing configuration. You might use this technique to avoid bottlenecks that can occur with a heavily loaded MySQL instance, or you might use different configuration options for the various instances to tune each one for particular kinds of queries.
+* Múltiplas instâncias MySQL executando Query no mesmo data directory simultaneamente, tipicamente em uma configuração de data warehousing. Você pode usar essa técnica para evitar bottlenecks que podem ocorrer com uma instância MySQL altamente carregada, ou pode usar diferentes opções de configuração para as várias instâncias, a fim de ajustar (tune) cada uma para tipos específicos de Query.
 
-* Querying data that has been put into a read-only state for security or data integrity reasons, such as archived backup data.
+* Executar Query em dados que foram colocados em um estado read-only por motivos de segurança ou integridade de dados, como dados de backup arquivados.
 
-Note
+Nota
 
-This feature is mainly intended for flexibility in distribution and deployment, rather than raw performance based on the read-only aspect. See Section 8.5.3, “Optimizing InnoDB Read-Only Transactions” for ways to tune the performance of read-only queries, which do not require making the entire server read-only.
+Este recurso destina-se principalmente à flexibilidade na distribuição e no deployment (implementação), em vez de performance bruta baseada no aspecto read-only. Consulte a Seção 8.5.3, “Otimizando Transações Read-Only do InnoDB”, para maneiras de ajustar (tune) a performance de Query read-only, o que não exige que o server inteiro seja read-only.
 
-#### How It Works
+#### Como Funciona
 
-When the server is run in read-only mode through the `--innodb-read-only` option, certain `InnoDB` features and components are reduced or turned off entirely:
+Quando o server é executado no modo read-only através da opção `--innodb-read-only`, certos recursos e componentes do `InnoDB` são reduzidos ou desativados completamente:
 
-* No change buffering is done, in particular no merges from the change buffer. To make sure the change buffer is empty when you prepare the instance for read-only operation, disable change buffering (`innodb_change_buffering=0`) and do a slow shutdown first.
+* Não é realizado change buffering, em particular, não há merges do change buffer. Para garantir que o change buffer esteja vazio ao preparar a instância para operação read-only, desabilite o change buffering (`innodb_change_buffering=0`) e execute um slow shutdown primeiro.
 
-* There is no crash recovery phase at startup. The instance must have performed a slow shutdown before being put into the read-only state.
+* Não há fase de crash recovery na inicialização. A instância deve ter executado um slow shutdown antes de ser colocada no estado read-only.
 
-* Because the redo log is not used in read-only operation, you can set `innodb_log_file_size` to the smallest size possible (1 MB) before making the instance read-only.
+* Como o Redo Log não é usado na operação read-only, você pode definir `innodb_log_file_size` para o menor tamanho possível (1 MB) antes de tornar a instância read-only.
 
-* Most background threads are turned off. I/O read threads remain, as well as I/O write threads and a page cleaner thread for writes to temporary files, which are permitted in read-only mode.
+* A maioria dos background Threads são desativados. I/O read Threads permanecem, bem como I/O write Threads e um page cleaner Thread para escritas em arquivos temporários, que são permitidas no modo read-only.
 
-* Information about deadlocks, monitor output, and so on is not written to temporary files. As a consequence, `SHOW ENGINE INNODB STATUS` does not produce any output.
+* Informações sobre Deadlocks, saída do monitor, e assim por diante, não são escritas em arquivos temporários. Consequentemente, `SHOW ENGINE INNODB STATUS` não produz nenhuma saída.
 
-* If the MySQL server is started with `--innodb-read-only` but the data directory is still on writeable media, the root user can still perform DCL operations such as `GRANT` and `REVOKE`.
+* Se o MySQL server for iniciado com `--innodb-read-only`, mas o data directory ainda estiver em mídia gravável (writeable), o usuário root ainda pode realizar operações DCL como `GRANT` e `REVOKE`.
 
-* Changes to configuration option settings that would normally change the behavior of write operations, have no effect when the server is in read-only mode.
+* Alterações nas configurações das opções que normalmente mudariam o comportamento das operações de escrita não têm efeito quando o server está no modo read-only.
 
-* The MVCC processing to enforce isolation levels is turned off. All queries read the latest version of a record, because update and deletes are not possible.
+* O processamento MVCC para impor os níveis de isolation é desativado. Todas as Query leem a versão mais recente de um registro, pois update e delete não são possíveis.
 
-* The undo log is not used. Disable any settings for the `innodb_undo_tablespaces` and `innodb_undo_directory` configuration options.
+* O Undo Log não é usado. Desative quaisquer configurações para as opções `innodb_undo_tablespaces` e `innodb_undo_directory`.

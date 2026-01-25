@@ -1,16 +1,16 @@
-#### 26.4.4.10 The ps_setup_enable_instrument() Procedure
+#### 26.4.4.10 O Procedimento ps_setup_enable_instrument()
 
-Enables Performance Schema instruments with names that contain the argument. Produces a result set indicating how many instruments were enabled. Already enabled instruments do not count.
+Habilita Instruments do Performance Schema cujos nomes contêm o argumento. Produz um result set indicando quantos Instruments foram habilitados. Instruments já habilitados não são contabilizados.
 
-##### Parameters
+##### Parâmetros
 
-* `in_pattern VARCHAR(128)`: The value used to match instrument names, which are identified by using `%in_pattern%` as an operand for a `LIKE` pattern match.
+* `in_pattern VARCHAR(128)`: O valor usado para corresponder aos nomes dos Instruments, que são identificados usando `%in_pattern%` como operando para uma correspondência de Pattern `LIKE`.
 
-  A value of `''` matches all instruments.
+  Um valor de `''` corresponde a todos os Instruments.
 
-##### Example
+##### Exemplo
 
-Enable a specific instrument:
+Habilitar um Instrument específico:
 
 ```sql
 mysql> CALL sys.ps_setup_enable_instrument('wait/lock/metadata/sql/mdl');
@@ -21,7 +21,7 @@ mysql> CALL sys.ps_setup_enable_instrument('wait/lock/metadata/sql/mdl');
 +----------------------+
 ```
 
-Enable all mutex instruments:
+Habilitar todos os mutex Instruments:
 
 ```sql
 mysql> CALL sys.ps_setup_enable_instrument('mutex');

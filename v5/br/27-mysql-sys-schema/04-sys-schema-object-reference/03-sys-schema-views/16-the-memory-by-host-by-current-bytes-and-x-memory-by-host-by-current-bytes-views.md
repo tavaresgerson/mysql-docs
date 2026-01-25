@@ -1,29 +1,29 @@
-#### 26.4.3.16 The memory_by_host_by_current_bytes and x$memory_by_host_by_current_bytes Views
+#### 26.4.3.16 As Views memory_by_host_by_current_bytes e x$memory_by_host_by_current_bytes
 
-These views summarize memory use, grouped by host. By default, rows are sorted by descending amount of memory used.
+Essas Views resumem o uso de memória, agrupado por host. Por padrão, as linhas são ordenadas pela quantidade de memória usada, em ordem decrescente.
 
-The `memory_by_host_by_current_bytes` and `x$memory_by_host_by_current_bytes` views have these columns:
+As Views `memory_by_host_by_current_bytes` e `x$memory_by_host_by_current_bytes` possuem as seguintes colunas:
 
 * `host`
 
-  The host from which the client connected. Rows for which the `HOST` column in the underlying Performance Schema table is `NULL` are assumed to be for background threads and are reported with a host name of `background`.
+  O host a partir do qual o cliente se conectou. As linhas em que a coluna `HOST` na tabela subjacente do Performance Schema é `NULL` são consideradas para background threads e são reportadas com um nome de host de `background`.
 
 * `current_count_used`
 
-  The current number of allocated memory blocks that have not been freed yet for the host.
+  O número atual de blocos de memória alocados que ainda não foram liberados para o host.
 
 * `current_allocated`
 
-  The current number of allocated bytes that have not been freed yet for the host.
+  O número atual de bytes alocados que ainda não foram liberados para o host.
 
 * `current_avg_alloc`
 
-  The current number of allocated bytes per memory block for the host.
+  O número atual de bytes alocados por bloco de memória para o host.
 
 * `current_max_alloc`
 
-  The largest single current memory allocation in bytes for the host.
+  A maior alocação de memória única atual em bytes para o host.
 
 * `total_allocated`
 
-  The total memory allocation in bytes for the host.
+  A alocação total de memória em bytes para o host.

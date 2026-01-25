@@ -1,83 +1,83 @@
-### 21.5.5 ndb_mgm — The NDB Cluster Management Client
+### 21.5.5 ndb_mgm — O Client de Gerenciamento do NDB Cluster
 
-The [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") management client process is actually not needed to run the cluster. Its value lies in providing a set of commands for checking the cluster's status, starting backups, and performing other administrative functions. The management client accesses the management server using a C API. Advanced users can also employ this API for programming dedicated management processes to perform tasks similar to those performed by [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client").
+O processo do Client de gerenciamento [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — O Client de Gerenciamento do NDB Cluster") não é estritamente necessário para executar o cluster. Seu valor reside em fornecer um conjunto de comandos para verificar o status do cluster, iniciar Backups e executar outras funções administrativas. O management client acessa o management server usando uma API C. Usuários avançados também podem empregar essa API para programar processos de gerenciamento dedicados para executar tarefas semelhantes às realizadas por [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — O Client de Gerenciamento do NDB Cluster").
 
-To start the management client, it is necessary to supply the host name and port number of the management server:
+Para iniciar o management client, é necessário fornecer o Host Name e o Port Number do management server:
 
 ```sql
 $> ndb_mgm [host_name [port_num
 ```
 
-For example:
+Por exemplo:
 
 ```sql
 $> ndb_mgm ndb_mgmd.mysql.com 1186
 ```
 
-The default host name and port number are `localhost` and 1186, respectively.
+O Host Name e Port Number padrão são `localhost` e 1186, respectivamente.
 
-Options that can be used with [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") are shown in the following table. Additional descriptions follow the table.
+As opções que podem ser usadas com [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — O Client de Gerenciamento do NDB Cluster") são mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
-**Table 21.25 Command-line options used with the program ndb_mgm**
+**Tabela 21.25 Opções de linha de comando usadas com o programa ndb_mgm**
 
-<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code> --character-sets-dir=path </code> </p></th> <td>Directory containing character sets</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retry-delay=# </code> </p></th> <td>Number of seconds to wait between attempts to contact management server</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Same as --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --core-file </code> </p></th> <td>Write core file on error; used in debugging</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-extra-file=path </code> </p></th> <td>Read given file after global files are read</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-file=path </code> </p></th> <td>Read default options from given file only</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-group-suffix=string </code> </p></th> <td>Also read groups with concat(group, suffix)</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--execute=command</code>, </p><p> <code> -e command </code> </p></th> <td>Execute command and exit</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>, </p><p> <code> -? </code> </p></th> <td>Display help text and exit</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --login-path=path </code> </p></th> <td>Read given path from login file</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Set connect string for connecting to ndb_mgmd. Syntax: "[nodeid=id;][host=]hostname[:port]". Overrides entries in NDB_CONNECTSTRING and my.cnf</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Same as --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb-nodeid=# </code> </p></th> <td>Set node ID for this node, overriding any ID set by --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb-optimized-node-selection </code> </p></th> <td>Enable optimizations for selection of nodes for transactions. Enabled by default; use --skip-ndb-optimized-node-selection to disable</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --no-defaults </code> </p></th> <td>Do not read default options from any option file other than login file</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --print-defaults </code> </p></th> <td>Print program argument list and exit</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--try-reconnect=#</code>, </p><p> <code> <a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_try-reconnect">-t
-                #</a> </code> </p></th> <td>Set number of times to retry connection before giving up; synonym for --connect-retries</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>, </p><p> <code> -? </code> </p></th> <td>Display help text and exit; same as --help</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>, </p><p> <code> -V </code> </p></th> <td>Display version information and exit</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody></table>
+<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Formato</th> <th>Descrição</th> <th>Adicionado, Descontinuado ou Removido</th> </tr></thead><tbody><tr> <th><p> <code> --character-sets-dir=path </code> </p></th> <td>Diretório contendo character sets</td> <td><p> (Suportado em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retry-delay=# </code> </p></th> <td>Número de segundos para esperar entre as tentativas de contato com o management server</td> <td><p> (Suportado em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p> (Suportado em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --core-file </code> </p></th> <td>Escrever core file em caso de erro; usado em debugging</td> <td><p> (Suportado em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-extra-file=path </code> </p></th> <td>Ler arquivo fornecido após a leitura dos arquivos globais</td> <td><p> (Suportado em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-file=path </code> </p></th> <td>Ler opções padrão somente do arquivo fornecido</td> <td><p> (Suportado em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-group-suffix=string </code> </p></th> <td>Também lê grupos com concat(group, sufixo)</td> <td><p> (Suportado em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--execute=command</code>, </p><p> <code> -e command </code> </p></th> <td>Executa o command e sai</td> <td><p> (Suportado em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>, </p><p> <code> -? </code> </p></th> <td>Exibe o texto de ajuda e sai</td> <td><p> (Suportado em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --login-path=path </code> </p></th> <td>Lê o caminho fornecido a partir do login file</td> <td><p> (Suportado em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Define a connect string para conexão com o ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Sobrescreve entradas em NDB_CONNECTSTRING e my.cnf</td> <td><p> (Suportado em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p> (Suportado em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb-nodeid=# </code> </p></th> <td>Define o Node ID para este node, sobrescrevendo qualquer ID definido por --ndb-connectstring</td> <td><p> (Suportado em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb-optimized-node-selection </code> </p></th> <td>Habilita otimizações para seleção de nodes para transactions. Habilitado por padrão; use --skip-ndb-optimized-node-selection para desabilitar</td> <td><p> (Suportado em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --no-defaults </code> </p></th> <td>Não lê opções padrão de nenhum option file além do login file</td> <td><p> (Suportado em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --print-defaults </code> </p></th> <td>Imprime a lista de argumentos do programa e sai</td> <td><p> (Suportado em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--try-reconnect=#</code>, </p><p> <code> <a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_try-reconnect">-t
+                #</a> </code> </p></th> <td>Define o número de vezes para tentar reconectar antes de desistir; sinônimo de --connect-retries</td> <td><p> (Suportado em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>, </p><p> <code> -? </code> </p></th> <td>Exibe o texto de ajuda e sai; o mesmo que --help</td> <td><p> (Suportado em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>, </p><p> <code> -V </code> </p></th> <td>Exibe as informações de versão e sai</td> <td><p> (Suportado em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody></table>
 
 * `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Directory containing character sets.
+  Diretório contendo character sets.
 
 * `--connect-retries=#`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>3</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Padrão</th> <td><code>3</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  This option specifies the number of times following the first attempt to retry a connection before giving up (the client always tries the connection at least once). The length of time to wait per attempt is set using [`--connect-retry-delay`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_connect-retry-delay).
+  Esta opção especifica o número de vezes, após a primeira tentativa, que a conexão deve ser repetida antes de desistir (o Client sempre tenta a conexão pelo menos uma vez). O tempo de espera por tentativa é definido usando [`--connect-retry-delay`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_connect-retry-delay).
 
-  This option is synonymous with the [`--try-reconnect`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_try-reconnect) option, which is now deprecated.
+  Esta opção é sinônima da opção [`--try-reconnect`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_try-reconnect), que agora está descontinuada.
 
 * `--connect-retry-delay`
 
-  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>5</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>5</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Padrão</th> <td><code>5</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>5</code></td> </tr></tbody></table>
 
-  Number of seconds to wait between attempts to contact management server.
+  Número de segundos para esperar entre as tentativas de contato com o management server.
 
 * `--connect-string`
 
-  <table frame="box" rules="all" summary="Properties for connect-string"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-string=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-string"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connect-string=connection_string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Same as [`--ndb-connectstring`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_ndb-connectstring).
+  O mesmo que [`--ndb-connectstring`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_ndb-connectstring).
 
 * `--core-file`
 
-  <table frame="box" rules="all" summary="Properties for core-file"><tbody><tr><th>Command-Line Format</th> <td><code>--core-file</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for core-file"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--core-file</code></td> </tr></tbody></table>
 
-  Write core file on error; used in debugging.
+  Escreve core file em caso de erro; usado em debugging.
 
 * `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Read given file after global files are read.
+  Lê o arquivo fornecido após a leitura dos arquivos globais.
 
 * `--defaults-file`
 
-  <table frame="box" rules="all" summary="Properties for defaults-file"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-file"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--defaults-file=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Read default options from given file only.
+  Lê as opções padrão somente do arquivo fornecido.
 
 * `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-group-suffix=string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--defaults-group-suffix=string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Also read groups with concat(group, suffix).
+  Também lê grupos com concat(group, suffix).
 
 * `--execute=command`, `-e command`
 
-  <table frame="box" rules="all" summary="Properties for execute"><tbody><tr><th>Command-Line Format</th> <td><code>--execute=command</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for execute"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--execute=command</code></td> </tr></tbody></table>
 
-  This option can be used to send a command to the NDB Cluster management client from the system shell. For example, either of the following is equivalent to executing [`SHOW`](mysql-cluster-mgm-client-commands.html#ndbclient-show) in the management client:
+  Esta opção pode ser usada para enviar um command para o NDB Cluster management client a partir do shell do sistema. Por exemplo, qualquer um dos comandos a seguir é equivalente à execução de [`SHOW`](mysql-cluster-mgm-client-commands.html#ndbclient-show) no management client:
 
   ```sql
   $> ndb_mgm -e "SHOW"
@@ -85,78 +85,78 @@ Options that can be used with [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html 
   $> ndb_mgm --execute="SHOW"
   ```
 
-  This is analogous to how the [`--execute`](mysql-command-options.html#option_mysql_execute) or `-e` option works with the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") command-line client. See [Section 4.2.2.1, “Using Options on the Command Line”](command-line-options.html "4.2.2.1 Using Options on the Command Line").
+  Isso é análogo a como a opção [`--execute`](mysql-command-options.html#option_mysql_execute) ou `-e` funciona com o Client de linha de comando [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"). Consulte [Section 4.2.2.1, “Using Options on the Command Line”](command-line-options.html "4.2.2.1 Using Options on the Command Line").
 
-  Note
+  Nota
 
-  If the management client command to be passed using this option contains any space characters, then the command *must* be enclosed in quotation marks. Either single or double quotation marks may be used. If the management client command contains no space characters, the quotation marks are optional.
+  Se o command do management client a ser passado usando esta opção contiver qualquer caractere de espaço, o command *deve* ser colocado entre aspas. Podem ser usadas aspas simples ou duplas. Se o command do management client não contiver caracteres de espaço, as aspas são opcionais.
 
 * `--help`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Display help text and exit.
+  Exibe o texto de ajuda e sai.
 
 * `--login-path`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Read given path from login file.
+  Lê o caminho fornecido a partir do login file.
 
 * `--ndb-connectstring`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Set connect string for connecting to [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"). Syntax: [`nodeid=id;`][`host=`]`hostname`[`:port`]. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
+  Define a connect string para conexão com [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"). Sintaxe: [`nodeid=id;`][`host=`]`hostname`[`:port`]. Sobrescreve entradas em `NDB_CONNECTSTRING` e `my.cnf`.
 
 * `--ndb-mgmd-host`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Same as [`--ndb-connectstring`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_ndb-connectstring).
+  O mesmo que [`--ndb-connectstring`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_ndb-connectstring).
 
 * `--ndb-nodeid`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Set node ID for this node, overriding any ID set by [`--ndb-connectstring`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_ndb-connectstring).
+  Define o Node ID para este node, sobrescrevendo qualquer ID definido por [`--ndb-connectstring`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_ndb-connectstring).
 
 * `--ndb-optimized-node-selection`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Enable optimizations for selection of nodes for transactions. Enabled by default; use `--skip-ndb-optimized-node-selection` to disable.
+  Habilita otimizações para seleção de nodes para transactions. Habilitado por padrão; use `--skip-ndb-optimized-node-selection` para desabilitar.
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Do not read default options from any option file other than login file.
+  Não lê opções padrão de nenhum option file além do login file.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Print program argument list and exit.
+  Imprime a lista de argumentos do programa e sai.
 
 * `--try-reconnect=number`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  If the connection to the management server is broken, the node tries to reconnect to it every 5 seconds until it succeeds. By using this option, it is possible to limit the number of attempts to *`number`* before giving up and reporting an error instead.
+  Se a conexão com o management server for interrompida, o node tenta reconectar a ele a cada 5 segundos até ter sucesso. Ao usar esta opção, é possível limitar o número de tentativas para *`number`* antes de desistir e reportar um erro.
 
-  This option is deprecated and subject to removal in a future release. Use [`--connect-retries`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_connect-retries), instead.
+  Esta opção está descontinuada e sujeita à remoção em um release futuro. Use [`--connect-retries`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_connect-retries) em vez disso.
 
 * `--usage`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Display help text and exit; same as [`--help`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_help).
+  Exibe o texto de ajuda e sai; o mesmo que [`--help`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_help).
 
 * `--version`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>3</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Padrão</th> <td><code>3</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  Display version information and exit.
+  Exibe as informações de versão e sai.
 
-Additional information about using [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") can be found in [Section 21.6.1, “Commands in the NDB Cluster Management Client”](mysql-cluster-mgm-client-commands.html "21.6.1 Commands in the NDB Cluster Management Client").
+Informações adicionais sobre o uso de [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — O Client de Gerenciamento do NDB Cluster") podem ser encontradas em [Section 21.6.1, “Commands in the NDB Cluster Management Client”](mysql-cluster-mgm-client-commands.html "21.6.1 Commands in the NDB Cluster Management Client").

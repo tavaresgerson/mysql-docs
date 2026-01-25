@@ -1,34 +1,34 @@
-### 24.4.6 The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables
+### 24.4.6 As Tabelas INNODB_CMPMEM e INNODB_CMPMEM_RESET do INFORMATION_SCHEMA
 
-The [`INNODB_CMPMEM`](information-schema-innodb-cmpmem-table.html "24.4.6 The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables") and [`INNODB_CMPMEM_RESET`](information-schema-innodb-cmpmem-table.html "24.4.6 The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables") tables provide status information on compressed [pages](glossary.html#glos_page "page") within the `InnoDB` [buffer pool](glossary.html#glos_buffer_pool "buffer pool").
+As tabelas [`INNODB_CMPMEM`](information-schema-innodb-cmpmem-table.html "24.4.6 The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables") e [`INNODB_CMPMEM_RESET`](information-schema-innodb-cmpmem-table.html "24.4.6 The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables") fornecem informações de status sobre [pages] compactadas dentro do [buffer pool] do `InnoDB`.
 
-The [`INNODB_CMPMEM`](information-schema-innodb-cmpmem-table.html "24.4.6 The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables") and [`INNODB_CMPMEM_RESET`](information-schema-innodb-cmpmem-table.html "24.4.6 The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables") tables have these columns:
+As tabelas [`INNODB_CMPMEM`](information-schema-innodb-cmpmem-table.html "24.4.6 The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables") e [`INNODB_CMPMEM_RESET`](information-schema-innodb-cmpmem-table.html "24.4.6 The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables") possuem as seguintes colunas:
 
 * `PAGE_SIZE`
 
-  The block size in bytes. Each record of this table describes blocks of this size.
+  O tamanho do bloco em bytes. Cada registro desta tabela descreve blocos deste tamanho.
 
 * `BUFFER_POOL_INSTANCE`
 
-  A unique identifier for the buffer pool instance.
+  Um identificador exclusivo para a instance do buffer pool.
 
 * `PAGES_USED`
 
-  The number of blocks of size `PAGE_SIZE` that are currently in use.
+  O número de blocos do tamanho `PAGE_SIZE` que estão atualmente em uso.
 
 * `PAGES_FREE`
 
-  The number of blocks of size `PAGE_SIZE` that are currently available for allocation. This column shows the external fragmentation in the memory pool. Ideally, these numbers should be at most 1.
+  O número de blocos do tamanho `PAGE_SIZE` que estão atualmente disponíveis para alocação. Esta coluna mostra a fragmentação externa no pool de memória. Idealmente, esses números devem ser no máximo 1.
 
 * `RELOCATION_OPS`
 
-  The number of times a block of size `PAGE_SIZE` has been relocated. The buddy system can relocate the allocated “buddy neighbor” of a freed block when it tries to form a bigger freed block. Reading from the [`INNODB_CMPMEM_RESET`](information-schema-innodb-cmpmem-table.html "24.4.6 The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables") table resets this count.
+  O número de vezes que um bloco do tamanho `PAGE_SIZE` foi realocado. O *buddy system* pode realocar o “buddy neighbor” alocado de um bloco liberado quando tenta formar um bloco liberado maior. A leitura da tabela [`INNODB_CMPMEM_RESET`](information-schema-innodb-cmpmem-table.html "24.4.6 The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables") zera essa contagem.
 
 * `RELOCATION_TIME`
 
-  The total time in microseconds used for relocating blocks of size `PAGE_SIZE`. Reading from the table `INNODB_CMPMEM_RESET` resets this count.
+  O tempo total em microssegundos usado para realocar blocos do tamanho `PAGE_SIZE`. A leitura da tabela `INNODB_CMPMEM_RESET` zera essa contagem.
 
-#### Example
+#### Exemplo
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_CMPMEM\G
@@ -69,12 +69,12 @@ buffer_pool_instance: 0
      relocation_time: 0
 ```
 
-#### Notes
+#### Notas
 
-* Use these tables to measure the effectiveness of `InnoDB` table [compression](glossary.html#glos_compression "compression") in your database.
+* Use estas tabelas para medir a eficácia da [compression] de tabelas `InnoDB` no seu Database.
 
-* You must have the [`PROCESS`](privileges-provided.html#priv_process) privilege to query this table.
+* Você deve ter o [`PROCESS`](privileges-provided.html#priv_process) privilege para executar uma Query nesta tabela.
 
-* Use the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table or the [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") statement to view additional information about the columns of this table, including data types and default values.
+* Use a tabela [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") do `INFORMATION_SCHEMA` ou o comando [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
 
-* For usage information, see [Section 14.9.1.4, “Monitoring InnoDB Table Compression at Runtime”](innodb-compression-tuning-monitoring.html "14.9.1.4 Monitoring InnoDB Table Compression at Runtime") and [Section 14.16.1.3, “Using the Compression Information Schema Tables”](innodb-information-schema-examples-compression-sect.html "14.16.1.3 Using the Compression Information Schema Tables"). For general information about `InnoDB` table compression, see [Section 14.9, “InnoDB Table and Page Compression”](innodb-compression.html "14.9 InnoDB Table and Page Compression").
+* Para informações de uso, consulte a [Seção 14.9.1.4, “Monitorando a Compression de Tabelas InnoDB em Tempo de Execução”](innodb-compression-tuning-monitoring.html "14.9.1.4 Monitoring InnoDB Table Compression at Runtime") e a [Seção 14.16.1.3, “Usando as Information Schema Tables de Compression”](innodb-information-schema-examples-compression-sect.html "14.16.1.3 Using the Compression Information Schema Tables"). Para informações gerais sobre a compression de tabelas `InnoDB`, consulte a [Seção 14.9, “Compression de Table e Page do InnoDB”](innodb-compression.html "14.9 InnoDB Table and Page Compression").

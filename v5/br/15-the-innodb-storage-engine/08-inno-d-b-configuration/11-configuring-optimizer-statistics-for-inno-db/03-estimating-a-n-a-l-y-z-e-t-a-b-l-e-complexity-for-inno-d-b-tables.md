@@ -1,27 +1,26 @@
-#### 14.8.11.3 Estimating ANALYZE TABLE Complexity for InnoDB Tables
+#### 14.8.11.3 Estimando a Complexidade de ANALYZE TABLE para Tabelas InnoDB
 
-`ANALYZE TABLE` complexity for `InnoDB` tables is dependent on:
+A complexidade de `ANALYZE TABLE` para tabelas `InnoDB` depende de:
 
-* The number of pages sampled, as defined by `innodb_stats_persistent_sample_pages`.
+*   O número de páginas amostradas, conforme definido por `innodb_stats_persistent_sample_pages`.
+*   O número de colunas indexadas em uma table
+*   O número de partitions. Se uma table não tiver partitions, o número de partitions é considerado 1.
 
-* The number of indexed columns in a table
-* The number of partitions. If a table has no partitions, the number of partitions is considered to be 1.
+Usando esses parâmetros, uma fórmula aproximada para estimar a complexidade de `ANALYZE TABLE` seria:
 
-Using these parameters, an approximate formula for estimating `ANALYZE TABLE` complexity would be:
+O valor de `innodb_stats_persistent_sample_pages` \* número de colunas indexadas em uma table \* o número de partitions
 
-The value of `innodb_stats_persistent_sample_pages` \* number of indexed columns in a table \* the number of partitions
+Geralmente, quanto maior o valor resultante, maior será o tempo de execução para `ANALYZE TABLE`.
 
-Typically, the greater the resulting value, the greater the execution time for `ANALYZE TABLE`.
+Nota
 
-Note
+`innodb_stats_persistent_sample_pages` define o número de páginas amostradas em um nível global. Para definir o número de páginas amostradas para uma table individual, use a opção `STATS_SAMPLE_PAGES` com `CREATE TABLE` ou `ALTER TABLE`. Para mais informações, consulte a Seção 14.8.11.1, “Configurando Parâmetros de Estatísticas Persistentes do Optimizer”.
 
-`innodb_stats_persistent_sample_pages` defines the number of pages sampled at a global level. To set the number of pages sampled for an individual table, use the `STATS_SAMPLE_PAGES` option with `CREATE TABLE` or `ALTER TABLE`. For more information, see Section 14.8.11.1, “Configuring Persistent Optimizer Statistics Parameters”.
+Se `innodb_stats_persistent=OFF`, o número de páginas amostradas é definido por `innodb_stats_transient_sample_pages`. Consulte a Seção 14.8.11.2, “Configurando Parâmetros de Estatísticas Não-Persistentes do Optimizer” para informações adicionais.
 
-If `innodb_stats_persistent=OFF`, the number of pages sampled is defined by `innodb_stats_transient_sample_pages`. See Section 14.8.11.2, “Configuring Non-Persistent Optimizer Statistics Parameters” for additional information.
+Para uma abordagem mais aprofundada para estimar a complexidade de `ANALYZE TABLE`, considere o seguinte exemplo.
 
-For a more in-depth approach to estimating `ANALYZE TABLE` complexity, consider the following example.
-
-In Big O notation, `ANALYZE TABLE` complexity is described as:
+Na notação Big O, a complexidade de `ANALYZE TABLE` é descrita como:
 
 ```sql
 O(n_sample
@@ -31,21 +30,21 @@ O(n_sample
   * n_part)
 ```
 
-where:
+onde:
 
-* `n_sample` is the number of pages sampled (defined by `innodb_stats_persistent_sample_pages`)
+*   `n_sample` é o número de páginas amostradas (definido por `innodb_stats_persistent_sample_pages`)
 
-* `n_cols_in_uniq_i` is total number of all columns in all unique indexes (not counting the primary key columns)
+*   `n_cols_in_uniq_i` é o número total de todas as colunas em todos os unique indexes (sem contar as colunas da primary key)
 
-* `n_cols_in_non_uniq_i` is the total number of all columns in all nonunique indexes
+*   `n_cols_in_non_uniq_i` é o número total de todas as colunas em todos os nonunique indexes
 
-* `n_cols_in_pk` is the number of columns in the primary key (if a primary key is not defined, `InnoDB` creates a single column primary key internally)
+*   `n_cols_in_pk` é o número de colunas na primary key (se uma primary key não for definida, o `InnoDB` cria internamente uma primary key de coluna única)
 
-* `n_non_uniq_i` is the number of nonunique indexes in the table
+*   `n_non_uniq_i` é o número de nonunique indexes na table
 
-* `n_part` is the number of partitions. If no partitions are defined, the table is considered to be a single partition.
+*   `n_part` é o número de partitions. Se nenhuma partition for definida, a table é considerada uma única partition.
 
-Now, consider the following table (table `t`), which has a primary key (2 columns), a unique index (2 columns), and two nonunique indexes (two columns each):
+Agora, considere a seguinte table (table `t`), que possui uma primary key (2 colunas), um unique index (2 colunas) e dois nonunique indexes (duas colunas cada):
 
 ```sql
 CREATE TABLE t (
@@ -64,11 +63,11 @@ CREATE TABLE t (
 );
 ```
 
-For the column and index data required by the algorithm described above, query the `mysql.innodb_index_stats` persistent index statistics table for table `t`. The `n_diff_pfx%` statistics show the columns that are counted for each index. For example, columns `a` and `b` are counted for the primary key index. For the nonunique indexes, the primary key columns (a,b) are counted in addition to the user defined columns.
+Para os dados de coluna e index exigidos pelo algoritmo descrito acima, consulte a table de estatísticas de index persistentes `mysql.innodb_index_stats` para a table `t`. As estatísticas `n_diff_pfx%` mostram as colunas que são contadas para cada index. Por exemplo, as colunas `a` e `b` são contadas para o index da primary key. Para os nonunique indexes, as colunas da primary key (`a`, `b`) são contadas além das colunas definidas pelo usuário.
 
-Note
+Nota
 
-For additional information about the `InnoDB` persistent statistics tables, see Section 14.8.11.1, “Configuring Persistent Optimizer Statistics Parameters”
+Para informações adicionais sobre as tables de estatísticas persistentes `InnoDB`, consulte a Seção 14.8.11.1, “Configurando Parâmetros de Estatísticas Persistentes do Optimizer”.
 
 ```sql
 mysql> SELECT index_name, stat_name, stat_description
@@ -94,22 +93,20 @@ mysql> SELECT index_name, stat_name, stat_description
   +------------+--------------+------------------+
 ```
 
-Based on the index statistics data shown above and the table definition, the following values can be determined:
+Com base nos dados das estatísticas de index mostradas acima e na definição da table, os seguintes valores podem ser determinados:
 
-* `n_cols_in_uniq_i`, the total number of all columns in all unique indexes not counting the primary key columns, is 2 (`c` and `d`)
+*   `n_cols_in_uniq_i`, o número total de todas as colunas em todos os unique indexes sem contar as colunas da primary key, é 2 (`c` e `d`)
 
-* `n_cols_in_non_uniq_i`, the total number of all columns in all nonunique indexes, is 4 (`e`, `f`, `g` and `h`)
+*   `n_cols_in_non_uniq_i`, o número total de todas as colunas em todos os nonunique indexes, é 4 (`e`, `f`, `g` e `h`)
 
-* `n_cols_in_pk`, the number of columns in the primary key, is 2 (`a` and `b`)
+*   `n_cols_in_pk`, o número de colunas na primary key, é 2 (`a` e `b`)
 
-* `n_non_uniq_i`, the number of nonunique indexes in the table, is 2 (`i2nonuniq` and `i3nonuniq`))
+*   `n_non_uniq_i`, o número de nonunique indexes na table, é 2 (`i2nonuniq` e `i3nonuniq`))
 
-* `n_part`, the number of partitions, is 1.
+*   `n_part`, o número de partitions, é 1.
 
-You can now calculate `innodb_stats_persistent_sample_pages` \* (2 + 4
+Agora você pode calcular `innodb_stats_persistent_sample_pages` \* (2 + 4 + 2 \* (1 + 2)) \* 1 para determinar o número de páginas leaf que são escaneadas. Com `innodb_stats_persistent_sample_pages` definido para o valor padrão de `20`, e com um page size padrão de 16 `KiB` (`innodb_page_size`=16384), você pode estimar que 20 \* 12 \* 16384 `bytes` são lidos para a table `t`, ou cerca de 4 `MiB`.
 
-+ 2 \* (1 + 2)) \* 1 to determine the number of leaf pages that are scanned. With `innodb_stats_persistent_sample_pages` set to the default value of `20`, and with a default page size of 16 `KiB` (`innodb_page_size`=16384), you can then estimate that 20 \* 12 \* 16384 `bytes` are read for table `t`, or about 4 `MiB`.
+Nota
 
-Note
-
-All 4 `MiB` may not be read from disk, as some leaf pages may already be cached in the buffer pool.
+Nem todos os 4 `MiB` podem ser lidos do disk, visto que algumas páginas leaf podem já estar armazenadas em cache no buffer pool.

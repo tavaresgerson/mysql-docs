@@ -1,11 +1,11 @@
-#### 13.7.5.31 SHOW PROFILES Statement
+#### 13.7.5.31 Instrução SHOW PROFILES
 
 ```sql
 SHOW PROFILES
 ```
 
-The [`SHOW PROFILES`](show-profiles.html "13.7.5.31 SHOW PROFILES Statement") statement, together with [`SHOW PROFILE`](show-profile.html "13.7.5.30 SHOW PROFILE Statement"), displays profiling information that indicates resource usage for statements executed during the course of the current session. For more information, see [Section 13.7.5.30, “SHOW PROFILE Statement”](show-profile.html "13.7.5.30 SHOW PROFILE Statement").
+A instrução [`SHOW PROFILES`](show-profiles.html "13.7.5.31 SHOW PROFILES Statement"), juntamente com [`SHOW PROFILE`](show-profile.html "13.7.5.30 SHOW PROFILE Statement"), exibe informações de profiling que indicam o uso de recursos para instruções executadas durante a sessão atual. Para mais informações, consulte [Seção 13.7.5.30, “Instrução SHOW PROFILE”](show-profile.html "13.7.5.30 SHOW PROFILE Statement").
 
-Note
+Nota
 
-The [`SHOW PROFILE`](show-profile.html "13.7.5.30 SHOW PROFILE Statement") and [`SHOW PROFILES`](show-profiles.html "13.7.5.31 SHOW PROFILES Statement") statements are deprecated; expect them to be removed in a future MySQL release. Use the [Performance Schema](performance-schema.html "Chapter 25 MySQL Performance Schema") instead; see [Section 25.19.1, “Query Profiling Using Performance Schema”](performance-schema-query-profiling.html "25.19.1 Query Profiling Using Performance Schema").
+As instruções [`SHOW PROFILE`](show-profile.html "13.7.5.30 SHOW PROFILE Statement") e [`SHOW PROFILES`](show-profiles.html "13.7.5.31 SHOW PROFILES Statement") estão obsoletas; espere que elas sejam removidas em uma futura release do MySQL. Em vez disso, utilize o [Performance Schema](performance-schema.html "Chapter 25 MySQL Performance Schema"); consulte [Seção 25.19.1, “Query Profiling Usando Performance Schema”](performance-schema-query-profiling.html "25.19.1 Query Profiling Using Performance Schema").

@@ -1,59 +1,59 @@
-### 14.5.1 Buffer Pool
+### 14.5.1 Buffer Pool
 
-The buffer pool is an area in main memory where `InnoDB` caches table and index data as it is accessed. The buffer pool permits frequently used data to be accessed directly from memory, which speeds up processing. On dedicated servers, up to 80% of physical memory is often assigned to the buffer pool.
+O Buffer Pool é uma área na memória principal onde o `InnoDB` armazena em cache (caches) dados de tabelas e Index à medida que são acessados. O Buffer Pool permite que dados frequentemente usados sejam acessados diretamente da memória, o que acelera o processamento. Em servidores dedicados, até 80% da memória física é frequentemente alocada para o Buffer Pool.
 
-For efficiency of high-volume read operations, the buffer pool is divided into pages that can potentially hold multiple rows. For efficiency of cache management, the buffer pool is implemented as a linked list of pages; data that is rarely used is aged out of the cache using a variation of the least recently used (LRU) algorithm.
+Para eficiência de operações de leitura de alto volume, o Buffer Pool é dividido em *pages* (páginas) que podem potencialmente conter múltiplas linhas (*rows*). Para eficiência do gerenciamento de cache, o Buffer Pool é implementado como uma lista encadeada (*linked list*) de *pages*; dados raramente usados são removidos do cache (*aged out*) usando uma variação do algoritmo *least recently used* (LRU).
 
-Knowing how to take advantage of the buffer pool to keep frequently accessed data in memory is an important aspect of MySQL tuning.
+Saber como tirar proveito do Buffer Pool para manter dados frequentemente acessados na memória é um aspecto importante da otimização (*tuning*) do MySQL.
 
-#### Buffer Pool LRU Algorithm
+#### Algoritmo LRU do Buffer Pool
 
-The buffer pool is managed as a list using a variation of the LRU algorithm. When room is needed to add a new page to the buffer pool, the least recently used page is evicted and a new page is added to the middle of the list. This midpoint insertion strategy treats the list as two sublists:
+O Buffer Pool é gerenciado como uma lista usando uma variação do algoritmo LRU. Quando é necessário espaço para adicionar uma nova *page* ao Buffer Pool, a *page* menos recentemente usada é despejada (*evicted*) e uma nova *page* é adicionada ao meio da lista. Esta estratégia de inserção no ponto médio trata a lista como duas sublistas:
 
-* At the head, a sublist of new (“young”) pages that were accessed recently
+* Na cabeça (*head*), uma sublista de *pages* novas (“young”) que foram acessadas recentemente.
 
-* At the tail, a sublist of old pages that were accessed less recently
+* Na cauda (*tail*), uma sublista de *pages* antigas (“old”) que foram acessadas com menos frequência.
 
-**Figure 14.2 Buffer Pool List**
+**Figura 14.2 Lista do Buffer Pool**
 
-![Content is described in the surrounding text.](images/innodb-buffer-pool-list.png)
+![O conteúdo é descrito no texto ao redor.](images/innodb-buffer-pool-list.png)
 
-The algorithm keeps frequently used pages in the new sublist. The old sublist contains less frequently used pages; these pages are candidates for eviction.
+O algoritmo mantém as *pages* frequentemente usadas na sublista nova. A sublista antiga contém *pages* acessadas com menos frequência; essas *pages* são candidatas à remoção (*eviction*).
 
-By default, the algorithm operates as follows:
+Por padrão, o algoritmo opera da seguinte forma:
 
-* 3/8 of the buffer pool is devoted to the old sublist.
-* The midpoint of the list is the boundary where the tail of the new sublist meets the head of the old sublist.
+* 3/8 do Buffer Pool é dedicado à sublista antiga (*old sublist*).
+* O ponto médio da lista é o limite onde a cauda da sublista nova encontra a cabeça da sublista antiga.
 
-* When `InnoDB` reads a page into the buffer pool, it initially inserts it at the midpoint (the head of the old sublist). A page can be read because it is required for a user-initiated operation such as an SQL query, or as part of a read-ahead operation performed automatically by `InnoDB`.
+* Quando o `InnoDB` lê uma *page* no Buffer Pool, ele a insere inicialmente no ponto médio (a cabeça da sublista antiga). Uma *page* pode ser lida porque é exigida por uma operação iniciada pelo usuário, como uma Query SQL, ou como parte de uma operação Read-Ahead executada automaticamente pelo `InnoDB`.
 
-* Accessing a page in the old sublist makes it “young”, moving it to the head of the new sublist. If the page was read because it was required by a user-initiated operation, the first access occurs immediately and the page is made young. If the page was read due to a read-ahead operation, the first access does not occur immediately and might not occur at all before the page is evicted.
+* Acessar uma *page* na sublista antiga a torna “jovem” (*young*), movendo-a para a cabeça da sublista nova. Se a *page* foi lida porque era necessária para uma operação iniciada pelo usuário, o primeiro acesso ocorre imediatamente e a *page* se torna *young*. Se a *page* foi lida devido a uma operação Read-Ahead, o primeiro acesso não ocorre imediatamente e pode nem ocorrer antes que a *page* seja despejada (*evicted*).
 
-* As the database operates, pages in the buffer pool that are not accessed “age” by moving toward the tail of the list. Pages in both the new and old sublists age as other pages are made new. Pages in the old sublist also age as pages are inserted at the midpoint. Eventually, a page that remains unused reaches the tail of the old sublist and is evicted.
+* À medida que o Database opera, as *pages* no Buffer Pool que não são acessadas “envelhecem” (*age*) movendo-se em direção à cauda da lista. *Pages* nas sublistas nova e antiga envelhecem à medida que outras *pages* se tornam novas. As *pages* na sublista antiga também envelhecem à medida que as *pages* são inseridas no ponto médio. Eventualmente, uma *page* que permanece sem uso atinge a cauda da sublista antiga e é despejada (*evicted*).
 
-By default, pages read by queries are immediately moved into the new sublist, meaning they stay in the buffer pool longer. A table scan, performed for a **mysqldump** operation or a `SELECT` statement with no `WHERE` clause, for example, can bring a large amount of data into the buffer pool and evict an equivalent amount of older data, even if the new data is never used again. Similarly, pages that are loaded by the read-ahead background thread and accessed only once are moved to the head of the new list. These situations can push frequently used pages to the old sublist where they become subject to eviction. For information about optimizing this behavior, see Section 14.8.3.3, “Making the Buffer Pool Scan Resistant”, and Section 14.8.3.4, “Configuring InnoDB Buffer Pool Prefetching (Read-Ahead)”").
+Por padrão, as *pages* lidas pelas Querys são movidas imediatamente para a sublista nova, o que significa que permanecem no Buffer Pool por mais tempo. Um *table scan*, realizado para uma operação **mysqldump** ou uma instrução `SELECT` sem cláusula `WHERE`, por exemplo, pode trazer uma grande quantidade de dados para o Buffer Pool e despejar uma quantidade equivalente de dados mais antigos, mesmo que os novos dados nunca mais sejam usados. Da mesma forma, as *pages* que são carregadas pelo *background thread* de Read-Ahead e acessadas apenas uma vez são movidas para a cabeça da lista nova. Estas situações podem empurrar *pages* frequentemente usadas para a sublista antiga, onde ficam sujeitas à remoção (*eviction*). Para obter informações sobre como otimizar este comportamento, consulte Section 14.8.3.3, “Tornando o Buffer Pool Resistente a Scan”, e Section 14.8.3.4, “Configurando o Prefetching do Buffer Pool do InnoDB (Read-Ahead)”").
 
-`InnoDB` Standard Monitor output contains several fields in the `BUFFER POOL AND MEMORY` section regarding operation of the buffer pool LRU algorithm. For details, see Monitoring the Buffer Pool Using the InnoDB Standard Monitor.
+A saída do `InnoDB` Standard Monitor contém vários campos na seção `BUFFER POOL AND MEMORY` relacionados à operação do algoritmo LRU do Buffer Pool. Para detalhes, consulte Monitorando o Buffer Pool Usando o InnoDB Standard Monitor.
 
-#### Buffer Pool Configuration
+#### Configuração do Buffer Pool
 
-You can configure the various aspects of the buffer pool to improve performance.
+Você pode configurar os vários aspectos do Buffer Pool para melhorar o desempenho.
 
-* Ideally, you set the size of the buffer pool to as large a value as practical, leaving enough memory for other processes on the server to run without excessive paging. The larger the buffer pool, the more `InnoDB` acts like an in-memory database, reading data from disk once and then accessing the data from memory during subsequent reads. See Section 14.8.3.1, “Configuring InnoDB Buffer Pool Size”.
+* O ideal é definir o tamanho do Buffer Pool para o maior valor prático, deixando memória suficiente para que outros processos no servidor sejam executados sem excesso de *paging*. Quanto maior o Buffer Pool, mais o `InnoDB` age como um Database em memória, lendo dados do disco uma vez e depois acessando os dados da memória durante leituras subsequentes. Consulte Section 14.8.3.1, “Configurando o Tamanho do Buffer Pool do InnoDB”.
 
-* On 64-bit systems with sufficient memory, you can split the buffer pool into multiple parts to minimize contention for memory structures among concurrent operations. For details, see Section 14.8.3.2, “Configuring Multiple Buffer Pool Instances”.
+* Em sistemas de 64 bits com memória suficiente, você pode dividir o Buffer Pool em múltiplas partes para minimizar a contenção por estruturas de memória entre operações concorrentes. Para detalhes, consulte Section 14.8.3.2, “Configurando Múltiplas Instâncias do Buffer Pool”.
 
-* You can keep frequently accessed data in memory regardless of sudden spikes of activity from operations that would bring large amounts of infrequently accessed data into the buffer pool. For details, see Section 14.8.3.3, “Making the Buffer Pool Scan Resistant”.
+* Você pode manter dados frequentemente acessados na memória, independentemente de picos repentinos de atividade de operações que trariam grandes quantidades de dados raramente acessados para o Buffer Pool. Para detalhes, consulte Section 14.8.3.3, “Tornando o Buffer Pool Resistente a Scan”.
 
-* You can control how and when to perform read-ahead requests to prefetch pages into the buffer pool asynchronously in anticipation that the pages are needed soon. For details, see Section 14.8.3.4, “Configuring InnoDB Buffer Pool Prefetching (Read-Ahead)”").
+* Você pode controlar como e quando executar solicitações Read-Ahead para pré-buscar *pages* no Buffer Pool de forma assíncrona, antecipando que as *pages* serão necessárias em breve. Para detalhes, consulte Section 14.8.3.4, “Configurando o Prefetching do Buffer Pool do InnoDB (Read-Ahead)”").
 
-* You can control when background flushing occurs and whether or not the rate of flushing is dynamically adjusted based on workload. For details, see Section 14.8.3.5, “Configuring Buffer Pool Flushing”.
+* Você pode controlar quando o *flushing* em segundo plano (*background flushing*) ocorre e se a taxa de *flushing* é ajustada dinamicamente com base na carga de trabalho. Para detalhes, consulte Section 14.8.3.5, “Configurando o Flushing do Buffer Pool”.
 
-* You can configure how `InnoDB` preserves the current buffer pool state to avoid a lengthy warmup period after a server restart. For details, see Section 14.8.3.6, “Saving and Restoring the Buffer Pool State”.
+* Você pode configurar como o `InnoDB` preserva o estado atual do Buffer Pool para evitar um longo período de *warmup* após a reinicialização do servidor. Para detalhes, consulte Section 14.8.3.6, “Salvando e Restaurando o Estado do Buffer Pool”.
 
-#### Monitoring the Buffer Pool Using the InnoDB Standard Monitor
+#### Monitorando o Buffer Pool Usando o InnoDB Standard Monitor
 
-`InnoDB` Standard Monitor output, which can be accessed using `SHOW ENGINE INNODB STATUS`, provides metrics regarding operation of the buffer pool. Buffer pool metrics are located in the `BUFFER POOL AND MEMORY` section of `InnoDB` Standard Monitor output:
+A saída do `InnoDB` Standard Monitor, que pode ser acessada usando `SHOW ENGINE INNODB STATUS`, fornece métricas relacionadas à operação do Buffer Pool. As métricas do Buffer Pool estão localizadas na seção `BUFFER POOL AND MEMORY` da saída do `InnoDB` Standard Monitor:
 
 ```sql
 ----------------------
@@ -80,22 +80,56 @@ LRU len: 5720, unzip_LRU len: 0
 I/O sum[0]:cur[0], unzip sum[0]:cur[0]
 ```
 
-The following table describes buffer pool metrics reported by the `InnoDB` Standard Monitor.
+A tabela a seguir descreve as métricas do Buffer Pool relatadas pelo `InnoDB` Standard Monitor.
 
-Per second averages provided in `InnoDB` Standard Monitor output are based on the elapsed time since `InnoDB` Standard Monitor output was last printed.
+As médias por segundo fornecidas na saída do `InnoDB` Standard Monitor são baseadas no tempo decorrido desde a última impressão da saída do `InnoDB` Standard Monitor.
 
-**Table 14.2 InnoDB Buffer Pool Metrics**
+**Tabela 14.2 Métricas do Buffer Pool do InnoDB**
 
-<table summary="InnoDB buffer pool metrics reported by the InnoDB Standard Monitor."><col style="width: 35%"/><col style="width: 65%"/><thead><tr> <th>Name</th> <th>Description</th> </tr></thead><tbody><tr> <td>Total memory allocated</td> <td>The total memory allocated for the buffer pool in bytes.</td> </tr><tr> <td>Dictionary memory allocated</td> <td>The total memory allocated for the <code>InnoDB</code> data dictionary in bytes.</td> </tr><tr> <td>Buffer pool size</td> <td>The total size in pages allocated to the buffer pool.</td> </tr><tr> <td>Free buffers</td> <td>The total size in pages of the buffer pool free list.</td> </tr><tr> <td>Database pages</td> <td>The total size in pages of the buffer pool LRU list.</td> </tr><tr> <td>Old database pages</td> <td>The total size in pages of the buffer pool old LRU sublist.</td> </tr><tr> <td>Modified db pages</td> <td>The current number of pages modified in the buffer pool.</td> </tr><tr> <td>Pending reads</td> <td>The number of buffer pool pages waiting to be read into the buffer pool.</td> </tr><tr> <td>Pending writes LRU</td> <td>The number of old dirty pages within the buffer pool to be written from the bottom of the LRU list.</td> </tr><tr> <td>Pending writes flush list</td> <td>The number of buffer pool pages to be flushed during checkpointing.</td> </tr><tr> <td>Pending writes single page</td> <td>The number of pending independent page writes within the buffer pool.</td> </tr><tr> <td>Pages made young</td> <td>The total number of pages made young in the buffer pool LRU list (moved to the head of sublist of <span class="quote">“<span class="quote">new</span>”</span> pages).</td> </tr><tr> <td>Pages made not young</td> <td>The total number of pages not made young in the buffer pool LRU list (pages that have remained in the <span class="quote">“<span class="quote">old</span>”</span> sublist without being made young).</td> </tr><tr> <td>youngs/s</td> <td>The per second average of accesses to old pages in the buffer pool LRU list that have resulted in making pages young. See the notes that follow this table for more information.</td> </tr><tr> <td>non-youngs/s</td> <td>The per second average of accesses to old pages in the buffer pool LRU list that have resulted in not making pages young. See the notes that follow this table for more information.</td> </tr><tr> <td>Pages read</td> <td>The total number of pages read from the buffer pool.</td> </tr><tr> <td>Pages created</td> <td>The total number of pages created within the buffer pool.</td> </tr><tr> <td>Pages written</td> <td>The total number of pages written from the buffer pool.</td> </tr><tr> <td>reads/s</td> <td>The per second average number of buffer pool page reads per second.</td> </tr><tr> <td>creates/s</td> <td>The average number of buffer pool pages created per second.</td> </tr><tr> <td>writes/s</td> <td>The average number of buffer pool page writes per second.</td> </tr><tr> <td>Buffer pool hit rate</td> <td>The buffer pool page hit rate for pages read from the buffer pool vs from disk storage.</td> </tr><tr> <td>young-making rate</td> <td>The average hit rate at which page accesses have resulted in making pages young. See the notes that follow this table for more information.</td> </tr><tr> <td>not (young-making rate)</td> <td>The average hit rate at which page accesses have not resulted in making pages young. See the notes that follow this table for more information.</td> </tr><tr> <td>Pages read ahead</td> <td>The per second average of read ahead operations.</td> </tr><tr> <td>Pages evicted without access</td> <td>The per second average of the pages evicted without being accessed from the buffer pool.</td> </tr><tr> <td>Random read ahead</td> <td>The per second average of random read ahead operations.</td> </tr><tr> <td>LRU len</td> <td>The total size in pages of the buffer pool LRU list.</td> </tr><tr> <td>unzip_LRU len</td> <td>The length (in pages) of the buffer pool unzip_LRU list.</td> </tr><tr> <td>I/O sum</td> <td>The total number of buffer pool LRU list pages accessed.</td> </tr><tr> <td>I/O cur</td> <td>The total number of buffer pool LRU list pages accessed in the current interval.</td> </tr><tr> <td>I/O unzip sum</td> <td>The total number of buffer pool unzip_LRU list pages decompressed.</td> </tr><tr> <td>I/O unzip cur</td> <td>The total number of buffer pool unzip_LRU list pages decompressed in the current interval.</td> </tr></tbody></table>
+| Nome | Descrição |
+| :--- | :--- |
+| Total memory allocated | A memória total alocada para o Buffer Pool em bytes. |
+| Dictionary memory allocated | A memória total alocada para o dicionário de dados do `InnoDB` em bytes. |
+| Buffer pool size | O tamanho total em *pages* alocadas para o Buffer Pool. |
+| Free buffers | O tamanho total em *pages* da *free list* do Buffer Pool. |
+| Database pages | O tamanho total em *pages* da lista LRU do Buffer Pool. |
+| Old database pages | O tamanho total em *pages* da sublista LRU *old* do Buffer Pool. |
+| Modified db pages | O número atual de *pages* modificadas no Buffer Pool. |
+| Pending reads | O número de *pages* do Buffer Pool aguardando serem lidas no Buffer Pool. |
+| Pending writes LRU | O número de *pages* *dirty* antigas (*old*) dentro do Buffer Pool a serem escritas a partir do final da lista LRU. |
+| Pending writes flush list | O número de *pages* do Buffer Pool a serem *flushed* durante o *checkpointing*. |
+| Pending writes single page | O número de *writes* de *page* independentes pendentes dentro do Buffer Pool. |
+| Pages made young | O número total de *pages* tornadas *young* na lista LRU do Buffer Pool (movidas para a cabeça da sublista de *pages* “new”). |
+| Pages made not young | O número total de *pages* que não foram tornadas *young* na lista LRU do Buffer Pool (*pages* que permaneceram na sublista “old” sem se tornarem *young*). |
+| youngs/s | A média por segundo de acessos a *pages* *old* na lista LRU do Buffer Pool que resultaram em *pages* tornadas *young*. Consulte as notas que se seguem a esta tabela para mais informações. |
+| non-youngs/s | A média por segundo de acessos a *pages* *old* na lista LRU do Buffer Pool que resultaram em *pages* *não* tornadas *young*. Consulte as notas que se seguem a esta tabela para mais informações. |
+| Pages read | O número total de *pages* lidas do Buffer Pool. |
+| Pages created | O número total de *pages* criadas dentro do Buffer Pool. |
+| Pages written | O número total de *pages* escritas a partir do Buffer Pool. |
+| reads/s | O número médio por segundo de leituras de *page* do Buffer Pool. |
+| creates/s | O número médio por segundo de *pages* criadas no Buffer Pool. |
+| writes/s | O número médio por segundo de *pages* escritas no Buffer Pool. |
+| Buffer pool hit rate | O *hit rate* de *pages* do Buffer Pool para *pages* lidas do Buffer Pool versus aquelas lidas do armazenamento em disco. |
+| young-making rate | O *hit rate* médio no qual os acessos de *page* resultaram em *pages* tornadas *young*. Consulte as notas que se seguem a esta tabela para mais informações. |
+| not (young-making rate) | O *hit rate* médio no qual os acessos de *page* *não* resultaram em *pages* tornadas *young*. Consulte as notas que se seguem a esta tabela para mais informações. |
+| Pages read ahead | A média por segundo de operações Read-Ahead. |
+| Pages evicted without access | A média por segundo das *pages* despejadas (*evicted*) sem terem sido acessadas no Buffer Pool. |
+| Random read ahead | A média por segundo de operações Random Read-Ahead. |
+| LRU len | O tamanho total em *pages* da lista LRU do Buffer Pool. |
+| unzip_LRU len | O comprimento (em *pages*) da lista unzip_LRU do Buffer Pool. |
+| I/O sum | O número total de *pages* da lista LRU do Buffer Pool acessadas. |
+| I/O cur | O número total de *pages* da lista LRU do Buffer Pool acessadas no intervalo atual. |
+| I/O unzip sum | O número total de *pages* da lista unzip_LRU do Buffer Pool descompactadas. |
+| I/O unzip cur | O número total de *pages* da lista unzip_LRU do Buffer Pool descompactadas no intervalo atual. |
 
-**Notes**:
+**Notas**:
 
-* The `youngs/s` metric is applicable only to old pages. It is based on the number of page accesses. There can be multiple accesses for a given page, all of which are counted. If you see very low `youngs/s` values when there are no large scans occurring, consider reducing the delay time or increasing the percentage of the buffer pool used for the old sublist. Increasing the percentage makes the old sublist larger so that it takes longer for pages in that sublist to move to the tail, which increases the likelihood that those pages are accessed again and made young. See Section 14.8.3.3, “Making the Buffer Pool Scan Resistant”.
+* A métrica `youngs/s` é aplicável apenas a *pages* *old*. É baseada no número de acessos de *page*. Pode haver múltiplos acessos para uma determinada *page*, todos eles contados. Se você observar valores muito baixos de `youngs/s` quando não houver *large scans* ocorrendo, considere reduzir o tempo de atraso ou aumentar a porcentagem do Buffer Pool usada para a sublista *old*. Aumentar a porcentagem torna a sublista *old* maior, de modo que leva mais tempo para que as *pages* nessa sublista se movam para a cauda, o que aumenta a probabilidade de que essas *pages* sejam acessadas novamente e tornadas *young*. Consulte Section 14.8.3.3, “Tornando o Buffer Pool Resistente a Scan”.
 
-* The `non-youngs/s` metric is applicable only to old pages. It is based on the number of page accesses. There can be multiple accesses for a given page, all of which are counted. If you do not see a higher `non-youngs/s` value when performing large table scans (and a higher `youngs/s` value), increase the delay value. See Section 14.8.3.3, “Making the Buffer Pool Scan Resistant”.
+* A métrica `non-youngs/s` é aplicável apenas a *pages* *old*. É baseada no número de acessos de *page*. Pode haver múltiplos acessos para uma determinada *page*, todos eles contados. Se você não observar um valor `non-youngs/s` mais alto ao executar *large table scans* (e um valor `youngs/s` mais alto), aumente o valor do atraso. Consulte Section 14.8.3.3, “Tornando o Buffer Pool Resistente a Scan”.
 
-* The `young-making` rate accounts for all buffer pool page accesses, not just accesses for pages in the old sublist. The `young-making` rate and `not` rate do not normally add up to the overall buffer pool hit rate. Page hits in the old sublist cause pages to move to the new sublist, but page hits in the new sublist cause pages to move to the head of the list only if they are a certain distance from the head.
+* O `young-making rate` contabiliza todos os acessos de *page* do Buffer Pool, não apenas acessos para *pages* na sublista *old*. O `young-making rate` e o `not rate` normalmente não somam o *Buffer Pool hit rate* geral. *Page hits* na sublista *old* fazem com que as *pages* se movam para a sublista *new*, mas *page hits* na sublista *new* fazem com que as *pages* se movam para a cabeça da lista apenas se estiverem a uma certa distância da cabeça.
 
-* `not (young-making rate)` is the average hit rate at which page accesses have not resulted in making pages young due to the delay defined by `innodb_old_blocks_time` not being met, or due to page hits in the new sublist that did not result in pages being moved to the head. This rate accounts for all buffer pool page accesses, not just accesses for pages in the old sublist.
+* `not (young-making rate)` é o *hit rate* médio no qual os acessos de *page* não resultaram em *pages* tornadas *young* devido ao atraso definido por `innodb_old_blocks_time` não ter sido atingido, ou devido a *page hits* na sublista *new* que não resultaram em *pages* movidas para a cabeça. Esta taxa contabiliza todos os acessos de *page* do Buffer Pool, não apenas acessos para *pages* na sublista *old*.
 
-Buffer pool server status variables and the `INNODB_BUFFER_POOL_STATS` table provide many of the same buffer pool metrics found in `InnoDB` Standard Monitor output. For more information, see Example 14.10, “Querying the INNODB_BUFFER_POOL_STATS Table”.
+As variáveis de status do servidor do Buffer Pool e a tabela `INNODB_BUFFER_POOL_STATS` fornecem muitas das mesmas métricas do Buffer Pool encontradas na saída do `InnoDB` Standard Monitor. Para obter mais informações, consulte Example 14.10, “Querying a Tabela INNODB_BUFFER_POOL_STATS”.

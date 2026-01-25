@@ -1,21 +1,21 @@
-#### 16.1.5.7 Resetting Multi-Source Replicas
+#### 16.1.5.7 Resetando Réplicas de Múltiplas Fontes
 
-The [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") statement can be used to reset a multi-source replica. By default, if you use the [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") statement on a multi-source replica all channels are reset. Optionally, use the `FOR CHANNEL channel` clause to reset only a specific channel.
+A instrução [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") pode ser usada para resetar uma multi-source replica. Por padrão, se você usar a instrução [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") em uma multi-source replica, todos os channels são resetados. Opcionalmente, use a cláusula `FOR CHANNEL channel` para resetar apenas um channel específico.
 
-* To reset all currently configured replication channels:
+* Para resetar todos os channels de replication configurados atualmente:
 
   ```sql
   RESET SLAVE;
   ```
 
-* To reset only a named channel, use a `FOR CHANNEL channel` clause:
+* Para resetar apenas um channel nomeado, use a cláusula `FOR CHANNEL channel`:
 
   ```sql
   RESET SLAVE FOR CHANNEL "source_1";
   ```
 
-For GTID-based replication, note that [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") has no effect on the replica's GTID execution history. If you want to clear this, issue [`RESET MASTER`](reset-master.html "13.4.1.2 RESET MASTER Statement") on the replica.
+Para replication baseada em GTID, observe que o [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") não tem efeito no histórico de execução de GTID da replica. Se você deseja limpar isso, execute [`RESET MASTER`](reset-master.html "13.4.1.2 RESET MASTER Statement") na replica.
 
-[`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") makes the replica forget its replication position, and clears the relay log, but it does not change any replication connection parameters, such as the source's host name. If you want to remove these for a channel, issue `RESET SLAVE ALL`.
+O [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") faz com que a replica esqueça sua replication position e limpa o relay log, mas ele não altera nenhum parâmetro de conexão de replication, como o host name da source. Se você deseja remover esses parâmetros para um channel, execute `RESET SLAVE ALL`.
 
-For the full syntax of the [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") command and other available options, see [Section 13.4.2.3, “RESET SLAVE Statement”](reset-slave.html "13.4.2.3 RESET SLAVE Statement").
+Para a sintaxe completa do comando [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") e outras opções disponíveis, veja [Seção 13.4.2.3, “RESET SLAVE Statement”](reset-slave.html "13.4.2.3 RESET SLAVE Statement").

@@ -1,6 +1,6 @@
-## 27.4 MySQL Connector/ODBC
+## 27.4 MySQL Connector/ODBC
 
-The MySQL Connector/ODBC manual is published in standalone form, not as part of the MySQL Reference Manual. For information, see these documents:
+O manual do MySQL Connector/ODBC é publicado em formato autônomo, e não como parte do Manual de Referência do MySQL. Para obter informações, consulte estes documentos:
 
-* Main manual: [MySQL Connector/ODBC Developer Guide](/doc/connector-odbc/en/)
-* Release notes: [MySQL Connector/ODBC Release Notes](/doc/relnotes/connector-odbc/en/)
+* Manual principal: [Guia do Desenvolvedor do MySQL Connector/ODBC](/doc/connector-odbc/en/)
+* Notas de Lançamento: [Notas de Lançamento do MySQL Connector/ODBC](/doc/relnotes/connector-odbc/en/)

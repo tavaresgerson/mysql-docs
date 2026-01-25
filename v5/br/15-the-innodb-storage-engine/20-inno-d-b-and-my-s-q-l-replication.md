@@ -1,12 +1,12 @@
-## 14.20 InnoDB and MySQL Replication
+## 14.20 InnoDB e Replicação MySQL
 
-It is possible to use replication in a way where the storage engine on the replica is not the same as the storage engine on the source. For example, you can replicate modifications to an `InnoDB` table on the source to a `MyISAM` table on the replica. For more information see, Section 16.3.3, “Using Replication with Different Source and Replica Storage Engines”.
+É possível usar a Replication de forma que o Storage Engine na Replica não seja o mesmo que o Storage Engine no Source. Por exemplo, você pode replicar modificações em uma tabela `InnoDB` no Source para uma tabela `MyISAM` na Replica. Para mais informações, consulte a Seção 16.3.3, “Using Replication with Different Source and Replica Storage Engines”.
 
-For information about setting up a replica, see Section 16.1.2.5, “Setting Up Replicas”, and Section 16.1.2.4, “Choosing a Method for Data Snapshots”. To make a new replica without taking down the source or an existing replica, use the MySQL Enterprise Backup product.
+Para obter informações sobre como configurar uma Replica, consulte a Seção 16.1.2.5, “Setting Up Replicas”, e a Seção 16.1.2.4, “Choosing a Method for Data Snapshots”. Para criar uma nova Replica sem desativar o Source ou uma Replica existente, use o produto MySQL Enterprise Backup.
 
-Transactions that fail on the source do not affect replication. MySQL replication is based on the binary log where MySQL writes SQL statements that modify data. A transaction that fails (for example, because of a foreign key violation, or because it is rolled back) is not written to the binary log, so it is not sent to replicas. See Section 13.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”.
+Transactions que falham no Source não afetam a Replication. A Replication do MySQL é baseada no Binary Log, onde o MySQL escreve as instruções SQL que modificam dados. Uma Transaction que falha (por exemplo, devido a uma violação de Foreign Key, ou porque é rolled back) não é escrita no Binary Log, portanto, não é enviada para as Replicas. Consulte a Seção 13.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”.
 
-**Replication and CASCADE.** Cascading actions for `InnoDB` tables on the source are executed on the replica *only* if the tables sharing the foreign key relation use `InnoDB` on both the source and replica. This is true whether you are using statement-based or row-based replication. Suppose that you have started replication, and then create two tables on the source, where `InnoDB` is defined as the default storage engine, using the following `CREATE TABLE` statements:
+**Replication e CASCADE.** Ações de cascading para tabelas `InnoDB` no Source são executadas na Replica *apenas* se as tabelas que compartilham a relação de Foreign Key usarem `InnoDB` tanto no Source quanto na Replica. Isso é verdade, esteja você usando Replication baseada em statement ou baseada em row. Suponha que você tenha iniciado a Replication e, em seguida, crie duas tabelas no Source, onde `InnoDB` é definido como o Storage Engine padrão, usando as seguintes instruções `CREATE TABLE`:
 
 ```sql
 CREATE TABLE fc1 (
@@ -22,7 +22,7 @@ CREATE TABLE fc2 (
 );
 ```
 
-If the replica has `MyISAM` defined as the default storage engine, the same tables are created on the replica, but they use the `MyISAM` storage engine, and the `FOREIGN KEY` option is ignored. Now we insert some rows into the tables on the source:
+Se a Replica tiver `MyISAM` definido como o Storage Engine padrão, as mesmas tabelas serão criadas na Replica, mas elas usarão o Storage Engine `MyISAM`, e a opção `FOREIGN KEY` será ignorada. Agora, inserimos algumas rows nas tabelas no Source:
 
 ```sql
 source> INSERT INTO fc1 VALUES (1, 1), (2, 2);
@@ -34,7 +34,7 @@ Query OK, 3 rows affected (0.19 sec)
 Records: 3  Duplicates: 0  Warnings: 0
 ```
 
-At this point, on both the source and the replica, table `fc1` contains 2 rows, and table `fc2` contains 3 rows, as shown here:
+Neste ponto, tanto no Source quanto na Replica, a tabela `fc1` contém 2 rows, e a tabela `fc2` contém 3 rows, conforme mostrado aqui:
 
 ```sql
 source> SELECT * FROM fc1;
@@ -76,14 +76,14 @@ replica> SELECT * FROM fc2;
 3 rows in set (0.00 sec)
 ```
 
-Now suppose that you perform the following `DELETE` statement on the source:
+Agora, suponha que você execute a seguinte instrução `DELETE` no Source:
 
 ```sql
 source> DELETE FROM fc1 WHERE i=1;
 Query OK, 1 row affected (0.09 sec)
 ```
 
-Due to the cascade, table `fc2` on the source now contains only 1 row:
+Devido ao cascade, a tabela `fc2` no Source agora contém apenas 1 row:
 
 ```sql
 source> SELECT * FROM fc2;
@@ -95,7 +95,7 @@ source> SELECT * FROM fc2;
 1 row in set (0.00 sec)
 ```
 
-However, the cascade does not propagate on the replica because on the replica the `DELETE` for `fc1` deletes no rows from `fc2`. The replica's copy of `fc2` still contains all of the rows that were originally inserted:
+No entanto, o cascade não se propaga na Replica porque na Replica o `DELETE` para `fc1` não exclui nenhuma row de `fc2`. A cópia de `fc2` da Replica ainda contém todas as rows que foram inseridas originalmente:
 
 ```sql
 replica> SELECT * FROM fc2;
@@ -109,4 +109,4 @@ replica> SELECT * FROM fc2;
 3 rows in set (0.00 sec)
 ```
 
-This difference is due to the fact that the cascading deletes are handled internally by the `InnoDB` storage engine, which means that none of the changes are logged.
+Essa diferença se deve ao fato de que as exclusões em cascade (cascading deletes) são tratadas internamente pelo Storage Engine `InnoDB`, o que significa que nenhuma das alterações é logada.

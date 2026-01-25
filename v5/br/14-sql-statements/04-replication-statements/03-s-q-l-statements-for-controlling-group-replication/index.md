@@ -1,7 +1,7 @@
-### 13.4.3 SQL Statements for Controlling Group Replication
+### 13.4.3 SQL Statements para Controle de Group Replication
 
-[13.4.3.1 START GROUP_REPLICATION Statement](start-group-replication.html)
+[13.4.3.1 Instrução START GROUP_REPLICATION](start-group-replication.html)
 
-[13.4.3.2 STOP GROUP_REPLICATION Statement](stop-group-replication.html)
+[13.4.3.2 Instrução STOP GROUP_REPLICATION](stop-group-replication.html)
 
-This section provides information about the statements used to control servers running the MySQL Group Replication plugin. See [Chapter 17, *Group Replication*](group-replication.html "Chapter 17 Group Replication") for more information.
+Esta seção fornece informações sobre as instruções usadas para controlar servidores que executam o plugin MySQL Group Replication. Consulte [Capítulo 17, *Group Replication*](group-replication.html "Capítulo 17 Group Replication") para mais informações.

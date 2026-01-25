@@ -1,16 +1,16 @@
-#### 26.4.4.6 The ps_setup_disable_instrument() Procedure
+#### 26.4.4.6 O Procedure ps_setup_disable_instrument()
 
-Disables Performance Schema instruments with names that contain the argument. Produces a result set indicating how many instruments were disabled. Already disabled instruments do not count.
+Desabilita instruments do Performance Schema cujos nomes contenham o argumento. Produz um result set indicando quantos instruments foram desabilitados. Instruments que já estavam desabilitados não são contados.
 
-##### Parameters
+##### Parâmetros
 
-* `in_pattern VARCHAR(128)`: The value used to match instrument names, which are identified by using `%in_pattern%` as an operand for a `LIKE` pattern match.
+* `in_pattern VARCHAR(128)`: O valor usado para corresponder (match) nomes de instrument, que são identificados usando `%in_pattern%` como um operando para uma correspondência de padrão `LIKE`.
 
-  A value of `''` matches all instruments.
+  Um valor de `''` corresponde a todos os instruments.
 
-##### Example
+##### Exemplo
 
-Disable a specific instrument:
+Desabilita um instrument específico:
 
 ```sql
 mysql> CALL sys.ps_setup_disable_instrument('wait/lock/metadata/sql/mdl');
@@ -21,7 +21,7 @@ mysql> CALL sys.ps_setup_disable_instrument('wait/lock/metadata/sql/mdl');
 +-----------------------+
 ```
 
-Disable all mutex instruments:
+Desabilita todos os instruments de mutex:
 
 ```sql
 mysql> CALL sys.ps_setup_disable_instrument('mutex');

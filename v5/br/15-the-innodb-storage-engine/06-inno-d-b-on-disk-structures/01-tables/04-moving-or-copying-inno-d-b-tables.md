@@ -1,90 +1,88 @@
-#### 14.6.1.4 Moving or Copying InnoDB Tables
+#### 14.6.1.4 Movendo ou Copiando Tabelas InnoDB
 
-This section describes techniques for moving or copying some or all `InnoDB` tables to a different server or instance. For example, you might move an entire MySQL instance to a larger, faster server; you might clone an entire MySQL instance to a new replica server; you might copy individual tables to another instance to develop and test an application, or to a data warehouse server to produce reports.
+Esta seção descreve técnicas para mover ou copiar algumas ou todas as tabelas `InnoDB` para um servidor ou instância diferente. Por exemplo, você pode mover uma instância MySQL inteira para um servidor maior e mais rápido; você pode clonar uma instância MySQL inteira para um novo servidor de replica; você pode copiar Tables individuais para outra instância para desenvolver e testar uma aplicação, ou para um servidor de *data warehouse* para produzir relatórios.
 
-On Windows, `InnoDB` always stores database and table names internally in lowercase. To move databases in a binary format from Unix to Windows or from Windows to Unix, create all databases and tables using lowercase names. A convenient way to accomplish this is to add the following line to the `[mysqld]` section of your `my.cnf` or `my.ini` file before creating any databases or tables:
+No Windows, o `InnoDB` sempre armazena nomes de Database e Table internamente em letras minúsculas. Para mover Databases em formato binário de Unix para Windows ou de Windows para Unix, crie todos os Databases e Tables usando nomes em letras minúsculas. Uma maneira conveniente de conseguir isso é adicionar a seguinte linha à seção `[mysqld]` do seu arquivo `my.cnf` ou `my.ini` antes de criar quaisquer Databases ou Tables:
 
 ```sql
 [mysqld]
 lower_case_table_names=1
 ```
 
-Techniques for moving or copying `InnoDB` tables include:
+As técnicas para mover ou copiar tabelas `InnoDB` incluem:
 
-* Importing Tables
+* Importando Tables
 * MySQL Enterprise Backup
-* Copying Data Files (Cold Backup Method)")
-* Restoring from a Logical Backup
+* Copiando Arquivos de Dados (Método de Cold Backup)
+* Restaurando de um Logical Backup
 
-##### Importing Tables
+##### Importando Tables
 
-A table that resides in a file-per-table tablespace can be imported from another MySQL server instance or from a backup using the *Transportable Tablespace* feature. See Section 14.6.1.3, “Importing InnoDB Tables”.
+Uma Table que reside em um tablespace *file-per-table* pode ser importada de outra instância de servidor MySQL ou de um Backup usando o recurso *Transportable Tablespace*. Consulte a Seção 14.6.1.3, “Importando Tabelas InnoDB”.
 
 ##### MySQL Enterprise Backup
 
-The MySQL Enterprise Backup product lets you back up a running MySQL database with minimal disruption to operations while producing a consistent snapshot of the database. When MySQL Enterprise Backup is copying tables, reads and writes can continue. In addition, MySQL Enterprise Backup can create compressed backup files, and back up subsets of tables. In conjunction with the MySQL binary log, you can perform point-in-time recovery. MySQL Enterprise Backup is included as part of the MySQL Enterprise subscription.
+O produto MySQL Enterprise Backup permite que você faça Backup de um Database MySQL em execução com o mínimo de interrupção nas operações, enquanto produz um *snapshot* consistente do Database. Quando o MySQL Enterprise Backup está copiando Tables, as leituras (*reads*) e escritas (*writes*) podem continuar. Além disso, o MySQL Enterprise Backup pode criar arquivos de Backup compactados e fazer Backup de subconjuntos de Tables. Em conjunto com o Binary Log do MySQL, você pode realizar a recuperação pontual (*point-in-time recovery*). O MySQL Enterprise Backup está incluído como parte da assinatura MySQL Enterprise.
 
-For more details about MySQL Enterprise Backup, see Section 28.1, “MySQL Enterprise Backup Overview”.
+Para mais detalhes sobre o MySQL Enterprise Backup, consulte a Seção 28.1, “Visão Geral do MySQL Enterprise Backup”.
 
-##### Copying Data Files (Cold Backup Method)
+##### Copiando Arquivos de Dados (Método de Cold Backup)
 
-You can move an `InnoDB` database simply by copying all the relevant files listed under "Cold Backups" in Section 14.19.1, “InnoDB Backup”.
+Você pode mover um Database `InnoDB` simplesmente copiando todos os arquivos relevantes listados em "Cold Backups" na Seção 14.19.1, “Backup do InnoDB”.
 
-`InnoDB` data and log files are binary-compatible on all platforms having the same floating-point number format. If the floating-point formats differ but you have not used `FLOAT` - FLOAT, DOUBLE") or `DOUBLE` - FLOAT, DOUBLE") data types in your tables, then the procedure is the same: simply copy the relevant files.
+Os arquivos de dados e Log do `InnoDB` são binariamente compatíveis em todas as plataformas que possuem o mesmo formato de número de ponto flutuante. Se os formatos de ponto flutuante diferirem, mas você não tiver usado os tipos de dados `FLOAT` ou `DOUBLE` em suas Tables, o procedimento é o mesmo: basta copiar os arquivos relevantes.
 
-When you move or copy file-per-table `.ibd` files, the database directory name must be the same on the source and destination systems. The table definition stored in the `InnoDB` shared tablespace includes the database name. The transaction IDs and log sequence numbers stored in the tablespace files also differ between databases.
+Ao mover ou copiar arquivos `.ibd` *file-per-table*, o nome do diretório do Database deve ser o mesmo nos sistemas de origem e destino. A Table Definition armazenada no tablespace compartilhado do `InnoDB` inclui o nome do Database. Os Transaction IDs e Log Sequence Numbers armazenados nos arquivos de tablespace também diferem entre os Databases.
 
-To move an `.ibd` file and the associated table from one database to another, use a `RENAME TABLE` statement:
+Para mover um arquivo `.ibd` e a Table associada de um Database para outro, use uma instrução `RENAME TABLE`:
 
 ```sql
 RENAME TABLE db1.tbl_name TO db2.tbl_name;
 ```
 
-If you have a “clean” backup of an `.ibd` file, you can restore it to the MySQL installation from which it originated as follows:
+Se você tiver um Backup "limpo" de um arquivo `.ibd`, você pode restaurá-lo na instalação MySQL da qual se originou da seguinte forma:
 
-1. The table must not have been dropped or truncated since you copied the `.ibd` file, because doing so changes the table ID stored inside the tablespace.
+1. A Table não deve ter sido descartada (`dropped`) ou truncada (`truncated`) desde que você copiou o arquivo `.ibd`, pois fazer isso altera o Table ID armazenado dentro do tablespace.
 
-2. Issue this `ALTER TABLE` statement to delete the current `.ibd` file:
+2. Execute esta instrução `ALTER TABLE` para deletar o arquivo `.ibd` atual:
 
    ```sql
    ALTER TABLE tbl_name DISCARD TABLESPACE;
    ```
 
-3. Copy the backup `.ibd` file to the proper database directory.
+3. Copie o arquivo `.ibd` do Backup para o diretório apropriado do Database.
 
-4. Issue this `ALTER TABLE` statement to tell `InnoDB` to use the new `.ibd` file for the table:
+4. Execute esta instrução `ALTER TABLE` para informar ao `InnoDB` que use o novo arquivo `.ibd` para a Table:
 
    ```sql
    ALTER TABLE tbl_name IMPORT TABLESPACE;
    ```
 
-   Note
+   Nota: O recurso `ALTER TABLE ... IMPORT TABLESPACE` não impõe restrições de Foreign Key nos dados importados.
 
-   The `ALTER TABLE ... IMPORT TABLESPACE` feature does not enforce foreign key constraints on imported data.
+Neste contexto, um Backup de arquivo `.ibd` "limpo" é aquele para o qual os seguintes requisitos são satisfeitos:
 
-In this context, a “clean” `.ibd` file backup is one for which the following requirements are satisfied:
+* Não há modificações não confirmadas por Transactions no arquivo `.ibd`.
 
-* There are no uncommitted modifications by transactions in the `.ibd` file.
+* Não há entradas de *insert buffer* não mescladas no arquivo `.ibd`.
 
-* There are no unmerged insert buffer entries in the `.ibd` file.
+* O *Purge* removeu todos os registros Index marcados para exclusão do arquivo `.ibd`.
 
-* Purge has removed all delete-marked index records from the `.ibd` file.
+* O **mysqld** descarregou (*flushed*) todas as páginas modificadas do arquivo `.ibd` do Buffer Pool para o arquivo.
 
-* **mysqld** has flushed all modified pages of the `.ibd` file from the buffer pool to the file.
+Você pode criar um arquivo `.ibd` de Backup limpo usando o seguinte método:
 
-You can make a clean backup `.ibd` file using the following method:
+1. Pare toda a atividade do servidor **mysqld** e confirme todas as Transactions (*commit all transactions*).
 
-1. Stop all activity from the **mysqld** server and commit all transactions.
+2. Espere até que `SHOW ENGINE INNODB STATUS` mostre que não há Transactions ativas no Database e que o status do *main thread* do `InnoDB` seja `Waiting for server activity`. Então, você pode fazer uma cópia do arquivo `.ibd`.
 
-2. Wait until `SHOW ENGINE INNODB STATUS` shows that there are no active transactions in the database, and the main thread status of `InnoDB` is `Waiting for server activity`. Then you can make a copy of the `.ibd` file.
+Outro método para fazer uma cópia limpa de um arquivo `.ibd` é usar o produto MySQL Enterprise Backup:
 
-Another method for making a clean copy of an `.ibd` file is to use the MySQL Enterprise Backup product:
+1. Use o MySQL Enterprise Backup para fazer Backup da instalação do `InnoDB`.
+2. Inicie um segundo servidor **mysqld** no Backup e deixe-o limpar os arquivos `.ibd` no Backup.
 
-1. Use MySQL Enterprise Backup to back up the `InnoDB` installation.
-2. Start a second **mysqld** server on the backup and let it clean up the `.ibd` files in the backup.
+##### Restaurando de um Logical Backup
 
-##### Restoring from a Logical Backup
+Você pode usar um utilitário como o **mysqldump** para realizar um *Logical Backup*, que produz um conjunto de instruções SQL que podem ser executadas para reproduzir as definições originais dos objetos de Database e os dados da Table para transferência para outro servidor SQL. Usando este método, não importa se os formatos diferem ou se suas Tables contêm dados de ponto flutuante.
 
-You can use a utility such as **mysqldump** to perform a logical backup, which produces a set of SQL statements that can be executed to reproduce the original database object definitions and table data for transfer to another SQL server. Using this method, it does not matter whether the formats differ or if your tables contain floating-point data.
-
-To improve the performance of this method, disable `autocommit` when importing data. Perform a commit only after importing an entire table or segment of a table.
+Para melhorar o desempenho deste método, desabilite o `autocommit` ao importar dados. Execute um *commit* somente após importar uma Table inteira ou um segmento de uma Table.

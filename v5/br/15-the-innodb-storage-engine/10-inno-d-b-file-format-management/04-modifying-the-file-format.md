@@ -1,9 +1,9 @@
-### 14.10.4 Modifying the File Format
+### 14.10.4 Modificando o Formato do Arquivo
 
-Each InnoDB tablespace file (with a name matching `*.ibd`) is tagged with the file format used to create its table and indexes. The way to modify the file format is to re-create the table and its indexes. The easiest way to recreate a table and its indexes is to use the following command on each table that you want to modify:
+Cada arquivo de `tablespace` InnoDB (com um nome que corresponde a `*.ibd`) é marcado com o formato do arquivo usado para criar sua `table` e `indexes`. A forma de modificar o formato do arquivo é recriar a `table` e seus `indexes`. A maneira mais fácil de recriar uma `table` e seus `indexes` é usar o seguinte comando em cada `table` que você deseja modificar:
 
 ```sql
 ALTER TABLE t ROW_FORMAT=format_name;
 ```
 
-If you are modifying the file format to downgrade to an older MySQL version, there may be incompatibilities in table storage formats that require additional steps. For information about downgrading to a previous MySQL version, see Section 2.11, “Downgrading MySQL”.
+Se você estiver modificando o formato do arquivo para fazer um `downgrade` para uma versão mais antiga do MySQL, pode haver incompatibilidades nos formatos de armazenamento da `table` que exigem etapas adicionais. Para obter informações sobre como fazer o `downgrade` para uma versão anterior do MySQL, consulte a Seção 2.11, “Downgrading MySQL”.

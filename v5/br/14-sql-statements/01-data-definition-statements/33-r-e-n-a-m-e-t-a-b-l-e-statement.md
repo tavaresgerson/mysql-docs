@@ -1,4 +1,4 @@
-### 13.1.33 RENAME TABLE Statement
+### 13.1.33 Declaração RENAME TABLE
 
 ```sql
 RENAME TABLE
@@ -6,21 +6,21 @@ RENAME TABLE
     [, tbl_name2 TO new_tbl_name2] ...
 ```
 
-[`RENAME TABLE`](rename-table.html "13.1.33 RENAME TABLE Statement") renames one or more tables. You must have [`ALTER`](privileges-provided.html#priv_alter) and [`DROP`](privileges-provided.html#priv_drop) privileges for the original table, and [`CREATE`](privileges-provided.html#priv_create) and [`INSERT`](privileges-provided.html#priv_insert) privileges for the new table.
+A declaração [`RENAME TABLE`](rename-table.html "13.1.33 RENAME TABLE Statement") renomeia uma ou mais tabelas. Você deve ter os privilégios [`ALTER`](privileges-provided.html#priv_alter) e [`DROP`](privileges-provided.html#priv_drop) para a tabela original, e os privilégios [`CREATE`](privileges-provided.html#priv_create) e [`INSERT`](privileges-provided.html#priv_insert) para a nova tabela.
 
-For example, to rename a table named `old_table` to `new_table`, use this statement:
+Por exemplo, para renomear uma tabela chamada `old_table` para `new_table`, use esta declaração:
 
 ```sql
 RENAME TABLE old_table TO new_table;
 ```
 
-That statement is equivalent to the following [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement:
+Essa declaração é equivalente à seguinte declaração [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"):
 
 ```sql
 ALTER TABLE old_table RENAME new_table;
 ```
 
-`RENAME TABLE`, unlike [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"), can rename multiple tables within a single statement:
+`RENAME TABLE`, diferentemente de [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"), pode renomear múltiplas tabelas dentro de uma única declaração:
 
 ```sql
 RENAME TABLE old_table1 TO new_table1,
@@ -28,7 +28,7 @@ RENAME TABLE old_table1 TO new_table1,
              old_table3 TO new_table3;
 ```
 
-Renaming operations are performed left to right. Thus, to swap two table names, do this (assuming that a table with the intermediary name `tmp_table` does not already exist):
+As operações de renomeação são realizadas da esquerda para a direita. Assim, para trocar dois nomes de tabelas, faça o seguinte (assumindo que uma tabela com o nome intermediário `tmp_table` não exista):
 
 ```sql
 RENAME TABLE old_table TO tmp_table,
@@ -36,30 +36,30 @@ RENAME TABLE old_table TO tmp_table,
              tmp_table TO new_table;
 ```
 
-Metadata locks on tables are acquired in name order, which in some cases can make a difference in operation outcome when multiple transactions execute concurrently. See [Section 8.11.4, “Metadata Locking”](metadata-locking.html "8.11.4 Metadata Locking").
+Os Locks de Metadata nas tabelas são adquiridos na ordem dos nomes, o que, em alguns casos, pode fazer diferença no resultado da operação quando múltiplas transactions são executadas concorrentemente. Consulte [Seção 8.11.4, “Metadata Locking”](metadata-locking.html "8.11.4 Metadata Locking").
 
-To execute `RENAME TABLE`, there must be no active transactions or tables locked with `LOCK TABLES`. With the transaction table locking conditions satisfied, the rename operation is done atomically; no other session can access any of the tables while the rename is in progress.
+Para executar `RENAME TABLE`, não deve haver transactions ativas ou tabelas com Lock aplicado usando `LOCK TABLES`. Uma vez satisfeitas as condições de Locking de tabela, a operação de renomeação é feita atomicamente; nenhuma outra session pode acessar nenhuma das tabelas enquanto a renomeação estiver em andamento.
 
-If any errors occur during a `RENAME TABLE`, the statement fails and no changes are made.
+Se ocorrerem erros durante uma declaração `RENAME TABLE`, a declaração falha e nenhuma alteração é feita.
 
-You can use `RENAME TABLE` to move a table from one database to another:
+Você pode usar `RENAME TABLE` para mover uma tabela de um Database para outro:
 
 ```sql
 RENAME TABLE current_db.tbl_name TO other_db.tbl_name;
 ```
 
-Using this method to move all tables from one database to a different one in effect renames the database (an operation for which MySQL has no single statement), except that the original database continues to exist, albeit with no tables.
+Usar este método para mover todas as tabelas de um Database para outro diferente efetivamente renomeia o Database (uma operação para a qual o MySQL não possui uma única declaração), exceto que o Database original continua a existir, embora sem tabelas.
 
-Like `RENAME TABLE`, `ALTER TABLE ... RENAME` can also be used to move a table to a different database. Regardless of the statement used, if the rename operation would move the table to a database located on a different file system, the success of the outcome is platform specific and depends on the underlying operating system calls used to move table files.
+Assim como `RENAME TABLE`, `ALTER TABLE ... RENAME` também pode ser usado para mover uma tabela para um Database diferente. Independentemente da declaração utilizada, se a operação de renomeação mover a tabela para um Database localizado em um sistema de arquivos diferente (file system), o sucesso do resultado é específico da plataforma e depende das chamadas subjacentes do sistema operacional usadas para mover os arquivos da tabela.
 
-If a table has triggers, attempts to rename the table into a different database fail with a Trigger in wrong schema ([`ER_TRG_IN_WRONG_SCHEMA`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_trg_in_wrong_schema)) error.
+Se uma tabela tiver triggers, as tentativas de renomear a tabela para um Database diferente falham com um erro Trigger in wrong schema ([`ER_TRG_IN_WRONG_SCHEMA`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_trg_in_wrong_schema)).
 
-To rename `TEMPORARY` tables, `RENAME TABLE` does not work. Use [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") instead.
+Para renomear tabelas `TEMPORARY`, `RENAME TABLE` não funciona. Use [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") em vez disso.
 
-`RENAME TABLE` works for views, except that views cannot be renamed into a different database.
+`RENAME TABLE` funciona para views, exceto que views não podem ser renomeadas para um Database diferente.
 
-Any privileges granted specifically for a renamed table or view are not migrated to the new name. They must be changed manually.
+Quaisquer privilégios concedidos especificamente para uma tabela ou view renomeada não são migrados para o novo nome. Eles devem ser alterados manualmente.
 
-`RENAME TABLE tbl_name TO new_tbl_name` changes internally generated foreign key constraint names and user-defined foreign key constraint names that begin with the string “*`tbl_name`*_ibfk_” to reflect the new table name. `InnoDB` interprets foreign key constraint names that begin with the string “*`tbl_name`*_ibfk_” as internally generated names.
+`RENAME TABLE tbl_name TO new_tbl_name` altera os nomes de constraints de Foreign Key gerados internamente e os nomes de constraints de Foreign Key definidos pelo usuário que começam com a string “*`tbl_name`*_ibfk_” para refletir o novo nome da tabela. O `InnoDB` interpreta os nomes de constraints de Foreign Key que começam com a string “*`tbl_name`*_ibfk_” como nomes gerados internamente.
 
-Foreign key constraint names that point to the renamed table are automatically updated unless there is a conflict, in which case the statement fails with an error. A conflict occurs if the renamed constraint name already exists. In such cases, you must drop and re-create the foreign keys for them to function properly.
+Os nomes de constraints de Foreign Key que apontam para a tabela renomeada são atualizados automaticamente, a menos que haja um conflito, caso em que a declaração falha com um erro. Ocorre um conflito se o nome da constraint renomeada já existir. Nesses casos, você deve descartar (drop) e recriar as Foreign Keys para que funcionem corretamente.

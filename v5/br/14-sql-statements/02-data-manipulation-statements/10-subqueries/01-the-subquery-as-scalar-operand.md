@@ -1,6 +1,6 @@
-#### 13.2.10.1 The Subquery as Scalar Operand
+#### 13.2.10.1 A Subquery como Operando Escalar
 
-In its simplest form, a subquery is a scalar subquery that returns a single value. A scalar subquery is a simple operand, and you can use it almost anywhere a single column value or literal is legal, and you can expect it to have those characteristics that all operands have: a data type, a length, an indication that it can be `NULL`, and so on. For example:
+Na sua forma mais simples, uma subquery é uma scalar subquery que retorna um único valor. Uma scalar subquery é um operando simples e pode ser usada em praticamente qualquer lugar onde um único valor de coluna ou literal seja permitido. Você pode esperar que ela tenha as características que todos os operandos possuem: um data type, um length, uma indicação de que pode ser `NULL`, e assim por diante. Por exemplo:
 
 ```sql
 CREATE TABLE t1 (s1 INT, s2 CHAR(5) NOT NULL);
@@ -8,13 +8,13 @@ INSERT INTO t1 VALUES(100, 'abcde');
 SELECT (SELECT s2 FROM t1);
 ```
 
-The subquery in this [`SELECT`](select.html "13.2.9 SELECT Statement") returns a single value (`'abcde'`) that has a data type of [`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), a length of 5, a character set and collation equal to the defaults in effect at [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") time, and an indication that the value in the column can be `NULL`. Nullability of the value selected by a scalar subquery is not copied because if the subquery result is empty, the result is `NULL`. For the subquery just shown, if `t1` were empty, the result would be `NULL` even though `s2` is `NOT NULL`.
+A subquery neste [`SELECT`](select.html "13.2.9 SELECT Statement") retorna um único valor (`'abcde'`) que tem um data type [`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), um length de 5, um character set e collation iguais aos defaults em vigor no momento do [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement"), e uma indicação de que o valor na coluna pode ser `NULL`. A nulidade (nullability) do valor selecionado por uma scalar subquery não é copiada porque se o resultado da subquery estiver vazio, o resultado é `NULL`. Para a subquery recém-mostrada, se `t1` estivesse vazia, o resultado seria `NULL`, mesmo que `s2` fosse `NOT NULL`.
 
-There are a few contexts in which a scalar subquery cannot be used. If a statement permits only a literal value, you cannot use a subquery. For example, `LIMIT` requires literal integer arguments, and [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") requires a literal string file name. You cannot use subqueries to supply these values.
+Existem alguns contextos nos quais uma scalar subquery não pode ser usada. Se uma instrução permite apenas um valor literal, você não pode usar uma subquery. Por exemplo, `LIMIT` exige argumentos inteiros literais, e [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") exige um nome de arquivo literal do tipo string. Você não pode usar subqueries para fornecer esses valores.
 
-When you see examples in the following sections that contain the rather spartan construct `(SELECT column1 FROM t1)`, imagine that your own code contains much more diverse and complex constructions.
+Quando você vir exemplos nas seções seguintes que contêm a construção bastante espartana `(SELECT column1 FROM t1)`, imagine que seu próprio código contém construções muito mais diversas e complexas.
 
-Suppose that we make two tables:
+Suponha que criemos duas tables:
 
 ```sql
 CREATE TABLE t1 (s1 INT);
@@ -23,15 +23,15 @@ CREATE TABLE t2 (s1 INT);
 INSERT INTO t2 VALUES (2);
 ```
 
-Then perform a [`SELECT`](select.html "13.2.9 SELECT Statement"):
+Em seguida, execute um [`SELECT`](select.html "13.2.9 SELECT Statement"):
 
 ```sql
 SELECT (SELECT s1 FROM t2) FROM t1;
 ```
 
-The result is `2` because there is a row in `t2` containing a column `s1` that has a value of `2`.
+O resultado é `2` porque há uma row em `t2` contendo uma column `s1` que tem o valor `2`.
 
-A scalar subquery can be part of an expression, but remember the parentheses, even if the subquery is an operand that provides an argument for a function. For example:
+Uma scalar subquery pode fazer parte de uma expression, mas lembre-se dos parênteses, mesmo que a subquery seja um operando que fornece um argumento para uma function. Por exemplo:
 
 ```sql
 SELECT UPPER((SELECT s1 FROM t1)) FROM t2;

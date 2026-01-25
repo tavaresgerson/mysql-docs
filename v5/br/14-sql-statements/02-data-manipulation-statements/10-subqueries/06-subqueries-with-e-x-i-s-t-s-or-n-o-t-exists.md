@@ -1,16 +1,16 @@
-#### 13.2.10.6 Subqueries with EXISTS or NOT EXISTS
+#### 13.2.10.6 Subqueries com EXISTS ou NOT EXISTS
 
-If a subquery returns any rows at all, `EXISTS subquery` is `TRUE`, and `NOT EXISTS subquery` is `FALSE`. For example:
+Se uma subquery retornar quaisquer linhas, `EXISTS subquery` é `TRUE` e `NOT EXISTS subquery` é `FALSE`. Por exemplo:
 
 ```sql
 SELECT column1 FROM t1 WHERE EXISTS (SELECT * FROM t2);
 ```
 
-Traditionally, an `EXISTS` subquery starts with `SELECT *`, but it could begin with `SELECT 5` or `SELECT column1` or anything at all. MySQL ignores the [`SELECT`](select.html "13.2.9 SELECT Statement") list in such a subquery, so it makes no difference.
+Tradicionalmente, uma subquery `EXISTS` começa com `SELECT *`, mas poderia começar com `SELECT 5` ou `SELECT column1` ou qualquer outra coisa. O MySQL ignora a lista [`SELECT`](select.html "13.2.9 SELECT Statement") em tal subquery, portanto, não faz diferença.
 
-For the preceding example, if `t2` contains any rows, even rows with nothing but `NULL` values, the `EXISTS` condition is `TRUE`. This is actually an unlikely example because a `[NOT] EXISTS` subquery almost always contains correlations. Here are some more realistic examples:
+No exemplo anterior, se `t2` contiver quaisquer linhas, mesmo linhas que contenham apenas valores `NULL`, a condição `EXISTS` é `TRUE`. Este é, na verdade, um exemplo improvável, pois uma subquery `[NOT] EXISTS` quase sempre contém correlações. Aqui estão alguns exemplos mais realistas:
 
-* What kind of store is present in one or more cities?
+* Que tipo de loja está presente em uma ou mais cidades?
 
   ```sql
   SELECT DISTINCT store_type FROM stores
@@ -18,7 +18,7 @@ For the preceding example, if `t2` contains any rows, even rows with nothing but
                   WHERE cities_stores.store_type = stores.store_type);
   ```
 
-* What kind of store is present in no cities?
+* Que tipo de loja não está presente em nenhuma cidade?
 
   ```sql
   SELECT DISTINCT store_type FROM stores
@@ -26,7 +26,7 @@ For the preceding example, if `t2` contains any rows, even rows with nothing but
                       WHERE cities_stores.store_type = stores.store_type);
   ```
 
-* What kind of store is present in all cities?
+* Que tipo de loja está presente em todas as cidades?
 
   ```sql
   SELECT DISTINCT store_type FROM stores
@@ -37,4 +37,4 @@ For the preceding example, if `t2` contains any rows, even rows with nothing but
          AND cities_stores.store_type = stores.store_type));
   ```
 
-The last example is a double-nested `NOT EXISTS` query. That is, it has a `NOT EXISTS` clause within a `NOT EXISTS` clause. Formally, it answers the question “does a city exist with a store that is not in `Stores`”? But it is easier to say that a nested `NOT EXISTS` answers the question “is *`x`* `TRUE` for all *`y`*?”
+O último exemplo é uma Query `NOT EXISTS` duplamente aninhada. Ou seja, ele possui uma cláusula `NOT EXISTS` dentro de outra cláusula `NOT EXISTS`. Formalmente, ele responde à pergunta “existe uma cidade com uma loja que não está em `Stores`?” Mas é mais fácil dizer que um `NOT EXISTS` aninhado responde à pergunta “*x* é `TRUE` para todo *y*?”

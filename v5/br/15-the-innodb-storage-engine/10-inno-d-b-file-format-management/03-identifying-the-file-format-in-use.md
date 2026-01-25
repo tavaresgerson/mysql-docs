@@ -1,8 +1,8 @@
-### 14.10.3 Identifying the File Format in Use
+### 14.10.3 Identificando o File Format em Uso
 
-If you enable a different file format using the `innodb_file_format` configuration option, the change only applies to newly created tables. Also, when you create a new table, the tablespace containing the table is tagged with the “earliest” or “simplest” file format that is required to support the table's features. For example, if you enable the `Barracuda` file format, and create a new table that does not use the Dynamic or Compressed row format, the new tablespace that contains the table is tagged as using the `Antelope` file format .
+Se você habilitar um `file format` diferente usando a opção de configuração `innodb_file_format`, a alteração se aplica apenas a tabelas recém-criadas. Além disso, quando você cria uma nova tabela, o `tablespace` que contém a tabela é marcado com o `file format` “mais antigo” ou “mais simples” que é necessário para suportar os recursos da tabela. Por exemplo, se você habilitar o `file format` `Barracuda` e criar uma nova tabela que não use o `row format` Dynamic ou Compressed, o novo `tablespace` que contém a tabela é marcado como utilizando o `file format` `Antelope`.
 
-It is easy to identify the file format used by a given table. The table uses the `Antelope` file format if the row format reported by `SHOW TABLE STATUS` is either `Compact` or `Redundant`. The table uses the `Barracuda` file format if the row format reported by `SHOW TABLE STATUS` is either `Compressed` or `Dynamic`.
+É fácil identificar o `file format` usado por uma determinada tabela. A tabela usa o `file format` `Antelope` se o `row format` relatado por `SHOW TABLE STATUS` for `Compact` ou `Redundant`. A tabela usa o `file format` `Barracuda` se o `row format` relatado por `SHOW TABLE STATUS` for `Compressed` ou `Dynamic`.
 
 ```sql
 mysql> SHOW TABLE STATUS\G
@@ -27,7 +27,7 @@ Max_data_length: 0
         Comment:
 ```
 
-You can also identify the file format used by a given table or tablespace using `InnoDB` `INFORMATION_SCHEMA` tables. For example:
+Você também pode identificar o `file format` usado por uma determinada tabela ou `tablespace` usando as tabelas `INFORMATION_SCHEMA` do `InnoDB`. Por exemplo:
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_SYS_TABLES WHERE NAME='test/t1'\G

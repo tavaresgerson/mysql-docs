@@ -1,17 +1,17 @@
-#### 11.4.2.9 MultiPoint Class
+#### 11.4.2.9 Classe MultiPoint
 
-A `MultiPoint` is a geometry collection composed of `Point` elements. The points are not connected or ordered in any way.
+Um `MultiPoint` é uma coleção de geometria composta por elementos `Point`. Os pontos não estão conectados ou ordenados de forma alguma.
 
-**`MultiPoint` Examples**
+**Exemplos de `MultiPoint`**
 
-* On a world map, a `MultiPoint` could represent a chain of small islands.
+* Em um mapa mundial, um `MultiPoint` pode representar uma cadeia de pequenas ilhas.
 
-* On a city map, a `MultiPoint` could represent the outlets for a ticket office.
+* Em um mapa da cidade, um `MultiPoint` pode representar os pontos de venda de uma bilheteria.
 
-**`MultiPoint` Properties**
+**Propriedades de `MultiPoint`**
 
-* A `MultiPoint` is a zero-dimensional geometry.
+* Um `MultiPoint` é uma geometria de dimensão zero.
 
-* A `MultiPoint` is simple if no two of its `Point` values are equal (have identical coordinate values).
+* Um `MultiPoint` é simples se não houver dois de seus valores `Point` iguais (tiverem valores de coordenada idênticos).
 
-* The boundary of a `MultiPoint` is the empty set.
+* O Boundary de um `MultiPoint` é o conjunto vazio.

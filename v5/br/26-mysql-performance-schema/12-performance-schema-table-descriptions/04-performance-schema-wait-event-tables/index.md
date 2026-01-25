@@ -1,34 +1,34 @@
-### 25.12.4 Performance Schema Wait Event Tables
+### 25.12.4 Tabelas de Eventos Wait do Performance Schema
 
-[25.12.4.1 The events_waits_current Table](performance-schema-events-waits-current-table.html)
+[25.12.4.1 A Tabela events_waits_current](performance-schema-events-waits-current-table.html)
 
-[25.12.4.2 The events_waits_history Table](performance-schema-events-waits-history-table.html)
+[25.12.4.2 A Tabela events_waits_history](performance-schema-events-waits-history-table.html)
 
-[25.12.4.3 The events_waits_history_long Table](performance-schema-events-waits-history-long-table.html)
+[25.12.4.3 A Tabela events_waits_history_long](performance-schema-events-waits-history-long-table.html)
 
-The Performance Schema instruments waits, which are events that take time. Within the event hierarchy, wait events nest within stage events, which nest within statement events, which nest within transaction events.
+O Performance Schema instrumenta waits (esperas), que são Events (eventos) que consomem tempo. Dentro da hierarquia de Eventos, os Eventos Wait aninham-se em Eventos Stage (Estágio), que se aninham em Eventos Statement (Instrução), que se aninham em Eventos Transaction (Transação).
 
-These tables store wait events:
+Estas tabelas armazenam Eventos Wait:
 
-* [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table"): The current wait event for each thread.
+* [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 A Tabela events_waits_current"): O Evento Wait atual para cada Thread.
 
-* [`events_waits_history`](performance-schema-events-waits-history-table.html "25.12.4.2 The events_waits_history Table"): The most recent wait events that have ended per thread.
+* [`events_waits_history`](performance-schema-events-waits-history-table.html "25.12.4.2 A Tabela events_waits_history"): Os Eventos Wait mais recentes que terminaram por Thread.
 
-* [`events_waits_history_long`](performance-schema-events-waits-history-long-table.html "25.12.4.3 The events_waits_history_long Table"): The most recent wait events that have ended globally (across all threads).
+* [`events_waits_history_long`](performance-schema-events-waits-history-long-table.html "25.12.4.3 A Tabela events_waits_history_long"): Os Eventos Wait mais recentes que terminaram globalmente (em todos os Threads).
 
-The following sections describe the wait event tables. There are also summary tables that aggregate information about wait events; see [Section 25.12.15.1, “Wait Event Summary Tables”](performance-schema-wait-summary-tables.html "25.12.15.1 Wait Event Summary Tables").
+As seções seguintes descrevem as tabelas de Eventos Wait. Existem também tabelas de resumo que agregam informações sobre Eventos Wait; consulte [Section 25.12.15.1, “Tabelas de Resumo de Eventos Wait”](performance-schema-wait-summary-tables.html "25.12.15.1 Wait Event Summary Tables").
 
-For more information about the relationship between the three wait event tables, see [Section 25.9, “Performance Schema Tables for Current and Historical Events”](performance-schema-event-tables.html "25.9 Performance Schema Tables for Current and Historical Events").
+Para mais informações sobre a relação entre as três tabelas de Eventos Wait, consulte [Section 25.9, “Tabelas do Performance Schema para Eventos Atuais e Históricos”](performance-schema-event-tables.html "25.9 Performance Schema Tables for Current and Historical Events").
 
-#### Configuring Wait Event Collection
+#### Configurando a Coleta de Eventos Wait
 
-To control whether to collect wait events, set the state of the relevant instruments and consumers:
+Para controlar se Eventos Wait devem ser coletados, defina o estado dos Instruments e Consumers relevantes:
 
-* The [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table contains instruments with names that begin with `wait`. Use these instruments to enable or disable collection of individual wait event classes.
+* A tabela [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 A Tabela setup_instruments") contém Instruments com nomes que começam com `wait`. Use esses Instruments para habilitar ou desabilitar a Collection de classes individuais de Eventos Wait.
 
-* The [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table contains consumer values with names corresponding to the current and historical wait event table names. Use these consumers to filter collection of wait events.
+* A tabela [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 A Tabela setup_consumers") contém valores de Consumer com nomes correspondentes aos nomes das tabelas de Eventos Wait atuais e históricas. Use esses Consumers para filtrar a Collection de Eventos Wait.
 
-Some wait instruments are enabled by default; others are disabled. For example:
+Alguns Instruments Wait são habilitados por padrão; outros são desabilitados. Por exemplo:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_instruments
@@ -52,7 +52,7 @@ mysql> SELECT *
 +----------------------------------------+---------+-------+
 ```
 
-The wait consumers are disabled by default:
+Os Consumers Wait são desabilitados por padrão:
 
 ```sql
 mysql> SELECT *
@@ -67,9 +67,9 @@ mysql> SELECT *
 +---------------------------+---------+
 ```
 
-To control wait event collection at server startup, use lines like these in your `my.cnf` file:
+Para controlar a Collection de Eventos Wait na inicialização do servidor, use linhas como estas no seu arquivo `my.cnf`:
 
-* Enable:
+* Habilitar:
 
   ```sql
   [mysqld]
@@ -79,7 +79,7 @@ To control wait event collection at server startup, use lines like these in your
   performance-schema-consumer-events-waits-history-long=ON
   ```
 
-* Disable:
+* Desabilitar:
 
   ```sql
   [mysqld]
@@ -89,9 +89,9 @@ To control wait event collection at server startup, use lines like these in your
   performance-schema-consumer-events-waits-history-long=OFF
   ```
 
-To control wait event collection at runtime, update the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") and [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") tables:
+Para controlar a Collection de Eventos Wait em tempo de execução (runtime), atualize as tabelas [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 A Tabela setup_instruments") e [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 A Tabela setup_consumers"):
 
-* Enable:
+* Habilitar:
 
   ```sql
   UPDATE performance_schema.setup_instruments
@@ -103,7 +103,7 @@ To control wait event collection at runtime, update the [`setup_instruments`](pe
   WHERE NAME LIKE 'events_waits%';
   ```
 
-* Disable:
+* Desabilitar:
 
   ```sql
   UPDATE performance_schema.setup_instruments
@@ -115,9 +115,9 @@ To control wait event collection at runtime, update the [`setup_instruments`](pe
   WHERE NAME LIKE 'events_waits%';
   ```
 
-To collect only specific wait events, enable only the corresponding wait instruments. To collect wait events only for specific wait event tables, enable the wait instruments but only the wait consumers corresponding to the desired tables.
+Para coletar apenas Eventos Wait específicos, habilite somente os Instruments Wait correspondentes. Para coletar Eventos Wait apenas para tabelas de Eventos Wait específicas, habilite os Instruments Wait, mas somente os Consumers Wait correspondentes às tabelas desejadas.
 
-The [`setup_timers`](performance-schema-setup-timers-table.html "25.12.2.5 The setup_timers Table") table contains a row with a `NAME` value of `wait` that indicates the unit for wait event timing. The default unit is `CYCLE`:
+A tabela [`setup_timers`](performance-schema-setup-timers-table.html "25.12.2.5 A Tabela setup_timers") contém uma linha com um valor `NAME` de `wait` que indica a unidade para o timing (medição de tempo) de Eventos Wait. A unidade padrão é `CYCLE`:
 
 ```sql
 mysql> SELECT *
@@ -130,7 +130,7 @@ mysql> SELECT *
 +------+------------+
 ```
 
-To change the timing unit, modify the `TIMER_NAME` value:
+Para alterar a unidade de timing, modifique o valor `TIMER_NAME`:
 
 ```sql
 UPDATE performance_schema.setup_timers
@@ -138,4 +138,4 @@ SET TIMER_NAME = 'NANOSECOND'
 WHERE NAME = 'wait';
 ```
 
-For additional information about configuring event collection, see [Section 25.3, “Performance Schema Startup Configuration”](performance-schema-startup-configuration.html "25.3 Performance Schema Startup Configuration"), and [Section 25.4, “Performance Schema Runtime Configuration”](performance-schema-runtime-configuration.html "25.4 Performance Schema Runtime Configuration").
+Para informações adicionais sobre a configuração da Collection de Eventos, consulte [Section 25.3, “Configuração de Inicialização do Performance Schema”](performance-schema-startup-configuration.html "25.3 Performance Schema Startup Configuration") e [Section 25.4, “Configuração de Runtime do Performance Schema”](performance-schema-runtime-configuration.html "25.4 Performance Schema Runtime Configuration").

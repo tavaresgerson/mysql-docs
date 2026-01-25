@@ -1,8 +1,8 @@
-### 13.2.11 UPDATE Statement
+### 13.2.11 Declaração UPDATE
 
-[`UPDATE`](update.html "13.2.11 UPDATE Statement") is a DML statement that modifies rows in a table.
+[`UPDATE`](update.html "13.2.11 UPDATE Statement") é uma declaração DML que modifica linhas em uma tabela.
 
-Single-table syntax:
+Sintaxe para tabela única:
 
 ```sql
 UPDATE [LOW_PRIORITY] [IGNORE] table_reference
@@ -21,7 +21,7 @@ assignment_list:
     assignment [, assignment] ...
 ```
 
-Multiple-table syntax:
+Sintaxe para múltiplas tabelas:
 
 ```sql
 UPDATE [LOW_PRIORITY] [IGNORE] table_references
@@ -29,80 +29,80 @@ UPDATE [LOW_PRIORITY] [IGNORE] table_references
     [WHERE where_condition]
 ```
 
-For the single-table syntax, the [`UPDATE`](update.html "13.2.11 UPDATE Statement") statement updates columns of existing rows in the named table with new values. The `SET` clause indicates which columns to modify and the values they should be given. Each value can be given as an expression, or the keyword `DEFAULT` to set a column explicitly to its default value. The `WHERE` clause, if given, specifies the conditions that identify which rows to update. With no `WHERE` clause, all rows are updated. If the `ORDER BY` clause is specified, the rows are updated in the order that is specified. The `LIMIT` clause places a limit on the number of rows that can be updated.
+Para a sintaxe de tabela única, a declaração [`UPDATE`](update.html "13.2.11 UPDATE Statement") atualiza colunas de linhas existentes na tabela nomeada com novos valores. A cláusula `SET` indica quais colunas modificar e os valores que devem receber. Cada valor pode ser fornecido como uma expression, ou a keyword `DEFAULT` para definir explicitamente uma coluna para seu valor default. A cláusula `WHERE`, se fornecida, especifica as condições que identificam quais linhas devem ser atualizadas. Sem uma cláusula `WHERE`, todas as linhas são atualizadas. Se a cláusula `ORDER BY` for especificada, as linhas são atualizadas na ordem que é especificada. A cláusula `LIMIT` impõe um limite no número de linhas que podem ser atualizadas.
 
-For the multiple-table syntax, [`UPDATE`](update.html "13.2.11 UPDATE Statement") updates rows in each table named in *`table_references`* that satisfy the conditions. Each matching row is updated once, even if it matches the conditions multiple times. For multiple-table syntax, `ORDER BY` and `LIMIT` cannot be used.
+Para a sintaxe de múltiplas tabelas, [`UPDATE`](update.html "13.2.11 UPDATE Statement") atualiza linhas em cada tabela nomeada em *`table_references`* que satisfazem as condições. Cada linha correspondente é atualizada uma vez, mesmo que corresponda às condições múltiplas vezes. Para a sintaxe de múltiplas tabelas, `ORDER BY` e `LIMIT` não podem ser usados.
 
-For partitioned tables, both the single-single and multiple-table forms of this statement support the use of a `PARTITION` clause as part of a table reference. This option takes a list of one or more partitions or subpartitions (or both). Only the partitions (or subpartitions) listed are checked for matches, and a row that is not in any of these partitions or subpartitions is not updated, whether it satisfies the *`where_condition`* or not.
+Para tabelas particionadas, tanto a forma de tabela única quanto a de múltiplas tabelas desta declaração suportam o uso de uma cláusula `PARTITION` como parte de uma referência de tabela. Esta opção aceita uma lista de uma ou mais partitions ou subpartitions (ou ambas). Apenas as partitions (ou subpartitions) listadas são verificadas quanto a correspondências, e uma linha que não está em nenhuma dessas partitions ou subpartitions não é atualizada, satisfaça ela ou não a *`where_condition`*.
 
-Note
+Nota
 
-Unlike the case when using `PARTITION` with an [`INSERT`](insert.html "13.2.5 INSERT Statement") or [`REPLACE`](replace.html "13.2.8 REPLACE Statement") statement, an otherwise valid `UPDATE ... PARTITION` statement is considered successful even if no rows in the listed partitions (or subpartitions) match the *`where_condition`*.
+Diferentemente do caso em que se usa `PARTITION` com uma declaração [`INSERT`](insert.html "13.2.5 INSERT Statement") ou [`REPLACE`](replace.html "13.2.8 REPLACE Statement"), uma declaração `UPDATE ... PARTITION` que seja válida é considerada bem-sucedida mesmo que nenhuma linha nas partitions (ou subpartitions) listadas corresponda à *`where_condition`*.
 
-For more information and examples, see [Section 22.5, “Partition Selection”](partitioning-selection.html "22.5 Partition Selection").
+Para mais informações e exemplos, consulte [Seção 22.5, “Seleção de Partition”](partitioning-selection.html "22.5 Partition Selection").
 
-*`where_condition`* is an expression that evaluates to true for each row to be updated. For expression syntax, see [Section 9.5, “Expressions”](expressions.html "9.5 Expressions").
+*`where_condition`* é uma expression que avalia como true para cada linha a ser atualizada. Para a sintaxe de expression, consulte [Seção 9.5, “Expressions”](expressions.html "9.5 Expressions").
 
-*`table_references`* and *`where_condition`* are specified as described in [Section 13.2.9, “SELECT Statement”](select.html "13.2.9 SELECT Statement").
+*`table_references`* e *`where_condition`* são especificados conforme descrito na [Seção 13.2.9, “Declaração SELECT”](select.html "13.2.9 SELECT Statement").
 
-You need the [`UPDATE`](privileges-provided.html#priv_update) privilege only for columns referenced in an [`UPDATE`](update.html "13.2.11 UPDATE Statement") that are actually updated. You need only the [`SELECT`](privileges-provided.html#priv_select) privilege for any columns that are read but not modified.
+Você precisa do privilégio [`UPDATE`](privileges-provided.html#priv_update) apenas para colunas referenciadas em um [`UPDATE`] que são efetivamente atualizadas. Você precisa apenas do privilégio [`SELECT`](privileges-provided.html#priv_select) para quaisquer colunas que são lidas, mas não modificadas.
 
-The [`UPDATE`](update.html "13.2.11 UPDATE Statement") statement supports the following modifiers:
+A declaração [`UPDATE`](update.html "13.2.11 UPDATE Statement") suporta os seguintes modificadores:
 
-* With the `LOW_PRIORITY` modifier, execution of the [`UPDATE`](update.html "13.2.11 UPDATE Statement") is delayed until no other clients are reading from the table. This affects only storage engines that use only table-level locking (such as `MyISAM`, `MEMORY`, and `MERGE`).
+* Com o modificador `LOW_PRIORITY`, a execução do [`UPDATE`](update.html "13.2.11 UPDATE Statement") é adiada até que nenhum outro client esteja lendo a tabela. Isso afeta apenas storage engines que usam somente locking de nível de tabela (como `MyISAM`, `MEMORY` e `MERGE`).
 
-* With the `IGNORE` modifier, the update statement does not abort even if errors occur during the update. Rows for which duplicate-key conflicts occur on a unique key value are not updated. Rows updated to values that would cause data conversion errors are updated to the closest valid values instead. For more information, see [The Effect of IGNORE on Statement Execution](sql-mode.html#ignore-effect-on-execution "The Effect of IGNORE on Statement Execution").
+* Com o modificador `IGNORE`, a declaração de update não aborta mesmo que ocorram erros durante a atualização. Linhas para as quais ocorrem conflitos de duplicate-key em um valor de unique key não são atualizadas. Linhas atualizadas para valores que causariam erros de conversão de dados são, em vez disso, atualizadas para os valores válidos mais próximos. Para mais informações, consulte [O Efeito de IGNORE na Execução de Declarações](sql-mode.html#ignore-effect-on-execution "The Effect of IGNORE on Statement Execution").
 
-[`UPDATE IGNORE`](update.html "13.2.11 UPDATE Statement") statements, including those having an `ORDER BY` clause, are flagged as unsafe for statement-based replication. (This is because the order in which the rows are updated determines which rows are ignored.) Such statements produce a warning in the error log when using statement-based mode and are written to the binary log using the row-based format when using `MIXED` mode. (Bug #11758262, Bug #50439) See [Section 16.2.1.3, “Determination of Safe and Unsafe Statements in Binary Logging”](replication-rbr-safe-unsafe.html "16.2.1.3 Determination of Safe and Unsafe Statements in Binary Logging"), for more information.
+Declarações [`UPDATE IGNORE`](update.html "13.2.11 UPDATE Statement"), incluindo aquelas que possuem uma cláusula `ORDER BY`, são sinalizadas como inseguras para replication baseada em declaração (statement-based replication). (Isso ocorre porque a ordem em que as linhas são atualizadas determina quais linhas são ignoradas.) Tais declarações produzem um warning no error log ao usar o modo statement-based e são escritas no binary log usando o formato row-based quando se usa o modo `MIXED`. (Bug #11758262, Bug #50439) Consulte [Seção 16.2.1.3, “Determinação de Declarações Seguras e Inseguras no Binary Logging”](replication-rbr-safe-unsafe.html "16.2.1.3 Determination of Safe and Unsafe Statements in Binary Logging"), para mais informações.
 
-If you access a column from the table to be updated in an expression, [`UPDATE`](update.html "13.2.11 UPDATE Statement") uses the current value of the column. For example, the following statement sets `col1` to one more than its current value:
+Se você acessar uma coluna da tabela a ser atualizada em uma expression, [`UPDATE`](update.html "13.2.11 UPDATE Statement") usa o valor current da coluna. Por exemplo, a seguinte declaração define `col1` para um a mais do que seu valor current:
 
 ```sql
 UPDATE t1 SET col1 = col1 + 1;
 ```
 
-The second assignment in the following statement sets `col2` to the current (updated) `col1` value, not the original `col1` value. The result is that `col1` and `col2` have the same value. This behavior differs from standard SQL.
+A segunda atribuição na declaração a seguir define `col2` para o valor current (atualizado) de `col1`, e não para o valor original de `col1`. O resultado é que `col1` e `col2` terão o mesmo valor. Este comportamento difere do SQL padrão.
 
 ```sql
 UPDATE t1 SET col1 = col1 + 1, col2 = col1;
 ```
 
-Single-table [`UPDATE`](update.html "13.2.11 UPDATE Statement") assignments are generally evaluated from left to right. For multiple-table updates, there is no guarantee that assignments are carried out in any particular order.
+Atribuições de [`UPDATE`](update.html "13.2.11 UPDATE Statement") em tabela única são geralmente avaliadas da esquerda para a direita. Para updates de múltiplas tabelas, não há garantia de que as atribuições sejam realizadas em qualquer ordem específica.
 
-If you set a column to the value it currently has, MySQL notices this and does not update it.
+Se você definir uma coluna para o valor que ela atualmente possui, o MySQL nota isso e não a atualiza.
 
-If you update a column that has been declared `NOT NULL` by setting to `NULL`, an error occurs if strict SQL mode is enabled; otherwise, the column is set to the implicit default value for the column data type and the warning count is incremented. The implicit default value is `0` for numeric types, the empty string (`''`) for string types, and the “zero” value for date and time types. See [Section 11.6, “Data Type Default Values”](data-type-defaults.html "11.6 Data Type Default Values").
+Se você atualizar uma coluna que foi declarada `NOT NULL` definindo-a como `NULL`, um erro ocorre se o strict SQL mode estiver habilitado; caso contrário, a coluna é definida para o valor default implícito para o data type da coluna e a contagem de warnings é incrementada. O valor default implícito é `0` para tipos numéricos, a string vazia (`''`) para tipos string e o valor “zero” para tipos date e time. Consulte [Seção 11.6, “Valores Default de Tipos de Dados”](data-type-defaults.html "11.6 Data Type Default Values").
 
-If a generated column is updated explicitly, the only permitted value is `DEFAULT`. For information about generated columns, see [Section 13.1.18.7, “CREATE TABLE and Generated Columns”](create-table-generated-columns.html "13.1.18.7 CREATE TABLE and Generated Columns").
+Se uma generated column for explicitamente atualizada, o único valor permitido é `DEFAULT`. Para informações sobre generated columns, consulte [Seção 13.1.18.7, “CREATE TABLE e Generated Columns”](create-table-generated-columns.html "13.1.18.7 CREATE TABLE and Generated Columns").
 
-[`UPDATE`](update.html "13.2.11 UPDATE Statement") returns the number of rows that were actually changed. The [`mysql_info()`](/doc/c-api/5.7/en/mysql-info.html) C API function returns the number of rows that were matched and updated and the number of warnings that occurred during the [`UPDATE`](update.html "13.2.11 UPDATE Statement").
+[`UPDATE`](update.html "13.2.11 UPDATE Statement") retorna o número de linhas que foram efetivamente alteradas. A função C API [`mysql_info()`](/doc/c-api/5.7/en/mysql-info.html) retorna o número de linhas que foram correspondidas e atualizadas e o número de warnings que ocorreram durante o [`UPDATE`](update.html "13.2.11 UPDATE Statement").
 
-You can use `LIMIT row_count` to restrict the scope of the [`UPDATE`](update.html "13.2.11 UPDATE Statement"). A `LIMIT` clause is a rows-matched restriction. The statement stops as soon as it has found *`row_count`* rows that satisfy the `WHERE` clause, whether or not they actually were changed.
+Você pode usar `LIMIT row_count` para restringir o escopo do [`UPDATE`](update.html "13.2.11 UPDATE Statement"). Uma cláusula `LIMIT` é uma restrição de linhas correspondidas. A declaração para assim que encontrar *`row_count`* linhas que satisfaçam a cláusula `WHERE`, independentemente de terem sido realmente alteradas ou não.
 
-If an [`UPDATE`](update.html "13.2.11 UPDATE Statement") statement includes an `ORDER BY` clause, the rows are updated in the order specified by the clause. This can be useful in certain situations that might otherwise result in an error. Suppose that a table `t` contains a column `id` that has a unique index. The following statement could fail with a duplicate-key error, depending on the order in which rows are updated:
+Se uma declaração [`UPDATE`](update.html "13.2.11 UPDATE Statement") incluir uma cláusula `ORDER BY`, as linhas são atualizadas na ordem especificada pela cláusula. Isso pode ser útil em certas situações que, de outra forma, poderiam resultar em um erro. Suponha que uma tabela `t` contenha uma coluna `id` que possui um unique index. A seguinte declaração pode falhar com um erro de duplicate-key, dependendo da ordem em que as linhas são atualizadas:
 
 ```sql
 UPDATE t SET id = id + 1;
 ```
 
-For example, if the table contains 1 and 2 in the `id` column and 1 is updated to 2 before 2 is updated to 3, an error occurs. To avoid this problem, add an `ORDER BY` clause to cause the rows with larger `id` values to be updated before those with smaller values:
+Por exemplo, se a tabela contém 1 e 2 na coluna `id` e 1 é atualizado para 2 antes que 2 seja atualizado para 3, ocorre um erro. Para evitar este problema, adicione uma cláusula `ORDER BY` para fazer com que as linhas com valores `id` maiores sejam atualizadas antes daquelas com valores menores:
 
 ```sql
 UPDATE t SET id = id + 1 ORDER BY id DESC;
 ```
 
-You can also perform [`UPDATE`](update.html "13.2.11 UPDATE Statement") operations covering multiple tables. However, you cannot use `ORDER BY` or `LIMIT` with a multiple-table [`UPDATE`](update.html "13.2.11 UPDATE Statement"). The *`table_references`* clause lists the tables involved in the join. Its syntax is described in [Section 13.2.9.2, “JOIN Clause”](join.html "13.2.9.2 JOIN Clause"). Here is an example:
+Você também pode realizar operações [`UPDATE`](update.html "13.2.11 UPDATE Statement") cobrindo múltiplas tabelas. No entanto, você não pode usar `ORDER BY` ou `LIMIT` com um [`UPDATE`](update.html "13.2.11 UPDATE Statement") de múltiplas tabelas. A cláusula *`table_references`* lista as tabelas envolvidas no join. Sua sintaxe é descrita na [Seção 13.2.9.2, “Cláusula JOIN”](join.html "13.2.9.2 JOIN Clause"). Aqui está um exemplo:
 
 ```sql
 UPDATE items,month SET items.price=month.price
 WHERE items.id=month.id;
 ```
 
-The preceding example shows an inner join that uses the comma operator, but multiple-table [`UPDATE`](update.html "13.2.11 UPDATE Statement") statements can use any type of join permitted in [`SELECT`](select.html "13.2.9 SELECT Statement") statements, such as `LEFT JOIN`.
+O exemplo anterior mostra um inner join que usa o operador de vírgula, mas declarações [`UPDATE`](update.html "13.2.11 UPDATE Statement") de múltiplas tabelas podem usar qualquer tipo de join permitido em declarações [`SELECT`](select.html "13.2.9 SELECT Statement"), como `LEFT JOIN`.
 
-If you use a multiple-table [`UPDATE`](update.html "13.2.11 UPDATE Statement") statement involving `InnoDB` tables for which there are foreign key constraints, the MySQL optimizer might process tables in an order that differs from that of their parent/child relationship. In this case, the statement fails and rolls back. Instead, update a single table and rely on the `ON UPDATE` capabilities that `InnoDB` provides to cause the other tables to be modified accordingly. See [Section 13.1.18.5, “FOREIGN KEY Constraints”](create-table-foreign-keys.html "13.1.18.5 FOREIGN KEY Constraints").
+Se você usar uma declaração [`UPDATE`](update.html "13.2.11 UPDATE Statement") de múltiplas tabelas envolvendo tabelas `InnoDB` para as quais existem foreign key constraints, o optimizer do MySQL pode processar as tabelas em uma ordem que difere da ordem de seu relacionamento pai/filho. Neste caso, a declaração falha e é revertida (roll back). Em vez disso, atualize uma única tabela e confie nas capacidades `ON UPDATE` que o `InnoDB` fornece para fazer com que as outras tabelas sejam modificadas de acordo. Consulte [Seção 13.1.18.5, “Restrições FOREIGN KEY”](create-table-foreign-keys.html "13.1.18.5 FOREIGN KEY Constraints").
 
-You cannot update a table and select directly from the same table in a subquery. You can work around this by using a multi-table update in which one of the tables is derived from the table that you actually wish to update, and referring to the derived table using an alias. Suppose you wish to update a table named `items` which is defined using the statement shown here:
+Você não pode atualizar uma tabela e selecionar diretamente da mesma tabela em uma subquery. Você pode contornar isso usando um update de múltiplas tabelas no qual uma das tabelas é derivada da tabela que você realmente deseja atualizar, e referenciando a tabela derivada usando um alias. Suponha que você deseje atualizar uma tabela chamada `items` que é definida usando a declaração mostrada aqui:
 
 ```sql
 CREATE TABLE items (
@@ -113,7 +113,7 @@ CREATE TABLE items (
 );
 ```
 
-To reduce the retail price of any items for which the markup is 30% or greater and of which you have fewer than one hundred in stock, you might try to use an `UPDATE` statement such as the one following, which uses a subquery in the `WHERE` clause. As shown here, this statement does not work:
+Para reduzir o retail price (preço de varejo) de quaisquer itens para os quais o markup é de 30% ou mais e dos quais você tem menos de cem em stock, você pode tentar usar uma declaração `UPDATE` como a seguinte, que usa uma subquery na cláusula `WHERE`. Conforme mostrado aqui, esta declaração não funciona:
 
 ```sql
 mysql> UPDATE items
@@ -124,7 +124,7 @@ mysql> UPDATE items
 ERROR 1093 (HY000): You can't specify target table 'items' for update in FROM clause
 ```
 
-Instead, you can employ a multi-table update in which the subquery is moved into the list of tables to be updated, using an alias to reference it in the outermost `WHERE` clause, like this:
+Em vez disso, você pode empregar um update de múltiplas tabelas no qual a subquery é movida para a lista de tabelas a serem atualizadas, usando um alias para referenciá-la na cláusula `WHERE` mais externa, assim:
 
 ```sql
 UPDATE items,
@@ -137,7 +137,7 @@ SET items.retail = items.retail * 0.9
 WHERE items.id = discounted.id;
 ```
 
-Because the optimizer tries by default to merge the derived table `discounted` into the outermost query block, this works only if you force materialization of the derived table. You can do this by setting the [`derived_merge`](switchable-optimizations.html#optflag_derived-merge) flag of the [`optimizer_switch`](server-system-variables.html#sysvar_optimizer_switch) system variable to `off` before running the update, or by using the [`NO_MERGE`](optimizer-hints.html#optimizer-hints-table-level "Table-Level Optimizer Hints") optimizer hint, as shown here:
+Como o optimizer tenta por default mesclar a derived table `discounted` no query block mais externo, isso só funciona se você forçar a materialization da tabela derivada. Você pode fazer isso definindo o flag [`derived_merge`](switchable-optimizations.html#optflag_derived-merge) da variável de sistema [`optimizer_switch`](server-system-variables.html#sysvar_optimizer_switch) como `off` antes de executar o update, ou usando o optimizer hint [`NO_MERGE`](optimizer-hints.html#optimizer-hints-table-level "Table-Level Optimizer Hints"), conforme mostrado aqui:
 
 ```sql
 UPDATE /*+ NO_MERGE(discounted) */ items,
@@ -148,9 +148,9 @@ UPDATE /*+ NO_MERGE(discounted) */ items,
     WHERE items.id = discounted.id;
 ```
 
-The advantage of using the optimizer hint in such a case is that it applies only within the query block where it is used, so that it is not necessary to change the value of `optimizer_switch` again after executing the `UPDATE`.
+A vantagem de usar o optimizer hint em tal caso é que ele se aplica apenas dentro do query block onde é usado, de modo que não é necessário alterar o valor de `optimizer_switch` novamente após executar o `UPDATE`.
 
-Another possibility is to rewrite the subquery so that it does not use `IN` or `EXISTS`, like this:
+Outra possibilidade é reescrever a subquery para que ela não use `IN` ou `EXISTS`, assim:
 
 ```sql
 UPDATE items,
@@ -162,4 +162,4 @@ UPDATE items,
     AND items.id = discounted.id;
 ```
 
-In this case, the subquery is materialized by default rather than merged, so it is not necessary to disable merging of the derived table.
+Neste caso, a subquery é materializada por default em vez de mesclada, portanto não é necessário desabilitar a mesclagem da derived table.

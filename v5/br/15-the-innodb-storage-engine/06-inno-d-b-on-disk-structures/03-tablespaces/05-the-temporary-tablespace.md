@@ -1,32 +1,32 @@
-#### 14.6.3.5 The Temporary Tablespace
+#### 14.6.3.5 O Temporary Tablespace
 
-Non-compressed, user-created temporary tables and on-disk internal temporary tables are created in a shared temporary tablespace. The `innodb_temp_data_file_path` variable defines the relative path, name, size, and attributes for temporary tablespace data files. If no value is specified for `innodb_temp_data_file_path`, the default behavior is to create an auto-extending data file named `ibtmp1` in the `innodb_data_home_dir` directory that is slightly larger than 12MB.
+Temporary tables não compactadas criadas pelo usuário e temporary tables internas em disco são criadas em um shared temporary tablespace. A variável `innodb_temp_data_file_path` define o caminho relativo, nome, tamanho e atributos para os Data Files do temporary tablespace. Se nenhum valor for especificado para `innodb_temp_data_file_path`, o comportamento padrão é criar um Data File com auto-extensão chamado `ibtmp1` no diretório `innodb_data_home_dir` que é ligeiramente maior que 12MB.
 
-Note
+Nota
 
-In MySQL 5.6, non-compressed temporary tables are created in individual file-per-table tablespaces in the temporary file directory, or in the `InnoDB` system tablespace in the data directory if `innodb_file_per_table` is disabled. The introduction of a shared temporary tablespace in MySQL 5.7 removes performance costs associated with creating and removing a file-per-table tablespace for each temporary table. A dedicated temporary tablespace also means that it is no longer necessary to save temporary table metadata to the `InnoDB` system tables.
+No MySQL 5.6, temporary tables não compactadas são criadas em tablespaces individuais *file-per-table* no diretório de arquivos temporários, ou no system tablespace do `InnoDB` no diretório de dados se `innodb_file_per_table` estiver desabilitado. A introdução de um shared temporary tablespace no MySQL 5.7 remove custos de performance associados à criação e remoção de um tablespace *file-per-table* para cada temporary table. Um temporary tablespace dedicado também significa que não é mais necessário salvar Metadata de temporary tables nas System Tables do `InnoDB`.
 
-Compressed temporary tables, which are temporary tables created using the `ROW_FORMAT=COMPRESSED` attribute, are created in file-per-table tablespaces in the temporary file directory.
+Temporary tables compactadas, que são temporary tables criadas usando o atributo `ROW_FORMAT=COMPRESSED`, são criadas em tablespaces *file-per-table* no diretório de arquivos temporários.
 
-The temporary tablespace is removed on normal shutdown or on an aborted initialization, and is recreated each time the server is started. The temporary tablespace receives a dynamically generated space ID when it is created. Startup is refused if the temporary tablespace cannot be created. The temporary tablespace is not removed if the server halts unexpectedly. In this case, a database administrator can remove the temporary tablespace manually or restart the server, which removes and recreates the temporary tablespace automatically.
+O temporary tablespace é removido em um `shutdown` normal ou em uma inicialização abortada, e é recriado sempre que o servidor é iniciado (started). O temporary tablespace recebe um Space ID gerado dinamicamente quando é criado. O Startup é recusado se o temporary tablespace não puder ser criado. O temporary tablespace não é removido se o servidor parar inesperadamente. Neste caso, um administrador de Database pode remover o temporary tablespace manualmente ou reiniciar (restart) o servidor, o que remove e recria o temporary tablespace automaticamente.
 
-The temporary tablespace cannot reside on a raw device.
+O temporary tablespace não pode residir em um *raw device*.
 
-The Information Schema `FILES` table provides metadata about the `InnoDB` temporary tablespace. Issue a query similar to this one to view temporary tablespace metadata:
+A tabela `FILES` do Information Schema fornece Metadata sobre o temporary tablespace do `InnoDB`. Execute uma Query semelhante a esta para visualizar o Metadata do temporary tablespace:
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.FILES WHERE TABLESPACE_NAME='innodb_temporary'\G
 ```
 
-The Information Schema `INNODB_TEMP_TABLE_INFO` table provides metadata about user-created temporary tables that are currently active within an `InnoDB` instance.
+A tabela `INNODB_TEMP_TABLE_INFO` do Information Schema fornece Metadata sobre temporary tables criadas pelo usuário que estão atualmente ativas em uma instância `InnoDB`.
 
-##### Managing Temporary Tablespace Data File Size
+##### Gerenciando o Tamanho do Data File do Temporary Tablespace
 
-By default, the temporary tablespace data file is autoextending and increases in size as necessary to accommodate on-disk temporary tables. For example, if an operation creates a temporary table that is 20MB in size, the temporary tablespace data file, which is 12MB in size by default when created, extends in size to accommodate it. When temporary tables are dropped, freed space can be reused for new temporary tables, but the data file remains at the extended size.
+Por padrão, o Data File do temporary tablespace é autoextending (com auto-extensão) e aumenta de tamanho conforme necessário para acomodar temporary tables em disco. Por exemplo, se uma operação cria uma temporary table de 20MB, o Data File do temporary tablespace, que por padrão tem 12MB quando criado, se estende em tamanho para acomodá-la. Quando temporary tables são descartadas (dropped), o espaço liberado pode ser reutilizado para novas temporary tables, mas o Data File permanece no tamanho estendido.
 
-An autoextending temporary tablespace data file can become large in environments that use large temporary tables or that use temporary tables extensively. A large data file can also result from long running queries that use temporary tables.
+Um Data File de temporary tablespace com auto-extensão pode se tornar grande em ambientes que usam temporary tables grandes ou que as utilizam extensivamente. Um Data File grande também pode resultar de Queries de longa duração que utilizam temporary tables.
 
-To determine if a temporary tablespace data file is autoextending, check the `innodb_temp_data_file_path` setting:
+Para determinar se um Data File de temporary tablespace é autoextending, verifique a configuração `innodb_temp_data_file_path`:
 
 ```sql
 mysql> SELECT @@innodb_temp_data_file_path;
@@ -37,7 +37,7 @@ mysql> SELECT @@innodb_temp_data_file_path;
 +------------------------------+
 ```
 
-To check the size of temporary tablespace data files, query the Information Schema `FILES` table using a query similar to this:
+Para verificar o tamanho dos Data Files do temporary tablespace, execute uma Query na tabela `FILES` do Information Schema usando uma Query semelhante a esta:
 
 ```sql
 mysql> SELECT FILE_NAME, TABLESPACE_NAME, ENGINE, INITIAL_SIZE, TOTAL_EXTENTS*EXTENT_SIZE
@@ -53,19 +53,19 @@ TABLESPACE_NAME: innodb_temporary
    MAXIMUM_SIZE: NULL
 ```
 
-The `TotalSizeBytes` value reports the current size of the temporary tablespace data file. For information about other field values, see Section 24.3.9, “The INFORMATION_SCHEMA FILES Table”.
+O valor de `TotalSizeBytes` informa o tamanho atual do Data File do temporary tablespace. Para obter informações sobre outros valores de campo, consulte a Seção 24.3.9, “A Tabela INFORMATION_SCHEMA FILES”.
 
-Alternatively, check the temporary tablespace data file size on your operating system. By default, the temporary tablespace data file is located in the directory defined by the `innodb_temp_data_file_path` configuration option. If a value was not specified for this option explicitly, a temporary tablespace data file named `ibtmp1` is created in `innodb_data_home_dir`, which defaults to the MySQL data directory if unspecified.
+Alternativamente, verifique o tamanho do Data File do temporary tablespace em seu sistema operacional. Por padrão, o Data File do temporary tablespace está localizado no diretório definido pela opção de configuração `innodb_temp_data_file_path`. Se um valor não tiver sido especificado explicitamente para esta opção, um Data File de temporary tablespace chamado `ibtmp1` será criado em `innodb_data_home_dir`, que tem como padrão o diretório de dados do MySQL se não for especificado.
 
-To reclaim disk space occupied by a temporary tablespace data file, restart the MySQL server. Restarting the server removes and recreates the temporary tablespace data file according to the attributes defined by `innodb_temp_data_file_path`.
+Para recuperar o espaço em disco ocupado por um Data File de temporary tablespace, reinicie o servidor MySQL. Reiniciar o servidor remove e recria o Data File do temporary tablespace de acordo com os atributos definidos por `innodb_temp_data_file_path`.
 
-To prevent the temporary data file from becoming too large, you can configure the `innodb_temp_data_file_path` variable to specify a maximum file size. For example:
+Para evitar que o Data File temporário se torne muito grande, você pode configurar a variável `innodb_temp_data_file_path` para especificar um tamanho máximo de arquivo. Por exemplo:
 
 ```sql
 [mysqld]
 innodb_temp_data_file_path=ibtmp1:12M:autoextend:max:500M
 ```
 
-When the data file reaches the maximum size, queries fail with an error indicating that the table is full. Configuring `innodb_temp_data_file_path` requires restarting the server.
+Quando o Data File atinge o tamanho máximo, as Queries falham com um erro indicando que a table está cheia. A configuração de `innodb_temp_data_file_path` requer o restart do servidor.
 
-Alternatively, configure the `default_tmp_storage_engine` and `internal_tmp_disk_storage_engine` variables, which define the storage engine to use for user-created and on-disk internal temporary tables, respectively. Both variables are set to `InnoDB` by default. The `MyISAM` storage engine uses an individual file for each temporary table, which is removed when the temporary table is dropped.
+Alternativamente, configure as variáveis `default_tmp_storage_engine` e `internal_tmp_disk_storage_engine`, que definem o Storage Engine a ser usado para temporary tables internas em disco e criadas pelo usuário, respectivamente. Ambas as variáveis são definidas como `InnoDB` por padrão. O Storage Engine `MyISAM` usa um arquivo individual para cada temporary table, que é removido quando a temporary table é descartada (dropped).

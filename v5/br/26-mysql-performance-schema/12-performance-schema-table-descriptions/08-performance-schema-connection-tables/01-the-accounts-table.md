@@ -1,21 +1,21 @@
-#### 25.12.8.1 The accounts Table
+#### 25.12.8.1 A Table `accounts`
 
-The [`accounts`](performance-schema-accounts-table.html "25.12.8.1 The accounts Table") table contains a row for each account that has connected to the MySQL server. For each account, the table counts the current and total number of connections. The table size is autosized at server startup. To set the table size explicitly, set the [`performance_schema_accounts_size`](performance-schema-system-variables.html#sysvar_performance_schema_accounts_size) system variable at server startup. To disable account statistics, set this variable to 0.
+A Table [`accounts`](performance-schema-accounts-table.html "25.12.8.1 The accounts Table") contém uma linha para cada conta que se conectou ao servidor MySQL. Para cada conta, a tabela conta o número atual e total de *Connections*. O tamanho da tabela é ajustado automaticamente (*autosized*) na inicialização do servidor (*server startup*). Para definir o tamanho da tabela explicitamente, defina a variável de sistema [`performance_schema_accounts_size`](performance-schema-system-variables.html#sysvar_performance_schema_accounts_size) na inicialização do servidor. Para desativar as estatísticas de contas, defina esta variável como 0.
 
-The [`accounts`](performance-schema-accounts-table.html "25.12.8.1 The accounts Table") table has the following columns. For a description of how the Performance Schema maintains rows in this table, including the effect of [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement"), see [Section 25.12.8, “Performance Schema Connection Tables”](performance-schema-connection-tables.html "25.12.8 Performance Schema Connection Tables").
+A Table [`accounts`](performance-schema-accounts-table.html "25.12.8.1 The accounts Table") possui as seguintes colunas. Para uma descrição de como o Performance Schema mantém as linhas nesta *table*, incluindo o efeito da instrução [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement"), consulte [Seção 25.12.8, “Performance Schema Connection Tables”](performance-schema-connection-tables.html "25.12.8 Performance Schema Connection Tables”).
 
 * `USER`
 
-  The client user name for the connection. This is `NULL` for an internal thread, or for a user session that failed to authenticate.
+  O nome de usuário (*user name*) do cliente para a *Connection*. É `NULL` para um *Thread* interno, ou para uma sessão de usuário que falhou ao autenticar.
 
 * `HOST`
 
-  The host from which the client connected. This is `NULL` for an internal thread, or for a user session that failed to authenticate.
+  O *Host* do qual o cliente se conectou. É `NULL` para um *Thread* interno, ou para uma sessão de usuário que falhou ao autenticar.
 
 * `CURRENT_CONNECTIONS`
 
-  The current number of connections for the account.
+  O número atual de *Connections* para a conta.
 
 * `TOTAL_CONNECTIONS`
 
-  The total number of connections for the account.
+  O número total de *Connections* para a conta.

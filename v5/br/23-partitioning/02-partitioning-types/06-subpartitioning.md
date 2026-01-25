@@ -1,6 +1,6 @@
-### 22.2.6 Subpartitioning
+### 22.2.6 Subpartitioning
 
-Subpartitioning—also known as composite partitioning—is the further division of each partition in a partitioned table. Consider the following [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement:
+O Subpartitioning — também conhecido como composite partitioning — é a divisão adicional de cada PARTITION em uma tabela particionada. Considere o seguinte comando [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement"):
 
 ```sql
 CREATE TABLE ts (id INT, purchased DATE)
@@ -13,15 +13,15 @@ CREATE TABLE ts (id INT, purchased DATE)
     );
 ```
 
-Table `ts` has 3 `RANGE` partitions. Each of these partitions—`p0`, `p1`, and `p2`—is further divided into 2 subpartitions. In effect, the entire table is divided into `3 * 2 = 6` partitions. However, due to the action of the `PARTITION BY RANGE` clause, the first 2 of these store only those records with a value less than 1990 in the `purchased` column.
+A tabela `ts` tem 3 PARTITIONs de `RANGE`. Cada uma dessas PARTITIONs — `p0`, `p1` e `p2` — é posteriormente dividida em 2 subpartitions. Na prática, a tabela inteira é dividida em `3 * 2 = 6` PARTITIONs. No entanto, devido à ação da cláusula `PARTITION BY RANGE`, as primeiras 2 armazenam apenas os registros com um valor inferior a 1990 na coluna `purchased`.
 
-In MySQL 5.7, it is possible to subpartition tables that are partitioned by `RANGE` or `LIST`. Subpartitions may use either `HASH` or `KEY` partitioning. This is also known as composite partitioning.
+No MySQL 5.7, é possível aplicar Subpartitioning a tabelas que são particionadas por `RANGE` ou `LIST`. Subpartitions podem usar PARTITIONing por `HASH` ou `KEY`. Isso também é conhecido como composite partitioning.
 
 Note
 
-`SUBPARTITION BY HASH` and `SUBPARTITION BY KEY` generally follow the same syntax rules as `PARTITION BY HASH` and `PARTITION BY KEY`, respectively. An exception to this is that `SUBPARTITION BY KEY` (unlike `PARTITION BY KEY`) does not currently support a default column, so the column used for this purpose must be specified, even if the table has an explicit primary key. This is a known issue which we are working to address; see [Issues with subpartitions](partitioning-limitations.html#partitioning-limitations-subpartitions "Issues with subpartitions"), for more information and an example.
+`SUBPARTITION BY HASH` e `SUBPARTITION BY KEY` geralmente seguem as mesmas regras de sintaxe que `PARTITION BY HASH` e `PARTITION BY KEY`, respectivamente. Uma exceção a isso é que `SUBPARTITION BY KEY` (diferente de `PARTITION BY KEY`) atualmente não suporta uma coluna default, então a coluna usada para esse fim deve ser especificada, mesmo que a tabela tenha uma Primary Key explícita. Este é um problema conhecido que estamos trabalhando para resolver; consulte [Issues with subpartitions](partitioning-limitations.html#partitioning-limitations-subpartitions "Issues with subpartitions"), para mais informações e um exemplo.
 
-It is also possible to define subpartitions explicitly using `SUBPARTITION` clauses to specify options for individual subpartitions. For example, a more verbose fashion of creating the same table `ts` as shown in the previous example would be:
+Também é possível definir subpartitions explicitamente usando cláusulas `SUBPARTITION` para especificar opções para subpartitions individuais. Por exemplo, uma forma mais detalhada de criar a mesma tabela `ts` mostrada no exemplo anterior seria:
 
 ```sql
 CREATE TABLE ts (id INT, purchased DATE)
@@ -42,10 +42,10 @@ CREATE TABLE ts (id INT, purchased DATE)
     );
 ```
 
-Some syntactical items of note are listed here:
+Alguns itens sintáticos notáveis estão listados aqui:
 
-* Each partition must have the same number of subpartitions.
-* If you explicitly define any subpartitions using `SUBPARTITION` on any partition of a partitioned table, you must define them all. In other words, the following statement fails:
+* Cada PARTITION deve ter o mesmo número de subpartitions.
+* Se você definir explicitamente qualquer subpartition usando `SUBPARTITION` em qualquer PARTITION de uma tabela particionada, você deve definir todas elas. Em outras palavras, o seguinte comando falha:
 
   ```sql
   CREATE TABLE ts (id INT, purchased DATE)
@@ -63,13 +63,13 @@ Some syntactical items of note are listed here:
       );
   ```
 
-  This statement would still fail even if it included a `SUBPARTITIONS 2` clause.
+  Este comando ainda falharia mesmo que incluísse uma cláusula `SUBPARTITIONS 2`.
 
-* Each `SUBPARTITION` clause must include (at a minimum) a name for the subpartition. Otherwise, you may set any desired option for the subpartition or allow it to assume its default setting for that option.
+* Cada cláusula `SUBPARTITION` deve incluir (no mínimo) um nome para a subpartition. Caso contrário, você pode definir qualquer opção desejada para a subpartition ou permitir que ela assuma sua configuração default para essa opção.
 
-* Subpartition names must be unique across the entire table. For example, the following [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement is valid in MySQL 5.7:
+* Os nomes das Subpartitions devem ser únicos em toda a tabela. Por exemplo, o seguinte comando [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") é válido no MySQL 5.7:
 
-  ```sql
+```sql
   CREATE TABLE ts (id INT, purchased DATE)
       PARTITION BY RANGE( YEAR(purchased) )
       SUBPARTITION BY HASH( TO_DAYS(purchased) ) (
@@ -88,7 +88,7 @@ Some syntactical items of note are listed here:
       );
   ```
 
-Subpartitions can be used with especially large [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") tables to distribute data and indexes across many disks. Suppose that you have 6 disks mounted as `/disk0`, `/disk1`, `/disk2`, and so on. Now consider the following example:
+Subpartitions podem ser usadas com tabelas [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") especialmente grandes para distribuir dados e Indexes por vários discos. Suponha que você tenha 6 discos montados como `/disk0`, `/disk1`, `/disk2`, e assim por diante. Agora considere o seguinte exemplo:
 
 ```sql
 CREATE TABLE ts (id INT, purchased DATE)
@@ -122,7 +122,7 @@ CREATE TABLE ts (id INT, purchased DATE)
     );
 ```
 
-In this case, a separate disk is used for the data and for the indexes of each `RANGE`. Many other variations are possible; another example might be:
+Neste caso, um disco separado é usado para os dados e para os Indexes de cada `RANGE`. Muitas outras variações são possíveis; outro exemplo pode ser:
 
 ```sql
 CREATE TABLE ts (id INT, purchased DATE)
@@ -152,26 +152,26 @@ CREATE TABLE ts (id INT, purchased DATE)
     );
 ```
 
-Here, the storage is as follows:
+Aqui, o armazenamento é o seguinte:
 
-* Rows with `purchased` dates from before 1990 take up a vast amount of space, so are split up 4 ways, with a separate disk dedicated to the data and to the indexes for each of the two subpartitions (`s0a` and `s0b`) making up partition `p0`. In other words:
+* Linhas com datas `purchased` anteriores a 1990 ocupam uma vasta quantidade de espaço, então são divididas em 4 partes, com um disco separado dedicado aos dados e aos Indexes para cada uma das duas subpartitions (`s0a` e `s0b`) que compõem a PARTITION `p0`. Em outras palavras:
 
-  + The data for subpartition `s0a` is stored on `/disk0`.
+  + Os dados para a subpartition `s0a` são armazenados em `/disk0`.
 
-  + The indexes for subpartition `s0a` are stored on `/disk1`.
+  + Os Indexes para a subpartition `s0a` são armazenados em `/disk1`.
 
-  + The data for subpartition `s0b` is stored on `/disk2`.
+  + Os dados para a subpartition `s0b` são armazenados em `/disk2`.
 
-  + The indexes for subpartition `s0b` are stored on `/disk3`.
+  + Os Indexes para a subpartition `s0b` são armazenados em `/disk3`.
 
-* Rows containing dates ranging from 1990 to 1999 (partition `p1`) do not require as much room as those from before 1990. These are split between 2 disks (`/disk4` and `/disk5`) rather than 4 disks as with the legacy records stored in `p0`:
+* Linhas contendo datas de 1990 a 1999 (PARTITION `p1`) não requerem tanto espaço quanto aquelas anteriores a 1990. Estas são divididas entre 2 discos (`/disk4` e `/disk5`) em vez de 4 discos, como ocorre com os registros legados armazenados em `p0`:
 
-  + Data and indexes belonging to `p1`'s first subpartition (`s1a`) are stored on `/disk4`—the data in `/disk4/data`, and the indexes in `/disk4/idx`.
+  + Dados e Indexes pertencentes à primeira subpartition de `p1` (`s1a`) são armazenados em `/disk4` — os dados em `/disk4/data` e os Indexes em `/disk4/idx`.
 
-  + Data and indexes belonging to `p1`'s second subpartition (`s1b`) are stored on `/disk5`—the data in `/disk5/data`, and the indexes in `/disk5/idx`.
+  + Dados e Indexes pertencentes à segunda subpartition de `p1` (`s1b`) são armazenados em `/disk5` — os dados em `/disk5/data` e os Indexes em `/disk5/idx`.
 
-* Rows reflecting dates from the year 2000 to the present (partition `p2`) do not take up as much space as required by either of the two previous ranges. Currently, it is sufficient to store all of these in the default location.
+* Linhas refletindo datas do ano 2000 até o presente (PARTITION `p2`) não ocupam tanto espaço quanto o exigido pelas duas faixas anteriores. Atualmente, é suficiente armazenar tudo isso no local default.
 
-  In future, when the number of purchases for the decade beginning with the year 2000 grows to a point where the default location no longer provides sufficient space, the corresponding rows can be moved using an `ALTER TABLE ... REORGANIZE PARTITION` statement. See [Section 22.3, “Partition Management”](partitioning-management.html "22.3 Partition Management"), for an explanation of how this can be done.
+  No futuro, quando o número de compras para a década iniciada no ano 2000 crescer a ponto de o local default não fornecer mais espaço suficiente, as linhas correspondentes poderão ser movidas usando um comando `ALTER TABLE ... REORGANIZE PARTITION`. Consulte [Section 22.3, “Partition Management”](partitioning-management.html "22.3 Partition Management"), para uma explicação de como isso pode ser feito.
 
-The `DATA DIRECTORY` and `INDEX DIRECTORY` options are not permitted in partition definitions when the [`NO_DIR_IN_CREATE`](sql-mode.html#sqlmode_no_dir_in_create) server SQL mode is in effect. In MySQL 5.7, these options are also not permitted when defining subpartitions (Bug #42954).
+As opções `DATA DIRECTORY` e `INDEX DIRECTORY` não são permitidas em definições de PARTITION quando o SQL mode [`NO_DIR_IN_CREATE`](sql-mode.html#sqlmode_no_dir_in_create) do servidor está em vigor. No MySQL 5.7, essas opções também não são permitidas ao definir subpartitions (Bug #42954).

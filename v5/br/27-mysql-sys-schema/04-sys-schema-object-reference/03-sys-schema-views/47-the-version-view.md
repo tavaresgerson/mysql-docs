@@ -1,17 +1,17 @@
-#### 26.4.3.47 The version View
+#### 26.4.3.47 A View version
 
-This view provides the current `sys` schema and MySQL server versions.
+Esta View fornece as versões atuais do schema `sys` e do servidor MySQL.
 
-Note
+Nota
 
-As of MySQL 5.7.28, this view is deprecated and subject to removal in a future MySQL version. Applications that use it should be migrated to use an alternative instead. For example, use the `VERSION()` function to retrieve the MySQL server version.
+A partir do MySQL 5.7.28, esta View está descontinuada (deprecated) e sujeita a remoção em uma versão futura do MySQL. As aplicações que a utilizam devem ser migradas para usar uma alternativa. Por exemplo, use a function `VERSION()` para recuperar a versão do servidor MySQL.
 
-The `version` view has these columns:
+A View `version` possui estas colunas:
 
 * `sys_version`
 
-  The `sys` schema version.
+  A versão do schema `sys`.
 
 * `mysql_version`
 
-  The MySQL server version.
+  A versão do servidor MySQL.

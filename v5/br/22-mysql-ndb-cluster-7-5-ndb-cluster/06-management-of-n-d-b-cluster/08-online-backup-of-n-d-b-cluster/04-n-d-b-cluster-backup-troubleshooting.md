@@ -1,11 +1,11 @@
-#### 21.6.8.4 NDB Cluster Backup Troubleshooting
+#### 21.6.8.4 Solução de Problemas de Backup do NDB Cluster
 
-If an error code is returned when issuing a backup request, the most likely cause is insufficient memory or disk space. You should check that there is enough memory allocated for the backup.
+Se um código de erro for retornado ao emitir uma solicitação de Backup, a causa mais provável é memória ou espaço em Disk insuficientes. Você deve verificar se há memória suficiente alocada para o Backup.
 
-Important
+Importante
 
-If you have set [`BackupDataBufferSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupdatabuffersize) and [`BackupLogBufferSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backuplogbuffersize) and their sum is greater than 4MB, then you must also set [`BackupMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupmemory) as well.
+Se você definiu [`BackupDataBufferSize`] e [`BackupLogBufferSize`] e a soma deles for maior que 4MB, você também deve definir [`BackupMemory`].
 
-You should also make sure that there is sufficient space on the hard drive partition of the backup target.
+Você também deve garantir que haja espaço suficiente na partição do hard drive do destino do Backup.
 
-[`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") does not support repeatable reads, which can cause problems with the restoration process. Although the backup process is “hot”, restoring an NDB Cluster from backup is not a 100% “hot” process. This is due to the fact that, for the duration of the restore process, running transactions get nonrepeatable reads from the restored data. This means that the state of the data is inconsistent while the restore is in progress.
+[`NDB`] não oferece suporte a *repeatable reads*, o que pode causar problemas no processo de restauração. Embora o processo de Backup seja “hot” (quente), restaurar um NDB Cluster a partir de um Backup não é um processo 100% “hot”. Isso ocorre devido ao fato de que, durante a duração do processo de restauração, as transações em execução obtêm *nonrepeatable reads* dos dados restaurados. Isso significa que o estado dos dados fica inconsistente enquanto a restauração está em andamento.

@@ -1,25 +1,25 @@
-#### 26.4.3.52 The waits_global_by_latency and x$waits_global_by_latency Views
+#### 26.4.3.52 As Views waits_global_by_latency e x$waits_global_by_latency
 
-These views summarize wait events, grouped by event. By default, rows are sorted by descending total latency. Idle events are ignored.
+Essas views resumem eventos de espera (wait events), agrupados por evento. Por padrão, as linhas são ordenadas pela latência total (total latency) decrescente. Eventos ociosos (idle events) são ignorados.
 
-The `waits_global_by_latency` and `x$waits_global_by_latency` views have these columns:
+As views `waits_global_by_latency` e `x$waits_global_by_latency` possuem as seguintes colunas:
 
 * `events`
 
-  The event name.
+  O nome do evento.
 
 * `total`
 
-  The total number of occurrences of the event.
+  O número total de ocorrências do evento.
 
 * `total_latency`
 
-  The total wait time of timed occurrences of the event.
+  O tempo total de espera (wait time) das ocorrências cronometradas do evento.
 
 * `avg_latency`
 
-  The average wait time per timed occurrence of the event.
+  O tempo médio de espera (wait time) por ocorrência cronometrada do evento.
 
 * `max_latency`
 
-  The maximum single wait time of timed occurrences of the event.
+  O tempo máximo de espera (wait time) individual das ocorrências cronometradas do evento.

@@ -1,10 +1,10 @@
-### 22.2.7 How MySQL Partitioning Handles NULL
+### 22.2.7 Como o Partitioning do MySQL Lida com NULL
 
-Partitioning in MySQL does nothing to disallow `NULL` as the value of a partitioning expression, whether it is a column value or the value of a user-supplied expression. Even though it is permitted to use `NULL` as the value of an expression that must otherwise yield an integer, it is important to keep in mind that `NULL` is not a number. MySQL's partitioning implementation treats `NULL` as being less than any non-`NULL` value, just as `ORDER BY` does.
+O Partitioning no MySQL não faz nada para impedir que `NULL` seja o valor de uma expressão de particionamento, seja um valor de coluna ou o valor de uma expressão fornecida pelo usuário. Embora seja permitido usar `NULL` como o valor de uma expressão que de outra forma deve retornar um inteiro, é importante ter em mente que `NULL` não é um número. A implementação de Partitioning do MySQL trata `NULL` como sendo menor do que qualquer valor não-`NULL`, assim como o `ORDER BY`.
 
-This means that treatment of `NULL` varies between partitioning of different types, and may produce behavior which you do not expect if you are not prepared for it. This being the case, we discuss in this section how each MySQL partitioning type handles `NULL` values when determining the partition in which a row should be stored, and provide examples for each.
+Isso significa que o tratamento de `NULL` varia entre diferentes tipos de particionamento e pode produzir um comportamento que você não espera se não estiver preparado para isso. Sendo este o caso, discutimos nesta seção como cada tipo de Partitioning do MySQL lida com valores `NULL` ao determinar a partição na qual uma linha deve ser armazenada, e fornecemos exemplos para cada um.
 
-**Handling of NULL with RANGE partitioning.** If you insert a row into a table partitioned by `RANGE` such that the column value used to determine the partition is `NULL`, the row is inserted into the lowest partition. Consider these two tables in a database named `p`, created as follows:
+**Como Lidar com NULL em Partitioning por RANGE.** Se você inserir uma linha em uma tabela particionada por `RANGE` de modo que o valor da coluna usado para determinar a partição seja `NULL`, a linha será inserida na partição mais baixa. Considere estas duas tabelas em um Database chamado `p`, criadas da seguinte forma:
 
 ```sql
 mysql> CREATE TABLE t1 (
@@ -31,7 +31,7 @@ mysql> CREATE TABLE t2 (
 Query OK, 0 rows affected (0.09 sec)
 ```
 
-You can see the partitions created by these two [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statements using the following query against the [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") table in the `INFORMATION_SCHEMA` database:
+Você pode ver as partições criadas por estas duas instruções [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") usando a seguinte Query contra a tabela [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") no Database `INFORMATION_SCHEMA`:
 
 ```sql
 mysql> SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS, AVG_ROW_LENGTH, DATA_LENGTH
@@ -51,7 +51,7 @@ mysql> SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS, AVG_ROW_LENGTH, DATA_LENGT
 7 rows in set (0.00 sec)
 ```
 
-(For more information about this table, see [Section 24.3.16, “The INFORMATION_SCHEMA PARTITIONS Table”](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table").) Now let us populate each of these tables with a single row containing a `NULL` in the column used as the partitioning key, and verify that the rows were inserted using a pair of [`SELECT`](select.html "13.2.9 SELECT Statement") statements:
+(Para mais informações sobre esta tabela, consulte [Section 24.3.16, “The INFORMATION_SCHEMA PARTITIONS Table”](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table").) Agora vamos popular cada uma dessas tabelas com uma única linha contendo um `NULL` na coluna usada como chave de particionamento, e verificar se as linhas foram inseridas usando um par de instruções [`SELECT`](select.html "13.2.9 SELECT Statement"):
 
 ```sql
 mysql> INSERT INTO t1 VALUES (NULL, 'mothra');
@@ -77,7 +77,7 @@ mysql> SELECT * FROM t2;
 1 row in set (0.00 sec)
 ```
 
-You can see which partitions are used to store the inserted rows by rerunning the previous query against [`INFORMATION_SCHEMA.PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") and inspecting the output:
+Você pode ver quais partições são usadas para armazenar as linhas inseridas, executando novamente a Query anterior contra [`INFORMATION_SCHEMA.PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") e inspecionando o resultado:
 
 ```sql
 mysql> SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS, AVG_ROW_LENGTH, DATA_LENGTH
@@ -97,7 +97,7 @@ mysql> SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS, AVG_ROW_LENGTH, DATA_LENGT
 7 rows in set (0.01 sec)
 ```
 
-You can also demonstrate that these rows were stored in the lowest partition of each table by dropping these partitions, and then re-running the [`SELECT`](select.html "13.2.9 SELECT Statement") statements:
+Você também pode demonstrar que essas linhas foram armazenadas na partição mais baixa de cada tabela, removendo essas partições e, em seguida, executando novamente as instruções [`SELECT`](select.html "13.2.9 SELECT Statement"):
 
 ```sql
 mysql> ALTER TABLE t1 DROP PARTITION p0;
@@ -113,9 +113,9 @@ mysql> SELECT * FROM t2;
 Empty set (0.00 sec)
 ```
 
-(For more information on `ALTER TABLE ... DROP PARTITION`, see [Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement").)
+(Para mais informações sobre `ALTER TABLE ... DROP PARTITION`, consulte [Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement").)
 
-`NULL` is also treated in this way for partitioning expressions that use SQL functions. Suppose that we define a table using a [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement such as this one:
+`NULL` também é tratado desta forma para expressões de particionamento que usam SQL functions. Suponha que definamos uma tabela usando uma instrução [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") como esta:
 
 ```sql
 CREATE TABLE tndate (
@@ -129,9 +129,9 @@ PARTITION BY RANGE( YEAR(dt) ) (
 );
 ```
 
-As with other MySQL functions, [`YEAR(NULL)`](date-and-time-functions.html#function_year) returns `NULL`. A row with a `dt` column value of `NULL` is treated as though the partitioning expression evaluated to a value less than any other value, and so is inserted into partition `p0`.
+Assim como acontece com outras funções do MySQL, [`YEAR(NULL)`](date-and-time-functions.html#function_year) retorna `NULL`. Uma linha com um valor `NULL` na coluna `dt` é tratada como se a expressão de particionamento fosse avaliada para um valor menor do que qualquer outro valor, e é, portanto, inserida na partição `p0`.
 
-**Handling of NULL with LIST partitioning.** A table that is partitioned by `LIST` admits `NULL` values if and only if one of its partitions is defined using that value-list that contains `NULL`. The converse of this is that a table partitioned by `LIST` which does not explicitly use `NULL` in a value list rejects rows resulting in a `NULL` value for the partitioning expression, as shown in this example:
+**Como Lidar com NULL em Partitioning por LIST.** Uma tabela particionada por `LIST` admite valores `NULL` se e somente se uma de suas partições for definida usando uma lista de valores que contenha `NULL`. O inverso disso é que uma tabela particionada por `LIST` que não usa explicitamente `NULL` em uma lista de valores rejeita linhas que resultam em um valor `NULL` para a expressão de particionamento, conforme mostrado neste exemplo:
 
 ```sql
 mysql> CREATE TABLE ts1 (
@@ -152,7 +152,7 @@ mysql> INSERT INTO ts1 VALUES (NULL, 'mothra');
 ERROR 1504 (HY000): Table has no partition for value NULL
 ```
 
-Only rows having a `c1` value between `0` and `8` inclusive can be inserted into `ts1`. `NULL` falls outside this range, just like the number `9`. We can create tables `ts2` and `ts3` having value lists containing `NULL`, as shown here:
+Somente linhas que tenham um valor `c1` entre `0` e `8` (inclusive) podem ser inseridas em `ts1`. `NULL` cai fora deste intervalo, assim como o número `9`. Podemos criar as tabelas `ts2` e `ts3` com listas de valores que contenham `NULL`, conforme mostrado aqui:
 
 ```sql
 mysql> CREATE TABLE ts2 (
@@ -179,7 +179,7 @@ mysql> CREATE TABLE ts3 (
 Query OK, 0 rows affected (0.01 sec)
 ```
 
-When defining value lists for partitioning, you can (and should) treat `NULL` just as you would any other value. For example, both `VALUES IN (NULL)` and `VALUES IN (1, 4, 7, NULL)` are valid, as are `VALUES IN (1, NULL, 4, 7)`, `VALUES IN (NULL, 1, 4, 7)`, and so on. You can insert a row having `NULL` for column `c1` into each of the tables `ts2` and `ts3`:
+Ao definir listas de valores para particionamento, você pode (e deve) tratar `NULL` assim como trataria qualquer outro valor. Por exemplo, tanto `VALUES IN (NULL)` quanto `VALUES IN (1, 4, 7, NULL)` são válidos, assim como `VALUES IN (1, NULL, 4, 7)`, `VALUES IN (NULL, 1, 4, 7)`, e assim por diante. Você pode inserir uma linha com `NULL` para a coluna `c1` em cada uma das tabelas `ts2` e `ts3`:
 
 ```sql
 mysql> INSERT INTO ts2 VALUES (NULL, 'mothra');
@@ -189,7 +189,7 @@ mysql> INSERT INTO ts3 VALUES (NULL, 'mothra');
 Query OK, 1 row affected (0.00 sec)
 ```
 
-By issuing the appropriate query against the Information Schema [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") table, you can determine which partitions were used to store the rows just inserted (we assume, as in the previous examples, that the partitioned tables were created in the `p` database):
+Ao emitir a Query apropriada contra a tabela [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") do Information Schema, você pode determinar quais partições foram usadas para armazenar as linhas recém-inseridas (assumimos, como nos exemplos anteriores, que as tabelas particionadas foram criadas no Database `p`):
 
 ```sql
 mysql> SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS, AVG_ROW_LENGTH, DATA_LENGTH
@@ -209,9 +209,9 @@ mysql> SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS, AVG_ROW_LENGTH, DATA_LENGT
 7 rows in set (0.01 sec)
 ```
 
-As shown earlier in this section, you can also verify which partitions were used for storing the rows by deleting these partitions and then performing a [`SELECT`](select.html "13.2.9 SELECT Statement").
+Conforme mostrado anteriormente nesta seção, você também pode verificar quais partições foram usadas para armazenar as linhas, excluindo essas partições e, em seguida, executando um [`SELECT`](select.html "13.2.9 SELECT Statement").
 
-**Handling of NULL with HASH and KEY partitioning.** `NULL` is handled somewhat differently for tables partitioned by `HASH` or `KEY`. In these cases, any partition expression that yields a `NULL` value is treated as though its return value were zero. We can verify this behavior by examining the effects on the file system of creating a table partitioned by `HASH` and populating it with a record containing appropriate values. Suppose that you have a table `th` (also in the `p` database) created using the following statement:
+**Como Lidar com NULL em Partitioning por HASH e KEY.** `NULL` é tratado de forma um pouco diferente para tabelas particionadas por `HASH` ou `KEY`. Nesses casos, qualquer expressão de partição que resulte em um valor `NULL` é tratada como se seu valor de retorno fosse zero. Podemos verificar esse comportamento examinando os efeitos no sistema de arquivos ao criar uma tabela particionada por `HASH` e populá-la com um registro contendo valores apropriados. Suponha que você tenha uma tabela `th` (também no Database `p`) criada usando a seguinte instrução:
 
 ```sql
 mysql> CREATE TABLE th (
@@ -223,7 +223,7 @@ mysql> CREATE TABLE th (
 Query OK, 0 rows affected (0.00 sec)
 ```
 
-The partitions belonging to this table can be viewed using the query shown here:
+As partições pertencentes a esta tabela podem ser visualizadas usando a Query mostrada aqui:
 
 ```sql
 mysql> SELECT TABLE_NAME,PARTITION_NAME,TABLE_ROWS,AVG_ROW_LENGTH,DATA_LENGTH
@@ -238,7 +238,7 @@ mysql> SELECT TABLE_NAME,PARTITION_NAME,TABLE_ROWS,AVG_ROW_LENGTH,DATA_LENGTH
 2 rows in set (0.00 sec)
 ```
 
-`TABLE_ROWS` for each partition is 0. Now insert two rows into `th` whose `c1` column values are `NULL` and 0, and verify that these rows were inserted, as shown here:
+O `TABLE_ROWS` para cada partição é 0. Agora insira duas linhas em `th` cujos valores da coluna `c1` sejam `NULL` e 0, e verifique se essas linhas foram inseridas, conforme mostrado aqui:
 
 ```sql
 mysql> INSERT INTO th VALUES (NULL, 'mothra'), (0, 'gigan');
@@ -255,7 +255,7 @@ mysql> SELECT * FROM th;
 2 rows in set (0.01 sec)
 ```
 
-Recall that for any integer *`N`*, the value of `NULL MOD N` is always `NULL`. For tables that are partitioned by `HASH` or `KEY`, this result is treated for determining the correct partition as `0`. Checking the Information Schema [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") table once again, we can see that both rows were inserted into partition `p0`:
+Lembre-se de que para qualquer inteiro *`N`*, o valor de `NULL MOD N` é sempre `NULL`. Para tabelas que são particionadas por `HASH` ou `KEY`, este resultado é tratado como `0` para determinar a partição correta. Verificando a tabela [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") do Information Schema mais uma vez, podemos ver que ambas as linhas foram inseridas na partição `p0`:
 
 ```sql
 mysql> SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS, AVG_ROW_LENGTH, DATA_LENGTH
@@ -270,4 +270,4 @@ mysql> SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS, AVG_ROW_LENGTH, DATA_LENGT
 2 rows in set (0.00 sec)
 ```
 
-By repeating the last example using `PARTITION BY KEY` in place of `PARTITION BY HASH` in the definition of the table, you can verify that `NULL` is also treated like 0 for this type of partitioning.
+Ao repetir o último exemplo usando `PARTITION BY KEY` no lugar de `PARTITION BY HASH` na definição da tabela, você pode verificar que `NULL` também é tratado como 0 para este tipo de particionamento.

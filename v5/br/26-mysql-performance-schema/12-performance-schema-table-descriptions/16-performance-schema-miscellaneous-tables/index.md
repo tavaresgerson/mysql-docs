@@ -1,17 +1,17 @@
-### 25.12.16 Performance Schema Miscellaneous Tables
+### 25.12.16 Tabelas Diversas do Performance Schema
 
-[25.12.16.1 The host_cache Table](performance-schema-host-cache-table.html)
+[25.12.16.1 A Tabela host_cache](performance-schema-host-cache-table.html)
 
-[25.12.16.2 The performance_timers Table](performance-schema-performance-timers-table.html)
+[25.12.16.2 A Tabela performance_timers](performance-schema-performance-timers-table.html)
 
-[25.12.16.3 The processlist Table](performance-schema-processlist-table.html)
+[25.12.16.3 A Tabela processlist](performance-schema-processlist-table.html)
 
-[25.12.16.4 The threads Table](performance-schema-threads-table.html)
+[25.12.16.4 A Tabela threads](performance-schema-threads-table.html)
 
-The following sections describe tables that do not fall into the table categories discussed in the preceding sections:
+As seções a seguir descrevem tabelas que não se enquadram nas categorias de tabelas discutidas nas seções anteriores:
 
-* [`host_cache`](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table"): Information from the internal host cache.
+* [`host_cache`](performance-schema-host-cache-table.html "25.12.16.1 A Tabela host_cache"): Informações do *host cache* interno.
 
-* [`performance_timers`](performance-schema-performance-timers-table.html "25.12.16.2 The performance_timers Table"): Which event timers are available.
+* [`performance_timers`](performance-schema-performance-timers-table.html "25.12.16.2 A Tabela performance_timers"): Quais *event timers* estão disponíveis.
 
-* [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table"): Information about server threads.
+* [`threads`](performance-schema-threads-table.html "25.12.16.4 A Tabela threads"): Informações sobre os *threads* do servidor.

@@ -1,29 +1,29 @@
-## 27.6 libmysqld, the Embedded MySQL Server Library
+## 27.6 libmysqld, a Biblioteca do Servidor MySQL Embarcado
 
-[27.6.1 Compiling Programs with libmysqld](libmysqld-compiling.html)
+[27.6.1 Compilando Programas com libmysqld](libmysqld-compiling.html)
 
-[27.6.2 Restrictions When Using the Embedded MySQL Server](libmysqld-restrictions.html)
+[27.6.2 Restrições ao Usar o Servidor MySQL Embarcado](libmysqld-restrictions.html)
 
-[27.6.3 Options with the Embedded Server](libmysqld-options.html)
+[27.6.3 Opções com o Server Embarcado](libmysqld-options.html)
 
-[27.6.4 Embedded Server Examples](libmysqld-example.html)
+[27.6.4 Exemplos de Server Embarcado](libmysqld-example.html)
 
-The embedded MySQL server library makes it possible to run a full-featured MySQL server inside a client application. The main benefits are increased speed and more simple management for embedded applications.
+A biblioteca do Server MySQL embarcado possibilita executar um Server MySQL completo dentro de uma aplicação cliente. Os principais benefícios são o aumento da velocidade e um gerenciamento mais simples para aplicações embarcadas.
 
-Note
+Nota
 
-The `libmysqld` embedded server library is deprecated as of MySQL 5.7.19 and is removed in MySQL 8.0.
+A biblioteca do server embarcado `libmysqld` está obsoleta a partir do MySQL 5.7.19 e foi removida no MySQL 8.0.
 
-The embedded server library is based on the client/server version of MySQL, which is written in C/C++. Consequently, the embedded server also is written in C/C++. There is no embedded server available in other languages.
+A biblioteca do server embarcado é baseada na versão cliente/server do MySQL, que é escrita em C/C++. Consequentemente, o server embarcado também é escrito em C/C++. Não há um server embarcado disponível em outras linguagens.
 
-The API is identical for the embedded MySQL version and the client/server version. To change a threaded application to use the embedded library, you normally only have to add calls to the following functions.
+A API é idêntica para a versão MySQL embarcada e a versão cliente/server. Para alterar uma aplicação threaded para usar a biblioteca embarcada, você normalmente só precisa adicionar chamadas para as seguintes funções.
 
-**Table 27.2 MySQL Embedded Server Library Functions**
+**Tabela 27.2 Funções da Biblioteca do Server MySQL Embarcado**
 
-<table summary="MySQL embedded server library functions and descriptions of when the functions should be called."><thead><tr> <th><p> Function </p></th> <th><p> When to Call </p></th> </tr></thead><tbody><tr> <td><p> <code>mysql_library_init()</code> </p></td> <td><p> Call it before any other MySQL function is called, preferably early in the <code>main()</code> function. </p></td> </tr><tr> <td><p> <code>mysql_library_end()</code> </p></td> <td><p> Call it before your program exits. </p></td> </tr><tr> <td><p> <code>mysql_thread_init()</code> </p></td> <td><p> Call it in each thread you create that accesses MySQL. </p></td> </tr><tr> <td><code>mysql_thread_end()</code></td> <td>Call it before calling <code>pthread_exit()</code>.</td> </tr></tbody></table>
+<table summary="Funções da biblioteca do server MySQL embarcado e descrições de quando as funções devem ser chamadas."><thead><tr> <th><p> Função </p></th> <th><p> Quando Chamar </p></th> </tr></thead><tbody><tr> <td><p> <code>mysql_library_init()</code> </p></td> <td><p> Chame-a antes que qualquer outra função MySQL seja chamada, de preferência no início da função <code>main()</code>. </p></td> </tr><tr> <td><p> <code>mysql_library_end()</code> </p></td> <td><p> Chame-a antes que seu programa seja encerrado. </p></td> </tr><tr> <td><p> <code>mysql_thread_init()</code> </p></td> <td><p> Chame-a em cada thread que você criar que acesse o MySQL. </p></td> </tr><tr> <td><code>mysql_thread_end()</code></td> <td>Chame-a antes de chamar <code>pthread_exit()</code>.</td> </tr></tbody></table>
 
-Then, link your code with `libmysqld.a` instead of `libmysqlclient.a`. To ensure binary compatibility between your application and the server library, always compile your application against headers for the same series of MySQL that was used to compile the server library. For example, if `libmysqld` was compiled against MySQL 5.6 headers, do not compile your application against MySQL 5.7 headers, or vice versa.
+Em seguida, link seu código com `libmysqld.a` em vez de `libmysqlclient.a`. Para garantir a compatibilidade binária entre sua aplicação e a biblioteca do server, sempre compile sua aplicação usando headers da mesma série do MySQL que foi utilizada para compilar a biblioteca do server. Por exemplo, se `libmysqld` foi compilada usando headers do MySQL 5.6, não compile sua aplicação usando headers do MySQL 5.7, ou vice-versa.
 
-Because the `mysql_library_xxx()` functions are also included in `libmysqlclient.a`, you can change between the embedded and the client/server version by just linking your application with the right library. See [mysql_library_init()](/doc/c-api/5.7/en/mysql-library-init.html).
+Como as funções `mysql_library_xxx()` também estão incluídas em `libmysqlclient.a`, você pode alternar entre a versão embarcada e a versão cliente/server simplesmente linkando sua aplicação com a biblioteca correta. Veja [mysql_library_init()](/doc/c-api/5.7/en/mysql-library-init.html).
 
-One difference between the embedded server and the standalone server is that for the embedded server, authentication for connections is disabled by default.
+Uma diferença entre o server embarcado e o server standalone é que, para o server embarcado, a autenticação para conexões é desabilitada por padrão.

@@ -1,24 +1,24 @@
-### 21.3.4 Initial Startup of NDB Cluster
+### 21.3.4 Inicialização Inicial do NDB Cluster
 
-Starting the cluster is not very difficult after it has been configured. Each cluster node process must be started separately, and on the host where it resides. The management node should be started first, followed by the data nodes, and then finally by any SQL nodes:
+Iniciar o cluster não é muito difícil após sua configuração. Cada processo de *node* do cluster deve ser iniciado separadamente, e no *host* onde reside. O *management node* deve ser iniciado primeiro, seguido pelos *data nodes*, e, por fim, por quaisquer *SQL nodes*:
 
-1. On the management host, issue the following command from the system shell to start the management node process:
+1. No *management host*, execute o seguinte comando a partir do *shell* do sistema para iniciar o processo do *management node*:
 
    ```sql
    $> ndb_mgmd --initial -f /var/lib/mysql-cluster/config.ini
    ```
 
-   The first time that it is started, [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") must be told where to find its configuration file, using the `-f` or [`--config-file`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_config-file) option. This option requires that [`--initial`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_initial) or [`--reload`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_reload) also be specified; see [Section 21.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"), for details.
+   Na primeira vez em que é iniciado, deve-se informar ao [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") onde encontrar seu arquivo de configuração, usando a opção `-f` ou [`--config-file`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_config-file). Essa opção exige que [`--initial`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_initial) ou [`--reload`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_reload) também sejam especificados; consulte [Seção 21.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"), para obter detalhes.
 
-2. On each of the data node hosts, run this command to start the [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") process:
+2. Em cada um dos *hosts* dos *data nodes*, execute este comando para iniciar o processo [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon"):
 
    ```sql
    $> ndbd
    ```
 
-3. If you used RPM files to install MySQL on the cluster host where the SQL node is to reside, you can (and should) use the supplied startup script to start the MySQL server process on the SQL node.
+3. Se você usou arquivos RPM para instalar o MySQL no *host* do cluster onde o *SQL node* deve residir, você pode (e deve) usar o *script* de *startup* fornecido para iniciar o processo do servidor MySQL no *SQL node*.
 
-If all has gone well, and the cluster has been set up correctly, the cluster should now be operational. You can test this by invoking the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") management node client. The output should look like that shown here, although you might see some slight differences in the output depending upon the exact version of MySQL that you are using:
+Se tudo correu bem e o cluster foi configurado corretamente, ele agora deve estar operacional. Você pode testar isso invocando o *client* do *management node* [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client"). A saída deve ser semelhante à mostrada aqui, embora você possa notar algumas pequenas diferenças dependendo da versão exata do MySQL que está utilizando:
 
 ```sql
 $> ndb_mgm
@@ -38,10 +38,10 @@ id=1    @198.51.100.10  (Version: 5.7.44-ndb-7.6.36)
 id=4    @198.51.100.20  (Version: 5.7.44-ndb-7.6.36)
 ```
 
-The SQL node is referenced here as `[mysqld(API)]`, which reflects the fact that the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") process is acting as an NDB Cluster API node.
+O *SQL node* é referenciado aqui como `[mysqld(API)]`, o que reflete o fato de que o processo [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") está atuando como um *API node* do NDB Cluster.
 
-Note
+Nota
 
-The IP address shown for a given NDB Cluster SQL or other API node in the output of [`SHOW`](mysql-cluster-mgm-client-commands.html#ndbclient-show) is the address used by the SQL or API node to connect to the cluster data nodes, and not to any management node.
+O *IP address* mostrado para um determinado *SQL* ou outro *API node* do NDB Cluster na saída de [`SHOW`](mysql-cluster-mgm-client-commands.html#ndbclient-show) é o endereço usado pelo *SQL* ou *API node* para se conectar aos *data nodes* do cluster, e não a qualquer *management node*.
 
-You should now be ready to work with databases, tables, and data in NDB Cluster. See [Section 21.3.5, “NDB Cluster Example with Tables and Data”](mysql-cluster-install-example-data.html "21.3.5 NDB Cluster Example with Tables and Data"), for a brief discussion.
+Você deve estar pronto agora para trabalhar com *databases*, *tables* e dados no NDB Cluster. Consulte [Seção 21.3.5, “NDB Cluster Example with Tables and Data”](mysql-cluster-install-example-data.html "21.3.5 NDB Cluster Example with Tables and Data"), para uma breve discussão.

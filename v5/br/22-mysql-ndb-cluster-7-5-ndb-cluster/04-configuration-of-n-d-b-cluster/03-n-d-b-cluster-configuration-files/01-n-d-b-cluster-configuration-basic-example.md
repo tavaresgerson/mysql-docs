@@ -1,10 +1,10 @@
-#### 21.4.3.1 NDB Cluster Configuration: Basic Example
+#### 21.4.3.1 Configuração do NDB Cluster: Exemplo Básico
 
-To support NDB Cluster, you must to update `my.cnf` as shown in the following example. You may also specify these parameters on the command line when invoking the executables.
+Para suportar o NDB Cluster, você deve atualizar o `my.cnf` conforme mostrado no exemplo a seguir. Você também pode especificar esses parâmetros na linha de comando ao invocar os executáveis.
 
-Note
+Nota
 
-The options shown here should not be confused with those that are used in `config.ini` global configuration files. Global configuration options are discussed later in this section.
+As opções mostradas aqui não devem ser confundidas com aquelas usadas nos arquivos de configuração global `config.ini`. As opções de configuração global são discutidas mais adiante nesta seção.
 
 ```sql
 # my.cnf
@@ -34,7 +34,7 @@ connect-string=ndb_mgmd.mysql.com
 config-file=/etc/config.ini
 ```
 
-(For more information on connection strings, see [Section 21.4.3.3, “NDB Cluster Connection Strings”](mysql-cluster-connection-strings.html "21.4.3.3 NDB Cluster Connection Strings").)
+(Para mais informações sobre *connection strings*, consulte [Section 21.4.3.3, “NDB Cluster Connection Strings”](mysql-cluster-connection-strings.html "21.4.3.3 NDB Cluster Connection Strings").)
 
 ```sql
 # my.cnf
@@ -48,11 +48,11 @@ ndbcluster
 ndb-connectstring=ndb_mgmd.mysql.com:1186
 ```
 
-Important
+Importante
 
-Once you have started a [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") process with the [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") and `ndb-connectstring` parameters in the `[mysqld]` in the `my.cnf` file as shown previously, you cannot execute any [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") or [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statements without having actually started the cluster. Otherwise, these statements fail with an error. *This is by design*.
+Depois de iniciar um processo [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") com os parâmetros [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") e `ndb-connectstring` na seção `[mysqld]` do arquivo `my.cnf`, conforme mostrado anteriormente, você não poderá executar nenhuma instrução [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") ou [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") sem que o Cluster tenha sido realmente iniciado. Caso contrário, essas instruções falharão com um erro. *Isto é intencional*.
 
-You may also use a separate `[mysql_cluster]` section in the cluster `my.cnf` file for settings to be read and used by all executables:
+Você também pode usar uma seção separada `[mysql_cluster]` no arquivo `my.cnf` do Cluster para configurações a serem lidas e usadas por todos os executáveis:
 
 ```sql
 # cluster-specific settings
@@ -60,21 +60,21 @@ You may also use a separate `[mysql_cluster]` section in the cluster `my.cnf` fi
 ndb-connectstring=ndb_mgmd.mysql.com:1186
 ```
 
-For additional [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") variables that can be set in the `my.cnf` file, see [Section 21.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "21.4.3.9.2 NDB Cluster System Variables").
+Para variáveis [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") adicionais que podem ser definidas no arquivo `my.cnf`, consulte [Section 21.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "21.4.3.9.2 NDB Cluster System Variables").
 
-The NDB Cluster global configuration file is by convention named `config.ini` (but this is not required). If needed, it is read by [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") at startup and can be placed in any location that can be read by it. The location and name of the configuration are specified using [`--config-file=path_name`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_config-file) with [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") on the command line. This option has no default value, and is ignored if [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") uses the configuration cache.
+O arquivo de configuração global para o NDB Cluster é, por convenção, denominado `config.ini` (mas isso não é obrigatório). Se necessário, ele é lido pelo [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") na inicialização e pode ser colocado em qualquer local que possa ser lido por ele. O local e o nome da configuração são especificados usando [`--config-file=path_name`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_config-file) com [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") na linha de comando. Esta opção não tem valor *default*, e é ignorada se o [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") usar o cache de configuração.
 
-The global configuration file for NDB Cluster uses INI format, which consists of sections preceded by section headings (surrounded by square brackets), followed by the appropriate parameter names and values. One deviation from the standard INI format is that the parameter name and value can be separated by a colon (`:`) as well as the equal sign (`=`); however, the equal sign is preferred. Another deviation is that sections are not uniquely identified by section name. Instead, unique sections (such as two different nodes of the same type) are identified by a unique ID specified as a parameter within the section.
+O arquivo de configuração global para o NDB Cluster usa o formato INI, que consiste em seções precedidas por cabeçalhos de seção (envolvidos por colchetes), seguidos pelos nomes e valores apropriados dos parâmetros. Um desvio do formato INI padrão é que o nome e o valor do parâmetro podem ser separados por dois pontos (`:`) ou pelo sinal de igual (`=`); no entanto, o sinal de igual é o preferido. Outro desvio é que as seções não são identificadas unicamente pelo nome da seção. Em vez disso, seções únicas (como dois *Nodes* diferentes do mesmo tipo) são identificadas por um ID único especificado como um parâmetro dentro da seção.
 
-Default values are defined for most parameters, and can also be specified in `config.ini`. To create a default value section, simply add the word `default` to the section name. For example, an `[ndbd]` section contains parameters that apply to a particular data node, whereas an `[ndbd default]` section contains parameters that apply to all data nodes. Suppose that all data nodes should use the same data memory size. To configure them all, create an `[ndbd default]` section that contains a [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) line to specify the data memory size.
+Valores *default* são definidos para a maioria dos parâmetros e também podem ser especificados no `config.ini`. Para criar uma seção de valor *default*, basta adicionar a palavra `default` ao nome da seção. Por exemplo, uma seção `[ndbd]` contém parâmetros que se aplicam a um *Data Node* particular, enquanto uma seção `[ndbd default]` contém parâmetros que se aplicam a todos os *Data Nodes*. Suponha que todos os *Data Nodes* devam usar o mesmo tamanho de memória de dados. Para configurar todos eles, crie uma seção `[ndbd default]` que contenha uma linha [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) para especificar o tamanho da memória de dados.
 
-If used, the `[ndbd default]` section must precede any `[ndbd]` sections in the configuration file. This is also true for `default` sections of any other type.
+Se usada, a seção `[ndbd default]` deve preceder quaisquer seções `[ndbd]` no arquivo de configuração. Isto também é verdade para seções `default` de qualquer outro tipo.
 
-Note
+Nota
 
-In some older releases of NDB Cluster, there was no default value for [`NoOfReplicas`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-noofreplicas), which always had to be specified explicitly in the `[ndbd default]` section. Although this parameter now has a default value of 2, which is the recommended setting in most common usage scenarios, it is still recommended practice to set this parameter explicitly.
+Em algumas versões mais antigas do NDB Cluster, não havia um valor *default* para [`NoOfReplicas`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-noofreplicas), que sempre precisava ser especificado explicitamente na seção `[ndbd default]`. Embora este parâmetro agora tenha um valor *default* de 2, que é a configuração recomendada na maioria dos cenários de uso comum, ainda é uma prática recomendada definir este parâmetro explicitamente.
 
-The global configuration file must define the computers and nodes involved in the cluster and on which computers these nodes are located. An example of a simple configuration file for a cluster consisting of one management server, two data nodes and two MySQL servers is shown here:
+O arquivo de configuração global deve definir os computadores e *nodes* envolvidos no Cluster e em quais computadores esses *nodes* estão localizados. Um exemplo de um arquivo de configuração simples para um Cluster consistindo de um servidor de gerenciamento, dois *Data Nodes* e dois MySQL Servers é mostrado aqui:
 
 ```sql
 # file "config.ini" - 2 data nodes and 2 SQL nodes
@@ -102,34 +102,34 @@ HostName= ndbd_3.mysql.com
 HostName= mysqld_5.mysql.com
 ```
 
-Note
+Nota
 
-The preceding example is intended as a minimal starting configuration for purposes of familiarization with NDB Cluster , and is almost certain not to be sufficient for production settings. See [Section 21.4.3.2, “Recommended Starting Configuration for NDB Cluster”](mysql-cluster-config-starting.html "21.4.3.2 Recommended Starting Configuration for NDB Cluster"), which provides a more complete example starting configuration.
+O exemplo anterior destina-se a ser uma configuração inicial mínima para fins de familiarização com o NDB Cluster e é quase certo que não será suficiente para ambientes de produção. Consulte [Section 21.4.3.2, “Recommended Starting Configuration for NDB Cluster”](mysql-cluster-config-starting.html "21.4.3.2 Recommended Starting Configuration for NDB Cluster"), que fornece um exemplo de configuração inicial mais completo.
 
-Each node has its own section in the `config.ini` file. For example, this cluster has two data nodes, so the preceding configuration file contains two `[ndbd]` sections defining these nodes.
+Cada *Node* possui sua própria seção no arquivo `config.ini`. Por exemplo, este Cluster possui dois *Data Nodes*, portanto, o arquivo de configuração anterior contém duas seções `[ndbd]` definindo esses *nodes*.
 
-Note
+Nota
 
-Do not place comments on the same line as a section heading in the `config.ini` file; this causes the management server not to start because it cannot parse the configuration file in such cases.
+Não coloque comentários na mesma linha que um cabeçalho de seção no arquivo `config.ini`; isso faz com que o servidor de gerenciamento não inicie, pois ele não consegue analisar o arquivo de configuração em tais casos.
 
-##### Sections of the config.ini File
+##### Seções do Arquivo config.ini
 
-There are six different sections that you can use in the `config.ini` configuration file, as described in the following list:
+Existem seis seções diferentes que você pode usar no arquivo de configuração `config.ini`, conforme descrito na lista a seguir:
 
-* `[computer]`: Defines cluster hosts. This is not required to configure a viable NDB Cluster, but be may used as a convenience when setting up a large cluster. See [Section 21.4.3.4, “Defining Computers in an NDB Cluster”](mysql-cluster-computer-definition.html "21.4.3.4 Defining Computers in an NDB Cluster"), for more information.
+* `[computer]`: Define os hosts do Cluster. Isto não é obrigatório para configurar um NDB Cluster viável, mas pode ser usado como uma conveniência ao configurar um Cluster grande. Consulte [Section 21.4.3.4, “Defining Computers in an NDB Cluster”](mysql-cluster-computer-definition.html "21.4.3.4 Defining Computers in an NDB Cluster"), para mais informações.
 
-* `[ndbd]`: Defines a cluster data node ([**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") process). See [Section 21.4.3.6, “Defining NDB Cluster Data Nodes”](mysql-cluster-ndbd-definition.html "21.4.3.6 Defining NDB Cluster Data Nodes"), for details.
+* `[ndbd]`: Define um *Data Node* do Cluster (processo [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon")). Consulte [Section 21.4.3.6, “Defining NDB Cluster Data Nodes”](mysql-cluster-ndbd-definition.html "21.4.3.6 Defining NDB Cluster Data Nodes"), para obter detalhes.
 
-* `[mysqld]`: Defines the cluster's MySQL server nodes (also called SQL or API nodes). For a discussion of SQL node configuration, see [Section 21.4.3.7, “Defining SQL and Other API Nodes in an NDB Cluster”](mysql-cluster-api-definition.html "21.4.3.7 Defining SQL and Other API Nodes in an NDB Cluster").
+* `[mysqld]`: Define os *Nodes* do MySQL Server do Cluster (também chamados de *SQL Nodes* ou *API Nodes*). Para uma discussão sobre a configuração de *SQL Nodes*, consulte [Section 21.4.3.7, “Defining SQL and Other API Nodes in an NDB Cluster”](mysql-cluster-api-definition.html "21.4.3.7 Defining SQL and Other API Nodes in an NDB Cluster").
 
-* `[mgm]` or `[ndb_mgmd]`: Defines a cluster management server (MGM) node. For information concerning the configuration of management nodes, see [Section 21.4.3.5, “Defining an NDB Cluster Management Server”](mysql-cluster-mgm-definition.html "21.4.3.5 Defining an NDB Cluster Management Server").
+* `[mgm]` ou `[ndb_mgmd]`: Define um *Node* do servidor de gerenciamento do Cluster (*MGM* Node). Para informações sobre a configuração de *Management Nodes*, consulte [Section 21.4.3.5, “Defining an NDB Cluster Management Server”](mysql-cluster-mgm-definition.html "21.4.3.5 Defining an NDB Cluster Management Server").
 
-* `[tcp]`: Defines a TCP/IP connection between cluster nodes, with TCP/IP being the default transport protocol. Normally, `[tcp]` or `[tcp default]` sections are not required to set up an NDB Cluster, as the cluster handles this automatically; however, it may be necessary in some situations to override the defaults provided by the cluster. See [Section 21.4.3.10, “NDB Cluster TCP/IP Connections”](mysql-cluster-tcp-definition.html "21.4.3.10 NDB Cluster TCP/IP Connections"), for information about available TCP/IP configuration parameters and how to use them. (You may also find [Section 21.4.3.11, “NDB Cluster TCP/IP Connections Using Direct Connections”](mysql-cluster-tcp-definition-direct.html "21.4.3.11 NDB Cluster TCP/IP Connections Using Direct Connections") to be of interest in some cases.)
+* `[tcp]`: Define uma conexão TCP/IP entre os *Nodes* do Cluster, sendo TCP/IP o protocolo de transporte *default*. Normalmente, as seções `[tcp]` ou `[tcp default]` não são necessárias para configurar um NDB Cluster, pois o Cluster trata disso automaticamente; no entanto, pode ser necessário em algumas situações substituir os *defaults* fornecidos pelo Cluster. Consulte [Section 21.4.3.10, “NDB Cluster TCP/IP Connections”](mysql-cluster-tcp-definition.html "21.4.3.10 NDB Cluster TCP/IP Connections"), para obter informações sobre os parâmetros de configuração TCP/IP disponíveis e como usá-los. (Você também pode achar [Section 21.4.3.11, “NDB Cluster TCP/IP Connections Using Direct Connections”](mysql-cluster-tcp-definition-direct.html "21.4.3.11 NDB Cluster TCP/IP Connections Using Direct Connections") interessante em alguns casos.)
 
-* `[shm]`: Defines shared-memory connections between nodes. In MySQL 5.7, it is enabled by default, but should still be considered experimental. For a discussion of SHM interconnects, see [Section 21.4.3.12, “NDB Cluster Shared Memory Connections”](mysql-cluster-shm-definition.html "21.4.3.12 NDB Cluster Shared Memory Connections").
+* `[shm]`: Define conexões de memória compartilhada (*shared-memory*) entre *nodes*. No MySQL 5.7, ele está ativado por *default*, mas ainda deve ser considerado experimental. Para uma discussão sobre interconexões SHM, consulte [Section 21.4.3.12, “NDB Cluster Shared Memory Connections”](mysql-cluster-shm-definition.html "21.4.3.12 NDB Cluster Shared Memory Connections").
 
-* `[sci]`: Defines Scalable Coherent Interface connections between cluster data nodes. Not supported in NDB 7.5 or 7.6.
+* `[sci]`: Define conexões Scalable Coherent Interface entre *Data Nodes* do Cluster. Não é suportado no NDB 7.5 ou 7.6.
 
-You can define `default` values for each section. If used, a `default` section should come before any other sections of that type. For example, an `[ndbd default]` section should appear in the configuration file before any `[ndbd]` sections.
+Você pode definir valores `default` para cada seção. Se usada, uma seção `default` deve vir antes de quaisquer outras seções desse tipo. Por exemplo, uma seção `[ndbd default]` deve aparecer no arquivo de configuração antes de quaisquer seções `[ndbd]`.
 
-NDB Cluster parameter names are case-insensitive, unless specified in MySQL Server `my.cnf` or `my.ini` files.
+Os nomes dos parâmetros do NDB Cluster não diferenciam maiúsculas de minúsculas (*case-insensitive*), a menos que especificados nos arquivos `my.cnf` ou `my.ini` do MySQL Server.

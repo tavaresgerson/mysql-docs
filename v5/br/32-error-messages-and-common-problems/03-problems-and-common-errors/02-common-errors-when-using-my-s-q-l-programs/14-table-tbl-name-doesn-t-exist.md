@@ -1,16 +1,16 @@
-#### B.3.2.14 Table 'tbl_name' doesn't exist
+#### B.3.2.14 Tabela 'tbl_name' não existe
 
-If you get either of the following errors, it usually means that no table exists in the default database with the given name:
+Se você receber um dos seguintes erros, isso geralmente significa que não existe nenhuma `Table` no `Database` padrão com o nome fornecido:
 
 ```sql
 Table 'tbl_name' doesn't exist
 Can't find file: 'tbl_name' (errno: 2)
 ```
 
-In some cases, it may be that the table does exist but that you are referring to it incorrectly:
+Em alguns casos, a `Table` pode realmente existir, mas você está se referindo a ela incorretamente:
 
-* Because MySQL uses directories and files to store databases and tables, database and table names are case-sensitive if they are located on a file system that has case-sensitive file names.
+* Como o MySQL utiliza diretórios e arquivos para armazenar `Databases` e `Tables`, os nomes de `Database` e `Table` são sensíveis a maiúsculas e minúsculas se estiverem localizados em um sistema de arquivos que possui nomes de arquivo sensíveis a maiúsculas e minúsculas.
 
-* Even for file systems that are not case-sensitive, such as on Windows, all references to a given table within a query must use the same lettercase.
+* Mesmo para sistemas de arquivos que não são sensíveis a maiúsculas e minúsculas, como no Windows, todas as referências a uma determinada `Table` dentro de uma `Query` devem usar a mesma capitalização.
 
-You can check which tables are in the default database with [`SHOW TABLES`](show-tables.html "13.7.5.37 SHOW TABLES Statement"). See [Section 13.7.5, “SHOW Statements”](show.html "13.7.5 SHOW Statements").
+Você pode verificar quais `Tables` estão no `Database` padrão com [`SHOW TABLES`](show-tables.html "13.7.5.37 SHOW TABLES Statement"). Consulte [Seção 13.7.5, “SHOW Statements”](show.html "13.7.5 SHOW Statements").

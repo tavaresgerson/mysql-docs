@@ -1,12 +1,12 @@
-### 12.9.8 ngram Full-Text Parser
+### 12.9.8 Parser Full-Text ngram
 
-The built-in MySQL full-text parser uses the white space between words as a delimiter to determine where words begin and end, which is a limitation when working with ideographic languages that do not use word delimiters. To address this limitation, MySQL provides an ngram full-text parser that supports Chinese, Japanese, and Korean (CJK). The ngram full-text parser is supported for use with `InnoDB` and `MyISAM`.
+O parser full-text embutido do MySQL usa o espaço em branco entre as palavras como um delimitador para determinar onde as palavras começam e terminam, o que é uma limitação ao trabalhar com idiomas ideográficos que não utilizam delimitadores de palavras. Para resolver essa limitação, o MySQL fornece um parser full-text ngram que oferece suporte a Chinês, Japonês e Coreano (CJK). O parser full-text ngram tem suporte para uso com `InnoDB` e `MyISAM`.
 
-Note
+Nota
 
-MySQL also provides a MeCab full-text parser plugin for Japanese, which tokenizes documents into meaningful words. For more information, see Section 12.9.9, “MeCab Full-Text Parser Plugin”.
+O MySQL também fornece um plugin de parser full-text MeCab para Japonês, que tokeniza documentos em palavras significativas. Para mais informações, consulte a Seção 12.9.9, “MeCab Full-Text Parser Plugin”.
 
-An ngram is a contiguous sequence of *`n`* characters from a given sequence of text. The ngram parser tokenizes a sequence of text into a contiguous sequence of *`n`* characters. For example, you can tokenize “abcd” for different values of *`n`* using the ngram full-text parser.
+Um ngram é uma sequência contígua de *`n`* caracteres a partir de uma dada sequência de texto. O parser ngram tokeniza uma sequência de texto em uma sequência contígua de *`n`* caracteres. Por exemplo, você pode tokenizar “abcd” para diferentes valores de *`n`* usando o parser full-text ngram.
 
 ```sql
 n=1: 'a', 'b', 'c', 'd'
@@ -15,42 +15,42 @@ n=3: 'abc', 'bcd'
 n=4: 'abcd'
 ```
 
-The ngram full-text parser is a built-in server plugin. As with other built-in server plugins, it is automatically loaded when the server is started.
+O parser full-text ngram é um plugin de servidor embutido. Assim como outros plugins de servidor embutidos, ele é carregado automaticamente quando o servidor é iniciado.
 
-The full-text search syntax described in Section 12.9, “Full-Text Search Functions” applies to the ngram parser plugin. Differences in parsing behavior are described in this section. Full-text-related configuration options, except for minimum and maximum word length options (`innodb_ft_min_token_size`, `innodb_ft_max_token_size`, `ft_min_word_len`, `ft_max_word_len`) are also applicable.
+A sintaxe de full-text search descrita na Seção 12.9, “Full-Text Search Functions”, se aplica ao plugin de parser ngram. As diferenças no comportamento de parsing são descritas nesta seção. Opções de configuração relacionadas a full-text, exceto as opções de comprimento mínimo e máximo de palavra (`innodb_ft_min_token_size`, `innodb_ft_max_token_size`, `ft_min_word_len`, e `ft_max_word_len`), também são aplicáveis.
 
-#### Configuring ngram Token Size
+#### Configurando o Token Size do ngram
 
-The ngram parser has a default ngram token size of 2 (bigram). For example, with a token size of 2, the ngram parser parses the string “abc def” into four tokens: “ab”, “bc”, “de” and “ef”.
+O parser ngram possui um ngram token size padrão de 2 (bigram). Por exemplo, com um token size de 2, o parser ngram analisa a string “abc def” em quatro tokens: “ab”, “bc”, “de” e “ef”.
 
-ngram token size is configurable using the `ngram_token_size` configuration option, which has a minimum value of 1 and maximum value of 10.
+O ngram token size é configurável usando a opção de configuração `ngram_token_size`, que tem um valor mínimo de 1 e máximo de 10.
 
-Typically, `ngram_token_size` is set to the size of the largest token that you want to search for. If you only intend to search for single characters, set `ngram_token_size` to 1. A smaller token size produces a smaller full-text search index, and faster searches. If you need to search for words comprised of more than one character, set `ngram_token_size` accordingly. For example, “Happy Birthday” is “生日快乐” in simplified Chinese, where “生日” is “birthday”, and “快乐” translates as “happy”. To search on two-character words such as these, set `ngram_token_size` to a value of 2 or higher.
+Tipicamente, `ngram_token_size` é configurado para o tamanho do maior token que você deseja pesquisar. Se você pretende pesquisar apenas por caracteres únicos, defina `ngram_token_size` como 1. Um token size menor produz um Index full-text search menor e pesquisas mais rápidas. Se você precisar pesquisar por palavras compostas por mais de um caractere, defina `ngram_token_size` de acordo. Por exemplo, “Happy Birthday” é “生日快乐” em chinês simplificado, onde “生日” é “birthday” e “快乐” se traduz como “happy”. Para pesquisar por palavras de dois caracteres como estas, defina `ngram_token_size` para um valor de 2 ou superior.
 
-As a read-only variable, `ngram_token_size` may only be set as part of a startup string or in a configuration file:
+Como uma variável somente leitura, `ngram_token_size` só pode ser definida como parte de uma string de inicialização ou em um arquivo de configuração:
 
-* Startup string:
+* String de inicialização:
 
   ```sql
   mysqld --ngram_token_size=2
   ```
 
-* Configuration file:
+* Arquivo de configuração:
 
   ```sql
   [mysqld]
   ngram_token_size=2
   ```
 
-Note
+Nota
 
-The following minimum and maximum word length configuration options are ignored for `FULLTEXT` indexes that use the ngram parser: `innodb_ft_min_token_size`, `innodb_ft_max_token_size`, `ft_min_word_len`, and `ft_max_word_len`.
+As seguintes opções de configuração de comprimento mínimo e máximo de palavra são ignoradas para Indexes `FULLTEXT` que usam o parser ngram: `innodb_ft_min_token_size`, `innodb_ft_max_token_size`, `ft_min_word_len`, e `ft_max_word_len`.
 
-#### Creating a FULLTEXT Index that Uses the ngram Parser
+#### Criando um Index FULLTEXT que Usa o Parser ngram
 
-To create a `FULLTEXT` index that uses the ngram parser, specify `WITH PARSER ngram` with `CREATE TABLE`, `ALTER TABLE`, or `CREATE INDEX`.
+Para criar um Index `FULLTEXT` que usa o parser ngram, especifique `WITH PARSER ngram` com `CREATE TABLE`, `ALTER TABLE` ou `CREATE INDEX`.
 
-The following example demonstrates creating a table with an `ngram` `FULLTEXT` index, inserting sample data (Simplified Chinese text), and viewing tokenized data in the Information Schema `INNODB_FT_INDEX_CACHE` table.
+O exemplo a seguir demonstra a criação de uma tabela com um Index `FULLTEXT` `ngram`, a inserção de dados de amostra (texto em Chinês Simplificado) e a visualização dos dados tokenizados na tabela `INNODB_FT_INDEX_CACHE` do Information Schema.
 
 ```sql
 mysql> USE test;
@@ -73,7 +73,7 @@ mysql> SET GLOBAL innodb_ft_aux_table="test/articles";
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_FT_INDEX_CACHE ORDER BY doc_id, position;
 ```
 
-To add a `FULLTEXT` index to an existing table, you can use `ALTER TABLE` or `CREATE INDEX`. For example:
+Para adicionar um Index `FULLTEXT` a uma tabela existente, você pode usar `ALTER TABLE` ou `CREATE INDEX`. Por exemplo:
 
 ```sql
 CREATE TABLE articles (
@@ -89,38 +89,38 @@ ALTER TABLE articles ADD FULLTEXT INDEX ft_index (title,body) WITH PARSER ngram;
 CREATE FULLTEXT INDEX ft_index ON articles (title,body) WITH PARSER ngram;
 ```
 
-#### ngram Parser Space Handling
+#### Tratamento de Espaços pelo Parser ngram
 
-The ngram parser eliminates spaces when parsing. For example:
+O parser ngram elimina espaços durante o parsing. Por exemplo:
 
-* “ab cd” is parsed to “ab”, “cd”
+* “ab cd” é analisado como “ab”, “cd”
 
-* “a bc” is parsed to “bc”
+* “a bc” é analisado como “bc”
 
-#### ngram Parser Stopword Handling
+#### Tratamento de Stopwords pelo Parser ngram
 
-The built-in MySQL full-text parser compares words to entries in the stopword list. If a word is equal to an entry in the stopword list, the word is excluded from the index. For the ngram parser, stopword handling is performed differently. Instead of excluding tokens that are equal to entries in the stopword list, the ngram parser excludes tokens that *contain* stopwords. For example, assuming `ngram_token_size=2`, a document that contains “a,b” is parsed to “a,” and “,b”. If a comma (“,”) is defined as a stopword, both “a,” and “,b” are excluded from the index because they contain a comma.
+O parser full-text embutido do MySQL compara palavras com entradas na lista de stopword. Se uma palavra for igual a uma entrada na lista de stopword, a palavra é excluída do Index. Para o parser ngram, o tratamento de stopword é realizado de forma diferente. Em vez de excluir tokens que são iguais a entradas na lista de stopword, o parser ngram exclui tokens que *contêm* stopwords. Por exemplo, assumindo `ngram_token_size=2`, um documento que contém “a,b” é analisado como “a,” e “,b”. Se uma vírgula (“,”) for definida como uma stopword, ambos “a,” e “,b” serão excluídos do Index porque contêm uma vírgula.
 
-By default, the ngram parser uses the default stopword list, which contains a list of English stopwords. For a stopword list applicable to Chinese, Japanese, or Korean, you must create your own. For information about creating a stopword list, see Section 12.9.4, “Full-Text Stopwords”.
+Por padrão, o parser ngram usa a lista de stopword padrão, que contém uma lista de stopwords em Inglês. Para uma lista de stopword aplicável a Chinês, Japonês ou Coreano, você deve criar a sua própria. Para informações sobre como criar uma lista de stopword, consulte a Seção 12.9.4, “Full-Text Stopwords”.
 
-Stopwords greater in length than `ngram_token_size` are ignored.
+Stopwords com comprimento maior do que `ngram_token_size` são ignoradas.
 
-#### ngram Parser Term Search
+#### Pesquisa de Termos pelo Parser ngram
 
-For *natural language mode* search, the search term is converted to a union of ngram terms. For example, the string “abc” (assuming `ngram_token_size=2`) is converted to “ab bc”. Given two documents, one containing “ab” and the other containing “abc”, the search term “ab bc” matches both documents.
+Para a pesquisa em *natural language mode*, o termo de pesquisa é convertido em uma união de termos ngram. Por exemplo, a string “abc” (assumindo `ngram_token_size=2`) é convertida para “ab bc”. Dados dois documentos, um contendo “ab” e o outro contendo “abc”, o termo de pesquisa “ab bc” corresponde a ambos os documentos.
 
-For *boolean mode search*, the search term is converted to an ngram phrase search. For example, the string 'abc' (assuming `ngram_token_size=2`) is converted to '“ab bc”'. Given two documents, one containing 'ab' and the other containing 'abc', the search phrase '“ab bc”' only matches the document containing 'abc'.
+Para a pesquisa em *boolean mode*, o termo de pesquisa é convertido em uma ngram phrase search. Por exemplo, a string 'abc' (assumindo `ngram_token_size=2`) é convertida para '“ab bc”'. Dados dois documentos, um contendo 'ab' e o outro contendo 'abc', a search phrase '“ab bc”' corresponde apenas ao documento contendo 'abc'.
 
-#### ngram Parser Wildcard Search
+#### Pesquisa Wildcard pelo Parser ngram
 
-Because an ngram `FULLTEXT` index contains only ngrams, and does not contain information about the beginning of terms, wildcard searches may return unexpected results. The following behaviors apply to wildcard searches using ngram `FULLTEXT` search indexes:
+Como um Index `FULLTEXT` ngram contém apenas ngrams e não contém informações sobre o início dos termos, as pesquisas wildcard podem retornar resultados inesperados. Os seguintes comportamentos se aplicam às pesquisas wildcard usando Indexes de full-text search ngram:
 
-* If the prefix term of a wildcard search is shorter than ngram token size, the query returns all indexed rows that contain ngram tokens starting with the prefix term. For example, assuming `ngram_token_size=2`, a search on “a\*” returns all rows starting with “a”.
+* Se o termo prefixo de uma pesquisa wildcard for menor que o ngram token size, a Query retorna todas as linhas indexadas que contêm tokens ngram começando com o termo prefixo. Por exemplo, assumindo `ngram_token_size=2`, uma pesquisa em “a\*” retorna todas as linhas que começam com “a”.
 
-* If the prefix term of a wildcard search is longer than ngram token size, the prefix term is converted to an ngram phrase and the wildcard operator is ignored. For example, assuming `ngram_token_size=2`, an “abc\*” wildcard search is converted to “ab bc”.
+* Se o termo prefixo de uma pesquisa wildcard for maior que o ngram token size, o termo prefixo é convertido em uma phrase ngram e o operador wildcard é ignorado. Por exemplo, assumindo `ngram_token_size=2`, uma pesquisa wildcard “abc\*” é convertida para “ab bc”.
 
-#### ngram Parser Phrase Search
+#### Pesquisa por Phrase pelo Parser ngram
 
-Phrase searches are converted to ngram phrase searches. For example, The search phrase “abc” is converted to “ab bc”, which returns documents containing “abc” and “ab bc”.
+Phrase searches (pesquisas por frase) são convertidas em ngram phrase searches. Por exemplo, a search phrase “abc” é convertida para “ab bc”, que retorna documentos contendo “abc” e “ab bc”.
 
-The search phrase “abc def” is converted to “ab bc de ef”, which returns documents containing “abc def” and “ab bc de ef”. A document that contains “abcdef” is not returned.
+A search phrase “abc def” é convertida para “ab bc de ef”, que retorna documentos contendo “abc def” e “ab bc de ef”. Um documento que contém “abcdef” não é retornado.

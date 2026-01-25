@@ -1,149 +1,154 @@
-## 14.11 InnoDB Row Formats
+## 14.11 Formatos de Linha do InnoDB
 
-The row format of a table determines how its rows are physically stored, which in turn can affect the performance of queries and DML operations. As more rows fit into a single disk page, queries and index lookups can work faster, less cache memory is required in the buffer pool, and less I/O is required to write out updated values.
+O formato de linha de uma tabela determina como suas linhas são armazenadas fisicamente, o que, por sua vez, pode afetar o performance de Queries e operações DML. À medida que mais linhas cabem em uma única page de disco, as Queries e buscas de Index podem funcionar mais rapidamente, menos memória cache é necessária no Buffer Pool, e menos I/O é exigido para escrever valores atualizados.
 
-The data in each table is divided into pages. The pages that make up each table are arranged in a tree data structure called a B-tree index. Table data and secondary indexes both use this type of structure. The B-tree index that represents an entire table is known as the clustered index, which is organized according to the primary key columns. The nodes of a clustered index data structure contain the values of all columns in the row. The nodes of a secondary index structure contain the values of index columns and primary key columns.
+Os dados em cada tabela são divididos em pages. As pages que compõem cada tabela são organizadas em uma estrutura de dados em árvore chamada B-tree index. Tanto os dados da tabela quanto os secondary indexes usam este tipo de estrutura. O B-tree index que representa uma tabela inteira é conhecido como clustered index, que é organizado de acordo com as colunas Primary Key. Os nós de uma estrutura de dados de clustered index contêm os valores de todas as colunas na linha. Os nós de uma estrutura de secondary index contêm os valores das colunas Index e das colunas Primary Key.
 
-Variable-length columns are an exception to the rule that column values are stored in B-tree index nodes. Variable-length columns that are too long to fit on a B-tree page are stored on separately allocated disk pages called overflow pages. Such columns are referred to as off-page columns. The values of off-page columns are stored in singly-linked lists of overflow pages, with each such column having its own list of one or more overflow pages. Depending on column length, all or a prefix of variable-length column values are stored in the B-tree to avoid wasting storage and having to read a separate page.
+Colunas de tamanho variável são uma exceção à regra de que os valores das colunas são armazenados nos nós do B-tree index. Colunas de tamanho variável que são muito longas para caber em uma page B-tree são armazenadas em pages de disco alocadas separadamente, chamadas overflow pages. Tais colunas são referidas como colunas off-page. Os valores das colunas off-page são armazenados em listas ligadas (singly-linked lists) de overflow pages, sendo que cada coluna tem sua própria lista de uma ou mais overflow pages. Dependendo do tamanho da coluna, todos ou um prefixo dos valores de colunas de tamanho variável são armazenados no B-tree para evitar desperdício de armazenamento e a necessidade de ler uma page separada.
 
-The `InnoDB` storage engine supports four row formats: `REDUNDANT`, `COMPACT`, `DYNAMIC`, and `COMPRESSED`.
+O storage engine `InnoDB` suporta quatro formatos de linha: `REDUNDANT`, `COMPACT`, `DYNAMIC` e `COMPRESSED`.
 
-**Table 14.9 InnoDB Row Format Overview**
+**Tabela 14.9 Visão Geral dos Formatos de Linha do InnoDB**
 
-<table summary="Overview of InnoDB row formats incuding a description, supported features, and supported tablespace types."><col style="width: 10%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><thead><tr> <th>Row Format</th> <th>Compact Storage Characteristics</th> <th>Enhanced Variable-Length Column Storage</th> <th>Large Index Key Prefix Support</th> <th>Compression Support</th> <th>Supported Tablespace Types</th> <th>Required File Format</th> </tr></thead><tbody><tr> <th><code>REDUNDANT</code></th> <td>No</td> <td>No</td> <td>No</td> <td>No</td> <td>system, file-per-table, general</td> <td>Antelope or Barracuda</td> </tr><tr> <th><code>COMPACT</code></th> <td>Yes</td> <td>No</td> <td>No</td> <td>No</td> <td>system, file-per-table, general</td> <td>Antelope or Barracuda</td> </tr><tr> <th><code>DYNAMIC</code></th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td>No</td> <td>system, file-per-table, general</td> <td>Barracuda</td> </tr><tr> <th><code>COMPRESSED</code></th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td>file-per-table, general</td> <td>Barracuda</td> </tr></tbody></table>
+| Formato de Linha | Características de Armazenamento Compacto | Armazenamento Aprimorado de Colunas de Tamanho Variável | Suporte a Prefixos de Key de Index Grandes | Suporte à Compressão | Tipos de Tablespace Suportados | Formato de Arquivo Necessário |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| `REDUNDANT` | Não | Não | Não | Não | system, file-per-table, general | Antelope ou Barracuda |
+| `COMPACT` | Sim | Não | Não | Não | system, file-per-table, general | Antelope ou Barracuda |
+| `DYNAMIC` | Sim | Sim | Sim | Não | system, file-per-table, general | Barracuda |
+| `COMPRESSED` | Sim | Sim | Sim | Sim | file-per-table, general | Barracuda |
 
-The topics that follow describe row format storage characteristics and how to define and determine the row format of a table.
+Os tópicos a seguir descrevem as características de armazenamento dos formatos de linha e como definir e determinar o formato de linha de uma tabela.
 
-* REDUNDANT Row Format
-* COMPACT Row Format
-* DYNAMIC Row Format
-* COMPRESSED Row Format
-* Defining the Row Format of a Table
-* Determining the Row Format of a Table
+* Formato de Linha REDUNDANT
+* Formato de Linha COMPACT
+* Formato de Linha DYNAMIC
+* Formato de Linha COMPRESSED
+* Definição do Formato de Linha de uma Tabela
+* Determinação do Formato de Linha de uma Tabela
 
-### REDUNDANT Row Format
+### Formato de Linha REDUNDANT
 
-The `REDUNDANT` format provides compatibility with older versions of MySQL.
+O formato `REDUNDANT` fornece compatibilidade com versões mais antigas do MySQL.
 
-The `REDUNDANT` row format is supported by both `InnoDB` file formats (`Antelope` and `Barracuda`). For more information, see Section 14.10, “InnoDB File-Format Management”.
+O formato de linha `REDUNDANT` é suportado por ambos os formatos de arquivo `InnoDB` (`Antelope` e `Barracuda`). Para mais informações, consulte a Seção 14.10, “InnoDB File-Format Management”.
 
-Tables that use the `REDUNDANT` row format store the first 768 bytes of variable-length column values (`VARCHAR`, `VARBINARY`, and `BLOB` and `TEXT` types) in the index record within the B-tree node, with the remainder stored on overflow pages. Fixed-length columns greater than or equal to 768 bytes are encoded as variable-length columns, which can be stored off-page. For example, a `CHAR(255)` column can exceed 768 bytes if the maximum byte length of the character set is greater than 3, as it is with `utf8mb4`.
+Tabelas que usam o formato de linha `REDUNDANT` armazenam os primeiros 768 bytes dos valores de colunas de tamanho variável (`VARCHAR`, `VARBINARY` e tipos `BLOB` e `TEXT`) no registro do Index dentro do nó B-tree, com o restante armazenado em overflow pages. Colunas de tamanho fixo maiores ou iguais a 768 bytes são codificadas como colunas de tamanho variável, que podem ser armazenadas off-page. Por exemplo, uma coluna `CHAR(255)` pode exceder 768 bytes se o tamanho máximo de byte do character set for maior que 3, como é o caso do `utf8mb4`.
 
-If the value of a column is 768 bytes or less, an overflow page is not used, and some savings in I/O may result, since the value is stored entirely in the B-tree node. This works well for relatively short `BLOB` column values, but may cause B-tree nodes to fill with data rather than key values, reducing their efficiency. Tables with many `BLOB` columns could cause B-tree nodes to become too full, and contain too few rows, making the entire index less efficient than if rows were shorter or column values were stored off-page.
+Se o valor de uma coluna for de 768 bytes ou menos, uma overflow page não é usada, e alguma economia em I/O pode resultar, uma vez que o valor é armazenado inteiramente no nó B-tree. Isso funciona bem para valores de coluna `BLOB` relativamente curtos, mas pode fazer com que os nós B-tree se encham com dados em vez de valores Key, reduzindo sua eficiência. Tabelas com muitas colunas `BLOB` podem fazer com que os nós B-tree fiquem muito cheios e contenham poucas linhas, tornando o Index inteiro menos eficiente do que se as linhas fossem mais curtas ou os valores das colunas fossem armazenados off-page.
 
-#### REDUNDANT Row Format Storage Characteristics
+#### Características de Armazenamento do Formato de Linha REDUNDANT
 
-The `REDUNDANT` row format has the following storage characteristics:
+O formato de linha `REDUNDANT` possui as seguintes características de armazenamento:
 
-* Each index record contains a 6-byte header. The header is used to link together consecutive records, and for row-level locking.
+* Cada registro de Index contém um cabeçalho de 6 bytes. O cabeçalho é usado para ligar registros consecutivos e para locking de nível de linha.
 
-* Records in the clustered index contain fields for all user-defined columns. In addition, there is a 6-byte transaction ID field and a 7-byte roll pointer field.
+* Registros no clustered index contêm campos para todas as colunas definidas pelo usuário. Além disso, há um campo de ID de transação de 6 bytes e um campo roll pointer de 7 bytes.
 
-* If no primary key is defined for a table, each clustered index record also contains a 6-byte row ID field.
+* Se nenhuma Primary Key for definida para uma tabela, cada registro de clustered index também contém um campo de ID de linha de 6 bytes.
 
-* Each secondary index record contains all the primary key columns defined for the clustered index key that are not in the secondary index.
+* Cada registro de secondary index contém todas as colunas Primary Key definidas para a Key do clustered index que não estão no secondary index.
 
-* A record contains a pointer to each field of the record. If the total length of the fields in a record is less than 128 bytes, the pointer is one byte; otherwise, two bytes. The array of pointers is called the record directory. The area where the pointers point is the data part of the record.
+* Um registro contém um pointer para cada campo do registro. Se o comprimento total dos campos em um registro for menor que 128 bytes, o pointer é de um byte; caso contrário, dois bytes. O array de pointers é chamado de diretório de registro (record directory). A área para onde os pointers apontam é a parte de dados do registro.
 
-* Internally, fixed-length character columns such as `CHAR(10)` are stored in fixed-length format. Trailing spaces are not truncated from `VARCHAR` columns.
+* Internamente, colunas de caracteres de tamanho fixo, como `CHAR(10)`, são armazenadas em formato de tamanho fixo. Espaços à direita não são truncados de colunas `VARCHAR`.
 
-* Fixed-length columns greater than or equal to 768 bytes are encoded as variable-length columns, which can be stored off-page. For example, a `CHAR(255)` column can exceed 768 bytes if the maximum byte length of the character set is greater than 3, as it is with `utf8mb4`.
+* Colunas de tamanho fixo maiores ou iguais a 768 bytes são codificadas como colunas de tamanho variável, que podem ser armazenadas off-page. Por exemplo, uma coluna `CHAR(255)` pode exceder 768 bytes se o tamanho máximo de byte do character set for maior que 3, como é o caso do `utf8mb4`.
 
-* An SQL `NULL` value reserves one or two bytes in the record directory. An SQL `NULL` value reserves zero bytes in the data part of the record if stored in a variable-length column. For a fixed-length column, the fixed length of the column is reserved in the data part of the record. Reserving fixed space for `NULL` values permits columns to be updated in place from `NULL` to non-`NULL` values without causing index page fragmentation.
+* Um valor SQL `NULL` reserva um ou dois bytes no record directory. Um valor SQL `NULL` reserva zero bytes na parte de dados do registro se armazenado em uma coluna de tamanho variável. Para uma coluna de tamanho fixo, o tamanho fixo da coluna é reservado na parte de dados do registro. Reservar espaço fixo para valores `NULL` permite que as colunas sejam atualizadas in-place de valores `NULL` para não-`NULL` sem causar fragmentação de page de Index.
 
-### COMPACT Row Format
+### Formato de Linha COMPACT
 
-The `COMPACT` row format reduces row storage space by about 20% compared to the `REDUNDANT` row format, at the cost of increasing CPU use for some operations. If your workload is a typical one that is limited by cache hit rates and disk speed, `COMPACT` format is likely to be faster. If the workload is limited by CPU speed, compact format might be slower.
+O formato de linha `COMPACT` reduz o espaço de armazenamento de linha em cerca de 20% em comparação com o formato de linha `REDUNDANT`, ao custo de aumentar o uso de CPU para algumas operações. Se sua workload for típica e limitada pelas taxas de acerto do cache e pela velocidade do disco, o formato `COMPACT` provavelmente será mais rápido. Se a workload for limitada pela velocidade da CPU, o formato compacto pode ser mais lento.
 
-The `COMPACT` row format is supported by both `InnoDB` file formats (`Antelope` and `Barracuda`). For more information, see Section 14.10, “InnoDB File-Format Management”.
+O formato de linha `COMPACT` é suportado por ambos os formatos de arquivo `InnoDB` (`Antelope` e `Barracuda`). Para mais informações, consulte a Seção 14.10, “InnoDB File-Format Management”.
 
-Tables that use the `COMPACT` row format store the first 768 bytes of variable-length column values (`VARCHAR`, `VARBINARY`, and `BLOB` and `TEXT` types) in the index record within the B-tree node, with the remainder stored on overflow pages. Fixed-length columns greater than or equal to 768 bytes are encoded as variable-length columns, which can be stored off-page. For example, a `CHAR(255)` column can exceed 768 bytes if the maximum byte length of the character set is greater than 3, as it is with `utf8mb4`.
+Tabelas que usam o formato de linha `COMPACT` armazenam os primeiros 768 bytes dos valores de colunas de tamanho variável (`VARCHAR`, `VARBINARY` e tipos `BLOB` e `TEXT`) no registro do Index dentro do nó B-tree, com o restante armazenado em overflow pages. Colunas de tamanho fixo maiores ou iguais a 768 bytes são codificadas como colunas de tamanho variável, que podem ser armazenadas off-page. Por exemplo, uma coluna `CHAR(255)` pode exceder 768 bytes se o tamanho máximo de byte do character set for maior que 3, como é o caso do `utf8mb4`.
 
-If the value of a column is 768 bytes or less, an overflow page is not used, and some savings in I/O may result, since the value is stored entirely in the B-tree node. This works well for relatively short `BLOB` column values, but may cause B-tree nodes to fill with data rather than key values, reducing their efficiency. Tables with many `BLOB` columns could cause B-tree nodes to become too full, and contain too few rows, making the entire index less efficient than if rows were shorter or column values were stored off-page.
+Se o valor de uma coluna for de 768 bytes ou menos, uma overflow page não é usada, e alguma economia em I/O pode resultar, uma vez que o valor é armazenado inteiramente no nó B-tree. Isso funciona bem para valores de coluna `BLOB` relativamente curtos, mas pode fazer com que os nós B-tree se encham com dados em vez de valores Key, reduzindo sua eficiência. Tabelas com muitas colunas `BLOB` podem fazer com que os nós B-tree fiquem muito cheios e contenham poucas linhas, tornando o Index inteiro menos eficiente do que se as linhas fossem mais curtas ou os valores das colunas fossem armazenados off-page.
 
-#### COMPACT Row Format Storage Characteristics
+#### Características de Armazenamento do Formato de Linha COMPACT
 
-The `COMPACT` row format has the following storage characteristics:
+O formato de linha `COMPACT` possui as seguintes características de armazenamento:
 
-* Each index record contains a 5-byte header that may be preceded by a variable-length header. The header is used to link together consecutive records, and for row-level locking.
+* Cada registro de Index contém um cabeçalho de 5 bytes que pode ser precedido por um cabeçalho de tamanho variável. O cabeçalho é usado para ligar registros consecutivos e para locking de nível de linha.
 
-* The variable-length part of the record header contains a bit vector for indicating `NULL` columns. If the number of columns in the index that can be `NULL` is *`N`*, the bit vector occupies `CEILING(N/8)` bytes. (For example, if there are anywhere from 9 to 16 columns that can be `NULL`, the bit vector uses two bytes.) Columns that are `NULL` do not occupy space other than the bit in this vector. The variable-length part of the header also contains the lengths of variable-length columns. Each length takes one or two bytes, depending on the maximum length of the column. If all columns in the index are `NOT NULL` and have a fixed length, the record header has no variable-length part.
+* A parte de tamanho variável do cabeçalho do registro contém um vetor de bits para indicar colunas `NULL`. Se o número de colunas no Index que podem ser `NULL` for *`N`*, o vetor de bits ocupa `CEILING(N/8)` bytes. (Por exemplo, se houver de 9 a 16 colunas que podem ser `NULL`, o vetor de bits usa dois bytes.) Colunas que são `NULL` não ocupam espaço além do bit neste vetor. A parte de tamanho variável do cabeçalho também contém os comprimentos das colunas de tamanho variável. Cada comprimento leva um ou dois bytes, dependendo do comprimento máximo da coluna. Se todas as colunas no Index forem `NOT NULL` e tiverem um tamanho fixo, o cabeçalho do registro não terá uma parte de tamanho variável.
 
-* For each non-`NULL` variable-length field, the record header contains the length of the column in one or two bytes. Two bytes are only needed if part of the column is stored externally in overflow pages or the maximum length exceeds 255 bytes and the actual length exceeds 127 bytes. For an externally stored column, the 2-byte length indicates the length of the internally stored part plus the 20-byte pointer to the externally stored part. The internal part is 768 bytes, so the length is 768+20. The 20-byte pointer stores the true length of the column.
+* Para cada campo de tamanho variável não-`NULL`, o cabeçalho do registro contém o comprimento da coluna em um ou dois bytes. Dois bytes são necessários apenas se parte da coluna for armazenada externamente em overflow pages ou se o comprimento máximo exceder 255 bytes e o comprimento real exceder 127 bytes. Para uma coluna armazenada externamente, o comprimento de 2 bytes indica o comprimento da parte armazenada internamente mais o pointer de 20 bytes para a parte armazenada externamente. A parte interna é de 768 bytes, portanto o comprimento é 768+20. O pointer de 20 bytes armazena o comprimento verdadeiro da coluna.
 
-* The record header is followed by the data contents of non-`NULL` columns.
+* O cabeçalho do registro é seguido pelo conteúdo dos dados das colunas não-`NULL`.
 
-* Records in the clustered index contain fields for all user-defined columns. In addition, there is a 6-byte transaction ID field and a 7-byte roll pointer field.
+* Registros no clustered index contêm campos para todas as colunas definidas pelo usuário. Além disso, há um campo de ID de transação de 6 bytes e um campo roll pointer de 7 bytes.
 
-* If no primary key is defined for a table, each clustered index record also contains a 6-byte row ID field.
+* Se nenhuma Primary Key for definida para uma tabela, cada registro de clustered index também contém um campo de ID de linha de 6 bytes.
 
-* Each secondary index record contains all the primary key columns defined for the clustered index key that are not in the secondary index. If any of the primary key columns are variable length, the record header for each secondary index has a variable-length part to record their lengths, even if the secondary index is defined on fixed-length columns.
+* Cada registro de secondary index contém todas as colunas Primary Key definidas para a Key do clustered index que não estão no secondary index. Se alguma das colunas Primary Key for de tamanho variável, o cabeçalho do registro para cada secondary index tem uma parte de tamanho variável para registrar seus comprimentos, mesmo que o secondary index seja definido em colunas de tamanho fixo.
 
-* Internally, for nonvariable-length character sets, fixed-length character columns such as `CHAR(10)` are stored in a fixed-length format.
+* Internamente, para character sets de tamanho não variável, colunas de caracteres de tamanho fixo, como `CHAR(10)`, são armazenadas em um formato de tamanho fixo.
 
-  Trailing spaces are not truncated from `VARCHAR` columns.
+  Espaços à direita não são truncados de colunas `VARCHAR`.
 
-* Internally, for variable-length character sets such as `utf8mb3` and `utf8mb4`, `InnoDB` attempts to store `CHAR(N)` in *`N`* bytes by trimming trailing spaces. If the byte length of a `CHAR(N)` column value exceeds *`N`* bytes, trailing spaces are trimmed to a minimum of the column value byte length. The maximum length of a `CHAR(N)` column is the maximum character byte length × *`N`*.
+* Internamente, para character sets de tamanho variável, como `utf8mb3` e `utf8mb4`, o `InnoDB` tenta armazenar `CHAR(N)` em *`N`* bytes, removendo espaços à direita. Se o tamanho de byte do valor de uma coluna `CHAR(N)` exceder *`N`* bytes, os espaços à direita são removidos para um mínimo do tamanho de byte do valor da coluna. O comprimento máximo de uma coluna `CHAR(N)` é o tamanho máximo de byte do caractere × *`N`*.
 
-  A minimum of *`N`* bytes is reserved for `CHAR(N)`. Reserving the minimum space *`N`* in many cases enables column updates to be done in place without causing index page fragmentation. By comparison, `CHAR(N)` columns occupy the maximum character byte length × *`N`* when using the `REDUNDANT` row format.
+  Um mínimo de *`N`* bytes é reservado para `CHAR(N)`. Reservar o espaço mínimo *`N`* em muitos casos permite que as atualizações de coluna sejam feitas in-place sem causar fragmentação de page de Index. Em comparação, as colunas `CHAR(N)` ocupam o tamanho máximo de byte do caractere × *`N`* ao usar o formato de linha `REDUNDANT`.
 
-  Fixed-length columns greater than or equal to 768 bytes are encoded as variable-length fields, which can be stored off-page. For example, a `CHAR(255)` column can exceed 768 bytes if the maximum byte length of the character set is greater than 3, as it is with `utf8mb4`.
+  Colunas de tamanho fixo maiores ou iguais a 768 bytes são codificadas como campos de tamanho variável, que podem ser armazenados off-page. Por exemplo, uma coluna `CHAR(255)` pode exceder 768 bytes se o tamanho máximo de byte do character set for maior que 3, como é o caso do `utf8mb4`.
 
-### DYNAMIC Row Format
+### Formato de Linha DYNAMIC
 
-The `DYNAMIC` row format offers the same storage characteristics as the `COMPACT` row format but adds enhanced storage capabilities for long variable-length columns and supports large index key prefixes.
+O formato de linha `DYNAMIC` oferece as mesmas características de armazenamento que o formato de linha `COMPACT`, mas adiciona capacidades aprimoradas de armazenamento para colunas longas de tamanho variável e suporta prefixos de Index Key grandes.
 
-The Barracuda file format supports the `DYNAMIC` row format. See Section 14.10, “InnoDB File-Format Management”.
+O formato de arquivo Barracuda suporta o formato de linha `DYNAMIC`. Consulte a Seção 14.10, “InnoDB File-Format Management”.
 
-When a table is created with `ROW_FORMAT=DYNAMIC`, `InnoDB` can store long variable-length column values (for `VARCHAR`, `VARBINARY`, and `BLOB` and `TEXT` types) fully off-page, with the clustered index record containing only a 20-byte pointer to the overflow page. Fixed-length fields greater than or equal to 768 bytes are encoded as variable-length fields. For example, a `CHAR(255)` column can exceed 768 bytes if the maximum byte length of the character set is greater than 3, as it is with `utf8mb4`.
+Quando uma tabela é criada com `ROW_FORMAT=DYNAMIC`, o `InnoDB` pode armazenar valores de colunas longas de tamanho variável (para tipos `VARCHAR`, `VARBINARY` e `BLOB` e `TEXT`) totalmente off-page, com o registro do clustered index contendo apenas um pointer de 20 bytes para a overflow page. Campos de tamanho fixo maiores ou iguais a 768 bytes são codificados como campos de tamanho variável. Por exemplo, uma coluna `CHAR(255)` pode exceder 768 bytes se o tamanho máximo de byte do character set for maior que 3, como é o caso do `utf8mb4`.
 
-Whether columns are stored off-page depends on the page size and the total size of the row. When a row is too long, the longest columns are chosen for off-page storage until the clustered index record fits on the B-tree page. `TEXT` and `BLOB` columns that are less than or equal to 40 bytes are stored in line.
+Se as colunas são armazenadas off-page depende do tamanho da page e do tamanho total da linha. Quando uma linha é muito longa, as colunas mais longas são escolhidas para armazenamento off-page até que o registro do clustered index caiba na page B-tree. As colunas `TEXT` e `BLOB` menores ou iguais a 40 bytes são armazenadas in-line.
 
-The `DYNAMIC` row format maintains the efficiency of storing the entire row in the index node if it fits (as do the `COMPACT` and `REDUNDANT` formats), but the `DYNAMIC` row format avoids the problem of filling B-tree nodes with a large number of data bytes of long columns. The `DYNAMIC` row format is based on the idea that if a portion of a long data value is stored off-page, it is usually most efficient to store the entire value off-page. With `DYNAMIC` format, shorter columns are likely to remain in the B-tree node, minimizing the number of overflow pages required for a given row.
+O formato de linha `DYNAMIC` mantém a eficiência de armazenar a linha inteira no nó Index se ela couber (assim como os formatos `COMPACT` e `REDUNDANT`), mas o formato de linha `DYNAMIC` evita o problema de preencher nós B-tree com um grande número de bytes de dados de colunas longas. O formato de linha `DYNAMIC` é baseado na ideia de que, se uma porção de um valor de dados longo for armazenada off-page, geralmente é mais eficiente armazenar o valor inteiro off-page. Com o formato `DYNAMIC`, é provável que as colunas mais curtas permaneçam no nó B-tree, minimizando o número de overflow pages necessárias para uma determinada linha.
 
-The `DYNAMIC` row format supports index key prefixes up to 3072 bytes. This feature is controlled by the `innodb_large_prefix` variable, which is enabled by default. See the `innodb_large_prefix` variable description for more information.
+O formato de linha `DYNAMIC` suporta prefixos de Index Key de até 3072 bytes. Este recurso é controlado pela variável `innodb_large_prefix`, que é ativada por padrão. Consulte a descrição da variável `innodb_large_prefix` para mais informações.
 
-Tables that use the `DYNAMIC` row format can be stored in the system tablespace, file-per-table tablespaces, and general tablespaces. To store `DYNAMIC` tables in the system tablespace, either disable `innodb_file_per_table` and use a regular `CREATE TABLE` or `ALTER TABLE` statement, or use the `TABLESPACE [=] innodb_system` table option with `CREATE TABLE` or `ALTER TABLE`. The `innodb_file_per_table` and `innodb_file_format` variables are not applicable to general tablespaces, nor are they applicable when using the `TABLESPACE [=] innodb_system` table option to store `DYNAMIC` tables in the system tablespace.
+Tabelas que usam o formato de linha `DYNAMIC` podem ser armazenadas no system tablespace, file-per-table tablespaces e general tablespaces. Para armazenar tabelas `DYNAMIC` no system tablespace, desabilite `innodb_file_per_table` e use uma instrução `CREATE TABLE` ou `ALTER TABLE` regular, ou use a opção de tabela `TABLESPACE [=] innodb_system` com `CREATE TABLE` ou `ALTER TABLE`. As variáveis `innodb_file_per_table` e `innodb_file_format` não se aplicam a general tablespaces, nem se aplicam ao usar a opção de tabela `TABLESPACE [=] innodb_system` para armazenar tabelas `DYNAMIC` no system tablespace.
 
-#### DYNAMIC Row Format Storage Characteristics
+#### Características de Armazenamento do Formato de Linha DYNAMIC
 
-The `DYNAMIC` row format is a variation of the `COMPACT` row format. For storage characteristics, see COMPACT Row Format Storage Characteristics.
+O formato de linha `DYNAMIC` é uma variação do formato de linha `COMPACT`. Para características de armazenamento, consulte Características de Armazenamento do Formato de Linha COMPACT.
 
-### COMPRESSED Row Format
+### Formato de Linha COMPRESSED
 
-The `COMPRESSED` row format offers the same storage characteristics and capabilities as the `DYNAMIC` row format but adds support for table and index data compression.
+O formato de linha `COMPRESSED` oferece as mesmas características e capacidades de armazenamento que o formato de linha `DYNAMIC`, mas adiciona suporte para compressão de dados de tabela e Index.
 
-The Barracuda file format supports the `COMPRESSED` row format. See Section 14.10, “InnoDB File-Format Management”.
+O formato de arquivo Barracuda suporta o formato de linha `COMPRESSED`. Consulte a Seção 14.10, “InnoDB File-Format Management”.
 
-The `COMPRESSED` row format uses similar internal details for off-page storage as the `DYNAMIC` row format, with additional storage and performance considerations from the table and index data being compressed and using smaller page sizes. With the `COMPRESSED` row format, the `KEY_BLOCK_SIZE` option controls how much column data is stored in the clustered index, and how much is placed on overflow pages. For more information about the `COMPRESSED` row format, see Section 14.9, “InnoDB Table and Page Compression”.
+O formato de linha `COMPRESSED` usa detalhes internos semelhantes para armazenamento off-page como o formato de linha `DYNAMIC`, com considerações adicionais de armazenamento e performance devido à compressão dos dados da tabela e do Index e ao uso de page sizes menores. Com o formato de linha `COMPRESSED`, a opção `KEY_BLOCK_SIZE` controla quantos dados de coluna são armazenados no clustered index e quanto é colocado em overflow pages. Para mais informações sobre o formato de linha `COMPRESSED`, consulte a Seção 14.9, “InnoDB Table and Page Compression”.
 
-The `COMPRESSED` row format supports index key prefixes up to 3072 bytes. This feature is controlled by the `innodb_large_prefix` variable, which is enabled by default. See the `innodb_large_prefix` variable description for more information.
+O formato de linha `COMPRESSED` suporta prefixos de Index Key de até 3072 bytes. Este recurso é controlado pela variável `innodb_large_prefix`, que é ativada por padrão. Consulte a descrição da variável `innodb_large_prefix` para mais informações.
 
-Tables that use the `COMPRESSED` row format can be created in file-per-table tablespaces or general tablespaces. The system tablespace does not support the `COMPRESSED` row format. To store a `COMPRESSED` table in a file-per-table tablespace, the `innodb_file_per_table` variable must be enabled and `innodb_file_format` must be set to `Barracuda`. The `innodb_file_per_table` and `innodb_file_format` variables are not applicable to general tablespaces. General tablespaces support all row formats with the caveat that compressed and uncompressed tables cannot coexist in the same general tablespace due to different physical page sizes. For more information about, see Section 14.6.3.3, “General Tablespaces”.
+Tabelas que usam o formato de linha `COMPRESSED` podem ser criadas em file-per-table tablespaces ou general tablespaces. O system tablespace não suporta o formato de linha `COMPRESSED`. Para armazenar uma tabela `COMPRESSED` em um file-per-table tablespace, a variável `innodb_file_per_table` deve estar ativada e `innodb_file_format` deve ser definido como `Barracuda`. As variáveis `innodb_file_per_table` e `innodb_file_format` não se aplicam a general tablespaces. General tablespaces suportam todos os formatos de linha, com a ressalva de que tabelas compactadas e descompactadas não podem coexistir no mesmo general tablespace devido a diferentes page sizes físicos. Para mais informações, consulte a Seção 14.6.3.3, “General Tablespaces”.
 
-#### Compressed Row Format Storage Characteristics
+#### Características de Armazenamento do Formato de Linha COMPRESSED
 
-The `COMPRESSED` row format is a variation of the `COMPACT` row format. For storage characteristics, see COMPACT Row Format Storage Characteristics.
+O formato de linha `COMPRESSED` é uma variação do formato de linha `COMPACT`. Para características de armazenamento, consulte Características de Armazenamento do Formato de Linha COMPACT.
 
-### Defining the Row Format of a Table
+### Definição do Formato de Linha de uma Tabela
 
-The default row format for `InnoDB` tables is defined by `innodb_default_row_format` variable, which has a default value of `DYNAMIC`. The default row format is used when the `ROW_FORMAT` table option is not defined explicitly or when `ROW_FORMAT=DEFAULT` is specified.
+O formato de linha padrão para tabelas `InnoDB` é definido pela variável `innodb_default_row_format`, que tem um valor padrão de `DYNAMIC`. O formato de linha padrão é usado quando a opção de tabela `ROW_FORMAT` não é definida explicitamente ou quando `ROW_FORMAT=DEFAULT` é especificado.
 
-The row format of a table can be defined explicitly using the `ROW_FORMAT` table option in a `CREATE TABLE` or `ALTER TABLE` statement. For example:
+O formato de linha de uma tabela pode ser definido explicitamente usando a opção de tabela `ROW_FORMAT` em uma instrução `CREATE TABLE` ou `ALTER TABLE`. Por exemplo:
 
 ```sql
 CREATE TABLE t1 (c1 INT) ROW_FORMAT=DYNAMIC;
 ```
 
-An explicitly defined `ROW_FORMAT` setting overrides the default row format. Specifying `ROW_FORMAT=DEFAULT` is equivalent to using the implicit default.
+Uma configuração `ROW_FORMAT` definida explicitamente substitui o formato de linha padrão. Especificar `ROW_FORMAT=DEFAULT` é equivalente a usar o padrão implícito.
 
-The `innodb_default_row_format` variable can be set dynamically:
+A variável `innodb_default_row_format` pode ser definida dinamicamente:
 
 ```sql
 mysql> SET GLOBAL innodb_default_row_format=DYNAMIC;
 ```
 
-Valid `innodb_default_row_format` options include `DYNAMIC`, `COMPACT`, and `REDUNDANT`. The `COMPRESSED` row format, which is not supported for use in the system tablespace, cannot be defined as the default. It can only be specified explicitly in a `CREATE TABLE` or `ALTER TABLE` statement. Attempting to set the `innodb_default_row_format` variable to `COMPRESSED` returns an error:
+As opções válidas para `innodb_default_row_format` incluem `DYNAMIC`, `COMPACT` e `REDUNDANT`. O formato de linha `COMPRESSED`, que não é suportado para uso no system tablespace, não pode ser definido como padrão. Ele só pode ser especificado explicitamente em uma instrução `CREATE TABLE` ou `ALTER TABLE`. Tentar definir a variável `innodb_default_row_format` como `COMPRESSED` retorna um erro:
 
 ```sql
 mysql> SET GLOBAL innodb_default_row_format=COMPRESSED;
@@ -151,7 +156,7 @@ ERROR 1231 (42000): Variable 'innodb_default_row_format'
 can't be set to the value of 'COMPRESSED'
 ```
 
-Newly created tables use the row format defined by the `innodb_default_row_format` variable when a `ROW_FORMAT` option is not specified explicitly, or when `ROW_FORMAT=DEFAULT` is used. For example, the following `CREATE TABLE` statements use the row format defined by the `innodb_default_row_format` variable.
+Tabelas recém-criadas usam o formato de linha definido pela variável `innodb_default_row_format` quando uma opção `ROW_FORMAT` não é especificada explicitamente, ou quando `ROW_FORMAT=DEFAULT` é usado. Por exemplo, as seguintes instruções `CREATE TABLE` usam o formato de linha definido pela variável `innodb_default_row_format`.
 
 ```sql
 CREATE TABLE t1 (c1 INT);
@@ -161,11 +166,11 @@ CREATE TABLE t1 (c1 INT);
 CREATE TABLE t2 (c1 INT) ROW_FORMAT=DEFAULT;
 ```
 
-When a `ROW_FORMAT` option is not specified explicitly, or when `ROW_FORMAT=DEFAULT` is used, an operation that rebuilds a table silently changes the row format of the table to the format defined by the `innodb_default_row_format` variable.
+Quando uma opção `ROW_FORMAT` não é especificada explicitamente, ou quando `ROW_FORMAT=DEFAULT` é usado, uma operação que reconstrói uma tabela muda silenciosamente o formato de linha da tabela para o formato definido pela variável `innodb_default_row_format`.
 
-Table-rebuilding operations include `ALTER TABLE` operations that use `ALGORITHM=COPY` or `ALGORITHM=INPLACE` where table rebuilding is required. See Section 14.13.1, “Online DDL Operations” for more information. `OPTIMIZE TABLE` is also a table-rebuilding operation.
+As operações de reconstrução de tabela incluem operações `ALTER TABLE` que usam `ALGORITHM=COPY` ou `ALGORITHM=INPLACE` onde a reconstrução da tabela é necessária. Consulte a Seção 14.13.1, “Online DDL Operations” para mais informações. `OPTIMIZE TABLE` também é uma operação de reconstrução de tabela.
 
-The following example demonstrates a table-rebuilding operation that silently changes the row format of a table created without an explicitly defined row format.
+O exemplo a seguir demonstra uma operação de reconstrução de tabela que muda silenciosamente o formato de linha de uma tabela criada sem um formato de linha definido explicitamente.
 
 ```sql
 mysql> SELECT @@innodb_default_row_format;
@@ -206,21 +211,21 @@ ZIP_PAGE_SIZE: 0
    SPACE_TYPE: Single
 ```
 
-Consider the following potential issues before changing the row format of existing tables from `REDUNDANT` or `COMPACT` to `DYNAMIC`.
+Considere os seguintes problemas potenciais antes de mudar o formato de linha de tabelas existentes de `REDUNDANT` ou `COMPACT` para `DYNAMIC`.
 
-* The `REDUNDANT` and `COMPACT` row formats support a maximum index key prefix length of 767 bytes whereas `DYNAMIC` and `COMPRESSED` row formats support an index key prefix length of 3072 bytes. In a replication environment, if the `innodb_default_row_format` variable is set to `DYNAMIC` on the source, and set to `COMPACT` on the replica, the following DDL statement, which does not explicitly define a row format, succeeds on the source but fails on the replica:
+* Os formatos de linha `REDUNDANT` e `COMPACT` suportam um comprimento máximo de prefixo de Index Key de 767 bytes, enquanto os formatos de linha `DYNAMIC` e `COMPRESSED` suportam um comprimento de prefixo de Index Key de 3072 bytes. Em um ambiente de replicação, se a variável `innodb_default_row_format` estiver definida como `DYNAMIC` na origem (source), e definida como `COMPACT` na réplica, a seguinte instrução DDL, que não define explicitamente um formato de linha, terá sucesso na origem, mas falhará na réplica:
 
   ```sql
   CREATE TABLE t1 (c1 INT PRIMARY KEY, c2 VARCHAR(5000), KEY i1(c2(3070)));
   ```
 
-  For related information, see Section 14.23, “InnoDB Limits”.
+  Para informações relacionadas, consulte a Seção 14.23, “InnoDB Limits”.
 
-* Importing a table that does not explicitly define a row format results in a schema mismatch error if the `innodb_default_row_format` setting on the source server differs from the setting on the destination server. For more information, Section 14.6.1.3, “Importing InnoDB Tables”.
+* A importação de uma tabela que não define explicitamente um formato de linha resulta em um erro de schema mismatch se a configuração `innodb_default_row_format` no servidor de origem for diferente da configuração no servidor de destino. Para mais informações, Seção 14.6.1.3, “Importing InnoDB Tables”.
 
-### Determining the Row Format of a Table
+### Determinação do Formato de Linha de uma Tabela
 
-To determine the row format of a table, use `SHOW TABLE STATUS`:
+Para determinar o formato de linha de uma tabela, use `SHOW TABLE STATUS`:
 
 ```sql
 mysql> SHOW TABLE STATUS IN test1\G
@@ -245,7 +250,7 @@ Max_data_length: 0
         Comment:
 ```
 
-Alternatively, query the Information Schema `INNODB_SYS_TABLES` table:
+Alternativamente, consulte a tabela `INNODB_SYS_TABLES` do Information Schema:
 
 ```sql
 mysql> SELECT NAME, ROW_FORMAT FROM INFORMATION_SCHEMA.INNODB_SYS_TABLES WHERE NAME='test1/t1';

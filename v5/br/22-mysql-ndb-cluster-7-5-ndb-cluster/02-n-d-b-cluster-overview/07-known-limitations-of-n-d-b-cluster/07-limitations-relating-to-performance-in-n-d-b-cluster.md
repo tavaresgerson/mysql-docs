@@ -1,9 +1,9 @@
-#### 21.2.7.7 Limitations Relating to Performance in NDB Cluster
+#### 21.2.7.7 Limitações Relacionadas ao Desempenho no NDB Cluster
 
-The following performance issues are specific to or especially pronounced in NDB Cluster:
+Os seguintes problemas de desempenho são específicos ou especialmente acentuados no NDB Cluster:
 
-* **Range scans.** There are query performance issues due to sequential access to the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine; it is also relatively more expensive to do many range scans than it is with either `MyISAM` or `InnoDB`.
+* **Range scans.** Existem problemas de desempenho de Query devido ao acesso sequencial ao Storage Engine [[NDB](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6")]; também é relativamente mais caro realizar muitos Range scans do que com `MyISAM` ou `InnoDB`.
 
-* **Reliability of Records in range.** The `Records in range` statistic is available but is not completely tested or officially supported. This may result in nonoptimal query plans in some cases. If necessary, you can employ `USE INDEX` or `FORCE INDEX` to alter the execution plan. See [Section 8.9.4, “Index Hints”](index-hints.html "8.9.4 Index Hints"), for more information on how to do this.
+* **Confiabilidade de Records in range.** A estatística `Records in range` está disponível, mas não está completamente testada ou oficialmente suportada. Isso pode resultar em planos de Query não ideais em alguns casos. Se necessário, você pode empregar `USE INDEX` ou `FORCE INDEX` para alterar o plano de execução. Consulte [Section 8.9.4, “Index Hints”](index-hints.html "8.9.4 Index Hints"), para mais informações sobre como fazer isso.
 
-* **Unique hash indexes.** Unique hash indexes created with `USING HASH` cannot be used for accessing a table if `NULL` is given as part of the key.
+* **Unique hash indexes.** Unique hash indexes criados com `USING HASH` não podem ser usados para acessar uma tabela se `NULL` for fornecido como parte da Key.

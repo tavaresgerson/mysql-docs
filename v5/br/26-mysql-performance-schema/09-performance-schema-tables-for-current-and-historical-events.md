@@ -1,53 +1,53 @@
-## 25.9 Performance Schema Tables for Current and Historical Events
+## 25.9 Tabelas do Performance Schema para Eventos Atuais e Históricos
 
-For wait, stage, statement, and transaction events, the Performance Schema can monitor and store current events. In addition, when events end, the Performance Schema can store them in history tables. For each event type, the Performance Schema uses three tables for storing current and historical events. The tables have names of the following forms, where *`xxx`* indicates the event type (`waits`, `stages`, `statements`, `transactions`):
+Para eventos de espera (wait), estágio (stage), instrução (statement) e transação (transaction), o Performance Schema pode monitorar e armazenar eventos atuais. Além disso, quando os eventos terminam, o Performance Schema pode armazená-los em tabelas de histórico. Para cada tipo de evento, o Performance Schema utiliza três tabelas para armazenar eventos atuais e históricos. As tabelas têm nomes nos seguintes formatos, onde *`xxx`* indica o tipo de evento (`waits`, `stages`, `statements`, `transactions`):
 
-* `events_xxx_current`: The “current events” table stores the current monitored event for each thread (one row per thread).
+* `events_xxx_current`: A tabela de "eventos atuais" armazena o evento monitorado atual para cada Thread (uma row por Thread).
 
-* `events_xxx_history`: The “recent history” table stores the most recent events that have ended per thread (up to a maximum number of rows per thread).
+* `events_xxx_history`: A tabela de "histórico recente" armazena os eventos mais recentes que terminaram por Thread (até um número máximo de rows por Thread).
 
-* `events_xxx_history_long`: The “long history” table stores the most recent events that have ended globally (across all threads, up to a maximum number of rows per table).
+* `events_xxx_history_long`: A tabela de "histórico longo" armazena os eventos mais recentes que terminaram globalmente (em todos os Threads, até um número máximo de rows por tabela).
 
-The `_current` table for each event type contains one row per thread, so there is no system variable for configuring its maximum size. The Performance Schema autosizes the history tables, or the sizes can be configured explicitly at server startup using table-specific system variables, as indicated in the sections that describe the individual history tables. Typical autosized values are 10 rows per thread for `_history` tables, and 10,000 rows total for `_history_long` tables.
+A tabela `_current` para cada tipo de evento contém uma row por Thread, portanto não há uma system variable para configurar seu tamanho máximo. O Performance Schema dimensiona (autosizes) as tabelas de histórico automaticamente, ou os tamanhos podem ser configurados explicitamente na inicialização do servidor usando system variables específicas de tabela, conforme indicado nas seções que descrevem as tabelas de histórico individuais. Valores típicos de dimensionamento automático (autosized) são 10 rows por Thread para as tabelas `_history` e 10.000 rows totais para as tabelas `_history_long`.
 
-For each event type, the `_current`, `_history`, and `_history_long` tables have the same columns.
+Para cada tipo de evento, as tabelas `_current`, `_history` e `_history_long` possuem as mesmas colunas.
 
-The `_current` tables show what is currently happening within the server. When a current event ends, it is removed from its `_current` table.
+As tabelas `_current` mostram o que está acontecendo atualmente dentro do servidor. Quando um evento atual termina, ele é removido de sua tabela `_current`.
 
-The `_history` and `_history_long` tables show what has happened in the recent past. When the history tables become full, old events are discarded as new events are added. Rows expire from the `_history` and `_history_long` tables in different ways because the tables serve different purposes:
+As tabelas `_history` e `_history_long` mostram o que aconteceu no passado recente. Quando as tabelas de histórico ficam cheias, os eventos antigos são descartados à medida que novos eventos são adicionados. As Rows expiram das tabelas `_history` e `_history_long` de maneiras diferentes, pois as tabelas servem a propósitos distintos:
 
-* `_history` is meant to investigate individual threads, independently of the global server load.
+* `_history` destina-se a investigar Threads individuais, independentemente da carga global do servidor.
 
-* `_history_long` is meant to investigate the server globally, not each thread.
+* `_history_long` destina-se a investigar o servidor globalmente, e não cada Thread.
 
-The difference between the two types of history tables relates to the data retention policy. Both tables contains the same data when an event is first seen. However, data within each table expires differently over time, so that data might be preserved for a longer or shorter time in each table:
+A diferença entre os dois tipos de tabelas de histórico está relacionada à política de retenção de dados. Ambas as tabelas contêm os mesmos dados quando um evento é visto pela primeira vez. No entanto, os dados em cada tabela expiram de forma diferente ao longo do tempo, de modo que os dados podem ser preservados por um período maior ou menor em cada tabela:
 
-* For `_history`, when the table contains the maximum number of rows for a given thread, the oldest thread row is discarded when a new row for that thread is added.
+* Para `_history`, quando a tabela contém o número máximo de rows para um determinado Thread, a row mais antiga desse Thread é descartada quando uma nova row para esse Thread é adicionada.
 
-* For `_history_long`, when the table becomes full, the oldest row is discarded when a new row is added, regardless of which thread generated either row.
+* Para `_history_long`, quando a tabela fica cheia, a row mais antiga é descartada quando uma nova row é adicionada, independentemente de qual Thread gerou qualquer uma das rows.
 
-When a thread ends, all its rows are discarded from the `_history` table but not from the `_history_long` table.
+Quando um Thread termina, todas as suas rows são descartadas da tabela `_history`, mas não da tabela `_history_long`.
 
-The following example illustrates the differences in how events are added to and discarded from the two types of history tables. The principles apply equally to all event types. The example is based on these assumptions:
+O exemplo a seguir ilustra as diferenças em como os eventos são adicionados e descartados dos dois tipos de tabelas de histórico. Os princípios se aplicam igualmente a todos os tipos de eventos. O exemplo é baseado nas seguintes premissas:
 
-* The Performance Schema is configured to retain 10 rows per thread in the `_history` table and 10,000 rows total in the `_history_long` table.
+* O Performance Schema está configurado para reter 10 rows por Thread na tabela `_history` e 10.000 rows totais na tabela `_history_long`.
 
-* Thread A generates 1 event per second.
+* O Thread A gera 1 evento por segundo.
 
-  Thread B generates 100 events per second.
+* O Thread B gera 100 eventos por segundo.
 
-* No other threads are running.
+* Nenhum outro Thread está em execução.
 
-After 5 seconds of execution:
+Após 5 segundos de execução:
 
-* A and B have generated 5 and 500 events, respectively.
-* `_history` contains 5 rows for A and 10 rows for B. Because storage per thread is limited to 10 rows, no rows have been discarded for A, whereas 490 rows have been discarded for B.
+* A e B geraram 5 e 500 eventos, respectivamente.
+* `_history` contém 5 rows para A e 10 rows para B. Como o armazenamento por Thread é limitado a 10 rows, nenhuma row foi descartada para A, enquanto 490 rows foram descartadas para B.
 
-* `_history_long` contains 5 rows for A and 500 rows for B. Because the table has a maximum size of 10,000 rows, no rows have been discarded for either thread.
+* `_history_long` contém 5 rows para A e 500 rows para B. Como a tabela tem um tamanho máximo de 10.000 rows, nenhuma row foi descartada para nenhum dos Threads.
 
-After 5 minutes (300 seconds) of execution:
+Após 5 minutos (300 segundos) de execução:
 
-* A and B have generated 300 and 30,000 events, respectively.
-* `_history` contains 10 rows for A and 10 rows for B. Because storage per thread is limited to 10 rows, 290 rows have been discarded for A, whereas 29,990 rows have been discarded for B. Rows for A include data up to 10 seconds old, whereas rows for B include data up to only .1 seconds old.
+* A e B geraram 300 e 30.000 eventos, respectivamente.
+* `_history` contém 10 rows para A e 10 rows para B. Como o armazenamento por Thread é limitado a 10 rows, 290 rows foram descartadas para A, enquanto 29.990 rows foram descartadas para B. As Rows para A incluem dados com até 10 segundos de idade, enquanto as rows para B incluem dados com apenas 0,1 segundos de idade.
 
-* `_history_long` contains 10,000 rows. Because A and B together generate 101 events per second, the table contains data up to approximately 10,000/101 = 99 seconds old, with a mix of rows approximately 100 to 1 from B as opposed to A.
+* `_history_long` contém 10.000 rows. Como A e B geram juntos 101 eventos por segundo, a tabela contém dados com aproximadamente 10.000/101 = 99 segundos de idade, com uma mistura de rows de B em oposição a A na proporção de aproximadamente 100 para 1.

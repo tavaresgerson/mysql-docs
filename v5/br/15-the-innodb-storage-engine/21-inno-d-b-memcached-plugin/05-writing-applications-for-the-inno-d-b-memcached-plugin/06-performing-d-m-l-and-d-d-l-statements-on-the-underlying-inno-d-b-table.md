@@ -1,8 +1,8 @@
-#### 14.21.5.6 Performing DML and DDL Statements on the Underlying InnoDB Table
+#### 14.21.5.6 Executando DML e DDL Statements na InnoDB Table Subjacente
 
-You can access the underlying `InnoDB` table (which is `test.demo_test` by default) through standard SQL interfaces. However, there are some restrictions:
+Você pode acessar a InnoDB table subjacente (que é `test.demo_test` por padrão) através de interfaces SQL padrão. No entanto, há algumas restrições:
 
-* When querying a table that is also accessed through the **memcached** interface, remember that **memcached** operations can be configured to be committed periodically rather than after every write operation. This behavior is controlled by the `daemon_memcached_w_batch_size` option. If this option is set to a value greater than `1`, use `READ UNCOMMITTED` queries to find rows that were just inserted.
+* Ao executar um Query em uma tabela que também é acessada através da interface **memcached**, lembre-se de que as operações **memcached** podem ser configuradas para serem *committed* (confirmadas) periodicamente, em vez de após cada *write operation* (operação de escrita). Esse comportamento é controlado pela opção `daemon_memcached_w_batch_size`. Se essa opção for definida com um valor maior que `1`, use Queries `READ UNCOMMITTED` para encontrar linhas que acabaram de ser inseridas.
 
   ```sql
   mysql> SET SESSSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
@@ -15,6 +15,6 @@ You can access the underlying `InnoDB` table (which is `test.demo_test` by defau
   +------+------+------+------+-----------+------+------+------+------+------+------+
   ```
 
-* When modifying a table using SQL that is also accessed through the **memcached** interface, you can configure **memcached** operations to start a new transaction periodically rather than for every read operation. This behavior is controlled by the `daemon_memcached_r_batch_size` option. If this option is set to a value greater than `1`, changes made to the table using SQL are not immediately visible to **memcached** operations.
+* Ao modificar uma tabela usando SQL que também é acessada através da interface **memcached**, você pode configurar as operações **memcached** para iniciar uma nova *transaction* periodicamente, em vez de a cada *read operation* (operação de leitura). Esse comportamento é controlado pela opção `daemon_memcached_r_batch_size`. Se essa opção for definida com um valor maior que `1`, as alterações feitas na tabela usando SQL não são imediatamente visíveis para as operações **memcached**.
 
-* The `InnoDB` table is either IS (intention shared) or IX (intention exclusive) locked for all operations in a transaction. If you increase `daemon_memcached_r_batch_size` and `daemon_memcached_w_batch_size` substantially from their default value of `1`, the table is most likely locked between each operation, preventing DDL statements on the table.
+* A InnoDB table é submetida a um Lock IS (intention shared) ou IX (intention exclusive) para todas as operações em uma *transaction*. Se você aumentar substancialmente `daemon_memcached_r_batch_size` e `daemon_memcached_w_batch_size` a partir do valor padrão de `1`, a tabela provavelmente estará com Lock entre cada operação, impedindo DDL statements na tabela.

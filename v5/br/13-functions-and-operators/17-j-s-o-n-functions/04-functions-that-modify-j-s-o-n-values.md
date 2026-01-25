@@ -1,18 +1,18 @@
-### 12.17.4 Functions That Modify JSON Values
+### 12.17.4 Funções que Modificam Valores JSON
 
-The functions in this section modify JSON values and return the result.
+As funções nesta seção modificam valores JSON e retornam o resultado.
 
 * `JSON_APPEND(json_doc, path, val[, path, val] ...)`
 
-  Appends values to the end of the indicated arrays within a JSON document and returns the result. This function was renamed to `JSON_ARRAY_APPEND()` in MySQL 5.7.9; the alias `JSON_APPEND()` is now deprecated in MySQL 5.7, and is removed in MySQL 8.0.
+  Anexa valores ao final dos `arrays` indicados em um `JSON document` e retorna o resultado. Esta função foi renomeada para `JSON_ARRAY_APPEND()` no MySQL 5.7.9; o apelido `JSON_APPEND()` está agora obsoleto no MySQL 5.7 e foi removido no MySQL 8.0.
 
 * `JSON_ARRAY_APPEND(json_doc, path, val[, path, val] ...)`
 
-  Appends values to the end of the indicated arrays within a JSON document and returns the result. Returns `NULL` if any argument is `NULL`. An error occurs if the *`json_doc`* argument is not a valid JSON document or any *`path`* argument is not a valid path expression or contains a `*` or `**` wildcard.
+  Anexa valores ao final dos `arrays` indicados em um `JSON document` e retorna o resultado. Retorna `NULL` se qualquer argumento for `NULL`. Um erro ocorre se o argumento *`json_doc`* não for um `JSON document` válido ou se qualquer argumento *`path`* não for uma expressão de `path` válida ou contiver um `wildcard` `*` ou `**`.
 
-  The path-value pairs are evaluated left to right. The document produced by evaluating one pair becomes the new value against which the next pair is evaluated.
+  Os pares `path`-valor são avaliados da esquerda para a direita. O `document` produzido pela avaliação de um par torna-se o novo valor contra o qual o próximo par é avaliado.
 
-  If a path selects a scalar or object value, that value is autowrapped within an array and the new value is added to that array. Pairs for which the path does not identify any value in the JSON document are ignored.
+  Se um `path` selecionar um valor `scalar` ou `object`, esse valor é encapsulado automaticamente (autowrapped) em um `array` e o novo valor é adicionado a esse `array`. Pares para os quais o `path` não identifica nenhum valor no `JSON document` são ignorados.
 
   ```sql
   mysql> SET @j = '["a", ["b", "c"], "d"]';
@@ -60,11 +60,11 @@ The functions in this section modify JSON values and return the result.
 
 * `JSON_ARRAY_INSERT(json_doc, path, val[, path, val] ...)`
 
-  Updates a JSON document, inserting into an array within the document and returning the modified document. Returns `NULL` if any argument is `NULL`. An error occurs if the *`json_doc`* argument is not a valid JSON document or any *`path`* argument is not a valid path expression or contains a `*` or `**` wildcard or does not end with an array element identifier.
+  Atualiza um `JSON document`, inserindo em um `array` dentro do `document` e retornando o `document` modificado. Retorna `NULL` se qualquer argumento for `NULL`. Um erro ocorre se o argumento *`json_doc`* não for um `JSON document` válido, ou se qualquer argumento *`path`* não for uma expressão de `path` válida, ou contiver um `wildcard` `*` ou `**`, ou não terminar com um identificador de elemento de `array`.
 
-  The path-value pairs are evaluated left to right. The document produced by evaluating one pair becomes the new value against which the next pair is evaluated.
+  Os pares `path`-valor são avaliados da esquerda para a direita. O `document` produzido pela avaliação de um par torna-se o novo valor contra o qual o próximo par é avaliado.
 
-  Pairs for which the path does not identify any array in the JSON document are ignored. If a path identifies an array element, the corresponding value is inserted at that element position, shifting any following values to the right. If a path identifies an array position past the end of an array, the value is inserted at the end of the array.
+  Pares para os quais o `path` não identifica nenhum `array` no `JSON document` são ignorados. Se um `path` identifica um elemento de `array`, o valor correspondente é inserido nessa posição do elemento, deslocando quaisquer valores seguintes para a direita. Se um `path` identifica uma posição de `array` após o final de um `array`, o valor é inserido no final do `array`.
 
   ```sql
   mysql> SET @j = '["a", {"b": [1, 2]}, [3, 4';
@@ -100,23 +100,23 @@ The functions in this section modify JSON values and return the result.
   +----------------------------------------------------+
   ```
 
-  Earlier modifications affect the positions of the following elements in the array, so subsequent paths in the same `JSON_ARRAY_INSERT()` call should take this into account. In the final example, the second path inserts nothing because the path no longer matches anything after the first insert.
+  Modificações anteriores afetam as posições dos elementos seguintes no `array`, então os `paths` subsequentes na mesma chamada `JSON_ARRAY_INSERT()` devem levar isso em consideração. No último exemplo, o segundo `path` não insere nada porque o `path` não corresponde mais a nada após a primeira inserção.
 
 * `JSON_INSERT(json_doc, path, val[, path, val] ...)`
 
-  Inserts data into a JSON document and returns the result. Returns `NULL` if any argument is `NULL`. An error occurs if the *`json_doc`* argument is not a valid JSON document or any *`path`* argument is not a valid path expression or contains a `*` or `**` wildcard.
+  Insere dados em um `JSON document` e retorna o resultado. Retorna `NULL` se qualquer argumento for `NULL`. Um erro ocorre se o argumento *`json_doc`* não for um `JSON document` válido ou se qualquer argumento *`path`* não for uma expressão de `path` válida ou contiver um `wildcard` `*` ou `**`.
 
-  The path-value pairs are evaluated left to right. The document produced by evaluating one pair becomes the new value against which the next pair is evaluated.
+  Os pares `path`-valor são avaliados da esquerda para a direita. O `document` produzido pela avaliação de um par torna-se o novo valor contra o qual o próximo par é avaliado.
 
-  A path-value pair for an existing path in the document is ignored and does not overwrite the existing document value. A path-value pair for a nonexisting path in the document adds the value to the document if the path identifies one of these types of values:
+  Um par `path`-valor para um `path` existente no `document` é ignorado e não sobrescreve o valor existente no `document`. Um par `path`-valor para um `path` não existente no `document` adiciona o valor ao `document` se o `path` identificar um destes tipos de valores:
 
-  + A member not present in an existing object. The member is added to the object and associated with the new value.
+  + Um membro não presente em um `object` existente. O membro é adicionado ao `object` e associado ao novo valor.
 
-  + A position past the end of an existing array. The array is extended with the new value. If the existing value is not an array, it is autowrapped as an array, then extended with the new value.
+  + Uma posição após o final de um `array` existente. O `array` é estendido com o novo valor. Se o valor existente não for um `array`, ele é encapsulado automaticamente (autowrapped) como um `array`, e então estendido com o novo valor.
 
-  Otherwise, a path-value pair for a nonexisting path in the document is ignored and has no effect.
+  Caso contrário, um par `path`-valor para um `path` não existente no `document` é ignorado e não tem efeito.
 
-  For a comparison of `JSON_INSERT()`, `JSON_REPLACE()`, and `JSON_SET()`, see the discussion of `JSON_SET()`.
+  Para uma comparação de `JSON_INSERT()`, `JSON_REPLACE()` e `JSON_SET()`, consulte a discussão sobre `JSON_SET()`.
 
   ```sql
   mysql> SET @j = '{ "a": 1, "b": [2, 3]}';
@@ -128,7 +128,7 @@ The functions in this section modify JSON values and return the result.
   +----------------------------------------------------+
   ```
 
-  The third and final value listed in the result is a quoted string and not an array like the second one (which is not quoted in the output); no casting of values to the JSON type is performed. To insert the array as an array, you must perform such casts explicitly, as shown here:
+  O terceiro e último valor listado no resultado é uma `string` entre aspas e não um `array` como o segundo (que não está entre aspas na saída); nenhuma conversão de valores para o tipo JSON é realizada. Para inserir o `array` como um `array`, você deve realizar tais conversões explicitamente, como mostrado aqui:
 
   ```sql
   mysql> SELECT JSON_INSERT(@j, '$.a', 10, '$.c', CAST('[true, false]' AS JSON));
@@ -142,7 +142,7 @@ The functions in this section modify JSON values and return the result.
 
 * `JSON_MERGE(json_doc, json_doc[, json_doc] ...)`
 
-  Merges two or more JSON documents. Synonym for `JSON_MERGE_PRESERVE()`; deprecated in MySQL 5.7.22 and subject to removal in a future release.
+  Combina (Merges) dois ou mais `JSON documents`. Sinônimo de `JSON_MERGE_PRESERVE()`; obsoleto no MySQL 5.7.22 e sujeito a remoção em uma versão futura.
 
   ```sql
   mysql> SELECT JSON_MERGE('[1, 2]', '[true, false]');
@@ -162,31 +162,31 @@ The functions in this section modify JSON values and return the result.
   1 row in set (0.00 sec)
   ```
 
-  For additional examples, see the entry for `JSON_MERGE_PRESERVE()`.
+  Para exemplos adicionais, consulte a entrada para `JSON_MERGE_PRESERVE()`.
 
 * `JSON_MERGE_PATCH(json_doc, json_doc[, json_doc] ...)`
 
-  Performs an [RFC 7396](https://tools.ietf.org/html/rfc7396) compliant merge of two or more JSON documents and returns the merged result, without preserving members having duplicate keys. Raises an error if at least one of the documents passed as arguments to this function is not valid.
+  Realiza uma combinação (merge) [RFC 7396](https://tools.ietf.org/html/rfc7396) compatível de dois ou mais `JSON documents` e retorna o resultado combinado, sem preservar membros que possuam `keys` duplicadas. Gera um erro se pelo menos um dos `documents` passados como argumentos para esta função não for válido.
 
-  Note
+  **Nota**
 
-  For an explanation and example of the differences between this function and `JSON_MERGE_PRESERVE()`, see JSON_MERGE_PATCH() compared with JSON_MERGE_PRESERVE() compared with JSON_MERGE_PRESERVE()").
+  Para uma explicação e exemplo das diferenças entre esta função e `JSON_MERGE_PRESERVE()`, consulte JSON_MERGE_PATCH() compared with JSON_MERGE_PRESERVE() compared with JSON_MERGE_PRESERVE()").
 
-  `JSON_MERGE_PATCH()` performs a merge as follows:
+  `JSON_MERGE_PATCH()` realiza uma combinação da seguinte forma:
 
-  1. If the first argument is not an object, the result of the merge is the same as if an empty object had been merged with the second argument.
+  1. Se o primeiro argumento não for um `object`, o resultado da combinação é o mesmo que se um `object` vazio tivesse sido combinado com o segundo argumento.
 
-  2. If the second argument is not an object, the result of the merge is the second argument.
+  2. Se o segundo argumento não for um `object`, o resultado da combinação é o segundo argumento.
 
-  3. If both arguments are objects, the result of the merge is an object with the following members:
+  3. Se ambos os argumentos forem `objects`, o resultado da combinação é um `object` com os seguintes membros:
 
-     + All members of the first object which do not have a corresponding member with the same key in the second object.
+     + Todos os membros do primeiro `object` que não possuem um membro correspondente com a mesma `key` no segundo `object`.
 
-     + All members of the second object which do not have a corresponding key in the first object, and whose value is not the JSON `null` literal.
+     + Todos os membros do segundo `object` que não possuem uma `key` correspondente no primeiro `object`, e cujo valor não é o literal JSON `null`.
 
-     + All members with a key that exists in both the first and the second object, and whose value in the second object is not the JSON `null` literal. The values of these members are the results of recursively merging the value in the first object with the value in the second object.
+     + Todos os membros com uma `key` que existe tanto no primeiro quanto no segundo `object`, e cujo valor no segundo `object` não é o literal JSON `null`. Os valores desses membros são os resultados da combinação recursiva do valor no primeiro `object` com o valor no segundo `object`.
 
-  For additional information, see Normalization, Merging, and Autowrapping of JSON Values.
+  Para informações adicionais, consulte Normalization, Merging, and Autowrapping of JSON Values.
 
   ```sql
   mysql> SELECT JSON_MERGE_PATCH('[1, 2]', '[true, false]');
@@ -234,7 +234,7 @@ The functions in this section modify JSON values and return the result.
   +-------------------------------------------------------------------------------+
   ```
 
-  You can use this function to remove a member by specifying `null` as the value of the same member in the seond argument, as shown here:
+  Você pode usar esta função para remover um membro especificando `null` como o valor do mesmo membro no segundo argumento, conforme mostrado aqui:
 
   ```sql
   mysql> SELECT JSON_MERGE_PATCH('{"a":1, "b":2}', '{"b":null}');
@@ -245,7 +245,7 @@ The functions in this section modify JSON values and return the result.
   +--------------------------------------------------+
   ```
 
-  This example shows that the function operates in a recursive fashion; that is, values of members are not limited to scalars, but rather can themselves be JSON documents:
+  Este exemplo mostra que a função opera de forma recursiva; ou seja, os valores dos membros não se limitam a `scalars`, mas podem ser eles próprios `JSON documents`:
 
   ```sql
   mysql> SELECT JSON_MERGE_PATCH('{"a":{"x":1}}', '{"a":{"y":2}}');
@@ -256,15 +256,15 @@ The functions in this section modify JSON values and return the result.
   +----------------------------------------------------+
   ```
 
-  `JSON_MERGE_PATCH()` is supported in MySQL 5.7.22 and later.
+  `JSON_MERGE_PATCH()` é suportado no MySQL 5.7.22 e posterior.
 
-  **JSON_MERGE_PATCH() compared with JSON_MERGE_PRESERVE().** The behavior of `JSON_MERGE_PATCH()` is the same as that of `JSON_MERGE_PRESERVE()`, with the following two exceptions:
+  **JSON_MERGE_PATCH() comparada com JSON_MERGE_PRESERVE().** O comportamento de `JSON_MERGE_PATCH()` é o mesmo que o de `JSON_MERGE_PRESERVE()`, com as duas exceções seguintes:
 
-  + `JSON_MERGE_PATCH()` removes any member in the first object with a matching key in the second object, provided that the value associated with the key in the second object is not JSON `null`.
+  + `JSON_MERGE_PATCH()` remove qualquer membro no primeiro `object` com uma `key` correspondente no segundo `object`, desde que o valor associado à `key` no segundo `object` não seja JSON `null`.
 
-  + If the second object has a member with a key matching a member in the first object, `JSON_MERGE_PATCH()` *replaces* the value in the first object with the value in the second object, whereas `JSON_MERGE_PRESERVE()` *appends* the second value to the first value.
+  + Se o segundo `object` tiver um membro com uma `key` que corresponda a um membro no primeiro `object`, `JSON_MERGE_PATCH()` *substitui* o valor no primeiro `object` pelo valor no segundo `object`, enquanto `JSON_MERGE_PRESERVE()` *anexa* o segundo valor ao primeiro valor.
 
-  This example compares the results of merging the same 3 JSON objects, each having a matching key `"a"`, with each of these two functions:
+  Este exemplo compara os resultados da combinação dos mesmos 3 `JSON objects`, cada um com uma `key` correspondente `"a"`, usando cada uma destas duas funções:
 
   ```sql
   mysql> SET @x = '{ "a": 1, "b": 2 }',
@@ -280,15 +280,15 @@ The functions in this section modify JSON values and return the result.
 
 * `JSON_MERGE_PRESERVE(json_doc, json_doc[, json_doc] ...)`
 
-  Merges two or more JSON documents and returns the merged result. Returns `NULL` if any argument is `NULL`. An error occurs if any argument is not a valid JSON document.
+  Combina (Merges) dois ou mais `JSON documents` e retorna o resultado combinado. Retorna `NULL` se qualquer argumento for `NULL`. Um erro ocorre se qualquer argumento não for um `JSON document` válido.
 
-  Merging takes place according to the following rules. For additional information, see Normalization, Merging, and Autowrapping of JSON Values.
+  A combinação ocorre de acordo com as seguintes regras. Para informações adicionais, consulte Normalization, Merging, and Autowrapping of JSON Values.
 
-  + Adjacent arrays are merged to a single array.
-  + Adjacent objects are merged to a single object.
-  + A scalar value is autowrapped as an array and merged as an array.
+  + `Arrays` adjacentes são combinados em um único `array`.
+  + `Objects` adjacentes são combinados em um único `object`.
+  + Um valor `scalar` é encapsulado automaticamente (autowrapped) como um `array` e combinado como um `array`.
 
-  + An adjacent array and object are merged by autowrapping the object as an array and merging the two arrays.
+  + Um `array` e um `object` adjacentes são combinados encapsulando o `object` automaticamente como um `array` e combinando os dois `arrays`.
 
   ```sql
   mysql> SELECT JSON_MERGE_PRESERVE('[1, 2]', '[true, false]');
@@ -336,17 +336,17 @@ The functions in this section modify JSON values and return the result.
   +----------------------------------------------------------------------------------+
   ```
 
-  This function was added in MySQL 5.7.22 as a synonym for `JSON_MERGE()`. The `JSON_MERGE()` function is now deprecated, and is subject to removal in a future release of MySQL.
+  Esta função foi adicionada no MySQL 5.7.22 como sinônimo de `JSON_MERGE()`. A função `JSON_MERGE()` está agora obsoleta e sujeita a remoção em uma versão futura do MySQL.
 
-  This function is similar to but differs from `JSON_MERGE_PATCH()` in significant respects; see JSON_MERGE_PATCH() compared with JSON_MERGE_PRESERVE() compared with JSON_MERGE_PRESERVE()"), for more information.
+  Esta função é semelhante, mas difere de `JSON_MERGE_PATCH()` em aspetos significativos; consulte JSON_MERGE_PATCH() compared with JSON_MERGE_PRESERVE() compared with JSON_MERGE_PRESERVE()") para mais informações.
 
 * `JSON_REMOVE(json_doc, path[, path] ...)`
 
-  Removes data from a JSON document and returns the result. Returns `NULL` if any argument is `NULL`. An error occurs if the *`json_doc`* argument is not a valid JSON document or any *`path`* argument is not a valid path expression or is `$` or contains a `*` or `**` wildcard.
+  Remove dados de um `JSON document` e retorna o resultado. Retorna `NULL` se qualquer argumento for `NULL`. Um erro ocorre se o argumento *`json_doc`* não for um `JSON document` válido, ou se qualquer argumento *`path`* não for uma expressão de `path` válida, ou for `$` ou contiver um `wildcard` `*` ou `**`.
 
-  The *`path`* arguments are evaluated left to right. The document produced by evaluating one path becomes the new value against which the next path is evaluated.
+  Os argumentos *`path`* são avaliados da esquerda para a direita. O `document` produzido pela avaliação de um `path` torna-se o novo valor contra o qual o próximo `path` é avaliado.
 
-  It is not an error if the element to be removed does not exist in the document; in that case, the path does not affect the document.
+  Não é um erro se o elemento a ser removido não existir no `document`; nesse caso, o `path` não afeta o `document`.
 
   ```sql
   mysql> SET @j = '["a", ["b", "c"], "d"]';
@@ -360,13 +360,13 @@ The functions in this section modify JSON values and return the result.
 
 * `JSON_REPLACE(json_doc, path, val[, path, val] ...)`
 
-  Replaces existing values in a JSON document and returns the result. Returns `NULL` if *`json_doc`* or any *`path`* argument is `NULL`. An error occurs if the *`json_doc`* argument is not a valid JSON document or any *`path`* argument is not a valid path expression or contains a `*` or `**` wildcard.
+  Substitui valores existentes em um `JSON document` e retorna o resultado. Retorna `NULL` se *`json_doc`* ou qualquer argumento *`path`* for `NULL`. Um erro ocorre se o argumento *`json_doc`* não for um `JSON document` válido ou se qualquer argumento *`path`* não for uma expressão de `path` válida ou contiver um `wildcard` `*` ou `**`.
 
-  The path-value pairs are evaluated left to right. The document produced by evaluating one pair becomes the new value against which the next pair is evaluated.
+  Os pares `path`-valor são avaliados da esquerda para a direita. O `document` produzido pela avaliação de um par torna-se o novo valor contra o qual o próximo par é avaliado.
 
-  A path-value pair for an existing path in the document overwrites the existing document value with the new value. A path-value pair for a nonexisting path in the document is ignored and has no effect.
+  Um par `path`-valor para um `path` existente no `document` sobrescreve o valor existente do `document` com o novo valor. Um par `path`-valor para um `path` não existente no `document` é ignorado e não tem efeito.
 
-  For a comparison of `JSON_INSERT()`, `JSON_REPLACE()`, and `JSON_SET()`, see the discussion of `JSON_SET()`.
+  Para uma comparação de `JSON_INSERT()`, `JSON_REPLACE()` e `JSON_SET()`, consulte a discussão sobre `JSON_SET()`.
 
   ```sql
   mysql> SET @j = '{ "a": 1, "b": [2, 3]}';
@@ -401,27 +401,27 @@ The functions in this section modify JSON values and return the result.
 
 * `JSON_SET(json_doc, path, val[, path, val] ...)`
 
-  Inserts or updates data in a JSON document and returns the result. Returns `NULL` if *`json_doc`* or *`path`* is `NULL`, or if *`path`*, when given, does not locate an object. Otherwise, an error occurs if the *`json_doc`* argument is not a valid JSON document or any *`path`* argument is not a valid path expression or contains a `*` or `**` wildcard.
+  Insere ou atualiza dados em um `JSON document` e retorna o resultado. Retorna `NULL` se *`json_doc`* ou *`path`* for `NULL`, ou se *`path`*, quando fornecido, não localizar um `object`. Caso contrário, um erro ocorre se o argumento *`json_doc`* não for um `JSON document` válido ou se qualquer argumento *`path`* não for uma expressão de `path` válida ou contiver um `wildcard` `*` ou `**`.
 
-  The path-value pairs are evaluated left to right. The document produced by evaluating one pair becomes the new value against which the next pair is evaluated.
+  Os pares `path`-valor são avaliados da esquerda para a direita. O `document` produzido pela avaliação de um par torna-se o novo valor contra o qual o próximo par é avaliado.
 
-  A path-value pair for an existing path in the document overwrites the existing document value with the new value. A path-value pair for a nonexisting path in the document adds the value to the document if the path identifies one of these types of values:
+  Um par `path`-valor para um `path` existente no `document` sobrescreve o valor existente do `document` com o novo valor. Um par `path`-valor para um `path` não existente no `document` adiciona o valor ao `document` se o `path` identificar um destes tipos de valores:
 
-  + A member not present in an existing object. The member is added to the object and associated with the new value.
+  + Um membro não presente em um `object` existente. O membro é adicionado ao `object` e associado ao novo valor.
 
-  + A position past the end of an existing array. The array is extended with the new value. If the existing value is not an array, it is autowrapped as an array, then extended with the new value.
+  + Uma posição após o final de um `array` existente. O `array` é estendido com o novo valor. Se o valor existente não for um `array`, ele é encapsulado automaticamente (autowrapped) como um `array`, e então estendido com o novo valor.
 
-  Otherwise, a path-value pair for a nonexisting path in the document is ignored and has no effect.
+  Caso contrário, um par `path`-valor para um `path` não existente no `document` é ignorado e não tem efeito.
 
-  The `JSON_SET()`, `JSON_INSERT()`, and `JSON_REPLACE()` functions are related:
+  As funções `JSON_SET()`, `JSON_INSERT()` e `JSON_REPLACE()` estão relacionadas:
 
-  + `JSON_SET()` replaces existing values and adds nonexisting values.
+  + `JSON_SET()` substitui valores existentes e adiciona valores não existentes.
 
-  + `JSON_INSERT()` inserts values without replacing existing values.
+  + `JSON_INSERT()` insere valores sem substituir valores existentes.
 
-  + `JSON_REPLACE()` replaces *only* existing values.
+  + `JSON_REPLACE()` substitui *apenas* valores existentes.
 
-  The following examples illustrate these differences, using one path that does exist in the document (`$.a`) and another that does not exist (`$.c`):
+  Os exemplos a seguir ilustram essas diferenças, usando um `path` que existe no `document` (`$.a`) e outro que não existe (`$.c`):
 
   ```sql
   mysql> SET @j = '{ "a": 1, "b": [2, 3]}';
@@ -447,15 +447,15 @@ The functions in this section modify JSON values and return the result.
 
 * `JSON_UNQUOTE(json_val)`
 
-  Unquotes JSON value and returns the result as a `utf8mb4` string. Returns `NULL` if the argument is `NULL`. An error occurs if the value starts and ends with double quotes but is not a valid JSON string literal.
+  Remove as aspas (unquotes) do valor JSON e retorna o resultado como uma `string` `utf8mb4`. Retorna `NULL` se o argumento for `NULL`. Um erro ocorre se o valor começar e terminar com aspas duplas, mas não for um literal de `string` JSON válido.
 
-  Within a string, certain sequences have special meaning unless the `NO_BACKSLASH_ESCAPES` SQL mode is enabled. Each of these sequences begins with a backslash (`\`), known as the *escape character*. MySQL recognizes the escape sequences shown in Table 12.23, “JSON_UNQUOTE() Special Character Escape Sequences” Special Character Escape Sequences"). For all other escape sequences, backslash is ignored. That is, the escaped character is interpreted as if it was not escaped. For example, `\x` is just `x`. These sequences are case-sensitive. For example, `\b` is interpreted as a backspace, but `\B` is interpreted as `B`.
+  Dentro de uma `string`, certas sequências têm significado especial, a menos que o `SQL mode` `NO_BACKSLASH_ESCAPES` esteja habilitado. Cada uma dessas sequências começa com uma barra invertida (`\`), conhecida como *caractere de escape*. O MySQL reconhece as sequências de escape mostradas na Tabela 12.23, “Sequências de Escape de Caracteres Especiais JSON_UNQUOTE()”. Para todas as outras sequências de escape, a barra invertida é ignorada. Ou seja, o caractere escapado é interpretado como se não tivesse sido escapado. Por exemplo, `\x` é apenas `x`. Essas sequências diferenciam maiúsculas de minúsculas. Por exemplo, `\b` é interpretado como um `backspace`, mas `\B` é interpretado como `B`.
 
-  **Table 12.23 JSON_UNQUOTE() Special Character Escape Sequences**
+  **Tabela 12.23 Sequências de Escape de Caracteres Especiais JSON_UNQUOTE()**
 
-  <table><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Escape Sequence</th> <th>Character Represented by Sequence</th> </tr></thead><tbody><tr> <td><code>\"</code></td> <td>A double quote (<code>"</code>) character</td> </tr><tr> <td><code>\b</code></td> <td>A backspace character</td> </tr><tr> <td><code>\f</code></td> <td>A formfeed character</td> </tr><tr> <td><code>\n</code></td> <td>A newline (linefeed) character</td> </tr><tr> <td><code>\r</code></td> <td>A carriage return character</td> </tr><tr> <td><code>\t</code></td> <td>A tab character</td> </tr><tr> <td><code>\\</code></td> <td>A backslash (<code>\</code>) character</td> </tr><tr> <td><code>\u<em><code>XXXX</code></em></code></td> <td>UTF-8 bytes for Unicode value <em><code>XXXX</code></em></td> </tr></tbody></table>
+  <table><thead><tr> <th>Sequência de Escape</th> <th>Caractere Representado pela Sequência</th> </tr></thead><tbody><tr> <td><code>\"</code></td> <td>Um caractere de aspas duplas (<code>"</code>)</td> </tr><tr> <td><code>\b</code></td> <td>Um caractere `backspace`</td> </tr><tr> <td><code>\f</code></td> <td>Um caractere `formfeed`</td> </tr><tr> <td><code>\n</code></td> <td>Um caractere de nova linha (`linefeed`)</td> </tr><tr> <td><code>\r</code></td> <td>Um caractere de retorno de carro (`carriage return`)</td> </tr><tr> <td><code>\t</code></td> <td>Um caractere `tab`</td> </tr><tr> <td><code>\\</code></td> <td>Um caractere de barra invertida (<code>\</code>)</td> </tr><tr> <td><code>\u<em><code>XXXX</code></em></code></td> <td>Bytes UTF-8 para o valor Unicode <em><code>XXXX</code></em></td> </tr></tbody></table>
 
-  Two simple examples of the use of this function are shown here:
+  Dois exemplos simples do uso desta função são mostrados aqui:
 
   ```sql
   mysql> SET @j = '"abc"';
@@ -474,7 +474,7 @@ The functions in this section modify JSON values and return the result.
   +-----------+------------------+
   ```
 
-  The following set of examples shows how `JSON_UNQUOTE` handles escapes with `NO_BACKSLASH_ESCAPES` disabled and enabled:
+  O conjunto de exemplos a seguir mostra como `JSON_UNQUOTE` lida com escapes com `NO_BACKSLASH_ESCAPES` desabilitado e habilitado:
 
   ```sql
   mysql> SELECT @@sql_mode;

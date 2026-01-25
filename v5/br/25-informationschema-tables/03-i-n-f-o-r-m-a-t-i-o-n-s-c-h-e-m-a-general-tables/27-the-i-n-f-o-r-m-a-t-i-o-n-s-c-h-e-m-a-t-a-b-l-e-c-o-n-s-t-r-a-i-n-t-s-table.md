@@ -1,31 +1,31 @@
-### 24.3.27 The INFORMATION_SCHEMA TABLE_CONSTRAINTS Table
+### 24.3.27 A Tabela INFORMATION_SCHEMA TABLE_CONSTRAINTS
 
-The [`TABLE_CONSTRAINTS`](information-schema-table-constraints-table.html "24.3.27 The INFORMATION_SCHEMA TABLE_CONSTRAINTS Table") table describes which tables have constraints.
+A tabela [`TABLE_CONSTRAINTS`](information-schema-table-constraints-table.html "24.3.27 A Tabela INFORMATION_SCHEMA TABLE_CONSTRAINTS") descreve quais tabelas possuem Constraints.
 
-The [`TABLE_CONSTRAINTS`](information-schema-table-constraints-table.html "24.3.27 The INFORMATION_SCHEMA TABLE_CONSTRAINTS Table") table has these columns:
+A tabela [`TABLE_CONSTRAINTS`](information-schema-table-constraints-table.html "24.3.27 A Tabela INFORMATION_SCHEMA TABLE_CONSTRAINTS") possui as seguintes colunas:
 
 * `CONSTRAINT_CATALOG`
 
-  The name of the catalog to which the constraint belongs. This value is always `def`.
+  O nome do catalog ao qual a Constraint pertence. Este valor é sempre `def`.
 
 * `CONSTRAINT_SCHEMA`
 
-  The name of the schema (database) to which the constraint belongs.
+  O nome do Schema (Database) ao qual a Constraint pertence.
 
 * `CONSTRAINT_NAME`
 
-  The name of the constraint.
+  O nome da Constraint.
 
 * `TABLE_SCHEMA`
 
-  The name of the schema (database) to which the table belongs.
+  O nome do Schema (Database) ao qual a tabela pertence.
 
 * `TABLE_NAME`
 
-  The name of the table.
+  O nome da tabela.
 
 * `CONSTRAINT_TYPE`
 
-  The type of constraint. The value can be `UNIQUE`, `PRIMARY KEY`, `FOREIGN KEY`, or `CHECK`. This is a [`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") (not [`ENUM`](enum.html "11.3.5 The ENUM Type")) column. The `CHECK` value is not available until MySQL supports `CHECK`.
+  O tipo de Constraint. O valor pode ser `UNIQUE`, `PRIMARY KEY`, `FOREIGN KEY`, ou `CHECK`. Esta é uma coluna [`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") (não [`ENUM`](enum.html "11.3.5 The ENUM Type")). O valor `CHECK` não está disponível até que o MySQL suporte `CHECK`.
 
-  The `UNIQUE` and `PRIMARY KEY` information is about the same as what you get from the `Key_name` column in the output from [`SHOW INDEX`](show-index.html "13.7.5.22 SHOW INDEX Statement") when the `Non_unique` column is `0`.
+  A informação `UNIQUE` e `PRIMARY KEY` é a mesma que você obtém da coluna `Key_name` na saída do [`SHOW INDEX`](show-index.html "13.7.5.22 SHOW INDEX Statement") quando a coluna `Non_unique` é `0`.

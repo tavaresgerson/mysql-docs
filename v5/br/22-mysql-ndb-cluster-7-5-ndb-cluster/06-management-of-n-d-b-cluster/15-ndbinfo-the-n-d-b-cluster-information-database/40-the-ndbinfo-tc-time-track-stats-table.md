@@ -1,78 +1,36 @@
-#### 21.6.15.40 The ndbinfo tc_time_track_stats Table
+#### 21.6.15.40 A Tabela ndbinfo tc_time_track_stats
 
-The `tc_time_track_stats` table provides time-tracking information obtained from the [`DBTC`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbtc.html) block (TC) instances in the data nodes, through API nodes access `NDB`. Each TC instance tracks latencies for a set of activities it undertakes on behalf of API nodes or other data nodes; these activities include transactions, transaction errors, key reads, key writes, unique index operations, failed key operations of any type, scans, failed scans, fragment scans, and failed fragment scans.
+A tabela `tc_time_track_stats` fornece informações de rastreamento de tempo obtidas das instâncias do bloco [`DBTC`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbtc.html) (TC) nos nós de dados, por meio do acesso `NDB` dos nós de API. Cada instância TC rastreia latências para um conjunto de atividades que ela realiza em nome de nós de API ou outros nós de dados; essas atividades incluem transactions, erros de transaction, leituras de Key, escritas de Key, operações de Unique Index, operações de Key falhas de qualquer tipo, scans, scans falhos, fragment scans e fragment scans falhos.
 
-A set of counters is maintained for each activity, each counter covering a range of latencies less than or equal to an upper bound. At the conclusion of each activity, its latency is determined and the appropriate counter incremented. `tc_time_track_stats` presents this information as rows, with a row for each instance of the following:
+Um conjunto de contadores é mantido para cada atividade, cobrindo cada contador um intervalo de latências menor ou igual a um limite superior (`upper bound`). Ao final de cada atividade, sua latência é determinada e o contador apropriado é incrementado. A tabela `tc_time_track_stats` apresenta essa informação como linhas, com uma linha para cada instância do seguinte:
 
-* Data node, using its ID
-* TC block instance
-* Other communicating data node or API node, using its ID
-* Upper bound value
+* Nó de dados, usando seu ID
+* Instância do bloco TC
+* Outro nó de dados ou nó de API comunicante, usando seu ID
+* Valor do limite superior (`upper bound`)
 
-##### Notes
+##### Notas
 
-Each row contains a value for each activity type. This is the number of times that this activity occurred with a latency within the range specified by the row (that is, where the latency does not exceed the upper bound).
+Cada linha contém um valor para cada tipo de atividade. Este é o número de vezes que esta atividade ocorreu com uma latência dentro do intervalo especificado pela linha (ou seja, onde a latência não excede o limite superior).
 
-The `tc_time_track_stats` table contains the following columns:
+A tabela `tc_time_track_stats` contém as seguintes colunas:
 
-* `node_id`
+| Coluna | Descrição |
+| :--- | :--- |
+| `node_id` | ID do nó solicitante |
+| `block_number` | Número do bloco TC |
+| `block_instance` | Número da instância do bloco TC |
+| `comm_node_id` | ID do nó de API ou nó de dados comunicante |
+| `upper_bound` | Limite superior do intervalo (em microssegundos) |
+| `scans` | Baseado na duração de scans bem-sucedidos, desde a abertura até o fechamento, rastreados em relação aos nós de API ou de dados que os solicitam. |
+| `scan_errors` | Baseado na duração de scans falhos, desde a abertura até o fechamento, rastreados em relação aos nós de API ou de dados que os solicitam. |
+| `scan_fragments` | Baseado na duração de fragment scans bem-sucedidos, desde a abertura até o fechamento, rastreados em relação aos nós de dados que os executam. |
+| `scan_fragment_errors` | Baseado na duração de fragment scans falhos, desde a abertura até o fechamento, rastreados em relação aos nós de dados que os executam. |
+| `transactions` | Baseado na duração de transactions bem-sucedidas, desde o início até o envio do `ACK` de commit, rastreadas em relação aos nós de API ou de dados que as solicitam. Transactions *stateless* não estão incluídas. |
+| `transaction_errors` | Baseado na duração de transactions falhas, desde o início até o ponto de falha, rastreadas em relação aos nós de API ou de dados que as solicitam. |
+| `read_key_ops` | Baseado na duração de leituras de Primary Key bem-sucedidas com Locks. Rastreadeas em relação tanto ao nó de API ou de dados que as solicitam quanto ao nó de dados que as executa. |
+| `write_key_ops` | Baseado na duração de escritas de Primary Key bem-sucedidas, rastreadas em relação tanto ao nó de API ou de dados que as solicitam quanto ao nó de dados que as executa. |
+| `index_key_ops` | Baseado na duração de operações de Unique Index Key bem-sucedidas, rastreadas em relação tanto ao nó de API ou de dados que as solicitam quanto ao nó de dados que executa as leituras de tabelas base. |
+| `key_op_errors` | Baseado na duração de todas as operações de leitura ou escrita de Key malsucedidas, rastreadas em relação tanto ao nó de API ou de dados que as solicitam quanto ao nó de dados que as executa. |
 
-  Requesting node ID
-
-* `block_number`
-
-  TC block number
-
-* `block_instance`
-
-  TC block instance number
-
-* `comm_node_id`
-
-  Node ID of communicating API or data node
-
-* `upper_bound`
-
-  Upper bound of interval (in microseconds)
-
-* `scans`
-
-  Based on duration of successful scans from opening to closing, tracked against the API or data nodes requesting them.
-
-* `scan_errors`
-
-  Based on duration of failed scans from opening to closing, tracked against the API or data nodes requesting them.
-
-* `scan_fragments`
-
-  Based on duration of successful fragment scans from opening to closing, tracked against the data nodes executing them
-
-* `scan_fragment_errors`
-
-  Based on duration of failed fragment scans from opening to closing, tracked against the data nodes executing them
-
-* `transactions`
-
-  Based on duration of successful transactions from beginning until sending of commit `ACK`, tracked against the API or data nodes requesting them. Stateless transactions are not included.
-
-* `transaction_errors`
-
-  Based on duration of failing transactions from start to point of failure, tracked against the API or data nodes requesting them.
-
-* `read_key_ops`
-
-  Based on duration of successful primary key reads with locks. Tracked against both the API or data node requesting them and the data node executing them.
-
-* `write_key_ops`
-
-  Based on duration of successful primary key writes, tracked against both the API or data node requesting them and the data node executing them.
-
-* `index_key_ops`
-
-  Based on duration of successful unique index key operations, tracked against both the API or data node requesting them and the data node executing reads of base tables.
-
-* `key_op_errors`
-
-  Based on duration of all unsuccessful key read or write operations, tracked against both the API or data node requesting them and the data node executing them.
-
-The `block_instance` column provides the [`DBTC`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbtc.html) kernel block instance number. You can use this together with the block name to obtain information about specific threads from the [`threadblocks`](mysql-cluster-ndbinfo-threadblocks.html "21.6.15.41 The ndbinfo threadblocks Table") table.
+A coluna `block_instance` fornece o número da instância do bloco de kernel [`DBTC`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbtc.html). Você pode usar isso junto com o nome do bloco para obter informações sobre Threads específicos da tabela [`threadblocks`](mysql-cluster-ndbinfo-threadblocks.html "21.6.15.41 The ndbinfo threadblocks Table").

@@ -1,16 +1,16 @@
-### 22.2.4 HASH Partitioning
+### 22.2.4 HASH Partitioning
 
 [22.2.4.1 LINEAR HASH Partitioning](partitioning-linear-hash.html)
 
-Partitioning by `HASH` is used primarily to ensure an even distribution of data among a predetermined number of partitions. With range or list partitioning, you must specify explicitly into which partition a given column value or set of column values is to be stored; with hash partitioning, MySQL takes care of this for you, and you need only specify a column value or expression based on a column value to be hashed and the number of partitions into which the partitioned table is to be divided.
+O Partitioning por `HASH` é usado principalmente para garantir uma distribuição uniforme de dados entre um número predeterminado de partitions. Com range ou list partitioning, você deve especificar explicitamente em qual partition um determinado valor de coluna ou conjunto de valores de coluna deve ser armazenado; com hash partitioning, o MySQL cuida disso para você, e você só precisa especificar um valor de coluna ou uma expression baseada em um valor de coluna a ser hashed e o número de partitions nas quais a tabela particionada deve ser dividida.
 
-To partition a table using `HASH` partitioning, it is necessary to append to the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement a `PARTITION BY HASH (expr)` clause, where *`expr`* is an expression that returns an integer. This can simply be the name of a column whose type is one of MySQL's integer types. In addition, you most likely want to follow this with `PARTITIONS num`, where *`num`* is a positive integer representing the number of partitions into which the table is to be divided.
+Para particionar uma tabela usando `HASH` partitioning, é necessário anexar à instrução [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") uma cláusula `PARTITION BY HASH (expr)`, onde *`expr`* é uma expression que retorna um integer. Isso pode ser simplesmente o nome de uma coluna cujo tipo é um dos tipos integer do MySQL. Além disso, é muito provável que você queira seguir isso com `PARTITIONS num`, onde *`num`* é um integer positivo que representa o número de partitions nas quais a tabela deve ser dividida.
 
 Note
 
-For simplicity, the tables in the examples that follow do not use any keys. You should be aware that, if a table has any unique keys, every column used in the partitioning expression for this table must be part of every unique key, including the primary key. See [Section 22.6.1, “Partitioning Keys, Primary Keys, and Unique Keys”](partitioning-limitations-partitioning-keys-unique-keys.html "22.6.1 Partitioning Keys, Primary Keys, and Unique Keys"), for more information.
+Por uma questão de simplicidade, as tabelas nos exemplos a seguir não utilizam nenhuma key. Você deve estar ciente de que, se uma tabela tiver qualquer unique key, toda coluna usada na expression de partitioning para esta tabela deve fazer parte de toda unique key, incluindo a primary key. Consulte [Seção 22.6.1, “Partitioning Keys, Primary Keys, and Unique Keys”](partitioning-limitations-partitioning-keys-unique-keys.html "22.6.1 Partitioning Keys, Primary Keys, and Unique Keys"), para obter mais informações.
 
-The following statement creates a table that uses hashing on the `store_id` column and is divided into 4 partitions:
+A instrução a seguir cria uma tabela que usa hashing na coluna `store_id` e é dividida em 4 partitions:
 
 ```sql
 CREATE TABLE employees (
@@ -26,11 +26,11 @@ PARTITION BY HASH(store_id)
 PARTITIONS 4;
 ```
 
-If you do not include a `PARTITIONS` clause, the number of partitions defaults to `1`.
+Se você não incluir uma cláusula `PARTITIONS`, o número de partitions assume o valor padrão de `1`.
 
-Using the `PARTITIONS` keyword without a number following it results in a syntax error.
+Usar a palavra-chave `PARTITIONS` sem um número subsequente resulta em um erro de sintaxe.
 
-You can also use an SQL expression that returns an integer for *`expr`*. For instance, you might want to partition based on the year in which an employee was hired. This can be done as shown here:
+Você também pode usar uma expression SQL que retorna um integer para *`expr`*. Por exemplo, você pode querer particionar com base no ano em que um funcionário foi contratado. Isso pode ser feito conforme mostrado aqui:
 
 ```sql
 CREATE TABLE employees (
@@ -46,19 +46,19 @@ PARTITION BY HASH( YEAR(hired) )
 PARTITIONS 4;
 ```
 
-*`expr`* must return a nonconstant, nonrandom integer value (in other words, it should be varying but deterministic), and must not contain any prohibited constructs as described in [Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning"). You should also keep in mind that this expression is evaluated each time a row is inserted or updated (or possibly deleted); this means that very complex expressions may give rise to performance issues, particularly when performing operations (such as batch inserts) that affect a great many rows at one time.
+*`expr`* deve retornar um valor integer não constante e não randômico (em outras palavras, deve ser variável, mas determinístico), e não deve conter quaisquer construções proibidas, conforme descrito em [Seção 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning"). Você também deve ter em mente que esta expression é avaliada toda vez que uma row é inserida ou atualizada (ou possivelmente deletada); isso significa que expressions muito complexas podem causar problemas de performance, particularmente ao realizar operações (como inserts em lote) que afetam um grande número de rows de uma só vez.
 
-The most efficient hashing function is one which operates upon a single table column and whose value increases or decreases consistently with the column value, as this allows for “pruning” on ranges of partitions. That is, the more closely that the expression varies with the value of the column on which it is based, the more efficiently MySQL can use the expression for hash partitioning.
+A hashing function mais eficiente é aquela que opera em uma única coluna da tabela e cujo valor aumenta ou diminui consistentemente com o valor da coluna, pois isso permite o “pruning” (poda) em ranges de partitions. Ou seja, quanto mais de perto a expression variar com o valor da coluna na qual ela está baseada, mais eficientemente o MySQL pode usar a expression para hash partitioning.
 
-For example, where `date_col` is a column of type [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"), then the expression [`TO_DAYS(date_col)`](date-and-time-functions.html#function_to-days) is said to vary directly with the value of `date_col`, because for every change in the value of `date_col`, the value of the expression changes in a consistent manner. The variance of the expression [`YEAR(date_col)`](date-and-time-functions.html#function_year) with respect to `date_col` is not quite as direct as that of [`TO_DAYS(date_col)`](date-and-time-functions.html#function_to-days), because not every possible change in `date_col` produces an equivalent change in [`YEAR(date_col)`](date-and-time-functions.html#function_year). Even so, [`YEAR(date_col)`](date-and-time-functions.html#function_year) is a good candidate for a hashing function, because it varies directly with a portion of `date_col` and there is no possible change in `date_col` that produces a disproportionate change in [`YEAR(date_col)`](date-and-time-functions.html#function_year).
+Por exemplo, onde `date_col` é uma coluna do tipo [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"), a expression [`TO_DAYS(date_col)`](date-and-time-functions.html#function_to-days) varia diretamente com o valor de `date_col`, pois para cada alteração no valor de `date_col`, o valor da expression muda de maneira consistente. A variação da expression [`YEAR(date_col)`](date-and-time-functions.html#function_year) em relação a `date_col` não é tão direta quanto a de [`TO_DAYS(date_col)`](date-and-time-functions.html#function_to-days), porque nem toda mudança possível em `date_col` produz uma mudança equivalente em [`YEAR(date_col)`](date-and-time-functions.html#function_year). Mesmo assim, [`YEAR(date_col)`](date-and-time-functions.html#function_year) é uma boa candidata para uma hashing function, pois varia diretamente com uma porção de `date_col` e não há nenhuma mudança possível em `date_col` que produza uma alteração desproporcional em [`YEAR(date_col)`](date-and-time-functions.html#function_year).
 
-By way of contrast, suppose that you have a column named `int_col` whose type is [`INT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"). Now consider the expression [`POW(5-int_col,3) + 6`](mathematical-functions.html#function_pow). This would be a poor choice for a hashing function because a change in the value of `int_col` is not guaranteed to produce a proportional change in the value of the expression. Changing the value of `int_col` by a given amount can produce widely differing changes in the value of the expression. For example, changing `int_col` from `5` to `6` produces a change of `-1` in the value of the expression, but changing the value of `int_col` from `6` to `7` produces a change of `-7` in the expression value.
+Em contraste, suponha que você tenha uma coluna chamada `int_col` cujo tipo é [`INT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"). Agora considere a expression [`POW(5-int_col,3) + 6`](mathematical-functions.html#function_pow). Esta seria uma escolha ruim para uma hashing function porque uma alteração no valor de `int_col` não garante a produção de uma alteração proporcional no valor da expression. Alterar o valor de `int_col` em uma determinada quantidade pode produzir alterações amplamente divergentes no valor da expression. Por exemplo, mudar `int_col` de `5` para `6` produz uma alteração de `-1` no valor da expression, mas mudar o valor de `int_col` de `6` para `7` produz uma alteração de `-7` no valor da expression.
 
-In other words, the more closely the graph of the column value versus the value of the expression follows a straight line as traced by the equation `y=cx` where *`c`* is some nonzero constant, the better the expression is suited to hashing. This has to do with the fact that the more nonlinear an expression is, the more uneven the distribution of data among the partitions it tends to produce.
+Em outras palavras, quanto mais de perto o gráfico do valor da coluna em comparação com o valor da expression seguir uma linha reta traçada pela equação `y=cx`, onde *`c`* é alguma constante diferente de zero, melhor a expression é adequada para hashing. Isso está relacionado ao fato de que quanto mais não linear for uma expression, mais desigual será a distribuição de dados entre as partitions que ela tende a produzir.
 
-In theory, pruning is also possible for expressions involving more than one column value, but determining which of such expressions are suitable can be quite difficult and time-consuming. For this reason, the use of hashing expressions involving multiple columns is not particularly recommended.
+Em teoria, o pruning também é possível para expressions que envolvem mais de um valor de coluna, mas determinar quais dessas expressions são adequadas pode ser bastante difícil e demorado. Por esse motivo, o uso de hashing expressions que envolvam múltiplas colunas não é particularmente recomendado.
 
-When `PARTITION BY HASH` is used, MySQL determines which partition of *`num`* partitions to use based on the modulus of the result of the expression. In other words, for a given expression *`expr`*, the partition in which the record is stored is partition number *`N`*, where `N = MOD(expr, num)`. Suppose that table `t1` is defined as follows, so that it has 4 partitions:
+Quando `PARTITION BY HASH` é usado, o MySQL determina qual partition das *`num`* partitions usar com base no módulo do resultado da expression. Em outras palavras, para uma determinada expression *`expr`*, a partition na qual o registro é armazenado é a partition número *`N`*, onde `N = MOD(expr, num)`. Suponha que a tabela `t1` seja definida da seguinte forma, de modo que tenha 4 partitions:
 
 ```sql
 CREATE TABLE t1 (col1 INT, col2 CHAR(5), col3 DATE)
@@ -66,7 +66,7 @@ CREATE TABLE t1 (col1 INT, col2 CHAR(5), col3 DATE)
     PARTITIONS 4;
 ```
 
-If you insert a record into `t1` whose `col3` value is `'2005-09-15'`, then the partition in which it is stored is determined as follows:
+Se você inserir um registro em `t1` cujo valor de `col3` é `'2005-09-15'`, a partition na qual ele é armazenado é determinada da seguinte forma:
 
 ```sql
 MOD(YEAR('2005-09-01'),4)
@@ -74,6 +74,6 @@ MOD(YEAR('2005-09-01'),4)
 =  1
 ```
 
-MySQL 5.7 also supports a variant of `HASH` partitioning known as linear hashing which employs a more complex algorithm for determining the placement of new rows inserted into the partitioned table. See [Section 22.2.4.1, “LINEAR HASH Partitioning”](partitioning-linear-hash.html "22.2.4.1 LINEAR HASH Partitioning"), for a description of this algorithm.
+O MySQL 5.7 também suporta uma variante de `HASH` partitioning conhecida como linear hashing, que emprega um algoritmo mais complexo para determinar o posicionamento de novas rows inseridas na tabela particionada. Consulte [Seção 22.2.4.1, “LINEAR HASH Partitioning”](partitioning-linear-hash.html "22.2.4.1 LINEAR HASH Partitioning"), para obter uma descrição deste algoritmo.
 
-The user-supplied expression is evaluated each time a record is inserted or updated. It may also—depending on the circumstances—be evaluated when records are deleted.
+A expression fornecida pelo usuário é avaliada toda vez que um registro é inserido ou atualizado. Ela também pode — dependendo das circunstâncias — ser avaliada quando registros são deletados.

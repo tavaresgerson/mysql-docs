@@ -1,50 +1,50 @@
-#### 21.6.15.20 The ndbinfo diskpagebuffer Table
+#### 21.6.15.20 A Tabela ndbinfo diskpagebuffer
 
-The `diskpagebuffer` table provides statistics about disk page buffer usage by NDB Cluster Disk Data tables.
+A tabela `diskpagebuffer` fornece estatísticas sobre o uso do buffer de páginas de disco (disk page buffer) pelas tabelas NDB Cluster Disk Data.
 
-The `diskpagebuffer` table contains the following columns:
+A tabela `diskpagebuffer` contém as seguintes colunas:
 
 * `node_id`
 
-  The data node ID
+  O ID do node de dados
 
 * `block_instance`
 
-  Block instance
+  Instância do Block
 
 * `pages_written`
 
-  Number of pages written to disk.
+  Número de páginas escritas no disco.
 
 * `pages_written_lcp`
 
-  Number of pages written by local checkpoints.
+  Número de páginas escritas por local checkpoints.
 
 * `pages_read`
 
-  Number of pages read from disk
+  Número de páginas lidas do disco
 
 * `log_waits`
 
-  Number of page writes waiting for log to be written to disk
+  Número de page writes esperando que o log seja escrito no disco
 
 * `page_requests_direct_return`
 
-  Number of requests for pages that were available in buffer
+  Número de requests por páginas que estavam disponíveis no buffer
 
 * `page_requests_wait_queue`
 
-  Number of requests that had to wait for pages to become available in buffer
+  Número de requests que tiveram que esperar as páginas ficarem disponíveis no buffer
 
 * `page_requests_wait_io`
 
-  Number of requests that had to be read from pages on disk (pages were unavailable in buffer)
+  Número de requests que tiveram que ser lidas das páginas no disco (páginas estavam indisponíveis no buffer)
 
-##### Notes
+##### Notas
 
-You can use this table with NDB Cluster Disk Data tables to determine whether [`DiskPageBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskpagebuffermemory) is sufficiently large to allow data to be read from the buffer rather from disk; minimizing disk seeks can help improve performance of such tables.
+Você pode usar esta tabela com as tabelas NDB Cluster Disk Data para determinar se o [`DiskPageBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskpagebuffermemory) é grande o suficiente para permitir que os dados sejam lidos do buffer em vez de serem lidos do disco; minimizar os disk seeks pode ajudar a melhorar a performance dessas tabelas.
 
-You can determine the proportion of reads from [`DiskPageBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskpagebuffermemory) to the total number of reads using a query such as this one, which obtains this ratio as a percentage:
+Você pode determinar a proporção de leituras do [`DiskPageBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskpagebuffermemory) em relação ao número total de leituras usando uma Query como esta, que obtém essa proporção como uma porcentagem:
 
 ```sql
 SELECT
@@ -55,7 +55,7 @@ SELECT
 FROM ndbinfo.diskpagebuffer;
 ```
 
-The result from this query should be similar to what is shown here, with one row for each data node in the cluster (in this example, the cluster has 4 data nodes):
+O resultado desta Query deve ser semelhante ao mostrado aqui, com uma linha para cada data node no cluster (neste exemplo, o cluster tem 4 data nodes):
 
 ```sql
 +---------+-----------+
@@ -69,13 +69,13 @@ The result from this query should be similar to what is shown here, with one row
 4 rows in set (0.00 sec)
 ```
 
-`hit_ratio` values approaching 100% indicate that only a very small number of reads are being made from disk rather than from the buffer, which means that Disk Data read performance is approaching an optimum level. If any of these values are less than 95%, this is a strong indicator that the setting for [`DiskPageBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskpagebuffermemory) needs to be increased in the `config.ini` file.
+Valores de `hit_ratio` próximos a 100% indicam que apenas um número muito pequeno de leituras está sendo feito a partir do disco em vez de serem feitos a partir do buffer, o que significa que a performance de leitura do Disk Data está se aproximando de um nível ideal. Se qualquer um desses valores for inferior a 95%, este é um forte indicador de que a configuração para [`DiskPageBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskpagebuffermemory) precisa ser aumentada no arquivo `config.ini`.
 
-Note
+Nota
 
-A change in [`DiskPageBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskpagebuffermemory) requires a rolling restart of all of the cluster's data nodes before it takes effect.
+Uma alteração no [`DiskPageBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskpagebuffermemory) requer um rolling restart de todos os data nodes do cluster antes que ela entre em vigor.
 
-`block_instance` refers to an instance of a kernel block. Together with the block name, this number can be used to look up a given instance in the [`threadblocks`](mysql-cluster-ndbinfo-threadblocks.html "21.6.15.41 The ndbinfo threadblocks Table") table. Using this information, you can obtain information about disk page buffer metrics relating to individual threads; an example query using `LIMIT 1` to limit the output to a single thread is shown here:
+`block_instance` refere-se a uma instância de um kernel block. Juntamente com o nome do block, este número pode ser usado para procurar uma determinada instância na tabela [`threadblocks`](mysql-cluster-ndbinfo-threadblocks.html "21.6.15.41 A Tabela ndbinfo threadblocks"). Usando esta informação, você pode obter métricas sobre o disk page buffer relacionadas a Threads individuais; um exemplo de Query usando `LIMIT 1` para limitar a saída a uma única Thread é mostrado aqui:
 
 ```sql
 mysql> SELECT

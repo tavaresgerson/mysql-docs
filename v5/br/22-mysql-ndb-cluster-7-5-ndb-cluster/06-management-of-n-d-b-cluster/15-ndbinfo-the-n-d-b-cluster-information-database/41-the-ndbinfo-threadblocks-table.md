@@ -1,27 +1,27 @@
-#### 21.6.15.41 The ndbinfo threadblocks Table
+#### 21.6.15.41 A Tabela ndbinfo threadblocks
 
-The `threadblocks` table associates data nodes, threads, and instances of `NDB` kernel blocks.
+A tabela `threadblocks` associa data nodes, threads e instâncias de blocks do kernel `NDB`.
 
-The `threadblocks` table contains the following columns:
+A tabela `threadblocks` contém as seguintes colunas:
 
 * `node_id`
 
-  Node ID
+  ID do Node
 
 * `thr_no`
 
-  Thread ID
+  ID da Thread
 
 * `block_name`
 
-  Block name
+  Nome do Block
 
 * `block_instance`
 
-  Block instance number
+  Número da instância do Block
 
-##### Notes
+##### Notas
 
-The value of the `block_name` in this table is one of the values found in the `block_name` column when selecting from the [`ndbinfo.blocks`](mysql-cluster-ndbinfo-blocks.html "21.6.15.3 The ndbinfo blocks Table") table. Although the list of possible values is static for a given NDB Cluster release, the list may vary between releases.
+O valor de `block_name` nesta tabela é um dos valores encontrados na coluna `block_name` ao selecionar da tabela [`ndbinfo.blocks`](mysql-cluster-ndbinfo-blocks.html "21.6.15.3 A Tabela ndbinfo blocks"). Embora a lista de valores possíveis seja estática para um determinado *release* do NDB Cluster, a lista pode variar entre *releases*.
 
-The `block_instance` column provides the kernel block instance number.
+A coluna `block_instance` fornece o número da instância do kernel block.

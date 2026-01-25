@@ -1,27 +1,27 @@
-### 14.6.6 Redo Log
+### 14.6.6 Redo Log
 
-The redo log is a disk-based data structure used during crash recovery to correct data written by incomplete transactions. During normal operations, the redo log encodes requests to change table data that result from SQL statements or low-level API calls. Modifications that did not finish updating the data files before an unexpected shutdown are replayed automatically during initialization, and before connections are accepted. For information about the role of the redo log in crash recovery, see Section 14.19.2, “InnoDB Recovery”.
+O redo log é uma estrutura de dados baseada em disco usada durante o crash recovery para corrigir dados escritos por transações incompletas. Durante operações normais, o redo log codifica solicitações para alterar dados da tabela resultantes de instruções SQL ou chamadas de API de baixo nível. Modificações que não terminaram de atualizar os data files antes de um shutdown inesperado são automaticamente *replayed* durante a inicialização, e antes que as conexões sejam aceitas. Para informações sobre o papel do redo log no crash recovery, consulte a Seção 14.19.2, “InnoDB Recovery”.
 
-By default, the redo log is physically represented on disk by two files named `ib_logfile0` and `ib_logfile1`. MySQL writes to the redo log files in a circular fashion. Data in the redo log is encoded in terms of records affected; this data is collectively referred to as redo. The passage of data through the redo log is represented by an ever-increasing LSN value.
+Por padrão, o redo log é fisicamente representado em disco por dois arquivos chamados `ib_logfile0` e `ib_logfile1`. O MySQL escreve nos arquivos do redo log de forma circular. Os dados no redo log são codificados em termos de registros afetados; esses dados são coletivamente chamados de *redo*. A passagem de dados pelo redo log é representada por um valor LSN sempre crescente.
 
-Information and procedures related to redo logs are described under the following topics in the section:
+Informações e procedimentos relacionados aos redo logs são descritos nos seguintes tópicos nesta seção:
 
-* Changing the Number or Size of InnoDB Redo Log Files
-* Related Topics
+* Alterando o Número ou Tamanho dos Arquivos de Redo Log do InnoDB
+* Tópicos Relacionados
 
-#### Changing the Number or Size of InnoDB Redo Log Files
+#### Alterando o Número ou Tamanho dos Arquivos de Redo Log do InnoDB
 
-To change the number or the size of your `InnoDB` redo log files, perform the following steps:
+Para alterar o número ou o tamanho dos seus arquivos de redo log do `InnoDB`, execute as seguintes etapas:
 
-1. Stop the MySQL server and make sure that it shuts down without errors.
+1. Pare o servidor MySQL e certifique-se de que ele se encerre (shuts down) sem erros.
 
-2. Edit `my.cnf` to change the log file configuration. To change the log file size, configure `innodb_log_file_size`. To increase the number of log files, configure `innodb_log_files_in_group`.
+2. Edite `my.cnf` para alterar a configuração do arquivo de log. Para alterar o tamanho do arquivo de log, configure `innodb_log_file_size`. Para aumentar o número de arquivos de log, configure `innodb_log_files_in_group`.
 
-3. Start the MySQL server again.
+3. Inicie o servidor MySQL novamente.
 
-If `InnoDB` detects that the `innodb_log_file_size` differs from the redo log file size, it writes a log checkpoint, closes and removes the old log files, creates new log files at the requested size, and opens the new log files.
+Se o `InnoDB` detectar que o `innodb_log_file_size` difere do tamanho do arquivo de redo log, ele escreve um log checkpoint, fecha e remove os arquivos de log antigos, cria novos arquivos de log com o tamanho solicitado e abre os novos arquivos de log.
 
-#### Related Topics
+#### Tópicos Relacionados
 
-* Redo Log File Configuration
-* Section 8.5.4, “Optimizing InnoDB Redo Logging”
+* Configuração do Arquivo de Redo Log
+* Seção 8.5.4, “Otimizando o Redo Logging do InnoDB”

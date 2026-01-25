@@ -1,4 +1,4 @@
-#### 13.6.5.5 LOOP Statement
+#### 13.6.5.5 Instrução LOOP
 
 ```sql
 [begin_label:] LOOP
@@ -6,13 +6,13 @@
 END LOOP [end_label]
 ```
 
-[`LOOP`](loop.html "13.6.5.5 LOOP Statement") implements a simple loop construct, enabling repeated execution of the statement list, which consists of one or more statements, each terminated by a semicolon (`;`) statement delimiter. The statements within the loop are repeated until the loop is terminated. Usually, this is accomplished with a [`LEAVE`](leave.html "13.6.5.4 LEAVE Statement") statement. Within a stored function, [`RETURN`](return.html "13.6.5.7 RETURN Statement") can also be used, which exits the function entirely.
+A instrução [`LOOP`](loop.html "13.6.5.5 LOOP Statement") implementa uma construção de loop simples, permitindo a execução repetida da lista de Statement, que consiste em um ou mais Statements, cada um terminado por um delimitador de Statement de ponto e vírgula (`;`). Os Statements dentro do loop são repetidos até que o loop seja terminado. Geralmente, isso é realizado com uma instrução [`LEAVE`](leave.html "13.6.5.4 LEAVE Statement"). Dentro de uma Stored Function, [`RETURN`](return.html "13.6.5.7 RETURN Statement") também pode ser usado, o que encerra a Function completamente.
 
-Neglecting to include a loop-termination statement results in an infinite loop.
+Não incluir uma instrução de terminação de loop resulta em um loop infinito.
 
-A [`LOOP`](loop.html "13.6.5.5 LOOP Statement") statement can be labeled. For the rules regarding label use, see [Section 13.6.2, “Statement Labels”](statement-labels.html "13.6.2 Statement Labels").
+Uma instrução [`LOOP`](loop.html "13.6.5.5 LOOP Statement") pode ser rotulada. Para as regras relativas ao uso de rótulos, consulte a [Seção 13.6.2, “Statement Labels”](statement-labels.html "13.6.2 Statement Labels").
 
-Example:
+Exemplo:
 
 ```sql
 CREATE PROCEDURE doiterate(p1 INT)

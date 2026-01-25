@@ -1,107 +1,107 @@
-#### 26.4.3.30 The schema_table_statistics_with_buffer and x$schema_table_statistics_with_buffer Views
+#### 26.4.3.30 As Views schema_table_statistics_with_buffer e x$schema_table_statistics_with_buffer
 
-These views summarize table statistics, including `InnoDB` buffer pool statistics. By default, rows are sorted by descending total wait time (tables with most contention first).
+Essas views resumem as estatísticas da tabela, incluindo estatísticas do Buffer Pool do `InnoDB`. Por padrão, as linhas são ordenadas pelo tempo total de espera decrescente (tabelas com maior contenção primeiro).
 
-These views user a helper view, `x$ps_schema_table_statistics_io`.
+Essas views usam uma view auxiliar, `x$ps_schema_table_statistics_io`.
 
-The `schema_table_statistics_with_buffer` and `x$schema_table_statistics_with_buffer` views have these columns:
+As views `schema_table_statistics_with_buffer` e `x$schema_table_statistics_with_buffer` possuem as seguintes colunas:
 
 * `table_schema`
 
-  The schema that contains the table.
+  O schema que contém a tabela.
 
 * `table_name`
 
-  The table name.
+  O nome da tabela.
 
 * `rows_fetched`
 
-  The total number of rows read from the table.
+  O número total de linhas lidas da tabela.
 
 * `fetch_latency`
 
-  The total wait time of timed read I/O events for the table.
+  O tempo total de espera de eventos de I/O de leitura cronometrados para a tabela.
 
 * `rows_inserted`
 
-  The total number of rows inserted into the table.
+  O número total de linhas inseridas na tabela.
 
 * `insert_latency`
 
-  The total wait time of timed insert I/O events for the table.
+  O tempo total de espera de eventos de I/O de inserção cronometrados para a tabela.
 
 * `rows_updated`
 
-  The total number of rows updated in the table.
+  O número total de linhas atualizadas na tabela.
 
 * `update_latency`
 
-  The total wait time of timed update I/O events for the table.
+  O tempo total de espera de eventos de I/O de atualização cronometrados para a tabela.
 
 * `rows_deleted`
 
-  The total number of rows deleted from the table.
+  O número total de linhas excluídas da tabela.
 
 * `delete_latency`
 
-  The total wait time of timed delete I/O events for the table.
+  O tempo total de espera de eventos de I/O de exclusão cronometrados para a tabela.
 
 * `io_read_requests`
 
-  The total number of read requests for the table.
+  O número total de requisições de leitura (read requests) para a tabela.
 
 * `io_read`
 
-  The total number of bytes read from the table.
+  O número total de bytes lidos da tabela.
 
 * `io_read_latency`
 
-  The total wait time of reads from the table.
+  O tempo total de espera de leituras da tabela.
 
 * `io_write_requests`
 
-  The total number of write requests for the table.
+  O número total de requisições de escrita (write requests) para a tabela.
 
 * `io_write`
 
-  The total number of bytes written to the table.
+  O número total de bytes escritos na tabela.
 
 * `io_write_latency`
 
-  The total wait time of writes to the table.
+  O tempo total de espera de escritas na tabela.
 
 * `io_misc_requests`
 
-  The total number of miscellaneous I/O requests for the table.
+  O número total de requisições diversas (miscellaneous) de I/O para a tabela.
 
 * `io_misc_latency`
 
-  The total wait time of miscellaneous I/O requests for the table.
+  O tempo total de espera de requisições diversas de I/O para a tabela.
 
 * `innodb_buffer_allocated`
 
-  The total number of `InnoDB` buffer bytes allocated for the table.
+  O número total de bytes do Buffer do `InnoDB` alocados para a tabela.
 
 * `innodb_buffer_data`
 
-  The total number of `InnoDB` data bytes allocated for the table.
+  O número total de bytes de dados do `InnoDB` alocados para a tabela.
 
 * `innodb_buffer_free`
 
-  The total number of `InnoDB` nondata bytes allocated for the table (`innodb_buffer_allocated` − `innodb_buffer_data`).
+  O número total de bytes não-dados do `InnoDB` alocados para a tabela (`innodb_buffer_allocated` − `innodb_buffer_data`).
 
 * `innodb_buffer_pages`
 
-  The total number of `InnoDB` pages allocated for the table.
+  O número total de pages do `InnoDB` alocadas para a tabela.
 
 * `innodb_buffer_pages_hashed`
 
-  The total number of `InnoDB` hashed pages allocated for the table.
+  O número total de pages com hash do `InnoDB` alocadas para a tabela.
 
 * `innodb_buffer_pages_old`
 
-  The total number of `InnoDB` old pages allocated for the table.
+  O número total de pages antigas (old pages) do `InnoDB` alocadas para a tabela.
 
 * `innodb_buffer_rows_cached`
 
-  The total number of `InnoDB` cached rows for the table.
+  O número total de linhas em cache do `InnoDB` para a tabela.

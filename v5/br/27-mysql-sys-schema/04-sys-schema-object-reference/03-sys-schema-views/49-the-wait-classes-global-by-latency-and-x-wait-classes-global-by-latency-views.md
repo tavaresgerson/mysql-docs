@@ -1,31 +1,31 @@
-#### 26.4.3.49 The wait_classes_global_by_latency and x$wait_classes_global_by_latency Views
+#### 26.4.3.49 As Views wait_classes_global_by_latency e x$wait_classes_global_by_latency
 
-These views summarize wait class total latencies, grouped by event class. By default, rows are sorted by descending total latency. Idle events are ignored.
+Essas Views resumem as Latencies totais de classes de espera (wait class), agrupadas por classe de evento (event class). Por padrão, as linhas são ordenadas pela Latency total decrescente. Eventos inativos (Idle events) são ignorados.
 
-An event class is determined by stripping from the event name everything after the first three components. For example, the class for `wait/io/file/sql/slow_log` is `wait/io/file`.
+Uma classe de evento é determinada removendo do nome do evento tudo após os três primeiros componentes. Por exemplo, a classe para `wait/io/file/sql/slow_log` é `wait/io/file`.
 
-The `wait_classes_global_by_latency` and `x$wait_classes_global_by_latency` views have these columns:
+As Views `wait_classes_global_by_latency` e `x$wait_classes_global_by_latency` possuem estas colunas:
 
 * `event_class`
 
-  The event class.
+  A classe do evento.
 
 * `total`
 
-  The total number of occurrences of events in the class.
+  O número total de ocorrências de eventos na classe.
 
 * `total_latency`
 
-  The total wait time of timed occurrences of events in the class.
+  O tempo de espera total das ocorrências temporizadas de eventos na classe (A Latency total).
 
 * `min_latency`
 
-  The minimum single wait time of timed occurrences of events in the class.
+  O tempo de espera mínimo de uma única ocorrência temporizada de eventos na classe (A Latency mínima).
 
 * `avg_latency`
 
-  The average wait time per timed occurrence of events in the class.
+  O tempo de espera médio por ocorrência temporizada de eventos na classe (A Latency média).
 
 * `max_latency`
 
-  The maximum single wait time of timed occurrences of events in the class.
+  O tempo de espera máximo de uma única ocorrência temporizada de eventos na classe (A Latency máxima).

@@ -1,124 +1,124 @@
-### 24.3.5 The INFORMATION_SCHEMA COLUMNS Table
+### 24.3.5 A Tabela COLUMNS do INFORMATION_SCHEMA
 
-The [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table provides information about columns in tables.
+A tabela [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") fornece informações sobre colunas em tabelas.
 
-The [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table has these columns:
+A tabela [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") possui estas colunas:
 
 * `TABLE_CATALOG`
 
-  The name of the catalog to which the table containing the column belongs. This value is always `def`.
+  O nome do catalog ao qual a tabela que contém a coluna pertence. Este valor é sempre `def`.
 
 * `TABLE_SCHEMA`
 
-  The name of the schema (database) to which the table containing the column belongs.
+  O nome do schema (Database) ao qual a tabela que contém a coluna pertence.
 
 * `TABLE_NAME`
 
-  The name of the table containing the column.
+  O nome da tabela que contém a coluna.
 
 * `COLUMN_NAME`
 
-  The name of the column.
+  O nome da coluna.
 
 * `ORDINAL_POSITION`
 
-  The position of the column within the table. `ORDINAL_POSITION` is necessary because you might want to say `ORDER BY ORDINAL_POSITION`. Unlike [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement"), [`SELECT`](select.html "13.2.9 SELECT Statement") from the [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table does not have automatic ordering.
+  A posição da coluna dentro da tabela. `ORDINAL_POSITION` é necessário porque você pode querer usar `ORDER BY ORDINAL_POSITION`. Diferentemente do [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement"), o [`SELECT`](select.html "13.2.9 SELECT Statement") da tabela [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") não tem ordenação automática.
 
 * `COLUMN_DEFAULT`
 
-  The default value for the column. This is `NULL` if the column has an explicit default of `NULL`, or if the column definition includes no `DEFAULT` clause.
+  O valor `DEFAULT` para a coluna. Este é `NULL` se a coluna tiver um `DEFAULT` explícito de `NULL`, ou se a definição da coluna não incluir nenhuma cláusula `DEFAULT`.
 
 * `IS_NULLABLE`
 
-  The column nullability. The value is `YES` if `NULL` values can be stored in the column, `NO` if not.
+  A nulidade da coluna. O valor é `YES` se valores `NULL` puderem ser armazenados na coluna, `NO` se não.
 
 * `DATA_TYPE`
 
-  The column data type.
+  O tipo de dado da coluna.
 
-  The `DATA_TYPE` value is the type name only with no other information. The `COLUMN_TYPE` value contains the type name and possibly other information such as the precision or length.
+  O valor de `DATA_TYPE` é apenas o nome do tipo, sem outras informações. O valor de `COLUMN_TYPE` contém o nome do tipo e possivelmente outras informações, como a precisão ou o comprimento (length).
 
 * `CHARACTER_MAXIMUM_LENGTH`
 
-  For string columns, the maximum length in characters.
+  Para colunas string, o comprimento máximo em caracteres.
 
 * `CHARACTER_OCTET_LENGTH`
 
-  For string columns, the maximum length in bytes.
+  Para colunas string, o comprimento máximo em bytes.
 
 * `NUMERIC_PRECISION`
 
-  For numeric columns, the numeric precision.
+  Para colunas numéricas, a precisão numérica (numeric precision).
 
 * `NUMERIC_SCALE`
 
-  For numeric columns, the numeric scale.
+  Para colunas numéricas, a escala numérica (numeric scale).
 
 * `DATETIME_PRECISION`
 
-  For temporal columns, the fractional seconds precision.
+  Para colunas temporais, a precisão de segundos fracionários.
 
 * `CHARACTER_SET_NAME`
 
-  For character string columns, the character set name.
+  Para colunas de string de caracteres, o nome do character set.
 
 * `COLLATION_NAME`
 
-  For character string columns, the collation name.
+  Para colunas de string de caracteres, o nome do collation.
 
 * `COLUMN_TYPE`
 
-  The column data type.
+  O tipo de dado da coluna.
 
-  The `DATA_TYPE` value is the type name only with no other information. The `COLUMN_TYPE` value contains the type name and possibly other information such as the precision or length.
+  O valor de `DATA_TYPE` é apenas o nome do tipo, sem outras informações. O valor de `COLUMN_TYPE` contém o nome do tipo e possivelmente outras informações, como a precisão ou o comprimento (length).
 
 * `COLUMN_KEY`
 
-  Whether the column is indexed:
+  Se a coluna é indexada:
 
-  + If `COLUMN_KEY` is empty, the column either is not indexed or is indexed only as a secondary column in a multiple-column, nonunique index.
+  + Se `COLUMN_KEY` estiver vazio, a coluna não está indexada ou está indexada apenas como uma coluna secundária em um Index não-único e de múltiplas colunas.
 
-  + If `COLUMN_KEY` is `PRI`, the column is a `PRIMARY KEY` or is one of the columns in a multiple-column `PRIMARY KEY`.
+  + Se `COLUMN_KEY` for `PRI`, a coluna é uma `PRIMARY KEY` ou é uma das colunas em uma `PRIMARY KEY` de múltiplas colunas.
 
-  + If `COLUMN_KEY` is `UNI`, the column is the first column of a `UNIQUE` index. (A `UNIQUE` index permits multiple `NULL` values, but you can tell whether the column permits `NULL` by checking the `Null` column.)
+  + Se `COLUMN_KEY` for `UNI`, a coluna é a primeira coluna de um Index `UNIQUE`. (Um Index `UNIQUE` permite múltiplos valores `NULL`, mas você pode saber se a coluna permite `NULL` verificando a coluna `Null`.)
 
-  + If `COLUMN_KEY` is `MUL`, the column is the first column of a nonunique index in which multiple occurrences of a given value are permitted within the column.
+  + Se `COLUMN_KEY` for `MUL`, a coluna é a primeira coluna de um Index não-único no qual múltiplas ocorrências de um determinado valor são permitidas dentro da coluna.
 
-  If more than one of the `COLUMN_KEY` values applies to a given column of a table, `COLUMN_KEY` displays the one with the highest priority, in the order `PRI`, `UNI`, `MUL`.
+  Se mais de um dos valores de `COLUMN_KEY` se aplicar a uma determinada coluna de uma tabela, `COLUMN_KEY` exibe aquele com a prioridade mais alta, na ordem `PRI`, `UNI`, `MUL`.
 
-  A `UNIQUE` index may be displayed as `PRI` if it cannot contain `NULL` values and there is no `PRIMARY KEY` in the table. A `UNIQUE` index may display as `MUL` if several columns form a composite `UNIQUE` index; although the combination of the columns is unique, each column can still hold multiple occurrences of a given value.
+  Um Index `UNIQUE` pode ser exibido como `PRI` se não puder conter valores `NULL` e não houver nenhuma `PRIMARY KEY` na tabela. Um Index `UNIQUE` pode ser exibido como `MUL` se várias colunas formarem um Index `UNIQUE` composto; embora a combinação das colunas seja unique, cada coluna ainda pode conter múltiplas ocorrências de um determinado valor.
 
 * `EXTRA`
 
-  Any additional information that is available about a given column. The value is nonempty in these cases:
+  Qualquer informação adicional disponível sobre uma determinada coluna. O valor é não vazio nestes casos:
 
-  + `auto_increment` for columns that have the `AUTO_INCREMENT` attribute.
+  + `auto_increment` para colunas que possuem o atributo `AUTO_INCREMENT`.
 
-  + `on update CURRENT_TIMESTAMP` for [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") or [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") columns that have the `ON UPDATE CURRENT_TIMESTAMP` attribute.
+  + `on update CURRENT_TIMESTAMP` para colunas [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") ou [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") que possuem o atributo `ON UPDATE CURRENT_TIMESTAMP`.
 
-  + `STORED GENERATED` or `VIRTUAL GENERATED` for generated columns.
+  + `STORED GENERATED` ou `VIRTUAL GENERATED` para generated columns.
 
 * `PRIVILEGES`
 
-  The privileges you have for the column.
+  Os privileges que você tem para a coluna.
 
 * `COLUMN_COMMENT`
 
-  Any comment included in the column definition.
+  Qualquer comment incluído na definição da coluna.
 
 * `GENERATION_EXPRESSION`
 
-  For generated columns, displays the expression used to compute column values. Empty for nongenerated columns. For information about generated columns, see [Section 13.1.18.7, “CREATE TABLE and Generated Columns”](create-table-generated-columns.html "13.1.18.7 CREATE TABLE and Generated Columns").
+  Para generated columns, exibe a expression usada para calcular os valores da coluna. Vazio para colunas não geradas. Para obter informações sobre generated columns, consulte [Section 13.1.18.7, “CREATE TABLE and Generated Columns”](create-table-generated-columns.html "13.1.18.7 CREATE TABLE and Generated Columns").
 
-#### Notes
+#### Notas
 
-* In [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement"), the `Type` display includes values from several different [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") columns.
+* No [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement"), a exibição `Type` inclui valores de diversas colunas diferentes da tabela [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table").
 
-* `CHARACTER_OCTET_LENGTH` should be the same as `CHARACTER_MAXIMUM_LENGTH`, except for multibyte character sets.
+* `CHARACTER_OCTET_LENGTH` deve ser o mesmo que `CHARACTER_MAXIMUM_LENGTH`, exceto para character sets multibyte.
 
-* `CHARACTER_SET_NAME` can be derived from `COLLATION_NAME`. For example, if you say `SHOW FULL COLUMNS FROM t`, and you see in the `COLLATION_NAME` column a value of `latin1_swedish_ci`, the character set is what is before the first underscore: `latin1`.
+* `CHARACTER_SET_NAME` pode ser derivado de `COLLATION_NAME`. Por exemplo, se você executar `SHOW FULL COLUMNS FROM t` e vir na coluna `COLLATION_NAME` um valor de `latin1_swedish_ci`, o character set é o que está antes do primeiro underscore: `latin1`.
 
-Column information is also available from the [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") statement. See [Section 13.7.5.5, “SHOW COLUMNS Statement”](show-columns.html "13.7.5.5 SHOW COLUMNS Statement"). The following statements are nearly equivalent:
+Informações sobre colunas também estão disponíveis na instrução [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement"). Consulte [Section 13.7.5.5, “SHOW COLUMNS Statement”](show-columns.html "13.7.5.5 SHOW COLUMNS Statement"). As seguintes instruções são quase equivalentes:
 
 ```sql
 SELECT COLUMN_NAME, DATA_TYPE, IS_NULLABLE, COLUMN_DEFAULT

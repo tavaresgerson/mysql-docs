@@ -1,30 +1,30 @@
-## 15.7 The MERGE Storage Engine
+## 15.7 O Storage Engine MERGE
 
-15.7.1 MERGE Table Advantages and Disadvantages
+15.7.1 Vantagens e Desvantagens das Tabelas MERGE
 
-15.7.2 MERGE Table Problems
+15.7.2 Problemas com Tabelas MERGE
 
-The `MERGE` storage engine, also known as the `MRG_MyISAM` engine, is a collection of identical `MyISAM` tables that can be used as one. “Identical” means that all tables have identical column data types and index information. You cannot merge `MyISAM` tables in which the columns are listed in a different order, do not have exactly the same data types in corresponding columns, or have the indexes in different order. However, any or all of the `MyISAM` tables can be compressed with **myisampack**. See Section 4.6.5, “myisampack — Generate Compressed, Read-Only MyISAM Tables”. Differences between tables such as these do not matter:
+O `MERGE` storage engine, também conhecido como engine `MRG_MyISAM`, é uma coleção de tabelas `MyISAM` idênticas que podem ser usadas como uma única tabela. "Idênticas" significa que todas as tabelas possuem tipos de dados de coluna e informações de Index idênticos. Você não pode fazer o merge de tabelas `MyISAM` nas quais as colunas estão listadas em uma ordem diferente, não têm exatamente os mesmos tipos de dados nas colunas correspondentes ou têm os Indexes em ordem diferente. No entanto, qualquer uma ou todas as tabelas `MyISAM` podem ser compactadas com **myisampack**. Consulte a Seção 4.6.5, “myisampack — Generate Compressed, Read-Only MyISAM Tables”. Diferenças entre as tabelas, como as seguintes, não importam:
 
-* Names of corresponding columns and indexes can differ.
-* Comments for tables, columns, and indexes can differ.
-* Table options such as `AVG_ROW_LENGTH`, `MAX_ROWS`, or `PACK_KEYS` can differ.
+* Os nomes das colunas e Indexes correspondentes podem ser diferentes.
+* Comentários para tabelas, colunas e Indexes podem ser diferentes.
+* Opções de tabela, como `AVG_ROW_LENGTH`, `MAX_ROWS` ou `PACK_KEYS`, podem ser diferentes.
 
-An alternative to a `MERGE` table is a partitioned table, which stores partitions of a single table in separate files. Partitioning enables some operations to be performed more efficiently and is not limited to the `MyISAM` storage engine. For more information, see Chapter 22, *Partitioning*.
+Uma alternativa a uma tabela `MERGE` é uma tabela particionada, que armazena partições de uma única tabela em arquivos separados. O Partitioning (Particionamento) permite que algumas operações sejam executadas de forma mais eficiente e não se limita ao `MyISAM` storage engine. Para mais informações, consulte o Capítulo 22, *Partitioning*.
 
-When you create a `MERGE` table, MySQL creates two files on disk. The files have names that begin with the table name and have an extension to indicate the file type. An `.frm` file stores the table format, and an `.MRG` file contains the names of the underlying `MyISAM` tables that should be used as one. The tables do not have to be in the same database as the `MERGE` table.
+Ao criar uma tabela `MERGE`, o MySQL cria dois arquivos no disco. Os arquivos têm nomes que começam com o nome da tabela e possuem uma extensão para indicar o tipo de arquivo. Um arquivo `.frm` armazena o formato da tabela, e um arquivo `.MRG` contém os nomes das tabelas `MyISAM` subjacentes que devem ser usadas como uma só. As tabelas não precisam estar no mesmo Database que a tabela `MERGE`.
 
-You can use `SELECT`, `DELETE`, `UPDATE`, and `INSERT` on `MERGE` tables. You must have `SELECT`, `DELETE`, and `UPDATE` privileges on the `MyISAM` tables that you map to a `MERGE` table.
+Você pode usar `SELECT`, `DELETE`, `UPDATE` e `INSERT` em tabelas `MERGE`. Você deve ter privilégios `SELECT`, `DELETE` e `UPDATE` nas tabelas `MyISAM` que você mapeia para uma tabela `MERGE`.
 
-Note
+Nota
 
-The use of `MERGE` tables entails the following security issue: If a user has access to `MyISAM` table *`t`*, that user can create a `MERGE` table *`m`* that accesses *`t`*. However, if the user's privileges on *`t`* are subsequently revoked, the user can continue to access *`t`* by doing so through *`m`*.
+O uso de tabelas `MERGE` implica na seguinte questão de segurança: Se um usuário tem acesso à tabela `MyISAM` *`t`*, esse usuário pode criar uma tabela `MERGE` *`m`* que acessa *`t`*. No entanto, se os privilégios do usuário em *`t`* forem subsequentemente revogados, o usuário poderá continuar acessando *`t`* fazendo-o através de *`m`*.
 
-Use of `DROP TABLE` with a `MERGE` table drops only the `MERGE` specification. The underlying tables are not affected.
+O uso de `DROP TABLE` com uma tabela `MERGE` descarta apenas a especificação `MERGE`. As tabelas subjacentes não são afetadas.
 
-To create a `MERGE` table, you must specify a `UNION=(list-of-tables)` option that indicates which `MyISAM` tables to use. You can optionally specify an `INSERT_METHOD` option to control how inserts into the `MERGE` table take place. Use a value of `FIRST` or `LAST` to cause inserts to be made in the first or last underlying table, respectively. If you specify no `INSERT_METHOD` option or if you specify it with a value of `NO`, inserts into the `MERGE` table are not permitted and attempts to do so result in an error.
+Para criar uma tabela `MERGE`, você deve especificar a opção `UNION=(list-of-tables)` que indica quais tabelas `MyISAM` usar. Opcionalmente, você pode especificar uma opção `INSERT_METHOD` para controlar como os inserts na tabela `MERGE` ocorrem. Use um valor de `FIRST` ou `LAST` para fazer com que os inserts sejam feitos na primeira ou na última tabela subjacente, respectivamente. Se você não especificar a opção `INSERT_METHOD` ou se a especificar com o valor `NO`, os inserts na tabela `MERGE` não serão permitidos, e as tentativas de fazê-lo resultarão em um erro.
 
-The following example shows how to create a `MERGE` table:
+O exemplo a seguir mostra como criar uma tabela `MERGE`:
 
 ```sql
 mysql> CREATE TABLE t1 (
@@ -41,9 +41,9 @@ mysql> CREATE TABLE total (
     ->    ENGINE=MERGE UNION=(t1,t2) INSERT_METHOD=LAST;
 ```
 
-Column `a` is indexed as a `PRIMARY KEY` in the underlying `MyISAM` tables, but not in the `MERGE` table. There it is indexed but not as a `PRIMARY KEY` because a `MERGE` table cannot enforce uniqueness over the set of underlying tables. (Similarly, a column with a `UNIQUE` index in the underlying tables should be indexed in the `MERGE` table but not as a `UNIQUE` index.)
+A coluna `a` é indexada como uma `PRIMARY KEY` nas tabelas `MyISAM` subjacentes, mas não na tabela `MERGE`. Nela, ela é indexada, mas não como uma `PRIMARY KEY`, pois uma tabela `MERGE` não pode impor exclusividade sobre o conjunto de tabelas subjacentes. (Da mesma forma, uma coluna com um `UNIQUE Index` nas tabelas subjacentes deve ser indexada na tabela `MERGE`, mas não como um `UNIQUE Index`.)
 
-After creating the `MERGE` table, you can use it to issue queries that operate on the group of tables as a whole:
+Após criar a tabela `MERGE`, você pode usá-la para emitir Queries que operam no grupo de tabelas como um todo:
 
 ```sql
 mysql> SELECT * FROM total;
@@ -59,50 +59,49 @@ mysql> SELECT * FROM total;
 +---+---------+
 ```
 
-To remap a `MERGE` table to a different collection of `MyISAM` tables, you can use one of the following methods:
+Para remapear uma tabela `MERGE` para uma coleção diferente de tabelas `MyISAM`, você pode usar um dos seguintes métodos:
 
-* `DROP` the `MERGE` table and re-create it.
+* Usar `DROP` na tabela `MERGE` e recriá-la.
 
-* Use `ALTER TABLE tbl_name UNION=(...)` to change the list of underlying tables.
+* Usar `ALTER TABLE tbl_name UNION=(...)` para alterar a lista de tabelas subjacentes.
 
-  It is also possible to use `ALTER TABLE ... UNION=()` (that is, with an empty `UNION` clause) to remove all of the underlying tables. However, in this case, the table is effectively empty and inserts fail because there is no underlying table to take new rows. Such a table might be useful as a template for creating new `MERGE` tables with `CREATE TABLE ... LIKE`.
+  Também é possível usar `ALTER TABLE ... UNION=()` (isto é, com uma cláusula `UNION` vazia) para remover todas as tabelas subjacentes. No entanto, neste caso, a tabela fica efetivamente vazia e os inserts falham porque não há uma tabela subjacente para receber novas linhas. Uma tabela como essa pode ser útil como um template para criar novas tabelas `MERGE` com `CREATE TABLE ... LIKE`.
 
-The underlying table definitions and indexes must conform closely to the definition of the `MERGE` table. Conformance is checked when a table that is part of a `MERGE` table is opened, not when the `MERGE` table is created. If any table fails the conformance checks, the operation that triggered the opening of the table fails. This means that changes to the definitions of tables within a `MERGE` may cause a failure when the `MERGE` table is accessed. The conformance checks applied to each table are:
+As definições das tabelas subjacentes e os Indexes devem estar em estrita conformidade com a definição da tabela `MERGE`. A conformidade é verificada quando uma tabela que faz parte de uma tabela `MERGE` é aberta, e não quando a tabela `MERGE` é criada. Se alguma tabela falhar nas verificações de conformidade, a operação que acionou a abertura da tabela falhará. Isso significa que alterações nas definições de tabelas dentro de um `MERGE` podem causar uma falha quando a tabela `MERGE` for acessada. As verificações de conformidade aplicadas a cada tabela são:
 
-* The underlying table and the `MERGE` table must have the same number of columns.
+* A tabela subjacente e a tabela `MERGE` devem ter o mesmo número de colunas.
 
-* The column order in the underlying table and the `MERGE` table must match.
+* A ordem das colunas na tabela subjacente e na tabela `MERGE` deve corresponder.
 
-* Additionally, the specification for each corresponding column in the parent `MERGE` table and the underlying tables are compared and must satisfy these checks:
+* Além disso, a especificação para cada coluna correspondente na tabela `MERGE` pai e nas tabelas subjacentes é comparada e deve satisfazer estas verificações:
 
-  + The column type in the underlying table and the `MERGE` table must be equal.
+  + O tipo de coluna na tabela subjacente e na tabela `MERGE` deve ser igual.
 
-  + The column length in the underlying table and the `MERGE` table must be equal.
+  + O comprimento da coluna na tabela subjacente e na tabela `MERGE` deve ser igual.
 
-  + The column of the underlying table and the `MERGE` table can be `NULL`.
+  + A coluna da tabela subjacente e da tabela `MERGE` podem ser `NULL`.
 
-* The underlying table must have at least as many indexes as the `MERGE` table. The underlying table may have more indexes than the `MERGE` table, but cannot have fewer.
+* A tabela subjacente deve ter pelo menos tantos Indexes quanto a tabela `MERGE`. A tabela subjacente pode ter mais Indexes do que a tabela `MERGE`, mas não pode ter menos.
 
-  Note
+  Nota
 
-  A known issue exists where indexes on the same columns must be in identical order, in both the `MERGE` table and the underlying `MyISAM` table. See Bug
-  #33653.
+  Existe um problema conhecido em que os Indexes nas mesmas colunas devem estar em ordem idêntica, tanto na tabela `MERGE` quanto na tabela `MyISAM` subjacente. Consulte o Bug #33653.
 
-  Each index must satisfy these checks:
+  Cada Index deve satisfazer estas verificações:
 
-  + The index type of the underlying table and the `MERGE` table must be the same.
+  + O tipo de Index da tabela subjacente e da tabela `MERGE` deve ser o mesmo.
 
-  + The number of index parts (that is, multiple columns within a compound index) in the index definition for the underlying table and the `MERGE` table must be the same.
+  + O número de partes do Index (isto é, várias colunas em um compound index) na definição de Index para a tabela subjacente e para a tabela `MERGE` deve ser o mesmo.
 
-  + For each index part:
+  + Para cada parte do Index:
 
-    - Index part lengths must be equal.
-    - Index part types must be equal.
-    - Index part languages must be equal.
-    - Check whether index parts can be `NULL`.
+    - Os comprimentos das partes do Index devem ser iguais.
+    - Os tipos das partes do Index devem ser iguais.
+    - As linguagens das partes do Index devem ser iguais.
+    - Verificar se as partes do Index podem ser `NULL`.
 
-If a `MERGE` table cannot be opened or used because of a problem with an underlying table, `CHECK TABLE` displays information about which table caused the problem.
+Se uma tabela `MERGE` não puder ser aberta ou usada devido a um problema com uma tabela subjacente, `CHECK TABLE` exibirá informações sobre qual tabela causou o problema.
 
-### Additional Resources
+### Recursos Adicionais
 
-* A forum dedicated to the `MERGE` storage engine is available at <https://forums.mysql.com/list.php?93>.
+* Um fórum dedicado ao `MERGE` storage engine está disponível em <https://forums.mysql.com/list.php?93>.

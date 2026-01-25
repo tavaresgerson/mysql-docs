@@ -1,11 +1,11 @@
-#### 13.7.5.3 SHOW CHARACTER SET Statement
+#### 13.7.5.3 Instrução SHOW CHARACTER SET
 
 ```sql
 SHOW {CHARACTER SET | CHARSET}
     [LIKE 'pattern' | WHERE expr]
 ```
 
-The [`SHOW CHARACTER SET`](show-character-set.html "13.7.5.3 SHOW CHARACTER SET Statement") statement shows all available character sets. The [`LIKE`](string-comparison-functions.html#operator_like) clause, if present, indicates which character set names to match. The `WHERE` clause can be given to select rows using more general conditions, as discussed in [Section 24.8, “Extensions to SHOW Statements”](extended-show.html "24.8 Extensions to SHOW Statements"). For example:
+A instrução [`SHOW CHARACTER SET`](show-character-set.html "13.7.5.3 SHOW CHARACTER SET Statement") exibe todos os character sets disponíveis. A cláusula [`LIKE`](string-comparison-functions.html#operator_like), se presente, indica quais nomes de character sets devem ser correspondidos. A cláusula `WHERE` pode ser fornecida para selecionar linhas usando condições mais gerais, conforme discutido na [Seção 24.8, “Extensions to SHOW Statements”](extended-show.html "24.8 Extensions to SHOW Statements"). Por exemplo:
 
 ```sql
 mysql> SHOW CHARACTER SET LIKE 'latin%';
@@ -19,24 +19,24 @@ mysql> SHOW CHARACTER SET LIKE 'latin%';
 +---------+-----------------------------+-------------------+--------+
 ```
 
-[`SHOW CHARACTER SET`](show-character-set.html "13.7.5.3 SHOW CHARACTER SET Statement") output has these columns:
+A saída de [`SHOW CHARACTER SET`](show-character-set.html "13.7.5.3 SHOW CHARACTER SET Statement") possui estas colunas:
 
 * `Charset`
 
-  The character set name.
+  O nome do character set.
 
 * `Description`
 
-  A description of the character set.
+  Uma descrição do character set.
 
 * `Default collation`
 
-  The default collation for the character set.
+  O collation padrão para o character set.
 
 * `Maxlen`
 
-  The maximum number of bytes required to store one character.
+  O número máximo de bytes necessários para armazenar um caractere.
 
-The `filename` character set is for internal use only; consequently, [`SHOW CHARACTER SET`](show-character-set.html "13.7.5.3 SHOW CHARACTER SET Statement") does not display it.
+O character set `filename` é apenas para uso interno; consequentemente, [`SHOW CHARACTER SET`](show-character-set.html "13.7.5.3 SHOW CHARACTER SET Statement") não o exibe.
 
-Character set information is also available from the `INFORMATION_SCHEMA` [`CHARACTER_SETS`](information-schema-character-sets-table.html "24.3.2 The INFORMATION_SCHEMA CHARACTER_SETS Table") table.
+As informações do character set também estão disponíveis na tabela [`CHARACTER_SETS`](information-schema-character-sets-table.html "24.3.2 The INFORMATION_SCHEMA CHARACTER_SETS Table") do `INFORMATION_SCHEMA`.

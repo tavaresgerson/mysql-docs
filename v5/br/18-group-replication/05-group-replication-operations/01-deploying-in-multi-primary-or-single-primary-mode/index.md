@@ -1,22 +1,22 @@
-### 17.5.1 Deploying in Multi-Primary or Single-Primary Mode
+### 17.5.1 Implantação no Modo Multi-Primary ou Single-Primary
 
-[17.5.1.1 Single-Primary Mode](group-replication-single-primary-mode.html)
+[17.5.1.1 Modo Single-Primary](group-replication-single-primary-mode.html)
 
-[17.5.1.2 Multi-Primary Mode](group-replication-multi-primary-mode.html)
+[17.5.1.2 Modo Multi-Primary](group-replication-multi-primary-mode.html)
 
-[17.5.1.3 Finding the Primary](group-replication-find-primary.html)
+[17.5.1.3 Localizando o Primary](group-replication-find-primary.html)
 
-Group Replication operates in the following different modes:
+O Group Replication opera nos seguintes modos diferentes:
 
-* single-primary mode
-* multi-primary mode
+* modo single-primary
+* modo multi-primary
 
-The default mode is single-primary. It is not possible to have members of the group deployed in different modes, for example one configured in multi-primary mode while another one is in single-primary mode. To switch between modes, the group and not the server, needs to be restarted with a different operating configuration. Regardless of the deployed mode, Group Replication does not handle client-side fail-over, that must be handled by the application itself, a connector or a middleware framework such as a proxy or [MySQL Router 8.0](/doc/mysql-router/8.0/en/).
+O modo padrão é o single-primary. Não é possível ter membros do grupo implantados em modos diferentes, por exemplo, um configurado no modo multi-primary enquanto outro está no modo single-primary. Para alternar entre os modos, o grupo, e não o servidor, precisa ser reiniciado com uma configuração operacional diferente. Independentemente do modo implantado, o Group Replication não gerencia o fail-over do lado do cliente, o que deve ser tratado pela própria aplicação, por um connector ou por uma estrutura de middleware, como um proxy ou o [MySQL Router 8.0](/doc/mysql-router/8.0/en/).
 
-When deployed in multi-primary mode, statements are checked to ensure they are compatible with the mode. The following checks are made when Group Replication is deployed in multi-primary mode:
+Quando implantado no modo multi-primary, as statements são verificadas para garantir que sejam compatíveis com o modo. As seguintes verificações são realizadas quando o Group Replication é implantado no modo multi-primary:
 
-* If a transaction is executed under the SERIALIZABLE isolation level, then its commit fails when synchronizing itself with the group.
+* Se uma transaction for executada sob o isolation level `SERIALIZABLE`, o seu commit falha ao sincronizar-se com o grupo.
 
-* If a transaction executes against a table that has foreign keys with cascading constraints, then the transaction fails to commit when synchronizing itself with the group.
+* Se uma transaction for executada contra uma tabela que possui foreign keys com cascading constraints, a transaction falha ao realizar o commit quando sincroniza-se com o grupo.
 
-These checks can be deactivated by setting the option [`group_replication_enforce_update_everywhere_checks`](group-replication-system-variables.html#sysvar_group_replication_enforce_update_everywhere_checks) to `FALSE`. When deploying in single-primary mode, this option *must* be set to `FALSE`.
+Essas verificações podem ser desativadas configurando a opção [`group_replication_enforce_update_everywhere_checks`](group-replication-system-variables.html#sysvar_group_replication_enforce_update_everywhere_checks) para `FALSE`. Ao implantar no modo single-primary, esta opção *deve* ser configurada como `FALSE`.

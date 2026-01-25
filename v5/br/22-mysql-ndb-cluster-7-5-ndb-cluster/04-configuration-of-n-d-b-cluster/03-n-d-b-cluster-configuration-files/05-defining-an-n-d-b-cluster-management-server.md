@@ -1,114 +1,114 @@
-#### 21.4.3.5 Defining an NDB Cluster Management Server
+#### 21.4.3.5 Definindo um Servidor de Gerenciamento NDB Cluster
 
-The `[ndb_mgmd]` section is used to configure the behavior of the management server. If multiple management servers are employed, you can specify parameters common to all of them in an `[ndb_mgmd default]` section. `[mgm]` and `[mgm default]` are older aliases for these, supported for backward compatibility.
+A seção `[ndb_mgmd]` é usada para configurar o comportamento do servidor de gerenciamento. Se múltiplos servidores de gerenciamento forem empregados, você pode especificar parâmetros comuns a todos eles em uma seção `[ndb_mgmd default]`. `[mgm]` e `[mgm default]` são aliases mais antigos para estas seções, suportados para compatibilidade retroativa.
 
-All parameters in the following list are optional and assume their default values if omitted.
+Todos os parâmetros na lista a seguir são opcionais e assumem seus valores Default se omitidos.
 
-Note
+Nota
 
-If neither the `ExecuteOnComputer` nor the `HostName` parameter is present, the default value `localhost` is assumed for both.
+Se nem o parâmetro `ExecuteOnComputer` nem o `HostName` estiver presente, o valor Default `localhost` é assumido para ambos.
 
 * `Id`
 
-  <table frame="box" rules="all" summary="Id management node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 255</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Id: informações sobre tipo e valor do parâmetro de configuração do node de gerenciamento" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 255</td> </tr><tr> <th>Tipo de Restart</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requer um desligamento completo do Cluster, limpeza e restauração do sistema de arquivos do Cluster a partir de um backup, e então o restart do Cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Each node in the cluster has a unique identity. For a management node, this is represented by an integer value in the range 1 to 255, inclusive. This ID is used by all internal cluster messages for addressing the node, and so must be unique for each NDB Cluster node, regardless of the type of node.
+  Cada Node no Cluster possui uma identidade única. Para um Node de gerenciamento, isso é representado por um valor inteiro no Range de 1 a 255, inclusive. Este ID é usado por todas as mensagens internas do Cluster para endereçar o Node e, portanto, deve ser único para cada Node NDB Cluster, independentemente do tipo de Node.
 
-  Note
+  Nota
 
-  Data node IDs must be less than 49. If you plan to deploy a large number of data nodes, it is a good idea to limit the node IDs for management nodes (and API nodes) to values greater than 48.
+  IDs de Data node devem ser menores que 49. Se você planeja implantar um grande número de Data nodes, é uma boa ideia limitar os Node IDs para Nodes de gerenciamento (e Nodes API) a valores maiores que 48.
 
-  The use of the `Id` parameter for identifying management nodes is deprecated in favor of [`NodeId`](mysql-cluster-mgm-definition.html#ndbparam-mgmd-nodeid). Although `Id` continues to be supported for backward compatibility, it now generates a warning and is subject to removal in a future version of NDB Cluster.
+  O uso do parâmetro `Id` para identificar Nodes de gerenciamento está obsoleto (deprecated) em favor de [`NodeId`](mysql-cluster-mgm-definition.html#ndbparam-mgmd-nodeid). Embora `Id` continue a ser suportado para compatibilidade retroativa, ele agora gera um aviso (warning) e está sujeito à remoção em uma versão futura do NDB Cluster.
 
 * `NodeId`
 
-  <table frame="box" rules="all" summary="NodeId management node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 255</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NodeId: informações sobre tipo e valor do parâmetro de configuração do node de gerenciamento" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 255</td> </tr><tr> <th>Tipo de Restart</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requer um desligamento completo do Cluster, limpeza e restauração do sistema de arquivos do Cluster a partir de um backup, e então o restart do Cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Each node in the cluster has a unique identity. For a management node, this is represented by an integer value in the range 1 to 255 inclusive. This ID is used by all internal cluster messages for addressing the node, and so must be unique for each NDB Cluster node, regardless of the type of node.
+  Cada Node no Cluster possui uma identidade única. Para um Node de gerenciamento, isso é representado por um valor inteiro no Range de 1 a 255, inclusive. Este ID é usado por todas as mensagens internas do Cluster para endereçar o Node e, portanto, deve ser único para cada Node NDB Cluster, independentemente do tipo de Node.
 
-  Note
+  Nota
 
-  Data node IDs must be less than 49. If you plan to deploy a large number of data nodes, it is a good idea to limit the node IDs for management nodes (and API nodes) to values greater than 48.
+  IDs de Data node devem ser menores que 49. Se você planeja implantar um grande número de Data nodes, é uma boa ideia limitar os Node IDs para Nodes de gerenciamento (e Nodes API) a valores maiores que 48.
 
-  `NodeId` is the preferred parameter name to use when identifying management nodes. Although the older [`Id`](mysql-cluster-mgm-definition.html#ndbparam-mgmd-id) continues to be supported for backward compatibility, it is now deprecated and generates a warning when used; it is also subject to removal in a future NDB Cluster release.
+  `NodeId` é o nome de parâmetro preferido a ser usado ao identificar Nodes de gerenciamento. Embora o [`Id`](mysql-cluster-mgm-definition.html#ndbparam-mgmd-id) mais antigo continue a ser suportado para compatibilidade retroativa, ele agora está obsoleto (deprecated) e gera um aviso (warning) quando usado; ele também está sujeito à remoção em um futuro lançamento do NDB Cluster.
 
 * `ExecuteOnComputer`
 
-  <table frame="box" rules="all" summary="ExecuteOnComputer management node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer: informações sobre tipo e valor do parâmetro de configuração do node de gerenciamento" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Obsoleto (Deprecated)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de Restart</th> <td><p> <span><strong>System Restart: </strong></span>Requer um desligamento completo e restart do Cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  This refers to the `Id` set for one of the computers defined in a `[computer]` section of the `config.ini` file.
+  Isso se refere ao `Id` definido para um dos computadores definidos em uma seção `[computer]` do arquivo `config.ini`.
 
-  Important
+  Importante
 
-  This parameter is deprecated as of NDB 7.5.0, and is subject to removal in a future release. Use the [`HostName`](mysql-cluster-mgm-definition.html#ndbparam-mgmd-hostname) parameter instead.
+  Este parâmetro está obsoleto (deprecated) a partir do NDB 7.5.0 e está sujeito à remoção em um lançamento futuro. Use o parâmetro [`HostName`](mysql-cluster-mgm-definition.html#ndbparam-mgmd-hostname) em vez disso.
 
 * `PortNumber`
 
-  <table frame="box" rules="all" summary="PortNumber management node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>1186</td> </tr><tr> <th>Range</th> <td>0 - 64K</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="PortNumber: informações sobre tipo e valor do parâmetro de configuração do node de gerenciamento" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>1186</td> </tr><tr> <th>Range</th> <td>0 - 64K</td> </tr><tr> <th>Tipo de Restart</th> <td><p> <span><strong>System Restart: </strong></span>Requer um desligamento completo e restart do Cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  This is the port number on which the management server listens for configuration requests and management commands.
+  Este é o número da porta na qual o servidor de gerenciamento escuta por requisições de configuração e comandos de gerenciamento.
 
 * `HostName`
 
-  <table frame="box" rules="all" summary="HostName management node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name or IP address</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="HostName: informações sobre tipo e valor do parâmetro de configuração do node de gerenciamento" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>name ou endereço IP</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Tipo de Restart</th> <td><p> <span><strong>Node Restart: </strong></span>Requer um rolling restart do Cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Specifying this parameter defines the hostname of the computer on which the management node is to reside. Use `HostName` to specify a host name other than `localhost`.
+  A especificação deste parâmetro define o HostName do computador no qual o Node de gerenciamento deve residir. Use `HostName` para especificar um nome de host diferente de `localhost`.
 
 * [`LocationDomainId`](mysql-cluster-mgm-definition.html#ndbparam-mgmd-locationdomainid)
 
-  <table frame="box" rules="all" summary="LocationDomainId management node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.6.4</td> </tr><tr> <th>Type or units</th> <td>integer</td> </tr><tr> <th>Default</th> <td>0</td> </tr><tr> <th>Range</th> <td>0 - 16</td> </tr><tr> <th>Added</th> <td>NDB 7.6.4</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="LocationDomainId: informações sobre tipo e valor do parâmetro de configuração do node de gerenciamento" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.6.4</td> </tr><tr> <th>Tipo ou unidades</th> <td>integer</td> </tr><tr> <th>Default</th> <td>0</td> </tr><tr> <th>Range</th> <td>0 - 16</td> </tr><tr> <th>Adicionado</th> <td>NDB 7.6.4</td> </tr><tr> <th>Tipo de Restart</th> <td><p> <span><strong>System Restart: </strong></span>Requer um desligamento completo e restart do Cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Assigns a management node to a specific [availability domain](https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm) (also known as an availability zone) within a cloud. By informing `NDB` which nodes are in which availability domains, performance can be improved in a cloud environment in the following ways:
+  Atribui um Node de gerenciamento a um [availability domain](https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm) específico (também conhecido como availability zone) dentro de uma nuvem (cloud). Ao informar ao `NDB` quais Nodes estão em quais availability domains, o desempenho pode ser melhorado em um ambiente de cloud das seguintes maneiras:
 
-  + If requested data is not found on the same node, reads can be directed to another node in the same availability domain.
+  + Se os dados solicitados não forem encontrados no mesmo Node, as leituras podem ser direcionadas para outro Node no mesmo availability domain.
 
-  + Communication between nodes in different availability domains are guaranteed to use `NDB` transporters' WAN support without any further manual intervention.
+  + A comunicação entre Nodes em diferentes availability domains é garantida para usar o suporte WAN dos Transporters `NDB` sem qualquer intervenção manual adicional.
 
-  + The transporter's group number can be based on which availability domain is used, such that also SQL and other API nodes communicate with local data nodes in the same availability domain whenever possible.
+  + O número do grupo do Transporter pode ser baseado em qual availability domain é usado, de modo que os Nodes SQL e outros Nodes API também se comuniquem com Data nodes locais no mesmo availability domain sempre que possível.
 
-  + The arbitrator can be selected from an availability domain in which no data nodes are present, or, if no such availability domain can be found, from a third availability domain.
+  + O arbitrator pode ser selecionado a partir de um availability domain no qual não há Data nodes presentes ou, se nenhum availability domain desse tipo puder ser encontrado, a partir de um terceiro availability domain.
 
-  `LocationDomainId` takes an integer value between 0 and 16 inclusive, with 0 being the default; using 0 is the same as leaving the parameter unset.
+  `LocationDomainId` aceita um valor inteiro entre 0 e 16 inclusive, sendo 0 o Default; usar 0 é o mesmo que deixar o parâmetro não configurado.
 
 * [`LogDestination`](mysql-cluster-mgm-definition.html#ndbparam-mgmd-logdestination)
 
-  <table frame="box" rules="all" summary="LogDestination management node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>{CONSOLE|SYSLOG|FILE}</td> </tr><tr> <th>Default</th> <td>FILE: filename=ndb_nodeid_cluster.log, maxsize=1000000, maxfiles=6</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="LogDestination: informações sobre tipo e valor do parâmetro de configuração do node de gerenciamento" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>{CONSOLE|SYSLOG|FILE}</td> </tr><tr> <th>Default</th> <td>FILE: filename=ndb_nodeid_cluster.log, maxsize=1000000, maxfiles=6</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Tipo de Restart</th> <td><p> <span><strong>Node Restart: </strong></span>Requer um rolling restart do Cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  This parameter specifies where to send cluster logging information. There are three options in this regard—`CONSOLE`, `SYSLOG`, and `FILE`—with `FILE` being the default:
+  Este parâmetro especifica para onde enviar as informações de log do Cluster. Existem três opções a este respeito—`CONSOLE`, `SYSLOG` e `FILE`—sendo `FILE` o Default:
 
-  + `CONSOLE` outputs the log to `stdout`:
+  + `CONSOLE` direciona o log para `stdout`:
 
     ```sql
     CONSOLE
     ```
 
-  + `SYSLOG` sends the log to a `syslog` facility, possible values being one of `auth`, `authpriv`, `cron`, `daemon`, `ftp`, `kern`, `lpr`, `mail`, `news`, `syslog`, `user`, `uucp`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, or `local7`.
+  + `SYSLOG` envia o log para uma facility de `syslog`, sendo os valores possíveis um de `auth`, `authpriv`, `cron`, `daemon`, `ftp`, `kern`, `lpr`, `mail`, `news`, `syslog`, `user`, `uucp`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6` ou `local7`.
 
-    Note
+    Nota
 
-    Not every facility is necessarily supported by every operating system.
+    Nem toda facility é necessariamente suportada por todo sistema operacional.
 
     ```sql
     SYSLOG:facility=syslog
     ```
 
-  + `FILE` pipes the cluster log output to a regular file on the same machine. The following values can be specified:
+  + `FILE` envia a saída do log do Cluster para um arquivo regular na mesma máquina. Os seguintes valores podem ser especificados:
 
-    - `filename`: The name of the log file.
+    - `filename`: O nome do arquivo de log.
 
-      The default log file name used in such cases is `ndb_nodeid_cluster.log`.
+      O nome de arquivo de log Default usado nesses casos é `ndb_nodeid_cluster.log`.
 
-    - `maxsize`: The maximum size (in bytes) to which the file can grow before logging rolls over to a new file. When this occurs, the old log file is renamed by appending *`.N`* to the file name, where *`N`* is the next number not yet used with this name.
+    - `maxsize`: O tamanho máximo (em bytes) que o arquivo pode atingir antes que o logging seja transferido para um novo arquivo. Quando isso ocorre, o arquivo de log antigo é renomeado anexando *`.N`* ao nome do arquivo, onde *`N`* é o próximo número ainda não usado com este nome.
 
-    - `maxfiles`: The maximum number of log files.
+    - `maxfiles`: O número máximo de arquivos de log.
 
     ```sql
     FILE:filename=cluster.log,maxsize=1000000,maxfiles=6
     ```
 
-    The default value for the `FILE` parameter is `FILE:filename=ndb_node_id_cluster.log,maxsize=1000000,maxfiles=6`, where *`node_id`* is the ID of the node.
+    O valor Default para o parâmetro `FILE` é `FILE:filename=ndb_node_id_cluster.log,maxsize=1000000,maxfiles=6`, onde *`node_id`* é o ID do Node.
 
-  It is possible to specify multiple log destinations separated by semicolons as shown here:
+  É possível especificar múltiplos destinos de log separados por ponto e vírgula, conforme mostrado aqui:
 
   ```sql
   CONSOLE;SYSLOG:facility=local0;FILE:filename=/var/log/mgmd
@@ -116,53 +116,53 @@ If neither the `ExecuteOnComputer` nor the `HostName` parameter is present, the 
 
 * `ArbitrationRank`
 
-  <table frame="box" rules="all" summary="ArbitrationRank management node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>0-2</td> </tr><tr> <th>Default</th> <td>1</td> </tr><tr> <th>Range</th> <td>0 - 2</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ArbitrationRank: informações sobre tipo e valor do parâmetro de configuração do node de gerenciamento" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>0-2</td> </tr><tr> <th>Default</th> <td>1</td> </tr><tr> <th>Range</th> <td>0 - 2</td> </tr><tr> <th>Tipo de Restart</th> <td><p> <span><strong>Node Restart: </strong></span>Requer um rolling restart do Cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  This parameter is used to define which nodes can act as arbitrators. Only management nodes and SQL nodes can be arbitrators. `ArbitrationRank` can take one of the following values:
+  Este parâmetro é usado para definir quais Nodes podem atuar como arbitrators. Apenas Nodes de gerenciamento e Nodes SQL podem ser arbitrators. `ArbitrationRank` pode assumir um dos seguintes valores:
 
-  + `0`: The node is never used as an arbitrator.
+  + `0`: O Node nunca é usado como um arbitrator.
 
-  + `1`: The node has high priority; that is, it is preferred as an arbitrator over low-priority nodes.
+  + `1`: O Node tem alta prioridade; ou seja, ele é preferido como um arbitrator em relação aos Nodes de baixa prioridade.
 
-  + `2`: Indicates a low-priority node which is used as an arbitrator only if a node with a higher priority is not available for that purpose.
+  + `2`: Indica um Node de baixa prioridade que é usado como arbitrator apenas se um Node com prioridade mais alta não estiver disponível para essa finalidade.
 
-  Normally, the management server should be configured as an arbitrator by setting its `ArbitrationRank` to 1 (the default for management nodes) and those for all SQL nodes to 0 (the default for SQL nodes).
+  Normalmente, o servidor de gerenciamento deve ser configurado como um arbitrator definindo seu `ArbitrationRank` como 1 (o Default para Nodes de gerenciamento) e o dos Nodes SQL como 0 (o Default para Nodes SQL).
 
-  You can disable arbitration completely either by setting `ArbitrationRank` to 0 on all management and SQL nodes, or by setting the [`Arbitration`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-arbitration) parameter in the `[ndbd default]` section of the `config.ini` global configuration file. Setting [`Arbitration`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-arbitration) causes any settings for `ArbitrationRank` to be disregarded.
+  Você pode desabilitar o Arbitration completamente definindo `ArbitrationRank` como 0 em todos os Nodes de gerenciamento e SQL, ou definindo o parâmetro [`Arbitration`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-arbitration) na seção `[ndbd default]` do arquivo de configuração global `config.ini`. Definir [`Arbitration`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-arbitration) faz com que quaisquer configurações para `ArbitrationRank` sejam desconsideradas.
 
 * `ArbitrationDelay`
 
-  <table frame="box" rules="all" summary="ArbitrationDelay management node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>milliseconds</td> </tr><tr> <th>Default</th> <td>0</td> </tr><tr> <th>Range</th> <td>0 - 4294967039 (0xFFFFFEFF)</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ArbitrationDelay: informações sobre tipo e valor do parâmetro de configuração do node de gerenciamento" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>milliseconds</td> </tr><tr> <th>Default</th> <td>0</td> </tr><tr> <th>Range</th> <td>0 - 4294967039 (0xFFFFFEFF)</td> </tr><tr> <th>Tipo de Restart</th> <td><p> <span><strong>Node Restart: </strong></span>Requer um rolling restart do Cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  An integer value which causes the management server's responses to arbitration requests to be delayed by that number of milliseconds. By default, this value is 0; it is normally not necessary to change it.
+  Um valor inteiro que faz com que as respostas do servidor de gerenciamento às requisições de Arbitration sejam atrasadas por esse número de milliseconds. Por Default, este valor é 0; normalmente não é necessário alterá-lo.
 
 * `DataDir`
 
-  <table frame="box" rules="all" summary="DataDir management node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>.</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="DataDir: informações sobre tipo e valor do parâmetro de configuração do node de gerenciamento" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>path</td> </tr><tr> <th>Default</th> <td>.</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Tipo de Restart</th> <td><p> <span><strong>Node Restart: </strong></span>Requer um rolling restart do Cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  This specifies the directory where output files from the management server are placed. These files include cluster log files, process output files, and the daemon's process ID (PID) file. (For log files, this location can be overridden by setting the `FILE` parameter for [`LogDestination`](mysql-cluster-mgm-definition.html#ndbparam-mgmd-logdestination) as discussed previously in this section.)
+  Isso especifica o diretório onde os arquivos de saída do servidor de gerenciamento são colocados. Esses arquivos incluem arquivos de log do Cluster, arquivos de saída de processo e o arquivo de ID de processo (PID) do Daemon. (Para arquivos de log, este local pode ser sobrescrito definindo o parâmetro `FILE` para [`LogDestination`](mysql-cluster-mgm-definition.html#ndbparam-mgmd-logdestination), conforme discutido anteriormente nesta seção.)
 
-  The default value for this parameter is the directory in which [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") is located.
+  O valor Default para este parâmetro é o diretório onde [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") está localizado.
 
 * `PortNumberStats`
 
-  <table frame="box" rules="all" summary="NodeId management node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 255</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="PortNumberStats: informações sobre tipo e valor do parâmetro de configuração do node de gerenciamento" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 255</td> </tr><tr> <th>Tipo de Restart</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requer um desligamento completo do Cluster, limpeza e restauração do sistema de arquivos do Cluster a partir de um backup, e então o restart do Cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  This parameter specifies the port number used to obtain statistical information from an NDB Cluster management server. It has no default value.
+  Este parâmetro especifica o número da porta usado para obter informações estatísticas de um servidor de gerenciamento NDB Cluster. Ele não tem valor Default.
 
 * [`Wan`](mysql-cluster-mgm-definition.html#ndbparam-mgmd-wan)
 
-  <table frame="box" rules="all" summary="NodeId management node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 255</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Wan: informações sobre tipo e valor do parâmetro de configuração do node de gerenciamento" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 255</td> </tr><tr> <th>Tipo de Restart</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requer um desligamento completo do Cluster, limpeza e restauração do sistema de arquivos do Cluster a partir de um backup, e então o restart do Cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Use WAN TCP setting as default.
+  Usa a configuração TCP WAN como Default.
 
 * `HeartbeatThreadPriority`
 
-  <table frame="box" rules="all" summary="NodeId management node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 255</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="HeartbeatThreadPriority: informações sobre tipo e valor do parâmetro de configuração do node de gerenciamento" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 255</td> </tr><tr> <th>Tipo de Restart</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requer um desligamento completo do Cluster, limpeza e restauração do sistema de arquivos do Cluster a partir de um backup, e então o restart do Cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Set the scheduling policy and priority of heartbeat threads for management and API nodes.
+  Define a política de agendamento e a prioridade dos Heartbeat Threads para Nodes de gerenciamento e API.
 
-  The syntax for setting this parameter is shown here:
+  A sintaxe para definir este parâmetro é mostrada aqui:
 
   ```sql
   HeartbeatThreadPriority = policy[, priority]
@@ -171,36 +171,36 @@ If neither the `ExecuteOnComputer` nor the `HostName` parameter is present, the 
     {FIFO | RR}
   ```
 
-  When setting this parameter, you must specify a policy. This is one of `FIFO` (first in, first out) or `RR` (round robin). The policy value is followed optionally by the priority (an integer).
+  Ao definir este parâmetro, você deve especificar uma política. Esta é uma das seguintes: `FIFO` (first in, first out) ou `RR` (round robin). O valor da política é seguido opcionalmente pela prioridade (um inteiro).
 
 * `ExtraSendBufferMemory`
 
-  <table frame="box" rules="all" summary="NodeId management node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 255</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExtraSendBufferMemory: informações sobre tipo e valor do parâmetro de configuração do node de gerenciamento" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 255</td> </tr><tr> <th>Tipo de Restart</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requer um desligamento completo do Cluster, limpeza e restauração do sistema de arquivos do Cluster a partir de um backup, e então o restart do Cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  This parameter specifies the amount of transporter send buffer memory to allocate in addition to any that has been set using [`TotalSendBufferMemory`](mysql-cluster-mgm-definition.html#ndbparam-mgmd-totalsendbuffermemory), [`SendBufferMemory`](mysql-cluster-tcp-definition.html#ndbparam-tcp-sendbuffermemory), or both.
+  Este parâmetro especifica a quantidade de memória do Send Buffer do Transporter a ser alocada além de qualquer valor que tenha sido definido usando [`TotalSendBufferMemory`](mysql-cluster-mgm-definition.html#ndbparam-mgmd-totalsendbuffermemory), [`SendBufferMemory`](mysql-cluster-tcp-definition.html#ndbparam-tcp-sendbuffermemory), ou ambos.
 
 * `TotalSendBufferMemory`
 
-  <table frame="box" rules="all" summary="NodeId management node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 255</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="TotalSendBufferMemory: informações sobre tipo e valor do parâmetro de configuração do node de gerenciamento" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 255</td> </tr><tr> <th>Tipo de Restart</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requer um desligamento completo do Cluster, limpeza e restauração do sistema de arquivos do Cluster a partir de um backup, e então o restart do Cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  This parameter is used to determine the total amount of memory to allocate on this node for shared send buffer memory among all configured transporters.
+  Este parâmetro é usado para determinar a quantidade total de memória a ser alocada neste Node para memória de Send Buffer compartilhada entre todos os Transporters configurados.
 
-  If this parameter is set, its minimum permitted value is 256KB; 0 indicates that the parameter has not been set. For more detailed information, see [Section 21.4.3.13, “Configuring NDB Cluster Send Buffer Parameters”](mysql-cluster-config-send-buffers.html "21.4.3.13 Configuring NDB Cluster Send Buffer Parameters").
+  Se este parâmetro for definido, seu valor mínimo permitido é 256KB; 0 indica que o parâmetro não foi definido. Para informações mais detalhadas, consulte [Section 21.4.3.13, “Configuring NDB Cluster Send Buffer Parameters”](mysql-cluster-config-send-buffers.html "21.4.3.13 Configuring NDB Cluster Send Buffer Parameters").
 
 * `HeartbeatIntervalMgmdMgmd`
 
-  <table frame="box" rules="all" summary="NodeId management node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 255</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="HeartbeatIntervalMgmdMgmd: informações sobre tipo e valor do parâmetro de configuração do node de gerenciamento" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 255</td> </tr><tr> <th>Tipo de Restart</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requer um desligamento completo do Cluster, limpeza e restauração do sistema de arquivos do Cluster a partir de um backup, e então o restart do Cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Specify the interval between heartbeat messages used to determine whether another management node is on contact with this one. The management node waits after 3 of these intervals to declare the connection dead; thus, the default setting of 1500 milliseconds causes the management node to wait for approximately 1600 ms before timing out.
+  Especifica o intervalo entre mensagens Heartbeat usadas para determinar se outro Node de gerenciamento está em contato com este. O Node de gerenciamento espera 3 desses intervalos antes de declarar a conexão como morta; assim, a configuração Default de 1500 milliseconds faz com que o Node de gerenciamento espere por aproximadamente 1600 ms antes de ocorrer o timeout.
 
-Note
+Nota
 
-After making changes in a management node's configuration, it is necessary to perform a rolling restart of the cluster for the new configuration to take effect.
+Após fazer alterações na configuração de um Node de gerenciamento, é necessário realizar um rolling restart do Cluster para que a nova configuração entre em vigor.
 
-To add new management servers to a running NDB Cluster, it is also necessary to perform a rolling restart of all cluster nodes after modifying any existing `config.ini` files. For more information about issues arising when using multiple management nodes, see [Section 21.2.7.10, “Limitations Relating to Multiple NDB Cluster Nodes”](mysql-cluster-limitations-multiple-nodes.html "21.2.7.10 Limitations Relating to Multiple NDB Cluster Nodes").
+Para adicionar novos servidores de gerenciamento a um NDB Cluster em execução, também é necessário realizar um rolling restart de todos os Cluster nodes após modificar quaisquer arquivos `config.ini` existentes. Para mais informações sobre questões que surgem ao usar múltiplos Nodes de gerenciamento, consulte [Section 21.2.7.10, “Limitations Relating to Multiple NDB Cluster Nodes”](mysql-cluster-limitations-multiple-nodes.html "21.2.7.10 Limitations Relating to Multiple NDB Cluster Nodes").
 
-**Restart types.** Information about the restart types used by the parameter descriptions in this section is shown in the following table:
+**Tipos de Restart.** As informações sobre os tipos de Restart usados pelas descrições de parâmetros nesta seção são mostradas na tabela a seguir:
 
-**Table 21.8 NDB Cluster restart types**
+**Tabela 21.8 Tipos de restart NDB Cluster**
 
-<table frame="box" rules="all" summary="NodeId management node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 255</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Tipos de restart NDB Cluster" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 255</td> </tr><tr> <th>Tipo de Restart</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requer um desligamento completo do Cluster, limpeza e restauração do sistema de arquivos do Cluster a partir de um backup, e então o restart do Cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>

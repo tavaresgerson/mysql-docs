@@ -1,49 +1,49 @@
-#### 26.4.3.25 The schema_index_statistics and x$schema_index_statistics Views
+#### 26.4.3.25 As Views schema_index_statistics e x$schema_index_statistics
 
-These views provide index statistics. By default, rows are sorted by descending total index latency.
+Essas Views fornecem estatísticas de Index. Por padrão, as linhas são ordenadas pela latency total do Index em ordem decrescente.
 
-The `schema_index_statistics` and `x$schema_index_statistics` views have these columns:
+As Views `schema_index_statistics` e `x$schema_index_statistics` possuem as seguintes colunas:
 
 * `table_schema`
 
-  The schema that contains the table.
+  O Schema que contém a tabela.
 
 * `table_name`
 
-  The table that contains the index.
+  A tabela que contém o Index.
 
 * `index_name`
 
-  The name of the index.
+  O nome do Index.
 
 * `rows_selected`
 
-  The total number of rows read using the index.
+  O número total de linhas lidas usando o Index.
 
 * `select_latency`
 
-  The total wait time of timed reads using the index.
+  O tempo de espera total (latency) de leituras cronometradas usando o Index.
 
 * `rows_inserted`
 
-  The total number of rows inserted into the index.
+  O número total de linhas inseridas no Index.
 
 * `insert_latency`
 
-  The total wait time of timed inserts into the index.
+  O tempo de espera total (latency) de inserções cronometradas no Index.
 
 * `rows_updated`
 
-  The total number of rows updated in the index.
+  O número total de linhas atualizadas no Index.
 
 * `update_latency`
 
-  The total wait time of timed updates in the index.
+  O tempo de espera total (latency) de atualizações cronometradas no Index.
 
 * `rows_deleted`
 
-  The total number of rows deleted from the index.
+  O número total de linhas excluídas do Index.
 
 * `delete_latency`
 
-  The total wait time of timed deletes from the index.
+  O tempo de espera total (latency) de exclusões cronometradas do Index.

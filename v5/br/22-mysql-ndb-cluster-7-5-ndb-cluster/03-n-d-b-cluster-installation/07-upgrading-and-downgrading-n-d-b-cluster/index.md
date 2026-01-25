@@ -1,15 +1,15 @@
-### 21.3.7 Upgrading and Downgrading NDB Cluster
+### 21.3.7 Upgrade e Downgrade do NDB Cluster
 
-[21.3.7.1 Upgrading and Downgrading NDB 7.5](mysql-cluster-upgrade-downgrade-7-5.html)
+[21.3.7.1 Upgrade e Downgrade do NDB 7.5](mysql-cluster-upgrade-downgrade-7-5.html)
 
-[21.3.7.2 Upgrading and Downgrading NDB 7.6](mysql-cluster-upgrade-downgrade-7-6.html)
+[21.3.7.2 Upgrade e Downgrade do NDB 7.6](mysql-cluster-upgrade-downgrade-7-6.html)
 
-The following sections provide information about upgrading and downgrading NDB Cluster 7.5 and 7.6.
+As seções a seguir fornecem informações sobre o upgrade e o downgrade do NDB Cluster 7.5 e 7.6.
 
-Schema operations, including SQL DDL statements, cannot be performed while any data nodes are restarting, and thus during an online upgrade or downgrade of the cluster. For other information regarding the rolling restart procedure used to perform an online upgrade, see [Section 21.6.5, “Performing a Rolling Restart of an NDB Cluster”](mysql-cluster-rolling-restart.html "21.6.5 Performing a Rolling Restart of an NDB Cluster").
+Operações de Schema, incluindo instruções SQL DDL, não podem ser realizadas enquanto quaisquer data nodes estiverem reiniciando e, portanto, durante um upgrade ou downgrade online do cluster. Para outras informações sobre o procedimento de Rolling Restart usado para realizar um upgrade online, consulte [Seção 21.6.5, “Executando um Rolling Restart de um NDB Cluster”](mysql-cluster-rolling-restart.html "21.6.5 Executando um Rolling Restart de um NDB Cluster").
 
-Important
+Importante
 
-Compatibility between release versions is taken into account only with regard to [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") in this section, and there are additional issues to be considered. See [Section 2.10, “Upgrading MySQL”](upgrading.html "2.10 Upgrading MySQL").
+A compatibilidade entre as versões de release é considerada apenas no que diz respeito ao [`NDBCLUSTER`](mysql-cluster.html "Capítulo 21 MySQL NDB Cluster 7.5 e NDB Cluster 7.6") nesta seção, e existem questões adicionais a serem consideradas. Consulte [Seção 2.10, “Upgrading MySQL”](upgrading.html "2.10 Upgrading MySQL").
 
-*As with any other MySQL software upgrade or downgrade, you are strongly encouraged to review the relevant portions of the MySQL Manual for the MySQL versions from which and to which you intend to migrate, before attempting an upgrade or downgrade of the NDB Cluster software*.
+*Assim como em qualquer outro upgrade ou downgrade de software MySQL, você é fortemente encorajado a revisar as partes relevantes do Manual do MySQL para as versões do MySQL de onde e para onde você pretende migrar, antes de tentar um upgrade ou downgrade do software NDB Cluster*.

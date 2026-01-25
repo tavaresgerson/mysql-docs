@@ -1,7 +1,7 @@
-## 28.5 MySQL Enterprise Firewall Overview
+## 28.5 Visão Geral do MySQL Enterprise Firewall
 
-MySQL Enterprise Edition includes MySQL Enterprise Firewall, an application-level firewall that enables database administrators to permit or deny SQL statement execution based on matching against allowlists of accepted statement patterns. This helps harden MySQL Server against attacks such as SQL injection or attempts to exploit applications by using them outside of their legitimate query workload characteristics.
+O MySQL Enterprise Edition inclui o MySQL Enterprise Firewall, um *Firewall* de nível de aplicação que permite aos administradores de *Database* autorizar ou negar a execução de comandos *SQL* com base na correspondência contra *allowlists* de padrões de comandos aceitos. Isso ajuda a fortalecer o MySQL Server contra ataques como *SQL injection* ou tentativas de explorar aplicações usando-as fora das características legítimas de sua carga de trabalho (*workload*) de *Query*.
 
-Each MySQL account registered with the firewall has its own statement allowlist, enabling protection to be tailored per account. For a given account, the firewall can operate in recording or protecting mode, for training in the accepted statement patterns or protection against unacceptable statements.
+Cada conta MySQL registrada no *Firewall* tem sua própria *allowlist* de comandos, permitindo que a proteção seja personalizada por conta. Para uma determinada conta, o *Firewall* pode operar nos modos de gravação (*recording*) ou proteção (*protecting*), para treinamento nos padrões de comandos aceitos ou para proteção contra comandos inaceitáveis.
 
-For more information, see Section 6.4.6, “MySQL Enterprise Firewall”.
+Para mais informações, consulte a Seção 6.4.6, “MySQL Enterprise Firewall”.

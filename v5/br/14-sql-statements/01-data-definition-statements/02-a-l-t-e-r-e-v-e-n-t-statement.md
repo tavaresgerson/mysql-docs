@@ -1,4 +1,4 @@
-### 13.1.2 ALTER EVENT Statement
+### 13.1.2 Declaração ALTER EVENT
 
 ```sql
 ALTER
@@ -12,11 +12,11 @@ ALTER
     [DO event_body]
 ```
 
-The [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") statement changes one or more of the characteristics of an existing event without the need to drop and recreate it. The syntax for each of the `DEFINER`, `ON SCHEDULE`, `ON COMPLETION`, `COMMENT`, `ENABLE` / `DISABLE`, and [`DO`](do.html "13.2.3 DO Statement") clauses is exactly the same as when used with [`CREATE EVENT`](create-event.html "13.1.12 CREATE EVENT Statement"). (See [Section 13.1.12, “CREATE EVENT Statement”](create-event.html "13.1.12 CREATE EVENT Statement").)
+A declaração [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") altera uma ou mais das características de um event existente sem a necessidade de descartá-lo (drop) e recriá-lo. A sintaxe para cada uma das cláusulas `DEFINER`, `ON SCHEDULE`, `ON COMPLETION`, `COMMENT`, `ENABLE` / `DISABLE`, e [`DO`](do.html "13.2.3 DO Statement") é exatamente a mesma de quando usada com [`CREATE EVENT`](create-event.html "13.1.12 CREATE EVENT Statement"). (Veja [Seção 13.1.12, “Declaração CREATE EVENT”](create-event.html "13.1.12 CREATE EVENT Statement").)
 
-Any user can alter an event defined on a database for which that user has the [`EVENT`](privileges-provided.html#priv_event) privilege. When a user executes a successful [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") statement, that user becomes the definer for the affected event.
+Qualquer usuário pode alterar um event definido em um Database para o qual esse usuário possua o privilégio [`EVENT`](privileges-provided.html#priv_event). Quando um usuário executa uma declaração [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") bem-sucedida, esse usuário se torna o definidor (definer) do event afetado.
 
-[`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") works only with an existing event:
+[`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") funciona apenas com um event existente:
 
 ```sql
 mysql> ALTER EVENT no_such_event
@@ -25,7 +25,7 @@ mysql> ALTER EVENT no_such_event
 ERROR 1517 (HY000): Unknown event 'no_such_event'
 ```
 
-In each of the following examples, assume that the event named `myevent` is defined as shown here:
+Em cada um dos exemplos a seguir, assuma que o event chamado `myevent` está definido como mostrado aqui:
 
 ```sql
 CREATE EVENT myevent
@@ -36,7 +36,7 @@ CREATE EVENT myevent
       UPDATE myschema.mytable SET mycol = mycol + 1;
 ```
 
-The following statement changes the schedule for `myevent` from once every six hours starting immediately to once every twelve hours, starting four hours from the time the statement is run:
+A seguinte declaração altera a schedule para `myevent` de uma vez a cada seis horas começando imediatamente para uma vez a cada doze horas, começando quatro horas a partir do momento em que a declaração é executada:
 
 ```sql
 ALTER EVENT myevent
@@ -45,7 +45,7 @@ ALTER EVENT myevent
     STARTS CURRENT_TIMESTAMP + INTERVAL 4 HOUR;
 ```
 
-It is possible to change multiple characteristics of an event in a single statement. This example changes the SQL statement executed by `myevent` to one that deletes all records from `mytable`; it also changes the schedule for the event such that it executes once, one day after this [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") statement is run.
+É possível alterar múltiplas características de um event em uma única declaração. Este exemplo altera a declaração SQL executada por `myevent` para uma que deleta todos os registros de `mytable`; ele também altera a schedule do event para que ele seja executado uma vez, um dia após esta declaração [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") ser executada.
 
 ```sql
 ALTER EVENT myevent
@@ -55,38 +55,37 @@ ALTER EVENT myevent
       TRUNCATE TABLE myschema.mytable;
 ```
 
-Specify the options in an [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") statement only for those characteristics that you want to change; omitted options keep their existing values. This includes any default values for [`CREATE EVENT`](create-event.html "13.1.12 CREATE EVENT Statement") such as `ENABLE`.
+Especifique as opções em uma declaração [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") apenas para as características que você deseja alterar; opções omitidas mantêm seus valores existentes. Isso inclui quaisquer valores default para [`CREATE EVENT`](create-event.html "13.1.12 CREATE EVENT Statement"), como `ENABLE`.
 
-To disable `myevent`, use this [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") statement:
+Para desabilitar `myevent`, utilize esta declaração [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement"):
 
 ```sql
 ALTER EVENT myevent
     DISABLE;
 ```
 
-The `ON SCHEDULE` clause may use expressions involving built-in MySQL functions and user variables to obtain any of the *`timestamp`* or *`interval`* values which it contains. You cannot use stored routines or loadable functions in such expressions, and you cannot use any table references; however, you can use `SELECT FROM DUAL`. This is true for both [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") and [`CREATE EVENT`](create-event.html "13.1.12 CREATE EVENT Statement") statements. References to stored routines, loadable functions, and tables in such cases are specifically not permitted, and fail with an error (see Bug
-#22830).
+A cláusula `ON SCHEDULE` pode usar expressions envolvendo funções built-in do MySQL e variáveis de usuário para obter qualquer um dos valores *`timestamp`* ou *`interval`* que ela contém. Você não pode usar stored routines ou loadable functions em tais expressions, e não pode usar nenhuma referência de table; no entanto, você pode usar `SELECT FROM DUAL`. Isso é válido tanto para as declarações [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") quanto para [`CREATE EVENT`](create-event.html "13.1.12 CREATE EVENT Statement"). Referências a stored routines, loadable functions e tables nesses casos não são especificamente permitidas e falham com um error (veja Bug #22830).
 
-Although an [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") statement that contains another [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") statement in its [`DO`](do.html "13.2.3 DO Statement") clause appears to succeed, when the server attempts to execute the resulting scheduled event, the execution fails with an error.
+Embora uma declaração [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") que contenha outra declaração [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") em sua cláusula [`DO`](do.html "13.2.3 DO Statement") pareça ter sucesso, quando o server tenta executar o event agendado resultante, a execução falha com um error.
 
-To rename an event, use the [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") statement's `RENAME TO` clause. This statement renames the event `myevent` to `yourevent`:
+Para renomear um event, use a cláusula `RENAME TO` da declaração [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement"). Esta declaração renomeia o event `myevent` para `yourevent`:
 
 ```sql
 ALTER EVENT myevent
     RENAME TO yourevent;
 ```
 
-You can also move an event to a different database using `ALTER EVENT ... RENAME TO ...` and `db_name.event_name` notation, as shown here:
+Você também pode mover um event para um Database diferente usando a notação `ALTER EVENT ... RENAME TO ...` e `db_name.event_name`, como mostrado aqui:
 
 ```sql
 ALTER EVENT olddb.myevent
     RENAME TO newdb.myevent;
 ```
 
-To execute the previous statement, the user executing it must have the [`EVENT`](privileges-provided.html#priv_event) privilege on both the `olddb` and `newdb` databases.
+Para executar a declaração anterior, o usuário que a está executando deve ter o privilégio [`EVENT`](privileges-provided.html#priv_event) em ambos os Databases, `olddb` e `newdb`.
 
-Note
+Nota
 
-There is no `RENAME EVENT` statement.
+Não existe uma declaração `RENAME EVENT`.
 
-The value `DISABLE ON SLAVE` is used on a replica instead of `ENABLE` or `DISABLE` to indicate an event that was created on the source and replicated to the replica, but that is not executed on the replica. Normally, `DISABLE ON SLAVE` is set automatically as required; however, there are some circumstances under which you may want or need to change it manually. See [Section 16.4.1.16, “Replication of Invoked Features”](replication-features-invoked.html "16.4.1.16 Replication of Invoked Features"), for more information.
+O valor `DISABLE ON SLAVE` é usado em uma replica em vez de `ENABLE` ou `DISABLE` para indicar um event que foi criado na source e replicado para a replica, mas que não é executado na replica. Normalmente, `DISABLE ON SLAVE` é definido automaticamente conforme necessário; no entanto, há algumas circunstâncias nas quais você pode querer ou precisar alterá-lo manualmente. Consulte [Seção 16.4.1.16, “Replication of Invoked Features”](replication-features-invoked.html "16.4.1.16 Replication of Invoked Features"), para obter mais informações.

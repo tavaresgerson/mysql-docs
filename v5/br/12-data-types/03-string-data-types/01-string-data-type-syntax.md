@@ -1,14 +1,14 @@
-### 11.3.1 String Data Type Syntax
+### 11.3.1 Sintaxe dos Tipos de Dados String
 
-The string data types are `CHAR`, `VARCHAR`, `BINARY`, `VARBINARY`, `BLOB`, `TEXT`, `ENUM`, and `SET`.
+Os tipos de dados string são `CHAR`, `VARCHAR`, `BINARY`, `VARBINARY`, `BLOB`, `TEXT`, `ENUM`, e `SET`.
 
-In some cases, MySQL may change a string column to a type different from that given in a `CREATE TABLE` or `ALTER TABLE` statement. See Section 13.1.18.6, “Silent Column Specification Changes”.
+Em alguns casos, o MySQL pode alterar uma coluna string para um tipo diferente daquele fornecido em uma instrução `CREATE TABLE` ou `ALTER TABLE`. Consulte a Seção 13.1.18.6, “Silent Column Specification Changes” (Alterações Silenciosas na Especificação de Colunas).
 
-For definitions of character string columns (`CHAR`, `VARCHAR`, and the `TEXT` types), MySQL interprets length specifications in character units. For definitions of binary string columns (`BINARY`, `VARBINARY`, and the `BLOB` types), MySQL interprets length specifications in byte units.
+Para definições de colunas de string de caracteres (`CHAR`, `VARCHAR` e os tipos `TEXT`), o MySQL interpreta as especificações de comprimento em unidades de caractere. Para definições de colunas de string binárias (`BINARY`, `VARBINARY` e os tipos `BLOB`), o MySQL interpreta as especificações de comprimento em unidades de byte.
 
-Column definitions for character string data types `CHAR`, `VARCHAR`, the `TEXT` types, `ENUM`, `SET`, and any synonyms) can specify the column character set and collation:
+As definições de coluna para tipos de dados de string de caractere (`CHAR`, `VARCHAR`, os tipos `TEXT`, `ENUM`, `SET` e quaisquer sinônimos) podem especificar o character set e a collation da coluna:
 
-* `CHARACTER SET` specifies the character set. If desired, a collation for the character set can be specified with the `COLLATE` attribute, along with any other attributes. For example:
+* `CHARACTER SET` especifica o character set. Se desejado, uma collation para o character set pode ser especificada com o atributo `COLLATE`, juntamente com quaisquer outros atributos. Por exemplo:
 
   ```sql
   CREATE TABLE t
@@ -18,13 +18,13 @@ Column definitions for character string data types `CHAR`, `VARCHAR`, the `TEXT`
   );
   ```
 
-  This table definition creates a column named `c1` that has a character set of `utf8` with the default collation for that character set, and a column named `c2` that has a character set of `latin1` and a case-sensitive (`_cs`) collation.
+  Esta definição de tabela cria uma coluna chamada `c1` que possui um character set `utf8` com a collation padrão para aquele character set, e uma coluna chamada `c2` que possui um character set `latin1` e uma collation case-sensitive (`_cs`).
 
-  The rules for assigning the character set and collation when either or both of `CHARACTER SET` and the `COLLATE` attribute are missing are described in Section 10.3.5, “Column Character Set and Collation”.
+  As regras para atribuir o character set e a collation quando um ou ambos, `CHARACTER SET` e o atributo `COLLATE`, estão ausentes, são descritas na Seção 10.3.5, “Column Character Set and Collation” (Character Set e Collation da Coluna).
 
-  `CHARSET` is a synonym for `CHARACTER SET`.
+  `CHARSET` é um sinônimo para `CHARACTER SET`.
 
-* Specifying the `CHARACTER SET binary` attribute for a character string data type causes the column to be created as the corresponding binary string data type: `CHAR` becomes `BINARY`, `VARCHAR` becomes `VARBINARY`, and `TEXT` becomes `BLOB`. For the `ENUM` and `SET` data types, this does not occur; they are created as declared. Suppose that you specify a table using this definition:
+* Especificar o atributo `CHARACTER SET binary` para um tipo de dados string de caractere faz com que a coluna seja criada como o tipo de dados string binária correspondente: `CHAR` se torna `BINARY`, `VARCHAR` se torna `VARBINARY`, e `TEXT` se torna `BLOB`. Para os tipos de dados `ENUM` e `SET`, isso não ocorre; eles são criados conforme declarados. Suponha que você especifique uma tabela usando esta definição:
 
   ```sql
   CREATE TABLE t
@@ -35,7 +35,7 @@ Column definitions for character string data types `CHAR`, `VARCHAR`, the `TEXT`
   );
   ```
 
-  The resulting table has this definition:
+  A tabela resultante tem esta definição:
 
   ```sql
   CREATE TABLE t
@@ -46,7 +46,7 @@ Column definitions for character string data types `CHAR`, `VARCHAR`, the `TEXT`
   );
   ```
 
-* The `BINARY` attribute is a nonstandard MySQL extension that is shorthand for specifying the binary (`_bin`) collation of the column character set (or of the table default character set if no column character set is specified). In this case, comparison and sorting are based on numeric character code values. Suppose that you specify a table using this definition:
+* O atributo `BINARY` é uma extensão não padrão do MySQL que é um atalho para especificar a collation binária (`_bin`) do character set da coluna (ou do character set padrão da tabela se nenhum character set da coluna for especificado). Neste caso, a comparação e a ordenação são baseadas em valores numéricos do código do caractere. Suponha que você especifique uma tabela usando esta definição:
 
   ```sql
   CREATE TABLE t
@@ -56,7 +56,7 @@ Column definitions for character string data types `CHAR`, `VARCHAR`, the `TEXT`
   ) CHARACTER SET utf8mb4;
   ```
 
-  The resulting table has this definition:
+  A tabela resultante tem esta definição:
 
   ```sql
   CREATE TABLE t (
@@ -65,92 +65,92 @@ Column definitions for character string data types `CHAR`, `VARCHAR`, the `TEXT`
   ) CHARACTER SET utf8mb4;
   ```
 
-* The `ASCII` attribute is shorthand for `CHARACTER SET latin1`.
+* O atributo `ASCII` é um atalho para `CHARACTER SET latin1`.
 
-* The `UNICODE` attribute is shorthand for `CHARACTER SET ucs2`.
+* O atributo `UNICODE` é um atalho para `CHARACTER SET ucs2`.
 
-Character column comparison and sorting are based on the collation assigned to the column. For the `CHAR`, `VARCHAR`, `TEXT`, `ENUM`, and `SET` data types, you can declare a column with a binary (`_bin`) collation or the `BINARY` attribute to cause comparison and sorting to use the underlying character code values rather than a lexical ordering.
+A comparação e a ordenação de colunas de caractere são baseadas na collation atribuída à coluna. Para os tipos de dados `CHAR`, `VARCHAR`, `TEXT`, `ENUM` e `SET`, você pode declarar uma coluna com uma collation binária (`_bin`) ou o atributo `BINARY` para fazer com que a comparação e a ordenação usem os valores de código de caractere subjacentes em vez de uma ordenação lexical.
 
-For additional information about use of character sets in MySQL, see Chapter 10, *Character Sets, Collations, Unicode*.
+Para informações adicionais sobre o uso de character sets no MySQL, consulte o Capítulo 10, *Character Sets, Collations, Unicode*.
 
 * `[NATIONAL] CHAR[(M)] [CHARACTER SET charset_name] [COLLATE collation_name]`
 
-  A fixed-length string that is always right-padded with spaces to the specified length when stored. *`M`* represents the column length in characters. The range of *`M`* is 0 to 255. If *`M`* is omitted, the length is 1.
+  Uma string de comprimento fixo que é sempre preenchida à direita com espaços até o comprimento especificado quando armazenada. *`M`* representa o comprimento da coluna em caracteres. O intervalo de *`M`* é de 0 a 255. Se *`M`* for omitido, o comprimento é 1.
 
-  Note
+  Nota
 
-  Trailing spaces are removed when `CHAR` values are retrieved unless the `PAD_CHAR_TO_FULL_LENGTH` SQL mode is enabled.
+  Espaços finais são removidos quando valores `CHAR` são recuperados, a menos que o modo SQL `PAD_CHAR_TO_FULL_LENGTH` esteja habilitado.
 
-  `CHAR` is shorthand for `CHARACTER`. `NATIONAL CHAR` (or its equivalent short form, `NCHAR`) is the standard SQL way to define that a `CHAR` column should use some predefined character set. MySQL uses `utf8` as this predefined character set. Section 10.3.7, “The National Character Set”.
+  `CHAR` é um atalho para `CHARACTER`. `NATIONAL CHAR` (ou sua forma abreviada equivalente, `NCHAR`) é a maneira padrão SQL de definir que uma coluna `CHAR` deve usar algum character set predefinido. O MySQL usa `utf8` como esse character set predefinido. Seção 10.3.7, “The National Character Set”.
 
-  The `CHAR BYTE` data type is an alias for the `BINARY` data type. This is a compatibility feature.
+  O tipo de dados `CHAR BYTE` é um alias para o tipo de dados `BINARY`. Este é um recurso de compatibilidade.
 
-  MySQL permits you to create a column of type `CHAR(0)`. This is useful primarily when you must be compliant with old applications that depend on the existence of a column but that do not actually use its value. `CHAR(0)` is also quite nice when you need a column that can take only two values: A column that is defined as `CHAR(0) NULL` occupies only one bit and can take only the values `NULL` and `''` (the empty string).
+  O MySQL permite criar uma coluna do tipo `CHAR(0)`. Isso é útil principalmente quando você precisa ser compatível com aplicações antigas que dependem da existência de uma coluna, mas que na verdade não usam seu valor. `CHAR(0)` também é interessante quando você precisa de uma coluna que pode aceitar apenas dois valores: Uma coluna que é definida como `CHAR(0) NULL` ocupa apenas um bit e pode aceitar apenas os valores `NULL` e `''` (a string vazia).
 
 * `[NATIONAL] VARCHAR(M) [CHARACTER SET charset_name] [COLLATE collation_name]`
 
-  A variable-length string. *`M`* represents the maximum column length in characters. The range of *`M`* is 0 to 65,535. The effective maximum length of a `VARCHAR` is subject to the maximum row size (65,535 bytes, which is shared among all columns) and the character set used. For example, `utf8` characters can require up to three bytes per character, so a `VARCHAR` column that uses the `utf8` character set can be declared to be a maximum of 21,844 characters. See Section 8.4.7, “Limits on Table Column Count and Row Size”.
+  Uma string de comprimento variável. *`M`* representa o comprimento máximo da coluna em caracteres. O intervalo de *`M`* é de 0 a 65.535. O comprimento máximo efetivo de um `VARCHAR` está sujeito ao tamanho máximo da linha (65.535 bytes, que é compartilhado entre todas as colunas) e ao character set utilizado. Por exemplo, caracteres `utf8` podem exigir até três bytes por caractere, então uma coluna `VARCHAR` que usa o character set `utf8` pode ser declarada com um máximo de 21.844 caracteres. Consulte a Seção 8.4.7, “Limits on Table Column Count and Row Size” (Limites de Contagem de Colunas e Tamanho de Linha da Tabela).
 
-  MySQL stores `VARCHAR` values as a 1-byte or 2-byte length prefix plus data. The length prefix indicates the number of bytes in the value. A `VARCHAR` column uses one length byte if values require no more than 255 bytes, two length bytes if values may require more than 255 bytes.
+  O MySQL armazena valores `VARCHAR` como um prefixo de comprimento de 1 byte ou 2 bytes mais os dados. O prefixo de comprimento indica o número de bytes no valor. Uma coluna `VARCHAR` usa um byte de comprimento se os valores exigirem no máximo 255 bytes, e dois bytes de comprimento se os valores puderem exigir mais de 255 bytes.
 
-  Note
+  Nota
 
-  MySQL follows the standard SQL specification, and does *not* remove trailing spaces from `VARCHAR` values.
+  O MySQL segue a especificação SQL padrão e *não* remove espaços finais dos valores `VARCHAR`.
 
-  `VARCHAR` is shorthand for `CHARACTER VARYING`. `NATIONAL VARCHAR` is the standard SQL way to define that a `VARCHAR` column should use some predefined character set. MySQL uses `utf8` as this predefined character set. Section 10.3.7, “The National Character Set”. `NVARCHAR` is shorthand for `NATIONAL VARCHAR`.
+  `VARCHAR` é um atalho para `CHARACTER VARYING`. `NATIONAL VARCHAR` é a maneira padrão SQL de definir que uma coluna `VARCHAR` deve usar algum character set predefinido. O MySQL usa `utf8` como esse character set predefinido. Seção 10.3.7, “The National Character Set”. `NVARCHAR` é um atalho para `NATIONAL VARCHAR`.
 
 * `BINARY[(M)]`
 
-  The `BINARY` type is similar to the `CHAR` type, but stores binary byte strings rather than nonbinary character strings. An optional length *`M`* represents the column length in bytes. If omitted, *`M`* defaults to 1.
+  O tipo `BINARY` é semelhante ao tipo `CHAR`, mas armazena strings de bytes binárias em vez de strings de caracteres não binárias. Um comprimento opcional *`M`* representa o comprimento da coluna em bytes. Se omitido, *`M`* assume o padrão 1.
 
 * `VARBINARY(M)`
 
-  The `VARBINARY` type is similar to the `VARCHAR` type, but stores binary byte strings rather than nonbinary character strings. *`M`* represents the maximum column length in bytes.
+  O tipo `VARBINARY` é semelhante ao tipo `VARCHAR`, mas armazena strings de bytes binárias em vez de strings de caracteres não binárias. *`M`* representa o comprimento máximo da coluna em bytes.
 
 * `TINYBLOB`
 
-  A `BLOB` column with a maximum length of 255 (28 − 1) bytes. Each `TINYBLOB` value is stored using a 1-byte length prefix that indicates the number of bytes in the value.
+  Uma coluna `BLOB` com um comprimento máximo de 255 (2⁸ − 1) bytes. Cada valor `TINYBLOB` é armazenado usando um prefixo de comprimento de 1 byte que indica o número de bytes no valor.
 
 * `TINYTEXT [CHARACTER SET charset_name] [COLLATE collation_name]`
 
-  A `TEXT` column with a maximum length of 255 (28 − 1) characters. The effective maximum length is less if the value contains multibyte characters. Each `TINYTEXT` value is stored using a 1-byte length prefix that indicates the number of bytes in the value.
+  Uma coluna `TEXT` com um comprimento máximo de 255 (2⁸ − 1) caracteres. O comprimento máximo efetivo é menor se o valor contiver caracteres multibyte. Cada valor `TINYTEXT` é armazenado usando um prefixo de comprimento de 1 byte que indica o número de bytes no valor.
 
 * `BLOB[(M)]`
 
-  A `BLOB` column with a maximum length of 65,535 (216 − 1) bytes. Each `BLOB` value is stored using a 2-byte length prefix that indicates the number of bytes in the value.
+  Uma coluna `BLOB` com um comprimento máximo de 65.535 (2¹⁶ − 1) bytes. Cada valor `BLOB` é armazenado usando um prefixo de comprimento de 2 bytes que indica o número de bytes no valor.
 
-  An optional length *`M`* can be given for this type. If this is done, MySQL creates the column as the smallest `BLOB` type large enough to hold values *`M`* bytes long.
+  Um comprimento opcional *`M`* pode ser fornecido para este tipo. Se isso for feito, o MySQL cria a coluna como o menor tipo `BLOB` grande o suficiente para armazenar valores de *`M`* bytes de comprimento.
 
 * `TEXT[(M)] [CHARACTER SET charset_name] [COLLATE collation_name]`
 
-  A `TEXT` column with a maximum length of 65,535 (216 − 1) bytes. The effective maximum length is less if the value contains multibyte characters. Each `TEXT` value is stored using a 2-byte length prefix that indicates the number of bytes in the value.
+  Uma coluna `TEXT` com um comprimento máximo de 65.535 (2¹⁶ − 1) bytes. O comprimento máximo efetivo é menor se o valor contiver caracteres multibyte. Cada valor `TEXT` é armazenado usando um prefixo de comprimento de 2 bytes que indica o número de bytes no valor.
 
-  An optional length *`M`* can be given for this type. If this is done, MySQL creates the column as the smallest `TEXT` type large enough to hold values *`M`* characters long.
+  Um comprimento opcional *`M`* pode ser fornecido para este tipo. Se isso for feito, o MySQL cria a coluna como o menor tipo `TEXT` grande o suficiente para armazenar valores de *`M`* caracteres de comprimento.
 
 * `MEDIUMBLOB`
 
-  A `BLOB` column with a maximum length of 16,777,215 (224 − 1) bytes. Each `MEDIUMBLOB` value is stored using a 3-byte length prefix that indicates the number of bytes in the value.
+  Uma coluna `BLOB` com um comprimento máximo de 16.777.215 (2²⁴ − 1) bytes. Cada valor `MEDIUMBLOB` é armazenado usando um prefixo de comprimento de 3 bytes que indica o número de bytes no valor.
 
 * `MEDIUMTEXT [CHARACTER SET charset_name] [COLLATE collation_name]`
 
-  A `TEXT` column with a maximum length of 16,777,215 (224 − 1) characters. The effective maximum length is less if the value contains multibyte characters. Each `MEDIUMTEXT` value is stored using a 3-byte length prefix that indicates the number of bytes in the value.
+  Uma coluna `TEXT` com um comprimento máximo de 16.777.215 (2²⁴ − 1) caracteres. O comprimento máximo efetivo é menor se o valor contiver caracteres multibyte. Cada valor `MEDIUMTEXT` é armazenado usando um prefixo de comprimento de 3 bytes que indica o número de bytes no valor.
 
 * `LONGBLOB`
 
-  A `BLOB` column with a maximum length of 4,294,967,295 or 4GB (232 − 1) bytes. The effective maximum length of `LONGBLOB` columns depends on the configured maximum packet size in the client/server protocol and available memory. Each `LONGBLOB` value is stored using a 4-byte length prefix that indicates the number of bytes in the value.
+  Uma coluna `BLOB` com um comprimento máximo de 4.294.967.295 ou 4GB (2³² − 1) bytes. O comprimento máximo efetivo das colunas `LONGBLOB` depende do tamanho máximo de pacote configurado no protocolo cliente/servidor e da memória disponível. Cada valor `LONGBLOB` é armazenado usando um prefixo de comprimento de 4 bytes que indica o número de bytes no valor.
 
 * `LONGTEXT [CHARACTER SET charset_name] [COLLATE collation_name]`
 
-  A `TEXT` column with a maximum length of 4,294,967,295 or 4GB (232 − 1) characters. The effective maximum length is less if the value contains multibyte characters. The effective maximum length of `LONGTEXT` columns also depends on the configured maximum packet size in the client/server protocol and available memory. Each `LONGTEXT` value is stored using a 4-byte length prefix that indicates the number of bytes in the value.
+  Uma coluna `TEXT` com um comprimento máximo de 4.294.967.295 ou 4GB (2³² − 1) caracteres. O comprimento máximo efetivo é menor se o valor contiver caracteres multibyte. O comprimento máximo efetivo das colunas `LONGTEXT` também depende do tamanho máximo de pacote configurado no protocolo cliente/servidor e da memória disponível. Cada valor `LONGTEXT` é armazenado usando um prefixo de comprimento de 4 bytes que indica o número de bytes no valor.
 
 * `ENUM('value1','value2',...) [CHARACTER SET charset_name] [COLLATE collation_name]`
 
-  An enumeration. A string object that can have only one value, chosen from the list of values `'value1'`, `'value2'`, `...`, `NULL` or the special `''` error value. `ENUM` values are represented internally as integers.
+  Uma enumeração. Um objeto string que pode ter apenas um valor, escolhido na lista de valores `'value1'`, `'value2'`, `...`, `NULL` ou o valor de erro especial `''`. Valores `ENUM` são representados internamente como inteiros.
 
-  An `ENUM` column can have a maximum of 65,535 distinct elements. (The practical limit is less than 3000.) A table can have no more than 255 unique element list definitions among its `ENUM` and `SET` columns considered as a group. For more information on these limits, see Limits Imposed by .frm File Structure.
+  Uma coluna `ENUM` pode ter um máximo de 65.535 elementos distintos. (O limite prático é inferior a 3000.) Uma tabela pode ter no máximo 255 definições de lista de elementos únicas entre suas colunas `ENUM` e `SET` consideradas como um grupo. Para mais informações sobre esses limites, consulte Limits Imposed by .frm File Structure (Limites Impostos pela Estrutura do Arquivo .frm).
 
 * `SET('value1','value2',...) [CHARACTER SET charset_name] [COLLATE collation_name]`
 
-  A set. A string object that can have zero or more values, each of which must be chosen from the list of values `'value1'`, `'value2'`, `...` `SET` values are represented internally as integers.
+  Um set (conjunto). Um objeto string que pode ter zero ou mais valores, cada um dos quais deve ser escolhido na lista de valores `'value1'`, `'value2'`, `...` Valores `SET` são representados internamente como inteiros.
 
-  A `SET` column can have a maximum of 64 distinct members. A table can have no more than 255 unique element list definitions among its `ENUM` and `SET` columns considered as a group. For more information on this limit, see Limits Imposed by .frm File Structure.
+  Uma coluna `SET` pode ter um máximo de 64 membros distintos. Uma tabela pode ter no máximo 255 definições de lista de elementos únicas entre suas colunas `ENUM` e `SET` consideradas como um grupo. Para mais informações sobre este limite, consulte Limits Imposed by .frm File Structure.

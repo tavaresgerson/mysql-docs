@@ -1,12 +1,12 @@
-#### 13.7.5.9 SHOW CREATE PROCEDURE Statement
+#### 13.7.5.9 Instrução SHOW CREATE PROCEDURE
 
 ```sql
 SHOW CREATE PROCEDURE proc_name
 ```
 
-This statement is a MySQL extension. It returns the exact string that can be used to re-create the named stored procedure. A similar statement, [`SHOW CREATE FUNCTION`](show-create-function.html "13.7.5.8 SHOW CREATE FUNCTION Statement"), displays information about stored functions (see [Section 13.7.5.8, “SHOW CREATE FUNCTION Statement”](show-create-function.html "13.7.5.8 SHOW CREATE FUNCTION Statement")).
+Esta instrução é uma extensão do MySQL. Ela retorna a string exata que pode ser usada para recriar o procedimento armazenado nomeado. Uma instrução similar, [`SHOW CREATE FUNCTION`](show-create-function.html "13.7.5.8 SHOW CREATE FUNCTION Statement"), exibe informações sobre funções armazenadas (veja [Seção 13.7.5.8, “SHOW CREATE FUNCTION Statement”](show-create-function.html "13.7.5.8 SHOW CREATE FUNCTION Statement")).
 
-To use either statement, you must be the user named in the routine `DEFINER` clause or have [`SELECT`](select.html "13.2.9 SELECT Statement") access to the `mysql.proc` table. If you do not have privileges for the routine itself, the value displayed for the `Create Procedure` or `Create Function` column is `NULL`.
+Para usar qualquer uma das instruções, você deve ser o usuário nomeado na cláusula `DEFINER` da routine ou ter acesso `SELECT` à tabela `mysql.proc`. Se você não tiver privilégios para a routine em si, o valor exibido para a coluna `Create Procedure` ou `Create Function` é `NULL`.
 
 ```sql
 mysql> SHOW CREATE PROCEDURE test.citycount\G
@@ -43,4 +43,4 @@ collation_connection: utf8_general_ci
   Database Collation: latin1_swedish_ci
 ```
 
-`character_set_client` is the session value of the [`character_set_client`](server-system-variables.html#sysvar_character_set_client) system variable when the routine was created. `collation_connection` is the session value of the [`collation_connection`](server-system-variables.html#sysvar_collation_connection) system variable when the routine was created. `Database Collation` is the collation of the database with which the routine is associated.
+`character_set_client` é o valor de sessão da variável de sistema [`character_set_client`](server-system-variables.html#sysvar_character_set_client) quando a routine foi criada. `collation_connection` é o valor de sessão da variável de sistema [`collation_connection`](server-system-variables.html#sysvar_collation_connection) quando a routine foi criada. `Database Collation` é a collation do Database à qual a routine está associada.

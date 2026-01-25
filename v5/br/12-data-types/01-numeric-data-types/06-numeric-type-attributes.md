@@ -1,27 +1,27 @@
-### 11.1.6 Numeric Type Attributes
+### 11.1.6 Atributos de Tipos Numéricos
 
-MySQL supports an extension for optionally specifying the display width of integer data types in parentheses following the base keyword for the type. For example, `INT(4)` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") specifies an `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") with a display width of four digits. This optional display width may be used by applications to display integer values having a width less than the width specified for the column by left-padding them with spaces. (That is, this width is present in the metadata returned with result sets. Whether it is used is up to the application.)
+O MySQL suporta uma extensão para a especificação opcional da largura de exibição (display width) de tipos de dados inteiros entre parênteses, após a palavra-chave base para o tipo. Por exemplo, `INT(4)` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") especifica um `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") com uma largura de exibição de quatro dígitos. Esta largura de exibição opcional pode ser usada por aplicações para exibir valores inteiros com uma largura menor do que a especificada para a coluna, preenchendo-os à esquerda com espaços (left-padding). (Ou seja, essa largura está presente nos metadata retornados com os result sets. Se ela será usada ou não, cabe à aplicação.)
 
-The display width does *not* constrain the range of values that can be stored in the column. Nor does it prevent values wider than the column display width from being displayed correctly. For example, a column specified as `SMALLINT(3)` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") has the usual `SMALLINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") range of `-32768` to `32767`, and values outside the range permitted by three digits are displayed in full using more than three digits.
+A largura de exibição *não* restringe o range de valores que podem ser armazenados na coluna. Nem impede que valores mais largos do que a largura de exibição da coluna sejam exibidos corretamente. Por exemplo, uma coluna especificada como `SMALLINT(3)` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") tem o range usual de `SMALLINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), de `-32768` a `32767`, e valores fora do range permitido por três dígitos são exibidos por completo, usando mais de três dígitos.
 
-When used in conjunction with the optional (nonstandard) `ZEROFILL` attribute, the default padding of spaces is replaced with zeros. For example, for a column declared as `INT(4) ZEROFILL` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), a value of `5` is retrieved as `0005`.
+Quando usado em conjunto com o atributo opcional (não padrão) `ZEROFILL`, o preenchimento padrão de espaços é substituído por zeros. Por exemplo, para uma coluna declarada como `INT(4) ZEROFILL` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), um valor de `5` é recuperado como `0005`.
 
 Note
 
-The `ZEROFILL` attribute is ignored for columns involved in expressions or `UNION` queries.
+O atributo `ZEROFILL` é ignorado para colunas envolvidas em expressions ou em `UNION` queries.
 
-If you store values larger than the display width in an integer column that has the `ZEROFILL` attribute, you may experience problems when MySQL generates temporary tables for some complicated joins. In these cases, MySQL assumes that the data values fit within the column display width.
+Se você armazenar valores maiores que a largura de exibição em uma coluna de inteiro que possui o atributo `ZEROFILL`, você pode ter problemas quando o MySQL gerar temporary tables para alguns joins complicados. Nesses casos, o MySQL assume que os valores de dados cabem na largura de exibição da coluna.
 
-All integer types can have an optional (nonstandard) `UNSIGNED` attribute. An unsigned type can be used to permit only nonnegative numbers in a column or when you need a larger upper numeric range for the column. For example, if an `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") column is `UNSIGNED`, the size of the column's range is the same but its endpoints shift up, from `-2147483648` and `2147483647` to `0` and `4294967295`.
+Todos os tipos de inteiros podem ter um atributo opcional (não padrão) `UNSIGNED`. Um tipo `UNSIGNED` pode ser usado para permitir apenas números não negativos em uma coluna ou quando você precisa de um range numérico superior maior para a coluna. Por exemplo, se uma coluna `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") for `UNSIGNED`, o tamanho do range da coluna é o mesmo, mas seus endpoints são deslocados para cima, de `-2147483648` e `2147483647` para `0` e `4294967295`.
 
-Floating-point and fixed-point types also can be `UNSIGNED`. As with integer types, this attribute prevents negative values from being stored in the column. Unlike the integer types, the upper range of column values remains the same.
+Tipos floating-point (ponto flutuante) e fixed-point (ponto fixo) também podem ser `UNSIGNED`. Assim como nos tipos inteiros, este atributo impede que valores negativos sejam armazenados na coluna. Ao contrário dos tipos inteiros, o range superior dos valores da coluna permanece o mesmo.
 
-If you specify `ZEROFILL` for a numeric column, MySQL automatically adds the `UNSIGNED` attribute.
+Se você especificar `ZEROFILL` para uma coluna numérica, o MySQL adiciona automaticamente o atributo `UNSIGNED`.
 
-Integer or floating-point data types can have the `AUTO_INCREMENT` attribute. When you insert a value of `NULL` into an indexed `AUTO_INCREMENT` column, the column is set to the next sequence value. Typically this is `value+1`, where *`value`* is the largest value for the column currently in the table. (`AUTO_INCREMENT` sequences begin with `1`.)
+Tipos de dados integer ou floating-point podem ter o atributo `AUTO_INCREMENT`. Quando você insere um valor `NULL` em uma coluna `AUTO_INCREMENT` indexed, a coluna é definida para o próximo valor da sequence. Tipicamente, este é `valor+1`, onde *`valor`* é o maior valor atual para a coluna na tabela. (As sequences `AUTO_INCREMENT` começam com `1`.)
 
-Storing `0` into an `AUTO_INCREMENT` column has the same effect as storing `NULL`, unless the `NO_AUTO_VALUE_ON_ZERO` SQL mode is enabled.
+Armazenar `0` em uma coluna `AUTO_INCREMENT` tem o mesmo efeito que armazenar `NULL`, a menos que o SQL mode `NO_AUTO_VALUE_ON_ZERO` esteja habilitado.
 
-Inserting `NULL` to generate `AUTO_INCREMENT` values requires that the column be declared `NOT NULL`. If the column is declared `NULL`, inserting `NULL` stores a `NULL`. When you insert any other value into an `AUTO_INCREMENT` column, the column is set to that value and the sequence is reset so that the next automatically generated value follows sequentially from the inserted value.
+Inserir `NULL` para gerar valores `AUTO_INCREMENT` exige que a coluna seja declarada como `NOT NULL`. Se a coluna for declarada como `NULL`, a inserção de `NULL` armazena um `NULL`. Quando você insere qualquer outro valor em uma coluna `AUTO_INCREMENT`, a coluna é definida para esse valor e a sequence é redefinida para que o próximo valor gerado automaticamente siga sequencialmente a partir do valor inserido.
 
-Negative values for `AUTO_INCREMENT` columns are not supported.
+Valores negativos para colunas `AUTO_INCREMENT` não são suportados.

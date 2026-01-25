@@ -1,18 +1,18 @@
-#### 26.4.5.16 The ps_thread_stack() Function
+#### 26.4.5.16 A Função ps_thread_stack()
 
-Returns a JSON formatted stack of all statements, stages, and events within the Performance Schema for a given thread ID.
+Retorna um `stack` formatado em JSON de todos os `statements`, `stages` e `events` dentro do Performance Schema para um determinado `thread ID`.
 
-##### Parameters
+##### Parâmetros
 
-* `in_thread_id BIGINT`: The ID of the thread to trace. The value should match the `THREAD_ID` column from some Performance Schema `threads` table row.
+* `in_thread_id BIGINT`: O ID do `thread` a ser rastreado. O valor deve corresponder à coluna `THREAD_ID` de alguma linha da tabela `threads` do Performance Schema.
 
-* `in_verbose BOOLEAN`: Whether to include `file:lineno` information in the events.
+* `in_verbose BOOLEAN`: Indica se a informação `file:lineno` deve ser incluída nos `events`.
 
-##### Return Value
+##### Valor de Retorno
 
-A `LONGTEXT CHARACTER SET latin1` value.
+Um valor `LONGTEXT CHARACTER SET latin1`.
 
-##### Example
+##### Exemplo
 
 ```sql
 mysql> SELECT sys.ps_thread_stack(37, FALSE) AS thread_stack\G

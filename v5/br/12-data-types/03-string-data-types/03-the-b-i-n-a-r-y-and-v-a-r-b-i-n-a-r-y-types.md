@@ -1,22 +1,22 @@
-### 11.3.3 The BINARY and VARBINARY Types
+### 11.3.3 Os Tipos BINARY e VARBINARY
 
-The `BINARY` and `VARBINARY` types are similar to `CHAR` and `VARCHAR`, except that they store binary strings rather than nonbinary strings. That is, they store byte strings rather than character strings. This means they have the `binary` character set and collation, and comparison and sorting are based on the numeric values of the bytes in the values.
+Os tipos `BINARY` e `VARBINARY` são semelhantes a `CHAR` e `VARCHAR`, exceto que eles armazenam strings binárias em vez de strings não binárias. Ou seja, eles armazenam strings de bytes em vez de strings de caracteres. Isso significa que eles possuem o `character set` e `collation` `binary`, e a comparação e ordenação são baseadas nos valores numéricos dos bytes nos valores.
 
-The permissible maximum length is the same for `BINARY` and `VARBINARY` as it is for `CHAR` and `VARCHAR`, except that the length for `BINARY` and `VARBINARY` is measured in bytes rather than characters.
+O comprimento máximo permitido é o mesmo para `BINARY` e `VARBINARY` do que para `CHAR` e `VARCHAR`, exceto que o comprimento para `BINARY` e `VARBINARY` é medido em bytes em vez de caracteres.
 
-The `BINARY` and `VARBINARY` data types are distinct from the `CHAR BINARY` and `VARCHAR BINARY` data types. For the latter types, the `BINARY` attribute does not cause the column to be treated as a binary string column. Instead, it causes the binary (`_bin`) collation for the column character set (or the table default character set if no column character set is specified) to be used, and the column itself stores nonbinary character strings rather than binary byte strings. For example, if the default character set is `latin1`, `CHAR(5) BINARY` is treated as `CHAR(5) CHARACTER SET latin1 COLLATE latin1_bin`. This differs from `BINARY(5)`, which stores 5-byte binary strings that have the `binary` character set and collation. For information about the differences between the `binary` collation of the `binary` character set and the `_bin` collations of nonbinary character sets, see Section 10.8.5, “The binary Collation Compared to _bin Collations”.
+Os tipos de dados `BINARY` e `VARBINARY` são distintos dos tipos de dados `CHAR BINARY` e `VARCHAR BINARY`. Para estes últimos tipos, o atributo `BINARY` não faz com que a coluna seja tratada como uma coluna de string binária. Em vez disso, ele faz com que o `collation` binário (`_bin`) seja usado para o `character set` da coluna (ou o `character set` padrão da tabela se nenhum `character set` de coluna for especificado), e a própria coluna armazena strings de caracteres não binárias em vez de strings de bytes binários. Por exemplo, se o `character set` padrão for `latin1`, `CHAR(5) BINARY` é tratado como `CHAR(5) CHARACTER SET latin1 COLLATE latin1_bin`. Isso difere de `BINARY(5)`, que armazena strings binárias de 5 bytes que possuem o `character set` e `collation` `binary`. Para obter informações sobre as diferenças entre o `collation` `binary` do `character set` `binary` e os `collations` `_bin` de `character sets` não binários, consulte Section 10.8.5, “The binary Collation Compared to _bin Collations”.
 
-If strict SQL mode is not enabled and you assign a value to a `BINARY` or `VARBINARY` column that exceeds the column's maximum length, the value is truncated to fit and a warning is generated. For cases of truncation, to cause an error to occur (rather than a warning) and suppress insertion of the value, use strict SQL mode. See Section 5.1.10, “Server SQL Modes”.
+Se o `strict SQL mode` não estiver ativado e você atribuir um valor a uma coluna `BINARY` ou `VARBINARY` que exceda o comprimento máximo da coluna, o valor é truncado para caber e um aviso é gerado. Para casos de truncamento, para fazer com que um erro ocorra (em vez de um aviso) e suprimir a `INSERT` do valor, use o `strict SQL mode`. Consulte Section 5.1.10, “Server SQL Modes”.
 
-When `BINARY` values are stored, they are right-padded with the pad value to the specified length. The pad value is `0x00` (the zero byte). Values are right-padded with `0x00` for inserts, and no trailing bytes are removed for retrievals. All bytes are significant in comparisons, including `ORDER BY` and `DISTINCT` operations. `0x00` and space differ in comparisons, with `0x00` sorting before space.
+Quando valores `BINARY` são armazenados, eles são preenchidos à direita (right-padded) com o valor de preenchimento até o comprimento especificado. O valor de preenchimento é `0x00` (o byte zero). Os valores são preenchidos à direita com `0x00` para `INSERTS`, e nenhum byte final é removido nos `RETRIEVALS`. Todos os bytes são significativos nas comparações, incluindo operações `ORDER BY` e `DISTINCT`. `0x00` e espaço diferem nas comparações, com `0x00` sendo ordenado antes do espaço.
 
-Example: For a `BINARY(3)` column, `'a '` becomes `'a \0'` when inserted. `'a\0'` becomes `'a\0\0'` when inserted. Both inserted values remain unchanged for retrievals.
+Exemplo: Para uma coluna `BINARY(3)`, `'a '` torna-se `'a \0'` quando inserido. `'a\0'` torna-se `'a\0\0'` quando inserido. Ambos os valores inseridos permanecem inalterados nos `RETRIEVALS`.
 
-For `VARBINARY`, there is no padding for inserts and no bytes are stripped for retrievals. All bytes are significant in comparisons, including `ORDER BY` and `DISTINCT` operations. `0x00` and space differ in comparisons, with `0x00` sorting before space.
+Para `VARBINARY`, não há preenchimento para `INSERTS` e nenhum byte é removido nos `RETRIEVALS`. Todos os bytes são significativos nas comparações, incluindo operações `ORDER BY` e `DISTINCT`. `0x00` e espaço diferem nas comparações, com `0x00` sendo ordenado antes do espaço.
 
-For those cases where trailing pad bytes are stripped or comparisons ignore them, if a column has an index that requires unique values, inserting values into the column that differ only in number of trailing pad bytes results in a duplicate-key error. For example, if a table contains `'a'`, an attempt to store `'a\0'` causes a duplicate-key error.
+Nesses casos em que os bytes de preenchimento finais são removidos ou as comparações os ignoram, se uma coluna tiver um `Index` que exija valores exclusivos, a `INSERT` de valores na coluna que diferem apenas no número de bytes de preenchimento finais resulta em um erro de chave duplicada (duplicate-key error). Por exemplo, se uma tabela contiver `'a'`, uma tentativa de armazenar `'a\0'` causa um erro de chave duplicada.
 
-You should consider the preceding padding and stripping characteristics carefully if you plan to use the `BINARY` data type for storing binary data and you require that the value retrieved be exactly the same as the value stored. The following example illustrates how `0x00`-padding of `BINARY` values affects column value comparisons:
+Você deve considerar cuidadosamente as características anteriores de preenchimento e remoção se planeja usar o tipo de dado `BINARY` para armazenar dados binários e exige que o valor recuperado seja exatamente o mesmo que o valor armazenado. O exemplo a seguir ilustra como o preenchimento com `0x00` em valores `BINARY` afeta as comparações de valores de coluna:
 
 ```sql
 mysql> CREATE TABLE t (c BINARY(3));
@@ -34,8 +34,8 @@ mysql> SELECT HEX(c), c = 'a', c = 'a\0\0' from t;
 1 row in set (0.09 sec)
 ```
 
-If the value retrieved must be the same as the value specified for storage with no padding, it might be preferable to use `VARBINARY` or one of the `BLOB` data types instead.
+Se o valor recuperado deve ser o mesmo que o valor especificado para armazenamento sem preenchimento, pode ser preferível usar `VARBINARY` ou um dos tipos de dados `BLOB` em vez disso.
 
 Note
 
-Within the **mysql** client, binary strings display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see Section 4.5.1, “mysql — The MySQL Command-Line Client”.
+Dentro do `mysql client`, strings binárias são exibidas usando notação hexadecimal, dependendo do valor da opção `--binary-as-hex`. Para mais informações sobre essa opção, consulte Section 4.5.1, “mysql — The MySQL Command-Line Client”.

@@ -1,10 +1,10 @@
-#### 14.21.5.5 Adapting DML Statements to memcached Operations
+#### 14.21.5.5 Adaptando Instruções DML para Operações memcached
 
-Benchmarks suggest that the `daemon_memcached` plugin speeds up DML operations (inserts, updates, and deletes) more than it speeds up queries. Therefore, consider focussing initial development efforts on write-intensive applications that are I/O-bound, and look for opportunities to use MySQL with the `daemon_memcached` plugin for new write-intensive applications.
+Benchmarks sugerem que o plugin `daemon_memcached` acelera as operações DML (inserts, updates e deletes) mais do que acelera as queries. Portanto, considere focar os esforços iniciais de desenvolvimento em aplicações com alta intensidade de escrita (write-intensive) que são limitadas por I/O (I/O-bound), e procure oportunidades para usar MySQL com o plugin `daemon_memcached` para novas aplicações com alta intensidade de escrita.
 
-Single-row DML statements are the easiest types of statements to turn into `memcached` operations. `INSERT` becomes `add`, `UPDATE` becomes `set`, `incr` or `decr`, and `DELETE` becomes `delete`. These operations are guaranteed to only affect one row when issued through the **memcached** interface, because the *`key`* is unique within the table.
+Instruções DML de linha única são os tipos de instruções mais fáceis de transformar em operações `memcached`. `INSERT` se torna `add`, `UPDATE` se torna `set`, `incr` ou `decr`, e `DELETE` se torna `delete`. É garantido que essas operações afetem apenas uma linha quando emitidas através da interface **memcached**, porque a *`key`* é única dentro da tabela.
 
-In the following SQL examples, `t1` refers to the table used for **memcached** operations, based on the configuration in the `innodb_memcache.containers` table. `key` refers to the column listed under `key_columns`, and `val` refers to the column listed under `value_columns`.
+Nos seguintes exemplos SQL, `t1` refere-se à tabela usada para operações **memcached**, baseada na configuração na tabela `innodb_memcache.containers`. `key` refere-se à coluna listada sob `key_columns`, e `val` refere-se à coluna listada sob `value_columns`.
 
 ```sql
 INSERT INTO t1 (key,val) VALUES (some_key,some_value);
@@ -14,7 +14,7 @@ UPDATE t1 SET val = val + x WHERE key = some_key;
 DELETE FROM t1 WHERE key = some_key;
 ```
 
-The following `TRUNCATE TABLE` and `DELETE` statements, which remove all rows from the table, correspond to the `flush_all` operation, where `t1` is configured as the table for **memcached** operations, as in the previous example.
+As seguintes instruções `TRUNCATE TABLE` e `DELETE`, que removem todas as linhas da tabela, correspondem à operação `flush_all`, onde `t1` está configurada como a tabela para operações **memcached**, como no exemplo anterior.
 
 ```sql
 TRUNCATE TABLE t1;

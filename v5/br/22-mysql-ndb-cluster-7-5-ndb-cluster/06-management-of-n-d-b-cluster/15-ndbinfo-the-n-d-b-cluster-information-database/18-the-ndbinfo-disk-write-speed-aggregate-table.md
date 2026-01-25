@@ -1,69 +1,69 @@
-#### 21.6.15.18 The ndbinfo disk_write_speed_aggregate Table
+#### 21.6.15.18 A Tabela ndbinfo disk_write_speed_aggregate
 
-The `disk_write_speed_aggregate` table provides aggregated information about the speed of disk writes during LCP, backup, and restore operations.
+A tabela `disk_write_speed_aggregate` fornece informações agregadas sobre a velocidade de escritas em disco (disk writes) durante operações de LCP, backup e restore.
 
-The `disk_write_speed_aggregate` table contains the following columns:
+A tabela `disk_write_speed_aggregate` contém as seguintes colunas:
 
 * `node_id`
 
-  Node ID of this node
+  ID do Node desta instância
 
 * `thr_no`
 
-  Thread ID of this LDM thread
+  ID da Thread (Thread ID) desta Thread LDM
 
 * `backup_lcp_speed_last_sec`
 
-  Number of bytes written to disk by backup and LCP processes in the last second
+  Número de bytes escritos em disco por processos de backup e LCP no último segundo
 
 * `redo_speed_last_sec`
 
-  Number of bytes written to REDO log in the last second
+  Número de bytes escritos no REDO log no último segundo
 
 * `backup_lcp_speed_last_10sec`
 
-  Number of bytes written to disk by backup and LCP processes per second, averaged over the last 10 seconds
+  Número de bytes escritos em disco por processos de backup e LCP por segundo, com média nos últimos 10 segundos
 
 * `redo_speed_last_10sec`
 
-  Number of bytes written to REDO log per second, averaged over the last 10 seconds
+  Número de bytes escritos no REDO log por segundo, com média nos últimos 10 segundos
 
 * `std_dev_backup_lcp_speed_last_10sec`
 
-  Standard deviation in number of bytes written to disk by backup and LCP processes per second, averaged over the last 10 seconds
+  Desvio padrão no número de bytes escritos em disco por processos de backup e LCP por segundo, com média nos últimos 10 segundos
 
 * `std_dev_redo_speed_last_10sec`
 
-  Standard deviation in number of bytes written to REDO log per second, averaged over the last 10 seconds
+  Desvio padrão no número de bytes escritos no REDO log por segundo, com média nos últimos 10 segundos
 
 * `backup_lcp_speed_last_60sec`
 
-  Number of bytes written to disk by backup and LCP processes per second, averaged over the last 60 seconds
+  Número de bytes escritos em disco por processos de backup e LCP por segundo, com média nos últimos 60 segundos
 
 * `redo_speed_last_60sec`
 
-  Number of bytes written to REDO log per second, averaged over the last 10 seconds
+  Número de bytes escritos no REDO log por segundo, com média nos últimos 10 segundos
 
 * `std_dev_backup_lcp_speed_last_60sec`
 
-  Standard deviation in number of bytes written to disk by backup and LCP processes per second, averaged over the last 60 seconds
+  Desvio padrão no número de bytes escritos em disco por processos de backup e LCP por segundo, com média nos últimos 60 segundos
 
 * `std_dev_redo_speed_last_60sec`
 
-  Standard deviation in number of bytes written to REDO log per second, averaged over the last 60 seconds
+  Desvio padrão no número de bytes escritos no REDO log por segundo, com média nos últimos 60 segundos
 
 * `slowdowns_due_to_io_lag`
 
-  Number of seconds since last node start that disk writes were slowed due to REDO log I/O lag
+  Número de segundos desde a última inicialização do node em que as escritas em disco foram lentificadas devido a I/O lag do REDO log
 
 * `slowdowns_due_to_high_cpu`
 
-  Number of seconds since last node start that disk writes were slowed due to high CPU usage
+  Número de segundos desde a última inicialização do node em que as escritas em disco foram lentificadas devido ao alto uso de CPU
 
 * `disk_write_speed_set_to_min`
 
-  Number of seconds since last node start that disk write speed was set to minimum
+  Número de segundos desde a última inicialização do node em que a velocidade de escrita em disco foi definida como mínima
 
 * `current_target_disk_write_speed`
 
-  Actual speed of disk writes per LDM thread (aggregated)
+  Velocidade real das escritas em disco por Thread LDM (agregada)

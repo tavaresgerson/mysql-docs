@@ -1,7 +1,7 @@
-#### 13.6.6.4 Cursor OPEN Statement
+#### 13.6.6.4 Instrução OPEN de Cursor
 
 ```sql
 OPEN cursor_name
 ```
 
-This statement opens a previously declared cursor. For an example, see [Section 13.6.6, “Cursors”](cursors.html "13.6.6 Cursors").
+Esta instrução abre um Cursor previamente declarado. Para um exemplo, veja [Seção 13.6.6, “Cursors”](cursors.html "13.6.6 Cursors").

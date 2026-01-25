@@ -1,23 +1,23 @@
-### 12.17.6 JSON Utility Functions
+### 12.17.6 Funções Utilitárias JSON
 
-This section documents utility functions that act on JSON values, or strings that can be parsed as JSON values. `JSON_PRETTY()` prints out a JSON value in a format that is easy to read. `JSON_STORAGE_SIZE()` shows the amount of storage space used by a given JSON value.
+Esta seção documenta funções utilitárias que atuam sobre valores JSON, ou strings que podem ser analisadas (parsed) como valores JSON. `JSON_PRETTY()` exibe um valor JSON em um formato de fácil leitura. `JSON_STORAGE_SIZE()` mostra a quantidade de espaço de armazenamento usada por um determinado valor JSON.
 
 * `JSON_PRETTY(json_val)`
 
-  Provides pretty-printing of JSON values similar to that implemented in PHP and by other languages and database systems. The value supplied must be a JSON value or a valid string representation of a JSON value. Extraneous whitespaces and newlines present in this value have no effect on the output. For a `NULL` value, the function returns `NULL`. If the value is not a JSON document, or if it cannot be parsed as one, the function fails with an error.
+  Fornece a "pretty-printing" (formatação elegante) de valores JSON, similar àquela implementada em PHP e por outras linguagens e sistemas de Database. O valor fornecido deve ser um valor JSON ou uma representação de string válida de um valor JSON. Whitespaces (espaços em branco) e newlines (quebras de linha) externos presentes neste valor não têm efeito na saída. Para um valor `NULL`, a função retorna `NULL`. Se o valor não for um documento JSON, ou se não puder ser analisado como tal, a função falhará com um erro.
 
-  Formatting of the output from this function adheres to the following rules:
+  A formatação da saída desta função adere às seguintes regras:
 
-  + Each array element or object member appears on a separate line, indented by one additional level as compared to its parent.
+  + Cada elemento de array ou membro de object aparece em uma linha separada, recuado em um nível adicional em comparação ao seu pai.
 
-  + Each level of indentation adds two leading spaces.
-  + A comma separating individual array elements or object members is printed before the newline that separates the two elements or members.
+  + Cada nível de indentação adiciona dois espaços iniciais.
+  + Uma vírgula que separa elementos de array ou membros de object individuais é impressa antes da quebra de linha (newline) que separa os dois elementos ou membros.
 
-  + The key and the value of an object member are separated by a colon followed by a space ('`:` ').
+  + O key (chave) e o value (valor) de um membro de object são separados por dois pontos seguidos por um espaço ('`:` ').
 
-  + An empty object or array is printed on a single line. No space is printed between the opening and closing brace.
+  + Um object ou array vazio é impresso em uma única linha. Nenhum espaço é impresso entre a abertura e o fechamento da chave.
 
-  + Special characters in string scalars and key names are escaped employing the same rules used by the `JSON_QUOTE()` function.
+  + Caracteres especiais em strings scalars e nomes de key são escapados empregando as mesmas regras usadas pela função `JSON_QUOTE()`.
 
   ```sql
   mysql> SELECT JSON_PRETTY('123'); # scalar
@@ -77,15 +77,15 @@ This section documents utility functions that act on JSON values, or strings tha
   ]
   ```
 
-  Added in MySQL 5.7.22.
+  Adicionado no MySQL 5.7.22.
 
 * `JSON_STORAGE_SIZE(json_val)`
 
-  This function returns the number of bytes used to store the binary representation of a JSON document. When the argument is a `JSON` column, this is the space used to store the JSON document. *`json_val`* must be a valid JSON document or a string which can be parsed as one. In the case where it is string, the function returns the amount of storage space in the JSON binary representation that is created by parsing the string as JSON and converting it to binary. It returns `NULL` if the argument is `NULL`.
+  Esta função retorna o número de bytes usados para armazenar a representação binária de um documento JSON. Quando o argumento é uma column `JSON`, este é o espaço usado para armazenar o documento JSON. *`json_val`* deve ser um documento JSON válido ou uma string que possa ser analisada (parsed) como um. No caso de ser uma string, a função retorna a quantidade de espaço de armazenamento na representação binária JSON que é criada ao analisar a string como JSON e convertê-la para binário. Ela retorna `NULL` se o argumento for `NULL`.
 
-  An error results when *`json_val`* is not `NULL`, and is not—or cannot be successfully parsed as—a JSON document.
+  Um erro resulta quando *`json_val`* não é `NULL`, e não é — ou não pode ser analisado (parsed) com sucesso como — um documento JSON.
 
-  To illustrate this function's behavior when used with a `JSON` column as its argument, we create a table named `jtable` containing a `JSON` column `jcol`, insert a JSON value into the table, then obtain the storage space used by this column with `JSON_STORAGE_SIZE()`, as shown here:
+  Para ilustrar o comportamento desta função quando usada com uma column `JSON` como seu argumento, criamos uma table chamada `jtable` contendo uma column `JSON` `jcol`, inserimos um valor JSON na table e, em seguida, obtemos o espaço de armazenamento usado por esta column com `JSON_STORAGE_SIZE()`, conforme mostrado aqui:
 
   ```sql
   mysql> CREATE TABLE jtable (jcol JSON);
@@ -107,7 +107,7 @@ This section documents utility functions that act on JSON values, or strings tha
   1 row in set (0.00 sec)
   ```
 
-  According to the output of `JSON_STORAGE_SIZE()`, the JSON document inserted into the column takes up 47 bytes. Following an update, the function shows the storage used for the newly-set value:
+  De acordo com a saída de `JSON_STORAGE_SIZE()`, o documento JSON inserido na column ocupa 47 bytes. Após um update (atualização), a função mostra o armazenamento usado para o novo valor definido:
 
   ```sql
   mysql> UPDATE jtable
@@ -127,7 +127,7 @@ This section documents utility functions that act on JSON values, or strings tha
   1 row in set (0.00 sec)
   ```
 
-  This function also shows the space currently used to store a JSON document in a user variable:
+  Esta função também mostra o espaço atualmente usado para armazenar um documento JSON em uma variável de usuário:
 
   ```sql
   mysql> SET @j = '[100, "sakila", [1, 3, 5], 425.05]';
@@ -164,7 +164,7 @@ This section documents utility functions that act on JSON values, or strings tha
   1 row in set (0.00 sec)
   ```
 
-  For a JSON literal, this function also returns the current storage space used, as shown here:
+  Para um literal JSON, esta função também retorna o espaço de armazenamento atual usado, conforme mostrado aqui:
 
   ```sql
   mysql> SELECT
@@ -180,4 +180,4 @@ This section documents utility functions that act on JSON values, or strings tha
   1 row in set (0.00 sec)
   ```
 
-  This function was added in MySQL 5.7.22.
+  Esta função foi adicionada no MySQL 5.7.22.

@@ -1,28 +1,28 @@
-#### 14.9.1.3 Tuning Compression for InnoDB Tables
+#### 14.9.1.3 Ajustando a Compressão para Tabelas InnoDB
 
-Most often, the internal optimizations described in InnoDB Data Storage and Compression ensure that the system runs well with compressed data. However, because the efficiency of compression depends on the nature of your data, you can make decisions that affect the performance of compressed tables:
+Na maioria das vezes, as otimizações internas descritas em Armazenamento e Compressão de Dados InnoDB garantem que o sistema funcione bem com dados compactados. No entanto, como a eficiência da compressão depende da natureza dos seus dados, você pode tomar decisões que afetam a *performance* de tabelas compactadas:
 
-* Which tables to compress.
-* What compressed page size to use.
-* Whether to adjust the size of the buffer pool based on run-time performance characteristics, such as the amount of time the system spends compressing and uncompressing data. Whether the workload is more like a data warehouse (primarily queries) or an OLTP system (mix of queries and DML).
+* Quais tabelas compactar.
+* Qual tamanho de página compactada usar.
+* Se deve ajustar o tamanho do *Buffer Pool* com base nas características de *performance* em tempo de execução (*runtime*), como a quantidade de tempo que o sistema gasta compactando e descompactando dados. Se a *workload* se assemelha mais a um *data warehouse* (principalmente *Queries*) ou a um sistema *OLTP* (combinação de *Queries* e *DML*).
 
-* If the system performs DML operations on compressed tables, and the way the data is distributed leads to expensive compression failures at runtime, you might adjust additional advanced configuration options.
+* Se o sistema realiza operações *DML* em tabelas compactadas, e a maneira como os dados são distribuídos leva a falhas de compressão caras em tempo de execução, você pode ajustar opções de configuração avançadas adicionais.
 
-Use the guidelines in this section to help make those architectural and configuration choices. When you are ready to conduct long-term testing and put compressed tables into production, see Section 14.9.1.4, “Monitoring InnoDB Table Compression at Runtime” for ways to verify the effectiveness of those choices under real-world conditions.
+Use as diretrizes nesta seção para ajudar a fazer essas escolhas arquitetônicas e de configuração. Quando estiver pronto para realizar testes de longo prazo e colocar tabelas compactadas em produção, consulte a Seção 14.9.1.4, “Monitoramento da Compressão de Tabela InnoDB em Tempo de Execução” para maneiras de verificar a eficácia dessas escolhas em condições reais.
 
-##### When to Use Compression
+##### Quando Usar Compressão
 
-In general, compression works best on tables that include a reasonable number of character string columns and where the data is read far more often than it is written. Because there are no guaranteed ways to predict whether or not compression benefits a particular situation, always test with a specific workload and data set running on a representative configuration. Consider the following factors when deciding which tables to compress.
+Em geral, a compressão funciona melhor em tabelas que incluem um número razoável de colunas de *string* de caracteres e onde os dados são lidos com muito mais frequência do que são escritos. Como não há maneiras garantidas de prever se a compressão beneficia ou não uma situação específica, teste sempre com uma *workload* e um *data set* específicos, rodando em uma configuração representativa. Considere os seguintes fatores ao decidir quais tabelas compactar.
 
-##### Data Characteristics and Compression
+##### Características dos Dados e Compressão
 
-A key determinant of the efficiency of compression in reducing the size of data files is the nature of the data itself. Recall that compression works by identifying repeated strings of bytes in a block of data. Completely randomized data is the worst case. Typical data often has repeated values, and so compresses effectively. Character strings often compress well, whether defined in `CHAR`, `VARCHAR`, `TEXT` or `BLOB` columns. On the other hand, tables containing mostly binary data (integers or floating point numbers) or data that is previously compressed (for example JPEG or PNG images) may not generally compress well, significantly or at all.
+Um fator determinante chave da eficiência da compressão na redução do tamanho dos arquivos de dados é a natureza dos próprios dados. Lembre-se de que a compressão funciona identificando *strings* de *bytes* repetidas em um bloco de dados. Dados completamente aleatórios representam o pior caso. Dados típicos geralmente têm valores repetidos e, portanto, compactam-se de forma eficaz. *Strings* de caracteres geralmente compactam bem, sejam elas definidas em colunas `CHAR`, `VARCHAR`, `TEXT` ou `BLOB`. Por outro lado, tabelas contendo principalmente dados binários (*integers* ou *floating point numbers*) ou dados que já foram compactados (por exemplo, imagens *JPEG* ou *PNG*) geralmente podem não compactar bem, de forma significativa ou em nada.
 
-You choose whether to turn on compression for each InnoDB table. A table and all of its indexes use the same (compressed) page size. It might be that the primary key (clustered) index, which contains the data for all columns of a table, compresses more effectively than the secondary indexes. For those cases where there are long rows, the use of compression might result in long column values being stored “off-page”, as discussed in DYNAMIC Row Format. Those overflow pages may compress well. Given these considerations, for many applications, some tables compress more effectively than others, and you might find that your workload performs best only with a subset of tables compressed.
+Você escolhe se deseja ativar a compressão para cada tabela InnoDB. Uma tabela e todos os seus *Indexes* usam o mesmo tamanho de página (compactada). Pode ser que o *Index* da *Primary Key* (*clustered*), que contém os dados de todas as colunas de uma tabela, se comprima de forma mais eficaz do que os *Indexes* secundários. Para os casos em que há linhas longas, o uso de compressão pode resultar em valores de coluna longos sendo armazenados “fora da página” (*off-page*), conforme discutido em Formato de Linha DYNAMIC. Essas páginas de *overflow* podem compactar bem. Dadas estas considerações, para muitas aplicações, algumas tabelas compactam de forma mais eficaz do que outras, e você pode descobrir que sua *workload* tem melhor *performance* apenas com um subconjunto de tabelas compactadas.
 
-To determine whether or not to compress a particular table, conduct experiments. You can get a rough estimate of how efficiently your data can be compressed by using a utility that implements LZ77 compression (such as `gzip` or WinZip) on a copy of the .ibd file for an uncompressed table. You can expect less compression from a MySQL compressed table than from file-based compression tools, because MySQL compresses data in chunks based on the page size, 16KB by default. In addition to user data, the page format includes some internal system data that is not compressed. File-based compression utilities can examine much larger chunks of data, and so might find more repeated strings in a huge file than MySQL can find in an individual page.
+Para determinar se deve ou não compactar uma tabela específica, realize experimentos. Você pode obter uma estimativa aproximada de quão eficientemente seus dados podem ser compactados usando um *utility* que implementa compressão LZ77 (como `gzip` ou WinZip) em uma cópia do arquivo `.ibd` para uma tabela não compactada. Você pode esperar menos compressão de uma tabela compactada MySQL do que de ferramentas de compressão baseadas em arquivo, porque o MySQL compacta dados em blocos com base no tamanho da página (*page size*), 16KB por padrão. Além dos dados do usuário, o formato da página inclui alguns dados de sistema internos que não são compactados. Utilitários de compressão baseados em arquivo podem examinar blocos de dados muito maiores e, portanto, podem encontrar mais *strings* repetidas em um arquivo enorme do que o MySQL pode encontrar em uma página individual.
 
-Another way to test compression on a specific table is to copy some data from your uncompressed table to a similar, compressed table (having all the same indexes) in a file-per-table tablespace and look at the size of the resulting `.ibd` file. For example:
+Outra maneira de testar a compressão em uma tabela específica é copiar alguns dados de sua tabela não compactada para uma tabela compactada semelhante (tendo todos os mesmos *Indexes*) em um *tablespace* *file-per-table* e verificar o tamanho do arquivo `.ibd` resultante. Por exemplo:
 
 ```sql
 USE test;
@@ -63,61 +63,61 @@ commit;
 \! ls -l data/test/key_block_size_4.ibd
 ```
 
-This experiment produced the following numbers, which of course could vary considerably depending on your table structure and data:
+Este experimento produziu os seguintes números, que, é claro, podem variar consideravelmente dependendo da estrutura da sua tabela e dos seus dados:
 
 ```sql
 -rw-rw----  1 cirrus  staff  310378496 Jan  9 13:44 data/test/big_table.ibd
 -rw-rw----  1 cirrus  staff  83886080 Jan  9 15:10 data/test/key_block_size_4.ibd
 ```
 
-To see whether compression is efficient for your particular workload:
+Para ver se a compressão é eficiente para sua *workload* específica:
 
-* For simple tests, use a MySQL instance with no other compressed tables and run queries against the Information Schema `INNODB_CMP` table.
+* Para testes simples, use uma instância MySQL sem outras tabelas compactadas e execute *Queries* na tabela `INNODB_CMP` do *Information Schema*.
 
-* For more elaborate tests involving workloads with multiple compressed tables, run queries against the Information Schema `INNODB_CMP_PER_INDEX` table. Because the statistics in the `INNODB_CMP_PER_INDEX` table are expensive to collect, you must enable the configuration option `innodb_cmp_per_index_enabled` before querying that table, and you might restrict such testing to a development server or a non-critical replica server.
+* Para testes mais elaborados envolvendo *workloads* com múltiplas tabelas compactadas, execute *Queries* na tabela `INNODB_CMP_PER_INDEX` do *Information Schema*. Como as estatísticas na tabela `INNODB_CMP_PER_INDEX` são caras de coletar, você deve habilitar a opção de configuração `innodb_cmp_per_index_enabled` antes de consultar essa tabela, e você pode restringir tal teste a um servidor de desenvolvimento ou a um servidor de réplica não crítico.
 
-* Run some typical SQL statements against the compressed table you are testing.
+* Execute algumas instruções *SQL* típicas na tabela compactada que você está testando.
 
-* Examine the ratio of successful compression operations to overall compression operations by querying the Information Schema `INNODB_CMP` or `INNODB_CMP_PER_INDEX` table, and comparing `COMPRESS_OPS` to `COMPRESS_OPS_OK`.
+* Examine a proporção de operações de compressão bem-sucedidas em relação ao total de operações de compressão consultando a tabela `INNODB_CMP` ou `INNODB_CMP_PER_INDEX` do *Information Schema* e comparando `COMPRESS_OPS` com `COMPRESS_OPS_OK`.
 
-* If a high percentage of compression operations complete successfully, the table might be a good candidate for compression.
+* Se uma alta porcentagem das operações de compressão for concluída com sucesso, a tabela pode ser uma boa candidata à compressão.
 
-* If you get a high proportion of compression failures, you can adjust `innodb_compression_level`, `innodb_compression_failure_threshold_pct`, and `innodb_compression_pad_pct_max` options as described in Section 14.9.1.6, “Compression for OLTP Workloads”, and try further tests.
+* Se você obtiver uma alta proporção de falhas de compressão, você pode ajustar as opções `innodb_compression_level`, `innodb_compression_failure_threshold_pct` e `innodb_compression_pad_pct_max`, conforme descrito na Seção 14.9.1.6, “Compressão para *Workloads OLTP*”, e tentar testes adicionais.
 
-##### Database Compression versus Application Compression
+##### Compressão de Database versus Compressão de Aplicação
 
-Decide whether to compress data in your application or in the table; do not use both types of compression for the same data. When you compress the data in the application and store the results in a compressed table, extra space savings are extremely unlikely, and the double compression just wastes CPU cycles.
+Decida se deve compactar os dados em sua aplicação ou na tabela; não use ambos os tipos de compressão para os mesmos dados. Quando você compacta os dados na aplicação e armazena os resultados em uma tabela compactada, é extremamente improvável obter economia de espaço extra, e a dupla compressão apenas desperdiça ciclos de *CPU*.
 
-##### Compressing in the Database
+##### Compactando no Database
 
-When enabled, MySQL table compression is automatic and applies to all columns and index values. The columns can still be tested with operators such as `LIKE`, and sort operations can still use indexes even when the index values are compressed. Because indexes are often a significant fraction of the total size of a database, compression could result in significant savings in storage, I/O or processor time. The compression and decompression operations happen on the database server, which likely is a powerful system that is sized to handle the expected load.
+Quando habilitada, a compressão de tabela MySQL é automática e se aplica a todas as colunas e valores de *Index*. As colunas ainda podem ser testadas com operadores como `LIKE`, e as operações de ordenação ainda podem usar *Indexes*, mesmo quando os valores de *Index* estão compactados. Como os *Indexes* geralmente são uma fração significativa do tamanho total de um *Database*, a compressão pode resultar em economias significativas de armazenamento, *I/O* ou tempo de processador. As operações de compressão e descompressão ocorrem no *server* do *Database*, que provavelmente é um sistema poderoso dimensionado para lidar com a carga esperada.
 
-##### Compressing in the Application
+##### Compactando na Aplicação
 
-If you compress data such as text in your application, before it is inserted into the database, You might save overhead for data that does not compress well by compressing some columns and not others. This approach uses CPU cycles for compression and uncompression on the client machine rather than the database server, which might be appropriate for a distributed application with many clients, or where the client machine has spare CPU cycles.
+Se você compactar dados como texto em sua aplicação, antes de serem inseridos no *Database*, você pode economizar *overhead* para dados que não compactam bem, comprimindo algumas colunas e não outras. Essa abordagem usa ciclos de *CPU* para compressão e descompressão na máquina *client*, em vez do *server* do *Database*, o que pode ser apropriado para uma aplicação distribuída com muitos *clients*, ou onde a máquina *client* tem ciclos de *CPU* sobressalentes.
 
-##### Hybrid Approach
+##### Abordagem Híbrida
 
-Of course, it is possible to combine these approaches. For some applications, it may be appropriate to use some compressed tables and some uncompressed tables. It may be best to externally compress some data (and store it in uncompressed tables) and allow MySQL to compress (some of) the other tables in the application. As always, up-front design and real-life testing are valuable in reaching the right decision.
+Obviamente, é possível combinar essas abordagens. Para algumas aplicações, pode ser apropriado usar algumas tabelas compactadas e algumas tabelas não compactadas. Pode ser melhor compactar externamente alguns dados (e armazená-los em tabelas não compactadas) e permitir que o MySQL comprima (algumas das) outras tabelas na aplicação. Como sempre, o design inicial e os testes na vida real são valiosos para chegar à decisão correta.
 
-##### Workload Characteristics and Compression
+##### Características da Workload e Compressão
 
-In addition to choosing which tables to compress (and the page size), the workload is another key determinant of performance. If the application is dominated by reads, rather than updates, fewer pages need to be reorganized and recompressed after the index page runs out of room for the per-page “modification log” that MySQL maintains for compressed data. If the updates predominantly change non-indexed columns or those containing `BLOB`s or large strings that happen to be stored “off-page”, the overhead of compression may be acceptable. If the only changes to a table are `INSERT`s that use a monotonically increasing primary key, and there are few secondary indexes, there is little need to reorganize and recompress index pages. Since MySQL can “delete-mark” and delete rows on compressed pages “in place” by modifying uncompressed data, `DELETE` operations on a table are relatively efficient.
+Além de escolher quais tabelas compactar (e o tamanho da página), a *workload* é outro fator determinante chave da *performance*. Se a aplicação for dominada por leituras, em vez de *updates*, menos páginas precisarão ser reorganizadas e recompactadas depois que a página do *Index* ficar sem espaço para o "log de modificação" por página que o MySQL mantém para dados compactados. Se os *updates* predominantemente alterarem colunas não indexadas ou aquelas que contenham `BLOBs` ou *strings* grandes que porventura estejam armazenadas “fora da página” (*off-page*), o *overhead* da compressão pode ser aceitável. Se as únicas alterações em uma tabela forem `INSERTs` que usam uma *Primary Key* que aumenta monotonicamente, e houver poucos *Indexes* secundários, há pouca necessidade de reorganizar e recompactar as páginas de *Index*. Uma vez que o MySQL pode “marcar para exclusão” (*delete-mark*) e excluir linhas em páginas compactadas “in place” modificando dados não compactados, as operações `DELETE` em uma tabela são relativamente eficientes.
 
-For some environments, the time it takes to load data can be as important as run-time retrieval. Especially in data warehouse environments, many tables may be read-only or read-mostly. In those cases, it might or might not be acceptable to pay the price of compression in terms of increased load time, unless the resulting savings in fewer disk reads or in storage cost is significant.
+Para alguns ambientes, o tempo que leva para carregar dados pode ser tão importante quanto a recuperação em tempo de execução. Especialmente em ambientes de *data warehouse*, muitas tabelas podem ser somente leitura ou predominantemente leitura (*read-mostly*). Nesses casos, pode ser ou não aceitável pagar o preço da compressão em termos de aumento do tempo de carregamento, a menos que a economia resultante em menos leituras de disco ou no custo de armazenamento seja significativa.
 
-Fundamentally, compression works best when the CPU time is available for compressing and uncompressing data. Thus, if your workload is I/O bound, rather than CPU-bound, you might find that compression can improve overall performance. When you test your application performance with different compression configurations, test on a platform similar to the planned configuration of the production system.
+Fundamentalmente, a compressão funciona melhor quando o tempo de *CPU* está disponível para compactar e descompactar dados. Assim, se sua *workload* for limitada por *I/O* (*I/O bound*), em vez de limitada por *CPU* (*CPU-bound*), você pode descobrir que a compressão pode melhorar a *performance* geral. Ao testar a *performance* da sua aplicação com diferentes configurações de compressão, teste em uma plataforma semelhante à configuração planejada do sistema de produção.
 
-##### Configuration Characteristics and Compression
+##### Características da Configuração e Compressão
 
-Reading and writing database pages from and to disk is the slowest aspect of system performance. Compression attempts to reduce I/O by using CPU time to compress and uncompress data, and is most effective when I/O is a relatively scarce resource compared to processor cycles.
+Ler e escrever páginas do *Database* de e para o disco é o aspecto mais lento da *performance* do sistema. A compressão tenta reduzir o *I/O* usando o tempo de *CPU* para compactar e descompactar dados, e é mais eficaz quando o *I/O* é um recurso relativamente escasso em comparação com os ciclos de processador.
 
-This is often especially the case when running in a multi-user environment with fast, multi-core CPUs. When a page of a compressed table is in memory, MySQL often uses additional memory, typically 16KB, in the buffer pool for an uncompressed copy of the page. The adaptive LRU algorithm attempts to balance the use of memory between compressed and uncompressed pages to take into account whether the workload is running in an I/O-bound or CPU-bound manner. Still, a configuration with more memory dedicated to the buffer pool tends to run better when using compressed tables than a configuration where memory is highly constrained.
+Isso é frequentemente o caso, especialmente ao rodar em um ambiente multiusuário com *CPUs* rápidas e multi-core. Quando uma página de uma tabela compactada está na memória, o MySQL geralmente usa memória adicional, tipicamente 16KB, no *Buffer Pool* para uma cópia não compactada da página. O algoritmo *LRU* adaptativo tenta equilibrar o uso de memória entre páginas compactadas e não compactadas para levar em consideração se a *workload* está rodando de forma limitada por *I/O* ou limitada por *CPU*. Ainda assim, uma configuração com mais memória dedicada ao *Buffer Pool* tende a funcionar melhor ao usar tabelas compactadas do que uma configuração onde a memória é altamente restrita.
 
-##### Choosing the Compressed Page Size
+##### Escolhendo o Tamanho da Página Compactada
 
-The optimal setting of the compressed page size depends on the type and distribution of data that the table and its indexes contain. The compressed page size should always be bigger than the maximum record size, or operations may fail as noted in Compression of B-Tree Pages.
+A configuração ideal do tamanho da página compactada depende do tipo e distribuição dos dados que a tabela e seus *Indexes* contêm. O tamanho da página compactada deve ser sempre maior do que o tamanho máximo do *record*, ou as operações podem falhar, conforme observado em Compressão de Páginas B-Tree.
 
-Setting the compressed page size too large wastes some space, but the pages do not have to be compressed as often. If the compressed page size is set too small, inserts or updates may require time-consuming recompression, and the B-tree nodes may have to be split more frequently, leading to bigger data files and less efficient indexing.
+Configurar o tamanho da página compactada muito grande desperdiça algum espaço, mas as páginas não precisam ser compactadas com tanta frequência. Se o tamanho da página compactada for definido muito pequeno, *inserts* ou *updates* podem exigir uma recompressão demorada, e os nós *B-tree* podem ter que ser divididos com mais frequência, levando a arquivos de dados maiores e indexação menos eficiente.
 
-Typically, you set the compressed page size to 8K or 4K bytes. Given that the maximum row size for an InnoDB table is around 8K, `KEY_BLOCK_SIZE=8` is usually a safe choice.
+Tipicamente, você define o tamanho da página compactada para 8K ou 4K *bytes*. Dado que o tamanho máximo da linha para uma tabela InnoDB é de cerca de 8K, `KEY_BLOCK_SIZE=8` é geralmente uma escolha segura.

@@ -1,63 +1,63 @@
-## 19.3 Quick-Start Guide: MySQL for Visual Studio
+## 19.3 Guia de Início Rápido: MySQL para Visual Studio
 
-This section explains how to use MySQL Shell to script a server using MySQL for Visual Studio.
+Esta seção explica como usar o MySQL Shell para criar scripts de um server usando o MySQL para Visual Studio.
 
-### Introduction
+### Introdução
 
-MySQL for Visual Studio provides access to MySQL objects and data without forcing developers to leave Visual Studio. Designed and developed as a Visual Studio package, MySQL for Visual Studio integrates directly into Server Explorer providing a seamless experience for setting up new connections and working with database objects.
+O MySQL para Visual Studio fornece acesso a objetos e dados MySQL sem forçar os desenvolvedores a sair do Visual Studio. Projetado e desenvolvido como um pacote do Visual Studio, o MySQL para Visual Studio integra-se diretamente ao Server Explorer, proporcionando uma experiência contínua para configurar novas Connections e trabalhar com objetos de Database.
 
-The following MySQL for Visual Studio features are available as of version 2.0.2:
+Os seguintes recursos do MySQL para Visual Studio estão disponíveis a partir da versão 2.0.2:
 
-* JavaScript and Python code editors, where scripts in those languages can be executed to query data from a MySQL database.
+* Editores de código JavaScript e Python, onde scripts nessas linguagens podem ser executados para fazer Query de dados de um Database MySQL.
 
-* Better integration with the Server Explorer to open MySQL, JavaScript, and Python code editors directly from a connected MySQL instance.
+* Melhor integração com o Server Explorer para abrir editores de código MySQL, JavaScript e Python diretamente de uma instância MySQL conectada.
 
-* A newer user interface for displaying query results, where different views are presented from result sets returned by a MySQL Server like:
+* Uma interface de usuário mais recente para exibir resultados de Query, onde diferentes Views são apresentadas a partir de conjuntos de resultados retornados por um MySQL Server, como:
 
-  + Multiple tabs for each result set returned by an executed query.
+  + Múltiplas abas para cada conjunto de resultados retornado por uma Query executada.
 
-  + Results view, where the information can be seen in grid, tree, or text representation for JSON results.
+  + Results view (Visualização de Resultados), onde a informação pode ser vista em representação de grid, tree ou texto para resultados JSON.
 
-  + Field types view, where information about the columns of a result set is shown, such as names, data types, character sets, and more.
+  + Field types view (Visualização de Tipos de Campo), onde informações sobre as colunas de um conjunto de resultados são mostradas, tais como nomes, data types, character sets e mais.
 
-  + Query statistics view, displaying information about the executed query such as execution times, processed rows, index and temporary tables usage, and more.
+  + Query statistics view (Visualização de Estatísticas de Query), exibindo informações sobre a Query executada, como tempos de execução, linhas processadas, uso de Index e tabelas temporárias, e mais.
 
-  + Execution plan view, displaying an explanation of the query execution done internally by the MySQL Server.
+  + Execution plan view (Visualização de Plano de Execução), exibindo uma explicação da execução da Query feita internamente pelo MySQL Server.
 
-### Getting Started
+### Primeiros Passos
 
-The requirements are MySQL for Visual Studio 2.0.2 or higher, and Visual Studio 2010 or higher. X DevAPI support requires MySQL Server 5.7.12 or higher with the X plugin enabled.
+Os requisitos são MySQL para Visual Studio 2.0.2 ou superior, e Visual Studio 2010 ou superior. O suporte ao X DevAPI requer o MySQL Server 5.7.12 ou superior com o plugin X habilitado.
 
-### Opening a Code Editor
+### Abrindo um Editor de Código
 
-Before opening a code editor that can execute queries against a MySQL server, a connection needs to be established:
+Antes de abrir um editor de código que possa executar Queries em um MySQL server, uma Connection precisa ser estabelecida:
 
-1. Open the Server Explorer pane through the View menu, or with **Control** + **W**, **K**.
+1. Abra o painel Server Explorer através do menu View, ou com **Control** + **W**, **K**.
 
-2. Right-click on the Data Connections node, select Add Connection....
+2. Clique com o botão direito no nó Data Connections, selecione Add Connection....
 
-3. In the Add Connection dialog, make sure the MySQL Data Provider is being used and fill in all the information.
+3. No diálogo Add Connection, certifique-se de que o MySQL Data Provider está sendo usado e preencha todas as informações.
 
-   Note
+   Nota
 
-   To enter the port number, click Advanced... and set the Port among the list of connection properties.
+   Para inserir o número da porta, clique em Advanced... e defina a Port entre a lista de propriedades de Connection.
 
-4. Click Test Connection to ensure you have a valid connection, then click OK.
+4. Clique em Test Connection para garantir que você tenha uma Connection válida, e então clique em OK.
 
-5. Right-click your newly created connection, select New MySQL Script and then the language for the code editor you want to open.
+5. Clique com o botão direito em sua Connection recém-criada, selecione New MySQL Script e, em seguida, a linguagem para o editor de código que você deseja abrir.
 
-For existing MySQL connections, to create a new editor you need only to do the last step.
+Para Connections MySQL existentes, para criar um novo editor, você só precisa realizar o último passo.
 
-### Using the Code Editor
+### Usando o Editor de Código
 
-The MySQL script editors have a toolbar at the start where information about the session is displayed, along with the actions that can be executed.
+Os editores de script MySQL têm uma barra de ferramentas no início onde as informações sobre a Session são exibidas, juntamente com as ações que podem ser executadas.
 
-Note
+Nota
 
-Note the first two buttons in the toolbar represent a way to connect or disconnect from a MySQL server. If the editor was opened from the Server Explorer, the connection should be already established for the new editor window.
+Note que os primeiros dois botões na barra de ferramentas representam uma forma de conectar ou desconectar de um MySQL server. Se o editor foi aberto a partir do Server Explorer, a Connection já deve estar estabelecida para a nova janela do editor.
 
-The third button is the Run button, the script contained in the editor window is executed by clicking it and results from the script execution are displayed below the script window.
+O terceiro botão é o botão Run. O script contido na janela do editor é executado ao clicar nele, e os resultados da execução do script são exibidos abaixo da janela do script.
 
-Note
+Nota
 
-Some commands in the MySQL Shell can be executed without appending **execute()** while in interactive mode. In MySQL for Visual Studio, these commands do require **execute()**. In other words, append ".execute()" to execute commands.
+Alguns comandos no MySQL Shell podem ser executados sem anexar **execute()** enquanto estiverem em modo interativo. No MySQL para Visual Studio, esses comandos exigem **execute()**. Em outras palavras, anexe ".execute()" para executar comandos.

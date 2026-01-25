@@ -1,16 +1,16 @@
-#### 16.1.4.3 Disabling GTID Transactions Online
+#### 16.1.4.3 Desabilitando Transações GTID Online
 
-This section describes how to disable GTID transactions on servers that are already online. This procedure does not require taking the server offline and is suited to use in production. However, if you have the possibility to take the servers offline when disabling GTIDs mode that process is easier.
+Esta seção descreve como desabilitar transações GTID em servidores que já estão online. Este procedimento não requer a parada do servidor (taking the server offline) e é adequado para uso em produção. No entanto, se você tiver a possibilidade de desativar os servidores ao desabilitar o modo GTID, o processo será mais fácil.
 
-The process is similar to enabling GTID transactions while the server is online, but reversing the steps. The only thing that differs is the point at which you wait for logged transactions to replicate.
+O processo é semelhante a habilitar transações GTID enquanto o servidor está online, mas invertendo os passos. A única diferença é o ponto em que você aguarda a replicação das transações logadas.
 
-Before you start, ensure that the servers meet the following pre-conditions:
+Antes de começar, certifique-se de que os servidores atendem às seguintes pré-condições:
 
-* *All* servers in your topology must use MySQL 5.7.6 or later. You cannot disable GTID transactions online on any single server unless *all* servers which are in the topology are using this version.
+* *Todos* os servidores em sua topologia devem usar o MySQL 5.7.6 ou posterior. Você não pode desabilitar transações GTID online em nenhum servidor isolado, a menos que *todos* os servidores na topologia estejam usando esta versão.
 
-* All servers have [`gtid_mode`](replication-options-gtids.html#sysvar_gtid_mode) set to `ON`.
+* Todos os servidores têm [`gtid_mode`](replication-options-gtids.html#sysvar_gtid_mode) definido como `ON`.
 
-1. Execute the following on each replica, and if you using multi-source replication, do it for each channel and include the `FOR CHANNEL` channel clause:
+1. Execute o seguinte em cada Replica e, se estiver usando Multi-Source Replication, faça isso para cada Channel e inclua a cláusula `FOR CHANNEL` channel:
 
    ```sql
    STOP SLAVE [FOR CHANNEL 'channel'];
@@ -19,46 +19,46 @@ Before you start, ensure that the servers meet the following pre-conditions:
    START SLAVE [FOR CHANNEL 'channel'];
    ```
 
-2. On each server, execute:
+2. Em cada servidor, execute:
 
    ```sql
    SET @@GLOBAL.GTID_MODE = ON_PERMISSIVE;
    ```
 
-3. On each server, execute:
+3. Em cada servidor, execute:
 
    ```sql
    SET @@GLOBAL.GTID_MODE = OFF_PERMISSIVE;
    ```
 
-4. On each server, wait until the variable @@GLOBAL.GTID_OWNED is equal to the empty string. This can be checked using:
+4. Em cada servidor, aguarde até que a variável @@GLOBAL.GTID_OWNED seja igual à string vazia. Isso pode ser verificado usando:
 
    ```sql
    SELECT @@GLOBAL.GTID_OWNED;
    ```
 
-   On a replica, it is theoretically possible that this is empty and then nonempty again. This is not a problem, it suffices that it is empty once.
+   Em uma Replica, é teoricamente possível que isso esteja vazio e depois se torne não vazio novamente. Isso não é um problema, basta que esteja vazio uma vez.
 
-5. Wait for all transactions that currently exist in any binary log to replicate to all replicas. See [Section 16.1.4.4, “Verifying Replication of Anonymous Transactions”](replication-mode-change-online-verify-transactions.html "16.1.4.4 Verifying Replication of Anonymous Transactions") for one method of checking that all anonymous transactions have replicated to all servers.
+5. Aguarde que todas as transações que existem atualmente em qualquer Binary Log se repliquem para todas as Replicas. Consulte [Section 16.1.4.4, “Verifying Replication of Anonymous Transactions”](replication-mode-change-online-verify-transactions.html "16.1.4.4 Verifying Replication of Anonymous Transactions") para um método de verificação de que todas as transações anônimas foram replicadas para todos os servidores.
 
-6. If you use binary logs for anything else than replication, for example to do point in time backup or restore: wait until you do not need the old binary logs having GTID transactions.
+6. Se você usa Binary Logs para algo além de replicação, por exemplo, para fazer Backup ou Restore point-in-time: aguarde até não precisar mais dos Binary Logs antigos que contêm transações GTID.
 
-   For instance, after step 5 has completed, you can execute [`FLUSH LOGS`](flush.html#flush-logs) on the server where you are taking the backup. Then either explicitly take a backup or wait for the next iteration of any periodic backup routine you may have set up.
+   Por exemplo, após a conclusão da etapa 5, você pode executar [`FLUSH LOGS`](flush.html#flush-logs) no servidor onde você está realizando o Backup. Em seguida, realize um Backup explicitamente ou aguarde a próxima iteração de qualquer rotina periódica de Backup que você possa ter configurado.
 
-   Ideally, wait for the server to purge all binary logs that existed when step 5 was completed. Also wait for any backup taken before step 5 to expire.
+   Idealmente, espere que o servidor elimine todos os Binary Logs que existiam quando a etapa 5 foi concluída. Aguarde também que qualquer Backup feito antes da etapa 5 expire.
 
-   Important
+   Importante
 
-   This is the one important point during this procedure. It is important to understand that logs containing GTID transactions cannot be used after the next step. Before proceeding you must be sure that GTID transactions do not exist anywhere in the topology.
+   Este é o ponto mais importante durante este procedimento. É crucial entender que os Logs contendo transações GTID não podem ser usados após a próxima etapa. Antes de prosseguir, você deve ter certeza de que as transações GTID não existem em nenhum lugar da topologia.
 
-7. On each server, execute:
+7. Em cada servidor, execute:
 
    ```sql
    SET @@GLOBAL.GTID_MODE = OFF;
    ```
 
-8. On each server, set [`gtid_mode=OFF`](replication-options-gtids.html#sysvar_gtid_mode) in `my.cnf`.
+8. Em cada servidor, defina [`gtid_mode=OFF`](replication-options-gtids.html#sysvar_gtid_mode) no `my.cnf`.
 
-   If you want to set [`enforce_gtid_consistency=OFF`](replication-options-gtids.html#sysvar_enforce_gtid_consistency), you can do so now. After setting it, you should add [`enforce_gtid_consistency=OFF`](replication-options-gtids.html#sysvar_enforce_gtid_consistency) to your configuration file.
+   Se você deseja definir [`enforce_gtid_consistency=OFF`](replication-options-gtids.html#sysvar_enforce_gtid_consistency), pode fazê-lo agora. Após defini-lo, você deve adicionar [`enforce_gtid_consistency=OFF`](replication-options-gtids.html#sysvar_enforce_gtid_consistency) ao seu arquivo de configuração.
 
-If you want to downgrade to an earlier version of MySQL, you can do so now, using the normal downgrade procedure.
+Se você quiser fazer o Downgrade para uma versão anterior do MySQL, pode fazê-lo agora, usando o procedimento normal de Downgrade.

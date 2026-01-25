@@ -1,26 +1,26 @@
-#### 16.4.1.10 Replication with Differing Table Definitions on Source and Replica
+#### 16.4.1.10 Replicação com Definições de Tabela Diferentes na Source e na Replica
 
-Source and target tables for replication do not have to be identical. A table on the source can have more or fewer columns than the replica's copy of the table. In addition, corresponding table columns on the source and the replica can use different data types, subject to certain conditions.
+As tabelas Source e target para replicação não precisam ser idênticas. Uma tabela na source pode ter mais ou menos colunas do que a cópia da tabela na replica. Além disso, as colunas de tabela correspondentes na source e na replica podem usar diferentes tipos de dados, sujeitas a certas condições.
 
-Note
+Nota
 
-Replication between tables which are partitioned differently from one another is not supported. See [Section 16.4.1.23, “Replication and Partitioning”](replication-features-partitioning.html "16.4.1.23 Replication and Partitioning").
+A replicação entre tabelas que são particionadas de forma diferente não é suportada. Consulte [Seção 16.4.1.23, “Replicação e Particionamento”](replication-features-partitioning.html "16.4.1.23 Replicação e Particionamento").
 
-In all cases where the source and target tables do not have identical definitions, the database and table names must be the same on both the source and the replica. Additional conditions are discussed, with examples, in the following two sections.
+Em todos os casos em que as tabelas source e target não têm definições idênticas, os nomes do Database e da tabela devem ser os mesmos tanto na source quanto na replica. Condições adicionais são discutidas, com exemplos, nas duas seções a seguir.
 
-##### 16.4.1.10.1 Replication with More Columns on Source or Replica
+##### 16.4.1.10.1 Replicação com Mais Colunas na Source ou na Replica
 
-You can replicate a table from the source to the replica such that the source and replica copies of the table have differing numbers of columns, subject to the following conditions:
+Você pode replicar uma tabela da source para a replica de modo que as cópias da tabela na source e na replica tenham números diferentes de colunas, sujeitas às seguintes condições:
 
-* Columns common to both versions of the table must be defined in the same order on the source and the replica.
+* As colunas comuns a ambas as versões da tabela devem ser definidas na mesma ordem na source e na replica.
 
-  (This is true even if both tables have the same number of columns.)
+  (Isto é verdade mesmo que ambas as tabelas tenham o mesmo número de colunas.)
 
-* Columns common to both versions of the table must be defined before any additional columns.
+* As colunas comuns a ambas as versões da tabela devem ser definidas antes de quaisquer colunas adicionais.
 
-  This means that executing an [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement on the replica where a new column is inserted into the table within the range of columns common to both tables causes replication to fail, as shown in the following example:
+  Isso significa que a execução de uma instrução [`ALTER TABLE`] na replica onde uma nova coluna é inserida na tabela dentro do intervalo de colunas comuns a ambas as tabelas faz com que a replicação falhe, conforme mostrado no exemplo a seguir:
 
-  Suppose that a table `t`, existing on the source and the replica, is defined by the following [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement:
+  Suponha que uma tabela `t`, existente na source e na replica, seja definida pela seguinte instrução [`CREATE TABLE`]:
 
   ```sql
   CREATE TABLE t (
@@ -30,137 +30,137 @@ You can replicate a table from the source to the replica such that the source an
   );
   ```
 
-  Suppose that the [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement shown here is executed on the replica:
+  Suponha que a instrução [`ALTER TABLE`] mostrada aqui seja executada na replica:
 
   ```sql
   ALTER TABLE t ADD COLUMN cnew1 INT AFTER c3;
   ```
 
-  The previous [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") is permitted on the replica because the columns `c1`, `c2`, and `c3` that are common to both versions of table `t` remain grouped together in both versions of the table, before any columns that differ.
+  O [`ALTER TABLE`] anterior é permitido na replica porque as colunas `c1`, `c2` e `c3` que são comuns a ambas as versões da tabela `t` permanecem agrupadas em ambas as versões da tabela, antes de quaisquer colunas que diferem.
 
-  However, the following [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement cannot be executed on the replica without causing replication to break:
+  No entanto, a seguinte instrução [`ALTER TABLE`] não pode ser executada na replica sem causar a quebra da replicação:
 
   ```sql
   ALTER TABLE t ADD COLUMN cnew2 INT AFTER c2;
   ```
 
-  Replication fails after execution on the replica of the [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement just shown, because the new column `cnew2` comes between columns common to both versions of `t`.
+  A replicação falha após a execução na replica da instrução [`ALTER TABLE`] que acabou de ser mostrada, porque a nova coluna `cnew2` fica entre as colunas comuns a ambas as versões de `t`.
 
-* Each “extra” column in the version of the table having more columns must have a default value.
+* Cada coluna “extra” na versão da tabela que tem mais colunas deve ter um valor default (padrão).
 
-  A column's default value is determined by a number of factors, including its type, whether it is defined with a `DEFAULT` option, whether it is declared as `NULL`, and the server SQL mode in effect at the time of its creation; for more information, see [Section 11.6, “Data Type Default Values”](data-type-defaults.html "11.6 Data Type Default Values")).
+  O valor default de uma coluna é determinado por vários fatores, incluindo seu tipo, se é definida com uma opção `DEFAULT`, se é declarada como `NULL`, e o SQL mode do servidor em vigor no momento de sua criação; para mais informações, consulte [Seção 11.6, “Valores Default de Tipo de Dados”](data-type-defaults.html "11.6 Valores Default de Tipo de Dados").
 
-In addition, when the replica's copy of the table has more columns than the source's copy, each column common to the tables must use the same data type in both tables.
+Além disso, quando a cópia da tabela na replica tem mais colunas do que a cópia na source, cada coluna comum às tabelas deve usar o mesmo tipo de dados em ambas as tabelas.
 
-**Examples.** The following examples illustrate some valid and invalid table definitions:
+**Exemplos.** Os seguintes exemplos ilustram algumas definições de tabela válidas e inválidas:
 
-**More columns on the source.** The following table definitions are valid and replicate correctly:
+**Mais colunas na source.** As seguintes definições de tabela são válidas e replicam corretamente:
 
 ```sql
 source> CREATE TABLE t1 (c1 INT, c2 INT, c3 INT);
 replica>  CREATE TABLE t1 (c1 INT, c2 INT);
 ```
 
-The following table definitions would raise an error because the definitions of the columns common to both versions of the table are in a different order on the replica than they are on the source:
+As seguintes definições de tabela levantariam um erro porque as definições das colunas comuns a ambas as versões da tabela estão em uma ordem diferente na replica do que na source:
 
 ```sql
 source> CREATE TABLE t1 (c1 INT, c2 INT, c3 INT);
 replica>  CREATE TABLE t1 (c2 INT, c1 INT);
 ```
 
-The following table definitions would also raise an error because the definition of the extra column on the source appears before the definitions of the columns common to both versions of the table:
+As seguintes definições de tabela também levantariam um erro porque a definição da coluna extra na source aparece antes das definições das colunas comuns a ambas as versões da tabela:
 
 ```sql
 source> CREATE TABLE t1 (c3 INT, c1 INT, c2 INT);
 replica>  CREATE TABLE t1 (c1 INT, c2 INT);
 ```
 
-**More columns on the replica.** The following table definitions are valid and replicate correctly:
+**Mais colunas na replica.** As seguintes definições de tabela são válidas e replicam corretamente:
 
 ```sql
 source> CREATE TABLE t1 (c1 INT, c2 INT);
 replica>  CREATE TABLE t1 (c1 INT, c2 INT, c3 INT);
 ```
 
-The following definitions raise an error because the columns common to both versions of the table are not defined in the same order on both the source and the replica:
+As seguintes definições levantam um erro porque as colunas comuns a ambas as versões da tabela não são definidas na mesma ordem tanto na source quanto na replica:
 
 ```sql
 source> CREATE TABLE t1 (c1 INT, c2 INT);
 replica>  CREATE TABLE t1 (c2 INT, c1 INT, c3 INT);
 ```
 
-The following table definitions also raise an error because the definition for the extra column in the replica's version of the table appears before the definitions for the columns which are common to both versions of the table:
+As seguintes definições de tabela também levantam um erro porque a definição para a coluna extra na versão da tabela da replica aparece antes das definições para as colunas que são comuns a ambas as versões da tabela:
 
 ```sql
 source> CREATE TABLE t1 (c1 INT, c2 INT);
 replica>  CREATE TABLE t1 (c3 INT, c1 INT, c2 INT);
 ```
 
-The following table definitions fail because the replica's version of the table has additional columns compared to the source's version, and the two versions of the table use different data types for the common column `c2`:
+As seguintes definições de tabela falham porque a versão da tabela da replica tem colunas adicionais em comparação com a versão da source, e as duas versões da tabela usam tipos de dados diferentes para a coluna comum `c2`:
 
 ```sql
 source> CREATE TABLE t1 (c1 INT, c2 BIGINT);
 replica>  CREATE TABLE t1 (c1 INT, c2 INT, c3 INT);
 ```
 
-##### 16.4.1.10.2 Replication of Columns Having Different Data Types
+##### 16.4.1.10.2 Replicação de Colunas com Tipos de Dados Diferentes
 
-Corresponding columns on the source's and the replica's copies of the same table ideally should have the same data type. However, this is not always strictly enforced, as long as certain conditions are met.
+As colunas correspondentes nas cópias da mesma tabela na source e na replica, idealmente, devem ter o mesmo tipo de dado. No entanto, isso nem sempre é estritamente exigido, desde que certas condições sejam atendidas.
 
-It is usually possible to replicate from a column of a given data type to another column of the same type and same size or width, where applicable, or larger. For example, you can replicate from a `CHAR(10)` column to another `CHAR(10)`, or from a `CHAR(10)` column to a `CHAR(25)` column without any problems. In certain cases, it also possible to replicate from a column having one data type (on the source) to a column having a different data type (on the replica); when the data type of the source's version of the column is promoted to a type that is the same size or larger on the replica, this is known as attribute promotion.
+Geralmente, é possível replicar de uma coluna de um determinado tipo de dado para outra coluna do mesmo tipo e mesmo tamanho ou largura, onde aplicável, ou maior. Por exemplo, você pode replicar de uma coluna `CHAR(10)` para outra `CHAR(10)`, ou de uma coluna `CHAR(10)` para uma coluna `CHAR(25)` sem problemas. Em certos casos, também é possível replicar de uma coluna com um tipo de dado (na source) para uma coluna com um tipo de dado diferente (na replica); quando o tipo de dado da versão da coluna na source é promovido para um tipo que tem o mesmo tamanho ou é maior na replica, isso é conhecido como *attribute promotion* (promoção de atributo).
 
-Attribute promotion can be used with both statement-based and row-based replication, and is not dependent on the storage engine used by either the source or the replica. However, the choice of logging format does have an effect on the type conversions that are permitted; the particulars are discussed later in this section.
+A promoção de atributo pode ser usada tanto com replicação baseada em declaração (statement-based) quanto com replicação baseada em linha (row-based), e não depende do Storage Engine usado pela source ou pela replica. No entanto, a escolha do formato de log tem um efeito sobre as conversões de tipo permitidas; os detalhes são discutidos mais adiante nesta seção.
 
-Important
+Importante
 
-Whether you use statement-based or row-based replication, the replica's copy of the table cannot contain more columns than the source's copy if you wish to employ attribute promotion.
+Independentemente de você usar replicação baseada em declaração ou baseada em linha, a cópia da tabela na replica não pode conter mais colunas do que a cópia da source se você deseja empregar a promoção de atributo.
 
-**Statement-based replication.** When using statement-based replication, a simple rule of thumb to follow is, “If the statement run on the source would also execute successfully on the replica, it should also replicate successfully”. In other words, if the statement uses a value that is compatible with the type of a given column on the replica, the statement can be replicated. For example, you can insert any value that fits in a `TINYINT` column into a `BIGINT` column as well; it follows that, even if you change the type of a `TINYINT` column in the replica's copy of a table to `BIGINT`, any insert into that column on the source that succeeds should also succeed on the replica, since it is impossible to have a legal `TINYINT` value that is large enough to exceed a `BIGINT` column.
+**Replicação baseada em declaração (Statement-based replication).** Ao usar a replicação baseada em declaração, uma regra prática simples a seguir é: “Se a declaração executada na source também fosse executada com sucesso na replica, ela também deve replicar com sucesso”. Em outras palavras, se a declaração usar um valor que seja compatível com o tipo de uma determinada coluna na replica, a declaração pode ser replicada. Por exemplo, você pode inserir qualquer valor que caiba em uma coluna `TINYINT` em uma coluna `BIGINT` também; segue-se que, mesmo que você altere o tipo de uma coluna `TINYINT` na cópia de uma tabela da replica para `BIGINT`, qualquer insert nessa coluna na source que seja bem-sucedido também deve ser bem-sucedido na replica, visto que é impossível ter um valor `TINYINT` legal que seja grande o suficiente para exceder uma coluna `BIGINT`.
 
-Prior to MySQL 5.7.1, when using statement-based replication, `AUTO_INCREMENT` columns were required to be the same on both the source and the replica; otherwise, updates could be applied to the wrong table on the replica. (Bug #12669186)
+Antes do MySQL 5.7.1, ao usar a replicação baseada em declaração, as colunas `AUTO_INCREMENT` eram obrigadas a ser as mesmas tanto na source quanto na replica; caso contrário, os updates poderiam ser aplicados à tabela errada na replica. (Bug #12669186)
 
-**Row-based replication: attribute promotion and demotion.** Row-based replication supports attribute promotion and demotion between smaller data types and larger types. It is also possible to specify whether or not to permit lossy (truncated) or non-lossy conversions of demoted column values, as explained later in this section.
+**Replicação baseada em linha (Row-based replication): promoção e despromoção de atributos.** A replicação baseada em linha suporta a promoção e despromoção de atributos entre tipos de dados menores e tipos maiores. Também é possível especificar se deve ser permitida ou não a conversão com perda (truncada) ou sem perda (non-lossy) de valores de colunas despromovidas, conforme explicado mais adiante nesta seção.
 
-**Lossy and non-lossy conversions.** In the event that the target type cannot represent the value being inserted, a decision must be made on how to handle the conversion. If we permit the conversion but truncate (or otherwise modify) the source value to achieve a “fit” in the target column, we make what is known as a lossy conversion. A conversion which does not require truncation or similar modifications to fit the source column value in the target column is a non-lossy conversion.
+**Conversões com e sem perda (Lossy e Non-Lossy).** No caso em que o tipo target não pode representar o valor sendo inserido, uma decisão deve ser tomada sobre como lidar com a conversão. Se permitirmos a conversão, mas truncarmos (ou modificarmos de outra forma) o valor da source para conseguir um “ajuste” na coluna target, fazemos o que é conhecido como *lossy conversion* (conversão com perda). Uma conversão que não requer truncamento ou modificações semelhantes para encaixar o valor da coluna da source na coluna target é uma *non-lossy conversion* (conversão sem perda).
 
-**Type conversion modes (slave_type_conversions variable).** The setting of the `slave_type_conversions` global server variable controls the type conversion mode used on the replica. This variable takes a set of values from the following table, which shows the effects of each mode on the replica's type-conversion behavior:
+**Modos de conversão de tipo (variável slave_type_conversions).** A configuração da variável global de servidor `slave_type_conversions` controla o modo de conversão de tipo usado na replica. Esta variável assume um conjunto de valores da tabela a seguir, que mostra os efeitos de cada modo no comportamento de conversão de tipo da replica:
 
-<table summary="Type conversion modes for the slave_type_conversions global server variable and the effects of each mode on the slave's type-conversion behavior."><col style="width: 35%"/><col style="width: 65%"/><thead><tr> <th>Mode</th> <th>Effect</th> </tr></thead><tbody><tr> <td><code>ALL_LOSSY</code></td> <td><p> In this mode, type conversions that would mean loss of information are permitted. </p><p> This does not imply that non-lossy conversions are permitted, merely that only cases requiring either lossy conversions or no conversion at all are permitted; for example, enabling <span><em>only</em></span> this mode permits an <code>INT</code> column to be converted to <code>TINYINT</code> (a lossy conversion), but not a <code>TINYINT</code> column to an <code>INT</code> column (non-lossy). Attempting the latter conversion in this case would cause replication to stop with an error on the replica. </p></td> </tr><tr> <td><code>ALL_NON_LOSSY</code></td> <td><p> This mode permits conversions that do not require truncation or other special handling of the source value; that is, it permits conversions where the target type has a wider range than the source type. </p><p> Setting this mode has no bearing on whether lossy conversions are permitted; this is controlled with the <code>ALL_LOSSY</code> mode. If only <code>ALL_NON_LOSSY</code> is set, but not <code>ALL_LOSSY</code>, then attempting a conversion that would result in the loss of data (such as <code>INT</code> to <code>TINYINT</code>, or <code>CHAR(25)</code> to <code>VARCHAR(20)</code>) causes the replica to stop with an error. </p></td> </tr><tr> <td><code>ALL_LOSSY,ALL_NON_LOSSY</code></td> <td><p> When this mode is set, all supported type conversions are permitted, whether or not they are lossy conversions. </p></td> </tr><tr> <td><code>ALL_SIGNED</code></td> <td><p> Treat promoted integer types as signed values (the default behavior). </p></td> </tr><tr> <td><code>ALL_UNSIGNED</code></td> <td><p> Treat promoted integer types as unsigned values. </p></td> </tr><tr> <td><code>ALL_SIGNED,ALL_UNSIGNED</code></td> <td><p> Treat promoted integer types as signed if possible, otherwise as unsigned. </p></td> </tr><tr> <td>[<span><em>empty</em></span>]</td> <td><p> When <code>slave_type_conversions</code> is not set, no attribute promotion or demotion is permitted; this means that all columns in the source and target tables must be of the same types. </p><p> This mode is the default. </p></td> </tr></tbody></table>
+<table summary="Modos de conversão de tipo para a variável global de servidor slave_type_conversions e os efeitos de cada modo no comportamento de conversão de tipo da replica."><col style="width: 35%"/><col style="width: 65%"/><thead><tr> <th>Modo</th> <th>Efeito</th> </tr></thead><tbody><tr> <td><code>ALL_LOSSY</code></td> <td><p> Neste modo, conversões de tipo que implicariam perda de informação são permitidas. </p><p> Isto não implica que conversões sem perda (non-lossy) sejam permitidas, mas apenas que casos que exijam conversões com perda (lossy) ou nenhuma conversão são permitidos; por exemplo, habilitar <span><em>apenas</em></span> este modo permite que uma coluna <code>INT</code> seja convertida para <code>TINYINT</code> (uma conversão com perda), mas não uma coluna <code>TINYINT</code> para uma coluna <code>INT</code> (sem perda). Tentar a última conversão neste caso faria com que a replicação parasse com um erro na replica. </p></td> </tr><tr> <td><code>ALL_NON_LOSSY</code></td> <td><p> Este modo permite conversões que não exigem truncamento ou outro tratamento especial do valor da source; ou seja, permite conversões onde o tipo target tem um range (intervalo) mais amplo do que o tipo da source. </p><p> Configurar este modo não tem relação se conversões com perda são permitidas; isso é controlado pelo modo <code>ALL_LOSSY</code>. Se apenas <code>ALL_NON_LOSSY</code> estiver configurado, mas não <code>ALL_LOSSY</code>, tentar uma conversão que resultaria na perda de dados (como <code>INT</code> para <code>TINYINT</code>, ou <code>CHAR(25)</code> para <code>VARCHAR(20)</code>) fará com que a replica pare com um erro. </p></td> </tr><tr> <td><code>ALL_LOSSY,ALL_NON_LOSSY</code></td> <td><p> Quando este modo está configurado, todas as conversões de tipo suportadas são permitidas, sejam elas conversões com perda ou sem perda. </p></td> </tr><tr> <td><code>ALL_SIGNED</code></td> <td><p> Tratar tipos Integer promovidos como valores Signed (com sinal) (o comportamento default). </p></td> </tr><tr> <td><code>ALL_UNSIGNED</code></td> <td><p> Tratar tipos Integer promovidos como valores Unsigned (sem sinal). </p></td> </tr><tr> <td><code>ALL_SIGNED,ALL_UNSIGNED</code></td> <td><p> Tratar tipos Integer promovidos como signed, se possível, caso contrário, como unsigned. </p></td> </tr><tr> <td>[<span><em>vazio</em></span>]</td> <td><p> Quando <code>slave_type_conversions</code> não está configurado, nenhuma promoção ou despromoção de atributo é permitida; isso significa que todas as colunas nas tabelas source e target devem ser dos mesmos tipos. </p><p> Este modo é o default. </p></td> </tr></tbody></table>
 
-When an integer type is promoted, its signedness is not preserved. By default, the replica treats all such values as signed. Beginning with MySQL 5.7.2, you can control this behavior using `ALL_SIGNED`, `ALL_UNSIGNED`, or both. (Bug#15831300) `ALL_SIGNED` tells the replica to treat all promoted integer types as signed; `ALL_UNSIGNED` instructs it to treat these as unsigned. Specifying both causes the replica to treat the value as signed if possible, otherwise to treat it as unsigned; the order in which they are listed is not significant. Neither `ALL_SIGNED` nor `ALL_UNSIGNED` has any effect if at least one of `ALL_LOSSY` or `ALL_NONLOSSY` is not also used.
+Quando um tipo integer é promovido, seu atributo de signedness (sinalização) não é preservado. Por default, a replica trata todos esses valores como signed (com sinal). A partir do MySQL 5.7.2, você pode controlar este comportamento usando `ALL_SIGNED`, `ALL_UNSIGNED`, ou ambos. (Bug#15831300) `ALL_SIGNED` instrui a replica a tratar todos os tipos integer promovidos como signed; `ALL_UNSIGNED` a instrui a tratá-los como unsigned (sem sinal). Especificar ambos faz com que a replica trate o valor como signed, se possível, caso contrário, o trata como unsigned; a ordem em que são listados não é significante. Nem `ALL_SIGNED` nem `ALL_UNSIGNED` têm qualquer efeito se pelo menos um de `ALL_LOSSY` ou `ALL_NONLOSSY` não for usado também.
 
-Changing the type conversion mode requires restarting the replica with the new `slave_type_conversions` setting.
+A alteração do modo de conversão de tipo requer a reinicialização da replica com a nova configuração de `slave_type_conversions`.
 
-**Supported conversions.** Supported conversions between different but similar data types are shown in the following list:
+**Conversões suportadas.** Conversões suportadas entre tipos de dados diferentes, mas semelhantes, são mostradas na lista a seguir:
 
-* Between any of the integer types [`TINYINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), [`SMALLINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), [`MEDIUMINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), [`INT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), and [`BIGINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT").
+* Entre qualquer um dos tipos integer [`TINYINT`], [`SMALLINT`], [`MEDIUMINT`], [`INT`], e [`BIGINT`].
 
-  This includes conversions between the signed and unsigned versions of these types.
+  Isso inclui conversões entre as versões signed e unsigned desses tipos.
 
-  Lossy conversions are made by truncating the source value to the maximum (or minimum) permitted by the target column. For ensuring non-lossy conversions when going from unsigned to signed types, the target column must be large enough to accommodate the range of values in the source column. For example, you can demote `TINYINT UNSIGNED` non-lossily to `SMALLINT`, but not to `TINYINT`.
+  Conversões com perda (lossy) são feitas truncando o valor da source para o máximo (ou mínimo) permitido pela coluna target. Para garantir conversões sem perda (non-lossy) ao passar de tipos unsigned para signed, a coluna target deve ser grande o suficiente para acomodar o range de valores na coluna source. Por exemplo, você pode despromover `TINYINT UNSIGNED` sem perda para `SMALLINT`, mas não para `TINYINT`.
 
-* Between any of the decimal types [`DECIMAL`](fixed-point-types.html "11.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC"), [`FLOAT`](floating-point-types.html "11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE"), [`DOUBLE`](floating-point-types.html "11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE"), and [`NUMERIC`](fixed-point-types.html "11.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC").
+* Entre qualquer um dos tipos decimais [`DECIMAL`], [`FLOAT`], [`DOUBLE`], e [`NUMERIC`].
 
-  `FLOAT` to `DOUBLE` is a non-lossy conversion; `DOUBLE` to `FLOAT` can only be handled lossily. A conversion from `DECIMAL(M,D)` to `DECIMAL(M',D')` where `D' >= D` and `(M'-D') >= (M-D`) is non-lossy; for any case where `M' < M`, `D' < D`, or both, only a lossy conversion can be made.
+  `FLOAT` para `DOUBLE` é uma conversão sem perda (non-lossy); `DOUBLE` para `FLOAT` só pode ser tratada com perda (lossy). Uma conversão de `DECIMAL(M,D)` para `DECIMAL(M',D')` onde `D' >= D` e `(M'-D') >= (M-D`) é sem perda; para qualquer caso em que `M' < M`, `D' < D`, ou ambos, apenas uma conversão com perda pode ser feita.
 
-  For any of the decimal types, if a value to be stored cannot be fit in the target type, the value is rounded down according to the rounding rules defined for the server elsewhere in the documentation. See [Section 12.21.4, “Rounding Behavior”](precision-math-rounding.html "12.21.4 Rounding Behavior"), for information about how this is done for decimal types.
+  Para qualquer um dos tipos decimais, se um valor a ser armazenado não puder caber no tipo target, o valor é arredondado para baixo de acordo com as regras de arredondamento definidas para o servidor em outra parte da documentação. Consulte [Seção 12.21.4, “Comportamento de Arredondamento”](precision-math-rounding.html "12.21.4 Comportamento de Arredondamento"), para obter informações sobre como isso é feito para tipos decimais.
 
-* Between any of the string types [`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), and [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types"), including conversions between different widths.
+* Entre qualquer um dos tipos String [`CHAR`], [`VARCHAR`], e [`TEXT`], incluindo conversões entre diferentes larguras.
 
-  Conversion of a `CHAR`, `VARCHAR`, or `TEXT` to a `CHAR`, `VARCHAR`, or `TEXT` column the same size or larger is never lossy. Lossy conversion is handled by inserting only the first *`N`* characters of the string on the replica, where *`N`* is the width of the target column.
+  A conversão de `CHAR`, `VARCHAR` ou `TEXT` para uma coluna `CHAR`, `VARCHAR` ou `TEXT` do mesmo tamanho ou maior nunca é com perda. A conversão com perda é tratada inserindo apenas os primeiros *`N`* caracteres da string na replica, onde *`N`* é a largura da coluna target.
 
-  Important
+  Importante
 
-  Replication between columns using different character sets is not supported.
+  Replicação entre colunas usando diferentes character sets não é suportada.
 
-* Between any of the binary data types [`BINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"), [`VARBINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"), and [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types"), including conversions between different widths.
+* Entre qualquer um dos tipos de dados binários [`BINARY`], [`VARBINARY`], e [`BLOB`], incluindo conversões entre diferentes larguras.
 
-  Conversion of a `BINARY`, `VARBINARY`, or `BLOB` to a `BINARY`, `VARBINARY`, or `BLOB` column the same size or larger is never lossy. Lossy conversion is handled by inserting only the first *`N`* bytes of the string on the replica, where *`N`* is the width of the target column.
+  A conversão de `BINARY`, `VARBINARY` ou `BLOB` para uma coluna `BINARY`, `VARBINARY` ou `BLOB` do mesmo tamanho ou maior nunca é com perda. A conversão com perda é tratada inserindo apenas os primeiros *`N`* bytes da string na replica, onde *`N`* é a largura da coluna target.
 
-* Between any 2 [`BIT`](bit-type.html "11.1.5 Bit-Value Type - BIT") columns of any 2 sizes.
+* Entre quaisquer 2 colunas [`BIT`] de quaisquer 2 tamanhos.
 
-  When inserting a value from a `BIT(M)` column into a `BIT(M')` column, where `M' > M`, the most significant bits of the `BIT(M')` columns are cleared (set to zero) and the *`M`* bits of the `BIT(M)` value are set as the least significant bits of the `BIT(M')` column.
+  Ao inserir um valor de uma coluna `BIT(M)` em uma coluna `BIT(M')`, onde `M' > M`, os bits mais significativos das colunas `BIT(M')` são limpos (definidos como zero) e os *`M`* bits do valor `BIT(M)` são definidos como os bits menos significativos da coluna `BIT(M')`.
 
-  When inserting a value from a source `BIT(M)` column into a target `BIT(M')` column, where `M' < M`, the maximum possible value for the `BIT(M')` column is assigned; in other words, an “all-set” value is assigned to the target column.
+  Ao inserir um valor de uma coluna `BIT(M)` da source em uma coluna `BIT(M')` target, onde `M' < M`, o valor máximo possível para a coluna `BIT(M')` é atribuído; em outras palavras, um valor "all-set" (todos definidos) é atribuído à coluna target.
 
-Conversions between types not in the previous list are not permitted.
+Conversões entre tipos que não estão na lista anterior não são permitidas.

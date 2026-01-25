@@ -1,4 +1,4 @@
-### 13.1.20 CREATE TRIGGER Statement
+### 13.1.20 Instrução CREATE TRIGGER
 
 ```sql
 CREATE
@@ -16,66 +16,66 @@ trigger_event: { INSERT | UPDATE | DELETE }
 trigger_order: { FOLLOWS | PRECEDES } other_trigger_name
 ```
 
-This statement creates a new trigger. A trigger is a named database object that is associated with a table, and that activates when a particular event occurs for the table. The trigger becomes associated with the table named *`tbl_name`*, which must refer to a permanent table. You cannot associate a trigger with a `TEMPORARY` table or a view.
+Esta instrução cria um novo **Trigger**. Um **Trigger** é um objeto de **Database** nomeado que está associado a uma tabela e que é ativado quando um evento particular ocorre para a tabela. O **Trigger** é associado à tabela denominada *`tbl_name`*, que deve se referir a uma tabela permanente. Você não pode associar um **Trigger** a uma tabela `TEMPORARY` ou a uma **view**.
 
-Trigger names exist in the schema namespace, meaning that all triggers must have unique names within a schema. Triggers in different schemas can have the same name.
+Nomes de **Triggers** existem no **namespace** do **schema**, o que significa que todos os **Triggers** devem ter nomes únicos dentro de um **schema**. **Triggers** em **schemas** diferentes podem ter o mesmo nome.
 
-This section describes [`CREATE TRIGGER`](create-trigger.html "13.1.20 CREATE TRIGGER Statement") syntax. For additional discussion, see [Section 23.3.1, “Trigger Syntax and Examples”](trigger-syntax.html "23.3.1 Trigger Syntax and Examples").
+Esta seção descreve a sintaxe de [`CREATE TRIGGER`](create-trigger.html "13.1.20 CREATE TRIGGER Statement"). Para discussão adicional, consulte [Section 23.3.1, “Trigger Syntax and Examples”](trigger-syntax.html "23.3.1 Trigger Syntax and Examples").
 
-[`CREATE TRIGGER`](create-trigger.html "13.1.20 CREATE TRIGGER Statement") requires the [`TRIGGER`](privileges-provided.html#priv_trigger) privilege for the table associated with the trigger. If the `DEFINER` clause is present, the privileges required depend on the *`user`* value, as discussed in [Section 23.6, “Stored Object Access Control”](stored-objects-security.html "23.6 Stored Object Access Control"). If binary logging is enabled, [`CREATE TRIGGER`](create-trigger.html "13.1.20 CREATE TRIGGER Statement") might require the [`SUPER`](privileges-provided.html#priv_super) privilege, as discussed in [Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging").
+[`CREATE TRIGGER`](create-trigger.html "13.1.20 CREATE TRIGGER Statement") requer o privilégio [`TRIGGER`](privileges-provided.html#priv_trigger) para a tabela associada ao **Trigger**. Se a cláusula `DEFINER` estiver presente, os privilégios exigidos dependem do valor *`user`*, conforme discutido em [Section 23.6, “Stored Object Access Control”](stored-objects-security.html "23.6 Stored Object Access Control"). Se o **binary logging** estiver habilitado, [`CREATE TRIGGER`](create-trigger.html "13.1.20 CREATE TRIGGER Statement") pode exigir o privilégio [`SUPER`](privileges-provided.html#priv_super), conforme discutido em [Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging").
 
-The `DEFINER` clause determines the security context to be used when checking access privileges at trigger activation time, as described later in this section.
+A cláusula `DEFINER` determina o contexto de segurança a ser usado ao verificar privilégios de acesso no momento da ativação do **Trigger**, conforme descrito posteriormente nesta seção.
 
-*`trigger_time`* is the trigger action time. It can be `BEFORE` or `AFTER` to indicate that the trigger activates before or after each row to be modified.
+*`trigger_time`* é o momento da ação do **Trigger**. Pode ser `BEFORE` ou `AFTER` para indicar que o **Trigger** é ativado antes ou depois de cada linha a ser modificada.
 
-Basic column value checks occur prior to trigger activation, so you cannot use `BEFORE` triggers to convert values inappropriate for the column type to valid values.
+As verificações básicas de valores de coluna ocorrem antes da ativação do **Trigger**, portanto, você não pode usar **Triggers** `BEFORE` para converter valores inapropriados para o tipo de coluna em valores válidos.
 
-*`trigger_event`* indicates the kind of operation that activates the trigger. These *`trigger_event`* values are permitted:
+*`trigger_event`* indica o tipo de operação que ativa o **Trigger**. Estes valores de *`trigger_event`* são permitidos:
 
-* [`INSERT`](insert.html "13.2.5 INSERT Statement"): The trigger activates whenever a new row is inserted into the table (for example, through [`INSERT`](insert.html "13.2.5 INSERT Statement"), [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement"), and [`REPLACE`](replace.html "13.2.8 REPLACE Statement") statements).
+* [`INSERT`](insert.html "13.2.5 INSERT Statement"): O **Trigger** é ativado sempre que uma nova linha é inserida na tabela (por exemplo, através das instruções [`INSERT`](insert.html "13.2.5 INSERT Statement"), [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") e [`REPLACE`](replace.html "13.2.8 REPLACE Statement")).
 
-* [`UPDATE`](update.html "13.2.11 UPDATE Statement"): The trigger activates whenever a row is modified (for example, through [`UPDATE`](update.html "13.2.11 UPDATE Statement") statements).
+* [`UPDATE`](update.html "13.2.11 UPDATE Statement"): O **Trigger** é ativado sempre que uma linha é modificada (por exemplo, através de instruções [`UPDATE`](update.html "13.2.11 UPDATE Statement")).
 
-* [`DELETE`](delete.html "13.2.2 DELETE Statement"): The trigger activates whenever a row is deleted from the table (for example, through [`DELETE`](delete.html "13.2.2 DELETE Statement") and [`REPLACE`](replace.html "13.2.8 REPLACE Statement") statements). [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") and [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") statements on the table do *not* activate this trigger, because they do not use [`DELETE`](delete.html "13.2.2 DELETE Statement"). Dropping a partition does not activate [`DELETE`](delete.html "13.2.2 DELETE Statement") triggers, either.
+* [`DELETE`](delete.html "13.2.2 DELETE Statement"): O **Trigger** é ativado sempre que uma linha é excluída da tabela (por exemplo, através das instruções [`DELETE`](delete.html "13.2.2 DELETE Statement") e [`REPLACE`](replace.html "13.2.8 REPLACE Statement")). As instruções [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") e [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") na tabela *não* ativam este **Trigger**, pois elas não usam [`DELETE`](delete.html "13.2.2 DELETE Statement"). Excluir uma partição também não ativa **Triggers** de [`DELETE`](delete.html "13.2.2 DELETE Statement").
 
-The *`trigger_event`* does not represent a literal type of SQL statement that activates the trigger so much as it represents a type of table operation. For example, an [`INSERT`](insert.html "13.2.5 INSERT Statement") trigger activates not only for [`INSERT`](insert.html "13.2.5 INSERT Statement") statements but also [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") statements because both statements insert rows into a table.
+O *`trigger_event`* não representa um tipo literal de instrução SQL que ativa o **Trigger**, mas sim um tipo de operação de tabela. Por exemplo, um **Trigger** [`INSERT`](insert.html "13.2.5 INSERT Statement") é ativado não apenas para instruções [`INSERT`](insert.html "13.2.5 INSERT Statement"), mas também para instruções [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement"), pois ambas inserem linhas em uma tabela.
 
-A potentially confusing example of this is the `INSERT INTO ... ON DUPLICATE KEY UPDATE ...` syntax: a `BEFORE INSERT` trigger activates for every row, followed by either an `AFTER INSERT` trigger or both the `BEFORE UPDATE` and `AFTER UPDATE` triggers, depending on whether there was a duplicate key for the row.
+Um exemplo potencialmente confuso disso é a sintaxe `INSERT INTO ... ON DUPLICATE KEY UPDATE ...`: um **Trigger** `BEFORE INSERT` é ativado para cada linha, seguido por um **Trigger** `AFTER INSERT` ou pelos **Triggers** `BEFORE UPDATE` e `AFTER UPDATE`, dependendo se houve uma **duplicate key** para a linha.
 
 Note
 
-Cascaded foreign key actions do not activate triggers.
+Ações de **Foreign Key** em cascata não ativam **Triggers**.
 
-It is possible to define multiple triggers for a given table that have the same trigger event and action time. For example, you can have two `BEFORE UPDATE` triggers for a table. By default, triggers that have the same trigger event and action time activate in the order they were created. To affect trigger order, specify a *`trigger_order`* clause that indicates `FOLLOWS` or `PRECEDES` and the name of an existing trigger that also has the same trigger event and action time. With `FOLLOWS`, the new trigger activates after the existing trigger. With `PRECEDES`, the new trigger activates before the existing trigger.
+É possível definir múltiplos **Triggers** para uma determinada tabela que tenham o mesmo evento de **Trigger** e tempo de ação. Por exemplo, você pode ter dois **Triggers** `BEFORE UPDATE` para uma tabela. Por padrão, **Triggers** que têm o mesmo evento de **Trigger** e tempo de ação são ativados na ordem em que foram criados. Para afetar a ordem dos **Triggers**, especifique uma cláusula *`trigger_order`* que indique `FOLLOWS` ou `PRECEDES` e o nome de um **Trigger** existente que também tenha o mesmo evento de **Trigger** e tempo de ação. Com `FOLLOWS`, o novo **Trigger** é ativado após o **Trigger** existente. Com `PRECEDES`, o novo **Trigger** é ativado antes do **Trigger** existente.
 
-*`trigger_body`* is the statement to execute when the trigger activates. To execute multiple statements, use the [`BEGIN ... END`](begin-end.html "13.6.1 BEGIN ... END Compound Statement") compound statement construct. This also enables you to use the same statements that are permitted within stored routines. See [Section 13.6.1, “BEGIN ... END Compound Statement”](begin-end.html "13.6.1 BEGIN ... END Compound Statement"). Some statements are not permitted in triggers; see [Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs").
+*`trigger_body`* é a instrução a ser executada quando o **Trigger** é ativado. Para executar múltiplas instruções, use a construção de instrução composta [`BEGIN ... END`](begin-end.html "13.6.1 BEGIN ... END Compound Statement"). Isso também permite que você use as mesmas instruções que são permitidas em **stored routines**. Consulte [Section 13.6.1, “BEGIN ... END Compound Statement”](begin-end.html "13.6.1 BEGIN ... END Compound Statement"). Algumas instruções não são permitidas em **Triggers**; consulte [Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs").
 
-Within the trigger body, you can refer to columns in the subject table (the table associated with the trigger) by using the aliases `OLD` and `NEW`. `OLD.col_name` refers to a column of an existing row before it is updated or deleted. `NEW.col_name` refers to the column of a new row to be inserted or an existing row after it is updated.
+Dentro do corpo do **Trigger**, você pode se referir a colunas na tabela em questão (a tabela associada ao **Trigger**) usando os **aliases** `OLD` e `NEW`. `OLD.col_name` se refere a uma coluna de uma linha existente antes de ser atualizada ou excluída. `NEW.col_name` se refere à coluna de uma nova linha a ser inserida ou de uma linha existente após ser atualizada.
 
-Triggers cannot use `NEW.col_name` or use `OLD.col_name` to refer to generated columns. For information about generated columns, see [Section 13.1.18.7, “CREATE TABLE and Generated Columns”](create-table-generated-columns.html "13.1.18.7 CREATE TABLE and Generated Columns").
+**Triggers** não podem usar `NEW.col_name` ou `OLD.col_name` para se referir a colunas geradas. Para obter informações sobre colunas geradas, consulte [Section 13.1.18.7, “CREATE TABLE and Generated Columns”](create-table-generated-columns.html "13.1.18.7 CREATE TABLE and Generated Columns").
 
-MySQL stores the [`sql_mode`](server-system-variables.html#sysvar_sql_mode) system variable setting in effect when a trigger is created, and always executes the trigger body with this setting in force, *regardless of the current server SQL mode when the trigger begins executing*.
+O MySQL armazena a configuração da variável de sistema [`sql_mode`](server-system-variables.html#sysvar_sql_mode) em vigor quando um **Trigger** é criado e sempre executa o corpo do **Trigger** com essa configuração ativa, *independentemente do **SQL mode** atual do **server** quando o **Trigger** começa a ser executado*.
 
-The `DEFINER` clause specifies the MySQL account to be used when checking access privileges at trigger activation time. If the `DEFINER` clause is present, the *`user`* value should be a MySQL account specified as `'user_name'@'host_name'`, [`CURRENT_USER`](information-functions.html#function_current-user), or [`CURRENT_USER()`](information-functions.html#function_current-user). The permitted *`user`* values depend on the privileges you hold, as discussed in [Section 23.6, “Stored Object Access Control”](stored-objects-security.html "23.6 Stored Object Access Control"). Also see that section for additional information about trigger security.
+A cláusula `DEFINER` especifica a conta MySQL a ser usada ao verificar os privilégios de acesso no momento da ativação do **Trigger**. Se a cláusula `DEFINER` estiver presente, o valor *`user`* deve ser uma conta MySQL especificada como `'user_name'@'host_name'`, [`CURRENT_USER`](information-functions.html#function_current-user) ou [`CURRENT_USER()`](information-functions.html#function_current-user). Os valores *`user`* permitidos dependem dos privilégios que você possui, conforme discutido em [Section 23.6, “Stored Object Access Control”](stored-objects-security.html "23.6 Stored Object Access Control"). Consulte também essa seção para obter informações adicionais sobre a segurança de **Triggers**.
 
-If the `DEFINER` clause is omitted, the default definer is the user who executes the [`CREATE TRIGGER`](create-trigger.html "13.1.20 CREATE TRIGGER Statement") statement. This is the same as specifying `DEFINER = CURRENT_USER` explicitly.
+Se a cláusula `DEFINER` for omitida, o **definer** padrão é o usuário que executa a instrução [`CREATE TRIGGER`](create-trigger.html "13.1.20 CREATE TRIGGER Statement"). Isso é o mesmo que especificar `DEFINER = CURRENT_USER` explicitamente.
 
-MySQL takes the `DEFINER` user into account when checking trigger privileges as follows:
+O MySQL leva o usuário `DEFINER` em consideração ao verificar os privilégios do **Trigger** da seguinte forma:
 
-* At [`CREATE TRIGGER`](create-trigger.html "13.1.20 CREATE TRIGGER Statement") time, the user who issues the statement must have the [`TRIGGER`](privileges-provided.html#priv_trigger) privilege.
+* No momento do [`CREATE TRIGGER`](create-trigger.html "13.1.20 CREATE TRIGGER Statement"), o usuário que emite a instrução deve ter o privilégio [`TRIGGER`](privileges-provided.html#priv_trigger).
 
-* At trigger activation time, privileges are checked against the `DEFINER` user. This user must have these privileges:
+* No momento da ativação do **Trigger**, os privilégios são verificados em relação ao usuário `DEFINER`. Este usuário deve ter os seguintes privilégios:
 
-  + The [`TRIGGER`](privileges-provided.html#priv_trigger) privilege for the subject table.
+  + O privilégio [`TRIGGER`](privileges-provided.html#priv_trigger) para a tabela em questão.
 
-  + The [`SELECT`](privileges-provided.html#priv_select) privilege for the subject table if references to table columns occur using `OLD.col_name` or `NEW.col_name` in the trigger body.
+  + O privilégio [`SELECT`](privileges-provided.html#priv_select) para a tabela em questão se referências às colunas da tabela ocorrerem usando `OLD.col_name` ou `NEW.col_name` no corpo do **Trigger**.
 
-  + The [`UPDATE`](privileges-provided.html#priv_update) privilege for the subject table if table columns are targets of `SET NEW.col_name = value` assignments in the trigger body.
+  + O privilégio [`UPDATE`](privileges-provided.html#priv_update) para a tabela em questão se as colunas da tabela forem alvos de atribuições `SET NEW.col_name = value` no corpo do **Trigger**.
 
-  + Whatever other privileges normally are required for the statements executed by the trigger.
+  + Quaisquer outros privilégios que sejam normalmente exigidos para as instruções executadas pelo **Trigger**.
 
-Within a trigger body, the [`CURRENT_USER`](information-functions.html#function_current-user) function returns the account used to check privileges at trigger activation time. This is the `DEFINER` user, not the user whose actions caused the trigger to be activated. For information about user auditing within triggers, see [Section 6.2.18, “SQL-Based Account Activity Auditing”](account-activity-auditing.html "6.2.18 SQL-Based Account Activity Auditing").
+Dentro do corpo de um **Trigger**, a função [`CURRENT_USER`](information-functions.html#function_current-user) retorna a conta usada para verificar privilégios no momento da ativação do **Trigger**. Este é o usuário `DEFINER`, e não o usuário cujas ações causaram a ativação do **Trigger**. Para obter informações sobre auditoria de usuários em **Triggers**, consulte [Section 6.2.18, “SQL-Based Account Activity Auditing”](account-activity-auditing.html "6.2.18 SQL-Based Account Activity Auditing").
 
-If you use [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") to lock a table that has triggers, the tables used within the trigger are also locked, as described in [LOCK TABLES and Triggers](lock-tables.html#lock-tables-and-triggers "LOCK TABLES and Triggers").
+Se você usar [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") para bloquear uma tabela que possui **Triggers**, as tabelas usadas dentro do **Trigger** também são bloqueadas, conforme descrito em [LOCK TABLES and Triggers](lock-tables.html#lock-tables-and-triggers "LOCK TABLES and Triggers").
 
-For additional discussion of trigger use, see [Section 23.3.1, “Trigger Syntax and Examples”](trigger-syntax.html "23.3.1 Trigger Syntax and Examples").
+Para discussão adicional sobre o uso de **Triggers**, consulte [Section 23.3.1, “Trigger Syntax and Examples”](trigger-syntax.html "23.3.1 Trigger Syntax and Examples").

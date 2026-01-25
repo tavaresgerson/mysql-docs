@@ -1,101 +1,196 @@
-#### 21.6.3.2 NDB Cluster Log Events
+#### 21.6.3.2 Eventos de Log do NDB Cluster
 
-An event report reported in the event logs has the following format:
+Um relatório de evento registrado nos logs de evento tem o seguinte formato:
 
 ```sql
 datetime [string] severity -- message
 ```
 
-For example:
+Por exemplo:
 
 ```sql
 09:19:30 2005-07-24 [NDB] INFO -- Node 4 Start phase 4 completed
 ```
 
-This section discusses all reportable events, ordered by category and severity level within each category.
+Esta seção discute todos os eventos reportáveis, ordenados por categoria e nível de severidade dentro de cada categoria.
 
-In the event descriptions, GCP and LCP mean “Global Checkpoint” and “Local Checkpoint”, respectively.
+Nas descrições dos eventos, GCP e LCP significam “Global Checkpoint” e “Local Checkpoint”, respectivamente.
 
-##### CONNECTION Events
+##### Eventos CONNECTION
 
-These events are associated with connections between Cluster nodes.
+Estes eventos estão associados a conexões entre nodes do Cluster.
 
-**Table 21.50 Events associated with connections between cluster nodes**
+**Tabela 21.50 Eventos associados a conexões entre nodes do cluster**
 
-<table><col style="width: 35%"/><col style="width: 10%"/><col style="width: 10%"/><col style="width: 45%"/><thead><tr> <th>Event</th> <th>Priority</th> <th>Severity Level</th> <th>Description</th> </tr></thead><tbody><tr> <th><code>Connected</code></th> <td>8</td> <td><code>INFO</code></td> <td>Data nodes connected</td> </tr><tr> <th><code>Disconnected</code></th> <td>8</td> <td><code>ALERT</code></td> <td>Data nodes disconnected</td> </tr><tr> <th><code>CommunicationClosed</code></th> <td>8</td> <td><code>INFO</code></td> <td>SQL node or data node connection closed</td> </tr><tr> <th><code>CommunicationOpened</code></th> <td>8</td> <td><code>INFO</code></td> <td>SQL node or data node connection open</td> </tr><tr> <th><code>ConnectedApiVersion</code></th> <td>8</td> <td><code>INFO</code></td> <td>Connection using API version</td> </tr></tbody></table>
+| Evento | Prioridade | Nível de Severidade | Descrição |
+|---|---|---|---|
+| `Connected` | 8 | `INFO` | Data nodes conectados |
+| `Disconnected` | 8 | `ALERT` | Data nodes desconectados |
+| `CommunicationClosed` | 8 | `INFO` | Conexão de SQL node ou data node fechada |
+| `CommunicationOpened` | 8 | `INFO` | Conexão de SQL node ou data node aberta |
+| `ConnectedApiVersion` | 8 | `INFO` | Conexão usando versão da API |
 
-##### CHECKPOINT Events
+##### Eventos CHECKPOINT
 
-The logging messages shown here are associated with checkpoints.
+As mensagens de logging mostradas aqui estão associadas a Checkpoints.
 
-**Table 21.51 Events associated with checkpoints**
+**Tabela 21.51 Eventos associados a Checkpoints**
 
-<table><col style="width: 35%"/><col style="width: 10%"/><col style="width: 10%"/><col style="width: 45%"/><thead><tr> <th>Event</th> <th>Priority</th> <th>Severity Level</th> <th>Description</th> </tr></thead><tbody><tr> <th><code>GlobalCheckpointStarted</code></th> <td>9</td> <td><code>INFO</code></td> <td>Start of GCP: REDO log is written to disk</td> </tr><tr> <th><code>GlobalCheckpointCompleted</code></th> <td>10</td> <td><code>INFO</code></td> <td>GCP finished</td> </tr><tr> <th><code>LocalCheckpointStarted</code></th> <td>7</td> <td><code>INFO</code></td> <td>Start of LCP: data written to disk</td> </tr><tr> <th><code>LocalCheckpointCompleted</code></th> <td>7</td> <td><code>INFO</code></td> <td>LCP completed normally</td> </tr><tr> <th><code>LCPStoppedInCalcKeepGci</code></th> <td>0</td> <td><code>ALERT</code></td> <td>LCP stopped</td> </tr><tr> <th><code>LCPFragmentCompleted</code></th> <td>11</td> <td><code>INFO</code></td> <td>LCP on a fragment has been completed</td> </tr><tr> <th><code>UndoLogBlocked</code></th> <td>7</td> <td><code>INFO</code></td> <td>UNDO logging blocked; buffer near overflow</td> </tr><tr> <th><code>RedoStatus</code></th> <td>7</td> <td><code>INFO</code></td> <td>Redo status</td> </tr></tbody></table>
+| Evento | Prioridade | Nível de Severidade | Descrição |
+|---|---|---|---|
+| `GlobalCheckpointStarted` | 9 | `INFO` | Início do GCP: REDO log é escrito em disco |
+| `GlobalCheckpointCompleted` | 10 | `INFO` | GCP finalizado |
+| `LocalCheckpointStarted` | 7 | `INFO` | Início do LCP: dados escritos em disco |
+| `LocalCheckpointCompleted` | 7 | `INFO` | LCP concluído normalmente |
+| `LCPStoppedInCalcKeepGci` | 0 | `ALERT` | LCP interrompido |
+| `LCPFragmentCompleted` | 11 | `INFO` | LCP em um fragmento foi concluído |
+| `UndoLogBlocked` | 7 | `INFO` | UNDO logging bloqueado; Buffer próximo ao overflow |
+| `RedoStatus` | 7 | `INFO` | Status do Redo |
 
-##### STARTUP Events
+##### Eventos STARTUP
 
-The following events are generated in response to the startup of a node or of the cluster and of its success or failure. They also provide information relating to the progress of the startup process, including information concerning logging activities.
+Os eventos a seguir são gerados em resposta à inicialização de um node ou do Cluster e de seu sucesso ou falha. Eles também fornecem informações relacionadas ao progresso do processo de inicialização, incluindo informações sobre atividades de logging.
 
-**Table 21.52 Events relating to the startup of a node or cluster**
+**Tabela 21.52 Eventos relacionados à inicialização de um node ou cluster**
 
-<table><col style="width: 35%"/><col style="width: 10%"/><col style="width: 10%"/><col style="width: 45%"/><thead><tr> <th>Event</th> <th>Priority</th> <th>Severity Level</th> <th>Description</th> </tr></thead><tbody><tr> <th><code>NDBStartStarted</code></th> <td>1</td> <td><code>INFO</code></td> <td>Data node start phases initiated (all nodes starting)</td> </tr><tr> <th><code>NDBStartCompleted</code></th> <td>1</td> <td><code>INFO</code></td> <td>Start phases completed, all data nodes</td> </tr><tr> <th><code>STTORRYRecieved</code></th> <td>15</td> <td><code>INFO</code></td> <td>Blocks received after completion of restart</td> </tr><tr> <th><code>StartPhaseCompleted</code></th> <td>4</td> <td><code>INFO</code></td> <td>Data node start phase <em><code>X</code></em> completed</td> </tr><tr> <th><code>CM_REGCONF</code></th> <td>3</td> <td><code>INFO</code></td> <td>Node has been successfully included into the cluster; shows the node, managing node, and dynamic ID</td> </tr><tr> <th><code>CM_REGREF</code></th> <td>8</td> <td><code>INFO</code></td> <td>Node has been refused for inclusion in the cluster; cannot be included in cluster due to misconfiguration, inability to establish communication, or other problem</td> </tr><tr> <th><code>FIND_NEIGHBOURS</code></th> <td>8</td> <td><code>INFO</code></td> <td>Shows neighboring data nodes</td> </tr><tr> <th><code>NDBStopStarted</code></th> <td>1</td> <td><code>INFO</code></td> <td>Data node shutdown initiated</td> </tr><tr> <th><code>NDBStopCompleted</code></th> <td>1</td> <td><code>INFO</code></td> <td>Data node shutdown complete</td> </tr><tr> <th><code>NDBStopForced</code></th> <td>1</td> <td><code>ALERT</code></td> <td>Forced shutdown of data node</td> </tr><tr> <th><code>NDBStopAborted</code></th> <td>1</td> <td><code>INFO</code></td> <td>Unable to shut down data node normally</td> </tr><tr> <th><code>StartREDOLog</code></th> <td>4</td> <td><code>INFO</code></td> <td>New redo log started; GCI keep <em><code>X</code></em>, newest restorable GCI <em><code>Y</code></em></td> </tr><tr> <th><code>StartLog</code></th> <td>10</td> <td><code>INFO</code></td> <td>New log started; log part <em><code>X</code></em>, start MB <em><code>Y</code></em>, stop MB <em><code>Z</code></em></td> </tr><tr> <th><code>UNDORecordsExecuted</code></th> <td>15</td> <td><code>INFO</code></td> <td>Undo records executed</td> </tr><tr> <th><code>StartReport</code></th> <td>4</td> <td><code>INFO</code></td> <td>Report started</td> </tr><tr> <th><code>LogFileInitStatus</code></th> <td>7</td> <td><code>INFO</code></td> <td>Log file initialization status</td> </tr><tr> <th><code>LogFileInitCompStatus</code></th> <td>7</td> <td><code>INFO</code></td> <td>Log file completion status</td> </tr><tr> <th><code>StartReadLCP</code></th> <td>10</td> <td><code>INFO</code></td> <td>Start read for local checkpoint</td> </tr><tr> <th><code>ReadLCPComplete</code></th> <td>10</td> <td><code>INFO</code></td> <td>Read for local checkpoint completed</td> </tr><tr> <th><code>RunRedo</code></th> <td>8</td> <td><code>INFO</code></td> <td>Running the redo log</td> </tr><tr> <th><code>RebuildIndex</code></th> <td>10</td> <td><code>INFO</code></td> <td>Rebuilding indexes</td> </tr></tbody></table>
+| Evento | Prioridade | Nível de Severidade | Descrição |
+|---|---|---|---|
+| `NDBStartStarted` | 1 | `INFO` | Fases de inicialização do Data Node iniciadas (todos os nodes iniciando) |
+| `NDBStartCompleted` | 1 | `INFO` | Fases de inicialização concluídas, todos os data nodes |
+| `STTORRYRecieved` | 15 | `INFO` | Blocos recebidos após a conclusão do restart |
+| `StartPhaseCompleted` | 4 | `INFO` | Fase *`X`* de inicialização do Data Node concluída |
+| `CM_REGCONF` | 3 | `INFO` | Node foi incluído com sucesso no cluster; mostra o node, o managing node e o ID dinâmico |
+| `CM_REGREF` | 8 | `INFO` | Node foi recusado para inclusão no cluster; não pode ser incluído no cluster devido a configuração incorreta, incapacidade de estabelecer comunicação ou outro problema |
+| `FIND_NEIGHBOURS` | 8 | `INFO` | Mostra os data nodes vizinhos |
+| `NDBStopStarted` | 1 | `INFO` | Data node shutdown iniciado |
+| `NDBStopCompleted` | 1 | `INFO` | Data node shutdown completo |
+| `NDBStopForced` | 1 | `ALERT` | Shutdown forçado do data node |
+| `NDBStopAborted` | 1 | `INFO` | Incapaz de desligar o data node normalmente |
+| `StartREDOLog` | 4 | `INFO` | Novo redo log iniciado; GCI keep *`X`*, GCI restaurável mais novo *`Y`* |
+| `StartLog` | 10 | `INFO` | Novo log iniciado; parte do log *`X`*, start MB *`Y`*, stop MB *`Z`* |
+| `UNDORecordsExecuted` | 15 | `INFO` | Registros Undo executados |
+| `StartReport` | 4 | `INFO` | Relatório iniciado |
+| `LogFileInitStatus` | 7 | `INFO` | Status de inicialização do arquivo de Log |
+| `LogFileInitCompStatus` | 7 | `INFO` | Status de conclusão do arquivo de Log |
+| `StartReadLCP` | 10 | `INFO` | Início da leitura para Local Checkpoint |
+| `ReadLCPComplete` | 10 | `INFO` | Leitura para Local Checkpoint concluída |
+| `RunRedo` | 8 | `INFO` | Executando o redo log |
+| `RebuildIndex` | 10 | `INFO` | Reconstruindo Indexes |
 
-##### NODERESTART Events
+##### Eventos NODERESTART
 
-The following events are generated when restarting a node and relate to the success or failure of the node restart process.
+Os eventos a seguir são gerados ao reiniciar um node e se relacionam com o sucesso ou falha do processo de restart do node.
 
-**Table 21.53 Events relating to restarting a node**
+**Tabela 21.53 Eventos relacionados ao restart de um node**
 
-<table><col style="width: 35%"/><col style="width: 10%"/><col style="width: 10%"/><col style="width: 45%"/><thead><tr> <th>Event</th> <th>Priority</th> <th>Severity Level</th> <th>Description</th> </tr></thead><tbody><tr> <th><code>NR_CopyDict</code></th> <td>7</td> <td><code>INFO</code></td> <td>Completed copying of dictionary information</td> </tr><tr> <th><code>NR_CopyDistr</code></th> <td>7</td> <td><code>INFO</code></td> <td>Completed copying distribution information</td> </tr><tr> <th><code>NR_CopyFragsStarted</code></th> <td>7</td> <td><code>INFO</code></td> <td>Starting to copy fragments</td> </tr><tr> <th><code>NR_CopyFragDone</code></th> <td>10</td> <td><code>INFO</code></td> <td>Completed copying a fragment</td> </tr><tr> <th><code>NR_CopyFragsCompleted</code></th> <td>7</td> <td><code>INFO</code></td> <td>Completed copying all fragments</td> </tr><tr> <th><code>NodeFailCompleted</code></th> <td>8</td> <td><code>ALERT</code></td> <td>Node failure phase completed</td> </tr><tr> <th><code>NODE_FAILREP</code></th> <td>8</td> <td><code>ALERT</code></td> <td>Reports that a node has failed</td> </tr><tr> <th><code>ArbitState</code></th> <td>6</td> <td><code>INFO</code></td> <td>Report whether an arbitrator is found or not; there are seven different possible outcomes when seeking an arbitrator, listed here: <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> Management server restarts arbitration thread [state=<em><code>X</code></em>] </p></li><li class="listitem"><p> Prepare arbitrator node <em><code>X</code></em> [ticket=<em><code>Y</code></em>] </p></li><li class="listitem"><p> Receive arbitrator node <em><code>X</code></em> [ticket=<em><code>Y</code></em>] </p></li><li class="listitem"><p> Started arbitrator node <em><code>X</code></em> [ticket=<em><code>Y</code></em>] </p></li><li class="listitem"><p> Lost arbitrator node <em><code>X</code></em> - process failure [state=<em><code>Y</code></em>] </p></li><li class="listitem"><p> Lost arbitrator node <em><code>X</code></em> - process exit [state=<em><code>Y</code></em>] </p></li><li class="listitem"><p> Lost arbitrator node <em><code>X</code></em> &lt;error msg&gt; [state=<em><code>Y</code></em>] </p></li></ul> </div> </td> </tr><tr> <th><code>ArbitResult</code></th> <td>2</td> <td><code>ALERT</code></td> <td>Report arbitrator results; there are eight different possible results for arbitration attempts, listed here: <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> Arbitration check failed: less than 1/2 nodes left </p></li><li class="listitem"><p> Arbitration check succeeded: node group majority </p></li><li class="listitem"><p> Arbitration check failed: missing node group </p></li><li class="listitem"><p> Network partitioning: arbitration required </p></li><li class="listitem"><p> Arbitration succeeded: affirmative response from node <em><code>X</code></em> </p></li><li class="listitem"><p> Arbitration failed: negative response from node <em><code>X</code></em> </p></li><li class="listitem"><p> Network partitioning: no arbitrator available </p></li><li class="listitem"><p> Network partitioning: no arbitrator configured </p></li></ul> </div> </td> </tr><tr> <th><code>GCP_TakeoverStarted</code></th> <td>7</td> <td><code>INFO</code></td> <td>GCP takeover started</td> </tr><tr> <th><code>GCP_TakeoverCompleted</code></th> <td>7</td> <td><code>INFO</code></td> <td>GCP takeover complete</td> </tr><tr> <th><code>LCP_TakeoverStarted</code></th> <td>7</td> <td><code>INFO</code></td> <td>LCP takeover started</td> </tr><tr> <th><code>LCP_TakeoverCompleted</code></th> <td>7</td> <td><code>INFO</code></td> <td>LCP takeover complete (state = <em><code>X</code></em>)</td> </tr><tr> <th><code>ConnectCheckStarted</code></th> <td>6</td> <td><code>INFO</code></td> <td>Connection check started</td> </tr><tr> <th><code>ConnectCheckCompleted</code></th> <td>6</td> <td><code>INFO</code></td> <td>Connection check completed</td> </tr><tr> <th><code>NodeFailRejected</code></th> <td>6</td> <td><code>ALERT</code></td> <td>Node failure phase failed</td> </tr></tbody></table>
+| Evento | Prioridade | Nível de Severidade | Descrição |
+|---|---|---|---|
+| `NR_CopyDict` | 7 | `INFO` | Cópia de informações do Dictionary concluída |
+| `NR_CopyDistr` | 7 | `INFO` | Cópia de informações de distribuição concluída |
+| `NR_CopyFragsStarted` | 7 | `INFO` | Iniciando a cópia de fragmentos |
+| `NR_CopyFragDone` | 10 | `INFO` | Cópia de um fragmento concluída |
+| `NR_CopyFragsCompleted` | 7 | `INFO` | Cópia de todos os fragmentos concluída |
+| `NodeFailCompleted` | 8 | `ALERT` | Fase de falha do Node concluída |
+| `NODE_FAILREP` | 8 | `ALERT` | Reporta que um node falhou |
+| `ArbitState` | 6 | `INFO` | Reporta se um árbitro foi encontrado ou não; existem sete resultados possíveis ao procurar um árbitro, listados aqui: <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> Management server reinicia Thread de arbitragem [state=*`X`*] </p></li><li class="listitem"><p> Preparar node árbitro *`X`* [ticket=*`Y`*] </p></li><li class="listitem"><p> Receber node árbitro *`X`* [ticket=*`Y`*] </p></li><li class="listitem"><p> Node árbitro *`X`* iniciado [ticket=*`Y`*] </p></li><li class="listitem"><p> Node árbitro *`X`* perdido - falha de processo [state=*`Y`*] </p></li><li class="listitem"><p> Node árbitro *`X`* perdido - saída do processo [state=*`Y`*] </p></li><li class="listitem"><p> Node árbitro *`X`* perdido &lt;mensagem de erro&gt; [state=*`Y`*] </p></li></ul> </div> |
+| `ArbitResult` | 2 | `ALERT` | Reporta resultados da arbitragem; existem oito resultados possíveis diferentes para tentativas de arbitragem, listados aqui: <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> Verificação de arbitragem falhou: menos de 1/2 nodes restantes </p></li><li class="listitem"><p> Verificação de arbitragem bem-sucedida: maioria do grupo de nodes </p></li><li class="listitem"><p> Verificação de arbitragem falhou: grupo de nodes ausente </p></li><li class="listitem"><p> Particionamento de rede: arbitragem necessária </p></li><li class="listitem"><p> Arbitragem bem-sucedida: resposta afirmativa do node *`X`* </p></li><li class="listitem"><p> Arbitragem falhou: resposta negativa do node *`X`* </p></li><li class="listitem"><p> Particionamento de rede: nenhum árbitro disponível </p></li><li class="listitem"><p> Particionamento de rede: nenhum árbitro configurado </p></li></ul> </div> |
+| `GCP_TakeoverStarted` | 7 | `INFO` | GCP takeover iniciado |
+| `GCP_TakeoverCompleted` | 7 | `INFO` | GCP takeover completo |
+| `LCP_TakeoverStarted` | 7 | `INFO` | LCP takeover iniciado |
+| `LCP_TakeoverCompleted` | 7 | `INFO` | LCP takeover completo (state = *`X`*) |
+| `ConnectCheckStarted` | 6 | `INFO` | Verificação de conexão iniciada |
+| `ConnectCheckCompleted` | 6 | `INFO` | Verificação de conexão concluída |
+| `NodeFailRejected` | 6 | `ALERT` | Fase de falha do Node rejeitada |
 
-##### STATISTICS Events
+##### Eventos STATISTICS
 
-The following events are of a statistical nature. They provide information such as numbers of transactions and other operations, amount of data sent or received by individual nodes, and memory usage.
+Os eventos a seguir são de natureza estatística. Eles fornecem informações como o número de Transactions e outras operações, a quantidade de dados enviados ou recebidos por nodes individuais e o uso de memória.
 
-**Table 21.54 Events of a statistical nature**
+**Tabela 21.54 Eventos de natureza estatística**
 
-<table><col style="width: 35%"/><col style="width: 10%"/><col style="width: 10%"/><col style="width: 45%"/><thead><tr> <th>Event</th> <th>Priority</th> <th>Severity Level</th> <th>Description</th> </tr></thead><tbody><tr> <th><code>TransReportCounters</code></th> <td>8</td> <td><code>INFO</code></td> <td>Report transaction statistics, including numbers of transactions, commits, reads, simple reads, writes, concurrent operations, attribute information, and aborts</td> </tr><tr> <th><code>OperationReportCounters</code></th> <td>8</td> <td><code>INFO</code></td> <td>Number of operations</td> </tr><tr> <th><code>TableCreated</code></th> <td>7</td> <td><code>INFO</code></td> <td>Report number of tables created</td> </tr><tr> <th><code>JobStatistic</code></th> <td>9</td> <td><code>INFO</code></td> <td>Mean internal job scheduling statistics</td> </tr><tr> <th><code>ThreadConfigLoop</code></th> <td>9</td> <td><code>INFO</code></td> <td>Number of thread configuration loops</td> </tr><tr> <th><code>SendBytesStatistic</code></th> <td>9</td> <td><code>INFO</code></td> <td>Mean number of bytes sent to node <em><code>X</code></em></td> </tr><tr> <th><code>ReceiveBytesStatistic</code></th> <td>9</td> <td><code>INFO</code></td> <td>Mean number of bytes received from node <em><code>X</code></em></td> </tr><tr> <th><code>MemoryUsage</code></th> <td>5</td> <td><code>INFO</code></td> <td>Data and index memory usage (80%, 90%, and 100%)</td> </tr><tr> <th><code>MTSignalStatistics</code></th> <td>9</td> <td><code>INFO</code></td> <td>Multithreaded signals</td> </tr></tbody></table>
+| Evento | Prioridade | Nível de Severidade | Descrição |
+|---|---|---|---|
+| `TransReportCounters` | 8 | `INFO` | Reporta estatísticas de Transaction, incluindo número de Transactions, commits, reads, simple reads, writes, operações concorrentes, informações de atributos e aborts |
+| `OperationReportCounters` | 8 | `INFO` | Número de operações |
+| `TableCreated` | 7 | `INFO` | Reporta o número de Tables criadas |
+| `JobStatistic` | 9 | `INFO` | Estatísticas médias internas de agendamento de Job |
+| `ThreadConfigLoop` | 9 | `INFO` | Número de loops de configuração de Thread |
+| `SendBytesStatistic` | 9 | `INFO` | Número médio de bytes enviados ao node *`X`* |
+| `ReceiveBytesStatistic` | 9 | `INFO` | Número médio de bytes recebidos do node *`X`* |
+| `MemoryUsage` | 5 | `INFO` | Uso de memória de Dados e Index (80%, 90% e 100%) |
+| `MTSignalStatistics` | 9 | `INFO` | Sinais Multithreaded |
 
-##### SCHEMA Events
+##### Eventos SCHEMA
 
-These events relate to NDB Cluster schema operations.
+Estes eventos se relacionam a operações de Schema do NDB Cluster.
 
-**Table 21.55 Events relating to NDB Cluster schema operations**
+**Tabela 21.55 Eventos relacionados a operações de Schema do NDB Cluster**
 
-<table><col style="width: 35%"/><col style="width: 10%"/><col style="width: 10%"/><col style="width: 45%"/><thead><tr> <th>Event</th> <th>Priority</th> <th>Severity Level</th> <th>Description</th> </tr></thead><tbody><tr> <th><code>CreateSchemaObject</code></th> <td>8</td> <td><code>INFO</code></td> <td>Schema objected created</td> </tr><tr> <th><code>AlterSchemaObject</code></th> <td>8</td> <td><code>INFO</code></td> <td>Schema object updated</td> </tr><tr> <th><code>DropSchemaObject</code></th> <td>8</td> <td><code>INFO</code></td> <td>Schema object dropped</td> </tr></tbody></table>
+| Evento | Prioridade | Nível de Severidade | Descrição |
+|---|---|---|---|
+| `CreateSchemaObject` | 8 | `INFO` | Objeto de Schema criado |
+| `AlterSchemaObject` | 8 | `INFO` | Objeto de Schema atualizado |
+| `DropSchemaObject` | 8 | `INFO` | Objeto de Schema descartado (dropped) |
 
-##### ERROR Events
+##### Eventos ERROR
 
-These events relate to Cluster errors and warnings. The presence of one or more of these generally indicates that a major malfunction or failure has occurred.
+Estes eventos se relacionam a erros e avisos do Cluster. A presença de um ou mais destes geralmente indica que ocorreu um mau funcionamento ou falha grave.
 
-**Table 21.56 Events relating to cluster errors and warnings**
+**Tabela 21.56 Eventos relacionados a erros e avisos do cluster**
 
-<table><col style="width: 35%"/><col style="width: 10%"/><col style="width: 10%"/><col style="width: 45%"/><thead><tr> <th>Event</th> <th>Priority</th> <th>Severity Level</th> <th>Description</th> </tr></thead><tbody><tr> <th><code>TransporterError</code></th> <td>2</td> <td><code>ERROR</code></td> <td>Transporter error</td> </tr><tr> <th><code>TransporterWarning</code></th> <td>8</td> <td><code>WARNING</code></td> <td>Transporter warning</td> </tr><tr> <th><code>MissedHeartbeat</code></th> <td>8</td> <td><code>WARNING</code></td> <td>Node <em><code>X</code></em> missed heartbeat number <em><code>Y</code></em></td> </tr><tr> <th><code>DeadDueToHeartbeat</code></th> <td>8</td> <td><code>ALERT</code></td> <td>Node <em><code>X</code></em> declared <span class="quote">“<span class="quote">dead</span>”</span> due to missed heartbeat</td> </tr><tr> <th><code>WarningEvent</code></th> <td>2</td> <td><code>WARNING</code></td> <td>General warning event</td> </tr><tr> <th><code>SubscriptionStatus</code></th> <td>4</td> <td><code>WARNING</code></td> <td>Change in subscription status</td> </tr></tbody></table>
+| Evento | Prioridade | Nível de Severidade | Descrição |
+|---|---|---|---|
+| `TransporterError` | 2 | `ERROR` | Erro do Transporter |
+| `TransporterWarning` | 8 | `WARNING` | Aviso do Transporter |
+| `MissedHeartbeat` | 8 | `WARNING` | Node *`X`* perdeu o Heartbeat número *`Y`* |
+| `DeadDueToHeartbeat` | 8 | `ALERT` | Node *`X`* declarado “morto” devido a Heartbeat perdido |
+| `WarningEvent` | 2 | `WARNING` | Evento de aviso geral |
+| `SubscriptionStatus` | 4 | `WARNING` | Mudança no status de subscrição |
 
-##### INFO Events
+##### Eventos INFO
 
-These events provide general information about the state of the cluster and activities associated with Cluster maintenance, such as logging and heartbeat transmission.
+Estes eventos fornecem informações gerais sobre o estado do Cluster e atividades associadas à manutenção do Cluster, como logging e transmissão de Heartbeat.
 
-**Table 21.57 Information events**
+**Tabela 21.57 Eventos de informação**
 
-<table><col style="width: 35%"/><col style="width: 10%"/><col style="width: 10%"/><col style="width: 45%"/><thead><tr> <th>Event</th> <th>Priority</th> <th>Severity Level</th> <th>Description</th> </tr></thead><tbody><tr> <th><code>SentHeartbeat</code></th> <td>12</td> <td><code>INFO</code></td> <td>Sent heartbeat</td> </tr><tr> <th><code>CreateLogBytes</code></th> <td>11</td> <td><code>INFO</code></td> <td>Create log: Log part, log file, size in MB</td> </tr><tr> <th><code>InfoEvent</code></th> <td>2</td> <td><code>INFO</code></td> <td>General informational event</td> </tr><tr> <th><code>EventBufferStatus</code></th> <td>7</td> <td><code>INFO</code></td> <td>Event buffer status</td> </tr><tr> <th><code>EventBufferStatus2</code></th> <td>7</td> <td><code>INFO</code></td> <td>Improved event buffer status information; added in NDB 7.5.1</td> </tr></tbody></table>
+| Evento | Prioridade | Nível de Severidade | Descrição |
+|---|---|---|---|
+| `SentHeartbeat` | 12 | `INFO` | Heartbeat enviado |
+| `CreateLogBytes` | 11 | `INFO` | Criação de log: Parte do log, arquivo de log, tamanho em MB |
+| `InfoEvent` | 2 | `INFO` | Evento informativo geral |
+| `EventBufferStatus` | 7 | `INFO` | Status do Event Buffer |
+| `EventBufferStatus2` | 7 | `INFO` | Informações aprimoradas do status do Event Buffer; adicionado no NDB 7.5.1 |
 
 Note
 
-`SentHeartbeat` events are available only if NDB Cluster was compiled with `VM_TRACE` enabled.
+Os eventos `SentHeartbeat` estão disponíveis apenas se o NDB Cluster foi compilado com `VM_TRACE` habilitado.
 
-##### SINGLEUSER Events
+##### Eventos SINGLEUSER
 
-These events are associated with entering and exiting single user mode.
+Estes eventos estão associados à entrada e saída do modo de usuário único (single user mode).
 
-**Table 21.58 Events relating to single user mode**
+**Tabela 21.58 Eventos relacionados ao modo de usuário único**
 
-<table><col style="width: 35%"/><col style="width: 10%"/><col style="width: 10%"/><col style="width: 45%"/><thead><tr> <th>Event</th> <th>Priority</th> <th>Severity Level</th> <th>Description</th> </tr></thead><tbody><tr> <th><code>SingleUser</code></th> <td>7</td> <td><code>INFO</code></td> <td>Entering or exiting single user mode</td> </tr></tbody></table>
+| Evento | Prioridade | Nível de Severidade | Descrição |
+|---|---|---|---|
+| `SingleUser` | 7 | `INFO` | Entrando ou saindo do modo de usuário único |
 
-##### BACKUP Events
+##### Eventos BACKUP
 
-These events provide information about backups being created or restored.
+Estes eventos fornecem informações sobre Backups sendo criados ou restaurados.
 
-**Table 21.59 Backup events**
+**Tabela 21.59 Eventos de Backup**
 
-<table><col style="width: 35%"/><col style="width: 10%"/><col style="width: 10%"/><col style="width: 45%"/><thead><tr> <th>Event</th> <th>Priority</th> <th>Severity Level</th> <th>Description</th> </tr></thead><tbody><tr> <th><code>BackupStarted</code></th> <td>7</td> <td><code>INFO</code></td> <td>Backup started</td> </tr><tr> <th><code>BackupStatus</code></th> <td>7</td> <td><code>INFO</code></td> <td>Backup status</td> </tr><tr> <th><code>BackupCompleted</code></th> <td>7</td> <td><code>INFO</code></td> <td>Backup completed</td> </tr><tr> <th><code>BackupFailedToStart</code></th> <td>7</td> <td><code>ALERT</code></td> <td>Backup failed to start</td> </tr><tr> <th><code>BackupAborted</code></th> <td>7</td> <td><code>ALERT</code></td> <td>Backup aborted by user</td> </tr><tr> <th><code>RestoreStarted</code></th> <td>7</td> <td><code>INFO</code></td> <td>Started restoring from backup</td> </tr><tr> <th><code>RestoreMetaData</code></th> <td>7</td> <td><code>INFO</code></td> <td>Restoring metadata</td> </tr><tr> <th><code>RestoreData</code></th> <td>7</td> <td><code>INFO</code></td> <td>Restoring data</td> </tr><tr> <th><code>RestoreLog</code></th> <td>7</td> <td><code>INFO</code></td> <td>Restoring log files</td> </tr><tr> <th><code>RestoreCompleted</code></th> <td>7</td> <td><code>INFO</code></td> <td>Completed restoring from backup</td> </tr><tr> <th><code>SavedEvent</code></th> <td>7</td> <td><code>INFO</code></td> <td>Event saved</td> </tr></tbody></table>
+| Evento | Prioridade | Nível de Severidade | Descrição |
+|---|---|---|---|
+| `BackupStarted` | 7 | `INFO` | Backup iniciado |
+| `BackupStatus` | 7 | `INFO` | Status do Backup |
+| `BackupCompleted` | 7 | `INFO` | Backup concluído |
+| `BackupFailedToStart` | 7 | `ALERT` | Falha ao iniciar o Backup |
+| `BackupAborted` | 7 | `ALERT` | Backup abortado pelo usuário |
+| `RestoreStarted` | 7 | `INFO` | Restauração a partir do Backup iniciada |
+| `RestoreMetaData` | 7 | `INFO` | Restaurando metadados |
+| `RestoreData` | 7 | `INFO` | Restaurando dados |
+| `RestoreLog` | 7 | `INFO` | Restaurando arquivos de log |
+| `RestoreCompleted` | 7 | `INFO` | Restauração a partir do Backup concluída |
+| `SavedEvent` | 7 | `INFO` | Evento salvo |

@@ -1,16 +1,16 @@
-#### 26.4.5.14 The ps_thread_account() Function
+#### 26.4.5.14 A Função ps_thread_account()
 
-Given a Performance Schema thread ID, returns the `user_name@host_name` account associated with the thread.
+Dado um *Thread ID* do *Performance Schema*, retorna a conta `user_name@host_name` associada ao *thread*.
 
-##### Parameters
+##### Parâmetros
 
-* `in_thread_id BIGINT UNSIGNED`: The thread ID for which to return the account. The value should match the `THREAD_ID` column from some Performance Schema `threads` table row.
+* `in_thread_id BIGINT UNSIGNED`: O *Thread ID* para o qual retornar a conta. O valor deve corresponder à coluna `THREAD_ID` de alguma linha da tabela `threads` do *Performance Schema*.
 
-##### Return Value
+##### Valor de Retorno
 
-A `TEXT` value.
+Um valor `TEXT`.
 
-##### Example
+##### Exemplo
 
 ```sql
 mysql> SELECT sys.ps_thread_account(sys.ps_thread_id(CONNECTION_ID()));

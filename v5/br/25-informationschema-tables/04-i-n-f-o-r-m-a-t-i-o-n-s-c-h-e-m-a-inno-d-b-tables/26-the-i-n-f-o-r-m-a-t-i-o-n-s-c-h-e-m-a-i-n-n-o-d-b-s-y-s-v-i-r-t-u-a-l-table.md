@@ -1,31 +1,31 @@
-### 24.4.26 The INFORMATION_SCHEMA INNODB_SYS_VIRTUAL Table
+### 24.4.26 A Tabela INNODB_SYS_VIRTUAL do INFORMATION_SCHEMA
 
-The [`INNODB_SYS_VIRTUAL`](information-schema-innodb-sys-virtual-table.html "24.4.26 The INFORMATION_SCHEMA INNODB_SYS_VIRTUAL Table") table provides metadata about `InnoDB` [virtual generated columns](glossary.html#glos_virtual_generated_column "virtual generated column") and columns upon which virtual generated columns are based, equivalent to information in the `SYS_VIRTUAL` table in the `InnoDB` data dictionary.
+A tabela [`INNODB_SYS_VIRTUAL`](information-schema-innodb-sys-virtual-table.html "24.4.26 The INFORMATION_SCHEMA INNODB_SYS_VIRTUAL Table") fornece metadata sobre `InnoDB` [virtual generated columns](glossary.html#glos_virtual_generated_column "virtual generated column") e colunas nas quais as virtual generated columns são baseadas, equivalente às informações na tabela `SYS_VIRTUAL` no dicionário de dados do `InnoDB`.
 
-A row appears in the `INNODB_SYS_VIRTUAL` table for each column upon which a virtual generated column is based.
+Uma linha aparece na tabela `INNODB_SYS_VIRTUAL` para cada coluna na qual uma virtual generated column é baseada.
 
-The [`INNODB_SYS_VIRTUAL`](information-schema-innodb-sys-virtual-table.html "24.4.26 The INFORMATION_SCHEMA INNODB_SYS_VIRTUAL Table") table has these columns:
+A tabela [`INNODB_SYS_VIRTUAL`](information-schema-innodb-sys-virtual-table.html "24.4.26 The INFORMATION_SCHEMA INNODB_SYS_VIRTUAL Table") possui as seguintes colunas:
 
 * `TABLE_ID`
 
-  An identifier representing the table associated with the virtual column; the same value as `INNODB_SYS_TABLES.TABLE_ID`.
+  Um identificador que representa a tabela associada à coluna virtual; o mesmo valor que `INNODB_SYS_TABLES.TABLE_ID`.
 
 * `POS`
 
-  The position value of the [virtual generated column](glossary.html#glos_virtual_generated_column "virtual generated column"). The value is large because it encodes the column sequence number and ordinal position. The formula used to calculate the value uses a bitwise operation:
+  O valor de posição da [virtual generated column](glossary.html#glos_virtual_generated_column "virtual generated column"). O valor é grande porque codifica o número de sequência da coluna e a posição ordinal. A fórmula usada para calcular o valor utiliza uma operação bitwise:
 
   ```sql
   ((nth virtual generated column for the InnoDB instance + 1) << 16)
   + the ordinal position of the virtual generated column
   ```
 
-  For example, if the first virtual generated column in the `InnoDB` instance is the third column of the table, the formula is `(0 + 1) << 16) + 2`. The first virtual generated column in the `InnoDB` instance is always number 0. As the third column in the table, the ordinal position of the virtual generated column is 2. Ordinal positions are counted from 0.
+  Por exemplo, se a primeira virtual generated column na instância `InnoDB` for a terceira coluna da tabela, a fórmula é `(0 + 1) << 16) + 2`. A primeira virtual generated column na instância `InnoDB` é sempre o número 0. Como é a terceira coluna na tabela, a posição ordinal da virtual generated column é 2. As posições ordinais são contadas a partir de 0.
 
 * `BASE_POS`
 
-  The ordinal position of the columns upon which a virtual generated column is based.
+  A posição ordinal das colunas nas quais uma virtual generated column é baseada.
 
-#### Example
+#### Exemplo
 
 ```sql
 mysql> CREATE TABLE `t1` (
@@ -47,9 +47,9 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_VIRTUAL
 +----------+-------+----------+
 ```
 
-#### Notes
+#### Notas
 
-* If a constant value is assigned to a [virtual generated column](glossary.html#glos_virtual_generated_column "virtual generated column"), as in the following table, an entry for the column does not appear in the `INNODB_SYS_VIRTUAL` table. For an entry to appear, a virtual generated column must have a base column.
+* Se um valor constante for atribuído a uma [virtual generated column](glossary.html#glos_virtual_generated_column "virtual generated column"), como na tabela a seguir, uma entrada para a coluna não aparecerá na tabela `INNODB_SYS_VIRTUAL`. Para que uma entrada apareça, uma virtual generated column deve ter uma coluna base (base column).
 
   ```sql
   CREATE TABLE `t1` (
@@ -59,8 +59,8 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_VIRTUAL
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
   ```
 
-  However, metadata for such a column does appear in the [`INNODB_SYS_COLUMNS`](information-schema-innodb-sys-columns-table.html "24.4.17 The INFORMATION_SCHEMA INNODB_SYS_COLUMNS Table") table.
+  No entanto, a metadata para essa coluna aparece na tabela [`INNODB_SYS_COLUMNS`](information-schema-innodb-sys-columns-table.html "24.4.17 The INFORMATION_SCHEMA INNODB_SYS_COLUMNS Table").
 
-* You must have the [`PROCESS`](privileges-provided.html#priv_process) privilege to query this table.
+* Você deve ter o privilégio [`PROCESS`](privileges-provided.html#priv_process) para consultar esta tabela.
 
-* Use the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table or the [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") statement to view additional information about the columns of this table, including data types and default values.
+* Use a tabela [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") do `INFORMATION_SCHEMA` ou o comando [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.

@@ -1,12 +1,12 @@
-#### 14.6.1.1 Creating InnoDB Tables
+#### 14.6.1.1 Criando Tabelas InnoDB
 
-`InnoDB` tables are created using the `CREATE TABLE` statement; for example:
+Tabelas `InnoDB` são criadas usando a instrução `CREATE TABLE`; por exemplo:
 
 ```sql
 CREATE TABLE t1 (a INT, b CHAR (20), PRIMARY KEY (a)) ENGINE=InnoDB;
 ```
 
-The `ENGINE=InnoDB` clause is not required when `InnoDB` is defined as the default storage engine, which it is by default. However, the `ENGINE` clause is useful if the `CREATE TABLE` statement is to be replayed on a different MySQL Server instance where the default storage engine is not `InnoDB` or is unknown. You can determine the default storage engine on a MySQL Server instance by issuing the following statement:
+A cláusula `ENGINE=InnoDB` não é obrigatória quando o `InnoDB` é definido como o *default storage engine*, o que acontece por default. No entanto, a cláusula `ENGINE` é útil caso a instrução `CREATE TABLE` precise ser reexecutada em uma instância diferente do MySQL Server onde o *default storage engine* não é `InnoDB` ou é desconhecido. Você pode determinar o *default storage engine* em uma instância do MySQL Server emitindo a seguinte instrução:
 
 ```sql
 mysql> SELECT @@default_storage_engine;
@@ -17,28 +17,28 @@ mysql> SELECT @@default_storage_engine;
 +--------------------------+
 ```
 
-`InnoDB` tables are created in file-per-table tablespaces by default. To create an `InnoDB` table in the `InnoDB` system tablespace, disable the `innodb_file_per_table` variable before creating the table. To create an `InnoDB` table in a general tablespace, use `CREATE TABLE ... TABLESPACE` syntax. For more information, see Section 14.6.3, “Tablespaces”.
+Tabelas `InnoDB` são criadas em *tablespaces* `file-per-table` por default. Para criar uma tabela `InnoDB` no *system tablespace* do `InnoDB`, desabilite a variável `innodb_file_per_table` antes de criar a tabela. Para criar uma tabela `InnoDB` em um *general tablespace*, use a sintaxe `CREATE TABLE ... TABLESPACE`. Para mais informações, consulte a Seção 14.6.3, “Tablespaces”.
 
-##### .frm Files
+##### Arquivos .frm
 
-MySQL stores data dictionary information for tables in .frm files in database directories. Unlike other MySQL storage engines, `InnoDB` also encodes information about the table in its own internal data dictionary inside the system tablespace. When MySQL drops a table or a database, it deletes one or more `.frm` files as well as the corresponding entries inside the `InnoDB` data dictionary. You cannot move `InnoDB` tables between databases simply by moving the `.frm` files. For information about moving `InnoDB` tables, see Section 14.6.1.4, “Moving or Copying InnoDB Tables”.
+O MySQL armazena informações do *data dictionary* para tabelas em arquivos `.frm` nos diretórios do Database. Diferentemente de outros *storage engines* do MySQL, o `InnoDB` também codifica informações sobre a tabela em seu próprio *data dictionary* interno, dentro do *system tablespace*. Quando o MySQL descarta (drop) uma tabela ou um Database, ele exclui um ou mais arquivos `.frm`, bem como as entradas correspondentes dentro do *data dictionary* do `InnoDB`. Você não pode mover tabelas `InnoDB` entre Databases simplesmente movendo os arquivos `.frm`. Para obter informações sobre como mover tabelas `InnoDB`, consulte a Seção 14.6.1.4, “Movendo ou Copiando Tabelas InnoDB”.
 
-##### Row Formats
+##### Formatos de Linha (Row Formats)
 
-The row format of an `InnoDB` table determines how its rows are physically stored on disk. `InnoDB` supports four row formats, each with different storage characteristics. Supported row formats include `REDUNDANT`, `COMPACT`, `DYNAMIC`, and `COMPRESSED`. The `DYNAMIC` row format is the default. For information about row format characteristics, see Section 14.11, “InnoDB Row Formats”.
+O *Row Format* de uma tabela `InnoDB` determina como suas linhas são armazenadas fisicamente no disco. O `InnoDB` suporta quatro *Row Formats*, cada um com características de armazenamento diferentes. Os *Row Formats* suportados incluem `REDUNDANT`, `COMPACT`, `DYNAMIC` e `COMPRESSED`. O *Row Format* `DYNAMIC` é o default. Para obter informações sobre as características de *Row Format*, consulte a Seção 14.11, “InnoDB Row Formats”.
 
-The `innodb_default_row_format` variable defines the default row format. The row format of a table can also be defined explicitly using the `ROW_FORMAT` table option in a `CREATE TABLE` or `ALTER TABLE` statement. See Defining the Row Format of a Table.
+A variável `innodb_default_row_format` define o *default Row Format*. O *Row Format* de uma tabela também pode ser definido explicitamente usando a opção de tabela `ROW_FORMAT` em uma instrução `CREATE TABLE` ou `ALTER TABLE`. Consulte Definindo o Row Format de uma Tabela.
 
-##### Primary Keys
+##### Chaves Primárias (Primary Keys)
 
-It is recommended that you define a primary key for each table that you create. When selecting primary key columns, choose columns with the following characteristics:
+É recomendado que você defina uma *Primary Key* para cada tabela que criar. Ao selecionar colunas para a *Primary Key*, escolha colunas com as seguintes características:
 
-* Columns that are referenced by the most important queries.
-* Columns that are never left blank.
-* Columns that never have duplicate values.
-* Columns that rarely if ever change value once inserted.
+*   Colunas que são referenciadas pelas *Queries* mais importantes.
+*   Colunas que nunca são deixadas em branco.
+*   Colunas que nunca têm valores duplicados.
+*   Colunas que raramente, ou nunca, mudam de valor após serem inseridas.
 
-For example, in a table containing information about people, you would not create a primary key on `(firstname, lastname)` because more than one person can have the same name, a name column may be left blank, and sometimes people change their names. With so many constraints, often there is not an obvious set of columns to use as a primary key, so you create a new column with a numeric ID to serve as all or part of the primary key. You can declare an auto-increment column so that ascending values are filled in automatically as rows are inserted:
+Por exemplo, em uma tabela contendo informações sobre pessoas, você não criaria uma *Primary Key* em `(firstname, lastname)` porque mais de uma pessoa pode ter o mesmo nome, uma coluna de nome pode ser deixada em branco e, às vezes, as pessoas mudam seus nomes. Com tantas restrições, muitas vezes não há um conjunto óbvio de colunas para usar como *Primary Key*, então você cria uma nova coluna com um ID numérico para servir como a *Primary Key* completa ou parcial. Você pode declarar uma coluna *auto-increment* para que valores crescentes sejam preenchidos automaticamente conforme as linhas são inseridas:
 
 ```sql
 # The value of ID can act like a pointer between related items in different tables.
@@ -48,13 +48,13 @@ CREATE TABLE t5 (id INT AUTO_INCREMENT, b CHAR (20), PRIMARY KEY (id));
 CREATE TABLE t6 (id INT AUTO_INCREMENT, a INT, b CHAR (20), PRIMARY KEY (id,a));
 ```
 
-For more information about auto-increment columns, see Section 14.6.1.6, “AUTO_INCREMENT Handling in InnoDB”.
+Para mais informações sobre colunas *auto-increment*, consulte a Seção 14.6.1.6, “AUTO_INCREMENT Handling in InnoDB”.
 
-Although a table works correctly without defining a primary key, the primary key is involved with many aspects of performance and is a crucial design aspect for any large or frequently used table. It is recommended that you always specify a primary key in the `CREATE TABLE` statement. If you create the table, load data, and then run `ALTER TABLE` to add a primary key later, that operation is much slower than defining the primary key when creating the table. For more information about primary keys, see Section 14.6.2.1, “Clustered and Secondary Indexes”.
+Embora uma tabela funcione corretamente sem definir uma *Primary Key*, a *Primary Key* está envolvida em muitos aspectos de performance e é um aspecto de design crucial para qualquer tabela grande ou frequentemente usada. É recomendado que você sempre especifique uma *Primary Key* na instrução `CREATE TABLE`. Se você criar a tabela, carregar dados e depois executar `ALTER TABLE` para adicionar uma *Primary Key* posteriormente, essa operação é muito mais lenta do que definir a *Primary Key* ao criar a tabela. Para mais informações sobre *Primary Keys*, consulte a Seção 14.6.2.1, “Clustered and Secondary Indexes”.
 
-##### Viewing InnoDB Table Properties
+##### Visualizando Propriedades de Tabelas InnoDB
 
-To view the properties of an `InnoDB` table, issue a `SHOW TABLE STATUS` statement:
+Para visualizar as propriedades de uma tabela `InnoDB`, emita uma instrução `SHOW TABLE STATUS`:
 
 ```sql
 mysql> SHOW TABLE STATUS FROM test LIKE 't%' \G;
@@ -79,9 +79,9 @@ Max_data_length: 0
         Comment:
 ```
 
-For information about `SHOW TABLE STATUS` output, see Section 13.7.5.36, “SHOW TABLE STATUS Statement”.
+Para informações sobre a saída de `SHOW TABLE STATUS`, consulte a Seção 13.7.5.36, “SHOW TABLE STATUS Statement”.
 
-You can also access `InnoDB` table properties by querying the `InnoDB` Information Schema system tables:
+Você também pode acessar as propriedades de tabelas `InnoDB` consultando as tabelas de sistema do *Information Schema* do `InnoDB`:
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_SYS_TABLES WHERE NAME='test/t1' \G
@@ -97,4 +97,4 @@ ZIP_PAGE_SIZE: 0
    SPACE_TYPE: Single
 ```
 
-For more information, see Section 14.16.3, “InnoDB INFORMATION_SCHEMA System Tables”.
+Para mais informações, consulte a Seção 14.16.3, “InnoDB INFORMATION_SCHEMA System Tables”.

@@ -1,51 +1,51 @@
-### 17.3.2 Group Replication Limitations
+### 17.3.2 Limitações do Group Replication
 
-The following known limitations exist for Group Replication. Note that the limitations and issues described for multi-primary mode groups can also apply in single-primary mode clusters during a failover event, while the newly elected primary flushes out its applier queue from the old primary.
+Existem as seguintes limitações conhecidas para o Group Replication. Note que as limitações e problemas descritos para grupos no modo multi-primary também podem se aplicar a clusters no modo single-primary durante um evento de failover, enquanto o novo primary eleito esvazia sua applier queue (fila de aplicador) do primary antigo.
 
-Tip
+Dica
 
-Group Replication is built on GTID based replication, therefore you should also be aware of [Section 16.1.3.6, “Restrictions on Replication with GTIDs”](replication-gtids-restrictions.html "16.1.3.6 Restrictions on Replication with GTIDs").
+O Group Replication é construído sobre replicação baseada em GTID; portanto, você também deve estar ciente da [Seção 16.1.3.6, “Restrictions on Replication with GTIDs”](replication-gtids-restrictions.html "16.1.3.6 Restrictions on Replication with GTIDs").
 
-* **Gap Locks.** Group Replication's certification process for concurrent transactions does not take into account [gap locks](glossary.html#glos_gap_lock "gap lock"), as information about gap locks is not available outside of [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"). See [Gap Locks](innodb-locking.html#innodb-gap-locks "Gap Locks") for more information.
-
-  Note
-
-  For a group in multi-primary mode, unless you rely on [`REPEATABLE READ`](innodb-transaction-isolation-levels.html#isolevel_repeatable-read) semantics in your applications, we recommend using the [`READ COMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-committed) isolation level with Group Replication. InnoDB does not use gap locks in [`READ COMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-committed), which aligns the local conflict detection within InnoDB with the distributed conflict detection performed by Group Replication. For a group in single-primary mode, only the primary accepts writes, so the [`READ COMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-committed) isolation level is not important to Group Replication.
-
-* **Table Locks and Named Locks.** The certification process does not take into account table locks (see [Section 13.3.5, “LOCK TABLES and UNLOCK TABLES Statements”](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements")) or named locks (see [`GET_LOCK()`](locking-functions.html#function_get-lock)).
-
-* **Replication Event Checksums.** Due to a design limitation of replication event checksums, Group Replication cannot currently make use of them. Therefore set [`--binlog-checksum=NONE`](replication-options-binary-log.html#sysvar_binlog_checksum).
-
-* **SERIALIZABLE Isolation Level.** [`SERIALIZABLE`](innodb-transaction-isolation-levels.html#isolevel_serializable) isolation level is not supported in multi-primary groups by default. Setting a transaction isolation level to `SERIALIZABLE` configures Group Replication to refuse to commit the transaction.
-
-* **Concurrent DDL versus DML Operations.** Concurrent data definition statements and data manipulation statements executing against the same object but on different servers is not supported when using multi-primary mode. During execution of Data Definition Language (DDL) statements on an object, executing concurrent Data Manipulation Language (DML) on the same object but on a different server instance has the risk of conflicting DDL executing on different instances not being detected.
-
-* **Foreign Keys with Cascading Constraints.** Multi-primary mode groups (members all configured with [`group_replication_single_primary_mode=OFF`](group-replication-system-variables.html#sysvar_group_replication_single_primary_mode)) do not support tables with multi-level foreign key dependencies, specifically tables that have defined `CASCADING` [foreign key constraints](glossary.html#glos_foreign_key_constraint "FOREIGN KEY constraint"). This is because foreign key constraints that result in cascading operations executed by a multi-primary mode group can result in undetected conflicts and lead to inconsistent data across the members of the group. Therefore we recommend setting [`group_replication_enforce_update_everywhere_checks=ON`](group-replication-system-variables.html#sysvar_group_replication_enforce_update_everywhere_checks) on server instances used in multi-primary mode groups to avoid undetected conflicts.
-
-  In single-primary mode this is not a problem as it does not allow concurrent writes to multiple members of the group and thus there is no risk of undetected conflicts.
-
-* **MySQL Enterprise Audit and MySQL Enterprise Firewall.** Prior to version 5.7.21 MySQL Enterprise Audit and MySQL Enterprise Firewall use `MyISAM` tables in the `mysql` system database. Group Replication does not support `MyISAM` tables.
-
-* **Multi-primary Mode Deadlock.** When a group is operating in multi-primary mode, `SELECT .. FOR UPDATE` statements can result in a deadlock. This is because the lock is not shared across the members of the group, therefore the expectation for such a statement might not be reached.
-
-* **Replication Filters.** Replication filters cannot be used on a MySQL server instance that is configured for Group Replication, because filtering transactions on some servers would make the group unable to reach agreement on a consistent state.
-
-#### Limit on Group Size
-
-The maximum number of MySQL servers that can be members of a single replication group is 9. If further members attempt to join the group, their request is refused. This limit has been identified from testing and benchmarking as a safe boundary where the group performs reliably on a stable local area network.
-
-#### Limits on Transaction Size
-
-If an individual transaction results in message contents which are large enough that the message cannot be copied between group members over the network within a 5-second window, members can be suspected of having failed, and then expelled, just because they are busy processing the transaction. Large transactions can also cause the system to slow due to problems with memory allocation. To avoid these issues use the following mitigations:
-
-* Where possible, try and limit the size of your transactions. For example, split up files used with `LOAD DATA` into smaller chunks.
-
-* Use the system variable [`group_replication_transaction_size_limit`](group-replication-system-variables.html#sysvar_group_replication_transaction_size_limit) to specify the maximum transaction size that the group accepts. In releases up to and including MySQL 5.7.37, this system variable defaults to zero, but from MySQL 5.7.38, and in MySQL 8.0, it defaults to a maximum transaction size of 150000000 bytes (approximately 143 MB). Transactions above this limit are rolled back and are not sent to Group Replication's Group Communication System (GCS) for distribution to the group. Adjust the value of this variable depending on the maximum message size that you need the group to tolerate, bearing in mind that the time taken to process a transaction is proportional to its size.
+* **Gap Locks.** O processo de certificação do Group Replication para transações concorrentes não leva em consideração os [gap locks], pois as informações sobre gap locks não estão disponíveis fora do [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"). Veja [Gap Locks](innodb-locking.html#innodb-gap-locks "Gap Locks") para mais informações.
 
   Note
 
-  When you upgrade from MySQL 5.7.37 or earlier to MySQL 5.7.38 or later, if your Group Replication servers previously accepted transactions larger than the new default limit, and you were allowing [`group_replication_transaction_size_limit`](group-replication-system-variables.html#sysvar_group_replication_transaction_size_limit) to default to the old zero limit, those transactions will start to fail after the upgrade to the new default. You must either specify an appropriate size limit that allows the maximum message size you need the group to tolerate (which is the recommended solution), or specify a zero setting to restore the previous behavior.
+  Para um grupo no modo multi-primary, a menos que você dependa da semântica `REPEATABLE READ` em suas aplicações, recomendamos usar o nível de isolamento `READ COMMITTED` com o Group Replication. O InnoDB não usa gap locks em `READ COMMITTED`, o que alinha a detecção de conflitos local dentro do InnoDB com a detecção de conflitos distribuída realizada pelo Group Replication. Para um grupo no modo single-primary, apenas o primary aceita escritas, então o nível de isolamento `READ COMMITTED` não é importante para o Group Replication.
 
-* Use the system variable [`group_replication_compression_threshold`](group-replication-system-variables.html#sysvar_group_replication_compression_threshold) to specify a message size above which compression is applied. This system variable defaults to 1000000 bytes (1 MB), so large messages are automatically compressed. Compression is carried out by Group Replication's Group Communication System (GCS) when it receives a message that was permitted by the [`group_replication_transaction_size_limit`](group-replication-system-variables.html#sysvar_group_replication_transaction_size_limit) setting but exceeds the [`group_replication_compression_threshold`](group-replication-system-variables.html#sysvar_group_replication_compression_threshold) setting. If you set the system variable value to zero, compression is deactivated. For more information, see [Section 17.9.7.2, “Message Compression”](group-replication-message-compression.html "17.9.7.2 Message Compression").
+* **Table Locks and Named Locks.** O processo de certificação não leva em consideração os table locks (veja [Seção 13.3.5, “LOCK TABLES and UNLOCK TABLES Statements”](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements")) ou named locks (veja [`GET_LOCK()`](locking-functions.html#function_get-lock)).
 
-If you have deactivated message compression and do not specify a maximum transaction size, the upper size limit for a message that can be handled by the applier thread on a member of a replication group is the value of the member's [`slave_max_allowed_packet`](replication-options-replica.html#sysvar_slave_max_allowed_packet) system variable, which has a default and maximum value of 1073741824 bytes (1 GB). A message that exceeds this limit fails when the receiving member attempts to handle it. The upper size limit for a message that a group member can originate and attempt to transmit to the group is 4294967295 bytes (approximately 4 GB). This is a hard limit on the packet size that is accepted by the group communication engine for Group Replication (XCom, a Paxos variant), which receives messages after GCS has handled them. A message that exceeds this limit fails when the originating member attempts to broadcast it.
+* **Replication Event Checksums.** Devido a uma limitação de design dos checksums de eventos de replicação, o Group Replication atualmente não pode utilizá-los. Portanto, defina [`--binlog-checksum=NONE`](replication-options-binary-log.html#sysvar_binlog_checksum).
+
+* **SERIALIZABLE Isolation Level.** O nível de isolamento `SERIALIZABLE` não é suportado por padrão em grupos multi-primary. Definir o nível de isolamento de uma transação como `SERIALIZABLE` configura o Group Replication para recusar o COMMIT da transação.
+
+* **Concurrent DDL versus DML Operations.** Operações concorrentes de data definition statements (DDL) versus data manipulation statements (DML) executadas contra o mesmo objeto, mas em servidores diferentes, não são suportadas ao usar o modo multi-primary. Durante a execução de DDL em um objeto, a execução de DML concorrente no mesmo objeto, mas em uma instância de servidor diferente, apresenta o risco de DDLs conflitantes executadas em instâncias diferentes não serem detectadas.
+
+* **Foreign Keys with Cascading Constraints.** Grupos no modo multi-primary (membros todos configurados com [`group_replication_single_primary_mode=OFF`](group-replication-system-variables.html#sysvar_group_replication_single_primary_mode)) não suportam tabelas com dependências de foreign key de múltiplos níveis, especificamente tabelas que definiram [foreign key constraints] `CASCADING`. Isso ocorre porque foreign key constraints que resultam em operações em cascata executadas por um grupo no modo multi-primary podem levar a conflitos não detectados e resultar em dados inconsistentes entre os membros do grupo. Portanto, recomendamos definir [`group_replication_enforce_update_everywhere_checks=ON`](group-replication-system-variables.html#sysvar_group_replication_enforce_update_everywhere_checks) em instâncias de servidor usadas em grupos no modo multi-primary para evitar conflitos não detectados.
+
+  No modo single-primary, isso não é um problema, pois ele não permite escritas concorrentes em vários membros do grupo e, portanto, não há risco de conflitos não detectados.
+
+* **MySQL Enterprise Audit and MySQL Enterprise Firewall.** Anteriormente à versão 5.7.21, o MySQL Enterprise Audit e o MySQL Enterprise Firewall usavam tabelas `MyISAM` no database de sistema `mysql`. O Group Replication não suporta tabelas `MyISAM`.
+
+* **Multi-primary Mode Deadlock.** Quando um grupo está operando no modo multi-primary, as instruções `SELECT .. FOR UPDATE` podem resultar em um Deadlock. Isso ocorre porque o Lock não é compartilhado entre os membros do grupo; portanto, a expectativa para tal instrução pode não ser alcançada.
+
+* **Replication Filters.** Replication filters não podem ser usados em uma instância de servidor MySQL configurada para Group Replication, porque filtrar transações em alguns servidores tornaria o grupo incapaz de chegar a um acordo sobre um estado consistente.
+
+#### Limite de Tamanho do Grupo
+
+O número máximo de servidores MySQL que podem ser membros de um único grupo de replicação é 9. Se membros adicionais tentarem JOIN ao grupo, a solicitação será recusada. Esse limite foi identificado por testes e benchmarking como um limite seguro onde o grupo funciona de forma confiável em uma rede local (LAN) estável.
+
+#### Limites no Tamanho da Transação
+
+Se uma transação individual resultar em um conteúdo de mensagem grande o suficiente para que a mensagem não possa ser copiada entre os membros do grupo pela rede em uma janela de 5 segundos, os membros podem ser suspeitos de falha e, em seguida, expulsos, apenas por estarem ocupados processando a transação. Transações grandes também podem fazer com que o sistema desacelere devido a problemas com a alocação de memória. Para evitar esses problemas, use as seguintes mitigações:
+
+* Sempre que possível, tente limitar o tamanho de suas transações. Por exemplo, divida os arquivos usados com `LOAD DATA` em partes menores.
+
+* Use a variável de sistema [`group_replication_transaction_size_limit`](group-replication-system-variables.html#sysvar_group_replication_transaction_size_limit) para especificar o tamanho máximo de transação que o grupo aceita. Nas versões até e incluindo o MySQL 5.7.37, esta variável de sistema assume o valor zero por padrão, mas a partir do MySQL 5.7.38, e no MySQL 8.0, o padrão é um tamanho máximo de transação de 150000000 bytes (aproximadamente 143 MB). Transações acima deste limite sofrem ROLLBACK e não são enviadas ao Group Communication System (GCS) do Group Replication para distribuição ao grupo. Ajuste o valor desta variável dependendo do tamanho máximo de mensagem que você precisa que o grupo tolere, lembrando que o tempo necessário para processar uma transação é proporcional ao seu tamanho.
+
+  Note
+
+  Ao fazer o upgrade do MySQL 5.7.37 ou anterior para o MySQL 5.7.38 ou posterior, se seus servidores Group Replication anteriormente aceitavam transações maiores do que o novo limite padrão, e você estava permitindo que [`group_replication_transaction_size_limit`](group-replication-system-variables.html#sysvar_group_replication_transaction_size_limit) usasse o antigo limite padrão zero, essas transações começarão a falhar após o upgrade para o novo padrão. Você deve especificar um limite de tamanho apropriado que permita o tamanho máximo de mensagem que você precisa que o grupo tolere (que é a solução recomendada) ou especificar uma configuração zero para restaurar o comportamento anterior.
+
+* Use a variável de sistema [`group_replication_compression_threshold`](group-replication-system-variables.html#sysvar_group_replication_compression_threshold) para especificar um tamanho de mensagem acima do qual a compressão é aplicada. Esta variável de sistema tem o padrão de 1000000 bytes (1 MB), então mensagens grandes são automaticamente comprimidas. A compressão é realizada pelo Group Communication System (GCS) do Group Replication quando ele recebe uma mensagem que foi permitida pela configuração [`group_replication_transaction_size_limit`](group-replication-system-variables.html#sysvar_group_replication_transaction_size_limit), mas excede a configuração [`group_replication_compression_threshold`](group-replication-system-variables.html#sysvar_group_replication_compression_threshold). Se você definir o valor da variável de sistema como zero, a compressão será desativada. Para mais informações, consulte [Section 17.9.7.2, “Message Compression”](group-replication-message-compression.html "17.9.7.2 Message Compression").
+
+Se você desativou a compressão de mensagens e não especificou um tamanho máximo de transação, o limite superior de tamanho para uma mensagem que pode ser tratada pela applier thread em um membro de um grupo de replicação é o valor da variável de sistema [`slave_max_allowed_packet`](replication-options-replica.html#sysvar_slave_max_allowed_packet) do membro, que tem um valor padrão e máximo de 1073741824 bytes (1 GB). Uma mensagem que excede este limite falha quando o membro receptor tenta processá-la. O limite superior de tamanho para uma mensagem que um membro do grupo pode originar e tentar transmitir ao grupo é de 4294967295 bytes (aproximadamente 4 GB). Este é um limite rígido para o tamanho do pacote que é aceito pelo mecanismo de comunicação do grupo para Group Replication (XCom, uma variante Paxos), que recebe as mensagens depois que o GCS as processa. Uma mensagem que excede este limite falha quando o membro de origem tenta transmiti-la.

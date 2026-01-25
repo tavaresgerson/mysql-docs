@@ -1,3 +1,3 @@
-### 17.6.3 Group Replication and Virtual Private Networks (VPNs)
+### 17.6.3 Group Replication e Virtual Private Networks (VPNs)
 
-There is nothing preventing Group Replication from operating over a virtual private network. At its core, it just relies on an IPv4 socket to establish connections between servers for the purpose of propagating messages between them.
+Não há nada que impeça o Group Replication de operar sobre uma virtual private network. Em sua essência, ele apenas depende de um IPv4 socket para estabelecer connections entre os servers com o objetivo de propagar messages entre eles.

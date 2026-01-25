@@ -1,21 +1,21 @@
-## 25.21 Restrictions on Performance Schema
+## 25.21 Restrições no Performance Schema
 
-The Performance Schema avoids using mutexes to collect or produce data, so there are no guarantees of consistency and results can sometimes be incorrect. Event values in `performance_schema` tables are nondeterministic and nonrepeatable.
+O Performance Schema evita usar *mutexes* para coletar ou produzir dados, portanto, não há garantias de consistência e os resultados podem, por vezes, estar incorretos. Os valores de eventos nas tabelas do `performance_schema` são não determinísticos e não repetíveis.
 
-If you save event information in another table, you should not assume that the original events are still available later. For example, if you select events from a `performance_schema` table into a temporary table, intending to join that table with the original table later, there might be no matches.
+Se você salvar informações de evento em outra tabela, não deve presumir que os eventos originais ainda estarão disponíveis posteriormente. Por exemplo, se você selecionar eventos de uma tabela do `performance_schema` para uma tabela temporária, com a intenção de fazer um *JOIN* dessa tabela com a tabela original mais tarde, pode ser que não haja correspondências.
 
-[**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") and `BACKUP DATABASE` ignore tables in the `performance_schema` database.
+[**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") e `BACKUP DATABASE` ignoram tabelas no *Database* `performance_schema`.
 
-Tables in the `performance_schema` database cannot be locked with `LOCK TABLES`, except the `setup_xxx` tables.
+Tabelas no *Database* `performance_schema` não podem ser bloqueadas com `LOCK TABLES`, exceto as tabelas `setup_xxx`.
 
-Tables in the `performance_schema` database cannot be indexed.
+Tabelas no *Database* `performance_schema` não podem ser indexadas.
 
-Results for queries that refer to tables in the `performance_schema` database are not saved in the query cache.
+Resultados de *Queries* que se referem a tabelas no *Database* `performance_schema` não são salvos no *query cache*.
 
-Tables in the `performance_schema` database are not replicated.
+Tabelas no *Database* `performance_schema` não são replicadas.
 
-The Performance Schema is not available in `libmysqld`, the embedded server.
+O Performance Schema não está disponível no `libmysqld`, o servidor embutido (*embedded server*).
 
-The types of timers might vary per platform. The [`performance_timers`](performance-schema-performance-timers-table.html "25.12.16.2 The performance_timers Table") table shows which event timers are available. If the values in this table for a given timer name are `NULL`, that timer is not supported on your platform.
+Os tipos de *timers* podem variar por plataforma. A tabela [`performance_timers`](performance-schema-performance-timers-table.html "25.12.16.2 The performance_timers Table") mostra quais *event timers* estão disponíveis. Se os valores nesta tabela para um determinado nome de *timer* forem `NULL`, esse *timer* não é suportado na sua plataforma.
 
-Instruments that apply to storage engines might not be implemented for all storage engines. Instrumentation of each third-party engine is the responsibility of the engine maintainer.
+Instrumentos que se aplicam a *storage engines* podem não estar implementados para todos os *storage engines*. A instrumentação de cada *engine* de terceiros é responsabilidade do mantenedor do *engine*.

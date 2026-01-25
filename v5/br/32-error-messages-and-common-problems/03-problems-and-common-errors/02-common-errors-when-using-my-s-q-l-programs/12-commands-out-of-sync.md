@@ -1,5 +1,5 @@
-#### B.3.2.12 Commands out of sync
+#### B.3.2.12 Commands out of sync
 
-If you get `Commands out of sync; you can't run this command now` in your client code, you are calling client functions in the wrong order.
+Se você receber `Commands out of sync; you can't run this command now` em seu código cliente, significa que você está chamando funções cliente na ordem errada.
 
-This can happen, for example, if you are using [`mysql_use_result()`](/doc/c-api/5.7/en/mysql-use-result.html) and try to execute a new query before you have called [`mysql_free_result()`](/doc/c-api/5.7/en/mysql-free-result.html). It can also happen if you try to execute two queries that return data without calling [`mysql_use_result()`](/doc/c-api/5.7/en/mysql-use-result.html) or [`mysql_store_result()`](/doc/c-api/5.7/en/mysql-store-result.html) in between.
+Isso pode acontecer, por exemplo, se você estiver usando [`mysql_use_result()`](/doc/c-api/5.7/en/mysql-use-result.html) e tentar executar uma nova Query antes de ter chamado [`mysql_free_result()`](/doc/c-api/5.7/en/mysql-free-result.html). Também pode ocorrer se você tentar executar duas Queries que retornam dados sem chamar [`mysql_use_result()`](/doc/c-api/5.7/en/mysql-use-result.html) ou [`mysql_store_result()`](/doc/c-api/5.7/en/mysql-store-result.html) no intervalo.

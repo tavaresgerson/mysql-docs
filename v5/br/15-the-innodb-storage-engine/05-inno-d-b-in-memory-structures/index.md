@@ -1,4 +1,4 @@
-## 14.5 InnoDB In-Memory Structures
+## 14.5 Estruturas InnoDB na Memória
 
 14.5.1 Buffer Pool
 
@@ -8,4 +8,4 @@
 
 14.5.4 Log Buffer
 
-This section describes `InnoDB` in-memory structures and related topics.
+Esta seção descreve as estruturas `InnoDB` na memória e tópicos relacionados.

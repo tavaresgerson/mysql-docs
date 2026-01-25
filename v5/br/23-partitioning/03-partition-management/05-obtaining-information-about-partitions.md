@@ -1,16 +1,16 @@
-### 22.3.5 Obtaining Information About Partitions
+### 22.3.5 Obtendo Informações Sobre Partitions
 
-This section discusses obtaining information about existing partitions, which can be done in a number of ways. Methods of obtaining such information include the following:
+Esta seção discute a obtenção de informações sobre os partitions existentes, o que pode ser feito de várias maneiras. Os métodos para obter tais informações incluem o seguinte:
 
-* Using the [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement") statement to view the partitioning clauses used in creating a partitioned table.
+* Usando o statement [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement") para visualizar as cláusulas de partitioning usadas na criação de uma tabela partitioned.
 
-* Using the [`SHOW TABLE STATUS`](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement") statement to determine whether a table is partitioned.
+* Usando o statement [`SHOW TABLE STATUS`](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement") para determinar se uma tabela é partitioned.
 
-* Querying the Information Schema [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") table.
+* Executando uma Query na tabela [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") do Information Schema.
 
-* Using the statement [`EXPLAIN SELECT`](explain.html "13.8.2 EXPLAIN Statement") to see which partitions are used by a given [`SELECT`](select.html "13.2.9 SELECT Statement").
+* Usando o statement [`EXPLAIN SELECT`](explain.html "13.8.2 EXPLAIN Statement") para ver quais partitions são usados por um determinado [`SELECT`](select.html "13.2.9 SELECT Statement").
 
-As discussed elsewhere in this chapter, [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement") includes in its output the `PARTITION BY` clause used to create a partitioned table. For example:
+Conforme discutido em outras partes deste capítulo, [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement") inclui em seu output a cláusula `PARTITION BY` usada para criar uma tabela partitioned. Por exemplo:
 
 ```sql
 mysql> SHOW CREATE TABLE trb3\G
@@ -30,13 +30,13 @@ PARTITION BY RANGE (YEAR(purchased)) (
 1 row in set (0.00 sec)
 ```
 
-The output from [`SHOW TABLE STATUS`](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement") for partitioned tables is the same as that for nonpartitioned tables, except that the `Create_options` column contains the string `partitioned`. The `Engine` column contains the name of the storage engine used by all partitions of the table. (See [Section 13.7.5.36, “SHOW TABLE STATUS Statement”](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement"), for more information about this statement.)
+O output de [`SHOW TABLE STATUS`](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement") para tabelas partitioned é o mesmo que para tabelas não-partitioned, exceto que a coluna `Create_options` contém a string `partitioned`. A coluna `Engine` contém o nome da storage engine usada por todos os partitions da tabela. (Consulte [Section 13.7.5.36, “SHOW TABLE STATUS Statement”](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement"), para obter mais informações sobre este statement.)
 
-You can also obtain information about partitions from `INFORMATION_SCHEMA`, which contains a [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") table. See [Section 24.3.16, “The INFORMATION_SCHEMA PARTITIONS Table”](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table").
+Você também pode obter informações sobre partitions do `INFORMATION_SCHEMA`, que contém uma tabela [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table"). Consulte [Section 24.3.16, “The INFORMATION_SCHEMA PARTITIONS Table”](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table").
 
-It is possible to determine which partitions of a partitioned table are involved in a given [`SELECT`](select.html "13.2.9 SELECT Statement") query using [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement"). The `partitions` column in the [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") output lists the partitions from which records would be matched by the query.
+É possível determinar quais partitions de uma tabela partitioned estão envolvidos em uma determinada Query [`SELECT`](select.html "13.2.9 SELECT Statement") usando [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement"). A coluna `partitions` no output do [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") lista os partitions a partir dos quais os records seriam matched pela Query.
 
-Suppose that you have a table `trb1` created and populated as follows:
+Suponha que você tenha uma tabela `trb1` criada e populada da seguinte forma:
 
 ```sql
 CREATE TABLE trb1 (id INT, name VARCHAR(50), purchased DATE)
@@ -61,7 +61,7 @@ INSERT INTO trb1 VALUES
     (10, 'lava lamp', '1998-12-25');
 ```
 
-You can see which partitions are used in a query such as `SELECT * FROM trb1;`, as shown here:
+Você pode ver quais partitions são usados em uma Query como `SELECT * FROM trb1;`, conforme mostrado aqui:
 
 ```sql
 mysql> EXPLAIN SELECT * FROM trb1\G
@@ -79,7 +79,7 @@ possible_keys: NULL
         Extra: Using filesort
 ```
 
-In this case, all four partitions are searched. However, when a limiting condition making use of the partitioning key is added to the query, you can see that only those partitions containing matching values are scanned, as shown here:
+Neste caso, todos os quatro partitions são pesquisados. No entanto, quando uma condição limitadora que faz uso da partitioning key é adicionada à Query, você pode ver que apenas aqueles partitions contendo matching values são escaneados, conforme mostrado aqui:
 
 ```sql
 mysql> EXPLAIN SELECT * FROM trb1 WHERE id < 5\G
@@ -97,7 +97,7 @@ possible_keys: NULL
         Extra: Using where
 ```
 
-[`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement")  also provides information about keys used and possible keys:
+[`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") também fornece informações sobre keys usadas e possible keys:
 
 ```sql
 mysql> ALTER TABLE trb1 ADD PRIMARY KEY (id);
@@ -119,8 +119,8 @@ possible_keys: PRIMARY
         Extra: Using where
 ```
 
-If [`EXPLAIN PARTITIONS`](explain.html "13.8.2 EXPLAIN Statement") is used to examine a query against a nonpartitioned table, no error is produced, but the value of the `partitions` column is always `NULL`.
+Se [`EXPLAIN PARTITIONS`](explain.html "13.8.2 EXPLAIN Statement") for usado para examinar uma Query em uma tabela não-partitioned, nenhum error é produzido, mas o valor da coluna `partitions` é sempre `NULL`.
 
-The `rows` column of [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") output displays the total number of rows in the table.
+A coluna `rows` do output de [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") exibe o número total de rows na tabela.
 
-See also [Section 13.8.2, “EXPLAIN Statement”](explain.html "13.8.2 EXPLAIN Statement").
+Consulte também [Section 13.8.2, “EXPLAIN Statement”](explain.html "13.8.2 EXPLAIN Statement").

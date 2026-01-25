@@ -1,31 +1,31 @@
-#### 21.4.3.8 Defining the System
+#### 21.4.3.8 Definição do Sistema
 
-The `[system]` section is used for parameters applying to the cluster as a whole. The [`Name`](mysql-cluster-system-definition.html#ndbparam-system-name) system parameter is used with MySQL Enterprise Monitor; [`ConfigGenerationNumber`](mysql-cluster-system-definition.html#ndbparam-system-configgenerationnumber) and [`PrimaryMGMNode`](mysql-cluster-system-definition.html#ndbparam-system-primarymgmnode) are not used in production environments. Except when using NDB Cluster with MySQL Enterprise Monitor, is not necessary to have a `[system]` section in the `config.ini` file.
+A seção `[system]` é usada para parâmetros aplicáveis ao cluster como um todo. O parâmetro de sistema [`Name`](mysql-cluster-system-definition.html#ndbparam-system-name) é usado com o MySQL Enterprise Monitor; [`ConfigGenerationNumber`](mysql-cluster-system-definition.html#ndbparam-system-configgenerationnumber) e [`PrimaryMGMNode`](mysql-cluster-system-definition.html#ndbparam-system-primarymgmnode) não são usados em ambientes de produção. Exceto ao usar o NDB Cluster com o MySQL Enterprise Monitor, não é necessário ter uma seção `[system]` no arquivo `config.ini`.
 
-More information about these parameters can be found in the following list:
+Mais informações sobre esses parâmetros podem ser encontradas na lista a seguir:
 
 * [`ConfigGenerationNumber`](mysql-cluster-system-definition.html#ndbparam-system-configgenerationnumber)
 
-  <table frame="box" rules="all" summary="ConfigGenerationNumber system configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>0</td> </tr><tr> <th>Range</th> <td>0 - 4294967039 (0xFFFFFEFF)</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Informações sobre tipo e valor do parâmetro de configuração de sistema ConfigGenerationNumber" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr> <th>Padrão</th> <td>0</td> </tr><tr> <th>Intervalo</th> <td>0 - 4294967039 (0xFFFFFEFF)</td> </tr><tr> <th>Tipo de Restart</th> <td><p> <span><strong>Restart de Node: </strong></span>Requer um rolling restart do cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Configuration generation number. This parameter is currently unused.
+  Número de geração da configuração. Este parâmetro está atualmente sem uso.
 
 * [`Name`](mysql-cluster-system-definition.html#ndbparam-system-name)
 
-  <table frame="box" rules="all" summary="Name system configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>string</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Informações sobre tipo e valor do parâmetro de configuração de sistema Name" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>string</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Tipo de Restart</th> <td><p> <span><strong>Restart de Node: </strong></span>Requer um rolling restart do cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Set a name for the cluster. This parameter is required for deployments with MySQL Enterprise Monitor; it is otherwise unused.
+  Define um nome para o cluster. Este parâmetro é obrigatório para implantações com MySQL Enterprise Monitor; caso contrário, não é usado.
 
-  You can obtain the value of this parameter by checking the [`Ndb_system_name`](mysql-cluster-options-variables.html#statvar_Ndb_system_name) status variable. In NDB API applications, you can also retrieve it using [`get_system_name()`](/doc/ndbapi/en/ndb-ndb-cluster-connection.html#ndb-ndb-cluster-connection-get-system-name).
+  Você pode obter o valor deste parâmetro verificando a variável de status [`Ndb_system_name`](mysql-cluster-options-variables.html#statvar_Ndb_system_name). Em aplicações da NDB API, você também pode recuperá-lo usando [`get_system_name()`](/doc/ndbapi/en/ndb-ndb-cluster-connection.html#ndb-ndb-cluster-connection-get-system-name).
 
 * [`PrimaryMGMNode`](mysql-cluster-system-definition.html#ndbparam-system-primarymgmnode)
 
-  <table frame="box" rules="all" summary="PrimaryMGMNode system configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>0</td> </tr><tr> <th>Range</th> <td>0 - 4294967039 (0xFFFFFEFF)</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Informações sobre tipo e valor do parâmetro de configuração de sistema PrimaryMGMNode" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr> <th>Padrão</th> <td>0</td> </tr><tr> <th>Intervalo</th> <td>0 - 4294967039 (0xFFFFFEFF)</td> </tr><tr> <th>Tipo de Restart</th> <td><p> <span><strong>Restart de Node: </strong></span>Requer um rolling restart do cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Node ID of the primary management node. This parameter is currently unused.
+  ID do Node (Node ID) do Node de gerenciamento primário. Este parâmetro está atualmente sem uso.
 
-**Restart types.** Information about the restart types used by the parameter descriptions in this section is shown in the following table:
+**Tipos de Restart.** As informações sobre os tipos de Restart usados nas descrições de parâmetros nesta seção são mostradas na tabela a seguir:
 
-**Table 21.17 NDB Cluster restart types**
+**Tabela 21.17 Tipos de Restart do NDB Cluster**
 
-<table><col style="width: 10%"/><col style="width: 30%"/><col style="width: 60%"/><thead><tr> <th>Symbol</th> <th>Restart Type</th> <th>Description</th> </tr></thead><tbody><tr> <th>N</th> <td>Node</td> <td>The parameter can be updated using a rolling restart (see Section 21.6.5, “Performing a Rolling Restart of an NDB Cluster”)</td> </tr><tr> <th>S</th> <td>System</td> <td>All cluster nodes must be shut down completely, then restarted, to effect a change in this parameter</td> </tr><tr> <th>I</th> <td>Initial</td> <td>Data nodes must be restarted using the <code>--initial</code> option</td> </tr></tbody></table>
+<table><col style="width: 10%"/><col style="width: 30%"/><col style="width: 60%"/><thead><tr> <th>Símbolo</th> <th>Tipo de Restart</th> <th>Descrição</th> </tr></thead><tbody><tr> <th>N</th> <td>Node</td> <td>O parâmetro pode ser atualizado usando um rolling restart (veja Seção 21.6.5, “Executando um Rolling Restart de um NDB Cluster”)</td> </tr><tr> <th>S</th> <td>Sistema</td> <td>Todos os Nodes do cluster devem ser completamente desligados e, em seguida, reiniciados (restartados), para que uma alteração neste parâmetro entre em vigor</td> </tr><tr> <th>I</th> <td>Inicial</td> <td>Os Nodes de dados devem ser restartados usando a opção <code>--initial</code></td> </tr></tbody></table>

@@ -1,49 +1,49 @@
-### 24.3.20 The INFORMATION_SCHEMA REFERENTIAL_CONSTRAINTS Table
+### 24.3.20 A Tabela REFERENTIAL_CONSTRAINTS do INFORMATION_SCHEMA
 
-The [`REFERENTIAL_CONSTRAINTS`](information-schema-referential-constraints-table.html "24.3.20 The INFORMATION_SCHEMA REFERENTIAL_CONSTRAINTS Table") table provides information about foreign keys.
+A tabela [`REFERENTIAL_CONSTRAINTS`](information-schema-referential-constraints-table.html "24.3.20 The INFORMATION_SCHEMA REFERENTIAL_CONSTRAINTS Table") fornece informações sobre Foreign Keys.
 
-The [`REFERENTIAL_CONSTRAINTS`](information-schema-referential-constraints-table.html "24.3.20 The INFORMATION_SCHEMA REFERENTIAL_CONSTRAINTS Table") table has these columns:
+A tabela [`REFERENTIAL_CONSTRAINTS`](information-schema-referential-constraints-table.html "24.3.20 The INFORMATION_SCHEMA REFERENTIAL_CONSTRAINTS Table") possui as seguintes colunas:
 
 * `CONSTRAINT_CATALOG`
 
-  The name of the catalog to which the constraint belongs. This value is always `def`.
+  O nome do Catalog ao qual o Constraint pertence. Este valor é sempre `def`.
 
 * `CONSTRAINT_SCHEMA`
 
-  The name of the schema (database) to which the constraint belongs.
+  O nome do Schema (Database) ao qual o Constraint pertence.
 
 * `CONSTRAINT_NAME`
 
-  The name of the constraint.
+  O nome do Constraint.
 
 * `UNIQUE_CONSTRAINT_CATALOG`
 
-  The name of the catalog containing the unique constraint that the constraint references. This value is always `def`.
+  O nome do Catalog que contém o Unique Constraint que o Constraint referencia. Este valor é sempre `def`.
 
 * `UNIQUE_CONSTRAINT_SCHEMA`
 
-  The name of the schema (database) containing the unique constraint that the constraint references.
+  O nome do Schema (Database) que contém o Unique Constraint que o Constraint referencia.
 
 * `UNIQUE_CONSTRAINT_NAME`
 
-  The name of the unique constraint that the constraint references.
+  O nome do Unique Constraint que o Constraint referencia.
 
 * `MATCH_OPTION`
 
-  The value of the constraint `MATCH` attribute. The only valid value at this time is `NONE`.
+  O valor do atributo `MATCH` do Constraint. O único valor válido neste momento é `NONE`.
 
 * `UPDATE_RULE`
 
-  The value of the constraint `ON UPDATE` attribute. The possible values are `CASCADE`, `SET NULL`, `SET DEFAULT`, `RESTRICT`, `NO ACTION`.
+  O valor do atributo `ON UPDATE` do Constraint. Os valores possíveis são `CASCADE`, `SET NULL`, `SET DEFAULT`, `RESTRICT`, `NO ACTION`.
 
 * `DELETE_RULE`
 
-  The value of the constraint `ON DELETE` attribute. The possible values are `CASCADE`, `SET NULL`, `SET DEFAULT`, `RESTRICT`, `NO ACTION`.
+  O valor do atributo `ON DELETE` do Constraint. Os valores possíveis são `CASCADE`, `SET NULL`, `SET DEFAULT`, `RESTRICT`, `NO ACTION`.
 
 * `TABLE_NAME`
 
-  The name of the table. This value is the same as in the [`TABLE_CONSTRAINTS`](information-schema-table-constraints-table.html "24.3.27 The INFORMATION_SCHEMA TABLE_CONSTRAINTS Table") table.
+  O nome da Table. Este valor é o mesmo que na tabela [`TABLE_CONSTRAINTS`](information-schema-table-constraints-table.html "24.3.27 The INFORMATION_SCHEMA TABLE_CONSTRAINTS Table").
 
 * `REFERENCED_TABLE_NAME`
 
-  The name of the table referenced by the constraint.
+  O nome da Table referenciada pelo Constraint.

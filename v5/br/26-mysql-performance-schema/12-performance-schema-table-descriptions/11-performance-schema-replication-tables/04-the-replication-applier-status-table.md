@@ -1,27 +1,27 @@
-#### 25.12.11.4 The replication_applier_status Table
+#### 25.12.11.4 A Tabela replication_applier_status
 
-This table shows the current general transaction execution status on the replica. The table provides information about general aspects of transaction applier status that are not specific to any thread involved. Thread-specific status information is available in the [`replication_applier_status_by_coordinator`](performance-schema-replication-applier-status-by-coordinator-table.html "25.12.11.5 The replication_applier_status_by_coordinator Table") table (and [`replication_applier_status_by_worker`](performance-schema-replication-applier-status-by-worker-table.html "25.12.11.6 The replication_applier_status_by_worker Table") if the replica is multithreaded).
+Esta tabela mostra o status atual de execução geral das transações na replica. A tabela fornece informações sobre aspectos gerais do status do *applier* de transações que não são específicos de nenhum Thread envolvido. Informações de status específicas de Thread estão disponíveis na tabela [`replication_applier_status_by_coordinator`](performance-schema-replication-applier-status-by-coordinator-table.html "25.12.11.5 A Tabela replication_applier_status_by_coordinator") (e [`replication_applier_status_by_worker`](performance-schema-replication-applier-status-by-worker-table.html "25.12.11.6 A Tabela replication_applier_status_by_worker") se a replica for multithreaded).
 
-The [`replication_applier_status`](performance-schema-replication-applier-status-table.html "25.12.11.4 The replication_applier_status Table") table has these columns:
+A tabela [`replication_applier_status`](performance-schema-replication-applier-status-table.html "25.12.11.4 A Tabela replication_applier_status") possui estas colunas:
 
 * `CHANNEL_NAME`
 
-  The replication channel which this row is displaying. There is always a default replication channel, and more replication channels can be added. See [Section 16.2.2, “Replication Channels”](replication-channels.html "16.2.2 Replication Channels") for more information.
+  O canal de Replication que esta linha está exibindo. Há sempre um canal de Replication padrão, e mais canais de Replication podem ser adicionados. Consulte [Seção 16.2.2, “Replication Channels”](replication-channels.html "16.2.2 Replication Channels") para mais informações.
 
 * `SERVICE_STATE`
 
-  Shows `ON` when the replication channel's applier threads are active or idle, `OFF` means that the applier threads are not active.
+  Mostra `ON` quando os Threads *applier* do canal de Replication estão ativos ou inativos (*idle*), `OFF` significa que os Threads *applier* não estão ativos.
 
 * `REMAINING_DELAY`
 
-  If the replica is waiting for `DESIRED_DELAY` seconds to pass since the source applied an event, this field contains the number of delay seconds remaining. At other times, this field is `NULL`. (The `DESIRED_DELAY` value is stored in the [`replication_applier_configuration`](performance-schema-replication-applier-configuration-table.html "25.12.11.3 The replication_applier_configuration Table") table.)
+  Se a replica estiver esperando que `DESIRED_DELAY` segundos se passem desde que a source aplicou um evento, este campo contém o número de segundos de atraso restantes. Em outros momentos, este campo é `NULL`. (O valor de `DESIRED_DELAY` é armazenado na tabela [`replication_applier_configuration`](performance-schema-replication-applier-configuration-table.html "25.12.11.3 A Tabela replication_applier_configuration").)
 
 * `COUNT_TRANSACTIONS_RETRIES`
 
-  Shows the number of retries that were made because the replication SQL thread failed to apply a transaction. The maximum number of retries for a given transaction is set by the [`slave_transaction_retries`](replication-options-replica.html#sysvar_slave_transaction_retries) system variable.
+  Mostra o número de tentativas (*retries*) que foram feitas porque o Thread SQL de Replication falhou ao aplicar uma transação. O número máximo de retries para uma determinada transação é definido pela variável de sistema [`slave_transaction_retries`](replication-options-replica.html#sysvar_slave_transaction_retries).
 
-[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not permitted for the [`replication_applier_status`](performance-schema-replication-applier-status-table.html "25.12.11.4 The replication_applier_status Table") table.
+O [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") não é permitido para a tabela [`replication_applier_status`](performance-schema-replication-applier-status-table.html "25.12.11.4 A Tabela replication_applier_status").
 
-The following table shows the correspondence between [`replication_applier_status`](performance-schema-replication-applier-status-table.html "25.12.11.4 The replication_applier_status Table") columns and [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") columns.
+A tabela a seguir mostra a correspondência entre as colunas de [`replication_applier_status`](performance-schema-replication-applier-status-table.html "25.12.11.4 A Tabela replication_applier_status") e as colunas de [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement").
 
-<table summary="Correspondence between replication_applier_status columns and SHOW SLAVE STATUS columns"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th><code>replication_applier_status</code> Column</th> <th><code>SHOW SLAVE STATUS</code> Column</th> </tr></thead><tbody><tr> <td><code>SERVICE_STATE</code></td> <td>None</td> </tr><tr> <td><code>REMAINING_DELAY</code></td> <td><code>SQL_Remaining_Delay</code></td> </tr></tbody></table>
+<table summary="Correspondência entre as colunas replication_applier_status e as colunas SHOW SLAVE STATUS"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th>Coluna <code>replication_applier_status</code></th> <th>Coluna <code>SHOW SLAVE STATUS</code></th> </tr></thead><tbody><tr> <td><code>SERVICE_STATE</code></td> <td>Nenhum</td> </tr><tr> <td><code>REMAINING_DELAY</code></td> <td><code>SQL_Remaining_Delay</code></td> </tr></tbody></table>

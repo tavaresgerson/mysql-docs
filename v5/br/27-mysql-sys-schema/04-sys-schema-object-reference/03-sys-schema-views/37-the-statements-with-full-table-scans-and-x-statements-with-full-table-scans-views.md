@@ -1,61 +1,61 @@
-#### 26.4.3.37 The statements_with_full_table_scans and x$statements_with_full_table_scans Views
+#### 26.4.3.37 As Views statements_with_full_table_scans e x$statements_with_full_table_scans
 
-These views display normalized statements that have done full table scans. By default, rows are sorted by descending percentage of time a full scan was done and descending total latency.
+Essas views exibem instruções normalizadas que executaram full table scans. Por padrão, as linhas são ordenadas pela porcentagem decrescente do tempo gasto em um full scan e pela total latency decrescente.
 
-The `statements_with_full_table_scans` and `x$statements_with_full_table_scans` views have these columns:
+As views `statements_with_full_table_scans` e `x$statements_with_full_table_scans` possuem estas colunas:
 
 * `query`
 
-  The normalized statement string.
+  A string da instrução normalizada.
 
 * `db`
 
-  The default database for the statement, or `NULL` if there is none.
+  O Database padrão para a instrução, ou `NULL` se não houver um.
 
 * `exec_count`
 
-  The total number of times the statement has executed.
+  O número total de vezes que a instrução foi executada.
 
 * `total_latency`
 
-  The total wait time of timed statement events for the statement.
+  O tempo total de espera (wait time) dos eventos de instrução cronometrados para a instrução.
 
 * `no_index_used_count`
 
-  The total number of times no index was used to scan the table.
+  O número total de vezes que nenhum Index foi usado para realizar o scan da tabela.
 
 * `no_good_index_used_count`
 
-  The total number of times no good index was used to scan the table.
+  O número total de vezes que nenhum Index bom foi usado para realizar o scan da tabela.
 
 * `no_index_used_pct`
 
-  The percentage of the time no index was used to scan the table.
+  A porcentagem do tempo em que nenhum Index foi usado para realizar o scan da tabela.
 
 * `rows_sent`
 
-  The total number of rows returned from the table.
+  O número total de linhas retornadas da tabela.
 
 * `rows_examined`
 
-  The total number of rows read from the storage engine for the table.
+  O número total de linhas lidas do storage engine para a tabela.
 
 * `rows_sent_avg`
 
-  The average number of rows returned from the table.
+  O número médio de linhas retornadas da tabela.
 
 * `rows_examined_avg`
 
-  The average number of rows read from the storage engine for the table.
+  O número médio de linhas lidas do storage engine para a tabela.
 
 * `first_seen`
 
-  The time at which the statement was first seen.
+  O momento em que a instrução foi vista pela primeira vez.
 
 * `last_seen`
 
-  The time at which the statement was most recently seen.
+  O momento em que a instrução foi vista mais recentemente.
 
 * `digest`
 
-  The statement digest.
+  O digest da instrução.

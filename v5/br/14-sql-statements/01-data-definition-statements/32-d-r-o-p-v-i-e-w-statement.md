@@ -1,4 +1,4 @@
-### 13.1.32 DROP VIEW Statement
+### 13.1.32 Instrução DROP VIEW
 
 ```sql
 DROP VIEW [IF EXISTS]
@@ -6,14 +6,14 @@ DROP VIEW [IF EXISTS]
     [RESTRICT | CASCADE]
 ```
 
-[`DROP VIEW`](drop-view.html "13.1.32 DROP VIEW Statement") removes one or more views. You must have the [`DROP`](privileges-provided.html#priv_drop) privilege for each view.
+O [`DROP VIEW`](drop-view.html "13.1.32 DROP VIEW Statement") remove uma ou mais views. Você deve ter o privilégio [`DROP`](privileges-provided.html#priv_drop) para cada view.
 
-If any views named in the argument list do not exist, the statement returns an error indicating by name which nonexisting views it was unable to drop, but also drops all views in the list that do exist.
+Se qualquer view nomeada na lista de argumentos não existir, a instrução retorna um erro indicando pelo nome quais views inexistentes ela não conseguiu remover, mas também remove todas as views existentes na lista.
 
-Note
+Nota
 
-In MySQL 8.0, [`DROP VIEW`](drop-view.html "13.1.32 DROP VIEW Statement") fails if any views named in the argument list do not exist. Due to the change in behavior, a partially completed [`DROP VIEW`](drop-view.html "13.1.32 DROP VIEW Statement") operation on a MySQL 5.7 source fails when replicated to a MySQL 8.0 replica. To avoid this failure scenario, use `IF EXISTS` syntax in [`DROP VIEW`](drop-view.html "13.1.32 DROP VIEW Statement") statements to prevent an error from occurring for views that do not exist. For more information, see [Atomic Data Definition Statement Support](/doc/refman/8.0/en/atomic-ddl.html).
+No MySQL 8.0, [`DROP VIEW`](drop-view.html "13.1.32 DROP VIEW Statement") falha se qualquer view nomeada na lista de argumentos não existir. Devido à mudança de comportamento, uma operação [`DROP VIEW`](drop-view.html "13.1.32 DROP VIEW Statement") parcialmente concluída em uma *source* MySQL 5.7 falha quando replicada para uma *replica* MySQL 8.0. Para evitar este cenário de falha, use a sintaxe `IF EXISTS` nas instruções [`DROP VIEW`](drop-view.html "13.1.32 DROP VIEW Statement") para evitar que um erro ocorra para views que não existem. Para mais informações, consulte [Atomic Data Definition Statement Support](/doc/refman/8.0/en/atomic-ddl.html).
 
-The `IF EXISTS` clause prevents an error from occurring for views that don't exist. When this clause is given, a `NOTE` is generated for each nonexistent view. See [Section 13.7.5.40, “SHOW WARNINGS Statement”](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement").
+A cláusula `IF EXISTS` impede que um erro ocorra para views que não existem. Quando esta cláusula é fornecida, uma `NOTE` é gerada para cada view inexistente. Consulte [Seção 13.7.5.40, “Instrução SHOW WARNINGS”](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement").
 
-`RESTRICT` and `CASCADE`, if given, are parsed and ignored.
+`RESTRICT` e `CASCADE`, se fornecidos, são analisados e ignorados.

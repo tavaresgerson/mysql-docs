@@ -1,11 +1,11 @@
-#### 13.4.3.2 STOP GROUP_REPLICATION Statement
+#### 13.4.3.2 Instrução STOP GROUP_REPLICATION
 
 ```sql
 STOP GROUP_REPLICATION
 ```
 
-Stops Group Replication. This statement requires the [`GROUP_REPLICATION_ADMIN`](/doc/refman/8.0/en/privileges-provided.html#priv_group-replication-admin) or [`SUPER`](privileges-provided.html#priv_super) privilege. As soon as you issue [`STOP GROUP_REPLICATION`](stop-group-replication.html "13.4.3.2 STOP GROUP_REPLICATION Statement") the member is set to [`super_read_only=ON`](server-system-variables.html#sysvar_super_read_only), which ensures that no writes can be made to the member while Group Replication stops. Any other replication channels running on the member are also stopped.
+Para o Group Replication. Esta instrução requer o privilégio [`GROUP_REPLICATION_ADMIN`](/doc/refman/8.0/en/privileges-provided.html#priv_group-replication-admin) ou [`SUPER`](privileges-provided.html#priv_super). Assim que você emite [`STOP GROUP_REPLICATION`](stop-group-replication.html "13.4.3.2 STOP GROUP_REPLICATION Statement"), o membro é configurado para [`super_read_only=ON`](server-system-variables.html#sysvar_super_read_only), o que garante que nenhuma escrita possa ser feita no membro enquanto o Group Replication está parando. Quaisquer outros canais de replicação (replication channels) em execução no membro também são parados.
 
-Warning
+Aviso
 
-Use this statement with extreme caution because it removes the server instance from the group, meaning it is no longer protected by Group Replication's consistency guarantee mechanisms. To be completely safe, ensure that your applications can no longer connect to the instance before issuing this statement to avoid any chance of stale reads.
+Use esta instrução com extrema cautela, pois ela remove a instância do servidor do grupo, o que significa que ela não está mais protegida pelos mecanismos de garantia de consistência do Group Replication. Para total segurança, certifique-se de que suas aplicações não consigam mais se conectar à instância antes de emitir esta instrução para evitar qualquer chance de leituras desatualizadas (*stale reads*).

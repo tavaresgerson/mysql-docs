@@ -1,23 +1,23 @@
-### 13.7.1 Account Management Statements
+### 13.7.1 Declarações de Gerenciamento de Contas
 
-[13.7.1.1 ALTER USER Statement](alter-user.html)
+[13.7.1.1 Declaração ALTER USER](alter-user.html)
 
-[13.7.1.2 CREATE USER Statement](create-user.html)
+[13.7.1.2 Declaração CREATE USER](create-user.html)
 
-[13.7.1.3 DROP USER Statement](drop-user.html)
+[13.7.1.3 Declaração DROP USER](drop-user.html)
 
-[13.7.1.4 GRANT Statement](grant.html)
+[13.7.1.4 Declaração GRANT](grant.html)
 
-[13.7.1.5 RENAME USER Statement](rename-user.html)
+[13.7.1.5 Declaração RENAME USER](rename-user.html)
 
-[13.7.1.6 REVOKE Statement](revoke.html)
+[13.7.1.6 Declaração REVOKE](revoke.html)
 
-[13.7.1.7 SET PASSWORD Statement](set-password.html)
+[13.7.1.7 Declaração SET PASSWORD](set-password.html)
 
-MySQL account information is stored in the tables of the `mysql` system database. This database and the access control system are discussed extensively in [Chapter 5, *MySQL Server Administration*](server-administration.html "Chapter 5 MySQL Server Administration"), which you should consult for additional details.
+As informações de conta do MySQL são armazenadas nas tabelas do banco de dados de sistema `mysql`. Este banco de dados e o sistema de controle de acesso são discutidos extensivamente no [Capítulo 5, *Administração do Servidor MySQL*](server-administration.html "Capítulo 5 Administração do Servidor MySQL"), o qual você deve consultar para detalhes adicionais.
 
-Important
+Importante
 
-Some MySQL releases introduce changes to the grant tables to add new privileges or features. To make sure that you can take advantage of any new capabilities, update your grant tables to the current structure whenever you upgrade MySQL. See [Section 2.10, “Upgrading MySQL”](upgrading.html "2.10 Upgrading MySQL").
+Alguns lançamentos do MySQL introduzem alterações nas grant tables para adicionar novos privileges ou recursos. Para garantir que você possa aproveitar quaisquer novas capacidades, atualize suas grant tables para a estrutura atual sempre que fizer upgrade do MySQL. Consulte [Seção 2.10, “Fazendo Upgrade do MySQL”](upgrading.html "2.10 Fazendo Upgrade do MySQL").
 
-When the [`read_only`](server-system-variables.html#sysvar_read_only) system variable is enabled, account-management statements require the [`SUPER`](privileges-provided.html#priv_super) privilege, in addition to any other required privileges. This is because they modify tables in the `mysql` system database.
+Quando a variável de sistema [`read_only`](server-system-variables.html#sysvar_read_only) está habilitada, as declarações de gerenciamento de contas exigem o privilege [`SUPER`](privileges-provided.html#priv_super), além de quaisquer outros privileges exigidos. Isso ocorre porque elas modificam tabelas no banco de dados de sistema `mysql`.

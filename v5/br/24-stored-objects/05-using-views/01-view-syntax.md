@@ -1,8 +1,8 @@
-### 23.5.1 View Syntax
+### 23.5.1 Sintaxe de View
 
-The `CREATE VIEW` statement creates a new view (see Section 13.1.21, “CREATE VIEW Statement”). To alter the definition of a view or drop a view, use `ALTER VIEW` (see Section 13.1.10, “ALTER VIEW Statement”), or `DROP VIEW` (see Section 13.1.32, “DROP VIEW Statement”).
+A instrução `CREATE VIEW` cria uma nova `VIEW` (consulte a Seção 13.1.21, “CREATE VIEW Statement”). Para alterar a definição de uma `VIEW` ou descartá-la, utilize `ALTER VIEW` (consulte a Seção 13.1.10, “ALTER VIEW Statement”) ou `DROP VIEW` (consulte a Seção 13.1.32, “DROP VIEW Statement”).
 
-A view can be created from many kinds of `SELECT` statements. It can refer to base tables or other views. It can use joins, `UNION`, and subqueries. The `SELECT` need not even refer to any tables. The following example defines a view that selects two columns from another table, as well as an expression calculated from those columns:
+Uma `VIEW` pode ser criada a partir de diversos tipos de instruções `SELECT`. Ela pode fazer referência a `base tables` ou outras `VIEWs`. Pode utilizar `JOINs`, `UNION` e `subqueries`. A instrução `SELECT` nem precisa fazer referência a quaisquer `tables`. O exemplo a seguir define uma `VIEW` que seleciona duas colunas de outra `table`, além de uma expressão calculada a partir dessas colunas:
 
 ```sql
 mysql> CREATE TABLE t (qty INT, price INT);

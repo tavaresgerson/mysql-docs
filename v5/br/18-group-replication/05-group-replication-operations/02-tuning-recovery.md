@@ -1,55 +1,55 @@
-### 17.5.2 Tuning Recovery
+### 17.5.2 Otimizando a Recovery
 
-Whenever a new member joins a replication group, it connects to a suitable donor and fetches the data that it has missed up until the point it is declared online. This critical component in Group Replication is fault tolerant and configurable. The following section explains how recovery works and how to tune the settings
+Sempre que um novo *member* se junta a um grupo de *replication*, ele se conecta a um *donor* adequado e busca os dados que perdeu até o momento em que é declarado *online*. Este componente crítico no Group Replication é tolerante a falhas (*fault tolerant*) e configurável. A seção a seguir explica como a *recovery* funciona e como otimizar suas configurações.
 
-#### Donor Selection
+#### Seleção do Donor
 
-A random donor is selected from the existing online members in the group. This way there is a good chance that the same server is not selected more than once when multiple members enter the group.
+Um *donor* aleatório é selecionado entre os *members online* existentes no grupo. Dessa forma, há uma boa chance de que o mesmo servidor não seja selecionado mais de uma vez quando múltiplos *members* entram no grupo.
 
-If the connection to the selected donor fails, a new connection is automatically attempted to a new candidate donor. Once the connection retry limit is reached the recovery procedure terminates with an error.
-
-Note
-
-A donor is picked randomly from the list of online members in the current view.
-
-#### Enhanced Automatic Donor Switchover
-
-The other main point of concern in recovery as a whole is to make sure that it copes with failures. Hence, Group Replication provides robust error detection mechanisms. In earlier versions of Group Replication, when reaching out to a donor, recovery could only detect connection errors due to authentication issues or some other problem. The reaction to such problematic scenarios was to switch over to a new donor thus a new connection attempt was made to a different member.
-
-This behavior was extended to also cover other failure scenarios:
-
-* *Purged data scenarios* - If the selected donor contains some purged data that is needed for the recovery process then an error occurs. Recovery detects this error and a new donor is selected.
-
-* *Duplicated data* - If a server joining the group already contains some data that conflicts with the data coming from the selected donor during recovery then an error occurs. This could be caused by some errant transactions present in the server joining the group.
-
-  One could argue that recovery should fail instead of switching over to another donor, but in heterogeneous groups there is chance that other members share the conflicting transactions and others do not. For that reason, upon error, recovery selects another donor from the group.
-
-* *Other errors* - If any of the recovery threads fail (receiver or applier threads fail) then an error occurs and recovery switches over to a new donor.
+Se a conexão com o *donor* selecionado falhar, uma nova conexão é automaticamente tentada com um novo *donor* candidato. Assim que o limite de *retry* de conexão for atingido, o procedimento de *recovery* é encerrado com um erro.
 
 Note
 
-In case of some persistent failures or even transient failures recovery automatically retries connecting to the same or a new donor.
+Um *donor* é escolhido aleatoriamente na lista de *members online* na *view* atual.
 
-#### Donor Connection Retries
+#### Switchover Automático de Donor Aprimorado
 
-The recovery data transfer relies on the binary log and existing MySQL replication framework, therefore it is possible that some transient errors could cause errors in the receiver or applier threads. In such cases, the donor switch over process has retry functionality, similar to that found in regular replication.
+O outro ponto principal de preocupação na *recovery* como um todo é garantir que ela lide com falhas. Assim, o Group Replication fornece mecanismos robustos de detecção de erro. Em versões anteriores do Group Replication, ao tentar se conectar a um *donor*, a *recovery* só conseguia detectar erros de conexão devido a problemas de autenticação ou algum outro problema. A reação a esses cenários problemáticos era fazer o *switch over* para um novo *donor*, e uma nova tentativa de conexão era feita com um *member* diferente.
 
-#### Number of Attempts
+Esse comportamento foi estendido para cobrir também outros cenários de falha:
 
-The number of attempts a server joining the group makes when trying to connect to a donor from the pool of donors is 10. This is configured through the [`group_replication_recovery_retry_count`](group-replication-system-variables.html#sysvar_group_replication_recovery_retry_count) plugin variable . The following command sets the maximum number of attempts to connect to a donor to 10.
+* *Cenários de dados purgados* - Se o *donor* selecionado contiver dados purgados (*purged data*) que são necessários para o processo de *recovery*, ocorre um erro. A *recovery* detecta esse erro e um novo *donor* é selecionado.
+
+* *Dados duplicados* - Se um servidor que está entrando no grupo já contém dados que conflitam com os dados provenientes do *donor* selecionado durante a *recovery*, ocorre um erro. Isso pode ser causado por algumas *transactions* errantes presentes no servidor que está entrando no grupo.
+
+  Pode-se argumentar que a *recovery* deveria falhar em vez de fazer o *switch over* para outro *donor*, mas em grupos heterogêneos há chance de que outros *members* compartilhem as *transactions* conflitantes e outros não. Por esse motivo, após o erro, a *recovery* seleciona outro *donor* do grupo.
+
+* *Outros erros* - Se qualquer uma das *threads* de *recovery* falhar (as *threads receiver* ou *applier* falharem), ocorre um erro e a *recovery* faz o *switch over* para um novo *donor*.
+
+Note
+
+Em caso de falhas persistentes ou mesmo falhas transitórias, a *recovery* automaticamente tenta novamente (*retry*) a conexão com o mesmo *donor* ou com um novo.
+
+#### Retries de Conexão do Donor
+
+A transferência de dados da *recovery* depende do *binary log* e da estrutura de *replication* existente do MySQL. Portanto, é possível que alguns erros transitórios causem erros nas *threads receiver* ou *applier*. Nesses casos, o processo de *switch over* do *donor* possui funcionalidade de *retry*, semelhante à encontrada na *replication* regular.
+
+#### Número de Tentativas
+
+O número de tentativas que um servidor que está entrando no grupo faz ao tentar se conectar a um *donor* do *pool* de *donors* é 10. Isso é configurado por meio da variável de *plugin* [`group_replication_recovery_retry_count`](group-replication-system-variables.html#sysvar_group_replication_recovery_retry_count). O comando a seguir define o número máximo de tentativas de conexão a um *donor* para 10.
 
 ```sql
 mysql> SET GLOBAL group_replication_recovery_retry_count= 10;
 ```
 
-Note that this accounts for the global number of attempts that the server joining the group makes connecting to each one of the suitable donors.
+Note que isso representa o número global de tentativas que o servidor que está entrando no grupo faz ao se conectar a cada um dos *donors* adequados.
 
-#### Sleep Routines
+#### Rotinas de Sleep
 
-The [`group_replication_recovery_reconnect_interval`](group-replication-system-variables.html#sysvar_group_replication_recovery_reconnect_interval) plugin variable defines how much time the recovery process should sleep between donor connection attempts. This variable has its default set to 60 seconds and you can change this value dynamically. The following command sets the recovery donor connection retry interval to 120 seconds.
+A variável de *plugin* [`group_replication_recovery_reconnect_interval`](group-replication-system-variables.html#sysvar_group_replication_recovery_reconnect_interval) define quanto tempo o processo de *recovery* deve entrar em *sleep* entre as tentativas de conexão com o *donor*. Esta variável tem seu valor *default* definido como 60 segundos e você pode alterar este valor dinamicamente. O comando a seguir define o intervalo de *retry* de conexão do *donor* de *recovery* para 120 segundos.
 
 ```sql
 mysql> SET GLOBAL group_replication_recovery_reconnect_interval= 120;
 ```
 
-Note, however, that recovery does not sleep after every donor connection attempt. As the server joining the group is connecting to different servers and not to the same one over and over again, it can assume that the problem that affects server A does not affect server B. As such, recovery suspends only when it has gone through all the possible donors. Once the server joining the group has tried to connect to all the suitable donors in the group and none remains, the recovery process sleeps for the number of seconds configured by the [`group_replication_recovery_reconnect_interval`](group-replication-system-variables.html#sysvar_group_replication_recovery_reconnect_interval) variable.
+Note, no entanto, que a *recovery* não entra em *sleep* após cada tentativa de conexão com o *donor*. Como o servidor que está entrando no grupo está se conectando a servidores diferentes e não ao mesmo repetidamente, ele pode presumir que o problema que afeta o servidor A não afeta o servidor B. Sendo assim, a *recovery* é suspensa somente quando passou por todos os *donors* possíveis. Assim que o servidor que está entrando no grupo tentar se conectar a todos os *donors* adequados no grupo e nenhum restar, o processo de *recovery* entra em *sleep* pelo número de segundos configurado pela variável [`group_replication_recovery_reconnect_interval`](group-replication-system-variables.html#sysvar_group_replication_recovery_reconnect_interval).

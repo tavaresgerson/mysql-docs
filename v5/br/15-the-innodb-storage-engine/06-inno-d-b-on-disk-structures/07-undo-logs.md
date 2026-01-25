@@ -1,58 +1,54 @@
-### 14.6.7 Undo Logs
+### 14.6.7 Undo Logs
 
-An undo log is a collection of undo log records associated with a single read-write transaction. An undo log record contains information about how to undo the latest change by a transaction to a clustered index record. If another transaction needs to see the original data as part of a consistent read operation, the unmodified data is retrieved from undo log records. Undo logs exist within undo log segments, which are contained within rollback segments. Rollback segments reside in the system tablespace, in undo tablespaces, and in the temporary tablespace.
+Um Undo Log é uma coleção de registros de Undo Log associados a uma única transação de leitura e escrita (`read-write transaction`). Um registro de Undo Log contém informações sobre como desfazer a alteração mais recente de uma transação em um registro de clustered index. Se outra transação precisar visualizar os dados originais como parte de uma operação de leitura consistente (`consistent read operation`), os dados não modificados são recuperados dos registros de Undo Log. Os Undo Logs existem dentro de segmentos de Undo Log, que estão contidos em Rollback Segments. Os Rollback Segments residem no system tablespace, nos undo tablespaces e no temporary tablespace.
 
-Undo logs that reside in the temporary tablespace are used for transactions that modify data in user-defined temporary tables. These undo logs are not redo-logged, as they are not required for crash recovery. They are used only for rollback while the server is running. This type of undo log benefits performance by avoiding redo logging I/O.
+Os Undo Logs que residem no temporary tablespace são usados para transações que modificam dados em temporary tables definidas pelo usuário. Esses Undo Logs não são registrados no Redo Log (não são *redo-logged*), pois não são necessários para a recuperação de falhas (`crash recovery`). Eles são usados apenas para Rollback enquanto o server está em execução. Esse tipo de Undo Log beneficia a performance ao evitar I/O de *redo logging*.
 
-`InnoDB` supports a maximum of 128 rollback segments, 32 of which are allocated to the temporary tablespace. This leaves 96 rollback segments that can be assigned to transactions that modify data in regular tables. The `innodb_rollback_segments` variable defines the number of rollback segments used by `InnoDB`.
+O `InnoDB` suporta um máximo de 128 Rollback Segments, dos quais 32 são alocados para o temporary tablespace. Isso deixa 96 Rollback Segments que podem ser atribuídos a transações que modificam dados em tabelas regulares. A variável `innodb_rollback_segments` define o número de Rollback Segments usados pelo `InnoDB`.
 
-The number of transactions that a rollback segment supports depends on the number of undo slots in the rollback segment and the number of undo logs required by each transaction. The number of undo slots in a rollback segment differs according to `InnoDB` page size.
+O número de transações que um Rollback Segment suporta depende do número de *undo slots* no Rollback Segment e do número de Undo Logs exigidos por cada transação. O número de *undo slots* em um Rollback Segment difere de acordo com o Page Size do `InnoDB`.
 
-<table summary="Number of undo slots in a rollback segment for each InnoDB page size"><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>InnoDB Page Size</th> <th>Number of Undo Slots in a Rollback Segment (InnoDB Page Size / 16)</th> </tr></thead><tbody><tr> <td><code>4096 (4KB)</code></td> <td><code>256</code></td> </tr><tr> <td><code>8192 (8KB)</code></td> <td><code>512</code></td> </tr><tr> <td><code>16384 (16KB)</code></td> <td><code>1024</code></td> </tr><tr> <td><code>32768 (32KB)</code></td> <td><code>2048</code></td> </tr><tr> <td><code>65536 (64KB)</code></td> <td><code>4096</code></td> </tr></tbody></table>
+<table summary="Número de undo slots em um rollback segment para cada Page Size do InnoDB"><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Page Size do InnoDB</th> <th>Número de Undo Slots em um Rollback Segment (Page Size do InnoDB / 16)</th> </tr></thead><tbody><tr> <td><code>4096 (4KB)</code></td> <td><code>256</code></td> </tr><tr> <td><code>8192 (8KB)</code></td> <td><code>512</code></td> </tr><tr> <td><code>16384 (16KB)</code></td> <td><code>1024</code></td> </tr><tr> <td><code>32768 (32KB)</code></td> <td><code>2048</code></td> </tr><tr> <td><code>65536 (64KB)</code></td> <td><code>4096</code></td> </tr> </tbody></table>
 
-A transaction is assigned up to four undo logs, one for each of the following operation types:
+Uma transação recebe a atribuição de até quatro Undo Logs, um para cada um dos seguintes tipos de operação:
 
-1. `INSERT` operations on user-defined tables
+1. Operações `INSERT` em tabelas definidas pelo usuário
+2. Operações `UPDATE` e `DELETE` em tabelas definidas pelo usuário
+3. Operações `INSERT` em temporary tables definidas pelo usuário
+4. Operações `UPDATE` e `DELETE` em temporary tables definidas pelo usuário
 
-2. `UPDATE` and `DELETE` operations on user-defined tables
+Os Undo Logs são atribuídos conforme a necessidade. Por exemplo, uma transação que executa operações `INSERT`, `UPDATE` e `DELETE` em tabelas regulares e temporary tables requer uma atribuição completa de quatro Undo Logs. Uma transação que executa apenas operações `INSERT` em tabelas regulares requer um único Undo Log.
 
-3. `INSERT` operations on user-defined temporary tables
+Uma transação que executa operações em tabelas regulares recebe Undo Logs de um Rollback Segment atribuído do system tablespace ou undo tablespace. Uma transação que executa operações em temporary tables recebe Undo Logs de um Rollback Segment atribuído do temporary tablespace.
 
-4. `UPDATE` and `DELETE` operations on user-defined temporary tables
+Um Undo Log atribuído a uma transação permanece anexado a ela durante toda a sua duração. Por exemplo, um Undo Log atribuído a uma transação para uma operação `INSERT` em uma tabela regular é usado para todas as operações `INSERT` em tabelas regulares executadas por essa transação.
 
-Undo logs are assigned as needed. For example, a transaction that performs `INSERT`, `UPDATE`, and `DELETE` operations on regular and temporary tables requires a full assignment of four undo logs. A transaction that performs only `INSERT` operations on regular tables requires a single undo log.
+Dados os fatores descritos acima, as seguintes fórmulas podem ser usadas para estimar o número de transações concorrentes de leitura e escrita (`read-write transactions`) que o `InnoDB` é capaz de suportar.
 
-A transaction that performs operations on regular tables is assigned undo logs from an assigned system tablespace or undo tablespace rollback segment. A transaction that performs operations on temporary tables is assigned undo logs from an assigned temporary tablespace rollback segment.
+Nota
+É possível encontrar um erro de limite de transação concorrente antes de atingir o número de transações concorrentes de leitura e escrita que o `InnoDB` é capaz de suportar. Isso ocorre quando o Rollback Segment atribuído a uma transação fica sem *undo slots*. Nesses casos, tente reexecutar a transação.
 
-An undo log assigned to a transaction remains attached to the transaction for its duration. For example, an undo log assigned to a transaction for an `INSERT` operation on a regular table is used for all `INSERT` operations on regular tables performed by that transaction.
+Quando as transações executam operações em temporary tables, o número de transações concorrentes de leitura e escrita que o `InnoDB` é capaz de suportar é restringido pelo número de Rollback Segments alocados ao temporary tablespace, que é 32.
 
-Given the factors described above, the following formulas can be used to estimate the number of concurrent read-write transactions that `InnoDB` is capable of supporting.
-
-Note
-
-It is possible to encounter a concurrent transaction limit error before reaching the number of concurrent read-write transactions that `InnoDB` is capable of supporting. This occurs when the rollback segment assigned to a transaction runs out of undo slots. In such cases, try rerunning the transaction.
-
-When transactions perform operations on temporary tables, the number of concurrent read-write transactions that `InnoDB` is capable of supporting is constrained by the number of rollback segments allocated to the temporary tablespace, which is 32.
-
-* If each transaction performs either an `INSERT` **or** an `UPDATE` or `DELETE` operation, the number of concurrent read-write transactions that `InnoDB` is capable of supporting is:
+* Se cada transação executa uma operação `INSERT` **ou** uma operação `UPDATE` ou `DELETE`, o número de transações concorrentes de leitura e escrita que o `InnoDB` é capaz de suportar é:
 
   ```sql
   (innodb_page_size / 16) * (innodb_rollback_segments - 32)
   ```
 
-* If each transaction performs an `INSERT` **and** an `UPDATE` or `DELETE` operation, the number of concurrent read-write transactions that `InnoDB` is capable of supporting is:
+* Se cada transação executa uma operação `INSERT` **e** uma operação `UPDATE` ou `DELETE`, o número de transações concorrentes de leitura e escrita que o `InnoDB` é capaz de suportar é:
 
   ```sql
   (innodb_page_size / 16 / 2) * (innodb_rollback_segments - 32)
   ```
 
-* If each transaction performs an `INSERT` operation on a temporary table, the number of concurrent read-write transactions that `InnoDB` is capable of supporting is:
+* Se cada transação executa uma operação `INSERT` em uma temporary table, o número de transações concorrentes de leitura e escrita que o `InnoDB` é capaz de suportar é:
 
   ```sql
   (innodb_page_size / 16) * 32
   ```
 
-* If each transaction performs an `INSERT` **and** an `UPDATE` or `DELETE` operation on a temporary table, the number of concurrent read-write transactions that `InnoDB` is capable of supporting is:
+* Se cada transação executa uma operação `INSERT` **e** uma operação `UPDATE` ou `DELETE` em uma temporary table, o número de transações concorrentes de leitura e escrita que o `InnoDB` é capaz de suportar é:
 
   ```sql
   (innodb_page_size / 16 / 2) * 32

@@ -1,6 +1,6 @@
-#### 15.8.2.1 Creating a FEDERATED Table Using CONNECTION
+#### 15.8.2.1 Criando uma Tabela FEDERATED Usando CONNECTION
 
-To use the first method, you must specify the `CONNECTION` string after the engine type in a `CREATE TABLE` statement. For example:
+Para usar o primeiro método, você deve especificar a string `CONNECTION` após o tipo de ENGINE em uma instrução `CREATE TABLE`. Por exemplo:
 
 ```sql
 CREATE TABLE federated_table (
@@ -16,37 +16,35 @@ DEFAULT CHARSET=latin1
 CONNECTION='mysql://fed_user@remote_host:9306/federated/test_table';
 ```
 
-Note
+Nota
 
-`CONNECTION` replaces the `COMMENT` used in some previous versions of MySQL.
+`CONNECTION` substitui o `COMMENT` usado em algumas versões anteriores do MySQL.
 
-The `CONNECTION` string contains the information required to connect to the remote server containing the table used for physical storage of the data. The connection string specifies the server name, login credentials, port number and database/table information. In the example, the remote table is on the server `remote_host`, using port
+A string `CONNECTION` contém as informações necessárias para se conectar ao servidor remoto que contém a tabela usada para o armazenamento físico dos dados. A string de conexão especifica o nome do servidor, as credenciais de login, o número da porta (*port number*) e as informações de Database/tabela. No exemplo, a tabela remota está no servidor `remote_host`, usando a porta 9306. O nome e o número da porta devem corresponder ao *host name* (ou endereço IP) e ao *port number* da instância remota do servidor MySQL que você deseja usar como sua tabela remota.
 
-9306. The name and port number should match the host name (or IP address) and port number of the remote MySQL server instance you want to use as your remote table.
-
-The format of the connection string is as follows:
+O formato da string de conexão é o seguinte:
 
 ```sql
 scheme://user_name[:password]@host_name[:port_num]/db_name/tbl_name
 ```
 
-Where:
+Onde:
 
-* *`scheme`*: A recognized connection protocol. Only `mysql` is supported as the *`scheme`* value at this point.
+* *`scheme`*: Um protocolo de conexão reconhecido. Somente `mysql` é suportado como valor de *`scheme`* neste momento.
 
-* *`user_name`*: The user name for the connection. This user must have been created on the remote server, and must have suitable privileges to perform the required actions (`SELECT`, `INSERT`, `UPDATE`, and so forth) on the remote table.
+* *`user_name`*: O nome de usuário para a conexão. Este usuário deve ter sido criado no servidor remoto e deve ter privilégios adequados para executar as ações necessárias (`SELECT`, `INSERT`, `UPDATE`, e assim por diante) na tabela remota.
 
-* *`password`*: (Optional) The corresponding password for *`user_name`*.
+* *`password`*: (Opcional) A *password* correspondente para *`user_name`*.
 
-* *`host_name`*: The host name or IP address of the remote server.
+* *`host_name`*: O *host name* ou endereço IP do servidor remoto.
 
-* *`port_num`*: (Optional) The port number for the remote server. The default is 3306.
+* *`port_num`*: (Opcional) O *port number* para o servidor remoto. O padrão é 3306.
 
-* *`db_name`*: The name of the database holding the remote table.
+* *`db_name`*: O nome da Database que contém a tabela remota.
 
-* *`tbl_name`*: The name of the remote table. The name of the local and the remote table do not have to match.
+* *`tbl_name`*: O nome da tabela remota. O nome da tabela local e da tabela remota não precisam ser iguais (*match*).
 
-Sample connection strings:
+Exemplos de strings de conexão:
 
 ```sql
 CONNECTION='mysql://username:password@hostname:port/database/tablename'

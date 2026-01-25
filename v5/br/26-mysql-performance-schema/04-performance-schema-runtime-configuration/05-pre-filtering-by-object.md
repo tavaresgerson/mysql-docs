@@ -1,6 +1,6 @@
-### 25.4.5 Pre-Filtering by Object
+### 25.4.5 Pré-Filtragem por Objeto
 
-The [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") table controls whether the Performance Schema monitors particular table and stored program objects. The initial [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") contents look like this:
+A tabela [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") controla se o Performance Schema monitora objetos específicos de table e Stored Program. O conteúdo inicial de [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") é o seguinte:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_objects;
@@ -30,35 +30,35 @@ mysql> SELECT * FROM performance_schema.setup_objects;
 +-------------+--------------------+-------------+---------+-------+
 ```
 
-Modifications to the [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") table affect object monitoring immediately.
+Modificações na tabela [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") afetam o monitoramento de objetos imediatamente.
 
-The `OBJECT_TYPE` column indicates the type of object to which a row applies. `TABLE` filtering affects table I/O events (`wait/io/table/sql/handler` instrument) and table lock events (`wait/lock/table/sql/handler` instrument).
+A coluna `OBJECT_TYPE` indica o tipo de objeto ao qual uma linha se aplica. A filtragem `TABLE` afeta eventos de I/O de table (Instrument `wait/io/table/sql/handler`) e eventos de Lock de table (Instrument `wait/lock/table/sql/handler`).
 
-The `OBJECT_SCHEMA` and `OBJECT_NAME` columns should contain a literal schema or object name, or `'%'` to match any name.
+As colunas `OBJECT_SCHEMA` e `OBJECT_NAME` devem conter um Schema literal ou nome de objeto literal, ou `'%'` para corresponder a qualquer nome.
 
-The `ENABLED` column indicates whether matching objects are monitored, and `TIMED` indicates whether to collect timing information. Setting the `TIMED` column affects Performance Schema table contents as described in [Section 25.4.1, “Performance Schema Event Timing”](performance-schema-timing.html "25.4.1 Performance Schema Event Timing").
+A coluna `ENABLED` indica se objetos correspondentes são monitorados, e `TIMED` indica se deve ser coletada informação de tempo (timing information). A configuração da coluna `TIMED` afeta o conteúdo da tabela do Performance Schema conforme descrito na [Seção 25.4.1, “Performance Schema Event Timing”](performance-schema-timing.html "25.4.1 Performance Schema Event Timing").
 
-The effect of the default object configuration is to instrument all objects except those in the `mysql`, `INFORMATION_SCHEMA`, and `performance_schema` databases. (Tables in the `INFORMATION_SCHEMA` database are not instrumented regardless of the contents of [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table"); the row for `information_schema.%` simply makes this default explicit.)
+O efeito da configuração padrão de objetos é instrumentar todos os objetos, exceto aqueles nos Databases `mysql`, `INFORMATION_SCHEMA` e `performance_schema`. (Tables no Database `INFORMATION_SCHEMA` não são instrumentadas, independentemente do conteúdo de [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table"); a linha para `information_schema.%` simplesmente torna esse padrão explícito.)
 
-When the Performance Schema checks for a match in [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table"), it tries to find more specific matches first. For rows that match a given `OBJECT_TYPE`, the Performance Schema checks rows in this order:
+Quando o Performance Schema verifica por uma correspondência em [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table"), ele tenta encontrar as correspondências mais específicas primeiro. Para linhas que correspondem a um dado `OBJECT_TYPE`, o Performance Schema verifica as linhas nesta ordem:
 
-* Rows with `OBJECT_SCHEMA='literal'` and `OBJECT_NAME='literal'`.
+* Linhas com `OBJECT_SCHEMA='literal'` e `OBJECT_NAME='literal'`.
 
-* Rows with `OBJECT_SCHEMA='literal'` and `OBJECT_NAME='%'`.
+* Linhas com `OBJECT_SCHEMA='literal'` e `OBJECT_NAME='%'`.
 
-* Rows with `OBJECT_SCHEMA='%'` and `OBJECT_NAME='%'`.
+* Linhas com `OBJECT_SCHEMA='%'` e `OBJECT_NAME='%'`.
 
-For example, with a table `db1.t1`, the Performance Schema looks in `TABLE` rows for a match for `'db1'` and `'t1'`, then for `'db1'` and `'%'`, then for `'%'` and `'%'`. The order in which matching occurs matters because different matching [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") rows can have different `ENABLED` and `TIMED` values.
+Por exemplo, com uma table `db1.t1`, o Performance Schema procura nas linhas `TABLE` por uma correspondência para `'db1'` e `'t1'`, depois para `'db1'` e `'%'`, e então para `'%'` e `'%'`. A ordem em que a correspondência ocorre é importante porque diferentes linhas correspondentes em [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") podem ter valores `ENABLED` e `TIMED` distintos.
 
-For table-related events, the Performance Schema combines the contents of [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") with [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") to determine whether to enable instruments and whether to time enabled instruments:
+Para eventos relacionados a tables, o Performance Schema combina o conteúdo de [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") com [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") para determinar se deve habilitar Instruments e se deve medir o tempo (time) dos Instruments habilitados:
 
-* For tables that match a row in [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table"), table instruments produce events only if `ENABLED` is `YES` in both [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") and [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table").
+* Para tables que correspondem a uma linha em [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table"), os Instruments de table produzem eventos somente se `ENABLED` for `YES` em ambas as tabelas [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") e [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table").
 
-* The `TIMED` values in the two tables are combined, so that timing information is collected only when both values are `YES`.
+* Os valores `TIMED` nas duas tabelas são combinados, de modo que a informação de timing é coletada apenas quando ambos os valores são `YES`.
 
-For stored program objects, the Performance Schema takes the `ENABLED` and `TIMED` columns directly from the [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") row. There is no combining of values with [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table").
+Para objetos Stored Program, o Performance Schema utiliza as colunas `ENABLED` e `TIMED` diretamente da linha em [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table"). Não há combinação de valores com [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table").
 
-Suppose that [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") contains the following `TABLE` rows that apply to `db1`, `db2`, and `db3`:
+Suponha que [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") contenha as seguintes linhas `TABLE` que se aplicam a `db1`, `db2` e `db3`:
 
 ```sql
 +-------------+---------------+-------------+---------+-------+
@@ -72,14 +72,14 @@ Suppose that [`setup_objects`](performance-schema-setup-objects-table.html "25.1
 +-------------+---------------+-------------+---------+-------+
 ```
 
-If an object-related instrument in [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") has an `ENABLED` value of `NO`, events for the object are not monitored. If the `ENABLED` value is `YES`, event monitoring occurs according to the `ENABLED` value in the relevant [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") row:
+Se um Instrument relacionado a objetos em [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") tiver um valor `ENABLED` como `NO`, os eventos para o objeto não são monitorados. Se o valor `ENABLED` for `YES`, o monitoramento de eventos ocorre de acordo com o valor `ENABLED` na linha relevante de [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table"):
 
-* `db1.t1` events are monitored
-* `db1.t2` events are not monitored
-* `db2.t3` events are monitored
-* `db3.t4` events are not monitored
-* `db4.t5` events are monitored
+* Eventos de `db1.t1` são monitorados
+* Eventos de `db1.t2` não são monitorados
+* Eventos de `db2.t3` são monitorados
+* Eventos de `db3.t4` não são monitorados
+* Eventos de `db4.t5` são monitorados
 
-Similar logic applies for combining the `TIMED` columns from the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") and [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") tables to determine whether to collect event timing information.
+Lógica semelhante se aplica para a combinação das colunas `TIMED` das tabelas [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") e [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") para determinar se deve ser coletada informação de timing de eventos.
 
-If a persistent table and a temporary table have the same name, matching against [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") rows occurs the same way for both. It is not possible to enable monitoring for one table but not the other. However, each table is instrumented separately.
+Se uma table persistente e uma table temporária tiverem o mesmo nome, a correspondência contra as linhas de [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") ocorre da mesma maneira para ambas. Não é possível habilitar o monitoramento para uma table e não para a outra. No entanto, cada table é instrumentada separadamente.

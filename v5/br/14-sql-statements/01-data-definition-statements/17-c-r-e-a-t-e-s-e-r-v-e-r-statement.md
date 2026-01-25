@@ -1,4 +1,4 @@
-### 13.1.17 CREATE SERVER Statement
+### 13.1.17 Declaração CREATE SERVER
 
 ```sql
 CREATE SERVER server_name
@@ -16,21 +16,21 @@ option: {
 }
 ```
 
-This statement creates the definition of a server for use with the `FEDERATED` storage engine. The `CREATE SERVER` statement creates a new row in the `servers` table in the `mysql` database. This statement requires the [`SUPER`](privileges-provided.html#priv_super) privilege.
+Esta declaração cria a definição de um `SERVER` para uso com a `Storage Engine` `FEDERATED`. A declaração `CREATE SERVER` cria uma nova linha na tabela `servers` no `Database` `mysql`. Esta declaração requer o privilégio [`SUPER`](privileges-provided.html#priv_super).
 
-The `server_name` should be a unique reference to the server. Server definitions are global within the scope of the server, it is not possible to qualify the server definition to a specific database. `server_name` has a maximum length of 64 characters (names longer than 64 characters are silently truncated), and is case-insensitive. You may specify the name as a quoted string.
+O `server_name` deve ser uma referência única ao `SERVER`. As definições de `SERVER` são globais dentro do escopo do `SERVER`; não é possível qualificar a definição de `SERVER` para um `Database` específico. `server_name` tem um comprimento máximo de 64 caracteres (nomes com mais de 64 caracteres são truncados silenciosamente) e não diferencia maiúsculas de minúsculas (`case-insensitive`). Você pode especificar o nome como uma string entre aspas.
 
-The `wrapper_name` is an identifier and may be quoted with single quotation marks.
+O `wrapper_name` é um identificador e pode ser citado com aspas simples.
 
-For each `option` you must specify either a character literal or numeric literal. Character literals are UTF-8, support a maximum length of 64 characters and default to a blank (empty) string. String literals are silently truncated to 64 characters. Numeric literals must be a number between 0 and 9999, default value is 0.
+Para cada `option`, você deve especificar um literal de caractere ou um literal numérico. Literais de caractere são UTF-8, suportam um comprimento máximo de 64 caracteres e o padrão é uma string em branco (vazia). Literais de string são truncados silenciosamente para 64 caracteres. Literais numéricos devem ser um número entre 0 e 9999, e o valor padrão é 0.
 
-Note
+Nota
 
-The `OWNER` option is currently not applied, and has no effect on the ownership or operation of the server connection that is created.
+A `option` `OWNER` não é aplicada atualmente e não tem efeito sobre a propriedade ou operação da conexão de `SERVER` que é criada.
 
-The `CREATE SERVER` statement creates an entry in the `mysql.servers` table that can later be used with the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement when creating a `FEDERATED` table. The options that you specify are used to populate the columns in the `mysql.servers` table. The table columns are `Server_name`, `Host`, `Db`, `Username`, `Password`, `Port` and `Socket`.
+A declaração `CREATE SERVER` cria uma entrada na tabela `mysql.servers` que pode ser usada posteriormente com a declaração [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") ao criar uma tabela `FEDERATED`. As `options` que você especifica são usadas para preencher as colunas na tabela `mysql.servers`. As colunas da tabela são `Server_name`, `Host`, `Db`, `Username`, `Password`, `Port` e `Socket`.
 
-For example:
+Por exemplo:
 
 ```sql
 CREATE SERVER s
@@ -38,16 +38,16 @@ FOREIGN DATA WRAPPER mysql
 OPTIONS (USER 'Remote', HOST '198.51.100.106', DATABASE 'test');
 ```
 
-Be sure to specify all options necessary to establish a connection to the server. The user name, host name, and database name are mandatory. Other options might be required as well, such as password.
+Certifique-se de especificar todas as `options` necessárias para estabelecer uma conexão com o `SERVER`. O nome de usuário (`username`), nome do host (`hostname`) e nome do `Database` são obrigatórios. Outras `options` também podem ser necessárias, como a senha.
 
-The data stored in the table can be used when creating a connection to a `FEDERATED` table:
+Os dados armazenados na tabela podem ser usados ao criar uma conexão com uma tabela `FEDERATED`:
 
 ```sql
 CREATE TABLE t (s1 INT) ENGINE=FEDERATED CONNECTION='s';
 ```
 
-For more information, see [Section 15.8, “The FEDERATED Storage Engine”](federated-storage-engine.html "15.8 The FEDERATED Storage Engine").
+Para mais informações, consulte [Seção 15.8, “The FEDERATED Storage Engine”](federated-storage-engine.html "15.8 The FEDERATED Storage Engine").
 
-`CREATE SERVER` causes an implicit commit. See [Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit").
+`CREATE SERVER` causa um `COMMIT` implícito. Consulte [Seção 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit").
 
-`CREATE SERVER` is not written to the binary log, regardless of the logging format that is in use.
+`CREATE SERVER` não é escrita no `Binary Log`, independentemente do formato de log em uso.

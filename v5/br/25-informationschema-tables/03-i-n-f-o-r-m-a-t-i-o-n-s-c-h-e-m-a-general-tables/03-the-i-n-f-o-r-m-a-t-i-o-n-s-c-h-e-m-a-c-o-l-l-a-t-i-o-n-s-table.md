@@ -1,36 +1,36 @@
-### 24.3.3 The INFORMATION_SCHEMA COLLATIONS Table
+### 24.3.3 A Tabela COLLATIONS do INFORMATION_SCHEMA
 
-The [`COLLATIONS`](information-schema-collations-table.html "24.3.3 The INFORMATION_SCHEMA COLLATIONS Table") table provides information about collations for each character set.
+A tabela [`COLLATIONS`](information-schema-collations-table.html "24.3.3 A Tabela COLLATIONS do INFORMATION_SCHEMA") fornece informações sobre collations para cada character set.
 
-The [`COLLATIONS`](information-schema-collations-table.html "24.3.3 The INFORMATION_SCHEMA COLLATIONS Table") table has these columns:
+A tabela [`COLLATIONS`](information-schema-collations-table.html "24.3.3 A Tabela COLLATIONS do INFORMATION_SCHEMA") possui estas colunas:
 
 * `COLLATION_NAME`
 
-  The collation name.
+  O nome da collation.
 
 * `CHARACTER_SET_NAME`
 
-  The name of the character set with which the collation is associated.
+  O nome do character set ao qual a collation está associada.
 
 * `ID`
 
-  The collation ID.
+  O ID da collation.
 
 * `IS_DEFAULT`
 
-  Whether the collation is the default for its character set.
+  Indica se a collation é o padrão (default) para o seu character set.
 
 * `IS_COMPILED`
 
-  Whether the character set is compiled into the server.
+  Indica se o character set está compilado no servidor.
 
 * `SORTLEN`
 
-  This is related to the amount of memory required to sort strings expressed in the character set.
+  Está relacionado à quantidade de memória necessária para ordenar strings expressas no character set.
 
-#### Notes
+#### Notas
 
-Collation information is also available from the [`SHOW COLLATION`](show-collation.html "13.7.5.4 SHOW COLLATION Statement") statement. See [Section 13.7.5.4, “SHOW COLLATION Statement”](show-collation.html "13.7.5.4 SHOW COLLATION Statement"). The following statements are equivalent:
+Informações sobre Collation também estão disponíveis na instrução [`SHOW COLLATION`](show-collation.html "13.7.5.4 SHOW COLLATION Statement"). Consulte a [Seção 13.7.5.4, “SHOW COLLATION Statement”](show-collation.html "13.7.5.4 SHOW COLLATION Statement"). As seguintes instruções são equivalentes:
 
 ```sql
 SELECT COLLATION_NAME FROM INFORMATION_SCHEMA.COLLATIONS

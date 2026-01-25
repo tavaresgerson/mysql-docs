@@ -1,22 +1,22 @@
-#### 12.16.7.5 GeometryCollection Property Functions
+#### 12.16.7.5 Funções de Propriedade de GeometryCollection
 
-These functions return properties of `GeometryCollection` values.
+Estas funções retornam propriedades dos valores de `GeometryCollection`.
 
 * `GeometryN(gc, N)`
 
-  `ST_GeometryN()` and `GeometryN()` are synonyms. For more information, see the description of `ST_GeometryN()`.
+  `ST_GeometryN()` e `GeometryN()` são sinônimos. Para mais informações, consulte a descrição de `ST_GeometryN()`.
 
-  `GeometryN()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_GeometryN()` instead.
+  `GeometryN()` está obsoleto (deprecated); espere que ele seja removido em um futuro lançamento do MySQL. Use `ST_GeometryN()` em seu lugar.
 
 * `NumGeometries(gc)`
 
-  `ST_NumGeometries()` and `NumGeometries()` are synonyms. For more information, see the description of `ST_NumGeometries()`.
+  `ST_NumGeometries()` e `NumGeometries()` são sinônimos. Para mais informações, consulte a descrição de `ST_NumGeometries()`.
 
-  `NumGeometries()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_NumGeometries()` instead.
+  `NumGeometries()` está obsoleto (deprecated); espere que ele seja removido em um futuro lançamento do MySQL. Use `ST_NumGeometries()` em seu lugar.
 
 * `ST_GeometryN(gc, N)`
 
-  Returns the *`N`*-th geometry in the `GeometryCollection` value *`gc`*. Geometries are numbered beginning with 1. If any argument is `NULL` or the geometry argument is an empty geometry, the return value is `NULL`.
+  Retorna a *`N`*-ésima geometry no valor `GeometryCollection` *`gc`*. As Geometries são numeradas começando com 1. Se qualquer argumento for `NULL` ou o argumento geometry for uma geometry vazia, o valor de retorno será `NULL`.
 
   ```sql
   mysql> SET @gc = 'GeometryCollection(Point(1 1),LineString(2 2, 3 3))';
@@ -28,11 +28,11 @@ These functions return properties of `GeometryCollection` values.
   +-------------------------------------------------+
   ```
 
-  `ST_GeometryN()` and `GeometryN()` are synonyms.
+  `ST_GeometryN()` e `GeometryN()` são sinônimos.
 
 * `ST_NumGeometries(gc)`
 
-  Returns the number of geometries in the `GeometryCollection` value *`gc`*. If the argument is `NULL` or an empty geometry, the return value is `NULL`.
+  Retorna o número de geometries no valor `GeometryCollection` *`gc`*. Se o argumento for `NULL` ou uma geometry vazia, o valor de retorno será `NULL`.
 
   ```sql
   mysql> SET @gc = 'GeometryCollection(Point(1 1),LineString(2 2, 3 3))';
@@ -44,4 +44,4 @@ These functions return properties of `GeometryCollection` values.
   +----------------------------------------+
   ```
 
-  `ST_NumGeometries()` and `NumGeometries()` are synonyms.
+  `ST_NumGeometries()` e `NumGeometries()` são sinônimos.

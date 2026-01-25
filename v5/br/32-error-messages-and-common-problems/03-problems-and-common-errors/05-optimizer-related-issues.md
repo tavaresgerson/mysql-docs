@@ -1,28 +1,28 @@
-### B.3.5 Optimizer-Related Issues
+### B.3.5 Problemas Relacionados ao Optimizer
 
-MySQL uses a cost-based optimizer to determine the best way to resolve a query. In many cases, MySQL can calculate the best possible query plan, but sometimes MySQL does not have enough information about the data at hand and has to make “educated” guesses about the data.
+O MySQL utiliza um Optimizer baseado em custo para determinar a melhor maneira de resolver uma Query. Em muitos casos, o MySQL pode calcular o melhor plano de Query possível, mas, às vezes, o MySQL não tem informações suficientes sobre os dados disponíveis e precisa fazer suposições "embasadas" sobre os dados.
 
-For the cases when MySQL does not do the "right" thing, tools that you have available to help MySQL are:
+Nos casos em que o MySQL não faz a coisa "certa", as ferramentas que você tem disponíveis para ajudar o MySQL são:
 
-* Use the [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") statement to get information about how MySQL processes a query. To use it, just add the keyword [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") to the front of your [`SELECT`](select.html "13.2.9 SELECT Statement") statement:
+* Use a instrução [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") para obter informações sobre como o MySQL processa uma Query. Para usá-la, basta adicionar a palavra-chave [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") na frente da sua instrução [`SELECT`](select.html "13.2.9 SELECT Statement"):
 
   ```sql
   mysql> EXPLAIN SELECT * FROM t1, t2 WHERE t1.i = t2.i;
   ```
 
-  [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") is discussed in more detail in [Section 13.8.2, “EXPLAIN Statement”](explain.html "13.8.2 EXPLAIN Statement").
+  [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") é discutido em mais detalhes na [Seção 13.8.2, “EXPLAIN Statement”](explain.html "13.8.2 EXPLAIN Statement").
 
-* Use `ANALYZE TABLE tbl_name` to update the key distributions for the scanned table. See [Section 13.7.2.1, “ANALYZE TABLE Statement”](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement").
+* Use `ANALYZE TABLE tbl_name` para atualizar as distribuições de Index (chaves) para a tabela escaneada. Consulte a [Seção 13.7.2.1, “ANALYZE TABLE Statement”](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement").
 
-* Use `FORCE INDEX` for the scanned table to tell MySQL that table scans are very expensive compared to using the given index:
+* Use `FORCE INDEX` para a tabela escaneada para informar ao MySQL que os Table Scans são muito caros em comparação ao uso do Index fornecido:
 
   ```sql
   SELECT * FROM t1, t2 FORCE INDEX (index_for_column)
   WHERE t1.col_name=t2.col_name;
   ```
 
-  `USE INDEX` and `IGNORE INDEX` may also be useful. See [Section 8.9.4, “Index Hints”](index-hints.html "8.9.4 Index Hints").
+  `USE INDEX` e `IGNORE INDEX` também podem ser úteis. Consulte a [Seção 8.9.4, “Index Hints”](index-hints.html "8.9.4 Index Hints").
 
-* Global and table-level `STRAIGHT_JOIN`. See [Section 13.2.9, “SELECT Statement”](select.html "13.2.9 SELECT Statement").
+* `STRAIGHT_JOIN` global e no nível de tabela. Consulte a [Seção 13.2.9, “SELECT Statement”](select.html "13.2.9 SELECT Statement").
 
-* You can tune global or thread-specific system variables. For example, start [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with the [`--max-seeks-for-key=1000`](server-system-variables.html#sysvar_max_seeks_for_key) option or use `SET max_seeks_for_key=1000` to tell the optimizer to assume that no key scan causes more than 1,000 key seeks. See [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").
+* Você pode ajustar variáveis de sistema globais ou específicas de Thread. Por exemplo, inicie o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") com a opção [`--max-seeks-for-key=1000`](server-system-variables.html#sysvar_max_seeks_for_key) ou use `SET max_seeks_for_key=1000` para informar ao Optimizer que nenhum Key Scan causa mais de 1.000 Key Seeks. Consulte a [Seção 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").

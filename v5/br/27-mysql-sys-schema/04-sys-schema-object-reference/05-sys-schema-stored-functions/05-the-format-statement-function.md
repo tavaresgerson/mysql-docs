@@ -1,28 +1,28 @@
-#### 26.4.5.5 The format_statement() Function
+#### 26.4.5.5 A Função format_statement()
 
-Given a string (normally representing an SQL statement), reduces it to the length given by the `statement_truncate_len` configuration option, and returns the result. No truncation occurs if the string is shorter than `statement_truncate_len`. Otherwise, the middle part of the string is replaced by an ellipsis (`...`).
+Dada uma `string` (normalmente representando um `SQL statement`), a função a reduz ao comprimento definido pela `configuration option` `statement_truncate_len` e retorna o resultado. Nenhuma truncagem ocorre se a `string` for mais curta que `statement_truncate_len`. Caso contrário, a parte central da `string` é substituída por uma elipse (`...`).
 
-This function is useful for formatting possibly lengthy statements retrieved from Performance Schema tables to a known fixed maximum length.
+Esta função é útil para formatar `statements` possivelmente longos, recuperados de tabelas do Performance Schema, para um comprimento máximo fixo conhecido.
 
-##### Parameters
+##### Parâmetros
 
-* `statement LONGTEXT`: The statement to format.
+* `statement LONGTEXT`: O `statement` a ser formatado.
 
-##### Configuration Options
+##### Opções de Configuração
 
-`format_statement()` Function") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 26.4.2.1, “The sys_config Table”):
+A operação da Função `format_statement()` pode ser modificada usando as seguintes opções de configuração ou suas variáveis definidas pelo usuário correspondentes (consulte a Seção 26.4.2.1, “A Tabela sys_config”):
 
 * `statement_truncate_len`, `@sys.statement_truncate_len`
 
-  The maximum length of statements returned by the `format_statement()` Function") function. Longer statements are truncated to this length. The default is 64.
+  O comprimento máximo dos `statements` retornados pela função `format_statement()`. `Statements` mais longos são truncados para este comprimento. O padrão é 64.
 
-##### Return Value
+##### Valor de Retorno
 
-A `LONGTEXT` value.
+Um valor `LONGTEXT`.
 
-##### Example
+##### Exemplo
 
-By default, `format_statement()` Function") truncates statements to be no more than 64 characters. Setting `@sys.statement_truncate_len` changes the truncation length for the current session:
+Por padrão, `format_statement()` trunca `statements` para não terem mais que 64 caracteres. Definir `@sys.statement_truncate_len` altera o comprimento de truncagem para a `session` atual:
 
 ```sql
 mysql> SET @stmt = 'SELECT variable, value, set_time, set_by FROM sys_config';

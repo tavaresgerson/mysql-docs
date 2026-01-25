@@ -1,20 +1,20 @@
-## 12.5 Flow Control Functions
+## 12.5 Funções de Controle de Fluxo
 
-**Table 12.7 Flow Control Operators**
+**Tabela 12.7 Operadores de Controle de Fluxo**
 
-<table frame="box" rules="all" summary="A reference that lists flow control operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>CASE</code></td> <td> Case operator </td> </tr><tr><td><code>IF()</code></td> <td> If/else construct </td> </tr><tr><td><code>IFNULL()</code></td> <td> Null if/else construct </td> </tr><tr><td><code>NULLIF()</code></td> <td> Return NULL if expr1 = expr2 </td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista operadores de controle de fluxo."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>CASE</code></td> <td> Operador CASE </td> </tr><tr><td><code>IF()</code></td> <td> Construto If/else </td> </tr><tr><td><code>IFNULL()</code></td> <td> Construto If/else para NULL </td> </tr><tr><td><code>NULLIF()</code></td> <td> Retorna NULL se expr1 = expr2 </td> </tr> </tbody></table>
 
 * `CASE value WHEN compare_value THEN result [WHEN compare_value THEN result ...] [ELSE result] END`
 
   `CASE WHEN condition THEN result [WHEN condition THEN result ...] [ELSE result] END`
 
-  The first `CASE` syntax returns the *`result`* for the first `value=compare_value` comparison that is true. The second syntax returns the result for the first condition that is true. If no comparison or condition is true, the result after `ELSE` is returned, or `NULL` if there is no `ELSE` part.
+  A primeira sintaxe `CASE` retorna o *`result`* para a primeira comparação `value=compare_value` que for verdadeira. A segunda sintaxe retorna o resultado para a primeira condição que for verdadeira. Se nenhuma comparação ou condição for verdadeira, o resultado após `ELSE` é retornado, ou `NULL` se não houver parte `ELSE`.
 
-  Note
+  Nota
 
-  The syntax of the `CASE` *operator* described here differs slightly from that of the SQL `CASE` *statement* described in Section 13.6.5.1, “CASE Statement”, for use inside stored programs. The `CASE` statement cannot have an `ELSE NULL` clause, and it is terminated with `END CASE` instead of `END`.
+  A sintaxe do *operador* `CASE` descrita aqui difere ligeiramente da do *statement* SQL `CASE` descrito na Seção 13.6.5.1, “CASE Statement”, para uso em stored programs. O statement `CASE` não pode ter uma cláusula `ELSE NULL`, e é finalizado com `END CASE` em vez de `END`.
 
-  The return type of a `CASE` expression result is the aggregated type of all result values.
+  O tipo de retorno do resultado de uma expressão `CASE` é o tipo agregado de todos os valores de resultado.
 
   ```sql
   mysql> SELECT CASE 1 WHEN 1 THEN 'one'
@@ -29,23 +29,23 @@
 
 * `IF(expr1,expr2,expr3)`
 
-  If *`expr1`* is `TRUE` (`expr1 <> 0` and `expr1 IS NOT NULL`), `IF()` returns *`expr2`*. Otherwise, it returns *`expr3`*.
+  Se *`expr1`* for `TRUE` (`expr1 <> 0` e `expr1 IS NOT NULL`), `IF()` retorna *`expr2`*. Caso contrário, retorna *`expr3`*.
 
-  Note
+  Nota
 
-  There is also an `IF` *statement*, which differs from the `IF()` *function* described here. See Section 13.6.5.2, “IF Statement”.
+  Existe também um *statement* `IF`, que difere da *função* `IF()` descrita aqui. Consulte a Seção 13.6.5.2, “IF Statement”.
 
-  If only one of *`expr2`* or *`expr3`* is explicitly `NULL`, the result type of the `IF()` function is the type of the non-`NULL` expression.
+  Se apenas uma das expressões, *`expr2`* ou *`expr3`*, for explicitamente `NULL`, o tipo de resultado da função `IF()` é o tipo da expressão não-`NULL`.
 
-  The default return type of `IF()` (which may matter when it is stored into a temporary table) is calculated as follows:
+  O tipo de retorno padrão de `IF()` (o que pode ser relevante quando armazenado em uma temporary table) é calculado da seguinte forma:
 
-  + If *`expr2`* or *`expr3`* produce a string, the result is a string.
+  + Se *`expr2`* ou *`expr3`* produzirem uma string, o resultado é uma string.
 
-    If *`expr2`* and *`expr3`* are both strings, the result is case-sensitive if either string is case-sensitive.
+    Se *`expr2`* e *`expr3`* forem ambas strings, o resultado fará distinção entre maiúsculas e minúsculas (case-sensitive) se qualquer uma das strings for case-sensitive.
 
-  + If *`expr2`* or *`expr3`* produce a floating-point value, the result is a floating-point value.
+  + Se *`expr2`* ou *`expr3`* produzirem um floating-point value, o resultado é um floating-point value.
 
-  + If *`expr2`* or *`expr3`* produce an integer, the result is an integer.
+  + Se *`expr2`* ou *`expr3`* produzirem um inteiro, o resultado é um inteiro.
 
   ```sql
   mysql> SELECT IF(1>2,2,3);
@@ -58,7 +58,7 @@
 
 * `IFNULL(expr1,expr2)`
 
-  If *`expr1`* is not `NULL`, `IFNULL()` returns *`expr1`*; otherwise it returns *`expr2`*.
+  Se *`expr1`* não for `NULL`, `IFNULL()` retorna *`expr1`*; caso contrário, retorna *`expr2`*.
 
   ```sql
   mysql> SELECT IFNULL(1,0);
@@ -71,7 +71,7 @@
           -> 'yes'
   ```
 
-  The default return type of `IFNULL(expr1,expr2)` is the more “general” of the two expressions, in the order `STRING`, `REAL`, or `INTEGER`. Consider the case of a table based on expressions or where MySQL must internally store a value returned by `IFNULL()` in a temporary table:
+  O tipo de retorno padrão de `IFNULL(expr1,expr2)` é o mais “geral” das duas expressões, na ordem `STRING`, `REAL`, ou `INTEGER`. Considere o caso de uma table baseada em expressões ou onde o MySQL deve armazenar internamente um valor retornado por `IFNULL()` em uma temporary table:
 
   ```sql
   mysql> CREATE TABLE tmp SELECT IFNULL(1,'test') AS test;
@@ -83,13 +83,13 @@
   +-------+--------------+------+-----+---------+-------+
   ```
 
-  In this example, the type of the `test` column is `VARBINARY(4)` (a string type).
+  Neste exemplo, o tipo da coluna `test` é `VARBINARY(4)` (um tipo string).
 
 * `NULLIF(expr1,expr2)`
 
-  Returns `NULL` if `expr1 = expr2` is true, otherwise returns *`expr1`*. This is the same as `CASE WHEN expr1 = expr2 THEN NULL ELSE expr1 END`.
+  Retorna `NULL` se `expr1 = expr2` for verdadeiro, caso contrário, retorna *`expr1`*. Isso é o mesmo que `CASE WHEN expr1 = expr2 THEN NULL ELSE expr1 END`.
 
-  The return value has the same type as the first argument.
+  O valor de retorno tem o mesmo tipo que o primeiro argumento.
 
   ```sql
   mysql> SELECT NULLIF(1,1);
@@ -98,6 +98,6 @@
           -> 1
   ```
 
-  Note
+  Nota
 
-  MySQL evaluates *`expr1`* twice if the arguments are not equal.
+  O MySQL avalia *`expr1`* duas vezes se os argumentos não forem iguais.

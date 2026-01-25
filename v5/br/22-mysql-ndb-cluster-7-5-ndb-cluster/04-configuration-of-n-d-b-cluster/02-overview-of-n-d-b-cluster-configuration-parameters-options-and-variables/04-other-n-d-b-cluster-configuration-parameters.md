@@ -1,81 +1,48 @@
-#### 21.4.2.4 Other NDB Cluster Configuration Parameters
+#### 21.4.2.4 Outros Parâmetros de Configuração do NDB Cluster
 
-The listings in this section provide information about parameters used in the `[computer]`, `[tcp]`, and `[shm]` sections of a `config.ini` file for configuring NDB Cluster. For detailed descriptions and additional information about individual parameters, see [Section 21.4.3.10, “NDB Cluster TCP/IP Connections”](mysql-cluster-tcp-definition.html "21.4.3.10 NDB Cluster TCP/IP Connections"), or [Section 21.4.3.12, “NDB Cluster Shared Memory Connections”](mysql-cluster-shm-definition.html "21.4.3.12 NDB Cluster Shared Memory Connections"), as appropriate.
+As listas nesta seção fornecem informações sobre os parâmetros usados nas seções `[computer]`, `[tcp]` e `[shm]` de um arquivo `config.ini` para configurar o NDB Cluster. Para descrições detalhadas e informações adicionais sobre parâmetros individuais, consulte [Section 21.4.3.10, “NDB Cluster TCP/IP Connections”](mysql-cluster-tcp-definition.html "21.4.3.10 NDB Cluster TCP/IP Connections"), ou [Section 21.4.3.12, “NDB Cluster Shared Memory Connections”](mysql-cluster-shm-definition.html "21.4.3.12 NDB Cluster Shared Memory Connections"), conforme apropriado.
 
-The following parameters apply to the `config.ini` file's `[computer]` section:
+Os seguintes parâmetros se aplicam à seção `[computer]` do arquivo `config.ini`:
 
-* `HostName`: Host name or IP address of this computer.
+* `HostName`: Host name ou IP address deste computador.
+* `Id`: Identificador único para este computador.
 
-* `Id`: Unique identifier for this computer.
+Os seguintes parâmetros se aplicam à seção `[tcp]` do arquivo `config.ini`:
 
-The following parameters apply to the `config.ini` file's `[tcp]` section:
-
-* `Checksum`: If checksum is enabled, all signals between nodes are checked for errors.
-
-* `Group`: Used for group proximity; smaller value is interpreted as being closer.
-
-* `HostName1`: Name or IP address of first of two computers joined by TCP connection.
-
-* `HostName2`: Name or IP address of second of two computers joined by TCP connection.
-
-* `NodeId1`: ID of node (data node, API node, or management node) on one side of connection.
-
-* `NodeId2`: ID of node (data node, API node, or management node) on one side of connection.
-
-* `NodeIdServer`: Set server side of TCP connection.
-
-* `OverloadLimit`: When more than this many unsent bytes are in send buffer, connection is considered overloaded.
-
-* `PortNumber`: Port used for TCP transporter.
-
-* `PreSendChecksum`: If this parameter and Checksum are both enabled, perform pre-send checksum checks, and check all TCP signals between nodes for errors.
-
+* `Checksum`: Se o checksum estiver habilitado, todos os sinais entre os nodes são verificados quanto a erros.
+* `Group`: Usado para proximidade de grupo; um valor menor é interpretado como estando mais próximo.
+* `HostName1`: Nome ou IP address do primeiro de dois computadores unidos pela conexão TCP.
+* `HostName2`: Nome ou IP address do segundo de dois computadores unidos pela conexão TCP.
+* `NodeId1`: ID do node (data node, API node ou management node) em um lado da connection.
+* `NodeId2`: ID do node (data node, API node ou management node) em um lado da connection.
+* `NodeIdServer`: Define o lado server da conexão TCP.
+* `OverloadLimit`: Quando houver mais do que este número de bytes não enviados no send buffer, a connection é considerada sobrecarregada.
+* `PortNumber`: Porta usada para o transporter TCP.
+* `PreSendChecksum`: Se este parâmetro e Checksum estiverem ambos habilitados, executa verificações de pre-send checksum e verifica todos os sinais TCP entre os nodes quanto a erros.
 * `Proxy`: ....
+* `ReceiveBufferMemory`: Bytes do buffer para sinais recebidos por este node.
+* `SendBufferMemory`: Bytes do buffer TCP para sinais enviados deste node.
+* `SendSignalId`: Envia o ID em cada sinal. Usado em arquivos trace. O padrão é true em builds de debug.
+* `TCP_MAXSEG_SIZE`: Valor usado para TCP_MAXSEG.
+* `TCP_RCV_BUF_SIZE`: Valor usado para SO_RCVBUF.
+* `TCP_SND_BUF_SIZE`: Valor usado para SO_SNDBUF.
+* `TcpBind_INADDR_ANY`: Faz o Bind de InAddrAny em vez do host name para a parte server da connection.
 
-* `ReceiveBufferMemory`: Bytes of buffer for signals received by this node.
+Os seguintes parâmetros se aplicam à seção `[shm]` do arquivo `config.ini`:
 
-* `SendBufferMemory`: Bytes of TCP buffer for signals sent from this node.
-
-* `SendSignalId`: Sends ID in each signal. Used in trace files. Defaults to true in debug builds.
-
-* `TCP_MAXSEG_SIZE`: Value used for TCP_MAXSEG.
-
-* `TCP_RCV_BUF_SIZE`: Value used for SO_RCVBUF.
-
-* `TCP_SND_BUF_SIZE`: Value used for SO_SNDBUF.
-
-* `TcpBind_INADDR_ANY`: Bind InAddrAny instead of host name for server part of connection.
-
-The following parameters apply to the `config.ini` file's `[shm]` section:
-
-* `Checksum`: If checksum is enabled, all signals between nodes are checked for errors.
-
-* `Group`: Used for group proximity; smaller value is interpreted as being closer.
-
-* `HostName1`: Name or IP address of first of two computers joined by SHM connection.
-
-* `HostName2`: Name or IP address of second of two computers joined by SHM connection.
-
-* `NodeId1`: ID of node (data node, API node, or management node) on one side of connection.
-
-* `NodeId2`: ID of node (data node, API node, or management node) on one side of connection.
-
-* `NodeIdServer`: Set server side of SHM connection.
-
-* `OverloadLimit`: When more than this many unsent bytes are in send buffer, connection is considered overloaded.
-
-* `PortNumber`: Port used for SHM transporter.
-
-* `PreSendChecksum`: If this parameter and Checksum are both enabled, perform pre-send checksum checks, and check all SHM signals between nodes for errors.
-
-* `SendBufferMemory`: Bytes in shared memory buffer for signals sent from this node.
-
-* `SendSignalId`: Sends ID in each signal. Used in trace files.
-
-* `ShmKey`: Shared memory key; when set to 1, this is calculated by NDB.
-
-* `ShmSpinTime`: When receiving, number of microseconds to spin before sleeping.
-
-* `ShmSize`: Size of shared memory segment.
-
-* `Signum`: Signal number to be used for signalling.
+* `Checksum`: Se o checksum estiver habilitado, todos os sinais entre os nodes são verificados quanto a erros.
+* `Group`: Usado para proximidade de grupo; um valor menor é interpretado como estando mais próximo.
+* `HostName1`: Nome ou IP address do primeiro de dois computadores unidos pela conexão SHM.
+* `HostName2`: Nome ou IP address do segundo de dois computadores unidos pela conexão SHM.
+* `NodeId1`: ID do node (data node, API node ou management node) em um lado da connection.
+* `NodeId2`: ID do node (data node, API node ou management node) em um lado da connection.
+* `NodeIdServer`: Define o lado server da conexão SHM.
+* `OverloadLimit`: Quando houver mais do que este número de bytes não enviados no send buffer, a connection é considerada sobrecarregada.
+* `PortNumber`: Porta usada para o transporter SHM.
+* `PreSendChecksum`: Se este parâmetro e Checksum estiverem ambos habilitados, executa verificações de pre-send checksum e verifica todos os sinais SHM entre os nodes quanto a erros.
+* `SendBufferMemory`: Bytes no shared memory buffer para sinais enviados deste node.
+* `SendSignalId`: Envia o ID em cada sinal. Usado em arquivos trace.
+* `ShmKey`: Chave de shared memory; quando definido como 1, é calculada pelo NDB.
+* `ShmSpinTime`: Ao receber, número de microssegundos para spin antes de sleep.
+* `ShmSize`: Tamanho do segmento de shared memory.
+* `Signum`: Número do sinal (signal number) a ser usado para sinalização (signalling).

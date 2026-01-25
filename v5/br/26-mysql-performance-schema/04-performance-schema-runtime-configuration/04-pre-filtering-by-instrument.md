@@ -1,6 +1,6 @@
-### 25.4.4 Pre-Filtering by Instrument
+### 25.4.4 Pré-Filtragem por Instrumento
 
-The [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table lists the available instruments:
+A tabela [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") lista os instrumentos disponíveis:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_instruments;
@@ -35,24 +35,24 @@ mysql> SELECT * FROM performance_schema.setup_instruments;
 ...
 ```
 
-To control whether an instrument is enabled, set its `ENABLED` column to `YES` or `NO`. To configure whether to collect timing information for an enabled instrument, set its `TIMED` value to `YES` or `NO`. Setting the `TIMED` column affects Performance Schema table contents as described in [Section 25.4.1, “Performance Schema Event Timing”](performance-schema-timing.html "25.4.1 Performance Schema Event Timing").
+Para controlar se um instrumento está habilitado, defina sua coluna `ENABLED` como `YES` ou `NO`. Para configurar se as informações de tempo (timing) devem ser coletadas para um instrumento habilitado, defina seu valor `TIMED` como `YES` ou `NO`. Definir a coluna `TIMED` afeta o conteúdo da tabela Performance Schema conforme descrito na [Seção 25.4.1, “Performance Schema Event Timing”](performance-schema-timing.html "25.4.1 Performance Schema Event Timing").
 
-Modifications to most [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") rows affect monitoring immediately. For some instruments, modifications are effective only at server startup; changing them at runtime has no effect. This affects primarily mutexes, conditions, and rwlocks in the server, although there may be other instruments for which this is true.
+Modificações na maioria das linhas da tabela [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") afetam o monitoramento imediatamente. Para alguns instrumentos, as modificações são efetivas apenas na inicialização do server; alterá-los em runtime não tem efeito. Isso afeta principalmente mutexes, conditions e rwlocks no server, embora possa haver outros instrumentos para os quais isso seja verdade.
 
-The [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table provides the most basic form of control over event production. To further refine event production based on the type of object or thread being monitored, other tables may be used as described in [Section 25.4.3, “Event Pre-Filtering”](performance-schema-pre-filtering.html "25.4.3 Event Pre-Filtering").
+A tabela [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") fornece a forma mais básica de controle sobre a produção de eventos. Para refinar ainda mais a produção de eventos com base no tipo de objeto ou Thread monitorado, outras tabelas podem ser usadas conforme descrito na [Seção 25.4.3, “Event Pre-Filtering”](performance-schema-pre-filtering.html "25.4.3 Event Pre-Filtering").
 
-The following examples demonstrate possible operations on the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table. These changes, like other pre-filtering operations, affect all users. Some of these queries use the [`LIKE`](string-comparison-functions.html#operator_like) operator and a pattern match instrument names. For additional information about specifying patterns to select instruments, see [Section 25.4.9, “Naming Instruments or Consumers for Filtering Operations”](performance-schema-filtering-names.html "25.4.9 Naming Instruments or Consumers for Filtering Operations").
+Os exemplos a seguir demonstram operações possíveis na tabela [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table"). Essas alterações, assim como outras operações de pré-filtragem, afetam todos os usuários. Algumas dessas Querys usam o operador [`LIKE`](string-comparison-functions.html#operator_like) e um padrão para corresponder aos nomes dos instrumentos. Para informações adicionais sobre a especificação de padrões para selecionar instrumentos, consulte a [Seção 25.4.9, “Naming Instruments or Consumers for Filtering Operations”](performance-schema-filtering-names.html "25.4.9 Naming Instruments or Consumers for Filtering Operations").
 
-* Disable all instruments:
+* Desabilitar todos os instrumentos:
 
   ```sql
   UPDATE performance_schema.setup_instruments
   SET ENABLED = 'NO';
   ```
 
-  Now no events are collected.
+  Agora, nenhum evento é coletado.
 
-* Disable all file instruments, adding them to the current set of disabled instruments:
+* Desabilitar todos os instrumentos de arquivo, adicionando-os ao conjunto atual de instrumentos desabilitados:
 
   ```sql
   UPDATE performance_schema.setup_instruments
@@ -60,21 +60,21 @@ The following examples demonstrate possible operations on the [`setup_instrument
   WHERE NAME LIKE 'wait/io/file/%';
   ```
 
-* Disable only file instruments, enable all other instruments:
+* Desabilitar apenas instrumentos de arquivo, habilitar todos os outros instrumentos:
 
   ```sql
   UPDATE performance_schema.setup_instruments
   SET ENABLED = IF(NAME LIKE 'wait/io/file/%', 'NO', 'YES');
   ```
 
-* Enable all but those instruments in the `mysys` library:
+* Habilitar todos, exceto aqueles instrumentos na biblioteca `mysys`:
 
   ```sql
   UPDATE performance_schema.setup_instruments
   SET ENABLED = CASE WHEN NAME LIKE '%/mysys/%' THEN 'YES' ELSE 'NO' END;
   ```
 
-* Disable a specific instrument:
+* Desabilitar um instrumento específico:
 
   ```sql
   UPDATE performance_schema.setup_instruments
@@ -82,7 +82,7 @@ The following examples demonstrate possible operations on the [`setup_instrument
   WHERE NAME = 'wait/synch/mutex/mysys/TMPDIR_mutex';
   ```
 
-* To toggle the state of an instrument, “flip” its `ENABLED` value:
+* Para alternar o estado de um instrumento, "inverta" seu valor `ENABLED`:
 
   ```sql
   UPDATE performance_schema.setup_instruments
@@ -90,7 +90,7 @@ The following examples demonstrate possible operations on the [`setup_instrument
   WHERE NAME = 'wait/synch/mutex/mysys/TMPDIR_mutex';
   ```
 
-* Disable timing for all events:
+* Desabilitar timing para todos os eventos:
 
   ```sql
   UPDATE performance_schema.setup_instruments

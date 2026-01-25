@@ -1,10 +1,10 @@
-#### 11.4.2.8 GeometryCollection Class
+#### 11.4.2.8 Classe GeometryCollection
 
-A `GeometryCollection` is a geometry that is a collection of zero or more geometries of any class.
+Uma `GeometryCollection` é uma geometria que representa uma coleção de zero ou mais geometrias de qualquer classe.
 
-All the elements in a geometry collection must be in the same spatial reference system (that is, in the same coordinate system). There are no other constraints on the elements of a geometry collection, although the subclasses of `GeometryCollection` described in the following sections may restrict membership. Restrictions may be based on:
+Todos os elementos em uma coleção de geometria devem estar no mesmo sistema de referência espacial (ou seja, no mesmo sistema de coordenadas). Não há outras restrições sobre os elementos de uma coleção de geometria, embora as subclasses de `GeometryCollection` descritas nas seções a seguir possam restringir a participação. As restrições podem ser baseadas em:
 
-* Element type (for example, a `MultiPoint` may contain only `Point` elements)
+* Tipo de elemento (por exemplo, um `MultiPoint` pode conter apenas elementos `Point`)
 
-* Dimension
-* Constraints on the degree of spatial overlap between elements
+* Dimensão
+* Restrições sobre o grau de sobreposição espacial entre elementos

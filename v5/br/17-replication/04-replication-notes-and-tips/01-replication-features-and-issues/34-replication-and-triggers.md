@@ -1,28 +1,28 @@
-#### 16.4.1.34 Replication and Triggers
+#### 16.4.1.34 Replicação e Triggers
 
-With statement-based replication, triggers executed on the source also execute on the replica. With row-based replication, triggers executed on the source do not execute on the replica. Instead, the row changes on the source resulting from trigger execution are replicated and applied on the replica.
+Com a replicação baseada em Statement (statement-based replication), os Triggers executados na Fonte também são executados na Réplica. Com a replicação baseada em Row (row-based replication), os Triggers executados na Fonte não são executados na Réplica. Em vez disso, as alterações de Row na Fonte, resultantes da execução do Trigger, são replicadas e aplicadas na Réplica.
 
-This behavior is by design. If under row-based replication the replica applied the triggers as well as the row changes caused by them, the changes would in effect be applied twice on the replica, leading to different data on the source and the replica.
+Este comportamento é proposital (by design). Se, sob a replicação baseada em Row, a Réplica aplicasse tanto os Triggers quanto as alterações de Row causadas por eles, as alterações seriam, na verdade, aplicadas duas vezes na Réplica, resultando em dados diferentes na Fonte e na Réplica.
 
-If you want triggers to execute on both the source and the replica, perhaps because you have different triggers on the source and replica, you must use statement-based replication. However, to enable replica-side triggers, it is not necessary to use statement-based replication exclusively. It is sufficient to switch to statement-based replication only for those statements where you want this effect, and to use row-based replication the rest of the time.
+Se você deseja que os Triggers sejam executados tanto na Fonte quanto na Réplica — talvez porque você tenha Triggers diferentes em cada um —, você deve usar a replicação baseada em Statement. Contudo, para habilitar Triggers do lado da Réplica, não é necessário usar a replicação baseada em Statement exclusivamente. É suficiente alternar para a replicação baseada em Statement apenas para os Statements onde você deseja esse efeito, e usar a replicação baseada em Row no restante do tempo.
 
-A statement invoking a trigger (or function) that causes an update to an `AUTO_INCREMENT` column is not replicated correctly using statement-based replication. MySQL 5.7 marks such statements as unsafe. (Bug #45677)
+Um Statement que invoca um Trigger (ou função) que causa uma atualização em uma coluna `AUTO_INCREMENT` não é replicado corretamente usando a replicação baseada em Statement. O MySQL 5.7 marca tais Statements como inseguros (unsafe). (Bug #45677)
 
-A trigger can have triggers for different combinations of trigger event ([`INSERT`](insert.html "13.2.5 INSERT Statement"), [`UPDATE`](update.html "13.2.11 UPDATE Statement"), [`DELETE`](delete.html "13.2.2 DELETE Statement")) and action time (`BEFORE`, `AFTER`), but before MySQL 5.7.2 cannot have multiple triggers that have the same trigger event and action time. MySQL 5.7.2 lifts this limitation and multiple triggers are permitted. This change has replication implications for upgrades and downgrades.
+Um Trigger pode ter Triggers para diferentes combinações de evento do Trigger ([`INSERT`](insert.html "13.2.5 INSERT Statement"), [`UPDATE`](update.html "13.2.11 UPDATE Statement"), [`DELETE`](delete.html "13.2.2 DELETE Statement")) e tempo de ação (`BEFORE`, `AFTER`), mas, antes do MySQL 5.7.2, não era possível ter múltiplos Triggers que possuíssem o mesmo evento de Trigger e tempo de ação. O MySQL 5.7.2 elimina essa limitação e permite múltiplos Triggers. Essa alteração tem implicações de replicação para *upgrades* e *downgrades*.
 
-For brevity, “multiple triggers” here is shorthand for “multiple triggers that have the same trigger event and action time.”
+Para simplificar, o termo “múltiplos Triggers” aqui é uma abreviação para “múltiplos Triggers que possuem o mesmo evento de Trigger e tempo de ação.”
 
-**Upgrades.** Suppose that you upgrade an old server that does not support multiple triggers to MySQL 5.7.2 or higher. If the new server is a replication source server and has old replicas that do not support multiple triggers, an error occurs on those replicas if a trigger is created on the source for a table that already has a trigger with the same trigger event and action time. To avoid this problem, upgrade the replicas first, then upgrade the source.
+**Upgrades.** Suponha que você faça o upgrade de um servidor antigo que não suporta múltiplos Triggers para o MySQL 5.7.2 ou superior. Se o novo servidor for um servidor Fonte de replicação e tiver Réplicas antigas que não suportam múltiplos Triggers, ocorrerá um erro nessas Réplicas se um Trigger for criado na Fonte para uma tabela que já possui um Trigger com o mesmo evento de Trigger e tempo de ação. Para evitar esse problema, faça o upgrade das Réplicas primeiro, e depois o upgrade da Fonte.
 
-**Downgrades.** If you downgrade a server that supports multiple triggers to an older version that does not, the downgrade has these effects:
+**Downgrades.** Se você fizer o downgrade de um servidor que suporta múltiplos Triggers para uma versão mais antiga que não suporta, o downgrade terá os seguintes efeitos:
 
-* For each table that has triggers, all trigger definitions remain in the `.TRG` file for the table. However, if there are multiple triggers with the same trigger event and action time, the server executes only one of them when the trigger event occurs. For information about `.TRG` files, see the Table Trigger Storage section of the MySQL Server Doxygen documentation, available at [https://dev.mysql.com/doc/index-other.html](/doc/index-other.html).
+* Para cada tabela que tem Triggers, todas as definições de Trigger permanecem no arquivo `.TRG` da tabela. No entanto, se houver múltiplos Triggers com o mesmo evento de Trigger e tempo de ação, o servidor executará apenas um deles quando o evento do Trigger ocorrer. Para informações sobre arquivos `.TRG`, consulte a seção Table Trigger Storage da documentação Doxygen do Servidor MySQL, disponível em [https://dev.mysql.com/doc/index-other.html](/doc/index-other.html).
 
-* If triggers for the table are added or dropped subsequent to the downgrade, the server rewrites the table's `.TRG` file. The rewritten file retains only one trigger per combination of trigger event and action time; the others are lost.
+* Se Triggers para a tabela forem adicionados ou removidos após o downgrade, o servidor reescreve o arquivo `.TRG` da tabela. O arquivo reescrito retém apenas um Trigger por combinação de evento de Trigger e tempo de ação; os demais são perdidos.
 
-To avoid these problems, modify your triggers before downgrading. For each table that has multiple triggers per combination of trigger event and action time, convert each such set of triggers to a single trigger as follows:
+Para evitar esses problemas, modifique seus Triggers antes de fazer o downgrade. Para cada tabela que tem múltiplos Triggers por combinação de evento de Trigger e tempo de ação, converta cada um desses conjuntos de Triggers em um único Trigger da seguinte forma:
 
-1. For each trigger, create a stored routine that contains all the code in the trigger. Values accessed using `NEW` and `OLD` can be passed to the routine using parameters. If the trigger needs a single result value from the code, you can put the code in a stored function and have the function return the value. If the trigger needs multiple result values from the code, you can put the code in a stored procedure and return the values using `OUT` parameters.
+1. Para cada Trigger, crie uma rotina armazenada (stored routine) que contenha todo o código do Trigger. Valores acessados usando `NEW` e `OLD` podem ser passados para a rotina usando parâmetros. Se o Trigger precisar de um único valor de resultado do código, você pode colocar o código em uma stored function e fazer com que a função retorne o valor. Se o Trigger precisar de múltiplos valores de resultado do código, você pode colocar o código em uma stored procedure e retornar os valores usando parâmetros `OUT`.
 
-2. Drop all triggers for the table.
-3. Create one new trigger for the table that invokes the stored routines just created. The effect for this trigger is thus the same as the multiple triggers it replaces.
+2. Remova (Drop) todos os Triggers da tabela.
+3. Crie um novo Trigger para a tabela que invoca as rotinas armazenadas recém-criadas. O efeito para este Trigger é, portanto, o mesmo que o dos múltiplos Triggers que ele substitui.

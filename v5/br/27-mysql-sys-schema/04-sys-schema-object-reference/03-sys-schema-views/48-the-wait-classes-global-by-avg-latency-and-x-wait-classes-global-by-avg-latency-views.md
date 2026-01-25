@@ -1,31 +1,31 @@
-#### 26.4.3.48 The wait_classes_global_by_avg_latency and x$wait_classes_global_by_avg_latency Views
+#### 26.4.3.48 As Views wait_classes_global_by_avg_latency e x$wait_classes_global_by_avg_latency
 
-These views summarize wait class average latencies, grouped by event class. By default, rows are sorted by descending average latency. Idle events are ignored.
+Essas views resumem as average latencies (latências médias) das classes de wait, agrupadas por event class. Por padrão, as linhas são ordenadas pela average latency decrescente. Eventos Idle são ignorados.
 
-An event class is determined by stripping from the event name everything after the first three components. For example, the class for `wait/io/file/sql/slow_log` is `wait/io/file`.
+Uma event class é determinada removendo do nome do event tudo após os três primeiros componentes. Por exemplo, a class para `wait/io/file/sql/slow_log` é `wait/io/file`.
 
-The `wait_classes_global_by_avg_latency` and `x$wait_classes_global_by_avg_latency` views have these columns:
+As views `wait_classes_global_by_avg_latency` e `x$wait_classes_global_by_avg_latency` possuem estas colunas:
 
 * `event_class`
 
-  The event class.
+  A event class.
 
 * `total`
 
-  The total number of occurrences of events in the class.
+  O número total de ocorrências de events na class.
 
 * `total_latency`
 
-  The total wait time of timed occurrences of events in the class.
+  O tempo total de wait de ocorrências temporizadas de events na class.
 
 * `min_latency`
 
-  The minimum single wait time of timed occurrences of events in the class.
+  O tempo mínimo de single wait de ocorrências temporizadas de events na class.
 
 * `avg_latency`
 
-  The average wait time per timed occurrence of events in the class.
+  O tempo médio de wait por ocorrência temporizada de events na class.
 
 * `max_latency`
 
-  The maximum single wait time of timed occurrences of events in the class.
+  O tempo máximo de single wait de ocorrências temporizadas de events na class.

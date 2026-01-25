@@ -1,28 +1,28 @@
-### 24.3.2 The INFORMATION_SCHEMA CHARACTER_SETS Table
+### 24.3.2 A Tabela CHARACTER_SETS do INFORMATION_SCHEMA
 
-The [`CHARACTER_SETS`](information-schema-character-sets-table.html "24.3.2 The INFORMATION_SCHEMA CHARACTER_SETS Table") table provides information about available character sets.
+A tabela [`CHARACTER_SETS`](information-schema-character-sets-table.html "24.3.2 The INFORMATION_SCHEMA CHARACTER_SETS Table") fornece informações sobre os conjuntos de caracteres (character sets) disponíveis.
 
-The [`CHARACTER_SETS`](information-schema-character-sets-table.html "24.3.2 The INFORMATION_SCHEMA CHARACTER_SETS Table") table has these columns:
+A tabela [`CHARACTER_SETS`](information-schema-character-sets-table.html "24.3.2 The INFORMATION_SCHEMA CHARACTER_SETS Table") possui estas colunas:
 
 * `CHARACTER_SET_NAME`
 
-  The character set name.
+  O nome do conjunto de caracteres.
 
 * `DEFAULT_COLLATE_NAME`
 
-  The default collation for the character set.
+  A collation padrão para o conjunto de caracteres.
 
 * `DESCRIPTION`
 
-  A description of the character set.
+  Uma descrição do conjunto de caracteres.
 
 * `MAXLEN`
 
-  The maximum number of bytes required to store one character.
+  O número máximo de bytes necessários para armazenar um caractere.
 
-#### Notes
+#### Notas
 
-Character set information is also available from the [`SHOW CHARACTER SET`](show-character-set.html "13.7.5.3 SHOW CHARACTER SET Statement") statement. See [Section 13.7.5.3, “SHOW CHARACTER SET Statement”](show-character-set.html "13.7.5.3 SHOW CHARACTER SET Statement"). The following statements are equivalent:
+Informações sobre character sets também estão disponíveis a partir da instrução [`SHOW CHARACTER SET`](show-character-set.html "13.7.5.3 SHOW CHARACTER SET Statement"). Consulte [Seção 13.7.5.3, “SHOW CHARACTER SET Statement”](show-character-set.html "13.7.5.3 SHOW CHARACTER SET Statement"). As seguintes instruções são equivalentes:
 
 ```sql
 SELECT * FROM INFORMATION_SCHEMA.CHARACTER_SETS

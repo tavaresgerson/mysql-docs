@@ -1,21 +1,21 @@
-### 13.5.1 PREPARE Statement
+### 13.5.1 Instrução PREPARE
 
 ```sql
 PREPARE stmt_name FROM preparable_stmt
 ```
 
-The [`PREPARE`](prepare.html "13.5.1 PREPARE Statement") statement prepares a SQL statement and assigns it a name, *`stmt_name`*, by which to refer to the statement later. The prepared statement is executed with [`EXECUTE`](execute.html "13.5.2 EXECUTE Statement") and released with [`DEALLOCATE PREPARE`](deallocate-prepare.html "13.5.3 DEALLOCATE PREPARE Statement"). For examples, see [Section 13.5, “Prepared Statements”](sql-prepared-statements.html "13.5 Prepared Statements").
+A instrução [`PREPARE`](prepare.html "13.5.1 PREPARE Statement") prepara uma instrução SQL e atribui a ela um nome, *`stmt_name`*, pelo qual a instrução será referenciada posteriormente. A instrução preparada é executada com [`EXECUTE`](execute.html "13.5.2 EXECUTE Statement") e liberada com [`DEALLOCATE PREPARE`](deallocate-prepare.html "13.5.3 DEALLOCATE PREPARE Statement"). Para exemplos, veja [Seção 13.5, “Prepared Statements”](sql-prepared-statements.html "13.5 Prepared Statements").
 
-Statement names are not case-sensitive. *`preparable_stmt`* is either a string literal or a user variable that contains the text of the SQL statement. The text must represent a single statement, not multiple statements. Within the statement, `?` characters can be used as parameter markers to indicate where data values are to be bound to the query later when you execute it. The `?` characters should not be enclosed within quotation marks, even if you intend to bind them to string values. Parameter markers can be used only where data values should appear, not for SQL keywords, identifiers, and so forth.
+Nomes de instrução não diferenciam maiúsculas de minúsculas (*case-sensitive*). *`preparable_stmt`* é um literal string ou uma user variable (variável de usuário) que contém o texto da instrução SQL. O texto deve representar uma única instrução, e não múltiplas instruções. Dentro da instrução, caracteres `?` podem ser usados como *parameter markers* para indicar onde os valores de dados devem ser ligados à Query posteriormente, quando você a executa. Os caracteres `?` não devem ser incluídos em aspas, mesmo que você pretenda ligá-los a valores string. *Parameter markers* podem ser usados apenas onde valores de dados devem aparecer, e não para *SQL keywords*, identificadores, e assim por diante.
 
-If a prepared statement with the given name already exists, it is deallocated implicitly before the new statement is prepared. This means that if the new statement contains an error and cannot be prepared, an error is returned and no statement with the given name exists.
+Se uma instrução preparada com o nome fornecido já existe, ela é desalocada implicitamente antes que a nova instrução seja preparada. Isso significa que se a nova instrução contiver um erro e não puder ser preparada, um erro é retornado e nenhuma instrução com o nome fornecido existirá.
 
-The scope of a prepared statement is the session within which it is created, which as several implications:
+O *scope* (escopo) de uma instrução preparada é a *session* (sessão) dentro da qual ela é criada, o que acarreta várias implicações:
 
-* A prepared statement created in one session is not available to other sessions.
+*   Uma instrução preparada criada em uma *session* não está disponível para outras *sessions*.
 
-* When a session ends, whether normally or abnormally, its prepared statements no longer exist. If auto-reconnect is enabled, the client is not notified that the connection was lost. For this reason, clients may wish to disable auto-reconnect. See [Automatic Reconnection Control](/doc/c-api/5.7/en/c-api-auto-reconnect.html).
+*   Quando uma *session* termina, seja de forma normal ou anormal, suas instruções preparadas deixam de existir. Se o *auto-reconnect* estiver habilitado, o cliente não é notificado de que a conexão foi perdida. Por este motivo, os clientes podem querer desabilitar o *auto-reconnect*. Veja [Controle de Reconexão Automática](/doc/c-api/5.7/en/c-api-auto-reconnect.html).
 
-* A prepared statement created within a stored program continues to exist after the program finishes executing and can be executed outside the program later.
+*   Uma instrução preparada criada dentro de um programa armazenado continua a existir após o programa terminar a execução e pode ser executada fora do programa posteriormente.
 
-* A statement prepared in stored program context cannot refer to stored procedure or function parameters or local variables because they go out of scope when the program ends and would be unavailable were the statement to be executed later outside the program. As a workaround, refer instead to user-defined variables, which also have session scope; see [Section 9.4, “User-Defined Variables”](user-variables.html "9.4 User-Defined Variables").
+*   Uma instrução preparada no contexto de um programa armazenado não pode fazer referência a parâmetros de *stored procedure* ou *function*, ou variáveis locais, porque elas saem do *scope* quando o programa termina e não estariam disponíveis se a instrução fosse executada posteriormente fora do programa. Como *workaround* (solução alternativa), faça referência, em vez disso, a variáveis definidas pelo usuário, que também têm *session scope*; veja [Seção 9.4, “User-Defined Variables”](user-variables.html "9.4 User-Defined Variables").

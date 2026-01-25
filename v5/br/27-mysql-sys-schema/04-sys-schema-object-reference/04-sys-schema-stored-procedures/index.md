@@ -1,55 +1,55 @@
-### 26.4.4 sys Schema Stored Procedures
+### 26.4.4 Procedimentos Armazenados do Schema sys
 
-26.4.4.1 The create_synonym_db() Procedure
+26.4.4.1 O Procedimento create_synonym_db()
 
-26.4.4.2 The diagnostics() Procedure
+26.4.4.2 O Procedimento diagnostics()
 
-26.4.4.3 The execute_prepared_stmt() Procedure
+26.4.4.3 O Procedimento execute_prepared_stmt()
 
-26.4.4.4 The ps_setup_disable_background_threads() Procedure
+26.4.4.4 O Procedimento ps_setup_disable_background_threads()
 
-26.4.4.5 The ps_setup_disable_consumer() Procedure
+26.4.4.5 O Procedimento ps_setup_disable_consumer()
 
-26.4.4.6 The ps_setup_disable_instrument() Procedure
+26.4.4.6 O Procedimento ps_setup_disable_instrument()
 
-26.4.4.7 The ps_setup_disable_thread() Procedure
+26.4.4.7 O Procedimento ps_setup_disable_thread()
 
-26.4.4.8 The ps_setup_enable_background_threads() Procedure
+26.4.4.8 O Procedimento ps_setup_enable_background_threads()
 
-26.4.4.9 The ps_setup_enable_consumer() Procedure
+26.4.4.9 O Procedimento ps_setup_enable_consumer()
 
-26.4.4.10 The ps_setup_enable_instrument() Procedure
+26.4.4.10 O Procedimento ps_setup_enable_instrument()
 
-26.4.4.11 The ps_setup_enable_thread() Procedure
+26.4.4.11 O Procedimento ps_setup_enable_thread()
 
-26.4.4.12 The ps_setup_reload_saved() Procedure
+26.4.4.12 O Procedimento ps_setup_reload_saved()
 
-26.4.4.13 The ps_setup_reset_to_default() Procedure
+26.4.4.13 O Procedimento ps_setup_reset_to_default()
 
-26.4.4.14 The ps_setup_save() Procedure
+26.4.4.14 O Procedimento ps_setup_save()
 
-26.4.4.15 The ps_setup_show_disabled() Procedure
+26.4.4.15 O Procedimento ps_setup_show_disabled()
 
-26.4.4.16 The ps_setup_show_disabled_consumers() Procedure
+26.4.4.16 O Procedimento ps_setup_show_disabled_consumers()
 
-26.4.4.17 The ps_setup_show_disabled_instruments() Procedure
+26.4.4.17 O Procedimento ps_setup_show_disabled_instruments()
 
-26.4.4.18 The ps_setup_show_enabled() Procedure
+26.4.4.18 O Procedimento ps_setup_show_enabled()
 
-26.4.4.19 The ps_setup_show_enabled_consumers() Procedure
+26.4.4.19 O Procedimento ps_setup_show_enabled_consumers()
 
-26.4.4.20 The ps_setup_show_enabled_instruments() Procedure
+26.4.4.20 O Procedimento ps_setup_show_enabled_instruments()
 
-26.4.4.21 The ps_statement_avg_latency_histogram() Procedure
+26.4.4.21 O Procedimento ps_statement_avg_latency_histogram()
 
-26.4.4.22 The ps_trace_statement_digest() Procedure
+26.4.4.22 O Procedimento ps_trace_statement_digest()
 
-26.4.4.23 The ps_trace_thread() Procedure
+26.4.4.23 O Procedimento ps_trace_thread()
 
-26.4.4.24 The ps_truncate_all_tables() Procedure
+26.4.4.24 O Procedimento ps_truncate_all_tables()
 
-26.4.4.25 The statement_performance_analyzer() Procedure
+26.4.4.25 O Procedimento statement_performance_analyzer()
 
-26.4.4.26 The table_exists() Procedure
+26.4.4.26 O Procedimento table_exists()
 
-The following sections describe `sys` schema stored procedures.
+As seções a seguir descrevem os procedimentos armazenados do schema `sys`.

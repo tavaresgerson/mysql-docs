@@ -1,8 +1,8 @@
-#### 13.6.7.6 Scope Rules for Handlers
+#### 13.6.7.6 Regras de Scope para Handlers
 
-A stored program may include handlers to be invoked when certain conditions occur within the program. The applicability of each handler depends on its location within the program definition and on the condition or conditions that it handles:
+Um programa armazenado pode incluir *handlers* para serem invocados quando certas *conditions* ocorrerem dentro do programa. A aplicabilidade de cada *handler* depende de sua localização dentro da definição do programa e da *condition* ou *conditions* que ele manipula:
 
-* A handler declared in a [`BEGIN ... END`](begin-end.html "13.6.1 BEGIN ... END Compound Statement") block is in scope only for the SQL statements following the handler declarations in the block. If the handler itself raises a condition, it cannot handle that condition, nor can any other handlers declared in the block. In the following example, handlers `H1` and `H2` are in scope for conditions raised by statements *`stmt1`* and *`stmt2`*. But neither `H1` nor `H2` are in scope for conditions raised in the body of `H1` or `H2`.
+* Um *handler* declarado em um bloco [`BEGIN ... END`](begin-end.html "13.6.1 BEGIN ... END Compound Statement") está em *scope* apenas para as instruções SQL que seguem as declarações de *handler* no bloco. Se o próprio *handler* levantar uma *condition*, ele não pode manipular essa *condition*, nem qualquer outro *handler* declarado no bloco. No exemplo a seguir, os *handlers* `H1` e `H2` estão em *scope* para *conditions* levantadas pelas instruções *`stmt1`* e *`stmt2`*. Mas nem `H1` nem `H2` estão em *scope* para *conditions* levantadas no corpo de `H1` ou `H2`.
 
   ```sql
   BEGIN -- outer block
@@ -13,7 +13,7 @@ A stored program may include handlers to be invoked when certain conditions occu
   END;
   ```
 
-* A handler is in scope only for the block in which it is declared, and cannot be activated for conditions occurring outside that block. In the following example, handler `H1` is in scope for *`stmt1`* in the inner block, but not for *`stmt2`* in the outer block:
+* Um *handler* está em *scope* apenas para o bloco em que é declarado e não pode ser ativado para *conditions* que ocorram fora desse bloco. No exemplo a seguir, o *handler* `H1` está em *scope* para *`stmt1`* no bloco interno, mas não para *`stmt2`* no bloco externo:
 
   ```sql
   BEGIN -- outer block
@@ -25,33 +25,33 @@ A stored program may include handlers to be invoked when certain conditions occu
   END;
   ```
 
-* A handler can be specific or general. A specific handler is for a MySQL error code, `SQLSTATE` value, or condition name. A general handler is for a condition in the `SQLWARNING`, `SQLEXCEPTION`, or `NOT FOUND` class. Condition specificity is related to condition precedence, as described later.
+* Um *handler* pode ser específico ou geral. Um *handler* específico é para um código de erro MySQL, valor `SQLSTATE` ou nome de *condition*. Um *handler* geral é para uma *condition* nas classes `SQLWARNING`, `SQLEXCEPTION` ou `NOT FOUND`. A especificidade da *condition* está relacionada à precedência da *condition*, conforme descrito adiante.
 
-Multiple handlers can be declared in different scopes and with different specificities. For example, there might be a specific MySQL error code handler in an outer block, and a general `SQLWARNING` handler in an inner block. Or there might be handlers for a specific MySQL error code and the general `SQLWARNING` class in the same block.
+Múltiplos *handlers* podem ser declarados em diferentes *scopes* e com diferentes especificidades. Por exemplo, pode haver um *handler* específico de código de erro MySQL em um bloco externo e um *handler* geral `SQLWARNING` em um bloco interno. Ou pode haver *handlers* para um código de erro MySQL específico e para a classe geral `SQLWARNING` no mesmo bloco.
 
-Whether a handler is activated depends not only on its own scope and condition value, but on what other handlers are present. When a condition occurs in a stored program, the server searches for applicable handlers in the current scope (current [`BEGIN ... END`](begin-end.html "13.6.1 BEGIN ... END Compound Statement") block). If there are no applicable handlers, the search continues outward with the handlers in each successive containing scope (block). When the server finds one or more applicable handlers at a given scope, it chooses among them based on condition precedence:
+Se um *handler* é ativado depende não apenas de seu próprio *scope* e valor de *condition*, mas também de quais outros *handlers* estão presentes. Quando uma *condition* ocorre em um programa armazenado, o servidor procura por *handlers* aplicáveis no *scope* atual (bloco [`BEGIN ... END`](begin-end.html "13.6.1 BEGIN ... END Compound Statement") atual). Se não houver *handlers* aplicáveis, a busca continua para fora com os *handlers* em cada *scope* (bloco) sucessivo contendo. Quando o servidor encontra um ou mais *handlers* aplicáveis em um determinado *scope*, ele escolhe entre eles com base na precedência da *condition*:
 
-* A MySQL error code handler takes precedence over an `SQLSTATE` value handler.
+* Um *handler* de código de erro MySQL tem precedência sobre um *handler* de valor `SQLSTATE`.
 
-* An `SQLSTATE` value handler takes precedence over general `SQLWARNING`, `SQLEXCEPTION`, or `NOT FOUND` handlers.
+* Um *handler* de valor `SQLSTATE` tem precedência sobre os *handlers* gerais `SQLWARNING`, `SQLEXCEPTION` ou `NOT FOUND`.
 
-* An `SQLEXCEPTION` handler takes precedence over an `SQLWARNING` handler.
+* Um *handler* `SQLEXCEPTION` tem precedência sobre um *handler* `SQLWARNING`.
 
-* It is possible to have several applicable handlers with the same precedence. For example, a statement could generate multiple warnings with different error codes, for each of which an error-specific handler exists. In this case, the choice of which handler the server activates is nondeterministic, and may change depending on the circumstances under which the condition occurs.
+* É possível ter vários *handlers* aplicáveis com a mesma precedência. Por exemplo, uma instrução pode gerar múltiplos *warnings* com diferentes códigos de erro, para cada um dos quais existe um *handler* específico de erro. Neste caso, a escolha de qual *handler* o servidor ativa é não determinística e pode mudar dependendo das circunstâncias sob as quais a *condition* ocorre.
 
-One implication of the handler selection rules is that if multiple applicable handlers occur in different scopes, handlers with the most local scope take precedence over handlers in outer scopes, even over those for more specific conditions.
+Uma implicação das regras de seleção de *handler* é que se múltiplos *handlers* aplicáveis ocorrerem em diferentes *scopes*, *handlers* com o *scope* mais local têm precedência sobre *handlers* em *scopes* externos, mesmo sobre aqueles para *conditions* mais específicas.
 
-If there is no appropriate handler when a condition occurs, the action taken depends on the class of the condition:
+Se não houver um *handler* apropriado quando uma *condition* ocorre, a ação tomada depende da classe da *condition*:
 
-* For `SQLEXCEPTION` conditions, the stored program terminates at the statement that raised the condition, as if there were an `EXIT` handler. If the program was called by another stored program, the calling program handles the condition using the handler selection rules applied to its own handlers.
+* Para *conditions* `SQLEXCEPTION`, o programa armazenado é encerrado na instrução que levantou a *condition*, como se houvesse um *handler* `EXIT`. Se o programa foi chamado por outro programa armazenado, o programa chamador manipula a *condition* usando as regras de seleção de *handler* aplicadas aos seus próprios *handlers*.
 
-* For `SQLWARNING` conditions, the program continues executing, as if there were a `CONTINUE` handler.
+* Para *conditions* `SQLWARNING`, o programa continua a execução, como se houvesse um *handler* `CONTINUE`.
 
-* For `NOT FOUND` conditions, if the condition was raised normally, the action is `CONTINUE`. If it was raised by [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") or [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement"), the action is `EXIT`.
+* Para *conditions* `NOT FOUND`, se a *condition* foi levantada normalmente, a ação é `CONTINUE`. Se foi levantada por [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") ou [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement"), a ação é `EXIT`.
 
-The following examples demonstrate how MySQL applies the handler selection rules.
+Os exemplos a seguir demonstram como o MySQL aplica as regras de seleção de *handler*.
 
-This procedure contains two handlers, one for the specific `SQLSTATE` value (`'42S02'`) that occurs for attempts to drop a nonexistent table, and one for the general `SQLEXCEPTION` class:
+Este *procedure* contém dois *handlers*, um para o valor `SQLSTATE` específico (`'42S02'`) que ocorre em tentativas de *drop* de uma *table* inexistente, e um para a classe geral `SQLEXCEPTION`:
 
 ```sql
 CREATE PROCEDURE p1()
@@ -65,7 +65,7 @@ BEGIN
 END;
 ```
 
-Both handlers are declared in the same block and have the same scope. However, `SQLSTATE` handlers take precedence over `SQLEXCEPTION` handlers, so if the table `t` is nonexistent, the [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") statement raises a condition that activates the `SQLSTATE` handler:
+Ambos os *handlers* são declarados no mesmo bloco e têm o mesmo *scope*. No entanto, os *handlers* `SQLSTATE` têm precedência sobre os *handlers* `SQLEXCEPTION`, portanto, se a *table* `t` for inexistente, a instrução [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") levanta uma *condition* que ativa o *handler* `SQLSTATE`:
 
 ```sql
 mysql> CALL p1();
@@ -76,7 +76,7 @@ mysql> CALL p1();
 +--------------------------------+
 ```
 
-This procedure contains the same two handlers. But this time, the [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") statement and `SQLEXCEPTION` handler are in an inner block relative to the `SQLSTATE` handler:
+Este *procedure* contém os mesmos dois *handlers*. Mas, desta vez, a instrução [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") e o *handler* `SQLEXCEPTION` estão em um bloco interno em relação ao *handler* `SQLSTATE`:
 
 ```sql
 CREATE PROCEDURE p2()
@@ -92,7 +92,7 @@ BEGIN -- outer block
 END;
 ```
 
-In this case, the handler that is more local to where the condition occurs takes precedence. The `SQLEXCEPTION` handler activates, even though it is more general than the `SQLSTATE` handler:
+Neste caso, o *handler* que é mais local ao local onde a *condition* ocorre tem precedência. O *handler* `SQLEXCEPTION` é ativado, mesmo sendo mais geral do que o *handler* `SQLSTATE`:
 
 ```sql
 mysql> CALL p2();
@@ -103,7 +103,7 @@ mysql> CALL p2();
 +------------------------------------+
 ```
 
-In this procedure, one of the handlers is declared in a block inner to the scope of the [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") statement:
+Neste *procedure*, um dos *handlers* é declarado em um bloco interno ao *scope* da instrução [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement"):
 
 ```sql
 CREATE PROCEDURE p3()
@@ -119,7 +119,7 @@ BEGIN -- outer block
 END;
 ```
 
-Only the `SQLEXCEPTION` handler applies because the other one is not in scope for the condition raised by the [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement"):
+Apenas o *handler* `SQLEXCEPTION` se aplica porque o outro não está em *scope* para a *condition* levantada pelo [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement"):
 
 ```sql
 mysql> CALL p3();
@@ -130,7 +130,7 @@ mysql> CALL p3();
 +------------------------------------+
 ```
 
-In this procedure, both handlers are declared in a block inner to the scope of the [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") statement:
+Neste *procedure*, ambos os *handlers* são declarados em um bloco interno ao *scope* da instrução [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement"):
 
 ```sql
 CREATE PROCEDURE p4()
@@ -146,7 +146,7 @@ BEGIN -- outer block
 END;
 ```
 
-Neither handler applies because they are not in scope for the [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement"). The condition raised by the statement goes unhandled and terminates the procedure with an error:
+Nenhum dos *handlers* se aplica porque eles não estão em *scope* para o [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement"). A *condition* levantada pela instrução não é manipulada e encerra o *procedure* com um erro:
 
 ```sql
 mysql> CALL p4();

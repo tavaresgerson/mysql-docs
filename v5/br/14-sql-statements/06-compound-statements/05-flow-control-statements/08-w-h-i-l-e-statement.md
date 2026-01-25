@@ -1,4 +1,4 @@
-#### 13.6.5.8 WHILE Statement
+#### 13.6.5.8 WHILE Statement
 
 ```sql
 [begin_label:] WHILE search_condition DO
@@ -6,11 +6,11 @@
 END WHILE [end_label]
 ```
 
-The statement list within a [`WHILE`](while.html "13.6.5.8 WHILE Statement") statement is repeated as long as the *`search_condition`* expression is true. *`statement_list`* consists of one or more SQL statements, each terminated by a semicolon (`;`) statement delimiter.
+A lista de statements dentro de um statement [`WHILE`](while.html "13.6.5.8 WHILE Statement") é repetida enquanto a expressão *`search_condition`* for verdadeira. A *`statement_list`* consiste em um ou mais SQL statements, cada um terminado por um ponto e vírgula (`;`), que é o delimitador de statement.
 
-A [`WHILE`](while.html "13.6.5.8 WHILE Statement") statement can be labeled. For the rules regarding label use, see [Section 13.6.2, “Statement Labels”](statement-labels.html "13.6.2 Statement Labels").
+Um statement [`WHILE`](while.html "13.6.5.8 WHILE Statement") pode ser rotulado. Para as regras relativas ao uso de labels, consulte a [Seção 13.6.2, “Statement Labels”](statement-labels.html "13.6.2 Statement Labels").
 
-Example:
+Exemplo:
 
 ```sql
 CREATE PROCEDURE dowhile()

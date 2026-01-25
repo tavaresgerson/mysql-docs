@@ -1,25 +1,25 @@
-#### 26.4.3.15 The latest_file_io and x$latest_file_io Views
+#### 26.4.3.15 As Views latest_file_io e x$latest_file_io
 
-These views summarize file I/O activity, grouped by file and thread. By default, rows are sorted with most recent I/O first.
+Essas views resumem a atividade de I/O de arquivos, agrupada por arquivo e Thread. Por padrão, as linhas são ordenadas com o I/O mais recente primeiro.
 
-The `latest_file_io` and `x$latest_file_io` views have these columns:
+As views `latest_file_io` e `x$latest_file_io` possuem as seguintes colunas:
 
 * `thread`
 
-  For foreground threads, the account associated with the thread (and port number for TCP/IP connections). For background threads, the thread name and thread ID
+  Para Threads em primeiro plano (foreground), a conta associada ao Thread (e número da porta para conexões TCP/IP). Para Threads em segundo plano (background), o nome e o ID do Thread.
 
 * `file`
 
-  The file path name.
+  O nome do caminho do arquivo (file path name).
 
 * `latency`
 
-  The wait time of the file I/O event.
+  O tempo de espera (wait time) do evento de I/O de arquivo.
 
 * `operation`
 
-  The type of operation.
+  O tipo de operação.
 
 * `requested`
 
-  The number of data bytes requested for the file I/O event.
+  O número de bytes de dados solicitados para o evento de I/O de arquivo.

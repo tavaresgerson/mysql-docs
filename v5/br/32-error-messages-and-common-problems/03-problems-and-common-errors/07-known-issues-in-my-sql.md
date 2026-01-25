@@ -1,90 +1,90 @@
-### B.3.7 Known Issues in MySQL
+### B.3.7 Problemas Conhecidos no MySQL
 
-This section lists known issues in recent versions of MySQL.
+Esta seção lista problemas conhecidos em versões recentes do MySQL.
 
-For information about platform-specific issues, see the installation and debugging instructions in [Section 2.1, “General Installation Guidance”](general-installation-issues.html "2.1 General Installation Guidance"), and [Section 5.8, “Debugging MySQL”](debugging-mysql.html "5.8 Debugging MySQL").
+Para informações sobre problemas específicos de plataforma, consulte as instruções de instalação e debugging em [Seção 2.1, “Orientações Gerais de Instalação”](general-installation-issues.html "2.1 General Installation Guidance"), e [Seção 5.8, “Debugging MySQL”](debugging-mysql.html "5.8 Debugging MySQL").
 
-The following problems are known:
+Os seguintes problemas são conhecidos:
 
-* Subquery optimization for `IN` is not as effective as for `=`.
+* A otimização de Subquery para `IN` não é tão eficaz quanto para `=`.
 
-* Even if you use `lower_case_table_names=2` (which enables MySQL to remember the case used for databases and table names), MySQL does not remember the case used for database names for the function [`DATABASE()`](information-functions.html#function_database) or within the various logs (on case-insensitive systems).
+* Mesmo que você use `lower_case_table_names=2` (o que permite ao MySQL lembrar o uso de caixa para nomes de Database e table), o MySQL não lembra o uso de caixa para nomes de Database na função [`DATABASE()`](information-functions.html#function_database) ou dentro dos vários logs (em sistemas case-insensitive).
 
-* Dropping a `FOREIGN KEY` constraint does not work in replication because the constraint may have another name on the replica.
+* Fazer o DROP de uma `FOREIGN KEY` constraint não funciona na replication porque a constraint pode ter outro nome na replica.
 
-* [`REPLACE`](replace.html "13.2.8 REPLACE Statement") (and [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") with the [`REPLACE`](replace.html "13.2.8 REPLACE Statement") option) does not trigger `ON DELETE CASCADE`.
+* [`REPLACE`](replace.html "13.2.8 REPLACE Statement") (e [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") com a opção [`REPLACE`](replace.html "13.2.8 REPLACE Statement")) não aciona `ON DELETE CASCADE`.
 
-* `DISTINCT` with `ORDER BY` does not work inside [`GROUP_CONCAT()`](aggregate-functions.html#function_group-concat) if you do not use all and only those columns that are in the `DISTINCT` list.
+* `DISTINCT` com `ORDER BY` não funciona dentro de [`GROUP_CONCAT()`](aggregate-functions.html#function_group-concat) se você não usar todas e apenas as colunas que estão na lista `DISTINCT`.
 
-* When inserting a big integer value (between 263 and 264−1) into a decimal or string column, it is inserted as a negative value because the number is evaluated in signed integer context.
+* Ao inserir um valor integer grande (entre 2^63 e 2^64−1) em uma coluna decimal ou string, ele é inserido como um valor negativo porque o número é avaliado em contexto de signed integer.
 
-* With statement-based binary logging, the source server writes the executed queries to the binary log. This is a very fast, compact, and efficient logging method that works perfectly in most cases. However, it is possible for the data on the source and replica to become different if a query is designed in such a way that the data modification is nondeterministic (generally not a recommended practice, even outside of replication).
+* Com o binary logging baseado em statement, o source server escreve as Queries executadas no binary log. Este é um método de logging muito rápido, compacto e eficiente que funciona perfeitamente na maioria dos casos. No entanto, é possível que os dados no source e na replica se tornem diferentes se uma Query for projetada de tal forma que a modificação de dados seja não determinística (geralmente uma prática não recomendada, mesmo fora da replication).
 
-  For example:
+  Por exemplo:
 
-  + [`CREATE TABLE ... SELECT`](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement") or [`INSERT ... SELECT`](insert-select.html "13.2.5.1 INSERT ... SELECT Statement") statements that insert zero or `NULL` values into an `AUTO_INCREMENT` column.
+  + [`CREATE TABLE ... SELECT`](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement") ou [`INSERT ... SELECT`](insert-select.html "13.2.5.1 INSERT ... SELECT Statement") statements que inserem valores zero ou `NULL` em uma coluna `AUTO_INCREMENT`.
 
-  + [`DELETE`](delete.html "13.2.2 DELETE Statement") if you are deleting rows from a table that has foreign keys with `ON DELETE CASCADE` properties.
+  + [`DELETE`](delete.html "13.2.2 DELETE Statement") se você estiver deletando linhas de uma table que possui foreign keys com propriedades `ON DELETE CASCADE`.
 
-  + [`REPLACE ... SELECT`](replace.html "13.2.8 REPLACE Statement"), `INSERT IGNORE ... SELECT` if you have duplicate key values in the inserted data.
+  + [`REPLACE ... SELECT`](replace.html "13.2.8 REPLACE Statement"), `INSERT IGNORE ... SELECT` se você tiver duplicate key values nos dados inseridos.
 
-  **If and only if the preceding queries have no `ORDER BY` clause guaranteeing a deterministic order**.
+  **Se e somente se as Queries precedentes não tiverem uma cláusula `ORDER BY` garantindo uma ordem determinística**.
 
-  For example, for [`INSERT ... SELECT`](insert-select.html "13.2.5.1 INSERT ... SELECT Statement") with no `ORDER BY`, the [`SELECT`](select.html "13.2.9 SELECT Statement") may return rows in a different order (which results in a row having different ranks, hence getting a different number in the `AUTO_INCREMENT` column), depending on the choices made by the optimizers on the source and replica.
+  Por exemplo, para [`INSERT ... SELECT`](insert-select.html "13.2.5.1 INSERT ... SELECT Statement") sem `ORDER BY`, o [`SELECT`](select.html "13.2.9 SELECT Statement") pode retornar linhas em uma ordem diferente (o que resulta em uma linha com ranks diferentes, consequentemente obtendo um número diferente na coluna `AUTO_INCREMENT`), dependendo das escolhas feitas pelos optimizers no source e na replica.
 
-  A query is optimized differently on the source and replica only if:
+  Uma Query é otimizada de forma diferente no source e na replica somente se:
 
-  + The table is stored using a different storage engine on the source than on the replica. (It is possible to use different storage engines on the source and replica. For example, you can use `InnoDB` on the source, but `MyISAM` on the replica if the replica has less available disk space.)
+  + A table é armazenada usando um storage engine diferente no source do que na replica. (É possível usar storage engines diferentes no source e na replica. Por exemplo, você pode usar `InnoDB` no source, mas `MyISAM` na replica se a replica tiver menos espaço em disco disponível.)
 
-  + MySQL buffer sizes ([`key_buffer_size`](server-system-variables.html#sysvar_key_buffer_size), and so on) are different on the source and replica.
+  + Os tamanhos dos buffers do MySQL ([`key_buffer_size`](server-system-variables.html#sysvar_key_buffer_size), e assim por diante) são diferentes no source e na replica.
 
-  + The source and replica run different MySQL versions, and the optimizer code differs between these versions.
+  + O source e a replica executam versões diferentes do MySQL, e o código do optimizer difere entre essas versões.
 
-  This problem may also affect database restoration using **mysqlbinlog|mysql**.
+  Este problema também pode afetar a restauração de Database usando **mysqlbinlog|mysql**.
 
-  The easiest way to avoid this problem is to add an `ORDER BY` clause to the aforementioned nondeterministic queries to ensure that the rows are always stored or modified in the same order. Using row-based or mixed logging format also avoids the problem.
+  A maneira mais fácil de evitar este problema é adicionar uma cláusula `ORDER BY` às Queries não determinísticas mencionadas para garantir que as linhas sejam sempre armazenadas ou modificadas na mesma ordem. Usar o formato de logging row-based ou mixed também evita o problema.
 
-* Log file names are based on the server host name if you do not specify a file name with the startup option. To retain the same log file names if you change your host name to something else, you must explicitly use options such as [`--log-bin=old_host_name-bin`](replication-options-binary-log.html#option_mysqld_log-bin). See [Section 5.1.6, “Server Command Options”](server-options.html "5.1.6 Server Command Options"). Alternatively, rename the old files to reflect your host name change. If these are binary logs, you must edit the binary log index file and fix the binary log file names there as well. (The same is true for the relay logs on a replica.)
+* Os nomes dos arquivos de log são baseados no host name do server se você não especificar um nome de arquivo com a opção de startup. Para manter os mesmos nomes de arquivos de log se você mudar seu host name para outro, você deve usar explicitamente opções como [`--log-bin=old_host_name-bin`](replication-options-binary-log.html#option_mysqld_log-bin). Consulte [Seção 5.1.6, “Opções de Comando do Server”](server-options.html "5.1.6 Server Command Options"). Alternativamente, renomeie os arquivos antigos para refletir a mudança do seu host name. Se forem binary logs, você deve editar o arquivo index do binary log e corrigir os nomes dos arquivos de binary log ali também. (O mesmo é verdade para os relay logs em uma replica.)
 
-* [**mysqlbinlog**](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files") does not delete temporary files left after a [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") statement. See [Section 4.6.7, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files").
+* [**mysqlbinlog**](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files") não deleta arquivos temporários restantes após um statement [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement"). Consulte [Seção 4.6.7, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files").
 
-* `RENAME` does not work with `TEMPORARY` tables or tables used in a `MERGE` table.
+* `RENAME` não funciona com tables `TEMPORARY` ou tables usadas em uma table `MERGE`.
 
-* When using `SET CHARACTER SET`, you cannot use translated characters in database, table, and column names.
+* Ao usar `SET CHARACTER SET`, você não pode usar caracteres traduzidos em nomes de Database, table e column.
 
-* You cannot use `_` or `%` with `ESCAPE` in [`LIKE ... ESCAPE`](string-comparison-functions.html#operator_like).
+* Você não pode usar `_` ou `%` com `ESCAPE` em [`LIKE ... ESCAPE`](string-comparison-functions.html#operator_like).
 
-* The server uses only the first [`max_sort_length`](server-system-variables.html#sysvar_max_sort_length) bytes when comparing data values. This means that values cannot reliably be used in `GROUP BY`, `ORDER BY`, or `DISTINCT` if they differ only after the first [`max_sort_length`](server-system-variables.html#sysvar_max_sort_length) bytes. To work around this, increase the variable value. The default value of [`max_sort_length`](server-system-variables.html#sysvar_max_sort_length) is 1024 and can be changed at server startup time or at runtime.
+* O server usa apenas os primeiros [`max_sort_length`](server-system-variables.html#sysvar_max_sort_length) bytes ao comparar valores de dados. Isso significa que os valores não podem ser usados de forma confiável em `GROUP BY`, `ORDER BY` ou `DISTINCT` se eles diferirem apenas após os primeiros [`max_sort_length`](server-system-variables.html#sysvar_max_sort_length) bytes. Para contornar isso, aumente o valor da variável. O valor default de [`max_sort_length`](server-system-variables.html#sysvar_max_sort_length) é 1024 e pode ser alterado no momento do startup do server ou em runtime.
 
-* Numeric calculations are done with [`BIGINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") or [`DOUBLE`](floating-point-types.html "11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE") (both are normally 64 bits long). Which precision you get depends on the function. The general rule is that bit functions are performed with [`BIGINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") precision, [`IF()`](flow-control-functions.html#function_if) and [`ELT()`](string-functions.html#function_elt) with [`BIGINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") or [`DOUBLE`](floating-point-types.html "11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE") precision, and the rest with [`DOUBLE`](floating-point-types.html "11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE") precision. You should try to avoid using unsigned long long values if they resolve to be larger than 63 bits (9223372036854775807) for anything other than bit fields.
+* Cálculos numéricos são feitos com [`BIGINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") ou [`DOUBLE`](floating-point-types.html "11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE") (ambos são normalmente de 64 bits). A precisão que você obtém depende da função. A regra geral é que as funções bit são executadas com precisão [`BIGINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), [`IF()`](flow-control-functions.html#function_if) e [`ELT()`](string-functions.html#function_elt) com precisão [`BIGINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") ou [`DOUBLE`](floating-point-types.html "11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE"), e o restante com precisão [`DOUBLE`](floating-point-types.html "11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE"). Você deve tentar evitar o uso de unsigned long long values se eles resultarem em valores maiores que 63 bits (9223372036854775807) para qualquer coisa além de bit fields.
 
-* You can have up to 255 [`ENUM`](enum.html "11.3.5 The ENUM Type") and [`SET`](set.html "11.3.6 The SET Type") columns in one table.
+* Você pode ter até 255 colunas [`ENUM`](enum.html "11.3.5 The ENUM Type") e [`SET`](set.html "11.3.6 The SET Type") em uma única table.
 
-* In [`MIN()`](aggregate-functions.html#function_min), [`MAX()`](aggregate-functions.html#function_max), and other aggregate functions, MySQL currently compares [`ENUM`](enum.html "11.3.5 The ENUM Type") and [`SET`](set.html "11.3.6 The SET Type") columns by their string value rather than by the string's relative position in the set.
+* Em [`MIN()`](aggregate-functions.html#function_min), [`MAX()`](aggregate-functions.html#function_max) e outras aggregate functions, o MySQL atualmente compara colunas [`ENUM`](enum.html "11.3.5 The ENUM Type") e [`SET`](set.html "11.3.6 The SET Type") pelo seu valor string, em vez da posição relativa da string no set.
 
-* In an [`UPDATE`](update.html "13.2.11 UPDATE Statement") statement, columns are updated from left to right. If you refer to an updated column, you get the updated value instead of the original value. For example, the following statement increments `KEY` by `2`, **not** `1`:
+* Em um statement [`UPDATE`](update.html "13.2.11 UPDATE Statement"), as colunas são atualizadas da esquerda para a direita. Se você referenciar uma coluna atualizada, você obtém o valor atualizado em vez do valor original. Por exemplo, o seguinte statement incrementa `KEY` por `2`, **não** `1`:
 
   ```sql
   mysql> UPDATE tbl_name SET KEY=KEY+1,KEY=KEY+1;
   ```
 
-* You can refer to multiple temporary tables in the same query, but you cannot refer to any given temporary table more than once. For example, the following does not work:
+* Você pode referenciar múltiplas temporary tables na mesma Query, mas você não pode referenciar nenhuma temporary table específica mais de uma vez. Por exemplo, o seguinte não funciona:
 
   ```sql
   mysql> SELECT * FROM temp_table, temp_table AS t2;
   ERROR 1137: Can't reopen table: 'temp_table'
   ```
 
-* The optimizer may handle `DISTINCT` differently when you are using “hidden” columns in a join than when you are not. In a join, hidden columns are counted as part of the result (even if they are not shown), whereas in normal queries, hidden columns do not participate in the `DISTINCT` comparison.
+* O optimizer pode tratar `DISTINCT` de forma diferente quando você está usando colunas "hidden" em um JOIN do que quando não está. Em um JOIN, colunas hidden são contadas como parte do resultado (mesmo que não sejam exibidas), enquanto em Queries normais, colunas hidden não participam da comparação `DISTINCT`.
 
-  An example of this is:
+  Um exemplo disso é:
 
   ```sql
   SELECT DISTINCT mp3id FROM band_downloads
          WHERE userid = 9 ORDER BY id DESC;
   ```
 
-  and
+  e
 
   ```sql
   SELECT DISTINCT band_downloads.mp3id
@@ -94,18 +94,18 @@ The following problems are known:
          ORDER BY band_downloads.id DESC;
   ```
 
-  In the second case, you may get two identical rows in the result set (because the values in the hidden `id` column may differ).
+  No segundo caso, você pode obter duas linhas idênticas no result set (porque os valores na coluna `id` hidden podem diferir).
 
-  Note that this happens only for queries that do not have the `ORDER BY` columns in the result.
+  Note que isso acontece apenas para Queries que não têm as colunas `ORDER BY` no resultado.
 
-* If you execute a `PROCEDURE` on a query that returns an empty set, in some cases the `PROCEDURE` does not transform the columns.
+* Se você executar uma `PROCEDURE` em uma Query que retorna um empty set, em alguns casos a `PROCEDURE` não transforma as colunas.
 
-* Creation of a table of type `MERGE` does not check whether the underlying tables are compatible types.
+* A criação de uma table do tipo `MERGE` não verifica se as tables subjacentes são de tipos compatíveis.
 
-* If you use [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") to add a `UNIQUE` index to a table used in a `MERGE` table and then add a normal index on the `MERGE` table, the key order is different for the tables if there was an old, non-`UNIQUE` key in the table. This is because [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") puts `UNIQUE` indexes before normal indexes to be able to detect duplicate keys as early as possible.
+* Se você usar [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") para adicionar um `UNIQUE` Index a uma table usada em uma table `MERGE` e, em seguida, adicionar um Index normal na table `MERGE`, a ordem da Key é diferente para as tables se houver uma Key antiga, não `UNIQUE`, na table. Isso ocorre porque [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") coloca Indexes `UNIQUE` antes dos Indexes normais para poder detectar chaves duplicadas o mais cedo possível.
 
-* An [`UPDATE`](update.html "13.2.11 UPDATE Statement") statement involving a temporary table with a join on a non-temporary table having a trigger defined on it can result in an error, even though the update statement reads only the non-temporary table, in the following cases:
+* Um statement [`UPDATE`](update.html "13.2.11 UPDATE Statement") envolvendo uma temporary table com um JOIN em uma non-temporary table que tenha um trigger definido pode resultar em um erro, mesmo que o statement UPDATE leia apenas a non-temporary table, nos seguintes casos:
 
-  + With read-only mode enabled (by using `SET GLOBAL`[`read_only`](server-system-variables.html#sysvar_read_only)`= 1`).
+  + Com o modo read-only habilitado (usando `SET GLOBAL`[`read_only`](server-system-variables.html#sysvar_read_only)`= 1`).
 
-  + With the transaction level set to `READ_ONLY` (that is, using [`SET GLOBAL TRANSACTION READ ONLY`](set-transaction.html "13.3.6 SET TRANSACTION Statement") or `SET SESSION TRANSACTION READ ONLY`).
+  + Com o nível da transaction definido como `READ_ONLY` (ou seja, usando [`SET GLOBAL TRANSACTION READ ONLY`](set-transaction.html "13.3.6 SET TRANSACTION Statement") ou `SET SESSION TRANSACTION READ ONLY`).

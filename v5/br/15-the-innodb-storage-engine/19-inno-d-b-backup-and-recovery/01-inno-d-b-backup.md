@@ -1,33 +1,33 @@
-### 14.19.1 InnoDB Backup
+### 14.19.1 InnoDB Backup
 
-The key to safe database management is making regular backups. Depending on your data volume, number of MySQL servers, and database workload, you can use these backup techniques, alone or in combination: hot backup with MySQL Enterprise Backup; cold backup by copying files while the MySQL server is shut down; logical backup with **mysqldump** for smaller data volumes or to record the structure of schema objects. Hot and cold backups are physical backups that copy actual data files, which can be used directly by the **mysqld** server for faster restore.
+A chave para um gerenciamento seguro de Database é realizar Backups regulares. Dependendo do seu volume de dados, número de MySQL Servers e carga de trabalho do Database, você pode usar estas técnicas de Backup, sozinhas ou em combinação: Hot Backup com MySQL Enterprise Backup; Cold Backup copiando arquivos enquanto o MySQL Server está desligado; Logical Backup com **mysqldump** para volumes de dados menores ou para registrar a estrutura de objetos de schema. Hot e Cold Backups são Backups físicos que copiam arquivos de dados reais, que podem ser usados diretamente pelo **mysqld** Server para um Restore mais rápido.
 
-Using *MySQL Enterprise Backup* is the recommended method for backing up `InnoDB` data.
+Usar o *MySQL Enterprise Backup* é o método recomendado para realizar o Backup de dados `InnoDB`.
 
-Note
+Nota
 
-`InnoDB` does not support databases that are restored using third-party backup tools.
+O `InnoDB` não suporta Databases que são restaurados usando ferramentas de Backup de terceiros.
 
 #### Hot Backups
 
-The **mysqlbackup** command, part of the MySQL Enterprise Backup component, lets you back up a running MySQL instance, including `InnoDB` tables, with minimal disruption to operations while producing a consistent snapshot of the database. When **mysqlbackup** is copying `InnoDB` tables, reads and writes to `InnoDB` tables can continue. MySQL Enterprise Backup can also create compressed backup files, and back up subsets of tables and databases. In conjunction with the MySQL binary log, users can perform point-in-time recovery. MySQL Enterprise Backup is part of the MySQL Enterprise subscription. For more details, see Section 28.1, “MySQL Enterprise Backup Overview”.
+O comando **mysqlbackup**, parte do componente MySQL Enterprise Backup, permite que você faça Backup de uma instância MySQL em execução, incluindo tabelas `InnoDB`, com interrupção mínima nas operações, enquanto produz um snapshot consistente do Database. Quando o **mysqlbackup** está copiando tabelas `InnoDB`, leituras e escritas nas tabelas `InnoDB` podem continuar. O MySQL Enterprise Backup também pode criar arquivos de Backup compactados e fazer Backup de subconjuntos de tabelas e Databases. Em conjunto com o Binary Log do MySQL, os usuários podem realizar a recuperação point-in-time. O MySQL Enterprise Backup faz parte da subscrição MySQL Enterprise. Para mais detalhes, consulte a Seção 28.1, “Visão Geral do MySQL Enterprise Backup”.
 
 #### Cold Backups
 
-If you can shut down the MySQL server, you can make a physical backup that consists of all files used by `InnoDB` to manage its tables. Use the following procedure:
+Se você puder desligar o MySQL Server, poderá fazer um Backup físico que consiste em todos os arquivos usados pelo `InnoDB` para gerenciar suas tabelas. Use o seguinte procedimento:
 
-1. Perform a slow shutdown of the MySQL server and make sure that it stops without errors.
+1. Realize um *slow shutdown* do MySQL Server e certifique-se de que ele pare sem erros.
 
-2. Copy all `InnoDB` data files (`ibdata` files and `.ibd` files) into a safe place.
+2. Copie todos os arquivos de dados `InnoDB` (arquivos `ibdata` e arquivos `.ibd`) para um local seguro.
 
-3. Copy all the `.frm` files for `InnoDB` tables to a safe place.
+3. Copie todos os arquivos `.frm` para tabelas `InnoDB` para um local seguro.
 
-4. Copy all `InnoDB` log files (`ib_logfile` files) to a safe place.
+4. Copie todos os arquivos de Log `InnoDB` (arquivos `ib_logfile`) para um local seguro.
 
-5. Copy your `my.cnf` configuration file or files to a safe place.
+5. Copie seu(s) arquivo(s) de configuração `my.cnf` para um local seguro.
 
 #### Logical Backups Using mysqldump
 
-In addition to physical backups, it is recommended that you regularly create logical backups by dumping your tables using **mysqldump**. A binary file might be corrupted without you noticing it. Dumped tables are stored into text files that are human-readable, so spotting table corruption becomes easier. Also, because the format is simpler, the chance for serious data corruption is smaller. **mysqldump** also has a `--single-transaction` option for making a consistent snapshot without locking out other clients. See Section 7.3.1, “Establishing a Backup Policy”.
+Além dos Backups físicos, é recomendado que você crie regularmente Backups lógicos despejando suas tabelas usando o **mysqldump**. Um arquivo binário pode estar corrompido sem que você perceba. Tabelas despejadas são armazenadas em arquivos de texto que são legíveis por humanos, tornando mais fácil detectar corrupção de tabela. Além disso, como o formato é mais simples, a chance de corrupção grave de dados é menor. O **mysqldump** também possui uma opção `--single-transaction` para criar um snapshot consistente sem aplicar Lock em outros clientes. Consulte a Seção 7.3.1, “Estabelecendo uma Política de Backup”.
 
-Replication works with `InnoDB` tables, so you can use MySQL replication capabilities to keep a copy of your database at database sites requiring high availability. See Section 14.20, “InnoDB and MySQL Replication”.
+A Replication funciona com tabelas `InnoDB`, então você pode usar os recursos de Replication do MySQL para manter uma cópia do seu Database em locais que exigem alta disponibilidade. Consulte a Seção 14.20, “InnoDB e MySQL Replication”.

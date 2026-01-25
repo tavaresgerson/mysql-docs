@@ -1,110 +1,110 @@
-### 24.4.28 The INFORMATION_SCHEMA INNODB_TRX Table
+### 24.4.28 A Tabela INNODB_TRX do INFORMATION_SCHEMA
 
-The [`INNODB_TRX`](information-schema-innodb-trx-table.html "24.4.28 The INFORMATION_SCHEMA INNODB_TRX Table") table provides information about every transaction currently executing inside `InnoDB`, including whether the transaction is waiting for a lock, when the transaction started, and the SQL statement the transaction is executing, if any.
+A tabela [`INNODB_TRX`](information-schema-innodb-trx-table.html "24.4.28 The INFORMATION_SCHEMA INNODB_TRX Table") fornece informações sobre cada transação atualmente em execução dentro do `InnoDB`, incluindo se a transação está esperando por um Lock, quando a transação começou e a instrução SQL que a transação está executando, se houver.
 
-For usage information, see [Section 14.16.2.1, “Using InnoDB Transaction and Locking Information”](innodb-information-schema-examples.html "14.16.2.1 Using InnoDB Transaction and Locking Information").
+Para informações de uso, consulte [Seção 14.16.2.1, “Utilizando Informações de Transação e Locking do InnoDB”](innodb-information-schema-examples.html "14.16.2.1 Using InnoDB Transaction and Locking Information").
 
-The [`INNODB_TRX`](information-schema-innodb-trx-table.html "24.4.28 The INFORMATION_SCHEMA INNODB_TRX Table") table has these columns:
+A tabela [`INNODB_TRX`](information-schema-innodb-trx-table.html "24.4.28 The INFORMATION_SCHEMA INNODB_TRX Table") possui as seguintes colunas:
 
 * `TRX_ID`
 
-  A unique transaction ID number, internal to `InnoDB`. These IDs are not created for transactions that are read only and nonlocking. For details, see [Section 8.5.3, “Optimizing InnoDB Read-Only Transactions”](innodb-performance-ro-txn.html "8.5.3 Optimizing InnoDB Read-Only Transactions").
+  Um número de ID de transação exclusivo, interno ao `InnoDB`. Esses IDs não são criados para transações que são somente leitura (read only) e não Locking. Para detalhes, consulte [Seção 8.5.3, “Otimizando Transações Read-Only do InnoDB”](innodb-performance-ro-txn.html "8.5.3 Optimizing InnoDB Read-Only Transactions").
 
 * `TRX_WEIGHT`
 
-  The weight of a transaction, reflecting (but not necessarily the exact count of) the number of rows altered and the number of rows locked by the transaction. To resolve a deadlock, `InnoDB` selects the transaction with the smallest weight as the “victim” to roll back. Transactions that have changed nontransactional tables are considered heavier than others, regardless of the number of altered and locked rows.
+  O peso de uma transação, refletindo (mas não necessariamente a contagem exata de) o número de linhas alteradas e o número de linhas bloqueadas pela transação. Para resolver um deadlock, o `InnoDB` seleciona a transação com o menor peso como a "vítima" a ser revertida (roll back). Transações que alteraram tabelas não transacionais são consideradas mais pesadas do que outras, independentemente do número de linhas alteradas e bloqueadas.
 
 * `TRX_STATE`
 
-  The transaction execution state. Permitted values are `RUNNING`, `LOCK WAIT`, `ROLLING BACK`, and `COMMITTING`.
+  O estado de execução da transação. Os valores permitidos são `RUNNING`, `LOCK WAIT`, `ROLLING BACK` e `COMMITTING`.
 
 * `TRX_STARTED`
 
-  The transaction start time.
+  O horário de início da transação.
 
 * `TRX_REQUESTED_LOCK_ID`
 
-  The ID of the lock the transaction is currently waiting for, if `TRX_STATE` is `LOCK WAIT`; otherwise `NULL`. To obtain details about the lock, join this column with the `LOCK_ID` column of the [`INNODB_LOCKS`](information-schema-innodb-locks-table.html "24.4.14 The INFORMATION_SCHEMA INNODB_LOCKS Table") table.
+  O ID do Lock pelo qual a transação está esperando atualmente, se `TRX_STATE` for `LOCK WAIT`; caso contrário, `NULL`. Para obter detalhes sobre o Lock, faça um JOIN desta coluna com a coluna `LOCK_ID` da tabela [`INNODB_LOCKS`](information-schema-innodb-locks-table.html "24.4.14 The INFORMATION_SCHEMA INNODB_LOCKS Table").
 
 * `TRX_WAIT_STARTED`
 
-  The time when the transaction started waiting on the lock, if `TRX_STATE` is `LOCK WAIT`; otherwise `NULL`.
+  O horário em que a transação começou a esperar pelo Lock, se `TRX_STATE` for `LOCK WAIT`; caso contrário, `NULL`.
 
 * `TRX_MYSQL_THREAD_ID`
 
-  The MySQL thread ID. To obtain details about the thread, join this column with the `ID` column of the `INFORMATION_SCHEMA` [`PROCESSLIST`](information-schema-processlist-table.html "24.3.18 The INFORMATION_SCHEMA PROCESSLIST Table") table, but see [Section 14.16.2.3, “Persistence and Consistency of InnoDB Transaction and Locking Information”](innodb-information-schema-internal-data.html "14.16.2.3 Persistence and Consistency of InnoDB Transaction and Locking Information").
+  O ID de Thread do MySQL. Para obter detalhes sobre a Thread, faça um JOIN desta coluna com a coluna `ID` da tabela [`PROCESSLIST`](information-schema-processlist-table.html "24.3.18 The INFORMATION_SCHEMA PROCESSLIST Table") do `INFORMATION_SCHEMA`, mas consulte [Seção 14.16.2.3, “Persistência e Consistência das Informações de Transação e Locking do InnoDB”](innodb-information-schema-internal-data.html "14.16.2.3 Persistence and Consistency of InnoDB Transaction and Locking Information").
 
 * `TRX_QUERY`
 
-  The SQL statement that is being executed by the transaction.
+  A instrução SQL que está sendo executada pela transação.
 
 * `TRX_OPERATION_STATE`
 
-  The transaction's current operation, if any; otherwise `NULL`.
+  A operação atual da transação, se houver; caso contrário, `NULL`.
 
 * `TRX_TABLES_IN_USE`
 
-  The number of `InnoDB` tables used while processing the current SQL statement of this transaction.
+  O número de tabelas `InnoDB` usadas durante o processamento da instrução SQL atual desta transação.
 
 * `TRX_TABLES_LOCKED`
 
-  The number of `InnoDB` tables that the current SQL statement has row locks on. (Because these are row locks, not table locks, the tables can usually still be read from and written to by multiple transactions, despite some rows being locked.)
+  O número de tabelas `InnoDB` nas quais a instrução SQL atual possui Locks de linha. (Como se tratam de Locks de linha, e não Locks de tabela, as tabelas geralmente ainda podem ser lidas e escritas por múltiplas transações, apesar de algumas linhas estarem bloqueadas.)
 
 * `TRX_LOCK_STRUCTS`
 
-  The number of locks reserved by the transaction.
+  O número de Locks reservados pela transação.
 
 * `TRX_LOCK_MEMORY_BYTES`
 
-  The total size taken up by the lock structures of this transaction in memory.
+  O tamanho total ocupado pelas estruturas de Lock desta transação na memória.
 
 * `TRX_ROWS_LOCKED`
 
-  The approximate number or rows locked by this transaction. The value might include delete-marked rows that are physically present but not visible to the transaction.
+  O número aproximado de linhas bloqueadas por esta transação. O valor pode incluir linhas marcadas para exclusão (delete-marked rows) que estão fisicamente presentes, mas não visíveis para a transação.
 
 * `TRX_ROWS_MODIFIED`
 
-  The number of modified and inserted rows in this transaction.
+  O número de linhas modificadas e inseridas nesta transação.
 
 * `TRX_CONCURRENCY_TICKETS`
 
-  A value indicating how much work the current transaction can do before being swapped out, as specified by the [`innodb_concurrency_tickets`](innodb-parameters.html#sysvar_innodb_concurrency_tickets) system variable.
+  Um valor que indica quanto trabalho a transação atual pode fazer antes de ser trocada (swapped out), conforme especificado pela variável de sistema [`innodb_concurrency_tickets`](innodb-parameters.html#sysvar_innodb_concurrency_tickets).
 
 * `TRX_ISOLATION_LEVEL`
 
-  The isolation level of the current transaction.
+  O nível de Isolation da transação atual.
 
 * `TRX_UNIQUE_CHECKS`
 
-  Whether unique checks are turned on or off for the current transaction. For example, they might be turned off during a bulk data load.
+  Indica se as verificações de Unique estão ativadas ou desativadas para a transação atual. Por exemplo, elas podem ser desativadas durante um carregamento de dados em massa (bulk data load).
 
 * `TRX_FOREIGN_KEY_CHECKS`
 
-  Whether foreign key checks are turned on or off for the current transaction. For example, they might be turned off during a bulk data load.
+  Indica se as verificações de Foreign Key estão ativadas ou desativadas para a transação atual. Por exemplo, elas podem ser desativadas durante um carregamento de dados em massa.
 
 * `TRX_LAST_FOREIGN_KEY_ERROR`
 
-  The detailed error message for the last foreign key error, if any; otherwise `NULL`.
+  A mensagem de erro detalhada para o último erro de Foreign Key, se houver; caso contrário, `NULL`.
 
 * `TRX_ADAPTIVE_HASH_LATCHED`
 
-  Whether the adaptive hash index is locked by the current transaction. When the adaptive hash index search system is partitioned, a single transaction does not lock the entire adaptive hash index. Adaptive hash index partitioning is controlled by [`innodb_adaptive_hash_index_parts`](innodb-parameters.html#sysvar_innodb_adaptive_hash_index_parts), which is set to 8 by default.
+  Indica se o adaptive hash Index está bloqueado pela transação atual. Quando o sistema de busca do adaptive hash Index é particionado, uma única transação não bloqueia todo o adaptive hash Index. O particionamento do adaptive hash Index é controlado por [`innodb_adaptive_hash_index_parts`](innodb-parameters.html#sysvar_innodb_adaptive_hash_index_parts), que é definido como 8 por padrão.
 
 * `TRX_ADAPTIVE_HASH_TIMEOUT`
 
-  Deprecated in MySQL 5.7.8. Always returns 0.
+  Descontinuado no MySQL 5.7.8. Sempre retorna 0.
 
-  Whether to relinquish the search latch immediately for the adaptive hash index, or reserve it across calls from MySQL. When there is no adaptive hash index contention, this value remains zero and statements reserve the latch until they finish. During times of contention, it counts down to zero, and statements release the latch immediately after each row lookup. When the adaptive hash index search system is partitioned (controlled by [`innodb_adaptive_hash_index_parts`](innodb-parameters.html#sysvar_innodb_adaptive_hash_index_parts)), the value remains 0.
+  Indica se deve-se liberar o search latch imediatamente para o adaptive hash Index ou reservá-lo entre as chamadas do MySQL. Quando não há contenção no adaptive hash Index, esse valor permanece zero e as instruções reservam o latch até que terminem. Durante períodos de contenção, ele faz uma contagem regressiva até zero, e as instruções liberam o latch imediatamente após cada pesquisa de linha. Quando o sistema de busca do adaptive hash Index é particionado (controlado por [`innodb_adaptive_hash_index_parts`](innodb-parameters.html#sysvar_innodb_adaptive_hash_index_parts)), o valor permanece 0.
 
 * `TRX_IS_READ_ONLY`
 
-  A value of 1 indicates the transaction is read only.
+  Um valor de 1 indica que a transação é somente leitura (read only).
 
 * `TRX_AUTOCOMMIT_NON_LOCKING`
 
-  A value of 1 indicates the transaction is a [`SELECT`](select.html "13.2.9 SELECT Statement") statement that does not use the `FOR UPDATE` or `LOCK IN SHARED MODE` clauses, and is executing with [`autocommit`](server-system-variables.html#sysvar_autocommit) enabled so that the transaction contains only this one statement. When this column and `TRX_IS_READ_ONLY` are both 1, `InnoDB` optimizes the transaction to reduce the overhead associated with transactions that change table data.
+  Um valor de 1 indica que a transação é uma instrução [`SELECT`](select.html "13.2.9 SELECT Statement") que não usa as cláusulas `FOR UPDATE` ou `LOCK IN SHARED MODE`, e está sendo executada com [`autocommit`](server-system-variables.html#sysvar_autocommit) ativado, de modo que a transação contenha apenas esta instrução. Quando esta coluna e `TRX_IS_READ_ONLY` são ambas 1, o `InnoDB` otimiza a transação para reduzir a sobrecarga associada a transações que alteram dados da tabela.
 
-#### Example
+#### Exemplo
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_TRX\G
@@ -135,10 +135,10 @@ trx_last_foreign_key_error: NULL
 trx_autocommit_non_locking: 0
 ```
 
-#### Notes
+#### Notas
 
-* Use this table to help diagnose performance problems that occur during times of heavy concurrent load. Its contents are updated as described in [Section 14.16.2.3, “Persistence and Consistency of InnoDB Transaction and Locking Information”](innodb-information-schema-internal-data.html "14.16.2.3 Persistence and Consistency of InnoDB Transaction and Locking Information").
+* Use esta tabela para ajudar a diagnosticar problemas de performance que ocorrem durante períodos de alta carga concorrente. Seu conteúdo é atualizado conforme descrito em [Seção 14.16.2.3, “Persistência e Consistência das Informações de Transação e Locking do InnoDB”](innodb-information-schema-internal-data.html "14.16.2.3 Persistence and Consistency of InnoDB Transaction and Locking Information").
 
-* You must have the [`PROCESS`](privileges-provided.html#priv_process) privilege to query this table.
+* Você deve ter o privilégio [`PROCESS`](privileges-provided.html#priv_process) para consultar esta tabela.
 
-* Use the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table or the [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") statement to view additional information about the columns of this table, including data types and default values.
+* Use a tabela [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") do `INFORMATION_SCHEMA` ou a instrução [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão (default values).

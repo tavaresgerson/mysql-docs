@@ -1,6 +1,6 @@
-#### 16.4.1.8 Replication of CURRENT_USER()
+#### 16.4.1.8 Replicação de CURRENT_USER()
 
-The following statements support use of the [`CURRENT_USER()`](information-functions.html#function_current-user) function to take the place of the name of, and possibly the host for, an affected user or a definer:
+As seguintes instruções suportam o uso da função [`CURRENT_USER()`](information-functions.html#function_current-user) para substituir o nome e, possivelmente, o host, de um *user* afetado ou de um *definer*:
 
 * [`DROP USER`](drop-user.html "13.7.1.3 DROP USER Statement")
 * [`RENAME USER`](rename-user.html "13.7.1.5 RENAME USER Statement")
@@ -15,4 +15,4 @@ The following statements support use of the [`CURRENT_USER()`](information-funct
 * [`ALTER VIEW`](alter-view.html "13.1.10 ALTER VIEW Statement")
 * [`SET PASSWORD`](set-password.html "13.7.1.7 SET PASSWORD Statement")
 
-When binary logging is enabled and [`CURRENT_USER()`](information-functions.html#function_current-user) or [`CURRENT_USER`](information-functions.html#function_current-user) is used as the definer in any of these statements, MySQL Server ensures that the statement is applied to the same user on both the source and the replica when the statement is replicated. In some cases, such as statements that change passwords, the function reference is expanded before it is written to the binary log, so that the statement includes the user name. For all other cases, the name of the current user on the source is replicated to the replica as metadata, and the replica applies the statement to the current user named in the metadata, rather than to the current user on the replica.
+Quando o *binary logging* está habilitado e [`CURRENT_USER()`](information-functions.html#function_current-user) ou [`CURRENT_USER`](information-functions.html#function_current-user) é usado como o *definer* em qualquer uma dessas instruções, o MySQL Server garante que a instrução seja aplicada ao mesmo *user* tanto na *source* quanto na *replica* quando a instrução é replicada. Em alguns casos, como instruções que alteram senhas, a referência da função é expandida antes de ser gravada no *binary log*, de modo que a instrução inclua o nome do *user*. Para todos os outros casos, o nome do *user* atual na *source* é replicado para a *replica* como *metadata*, e a *replica* aplica a instrução ao *user* atual nomeado na *metadata*, em vez de ao *user* atual na *replica*.

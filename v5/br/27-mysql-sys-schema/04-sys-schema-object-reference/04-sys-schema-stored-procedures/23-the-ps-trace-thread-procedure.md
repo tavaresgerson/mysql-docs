@@ -1,26 +1,26 @@
-#### 26.4.4.23 The ps_trace_thread() Procedure
+#### 26.4.4.23 O Procedure ps_trace_thread()
 
-Dumps all Performance Schema data for an instrumented thread to a `.dot` formatted graph file (for the DOT graph description language). Each result set returned from the procedure should be used for a complete graph.
+Faz o dump de todos os dados do Performance Schema para uma Thread instrumentada em um arquivo de gráfico formatado como `.dot` (para a linguagem de descrição de gráfico DOT). Cada result set retornado do procedure deve ser usado para um gráfico completo.
 
-This procedure disables binary logging during its execution by manipulating the session value of the `sql_log_bin` system variable. That is a restricted operation, so the procedure requires privileges sufficient to set restricted session variables. See Section 5.1.8.1, “System Variable Privileges”.
+Este procedure desabilita o binary logging durante sua execução ao manipular o valor de sessão da variável de sistema `sql_log_bin`. Essa é uma operação restrita, portanto, o procedure requer privilégios suficientes para definir variáveis de sessão restritas. Consulte a Seção 5.1.8.1, “System Variable Privileges”.
 
-##### Parameters
+##### Parâmetros
 
-* `in_thread_id INT`: The thread to trace.
+* `in_thread_id INT`: A Thread a ser rastreada.
 
-* `in_outfile VARCHAR(255)`: The name to use for the `.dot` output file.
+* `in_outfile VARCHAR(255)`: O nome a ser usado para o arquivo de saída `.dot`.
 
-* `in_max_runtime DECIMAL(20,2)`: The maximum number of seconds (which can be fractional) to collect data. Use `NULL` to collect data for the default of 60 seconds.
+* `in_max_runtime DECIMAL(20,2)`: O número máximo de segundos (que pode ser fracionário) para coletar dados. Use `NULL` para coletar dados pelo padrão de 60 segundos.
 
-* `in_interval DECIMAL(20,2)`: The number of seconds (which can be fractional) to sleep between data collections. Use `NULL` to sleep for the default of 1 second.
+* `in_interval DECIMAL(20,2)`: O número de segundos (que pode ser fracionário) para "dormir" entre as coletas de dados. Use `NULL` para "dormir" pelo padrão de 1 segundo.
 
-* `in_start_fresh BOOLEAN`: Whether to reset all Performance Schema data before tracing.
+* `in_start_fresh BOOLEAN`: Se deve redefinir todos os dados do Performance Schema antes do rastreamento.
 
-* `in_auto_setup BOOLEAN`: Whether to disable all other threads and enable all instruments and consumers. This also resets the settings at the end of the run.
+* `in_auto_setup BOOLEAN`: Se deve desabilitar todas as outras Threads e habilitar todos os instruments e consumers. Isso também redefine as configurações no final da execução.
 
-* `in_debug BOOLEAN`: Whether to include `file:lineno` information in the graph.
+* `in_debug BOOLEAN`: Se deve incluir informações `file:lineno` no gráfico.
 
-##### Example
+##### Exemplo
 
 ```sql
 mysql> CALL sys.ps_trace_thread(25, CONCAT('/tmp/stack-', REPLACE(NOW(), ' ', '-'), '.dot'), NULL, NULL, TRUE, TRUE, TRUE);

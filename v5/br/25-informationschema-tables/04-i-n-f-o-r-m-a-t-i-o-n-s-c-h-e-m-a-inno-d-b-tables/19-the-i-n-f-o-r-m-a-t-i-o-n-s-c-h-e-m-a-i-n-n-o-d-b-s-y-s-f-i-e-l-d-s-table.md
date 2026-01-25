@@ -1,24 +1,24 @@
-### 24.4.19 The INFORMATION_SCHEMA INNODB_SYS_FIELDS Table
+### 24.4.19 A Tabela INFORMATION_SCHEMA INNODB_SYS_FIELDS
 
-The [`INNODB_SYS_FIELDS`](information-schema-innodb-sys-fields-table.html "24.4.19 The INFORMATION_SCHEMA INNODB_SYS_FIELDS Table") table provides metadata about the key columns (fields) of `InnoDB` indexes, equivalent to the information from the `SYS_FIELDS` table in the `InnoDB` data dictionary.
+A tabela [`INNODB_SYS_FIELDS`](information-schema-innodb-sys-fields-table.html "24.4.19 The INFORMATION_SCHEMA INNODB_SYS_FIELDS Table") fornece metadata sobre as colunas chave (fields) de Indexes do `InnoDB`, equivalente à informação da tabela `SYS_FIELDS` no dicionário de dados do `InnoDB`.
 
-For related usage information and examples, see [Section 14.16.3, “InnoDB INFORMATION_SCHEMA System Tables”](innodb-information-schema-system-tables.html "14.16.3 InnoDB INFORMATION_SCHEMA System Tables").
+Para informações de uso e exemplos relacionados, consulte a [Seção 14.16.3, “Tabelas de Sistema INFORMATION_SCHEMA do InnoDB”](innodb-information-schema-system-tables.html "14.16.3 InnoDB INFORMATION_SCHEMA System Tables").
 
-The [`INNODB_SYS_FIELDS`](information-schema-innodb-sys-fields-table.html "24.4.19 The INFORMATION_SCHEMA INNODB_SYS_FIELDS Table") table has these columns:
+A tabela [`INNODB_SYS_FIELDS`](information-schema-innodb-sys-fields-table.html "24.4.19 The INFORMATION_SCHEMA INNODB_SYS_FIELDS Table") possui estas colunas:
 
 * `INDEX_ID`
 
-  An identifier for the index associated with this key field; the same value as `INNODB_SYS_INDEXES.INDEX_ID`.
+  Um identificador para o Index associado a este key field; o mesmo valor que `INNODB_SYS_INDEXES.INDEX_ID`.
 
 * `NAME`
 
-  The name of the original column from the table; the same value as `INNODB_SYS_COLUMNS.NAME`.
+  O nome da coluna original da tabela; o mesmo valor que `INNODB_SYS_COLUMNS.NAME`.
 
 * `POS`
 
-  The ordinal position of the key field within the index, starting from 0 and incrementing sequentially. When a column is dropped, the remaining columns are reordered so that the sequence has no gaps.
+  A posição ordinal do key field dentro do Index, começando em 0 e incrementando sequencialmente. Quando uma coluna é removida, as colunas restantes são reordenadas para que a sequência não tenha lacunas.
 
-#### Example
+#### Exemplo
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_SYS_FIELDS WHERE INDEX_ID = 117\G
@@ -28,8 +28,8 @@ INDEX_ID: 117
      POS: 0
 ```
 
-#### Notes
+#### Notas
 
-* You must have the [`PROCESS`](privileges-provided.html#priv_process) privilege to query this table.
+* Você deve ter o privilégio [`PROCESS`](privileges-provided.html#priv_process) para fazer uma Query nesta tabela.
 
-* Use the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table or the [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") statement to view additional information about the columns of this table, including data types and default values.
+* Use a tabela INFORMATION_SCHEMA [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") ou o comando [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores default.

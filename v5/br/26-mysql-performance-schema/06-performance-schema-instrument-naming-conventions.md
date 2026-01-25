@@ -1,6 +1,6 @@
-## 25.6 Performance Schema Instrument Naming Conventions
+## 25.6 Convenções de Nomenclatura de Instrumentos do Performance Schema
 
-An instrument name consists of a sequence of elements separated by `'/'` characters. Example names:
+Um nome de Instrument é composto por uma sequência de elementos separados pelo caractere `'/'`. Exemplos de nomes:
 
 ```sql
 wait/io/file/myisam/log
@@ -19,118 +19,118 @@ statement/sql/create_table
 statement/sql/lock_tables
 ```
 
-The instrument name space has a tree-like structure. The elements of an instrument name from left to right provide a progression from more general to more specific. The number of elements a name has depends on the type of instrument.
+O namespace de Instrumentos tem uma estrutura em árvore. Os elementos de um nome de Instrument, da esquerda para a direita, fornecem uma progressão do mais geral para o mais específico. O número de elementos que um nome possui depende do tipo de Instrument.
 
-The interpretation of a given element in a name depends on the elements to the left of it. For example, `myisam` appears in both of the following names, but `myisam` in the first name is related to file I/O, whereas in the second it is related to a synchronization instrument:
+A interpretação de um determinado elemento em um nome depende dos elementos à sua esquerda. Por exemplo, `myisam` aparece em ambos os nomes a seguir, mas `myisam` no primeiro nome está relacionado a I/O de arquivo, enquanto no segundo está relacionado a um Instrument de sincronização:
 
 ```sql
 wait/io/file/myisam/log
 wait/synch/cond/myisam/MI_SORT_INFO::cond
 ```
 
-Instrument names consist of a prefix with a structure defined by the Performance Schema implementation and a suffix defined by the developer implementing the instrument code. The top-level element of an instrument prefix indicates the type of instrument. This element also determines which event timer in the `setup_timers` table applies to the instrument. For the prefix part of instrument names, the top level indicates the type of instrument.
+Os nomes dos Instrumentos consistem em um prefixo com uma estrutura definida pela implementação do Performance Schema e um sufixo definido pelo desenvolvedor que implementa o código do Instrument. O elemento de nível superior de um prefixo de Instrument indica o tipo de Instrument. Este elemento também determina qual `event timer` na tabela `setup_timers` se aplica ao Instrument. Para a parte do prefixo dos nomes dos Instrumentos, o nível superior indica o tipo de Instrument.
 
-The suffix part of instrument names comes from the code for the instruments themselves. Suffixes may include levels such as these:
+A parte do sufixo dos nomes dos Instrumentos vem do código dos próprios Instrumentos. Os sufixos podem incluir níveis como estes:
 
-* A name for the major element (a server module such as `myisam`, `innodb`, `mysys`, or `sql`) or a plugin name.
+* Um nome para o elemento principal (um módulo do servidor, como `myisam`, `innodb`, `mysys` ou `sql`) ou um nome de plugin.
 
-* The name of a variable in the code, in the form *`XXX`* (a global variable) or `CCC::MMM` (a member *`MMM`* in class *`CCC`*). Examples: `COND_thread_cache`, `THR_LOCK_myisam`, `BINLOG::LOCK_index`.
+* O nome de uma variável no código, no formato *`XXX`* (uma variável global) ou `CCC::MMM` (um membro *`MMM`* na classe *`CCC`*). Exemplos: `COND_thread_cache`, `THR_LOCK_myisam`, `BINLOG::LOCK_index`.
 
-* [Top-Level Instrument Elements](performance-schema-instrument-naming.html#performance-schema-top-level-instrument-elements "Top-Level Instrument Elements")
-* [Idle Instrument Elements](performance-schema-instrument-naming.html#performance-schema-idle-instrument-elements "Idle Instrument Elements")
-* [Memory Instrument Elements](performance-schema-instrument-naming.html#performance-schema-memory-instrument-elements "Memory Instrument Elements")
-* [Stage Instrument Elements](performance-schema-instrument-naming.html#performance-schema-stage-instrument-elements "Stage Instrument Elements")
-* [Statement Instrument Elements](performance-schema-instrument-naming.html#performance-schema-statement-instrument-elements "Statement Instrument Elements")
-* [Wait Instrument Elements](performance-schema-instrument-naming.html#performance-schema-wait-instrument-elements "Wait Instrument Elements")
+* [Elementos de Instrumento de Nível Superior](performance-schema-instrument-naming.html#performance-schema-top-level-instrument-elements "Elementos de Instrumento de Nível Superior")
+* [Elementos do Instrumento Idle](performance-schema-instrument-naming.html#performance-schema-idle-instrument-elements "Elementos do Instrumento Idle")
+* [Elementos do Instrumento Memory](performance-schema-instrument-naming.html#performance-schema-memory-instrument-elements "Elementos do Instrumento Memory")
+* [Elementos do Instrumento Stage](performance-schema-instrument-naming.html#performance-schema-stage-instrument-elements "Elementos do Instrumento Stage")
+* [Elementos do Instrumento Statement](performance-schema-instrument-naming.html#performance-schema-statement-instrument-elements "Elementos do Instrumento Statement")
+* [Elementos do Instrumento Wait](performance-schema-instrument-naming.html#performance-schema-wait-instrument-elements "Elementos do Instrumento Wait")
 
-### Top-Level Instrument Elements
+### Elementos de Instrumento de Nível Superior
 
-* `idle`: An instrumented idle event. This instrument has no further elements.
+* `idle`: Um `idle event` instrumentado. Este Instrument não possui outros elementos.
 
-* `memory`: An instrumented memory event.
-* `stage`: An instrumented stage event.
-* `statement`: An instrumented statement event.
+* `memory`: Um `memory event` instrumentado.
+* `stage`: Um `stage event` instrumentado.
+* `statement`: Um `statement event` instrumentado.
 
-* `transaction`: An instrumented transaction event. This instrument has no further elements.
+* `transaction`: Um `transaction event` instrumentado. Este Instrument não possui outros elementos.
 
-* `wait`: An instrumented wait event.
+* `wait`: Um `wait event` instrumentado.
 
-### Idle Instrument Elements
+### Elementos do Instrumento Idle
 
-The `idle` instrument is used for idle events, which The Performance Schema generates as discussed in the description of the `socket_instances.STATE` column in [Section 25.12.3.5, “The socket_instances Table”](performance-schema-socket-instances-table.html "25.12.3.5 The socket_instances Table").
+O Instrument `idle` é usado para `idle events`, que o Performance Schema gera conforme discutido na descrição da coluna `socket_instances.STATE` na [Seção 25.12.3.5, “A Tabela socket_instances”](performance-schema-socket-instances-table.html "25.12.3.5 A Tabela socket_instances").
 
-### Memory Instrument Elements
+### Elementos do Instrumento Memory
 
-Most memory instrumentation is disabled by default, and can be enabled or disabled at startup, or dynamically at runtime by updating the `ENABLED` column of the relevant instruments in the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table. Memory instruments have names of the form `memory/code_area/instrument_name` where *`code_area`* is a value such as `sql` or `myisam`, and *`instrument_name`* is the instrument detail.
+A maior parte da instrumentação de memória está desativada por padrão e pode ser ativada ou desativada na inicialização, ou dinamicamente em tempo de execução, atualizando a coluna `ENABLED` dos Instruments relevantes na tabela [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 A Tabela setup_instruments"). Os Instruments de memória têm nomes no formato `memory/code_area/instrument_name`, onde *`code_area`* é um valor como `sql` ou `myisam`, e *`instrument_name`* é o detalhe do Instrument.
 
-Instruments named with the prefix `memory/performance_schema/` expose how much memory is allocated for internal buffers in the Performance Schema. The `memory/performance_schema/` instruments are built in, always enabled, and cannot be disabled at startup or runtime. Built-in memory instruments are displayed only in the [`memory_summary_global_by_event_name`](performance-schema-memory-summary-tables.html "25.12.15.9 Memory Summary Tables") table. For more information, see [Section 25.17, “The Performance Schema Memory-Allocation Model”](performance-schema-memory-model.html "25.17 The Performance Schema Memory-Allocation Model").
+Instruments nomeados com o prefixo `memory/performance_schema/` expõem quanta memória é alocada para buffers internos no Performance Schema. Os Instruments `memory/performance_schema/` são integrados (`built-in`), estão sempre ativados e não podem ser desativados na inicialização ou em tempo de execução. Instruments de memória integrados são exibidos apenas na tabela [`memory_summary_global_by_event_name`](performance-schema-memory-summary-tables.html "25.12.15.9 Tabelas de Resumo de Memória"). Para mais informações, consulte a [Seção 25.17, “O Modelo de Alocação de Memória do Performance Schema”](performance-schema-memory-model.html "25.17 O Modelo de Alocação de Memória do Performance Schema").
 
-### Stage Instrument Elements
+### Elementos do Instrumento Stage
 
-Stage instruments have names of the form `stage/code_area/stage_name`, where *`code_area`* is a value such as `sql` or `myisam`, and *`stage_name`* indicates the stage of statement processing, such as `Sorting result` or `Sending data`. Stages correspond to the thread states displayed by [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") or that are visible in the Information Schema [`PROCESSLIST`](information-schema-processlist-table.html "24.3.18 The INFORMATION_SCHEMA PROCESSLIST Table") table.
+Os Stage Instruments têm nomes no formato `stage/code_area/stage_name`, onde *`code_area`* é um valor como `sql` ou `myisam`, e *`stage_name`* indica o estágio do processamento de Statement, como `Sorting result` ou `Sending data`. Stages correspondem aos estados de Thread exibidos por [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") ou que são visíveis na tabela [`PROCESSLIST`](information-schema-processlist-table.html "24.3.18 A Tabela PROCESSLIST do INFORMATION_SCHEMA").
 
-### Statement Instrument Elements
+### Elementos do Instrumento Statement
 
-* `statement/abstract/*`: An abstract instrument for statement operations. Abstract instruments are used during the early stages of statement classification before the exact statement type is known, then changed to a more specific statement instrument when the type is known. For a description of this process, see [Section 25.12.6, “Performance Schema Statement Event Tables”](performance-schema-statement-tables.html "25.12.6 Performance Schema Statement Event Tables").
+* `statement/abstract/*`: Um Instrument abstrato para operações de Statement. Instruments abstratos são usados durante os estágios iniciais da classificação de Statement, antes que o tipo exato de Statement seja conhecido, sendo então alterados para um Statement Instrument mais específico quando o tipo é determinado. Para uma descrição deste processo, consulte a [Seção 25.12.6, “Tabelas de Statement Event do Performance Schema”](performance-schema-statement-tables.html "25.12.6 Tabelas de Statement Event do Performance Schema").
 
-* `statement/com`: An instrumented command operation. These have names corresponding to `COM_xxx` operations (see the `mysql_com.h` header file and `sql/sql_parse.cc`. For example, the `statement/com/Connect` and `statement/com/Init DB` instruments correspond to the `COM_CONNECT` and `COM_INIT_DB` commands.
+* `statement/com`: Uma operação de comando instrumentada. Estes possuem nomes correspondentes às operações `COM_xxx` (consulte o arquivo header `mysql_com.h` e `sql/sql_parse.cc`). Por exemplo, os Instruments `statement/com/Connect` e `statement/com/Init DB` correspondem aos comandos `COM_CONNECT` e `COM_INIT_DB`.
 
-* `statement/scheduler/event`: A single instrument to track all events executed by the Event Scheduler. This instrument comes into play when a scheduled event begins executing.
+* `statement/scheduler/event`: Um único Instrument para rastrear todos os `events` executados pelo Event Scheduler. Este Instrument entra em ação quando um `event` agendado começa a ser executado.
 
-* `statement/sp`: An instrumented internal instruction executed by a stored program. For example, the `statement/sp/cfetch` and `statement/sp/freturn` instruments are used cursor fetch and function return instructions.
+* `statement/sp`: Uma instrução interna instrumentada executada por um stored program. Por exemplo, os Instruments `statement/sp/cfetch` e `statement/sp/freturn` são usados para instruções de `cursor fetch` e `function return`.
 
-* `statement/sql`: An instrumented SQL statement operation. For example, the `statement/sql/create_db` and `statement/sql/select` instruments are used for [`CREATE DATABASE`](create-database.html "13.1.11 CREATE DATABASE Statement") and [`SELECT`](select.html "13.2.9 SELECT Statement") statements.
+* `statement/sql`: Uma operação de SQL Statement instrumentada. Por exemplo, os Instruments `statement/sql/create_db` e `statement/sql/select` são usados para Statements [`CREATE DATABASE`](create-database.html "13.1.11 CREATE DATABASE Statement") e [`SELECT`](select.html "13.2.9 SELECT Statement").
 
-### Wait Instrument Elements
+### Elementos do Instrumento Wait
 
 * `wait/io`
 
-  An instrumented I/O operation.
+  Uma operação de I/O instrumentada.
 
   + `wait/io/file`
 
-    An instrumented file I/O operation. For files, the wait is the time waiting for the file operation to complete (for example, a call to `fwrite()`). Due to caching, the physical file I/O on the disk might not happen within this call.
+    Uma operação de I/O de arquivo instrumentada. Para arquivos, o `wait` é o tempo de espera para que a operação de arquivo seja concluída (por exemplo, uma chamada para `fwrite()`). Devido ao caching, o I/O físico do arquivo no disco pode não ocorrer dentro desta chamada.
 
   + `wait/io/socket`
 
-    An instrumented socket operation. Socket instruments have names of the form `wait/io/socket/sql/socket_type`. The server has a listening socket for each network protocol that it supports. The instruments associated with listening sockets for TCP/IP or Unix socket file connections have a *`socket_type`* value of `server_tcpip_socket` or `server_unix_socket`, respectively. When a listening socket detects a connection, the server transfers the connection to a new socket managed by a separate thread. The instrument for the new connection thread has a *`socket_type`* value of `client_connection`.
+    Uma operação de socket instrumentada. Os Socket Instruments têm nomes no formato `wait/io/socket/sql/socket_type`. O servidor possui um `listening socket` para cada protocolo de rede que ele suporta. Os Instruments associados a `listening sockets` para conexões TCP/IP ou arquivos de socket Unix têm um valor *`socket_type`* de `server_tcpip_socket` ou `server_unix_socket`, respectivamente. Quando um `listening socket` detecta uma conexão, o servidor transfere a conexão para um novo socket gerenciado por um Thread separado. O Instrument para o novo Thread de conexão tem um valor *`socket_type`* de `client_connection`.
 
   + `wait/io/table`
 
-    An instrumented table I/O operation. These include row-level accesses to persistent base tables or temporary tables. Operations that affect rows are fetch, insert, update, and delete. For a view, waits are associated with base tables referenced by the view.
+    Uma operação de I/O de tabela instrumentada. Estas incluem acessos em nível de linha a tabelas base persistentes ou tabelas temporárias. As operações que afetam linhas são `fetch`, `insert`, `update` e `delete`. Para uma `view`, os `waits` estão associados às tabelas base referenciadas pela `view`.
 
-    Unlike most waits, a table I/O wait can include other waits. For example, table I/O might include file I/O or memory operations. Thus, [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table") for a table I/O wait usually has two rows. For more information, see [Section 25.8, “Performance Schema Atom and Molecule Events”](performance-schema-atom-molecule-events.html "25.8 Performance Schema Atom and Molecule Events").
+    Diferente da maioria dos `waits`, um `wait` de I/O de tabela pode incluir outros `waits`. Por exemplo, o I/O de tabela pode incluir I/O de arquivo ou operações de memória. Assim, [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 A Tabela events_waits_current") para um `wait` de I/O de tabela geralmente possui duas linhas. Para mais informações, consulte a [Seção 25.8, “Eventos Atom e Molecule do Performance Schema”](performance-schema-atom-molecule-events.html "25.8 Eventos Atom e Molecule do Performance Schema").
 
-    Some row operations might cause multiple table I/O waits. For example, an insert might activate a trigger that causes an update.
+    Algumas operações de linha podem causar múltiplos `waits` de I/O de tabela. Por exemplo, um `insert` pode ativar um `trigger` que causa um `update`.
 
 * `wait/lock`
 
-  An instrumented lock operation.
+  Uma operação de Lock instrumentada.
 
   + `wait/lock/table`
 
-    An instrumented table lock operation.
+    Uma operação de Table Lock instrumentada.
 
   + `wait/lock/metadata/sql/mdl`
 
-    An instrumented metadata lock operation.
+    Uma operação de Metadata Lock instrumentada.
 
 * `wait/synch`
 
-  An instrumented synchronization object. For synchronization objects, the `TIMER_WAIT` time includes the amount of time blocked while attempting to acquire a lock on the object, if any.
+  Um objeto de sincronização instrumentado. Para objetos de sincronização, o tempo `TIMER_WAIT` inclui o tempo bloqueado enquanto tentava adquirir um Lock no objeto, se houver.
 
   + `wait/synch/cond`
 
-    A condition is used by one thread to signal to other threads that something they were waiting for has happened. If a single thread was waiting for a condition, it can wake up and proceed with its execution. If several threads were waiting, they can all wake up and compete for the resource for which they were waiting.
+    Uma condition é usada por um Thread para sinalizar a outros Threads que algo pelo qual estavam esperando aconteceu. Se um único Thread estava esperando por uma condition, ele pode acordar e prosseguir com sua execução. Se vários Threads estavam esperando, todos podem acordar e competir pelo recurso pelo qual estavam esperando.
 
   + `wait/synch/mutex`
 
-    A mutual exclusion object used to permit access to a resource (such as a section of executable code) while preventing other threads from accessing the resource.
+    Um objeto de `mutual exclusion` (Mutex) usado para permitir o acesso a um recurso (como uma seção de código executável), impedindo que outros Threads acessem o recurso.
 
   + `wait/synch/rwlock`
 
-    A [read/write lock](glossary.html#glos_rw_lock "rw-lock") object used to lock a specific variable for access while preventing its use by other threads. A shared read lock can be acquired simultaneously by multiple threads. An exclusive write lock can be acquired by only one thread at a time.
+    Um objeto [read/write lock (rwlock)](glossary.html#glos_rw_lock "rw-lock") usado para bloquear uma variável específica para acesso, impedindo seu uso por outros Threads. Um `shared read lock` pode ser adquirido simultaneamente por múltiplos Threads. Um `exclusive write lock` pode ser adquirido por apenas um Thread por vez.
 
   + `wait/synch/sxlock`
 
-    A shared-exclusive (SX) lock is a type of [rwlock](glossary.html#glos_rw_lock "rw-lock") lock object that provides write access to a common resource while permitting inconsistent reads by other threads. `sxlocks` optimize concurrency and improve scalability for read-write workloads.
+    Um `shared-exclusive (SX) lock` é um tipo de objeto [rwlock](glossary.html#glos_rw_lock "rw-lock") que fornece acesso de escrita a um recurso comum, ao mesmo tempo que permite leituras inconsistentes por outros Threads. Os `sxlocks` otimizam a concorrência e melhoram a escalabilidade para cargas de trabalho de leitura e escrita.

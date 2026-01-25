@@ -1,4 +1,4 @@
-#### 13.4.1.1 PURGE BINARY LOGS Statement
+#### 13.4.1.1 Instrução PURGE BINARY LOGS
 
 ```sql
 PURGE { BINARY | MASTER } LOGS {
@@ -7,35 +7,35 @@ PURGE { BINARY | MASTER } LOGS {
 }
 ```
 
-The binary log is a set of files that contain information about data modifications made by the MySQL server. The log consists of a set of binary log files, plus an index file (see [Section 5.4.4, “The Binary Log”](binary-log.html "5.4.4 The Binary Log")).
+O Binary Log é um conjunto de arquivos que contém informações sobre modificações de dados feitas pelo servidor MySQL. O log consiste em um conjunto de arquivos de Binary Log, mais um arquivo Index (consulte [Seção 5.4.4, “The Binary Log”](binary-log.html "5.4.4 The Binary Log")).
 
-The [`PURGE BINARY LOGS`](purge-binary-logs.html "13.4.1.1 PURGE BINARY LOGS Statement") statement deletes all the binary log files listed in the log index file prior to the specified log file name or date. `BINARY` and `MASTER` are synonyms. Deleted log files also are removed from the list recorded in the index file, so that the given log file becomes the first in the list.
+A instrução [`PURGE BINARY LOGS`](purge-binary-logs.html "13.4.1.1 PURGE BINARY LOGS Statement") exclui todos os arquivos de Binary Log listados no arquivo Index do log anteriores ao nome de arquivo de log ou data especificados. `BINARY` e `MASTER` são sinônimos. Os arquivos de log excluídos também são removidos da lista registrada no arquivo Index, de modo que o arquivo de log fornecido se torna o primeiro na lista.
 
-[`PURGE BINARY LOGS`](purge-binary-logs.html "13.4.1.1 PURGE BINARY LOGS Statement") requires the [`BINLOG_ADMIN`](/doc/refman/8.0/en/privileges-provided.html#priv_binlog-admin) privilege. This statement has no effect if the server was not started with the [`--log-bin`](replication-options-binary-log.html#option_mysqld_log-bin) option to enable binary logging.
+[`PURGE BINARY LOGS`](purge-binary-logs.html "13.4.1.1 PURGE BINARY LOGS Statement") requer o privilégio [`BINLOG_ADMIN`](/doc/refman/8.0/en/privileges-provided.html#priv_binlog-admin). Esta instrução não tem efeito se o servidor não foi iniciado com a opção [`--log-bin`](replication-options-binary-log.html#option_mysqld_log-bin) para habilitar o binary logging.
 
-Examples:
+Exemplos:
 
 ```sql
 PURGE BINARY LOGS TO 'mysql-bin.010';
 PURGE BINARY LOGS BEFORE '2019-04-02 22:46:26';
 ```
 
-The `BEFORE` variant's *`datetime_expr`* argument should evaluate to a [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") value (a value in `'YYYY-MM-DD hh:mm:ss'` format).
+O argumento *`datetime_expr`* da variante `BEFORE` deve ser avaliado como um valor [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") (um valor no formato `'YYYY-MM-DD hh:mm:ss'`).
 
-This statement is safe to run while replicas are replicating. You need not stop them. If you have an active replica that currently is reading one of the log files you are trying to delete, this statement does not delete the log file that is in use or any log files later than that one, but it deletes any earlier log files. A warning message is issued in this situation. However, if a replica is not connected and you happen to purge one of the log files it has yet to read, the replica cannot replicate after it reconnects.
+Esta instrução é segura para executar enquanto as Replicas estão replicando. Não é necessário pará-las. Se você tiver uma Replica ativa que está lendo atualmente um dos Log Files que você está tentando excluir, esta instrução não exclui o Log File que está em uso ou quaisquer Log Files posteriores a esse, mas exclui quaisquer Log Files anteriores. Uma mensagem de aviso é emitida nesta situação. No entanto, se uma Replica não estiver conectada e você por acaso fizer o Purge de um dos Log Files que ela ainda precisa ler, a Replica não poderá replicar depois que se reconectar.
 
-To safely purge binary log files, follow this procedure:
+Para fazer o Purge de Log Files de Binary Log com segurança, siga este procedimento:
 
-1. On each replica, use [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") to check which log file it is reading.
+1. Em cada Replica, use [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") para verificar qual Log File ela está lendo.
 
-2. Obtain a listing of the binary log files on the replication source server with [`SHOW BINARY LOGS`](show-binary-logs.html "13.7.5.1 SHOW BINARY LOGS Statement").
+2. Obtenha uma listagem dos Log Files de Binary Log no servidor Source de Replication com [`SHOW BINARY LOGS`](show-binary-logs.html "13.7.5.1 SHOW BINARY LOGS Statement").
 
-3. Determine the earliest log file among all the replicas. This is the target file. If all the replicas are up to date, this is the last log file on the list.
+3. Determine o Log File mais antigo entre todas as Replicas. Este é o arquivo Target. Se todas as Replicas estiverem atualizadas (up to date), este é o último Log File da lista.
 
-4. Make a backup of all the log files you are about to delete. (This step is optional, but always advisable.)
+4. Faça um backup de todos os Log Files que você está prestes a excluir. (Esta etapa é opcional, mas sempre aconselhável.)
 
-5. Purge all log files up to but not including the target file.
+5. Faça o Purge de todos os Log Files até, mas não incluindo, o arquivo Target.
 
-You can also set the [`expire_logs_days`](replication-options-binary-log.html#sysvar_expire_logs_days) system variable to expire binary log files automatically after a given number of days (see [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")). If you are using replication, you should set the variable no lower than the maximum number of days your replicas might lag behind the source.
+Você também pode definir a variável de sistema [`expire_logs_days`](replication-options-binary-log.html#sysvar_expire_logs_days) para expirar automaticamente os Log Files de Binary Log após um determinado número de dias (consulte [Seção 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")). Se você estiver usando Replication, você deve definir a variável não abaixo do número máximo de dias que suas Replicas podem atrasar em relação ao Source.
 
-`PURGE BINARY LOGS TO` and `PURGE BINARY LOGS BEFORE` both fail with an error when binary log files listed in the `.index` file had been removed from the system by some other means (such as using **rm** on Linux). (Bug #18199, Bug #18453) To handle such errors, edit the `.index` file (which is a simple text file) manually to ensure that it lists only the binary log files that are actually present, then run again the [`PURGE BINARY LOGS`](purge-binary-logs.html "13.4.1.1 PURGE BINARY LOGS Statement") statement that failed.
+[`PURGE BINARY LOGS TO`] e [`PURGE BINARY LOGS BEFORE`] falham com um erro quando os Log Files de Binary Log listados no arquivo `.index` foram removidos do sistema por outros meios (como usar **rm** no Linux). (Bug #18199, Bug #18453) Para lidar com tais erros, edite o arquivo `.index` (que é um arquivo de texto simples) manualmente para garantir que ele liste apenas os Log Files de Binary Log que estão realmente presentes, e então execute novamente a instrução [`PURGE BINARY LOGS`](purge-binary-logs.html "13.4.1.1 PURGE BINARY LOGS Statement") que falhou.

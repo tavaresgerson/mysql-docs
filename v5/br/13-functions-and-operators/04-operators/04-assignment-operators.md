@@ -1,14 +1,14 @@
-### 12.4.4 Assignment Operators
+### 12.4.4 Operadores de Atribuição
 
-**Table 12.6 Assignment Operators**
+**Tabela 12.6 Operadores de Atribuição**
 
-<table frame="box" rules="all" summary="A reference that lists assignment operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>:=</code></td> <td> Assign a value </td> </tr><tr><td><code>=</code></td> <td> Assign a value (as part of a <code>SET</code> statement, or as part of the <code>SET</code> clause in an <code>UPDATE</code> statement) </td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista os operadores de atribuição."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>:=</code></td> <td> Atribui um valor </td> </tr><tr><td><code>=</code></td> <td> Atribui um valor (como parte de uma instrução <code>SET</code>, ou como parte da cláusula <code>SET</code> em uma instrução <code>UPDATE</code>) </td> </tr></tbody></table>
 
 * `:=`
 
-  Assignment operator. Causes the user variable on the left hand side of the operator to take on the value to its right. The value on the right hand side may be a literal value, another variable storing a value, or any legal expression that yields a scalar value, including the result of a query (provided that this value is a scalar value). You can perform multiple assignments in the same `SET` statement. You can perform multiple assignments in the same statement.
+  Operador de atribuição. Faz com que a variável de usuário no lado esquerdo do operador assuma o valor à sua direita. O valor no lado direito pode ser um valor literal, outra variável armazenando um valor, ou qualquer expressão legal que resulte em um valor escalar, incluindo o resultado de uma Query (desde que este valor seja um valor escalar). Você pode realizar múltiplas atribuições na mesma instrução `SET`. Você pode realizar múltiplas atribuições na mesma instrução.
 
-  Unlike `=`, the `:=` operator is never interpreted as a comparison operator. This means you can use `:=` in any valid SQL statement (not just in `SET` statements) to assign a value to a variable.
+  Diferentemente de `=`, o operador `:=` nunca é interpretado como um operador de comparação. Isso significa que você pode usar `:=` em qualquer instrução SQL válida (não apenas em instruções `SET`) para atribuir um valor a uma variável.
 
   ```sql
   mysql> SELECT @var1, @var2;
@@ -28,7 +28,7 @@
           -> 4
   ```
 
-  You can make value assignments using `:=` in other statements besides `SELECT`, such as `UPDATE`, as shown here:
+  Você pode fazer atribuições de valor usando `:=` em outras instruções além de `SELECT`, como `UPDATE`, conforme mostrado aqui:
 
   ```sql
   mysql> SELECT @var1;
@@ -46,17 +46,17 @@
           -> 2, 3, 5, 7
   ```
 
-  While it is also possible both to set and to read the value of the same variable in a single SQL statement using the `:=` operator, this is not recommended. Section 9.4, “User-Defined Variables”, explains why you should avoid doing this.
+  Embora também seja possível definir e ler o valor da mesma variável em uma única instrução SQL usando o operador `:=`, isso não é recomendado. A Seção 9.4, “User-Defined Variables”, explica por que você deve evitar fazer isso.
 
 * `=`
 
-  This operator is used to perform value assignments in two cases, described in the next two paragraphs.
+  Este operador é usado para realizar atribuições de valor em dois casos, descritos nos próximos dois parágrafos.
 
-  Within a `SET` statement, `=` is treated as an assignment operator that causes the user variable on the left hand side of the operator to take on the value to its right. (In other words, when used in a `SET` statement, `=` is treated identically to `:=`.) The value on the right hand side may be a literal value, another variable storing a value, or any legal expression that yields a scalar value, including the result of a query (provided that this value is a scalar value). You can perform multiple assignments in the same `SET` statement.
+  Dentro de uma instrução `SET`, `=` é tratado como um operador de atribuição que faz com que a variável de usuário no lado esquerdo do operador assuma o valor à sua direita. (Em outras palavras, quando usado em uma instrução `SET`, `=` é tratado de forma idêntica a `:=`.) O valor no lado direito pode ser um valor literal, outra variável armazenando um valor, ou qualquer expressão legal que resulte em um valor escalar, incluindo o resultado de uma Query (desde que este valor seja um valor escalar). Você pode realizar múltiplas atribuições na mesma instrução `SET`.
 
-  In the `SET` clause of an `UPDATE` statement, `=` also acts as an assignment operator; in this case, however, it causes the column named on the left hand side of the operator to assume the value given to the right, provided any `WHERE` conditions that are part of the `UPDATE` are met. You can make multiple assignments in the same `SET` clause of an `UPDATE` statement.
+  Na cláusula `SET` de uma instrução `UPDATE`, `=` também atua como um operador de atribuição; neste caso, no entanto, ele faz com que a coluna nomeada no lado esquerdo do operador assuma o valor dado à direita, desde que quaisquer condições `WHERE` que façam parte do `UPDATE` sejam atendidas. Você pode fazer múltiplas atribuições na mesma cláusula `SET` de uma instrução `UPDATE`.
 
-  In any other context, `=` is treated as a comparison operator.
+  Em qualquer outro contexto, `=` é tratado como um operador de comparação.
 
   ```sql
   mysql> SELECT @var1, @var2;
@@ -71,4 +71,4 @@
           -> 1, 1
   ```
 
-  For more information, see Section 13.7.4.1, “SET Syntax for Variable Assignment”, Section 13.2.11, “UPDATE Statement”, and Section 13.2.10, “Subqueries”.
+  Para mais informações, consulte a Seção 13.7.4.1, “SET Syntax for Variable Assignment”, a Seção 13.2.11, “UPDATE Statement”, e a Seção 13.2.10, “Subqueries”.

@@ -1,8 +1,8 @@
-#### 21.6.8.2 Using The NDB Cluster Management Client to Create a Backup
+#### 21.6.8.2 Usando o NDB Cluster Management Client para Criar um Backup
 
-Before starting a backup, make sure that the cluster is properly configured for performing one. (See [Section 21.6.8.3, “Configuration for NDB Cluster Backups”](mysql-cluster-backup-configuration.html "21.6.8.3 Configuration for NDB Cluster Backups").)
+Antes de iniciar um backup, certifique-se de que o cluster esteja configurado corretamente para realizar um. (Consulte [Seção 21.6.8.3, “Configuração para Backups do NDB Cluster”](mysql-cluster-backup-configuration.html "21.6.8.3 Configuration for NDB Cluster Backups").)
 
-The `START BACKUP` command is used to create a backup:
+O comando `START BACKUP` é usado para criar um backup:
 
 ```sql
 START BACKUP [backup_id] [wait_option] [snapshot_option]
@@ -14,20 +14,20 @@ snapshot_option:
 SNAPSHOTSTART | SNAPSHOTEND
 ```
 
-Successive backups are automatically identified sequentially, so the *`backup_id`*, an integer greater than or equal to 1, is optional; if it is omitted, the next available value is used. If an existing *`backup_id`* value is used, the backup fails with the error Backup failed: file already exists. If used, the *`backup_id`* must follow `START BACKUP` immediately, before any other options are used.
+Backups sucessivos são identificados automaticamente de forma sequencial, portanto, o *`backup_id`*, um inteiro maior ou igual a 1, é opcional; se for omitido, o próximo valor disponível é utilizado. Se um valor *`backup_id`* existente for usado, o backup falha com o erro Backup failed: file already exists. Se usado, o *`backup_id`* deve seguir `START BACKUP` imediatamente, antes que qualquer outra opção seja utilizada.
 
-The *`wait_option`* can be used to determine when control is returned to the management client after a `START BACKUP` command is issued, as shown in the following list:
+O *`wait_option`* pode ser usado para determinar quando o controle é retornado ao management client após a emissão de um comando `START BACKUP`, conforme mostrado na lista a seguir:
 
-* If `NOWAIT` is specified, the management client displays a prompt immediately, as seen here:
+* Se `NOWAIT` for especificado, o management client exibe um prompt imediatamente, como visto aqui:
 
   ```sql
   ndb_mgm> START BACKUP NOWAIT
   ndb_mgm>
   ```
 
-  In this case, the management client can be used even while it prints progress information from the backup process.
+  Neste caso, o management client pode ser usado mesmo enquanto imprime informações de progresso do backup process.
 
-* With `WAIT STARTED` the management client waits until the backup has started before returning control to the user, as shown here:
+* Com `WAIT STARTED`, o management client aguarda até que o backup tenha iniciado antes de retornar o controle ao usuário, conforme mostrado aqui:
 
   ```sql
   ndb_mgm> START BACKUP WAIT STARTED
@@ -36,17 +36,17 @@ The *`wait_option`* can be used to determine when control is returned to the man
   ndb_mgm>
   ```
 
-* **`WAIT COMPLETED`** causes the management client to wait until the backup process is complete before returning control to the user.
+* **`WAIT COMPLETED`** faz com que o management client aguarde até que o backup process esteja completo antes de retornar o controle ao usuário.
 
-`WAIT COMPLETED` is the default.
+`WAIT COMPLETED` é o padrão.
 
-A *`snapshot_option`* can be used to determine whether the backup matches the state of the cluster when `START BACKUP` was issued, or when it was completed. `SNAPSHOTSTART` causes the backup to match the state of the cluster when the backup began; `SNAPSHOTEND` causes the backup to reflect the state of the cluster when the backup was finished. `SNAPSHOTEND` is the default, and matches the behavior found in previous NDB Cluster releases.
+Um *`snapshot_option`* pode ser usado para determinar se o backup corresponde ao estado do cluster quando `START BACKUP` foi emitido, ou quando foi concluído. `SNAPSHOTSTART` faz com que o backup corresponda ao estado do cluster quando o backup começou; `SNAPSHOTEND` faz com que o backup reflita o estado do cluster quando o backup foi finalizado. `SNAPSHOTEND` é o padrão e corresponde ao comportamento encontrado em versões anteriores do NDB Cluster.
 
 Note
 
-If you use the `SNAPSHOTSTART` option with `START BACKUP`, and the [`CompressedBackup`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-compressedbackup) parameter is enabled, only the data and control files are compressed—the log file is not compressed.
+Se você usar a opção `SNAPSHOTSTART` com `START BACKUP`, e o parâmetro [`CompressedBackup`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-compressedbackup) estiver habilitado, apenas os arquivos de data e control são compactados — o log file não é compactado.
 
-If both a *`wait_option`* and a *`snapshot_option`* are used, they may be specified in either order. For example, all of the following commands are valid, assuming that there is no existing backup having 4 as its ID:
+Se um *`wait_option`* e um *`snapshot_option`* forem usados, eles podem ser especificados em qualquer ordem. Por exemplo, todos os comandos a seguir são válidos, assumindo que não haja um backup existente com o ID 4:
 
 ```sql
 START BACKUP WAIT STARTED SNAPSHOTSTART
@@ -56,11 +56,11 @@ START BACKUP SNAPSHOTEND WAIT COMPLETED
 START BACKUP 4 NOWAIT SNAPSHOTSTART
 ```
 
-The procedure for creating a backup consists of the following steps:
+O procedimento para criar um backup consiste nas seguintes etapas:
 
-1. Start the management client ([**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client")), if it not running already.
+1. Inicie o management client ([**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client")), se ainda não estiver em execução.
 
-2. Execute the **`START BACKUP`** command. This produces several lines of output indicating the progress of the backup, as shown here:
+2. Execute o comando **`START BACKUP`**. Isso produz várias linhas de output indicando o progresso do backup, conforme mostrado aqui:
 
    ```sql
    ndb_mgm> START BACKUP
@@ -73,25 +73,25 @@ The procedure for creating a backup consists of the following steps:
    ndb_mgm>
    ```
 
-3. When the backup has started the management client displays this message:
+3. Quando o backup tiver iniciado, o management client exibe esta mensagem:
 
    ```sql
    Backup backup_id started from node node_id
    ```
 
-   *`backup_id`* is the unique identifier for this particular backup. This identifier is saved in the cluster log, if it has not been configured otherwise. *`node_id`* is the identifier of the management server that is coordinating the backup with the data nodes. At this point in the backup process the cluster has received and processed the backup request. It does not mean that the backup has finished. An example of this statement is shown here:
+   *`backup_id`* é o identificador exclusivo para este backup específico. Este identificador é salvo no cluster log, se não tiver sido configurado de outra forma. *`node_id`* é o identificador do management server que está coordenando o backup com os data nodes. Neste ponto do backup process, o cluster recebeu e processou a solicitação de backup. Isso não significa que o backup tenha terminado. Um exemplo desta declaração é mostrado aqui:
 
    ```sql
    Node 2: Backup 1 started from node 1
    ```
 
-4. The management client indicates with a message like this one that the backup has started:
+4. O management client indica, com uma mensagem como esta, que o backup foi iniciado:
 
    ```sql
    Backup backup_id started from node node_id completed
    ```
 
-   As is the case for the notification that the backup has started, *`backup_id`* is the unique identifier for this particular backup, and *`node_id`* is the node ID of the management server that is coordinating the backup with the data nodes. This output is accompanied by additional information including relevant global checkpoints, the number of records backed up, and the size of the data, as shown here:
+   Assim como no caso da notificação de que o backup foi iniciado, *`backup_id`* é o identificador exclusivo para este backup específico, e *`node_id`* é o ID do node do management server que está coordenando o backup com os data nodes. Este output é acompanhado por informações adicionais, incluindo checkpoints globais relevantes, o número de records dos quais foi feito backup, e o tamanho dos data, conforme mostrado aqui:
 
    ```sql
    Node 2: Backup 1 started from node 1 completed
@@ -100,34 +100,34 @@ The procedure for creating a backup consists of the following steps:
     Data: 453648 bytes Log: 0 bytes
    ```
 
-It is also possible to perform a backup from the system shell by invoking [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") with the `-e` or [`--execute`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_execute) option, as shown in this example:
+Também é possível realizar um backup a partir do system shell invocando [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") com a opção `-e` ou [`--execute`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_execute), conforme mostrado neste exemplo:
 
 ```sql
 $> ndb_mgm -e "START BACKUP 6 WAIT COMPLETED SNAPSHOTSTART"
 ```
 
-When using `START BACKUP` in this way, you must specify the backup ID.
+Ao usar `START BACKUP` desta forma, você deve especificar o backup ID.
 
-Cluster backups are created by default in the `BACKUP` subdirectory of the [`DataDir`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datadir) on each data node. This can be overridden for one or more data nodes individually, or for all cluster data nodes in the `config.ini` file using the [`BackupDataDir`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupdatadir) configuration parameter. The backup files created for a backup with a given *`backup_id`* are stored in a subdirectory named `BACKUP-backup_id` in the backup directory.
+Backups do Cluster são criados por padrão no subdiretório `BACKUP` do [`DataDir`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datadir) em cada data node. Isso pode ser sobrescrito para um ou mais data nodes individualmente, ou para todos os data nodes do cluster no arquivo `config.ini` usando o parâmetro de configuração [`BackupDataDir`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupdatadir). Os arquivos de backup criados para um backup com um determinado *`backup_id`* são armazenados em um subdiretório chamado `BACKUP-backup_id` no diretório de backup.
 
-**Cancelling backups.** To cancel or abort a backup that is already in progress, perform the following steps:
+**Cancelando backups.** Para cancelar ou abortar um backup que já esteja em progresso, execute as seguintes etapas:
 
-1. Start the management client.
-2. Execute this command:
+1. Inicie o management client.
+2. Execute este comando:
 
    ```sql
    ndb_mgm> ABORT BACKUP backup_id
    ```
 
-   The number *`backup_id`* is the identifier of the backup that was included in the response of the management client when the backup was started (in the message `Backup backup_id started from node management_node_id`).
+   O número *`backup_id`* é o identificador do backup que foi incluído na resposta do management client quando o backup foi iniciado (na mensagem `Backup backup_id started from node management_node_id`).
 
-3. The management client acknowledges the abort request with `Abort of backup backup_id ordered`.
+3. O management client reconhece a solicitação de abort com `Abort of backup backup_id ordered`.
 
    Note
 
-   At this point, the management client has not yet received a response from the cluster data nodes to this request, and the backup has not yet actually been aborted.
+   Neste ponto, o management client ainda não recebeu uma resposta dos cluster data nodes para esta solicitação, e o backup ainda não foi efetivamente abortado.
 
-4. After the backup has been aborted, the management client reports this fact in a manner similar to what is shown here:
+4. Depois que o backup for abortado, o management client relata este fato de uma maneira semelhante à mostrada aqui:
 
    ```sql
    Node 1: Backup 3 started from 5 has been aborted.
@@ -140,15 +140,15 @@ Cluster backups are created by default in the `BACKUP` subdirectory of the [`Dat
      Error: 1323 - 1323: Permanent error: Internal error
    ```
 
-   In this example, we have shown sample output for a cluster with 4 data nodes, where the sequence number of the backup to be aborted is `3`, and the management node to which the cluster management client is connected has the node ID `5`. The first node to complete its part in aborting the backup reports that the reason for the abort was due to a request by the user. (The remaining nodes report that the backup was aborted due to an unspecified internal error.)
+   Neste exemplo, mostramos o sample output para um cluster com 4 data nodes, onde o número de sequência do backup a ser abortado é `3`, e o management node ao qual o cluster management client está conectado tem o node ID `5`. O primeiro node a concluir sua parte no abort do backup relata que o motivo do abort foi devido a uma solicitação do usuário. (Os nodes restantes relatam que o backup foi abortado devido a um erro interno não especificado.)
 
    Note
 
-   There is no guarantee that the cluster nodes respond to an `ABORT BACKUP` command in any particular order.
+   Não há garantia de que os cluster nodes respondam a um comando `ABORT BACKUP` em qualquer ordem específica.
 
-   The `Backup backup_id started from node management_node_id has been aborted` messages mean that the backup has been terminated and that all files relating to this backup have been removed from the cluster file system.
+   As mensagens `Backup backup_id started from node management_node_id has been aborted` significam que o backup foi terminado e que todos os arquivos relacionados a este backup foram removidos do cluster file system.
 
-It is also possible to abort a backup in progress from a system shell using this command:
+Também é possível abortar um backup em progresso a partir de um system shell usando este comando:
 
 ```sql
 $> ndb_mgm -e "ABORT BACKUP backup_id"
@@ -156,4 +156,4 @@ $> ndb_mgm -e "ABORT BACKUP backup_id"
 
 Note
 
-If there is no backup having the ID *`backup_id`* running when an `ABORT BACKUP` is issued, the management client makes no response, nor is it indicated in the cluster log that an invalid abort command was sent.
+Se não houver nenhum backup com o ID *`backup_id`* em execução quando um `ABORT BACKUP` for emitido, o management client não fará nenhuma resposta, nem será indicado no cluster log que um comando abort inválido foi enviado.

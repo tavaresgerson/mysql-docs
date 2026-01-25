@@ -1,31 +1,31 @@
-### 14.21.2 InnoDB memcached Architecture
+### 14.21.2 Arquitetura memcached do InnoDB
 
-The `InnoDB` **memcached** plugin implements **memcached** as a MySQL plugin daemon that accesses the `InnoDB` storage engine directly, bypassing the MySQL SQL layer.
+O plugin **memcached** do `InnoDB` implementa o **memcached** como um daemon de plugin do MySQL que acessa o storage engine `InnoDB` diretamente, contornando a camada SQL do MySQL.
 
-The following diagram illustrates how an application accesses data through the `daemon_memcached` plugin, compared with SQL.
+O diagrama a seguir ilustra como um aplicativo acessa dados através do plugin `daemon_memcached`, em comparação com o SQL.
 
-**Figure 14.4 MySQL Server with Integrated memcached Server**
+**Figura 14.4 Servidor MySQL com Servidor memcached Integrado**
 
-![Shows an application accessing data in the InnoDB storage engine using both SQL and the memcached protocol. Using SQL, the application accesses data through the MySQL Server and Handler API. Using the memcached protocol, the application bypasses the MySQL Server, accessing data through the memcached plugin and InnoDB API. The memcached plugin is comprised of the innodb_memcache interface and optional local cache.](images/innodb_memcached2.png)
+![Mostra um aplicativo acessando dados no storage engine InnoDB usando tanto SQL quanto o protocolo memcached. Usando SQL, o aplicativo acessa dados através do MySQL Server e do Handler API. Usando o protocolo memcached, o aplicativo contorna o MySQL Server, acessando dados através do plugin memcached e do InnoDB API. O plugin memcached é composto pela interface innodb_memcache e por um cache local opcional.](images/innodb_memcached2.png)
 
-Features of the `daemon_memcached` plugin:
+Funcionalidades do plugin `daemon_memcached`:
 
-* **memcached** as a daemon plugin of **mysqld**. Both **mysqld** and **memcached** run in the same process space, with very low latency access to data.
+* O **memcached** como um daemon plugin do **mysqld**. Tanto o **mysqld** quanto o **memcached** são executados no mesmo espaço de processo, com acesso a dados de latência muito baixa.
 
-* Direct access to `InnoDB` tables, bypassing the SQL parser, the optimizer, and even the Handler API layer.
+* Acesso direto a tabelas `InnoDB`, contornando o SQL parser, o optimizer e até mesmo a camada do Handler API.
 
-* Standard **memcached** protocols, including the text-based protocol and the binary protocol. The `daemon_memcached` plugin passes all 55 compatibility tests of the **memcapable** command.
+* Protocolos **memcached** padrão, incluindo o protocolo baseado em texto e o protocolo binário. O plugin `daemon_memcached` passa em todos os 55 testes de compatibilidade do comando **memcapable**.
 
-* Multi-column support. You can map multiple columns into the “value” part of the key-value store, with column values delimited by a user-specified separator character.
+* Suporte a múltiplas colunas. Você pode mapear múltiplas colunas na parte de "value" (valor) do key-value store, com os valores das colunas delimitados por um caractere separador especificado pelo usuário.
 
-* By default, the **memcached** protocol is used to read and write data directly to `InnoDB`, letting MySQL manage in-memory caching using the `InnoDB` buffer pool. The default settings represent a combination of high reliability and the fewest surprises for database applications. For example, default settings avoid uncommitted data on the database side, or stale data returned for **memcached** `get` requests.
+* Por padrão, o protocolo **memcached** é usado para ler e escrever dados diretamente no `InnoDB`, permitindo que o MySQL gerencie o caching em memória usando o `InnoDB` buffer pool. As configurações padrão representam uma combinação de alta confiabilidade e menos surpresas para aplicativos de Database. Por exemplo, as configurações padrão evitam dados não commitados (uncommitted) no lado do Database ou dados obsoletos (stale data) retornados para as requisições `get` do **memcached**.
 
-* Advanced users can configure the system as a traditional **memcached** server, with all data cached only in the **memcached** engine (memory caching), or use a combination of the “**memcached** engine” (memory caching) and the `InnoDB` **memcached** engine (`InnoDB` as back-end persistent storage).
+* Usuários avançados podem configurar o sistema como um servidor **memcached** tradicional, com todos os dados em cache apenas no engine **memcached** (memory caching), ou usar uma combinação do "engine **memcached**" (memory caching) e do engine **memcached** do `InnoDB` (`InnoDB` como armazenamento persistente de back-end).
 
-* Control over how often data is passed back and forth between `InnoDB` and **memcached** operations through the `innodb_api_bk_commit_interval`, `daemon_memcached_r_batch_size`, and `daemon_memcached_w_batch_size` configuration options. Batch size options default to a value of 1 for maximum reliability.
+* Controle sobre a frequência com que os dados são transmitidos entre as operações do `InnoDB` e do **memcached** por meio das opções de configuração `innodb_api_bk_commit_interval`, `daemon_memcached_r_batch_size` e `daemon_memcached_w_batch_size`. As opções de tamanho de Batch (lote) são padronizadas para o valor 1 para máxima confiabilidade.
 
-* The ability to specify **memcached** options through the `daemon_memcached_option` configuration parameter. For example, you can change the port that **memcached** listens on, reduce the maximum number of simultaneous connections, change the maximum memory size for a key-value pair, or enable debugging messages for the error log.
+* A capacidade de especificar opções do **memcached** através do parâmetro de configuração `daemon_memcached_option`. Por exemplo, você pode alterar a port em que o **memcached** escuta, reduzir o número máximo de conexões simultâneas, alterar o tamanho máximo de memória para um par key-value, ou habilitar mensagens de debugging para o error log.
 
-* The `innodb_api_trx_level` configuration option controls the transaction isolation level on queries processed by **memcached**. Although **memcached** has no concept of transactions, you can use this option to control how soon **memcached** sees changes caused by SQL statements issued on the table used by the **daemon_memcached** plugin. By default, `innodb_api_trx_level` is set to `READ UNCOMMITTED`.
+* A opção de configuração `innodb_api_trx_level` controla o transaction isolation level em Queries processadas pelo **memcached**. Embora o **memcached** não tenha um conceito de Transactions, você pode usar esta opção para controlar a rapidez com que o **memcached** enxerga as alterações causadas pelas instruções SQL emitidas na tabela usada pelo plugin **daemon_memcached**. Por padrão, `innodb_api_trx_level` é configurado como `READ UNCOMMITTED`.
 
-* The `innodb_api_enable_mdl` option can be used to lock the table at the MySQL level, so that the mapped table cannot be dropped or altered by DDL through the SQL interface. Without the lock, the table can be dropped from the MySQL layer, but kept in `InnoDB` storage until **memcached** or some other user stops using it. “MDL” stands for “metadata locking”.
+* A opção `innodb_api_enable_mdl` pode ser usada para aplicar Lock na tabela no nível do MySQL, de modo que a tabela mapeada não possa ser eliminada (dropped) ou alterada por DDL através da interface SQL. Sem o Lock, a tabela pode ser eliminada da camada MySQL, mas mantida no storage do `InnoDB` até que o **memcached** ou algum outro usuário pare de usá-la. "MDL" significa "metadata locking".

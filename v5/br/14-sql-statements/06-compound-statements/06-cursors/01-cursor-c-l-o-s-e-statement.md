@@ -1,11 +1,11 @@
-#### 13.6.6.1 Cursor CLOSE Statement
+#### 13.6.6.1 Instrução CLOSE de Cursor
 
 ```sql
 CLOSE cursor_name
 ```
 
-This statement closes a previously opened cursor. For an example, see [Section 13.6.6, “Cursors”](cursors.html "13.6.6 Cursors").
+Esta instrução fecha um Cursor previamente aberto. Para um exemplo, consulte [Seção 13.6.6, “Cursors”](cursors.html "13.6.6 Cursors").
 
-An error occurs if the cursor is not open.
+Ocorre um erro se o Cursor não estiver aberto.
 
-If not closed explicitly, a cursor is closed at the end of the [`BEGIN ... END`](begin-end.html "13.6.1 BEGIN ... END Compound Statement") block in which it was declared.
+Se não for fechado explicitamente, um Cursor é fechado no final do bloco [`BEGIN ... END`](begin-end.html "13.6.1 Instrução Composta BEGIN ... END") no qual foi declarado.

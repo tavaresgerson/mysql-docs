@@ -1,12 +1,12 @@
-### 14.17.2 Monitoring InnoDB Mutex Waits Using Performance Schema
+### 14.17.2 Monitorando Esperas de Mutex InnoDB Usando o Performance Schema
 
-A mutex is a synchronization mechanism used in the code to enforce that only one thread at a given time can have access to a common resource. When two or more threads executing in the server need to access the same resource, the threads compete against each other. The first thread to obtain a lock on the mutex causes the other threads to wait until the lock is released.
+Um mutex é um mecanismo de sincronização usado no código para garantir que apenas um Thread por vez possa acessar um recurso comum. Quando dois ou mais Threads em execução no servidor precisam acessar o mesmo recurso, eles competem entre si. O primeiro Thread a obter um Lock no mutex faz com que os outros Threads esperem até que o Lock seja liberado.
 
-For `InnoDB` mutexes that are instrumented, mutex waits can be monitored using Performance Schema. Wait event data collected in Performance Schema tables can help identify mutexes with the most waits or the greatest total wait time, for example.
+Para mutexes do `InnoDB` que são instrumentados, as esperas de mutex podem ser monitoradas usando o Performance Schema. Dados de eventos de espera coletados nas tabelas do Performance Schema podem ajudar a identificar mutexes com o maior número de esperas ou o maior tempo total de espera, por exemplo.
 
-The following example demonstrates how to enable `InnoDB` mutex wait instruments, how to enable associated consumers, and how to query wait event data.
+O exemplo a seguir demonstra como habilitar instrumentos de espera de mutex do `InnoDB`, como habilitar os Consumers associados e como realizar uma Query nos dados de eventos de espera.
 
-1. To view available `InnoDB` mutex wait instruments, query the Performance Schema `setup_instruments` table, as shown below. All `InnoDB` mutex wait instruments are disabled by default.
+1. Para visualizar os instrumentos de espera de mutex do `InnoDB` disponíveis, execute uma Query na tabela `setup_instruments` do Performance Schema, conforme mostrado abaixo. Todos os instrumentos de espera de mutex do `InnoDB` são desabilitados por padrão.
 
    ```sql
    mysql> SELECT *
@@ -68,13 +68,13 @@ The following example demonstrates how to enable `InnoDB` mutex wait instruments
    49 rows in set (0.02 sec)
    ```
 
-2. Some `InnoDB` mutex instances are created at server startup and are only instrumented if the associated instrument is also enabled at server startup. To ensure that all `InnoDB` mutex instances are instrumented and enabled, add the following `performance-schema-instrument` rule to your MySQL configuration file:
+2. Algumas instâncias de mutex do `InnoDB` são criadas na inicialização do servidor e são instrumentadas apenas se o instrumento associado também estiver habilitado na inicialização. Para garantir que todas as instâncias de mutex do `InnoDB` sejam instrumentadas e habilitadas, adicione a seguinte regra `performance-schema-instrument` ao seu arquivo de configuração do MySQL:
 
    ```sql
    performance-schema-instrument='wait/synch/mutex/innodb/%=ON'
    ```
 
-   If you do not require wait event data for all `InnoDB` mutexes, you can disable specific instruments by adding additional `performance-schema-instrument` rules to your MySQL configuration file. For example, to disable `InnoDB` mutex wait event instruments related to full-text search, add the following rule:
+   Se você não precisar de dados de eventos de espera para todos os mutexes do `InnoDB`, você pode desabilitar instrumentos específicos adicionando regras `performance-schema-instrument` adicionais ao seu arquivo de configuração do MySQL. Por exemplo, para desabilitar instrumentos de eventos de espera de mutex do `InnoDB` relacionados à busca de texto completo (full-text search), adicione a seguinte regra:
 
    ```sql
    performance-schema-instrument='wait/synch/mutex/innodb/fts%=OFF'
@@ -82,9 +82,9 @@ The following example demonstrates how to enable `InnoDB` mutex wait instruments
 
    Note
 
-   Rules with a longer prefix such as `wait/synch/mutex/innodb/fts%` take precedence over rules with shorter prefixes such as `wait/synch/mutex/innodb/%`.
+   Regras com um prefixo mais longo, como `wait/synch/mutex/innodb/fts%`, têm precedência sobre regras com prefixos mais curtos, como `wait/synch/mutex/innodb/%`.
 
-   After adding the `performance-schema-instrument` rules to your configuration file, restart the server. All the `InnoDB` mutexes except for those related to full text search are enabled. To verify, query the `setup_instruments` table. The `ENABLED` and `TIMED` columns should be set to `YES` for the instruments that you enabled.
+   Após adicionar as regras `performance-schema-instrument` ao seu arquivo de configuração, reinicie o servidor. Todos os mutexes do `InnoDB`, exceto aqueles relacionados à busca de texto completo, estarão habilitados. Para verificar, execute uma Query na tabela `setup_instruments`. As colunas `ENABLED` e `TIMED` devem estar definidas como `YES` para os instrumentos que você habilitou.
 
    ```sql
    mysql> SELECT *
@@ -102,7 +102,7 @@ The following example demonstrates how to enable `InnoDB` mutex wait instruments
    49 rows in set (0.00 sec)
    ```
 
-3. Enable wait event consumers by updating the `setup_consumers` table. Wait event consumers are disabled by default.
+3. Habilite os Consumers de eventos de espera atualizando a tabela `setup_consumers`. Os Consumers de eventos de espera são desabilitados por padrão.
 
    ```sql
    mysql> UPDATE performance_schema.setup_consumers
@@ -112,7 +112,7 @@ The following example demonstrates how to enable `InnoDB` mutex wait instruments
    Rows matched: 3  Changed: 3  Warnings: 0
    ```
 
-   You can verify that wait event consumers are enabled by querying the `setup_consumers` table. The `events_waits_current`, `events_waits_history`, and `events_waits_history_long` consumers should be enabled.
+   Você pode verificar se os Consumers de eventos de espera estão habilitados executando uma Query na tabela `setup_consumers`. Os Consumers `events_waits_current`, `events_waits_history` e `events_waits_history_long` devem estar habilitados.
 
    ```sql
    mysql> SELECT * FROM performance_schema.setup_consumers;
@@ -138,36 +138,36 @@ The following example demonstrates how to enable `InnoDB` mutex wait instruments
    15 rows in set (0.00 sec)
    ```
 
-4. Once instruments and consumers are enabled, run the workload that you want to monitor. In this example, the **mysqlslap** load emulation client is used to simulate a workload.
+4. Assim que os instrumentos e Consumers estiverem habilitados, execute o Workload que você deseja monitorar. Neste exemplo, o cliente de emulação de carga **mysqlslap** é usado para simular um Workload.
 
    ```sql
    $> ./mysqlslap --auto-generate-sql --concurrency=100 --iterations=10
           --number-of-queries=1000 --number-char-cols=6 --number-int-cols=6;
    ```
 
-5. Query the wait event data. In this example, wait event data is queried from the `events_waits_summary_global_by_event_name` table which aggregates data found in the `events_waits_current`, `events_waits_history`, and `events_waits_history_long` tables. Data is summarized by event name (`EVENT_NAME`), which is the name of the instrument that produced the event. Summarized data includes:
+5. Execute uma Query nos dados de eventos de espera. Neste exemplo, os dados de eventos de espera são consultados a partir da tabela `events_waits_summary_global_by_event_name`, que agrega os dados encontrados nas tabelas `events_waits_current`, `events_waits_history` e `events_waits_history_long`. Os dados são resumidos pelo nome do evento (`EVENT_NAME`), que é o nome do instrumento que produziu o evento. Os dados resumidos incluem:
 
    * `COUNT_STAR`
 
-     The number of summarized wait events.
+     O número de eventos de espera resumidos.
 
    * `SUM_TIMER_WAIT`
 
-     The total wait time of the summarized timed wait events.
+     O tempo total de espera dos eventos de espera cronometrados resumidos.
 
    * `MIN_TIMER_WAIT`
 
-     The minimum wait time of the summarized timed wait events.
+     O tempo mínimo de espera dos eventos de espera cronometrados resumidos.
 
    * `AVG_TIMER_WAIT`
 
-     The average wait time of the summarized timed wait events.
+     O tempo médio de espera dos eventos de espera cronometrados resumidos.
 
    * `MAX_TIMER_WAIT`
 
-     The maximum wait time of the summarized timed wait events.
+     O tempo máximo de espera dos eventos de espera cronometrados resumidos.
 
-   The following query returns the instrument name (`EVENT_NAME`), the number of wait events (`COUNT_STAR`), and the total wait time for the events for that instrument (`SUM_TIMER_WAIT`). Because waits are timed in picoseconds (trillionths of a second) by default, wait times are divided by 1000000000 to show wait times in milliseconds. Data is presented in descending order, by the number of summarized wait events (`COUNT_STAR`). You can adjust the `ORDER BY` clause to order the data by total wait time.
+   A Query a seguir retorna o nome do instrumento (`EVENT_NAME`), o número de eventos de espera (`COUNT_STAR`) e o tempo total de espera para os eventos desse instrumento (`SUM_TIMER_WAIT`). Como as esperas são cronometradas em picossegundos (trilionésimos de segundo) por padrão, os tempos de espera são divididos por 1000000000 para mostrar os tempos de espera em milissegundos. Os dados são apresentados em ordem decrescente, pelo número de eventos de espera resumidos (`COUNT_STAR`). Você pode ajustar a cláusula `ORDER BY` para ordenar os dados pelo tempo total de espera.
 
    ```sql
    mysql> SELECT EVENT_NAME, COUNT_STAR, SUM_TIMER_WAIT/1000000000 SUM_TIMER_WAIT_MS
@@ -208,7 +208,7 @@ The following example demonstrates how to enable `InnoDB` mutex wait instruments
 
    Note
 
-   The preceding result set includes wait event data produced during the startup process. To exclude this data, you can truncate the `events_waits_summary_global_by_event_name` table immediately after startup and before running your workload. However, the truncate operation itself may produce a negligible amount wait event data.
+   O conjunto de resultados anterior inclui dados de eventos de espera produzidos durante o processo de inicialização. Para excluir esses dados, você pode executar um Truncate na tabela `events_waits_summary_global_by_event_name` imediatamente após a inicialização e antes de executar seu Workload. No entanto, a própria operação de Truncate pode produzir uma quantidade insignificante de dados de eventos de espera.
 
    ```sql
    mysql> TRUNCATE performance_schema.events_waits_summary_global_by_event_name;

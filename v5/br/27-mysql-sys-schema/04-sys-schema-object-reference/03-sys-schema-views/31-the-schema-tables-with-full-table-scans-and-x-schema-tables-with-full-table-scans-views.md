@@ -1,21 +1,21 @@
-#### 26.4.3.31 The schema_tables_with_full_table_scans and x$schema_tables_with_full_table_scans Views
+#### 26.4.3.31 As Views schema_tables_with_full_table_scans e x$schema_tables_with_full_table_scans
 
-These views display which tables are being accessed with full table scans. By default, rows are sorted by descending rows scanned.
+Essas views exibem quais tabelas estão sendo acessadas através de *full table scans* (varreduras completas da tabela). Por padrão, as linhas (*rows*) são ordenadas de forma decrescente pelo número de *rows scanned*.
 
-The `schema_tables_with_full_table_scans` and `x$schema_tables_with_full_table_scans` views have these columns:
+As views `schema_tables_with_full_table_scans` e `x$schema_tables_with_full_table_scans` possuem estas colunas:
 
 * `object_schema`
 
-  The schema name.
+  O nome do *schema*.
 
 * `object_name`
 
-  The table name.
+  O nome da tabela.
 
 * `rows_full_scanned`
 
-  The total number of rows scanned by full scans of the table.
+  O número total de linhas (*rows*) escaneadas por *full scans* da tabela.
 
 * `latency`
 
-  The total wait time of full scans of the table.
+  O tempo total de espera (*wait time*) dos *full scans* da tabela. (A latência).

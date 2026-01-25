@@ -1,12 +1,12 @@
-#### 26.4.4.4 The ps_setup_disable_background_threads() Procedure
+#### 26.4.4.4 O Procedure ps_setup_disable_background_threads()
 
-Disables Performance Schema instrumentation for all background threads. Produces a result set indicating how many background threads were disabled. Already disabled threads do not count.
+Desabilita a instrumentação do Performance Schema para todos os *background Threads*. Produz um *Result Set* que indica quantos *background Threads* foram desabilitados. *Threads* que já estavam desabilitados não são contabilizados.
 
-##### Parameters
+##### Parâmetros
 
-None.
+Nenhum.
 
-##### Example
+##### Exemplo
 
 ```sql
 mysql> CALL sys.ps_setup_disable_background_threads();

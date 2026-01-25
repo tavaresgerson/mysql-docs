@@ -1,46 +1,46 @@
-### 11.4.9 Creating Spatial Indexes
+### 11.4.9 Criação de Indexes Espaciais
 
-For `InnoDB` and `MyISAM` tables, MySQL can create spatial indexes using syntax similar to that for creating regular indexes, but using the `SPATIAL` keyword. Columns in spatial indexes must be declared `NOT NULL`. The following examples demonstrate how to create spatial indexes:
+Para tabelas `InnoDB` e `MyISAM`, o MySQL pode criar indexes espaciais usando sintaxe similar à usada para criar indexes regulares, mas utilizando a palavra-chave `SPATIAL`. Colunas em indexes espaciais devem ser declaradas como `NOT NULL`. Os exemplos a seguir demonstram como criar indexes espaciais:
 
-* With `CREATE TABLE`:
+* Com `CREATE TABLE`:
 
   ```sql
   CREATE TABLE geom (g GEOMETRY NOT NULL, SPATIAL INDEX(g));
   ```
 
-* With `ALTER TABLE`:
+* Com `ALTER TABLE`:
 
   ```sql
   CREATE TABLE geom (g GEOMETRY NOT NULL);
   ALTER TABLE geom ADD SPATIAL INDEX(g);
   ```
 
-* With `CREATE INDEX`:
+* Com `CREATE INDEX`:
 
   ```sql
   CREATE TABLE geom (g GEOMETRY NOT NULL);
   CREATE SPATIAL INDEX g ON geom (g);
   ```
 
-`SPATIAL INDEX` creates an R-tree index. For storage engines that support nonspatial indexing of spatial columns, the engine creates a B-tree index. A B-tree index on spatial values is useful for exact-value lookups, but not for range scans.
+`SPATIAL INDEX` cria um Index R-tree. Para storage engines que suportam indexação não-espacial de colunas espaciais, o engine cria um Index B-tree. Um Index B-tree em valores espaciais é útil para buscas de valor exato (exact-value lookups), mas não para range scans.
 
-For more information on indexing spatial columns, see Section 13.1.14, “CREATE INDEX Statement”.
+Para mais informações sobre a indexação de colunas espaciais, consulte a Seção 13.1.14, “CREATE INDEX Statement”.
 
-To drop spatial indexes, use `ALTER TABLE` or `DROP INDEX`:
+Para remover indexes espaciais, use `ALTER TABLE` ou `DROP INDEX`:
 
-* With `ALTER TABLE`:
+* Com `ALTER TABLE`:
 
   ```sql
   ALTER TABLE geom DROP INDEX g;
   ```
 
-* With `DROP INDEX`:
+* Com `DROP INDEX`:
 
   ```sql
   DROP INDEX g ON geom;
   ```
 
-Example: Suppose that a table `geom` contains more than 32,000 geometries, which are stored in the column `g` of type `GEOMETRY`. The table also has an `AUTO_INCREMENT` column `fid` for storing object ID values.
+Exemplo: Suponha que uma tabela `geom` contenha mais de 32.000 geometrias, que são armazenadas na coluna `g` do tipo `GEOMETRY`. A tabela também possui uma coluna `AUTO_INCREMENT` chamada `fid` para armazenar valores de ID de objeto.
 
 ```sql
 mysql> DESCRIBE geom;
@@ -61,7 +61,7 @@ mysql> SELECT COUNT(*) FROM geom;
 1 row in set (0.00 sec)
 ```
 
-To add a spatial index on the column `g`, use this statement:
+Para adicionar um Index espacial na coluna `g`, use esta instrução:
 
 ```sql
 mysql> ALTER TABLE geom ADD SPATIAL INDEX(g);

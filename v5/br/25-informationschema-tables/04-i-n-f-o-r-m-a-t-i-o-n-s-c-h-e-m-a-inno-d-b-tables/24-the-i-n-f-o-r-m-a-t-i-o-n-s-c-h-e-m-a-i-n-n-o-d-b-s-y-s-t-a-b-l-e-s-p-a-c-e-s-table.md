@@ -1,60 +1,60 @@
-### 24.4.24 The INFORMATION_SCHEMA INNODB_SYS_TABLESPACES Table
+### 24.4.24 A Tabela INFORMATION_SCHEMA INNODB_SYS_TABLESPACES
 
-The [`INNODB_SYS_TABLESPACES`](information-schema-innodb-sys-tablespaces-table.html "24.4.24 The INFORMATION_SCHEMA INNODB_SYS_TABLESPACES Table") table provides metadata about `InnoDB` file-per-table and general tablespaces, equivalent to the information in the `SYS_TABLESPACES` table in the `InnoDB` data dictionary.
+A tabela [`INNODB_SYS_TABLESPACES`](information-schema-innodb-sys-tablespaces-table.html "24.4.24 The INFORMATION_SCHEMA INNODB_SYS_TABLESPACES Table") fornece metadados sobre `tablespaces` `InnoDB` file-per-table e general tablespaces, equivalente às informações na tabela `SYS_TABLESPACES` no data dictionary do `InnoDB`.
 
-For related usage information and examples, see [Section 14.16.3, “InnoDB INFORMATION_SCHEMA System Tables”](innodb-information-schema-system-tables.html "14.16.3 InnoDB INFORMATION_SCHEMA System Tables").
+Para informações de uso e exemplos relacionados, consulte [Seção 14.16.3, “Tabelas do Sistema INFORMATION_SCHEMA do InnoDB”](innodb-information-schema-system-tables.html "14.16.3 InnoDB INFORMATION_SCHEMA System Tables").
 
-Note
+Nota
 
-The `INFORMATION_SCHEMA` [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") table reports metadata for all `InnoDB` tablespace types including file-per-table tablespaces, general tablespaces, the system tablespace, the temporary tablespace, and undo tablespaces, if present.
+A tabela [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") do `INFORMATION_SCHEMA` reporta metadados para todos os tipos de tablespace do `InnoDB`, incluindo file-per-table tablespaces, general tablespaces, o system tablespace, o temporary tablespace e undo tablespaces, se presentes.
 
-The [`INNODB_SYS_TABLESPACES`](information-schema-innodb-sys-tablespaces-table.html "24.4.24 The INFORMATION_SCHEMA INNODB_SYS_TABLESPACES Table") table has these columns:
+A tabela [`INNODB_SYS_TABLESPACES`](information-schema-innodb-sys-tablespaces-table.html "24.4.24 The INFORMATION_SCHEMA INNODB_SYS_TABLESPACES Table") possui estas colunas:
 
 * `SPACE`
 
-  The tablespace ID.
+  O ID do tablespace.
 
 * `NAME`
 
-  The schema (database) and table name.
+  O schema (database) e o nome da tabela.
 
 * `FLAG`
 
-  A numeric value that represents bit-level information about tablespace format and storage characteristics.
+  Um valor numérico que representa informações de nível de bit sobre o formato do tablespace e as características de armazenamento.
 
 * `FILE_FORMAT`
 
-  The tablespace file format. For example, [Antelope](glossary.html#glos_antelope "Antelope"), [Barracuda](glossary.html#glos_barracuda "Barracuda"), or `Any` ([general tablespaces](glossary.html#glos_general_tablespace "general tablespace") support any row format). The data in this field is interpreted from the tablespace flags information that resides in the [.ibd file](glossary.html#glos_ibd_file ".ibd file"). For more information about `InnoDB` file formats, see [Section 14.10, “InnoDB File-Format Management”](innodb-file-format.html "14.10 InnoDB File-Format Management").
+  O formato de arquivo do tablespace. Por exemplo, [Antelope](glossary.html#glos_antelope "Antelope"), [Barracuda](glossary.html#glos_barracuda "Barracuda"), ou `Any` ([general tablespaces](glossary.html#glos_general_tablespace "general tablespace") suportam qualquer row format). Os dados neste campo são interpretados a partir das informações dos flags do tablespace que residem no [.ibd file](glossary.html#glos_ibd_file ".ibd file"). Para mais informações sobre os formatos de arquivo do `InnoDB`, consulte [Seção 14.10, “Gerenciamento do Formato de Arquivo do InnoDB”](innodb-file-format.html "14.10 InnoDB File-Format Management").
 
 * `ROW_FORMAT`
 
-  The tablespace row format (`Compact or Redundant`, `Dynamic`, or `Compressed`). The data in this column is interpreted from the tablespace flags information that resides in the [`.ibd` file](glossary.html#glos_ibd_file ".ibd file").
+  O row format do tablespace (`Compact or Redundant`, `Dynamic` ou `Compressed`). Os dados nesta coluna são interpretados a partir das informações dos flags do tablespace que residem no [`.ibd` file](glossary.html#glos_ibd_file ".ibd file").
 
 * `PAGE_SIZE`
 
-  The tablespace page size. The data in this column is interpreted from the tablespace flags information that resides in the [`.ibd` file](glossary.html#glos_ibd_file ".ibd file").
+  O page size do tablespace. Os dados nesta coluna são interpretados a partir das informações dos flags do tablespace que residem no [`.ibd` file](glossary.html#glos_ibd_file ".ibd file").
 
 * `ZIP_PAGE_SIZE`
 
-  The tablespace zip page size. The data in this column is interpreted from the tablespace flags information that resides in the [`.ibd` file](glossary.html#glos_ibd_file ".ibd file").
+  O zip page size do tablespace. Os dados nesta coluna são interpretados a partir das informações dos flags do tablespace que residem no [`.ibd` file](glossary.html#glos_ibd_file ".ibd file").
 
 * `SPACE_TYPE`
 
-  The type of tablespace. Possible values include `General` for general tablespaces and `Single` for file-per-table tablespaces.
+  O tipo de tablespace. Valores possíveis incluem `General` para general tablespaces e `Single` para file-per-table tablespaces.
 
 * `FS_BLOCK_SIZE`
 
-  The file system block size, which is the unit size used for hole punching. This column pertains to the `InnoDB` [transparent page compression](innodb-page-compression.html "14.9.2 InnoDB Page Compression") feature.
+  O block size do sistema de arquivos, que é o tamanho da unidade usada para *hole punching*. Esta coluna se refere ao recurso de [transparent page compression](innodb-page-compression.html "14.9.2 InnoDB Page Compression") do `InnoDB`.
 
 * `FILE_SIZE`
 
-  The apparent size of the file, which represents the maximum size of the file, uncompressed. This column pertains to the `InnoDB` [transparent page compression](innodb-page-compression.html "14.9.2 InnoDB Page Compression") feature.
+  O tamanho aparente do arquivo, que representa o tamanho máximo do arquivo, descompactado. Esta coluna se refere ao recurso de [transparent page compression](innodb-page-compression.html "14.9.2 InnoDB Page Compression") do `InnoDB`.
 
 * `ALLOCATED_SIZE`
 
-  The actual size of the file, which is the amount of space allocated on disk. This column pertains to the `InnoDB` [transparent page compression](innodb-page-compression.html "14.9.2 InnoDB Page Compression") feature.
+  O tamanho real do arquivo, que é a quantidade de espaço alocado no disco. Esta coluna se refere ao recurso de [transparent page compression](innodb-page-compression.html "14.9.2 InnoDB Page Compression") do `InnoDB`.
 
-#### Example
+#### Exemplo
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_SYS_TABLESPACES WHERE SPACE = 26\G
@@ -72,12 +72,12 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_SYS_TABLESPACES WHERE SPACE = 26\
 ALLOCATED_SIZE: 65536
 ```
 
-#### Notes
+#### Notas
 
-* You must have the [`PROCESS`](privileges-provided.html#priv_process) privilege to query this table.
+* Você deve ter o privilégio [`PROCESS`](privileges-provided.html#priv_process) para realizar Query nesta tabela.
 
-* Use the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table or the [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") statement to view additional information about the columns of this table, including data types and default values.
+* Use a tabela [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") do `INFORMATION_SCHEMA` ou a instrução [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") para visualizar informações adicionais sobre as colunas desta tabela, incluindo data types e valores padrão.
 
-* Because tablespace flags are always zero for all Antelope file formats (unlike table flags), there is no way to determine from this flag integer if the tablespace row format is Redundant or Compact. As a result, the possible values for the `ROW_FORMAT` field are “Compact or Redundant”, “Compressed”, or “Dynamic.”
+* Como os flags do tablespace são sempre zero para todos os formatos de arquivo Antelope (diferente dos flags de tabela), não há como determinar a partir deste inteiro de flag se o row format do tablespace é Redundant ou Compact. Como resultado, os valores possíveis para o campo `ROW_FORMAT` são “Compact or Redundant”, “Compressed” ou “Dynamic.”
 
-* With the introduction of general tablespaces, `InnoDB` system tablespace data (for SPACE 0) is exposed in `INNODB_SYS_TABLESPACES`.
+* Com a introdução dos general tablespaces, os dados do system tablespace do `InnoDB` (para SPACE 0) são expostos em `INNODB_SYS_TABLESPACES`.

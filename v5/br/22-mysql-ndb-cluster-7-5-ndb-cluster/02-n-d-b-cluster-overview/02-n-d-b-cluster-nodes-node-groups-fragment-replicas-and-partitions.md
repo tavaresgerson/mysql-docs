@@ -1,84 +1,81 @@
-### 21.2.2 NDB Cluster Nodes, Node Groups, Fragment Replicas, and Partitions
+### 21.2.2 Nodes, Node Groups, Fragment Replicas e Partitions do NDB Cluster
 
-This section discusses the manner in which NDB Cluster divides and duplicates data for storage.
+Esta seção discute a maneira como o NDB Cluster divide e duplica dados para armazenamento.
 
-A number of concepts central to an understanding of this topic are discussed in the next few paragraphs.
+Vários conceitos centrais para a compreensão deste tópico são discutidos nos próximos parágrafos.
 
-**Data node.** An [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") or [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") process, which stores one or more fragment replicas—that is, copies of the partitions (discussed later in this section) assigned to the node group of which the node is a member.
+**Data node.** Um processo [**ndbd**] ou [**ndbmtd**], que armazena uma ou mais Fragment Replicas — ou seja, cópias das Partitions (discutidas mais adiante nesta seção) atribuídas ao Node Group do qual o Node é membro.
 
-Each data node should be located on a separate computer. While it is also possible to host multiple data node processes on a single computer, such a configuration is not usually recommended.
+Cada Data Node deve estar localizado em um computador separado. Embora também seja possível hospedar múltiplos processos de Data Node em um único computador, tal configuração geralmente não é recomendada.
 
-It is common for the terms “node” and “data node” to be used interchangeably when referring to an [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") or [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") process; where mentioned, management nodes ([**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") processes) and SQL nodes ([**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") processes) are specified as such in this discussion.
+É comum que os termos “Node” e “Data Node” sejam usados de forma intercambiável ao se referir a um processo [**ndbd**] ou [**ndbmtd**]; quando mencionados, management nodes (processos [**ndb_mgmd**]) e SQL nodes (processos [**mysqld**]) são especificados como tal nesta discussão.
 
-**Node group.** A node group consists of one or more nodes, and stores partitions, or sets of fragment replicas (see next item).
+**Node group.** Um Node Group consiste em um ou mais Nodes e armazena Partitions, ou conjuntos de Fragment Replicas (consulte o próximo item).
 
-The number of node groups in an NDB Cluster is not directly configurable; it is a function of the number of data nodes and of the number of fragment replicas ([`NoOfReplicas`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-noofreplicas) configuration parameter), as shown here:
+O número de Node Groups em um NDB Cluster não é diretamente configurável; é uma função do número de Data Nodes e do número de Fragment Replicas (parâmetro de configuração [`NoOfReplicas`]), conforme mostrado aqui:
 
 ```sql
 [# of node groups] = [# of data nodes] / NoOfReplicas
 ```
 
-Thus, an NDB Cluster with 4 data nodes has 4 node groups if [`NoOfReplicas`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-noofreplicas) is set to 1 in the `config.ini` file, 2 node groups if [`NoOfReplicas`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-noofreplicas) is set to 2, and 1 node group if [`NoOfReplicas`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-noofreplicas) is set to 4. Fragment replicas are discussed later in this section; for more information about [`NoOfReplicas`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-noofreplicas), see [Section 21.4.3.6, “Defining NDB Cluster Data Nodes”](mysql-cluster-ndbd-definition.html "21.4.3.6 Defining NDB Cluster Data Nodes").
+Assim, um NDB Cluster com 4 Data Nodes tem 4 Node Groups se [`NoOfReplicas`] for configurado para 1 no arquivo `config.ini`, 2 Node Groups se [`NoOfReplicas`] for configurado para 2, e 1 Node Group se [`NoOfReplicas`] for configurado para 4. Fragment Replicas são discutidas mais adiante nesta seção; para mais informações sobre [`NoOfReplicas`], consulte [Section 21.4.3.6, “Defining NDB Cluster Data Nodes”].
 
 Note
 
-All node groups in an NDB Cluster must have the same number of data nodes.
+Todos os Node Groups em um NDB Cluster devem ter o mesmo número de Data Nodes.
 
-You can add new node groups (and thus new data nodes) online, to a running NDB Cluster; see [Section 21.6.7, “Adding NDB Cluster Data Nodes Online”](mysql-cluster-online-add-node.html "21.6.7 Adding NDB Cluster Data Nodes Online"), for more information.
+Você pode adicionar novos Node Groups (e, portanto, novos Data Nodes) online, a um NDB Cluster em execução; consulte [Section 21.6.7, “Adding NDB Cluster Data Nodes Online”], para mais informações.
 
-**Partition.** This is a portion of the data stored by the cluster. Each node is responsible for keeping at least one copy of any partitions assigned to it (that is, at least one fragment replica) available to the cluster.
+**Partition.** Esta é uma porção dos dados armazenados pelo Cluster. Cada Node é responsável por manter pelo menos uma cópia de quaisquer Partitions atribuídas a ele (ou seja, pelo menos uma Fragment Replica) disponível para o Cluster.
 
-The number of partitions used by default by NDB Cluster depends on the number of data nodes and the number of LDM threads in use by the data nodes, as shown here:
+O número de Partitions usadas por padrão pelo NDB Cluster depende do número de Data Nodes e do número de LDM Threads em uso pelos Data Nodes, conforme mostrado aqui:
 
 ```sql
 [# of partitions] = [# of data nodes] * [# of LDM threads]
 ```
 
-When using data nodes running [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)"), the number of LDM threads is controlled by the setting for [`MaxNoOfExecutionThreads`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-maxnoofexecutionthreads). When using [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") there is a single LDM thread, which means that there are as many cluster partitions as nodes participating in the cluster. This is also the case when using [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") with `MaxNoOfExecutionThreads` set to 3 or less. (You should be aware that the number of LDM threads increases with the value of this parameter, but not in a strictly linear fashion, and that there are additional constraints on setting it; see the description of [`MaxNoOfExecutionThreads`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-maxnoofexecutionthreads) for more information.)
+Ao usar Data Nodes executando [**ndbmtd**], o número de LDM Threads é controlado pela configuração de [`MaxNoOfExecutionThreads`]. Ao usar [**ndbd**] há uma única LDM Thread, o que significa que há tantas Cluster Partitions quanto Nodes participando do Cluster. Este também é o caso ao usar [**ndbmtd**] com `MaxNoOfExecutionThreads` configurado para 3 ou menos. (Você deve estar ciente de que o número de LDM Threads aumenta com o valor deste parâmetro, mas não de forma estritamente linear, e que há restrições adicionais para configurá-lo; consulte a descrição de [`MaxNoOfExecutionThreads`] para obter mais informações.)
 
-**NDB and user-defined partitioning.** NDB Cluster normally partitions [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables automatically. However, it is also possible to employ user-defined partitioning with [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables. This is subject to the following limitations:
+**NDB e Partitioning definido pelo usuário.** O NDB Cluster normalmente particiona tabelas [`NDBCLUSTER`] automaticamente. No entanto, também é possível empregar Partitioning definido pelo usuário com tabelas [`NDBCLUSTER`]. Isso está sujeito às seguintes limitações:
 
-1. Only the `KEY` and `LINEAR KEY` partitioning schemes are supported in production with [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables.
+1. Apenas os esquemas de Partitioning `KEY` e `LINEAR KEY` são suportados em produção com tabelas [`NDB`].
 
-2. The maximum number of partitions that may be defined explicitly for any [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table is `8 * [number of LDM threads] * [number of node groups]`, the number of node groups in an NDB Cluster being determined as discussed previously in this section. When running [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") for data node processes, setting the number of LDM threads has no effect (since [`ThreadConfig`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-threadconfig) applies only to [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)")); in such cases, this value can be treated as though it were equal to 1 for purposes of performing this calculation.
+2. O número máximo de Partitions que podem ser definidas explicitamente para qualquer tabela [`NDB`] é `8 * [número de LDM threads] * [número de node groups]`, sendo o número de Node Groups em um NDB Cluster determinado conforme discutido anteriormente nesta seção. Ao executar [**ndbd**] para processos de Data Node, a configuração do número de LDM Threads não tem efeito (uma vez que [`ThreadConfig`] se aplica apenas ao [**ndbmtd**]); nesses casos, este valor pode ser tratado como se fosse igual a 1 para fins de realização deste cálculo.
 
-   See [Section 21.5.3, “ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)”](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)"), for more information.
+   Consulte [Section 21.5.3, “ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)”], para mais informações.
 
-For more information relating to NDB Cluster and user-defined partitioning, see [Section 21.2.7, “Known Limitations of NDB Cluster”](mysql-cluster-limitations.html "21.2.7 Known Limitations of NDB Cluster"), and [Section 22.6.2, “Partitioning Limitations Relating to Storage Engines”](partitioning-limitations-storage-engines.html "22.6.2 Partitioning Limitations Relating to Storage Engines").
+Para mais informações relacionadas ao NDB Cluster e ao Partitioning definido pelo usuário, consulte [Section 21.2.7, “Known Limitations of NDB Cluster”], e [Section 22.6.2, “Partitioning Limitations Relating to Storage Engines”].
 
-**Fragment replica.** This is a copy of a cluster partition. Each node in a node group stores a fragment replica. Also sometimes known as a partition replica. The number of fragment replicas is equal to the number of nodes per node group.
+**Fragment replica.** Esta é uma cópia de uma Cluster Partition. Cada Node em um Node Group armazena uma Fragment Replica. Também é por vezes conhecida como Partition Replica. O número de Fragment Replicas é igual ao número de Nodes por Node Group.
 
-A fragment replica belongs entirely to a single node; a node can (and usually does) store several fragment replicas.
+Uma Fragment Replica pertence inteiramente a um único Node; um Node pode (e geralmente armazena) diversas Fragment Replicas.
 
-The following diagram illustrates an NDB Cluster with four data nodes running [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon"), arranged in two node groups of two nodes each; nodes 1 and 2 belong to node group 0, and nodes 3 and 4 belong to node group 1.
+O diagrama a seguir ilustra um NDB Cluster com quatro Data Nodes executando [**ndbd**], dispostos em dois Node Groups de dois Nodes cada; os Nodes 1 e 2 pertencem ao Node Group 0, e os Nodes 3 e 4 pertencem ao Node Group 1.
 
 Note
 
-Only data nodes are shown here; although a working NDB Cluster requires an [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") process for cluster management and at least one SQL node to access the data stored by the cluster, these have been omitted from the figure for clarity.
+Apenas os Data Nodes são mostrados aqui; embora um NDB Cluster em funcionamento exija um processo [**ndb_mgmd**] para gerenciamento do Cluster e pelo menos um SQL Node para acessar os dados armazenados pelo Cluster, eles foram omitidos da figura para maior clareza.
 
-**Figure 21.2 NDB Cluster with Two Node Groups**
+**Figura 21.2 NDB Cluster com Dois Node Groups**
 
-![Content is described in the surrounding text.](images/fragment-replicas-groups-1-1.png)
+![O conteúdo é descrito no texto circundante.](images/fragment-replicas-groups-1-1.png)
 
-The data stored by the cluster is divided into four partitions, numbered 0, 1, 2, and 3. Each partition is stored—in multiple copies—on the same node group. Partitions are stored on alternate node groups as follows:
+Os dados armazenados pelo Cluster são divididos em quatro Partitions, numeradas 0, 1, 2 e 3. Cada Partition é armazenada — em múltiplas cópias — no mesmo Node Group. As Partitions são armazenadas em Node Groups alternados da seguinte forma:
 
-* Partition 0 is stored on node group 0; a primary fragment replica (primary copy) is stored on node 1, and a backup fragment replica (backup copy of the partition) is stored on node 2.
+* A Partition 0 é armazenada no Node Group 0; uma Primary Fragment Replica (cópia primária) é armazenada no Node 1, e uma Backup Fragment Replica (cópia de Backup da Partition) é armazenada no Node 2.
 
-* Partition 1 is stored on the other node group (node group 1); this partition's primary fragment replica is on node 3, and its backup fragment replica is on node 4.
+* A Partition 1 é armazenada no outro Node Group (Node Group 1); a Primary Fragment Replica desta Partition está no Node 3, e sua Backup Fragment Replica está no Node 4.
 
-* Partition 2 is stored on node group 0. However, the placing of its two fragment replicas is reversed from that of Partition 0; for Partition 2, the primary fragment replica is stored on node 2, and the backup on node 1.
+* A Partition 2 é armazenada no Node Group 0. No entanto, a colocação de suas duas Fragment Replicas é invertida em relação à Partition 0; para a Partition 2, a Primary Fragment Replica é armazenada no Node 2, e a Backup no Node 1.
 
-* Partition 3 is stored on node group 1, and the placement of its two fragment replicas are reversed from those of partition
+* A Partition 3 é armazenada no Node Group 1, e a colocação de suas duas Fragment Replicas é invertida em relação às da Partition 1. Ou seja, sua Primary Fragment Replica está localizada no Node 4, com a Backup no Node 3.
 
-  1. That is, its primary fragment replica is located on node 4, with the backup on node 3.
+O que isso significa em relação à operação contínua de um NDB Cluster é o seguinte: contanto que cada Node Group participante no Cluster tenha pelo menos um Node em operação, o Cluster possui uma cópia completa de todos os dados e permanece viável. Isso é ilustrado no próximo diagrama.
 
-What this means regarding the continued operation of an NDB Cluster is this: so long as each node group participating in the cluster has at least one node operating, the cluster has a complete copy of all data and remains viable. This is illustrated in the next diagram.
+**Figura 21.3 Nodes Necessários para um NDB Cluster 2x2**
 
-**Figure 21.3 Nodes Required for a 2x2 NDB Cluster**
+![O conteúdo é descrito no texto circundante.](images/replicas-groups-1-2.png)
 
-![Content is described in the surrounding text.](images/replicas-groups-1-2.png)
+Neste exemplo, o Cluster consiste em dois Node Groups, cada um composto por dois Data Nodes. Cada Data Node está executando uma instância de [**ndbd**]. Qualquer combinação de pelo menos um Node do Node Group 0 e pelo menos um Node do Node Group 1 é suficiente para manter o Cluster “ativo” (alive). No entanto, se ambos os Nodes de um único Node Group falharem, a combinação composta pelos dois Nodes restantes no outro Node Group não é suficiente. Nesta situação, o Cluster perdeu uma Partition inteira e, portanto, não pode mais fornecer acesso a um conjunto completo de todos os dados do NDB Cluster.
 
-In this example, the cluster consists of two node groups each consisting of two data nodes. Each data node is running an instance of [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon"). Any combination of at least one node from node group 0 and at least one node from node group 1 is sufficient to keep the cluster “alive”. However, if both nodes from a single node group fail, the combination consisting of the remaining two nodes in the other node group is not sufficient. In this situation, the cluster has lost an entire partition and so can no longer provide access to a complete set of all NDB Cluster data.
-
-In NDB 7.5.4 and later, the maximum number of node groups supported for a single NDB Cluster instance is 48 (Bug#80845, Bug
-#22996305).
+No NDB 7.5.4 e posterior, o número máximo de Node Groups suportados para uma única instância do NDB Cluster é 48 (Bug#80845, Bug #22996305).

@@ -1,8 +1,8 @@
-#### 25.12.15.1 Wait Event Summary Tables
+#### 25.12.15.1 Tabelas de Resumo de Eventos de Espera
 
-The Performance Schema maintains tables for collecting current and recent wait events, and aggregates that information in summary tables. [Section 25.12.4, “Performance Schema Wait Event Tables”](performance-schema-wait-tables.html "25.12.4 Performance Schema Wait Event Tables") describes the events on which wait summaries are based. See that discussion for information about the content of wait events, the current and recent wait event tables, and how to control wait event collection, which is disabled by default.
+O Performance Schema mantém tabelas para coletar eventos de espera (wait events) atuais e recentes, e agrega essa informação em tabelas de resumo. [Seção 25.12.4, “Tabelas de Eventos de Espera do Performance Schema”](performance-schema-wait-tables.html "25.12.4 Performance Schema Wait Event Tables") descreve os eventos nos quais os resumos de espera são baseados. Consulte essa discussão para obter informações sobre o conteúdo dos eventos de espera, as tabelas de eventos de espera atuais e recentes, e como controlar a coleta de eventos de espera, que está desabilitada por padrão.
 
-Example wait event summary information:
+Exemplo de informação de resumo de eventos de espera:
 
 ```sql
 mysql> SELECT *
@@ -26,46 +26,46 @@ MAX_TIMER_WAIT: 735345
 ...
 ```
 
-Each wait event summary table has one or more grouping columns to indicate how the table aggregates events. Event names refer to names of event instruments in the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table:
+Cada tabela de resumo de eventos de espera possui uma ou mais colunas de agrupamento para indicar como a tabela agrega eventos. Os nomes dos eventos referem-se aos nomes dos instrumentos de evento na tabela [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 A Tabela setup_instruments"):
 
-* [`events_waits_summary_by_account_by_event_name`](performance-schema-stage-summary-tables.html "25.12.15.2 Stage Summary Tables") has `EVENT_NAME`, `USER`, and `HOST` columns. Each row summarizes events for a given account (user and host combination) and event name.
+* [`events_waits_summary_by_account_by_event_name`](performance-schema-stage-summary-tables.html "25.12.15.2 Stage Summary Tables") possui as colunas `EVENT_NAME`, `USER` e `HOST`. Cada linha resume eventos para uma determinada conta (combinação de user e host) e nome do evento.
 
-* [`events_waits_summary_by_host_by_event_name`](performance-schema-stage-summary-tables.html "25.12.15.2 Stage Summary Tables") has `EVENT_NAME` and `HOST` columns. Each row summarizes events for a given host and event name.
+* [`events_waits_summary_by_host_by_event_name`](performance-schema-stage-summary-tables.html "25.12.15.2 Stage Summary Tables") possui as colunas `EVENT_NAME` e `HOST`. Cada linha resume eventos para um determinado host e nome do evento.
 
-* [`events_waits_summary_by_instance`](performance-schema-wait-summary-tables.html "25.12.15.1 Wait Event Summary Tables") has `EVENT_NAME` and `OBJECT_INSTANCE_BEGIN` columns. Each row summarizes events for a given event name and object. If an instrument is used to create multiple instances, each instance has a unique `OBJECT_INSTANCE_BEGIN` value and is summarized separately in this table.
+* [`events_waits_summary_by_instance`](performance-schema-wait-summary-tables.html "25.12.15.1 Wait Event Summary Tables") possui as colunas `EVENT_NAME` e `OBJECT_INSTANCE_BEGIN`. Cada linha resume eventos para um determinado nome de evento e objeto. Se um instrumento for usado para criar múltiplas instâncias, cada instância terá um valor `OBJECT_INSTANCE_BEGIN` exclusivo e será resumida separadamente nesta tabela.
 
-* [`events_waits_summary_by_thread_by_event_name`](performance-schema-wait-summary-tables.html "25.12.15.1 Wait Event Summary Tables") has `THREAD_ID` and `EVENT_NAME` columns. Each row summarizes events for a given thread and event name.
+* [`events_waits_summary_by_thread_by_event_name`](performance-schema-wait-summary-tables.html "25.12.15.1 Wait Event Summary Tables") possui as colunas `THREAD_ID` e `EVENT_NAME`. Cada linha resume eventos para um determinado thread e nome do evento.
 
-* [`events_waits_summary_by_user_by_event_name`](performance-schema-stage-summary-tables.html "25.12.15.2 Stage Summary Tables") has `EVENT_NAME` and `USER` columns. Each row summarizes events for a given user and event name.
+* [`events_waits_summary_by_user_by_event_name`](performance-schema-stage-summary-tables.html "25.12.15.2 Stage Summary Tables") possui as colunas `EVENT_NAME` e `USER`. Cada linha resume eventos para um determinado user e nome do evento.
 
-* [`events_waits_summary_global_by_event_name`](performance-schema-wait-summary-tables.html "25.12.15.1 Wait Event Summary Tables") has an `EVENT_NAME` column. Each row summarizes events for a given event name. An instrument might be used to create multiple instances of the instrumented object. For example, if there is an instrument for a mutex that is created for each connection, there are as many instances as there are connections. The summary row for the instrument summarizes over all these instances.
+* [`events_waits_summary_global_by_event_name`](performance-schema-wait-summary-tables.html "25.12.15.1 Wait Event Summary Tables") possui uma coluna `EVENT_NAME`. Cada linha resume eventos para um determinado nome de evento. Um instrumento pode ser usado para criar múltiplas instâncias do objeto instrumentado. Por exemplo, se houver um instrumento para um mutex que é criado para cada conexão, haverá tantas instâncias quanto conexões. A linha de resumo para o instrumento faz o resumo de todas essas instâncias.
 
-Each wait event summary table has these summary columns containing aggregated values:
+Cada tabela de resumo de eventos de espera possui estas colunas de resumo contendo valores agregados:
 
 * `COUNT_STAR`
 
-  The number of summarized events. This value includes all events, whether timed or nontimed.
+  O número de eventos resumidos. Este valor inclui todos os eventos, sejam eles cronometrados (timed) ou não cronometrados (nontimed).
 
 * `SUM_TIMER_WAIT`
 
-  The total wait time of the summarized timed events. This value is calculated only for timed events because nontimed events have a wait time of `NULL`. The same is true for the other `xxx_TIMER_WAIT` values.
+  O tempo de espera total dos eventos cronometrados (timed events) resumidos. Este valor é calculado apenas para eventos cronometrados porque eventos não cronometrados possuem um tempo de espera `NULL`. O mesmo é verdade para os outros valores `xxx_TIMER_WAIT`.
 
 * `MIN_TIMER_WAIT`
 
-  The minimum wait time of the summarized timed events.
+  O tempo de espera mínimo dos eventos cronometrados resumidos.
 
 * `AVG_TIMER_WAIT`
 
-  The average wait time of the summarized timed events.
+  O tempo de espera médio dos eventos cronometrados resumidos.
 
 * `MAX_TIMER_WAIT`
 
-  The maximum wait time of the summarized timed events.
+  O tempo de espera máximo dos eventos cronometrados resumidos.
 
-[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is permitted for wait summary tables. It has these effects:
+O [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") é permitido para tabelas de resumo de espera. Ele tem estes efeitos:
 
-* For summary tables not aggregated by account, host, or user, truncation resets the summary columns to zero rather than removing rows.
+* Para tabelas de resumo não agregadas por account, host ou user, o truncation redefine as colunas de resumo para zero, em vez de remover as linhas.
 
-* For summary tables aggregated by account, host, or user, truncation removes rows for accounts, hosts, or users with no connections, and resets the summary columns to zero for the remaining rows.
+* Para tabelas de resumo agregadas por account, host ou user, o truncation remove linhas para accounts, hosts ou users sem conexões, e redefine as colunas de resumo para zero para as linhas restantes.
 
-In addition, each wait summary table that is aggregated by account, host, user, or thread is implicitly truncated by truncation of the connection table on which it depends, or truncation of [`events_waits_summary_global_by_event_name`](performance-schema-wait-summary-tables.html "25.12.15.1 Wait Event Summary Tables"). For details, see [Section 25.12.8, “Performance Schema Connection Tables”](performance-schema-connection-tables.html "25.12.8 Performance Schema Connection Tables").
+Além disso, cada tabela de resumo de espera que é agregada por account, host, user ou thread é implicitamente truncada pelo truncation da tabela de conexão da qual depende, ou pelo truncation de [`events_waits_summary_global_by_event_name`](performance-schema-wait-summary-tables.html "25.12.15.1 Wait Event Summary Tables"). Para detalhes, consulte [Seção 25.12.8, “Tabelas de Conexão do Performance Schema”](performance-schema-connection-tables.html "25.12.8 Performance Schema Connection Tables").

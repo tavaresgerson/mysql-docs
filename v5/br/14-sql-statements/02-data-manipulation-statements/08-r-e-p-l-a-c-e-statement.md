@@ -1,4 +1,4 @@
-### 13.2.8 REPLACE Statement
+### 13.2.8 Declaração REPLACE
 
 ```sql
 REPLACE [LOW_PRIORITY | DELAYED]
@@ -31,46 +31,45 @@ assignment_list:
     assignment [, assignment] ...
 ```
 
-[`REPLACE`](replace.html "13.2.8 REPLACE Statement") works exactly like [`INSERT`](insert.html "13.2.5 INSERT Statement"), except that if an old row in the table has the same value as a new row for a `PRIMARY KEY` or a `UNIQUE` index, the old row is deleted before the new row is inserted. See [Section 13.2.5, “INSERT Statement”](insert.html "13.2.5 INSERT Statement").
+O `REPLACE` funciona exatamente como o `INSERT`, exceto que se uma linha antiga na tabela tiver o mesmo valor que uma nova linha para uma `PRIMARY KEY` ou um `UNIQUE` index, a linha antiga é excluída antes que a nova linha seja inserida. Consulte [Seção 13.2.5, “Declaração INSERT”](insert.html "13.2.5 INSERT Statement").
 
-[`REPLACE`](replace.html "13.2.8 REPLACE Statement") is a MySQL extension to the SQL standard. It either inserts, or *deletes* and inserts. For another MySQL extension to standard SQL—that either inserts or *updates*—see [Section 13.2.5.2, “INSERT ... ON DUPLICATE KEY UPDATE Statement”](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement").
+O `REPLACE` é uma extensão do MySQL ao padrão SQL. Ele insere ou *exclui* e insere. Para outra extensão do MySQL ao SQL padrão—que insere ou *atualiza*—consulte [Seção 13.2.5.2, “Declaração INSERT ... ON DUPLICATE KEY UPDATE”](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement").
 
-`DELAYED` inserts and replaces were deprecated in MySQL 5.6. In MySQL 5.7, `DELAYED` is not supported. The server recognizes but ignores the `DELAYED` keyword, handles the replace as a nondelayed replace, and generates an `ER_WARN_LEGACY_SYNTAX_CONVERTED` warning: REPLACE DELAYED is no longer supported. The statement was converted to REPLACE. The `DELAYED` keyword is scheduled for removal in a future release. release.
+`INSERTs` e `REPLACEs` com `DELAYED` foram descontinuados no MySQL 5.6. No MySQL 5.7, o `DELAYED` não é suportado. O servidor reconhece, mas ignora a palavra-chave `DELAYED`, trata o `replace` como um `replace` não atrasado e gera um aviso `ER_WARN_LEGACY_SYNTAX_CONVERTED`: REPLACE DELAYED is no longer supported. The statement was converted to REPLACE. A palavra-chave `DELAYED` está programada para ser removida em uma versão futura.
 
-Note
+Nota
 
-[`REPLACE`](replace.html "13.2.8 REPLACE Statement") makes sense only if a table has a `PRIMARY KEY` or `UNIQUE` index. Otherwise, it becomes equivalent to [`INSERT`](insert.html "13.2.5 INSERT Statement"), because there is no index to be used to determine whether a new row duplicates another.
+O `REPLACE` só faz sentido se uma tabela tiver uma `PRIMARY KEY` ou um `UNIQUE` index. Caso contrário, ele se torna equivalente ao `INSERT`, pois não há Index a ser usado para determinar se uma nova linha duplica outra.
 
-Values for all columns are taken from the values specified in the [`REPLACE`](replace.html "13.2.8 REPLACE Statement") statement. Any missing columns are set to their default values, just as happens for [`INSERT`](insert.html "13.2.5 INSERT Statement"). You cannot refer to values from the current row and use them in the new row. If you use an assignment such as `SET col_name = col_name + 1`, the reference to the column name on the right hand side is treated as [`DEFAULT(col_name)`](miscellaneous-functions.html#function_default), so the assignment is equivalent to `SET col_name = DEFAULT(col_name) + 1`.
+Os valores para todas as columns são extraídos dos valores especificados na declaração `REPLACE`. Quaisquer columns ausentes são definidas para seus valores `DEFAULT`, assim como acontece no `INSERT`. Você não pode referenciar valores da linha atual e usá-los na nova linha. Se você usar uma atribuição como `SET col_name = col_name + 1`, a referência ao nome da column no lado direito é tratada como `DEFAULT(col_name)`, de modo que a atribuição é equivalente a `SET col_name = DEFAULT(col_name) + 1`.
 
-To use [`REPLACE`](replace.html "13.2.8 REPLACE Statement"), you must have both the [`INSERT`](privileges-provided.html#priv_insert) and [`DELETE`](privileges-provided.html#priv_delete) privileges for the table.
+Para usar o `REPLACE`, você deve ter ambos os privileges `INSERT` e `DELETE` para a tabela.
 
-If a generated column is replaced explicitly, the only permitted value is `DEFAULT`. For information about generated columns, see [Section 13.1.18.7, “CREATE TABLE and Generated Columns”](create-table-generated-columns.html "13.1.18.7 CREATE TABLE and Generated Columns").
+Se uma generated column for explicitamente substituída, o único valor permitido é `DEFAULT`. Para obter informações sobre generated columns, consulte [Seção 13.1.18.7, “CREATE TABLE e Generated Columns”](create-table-generated-columns.html "13.1.18.7 CREATE TABLE and Generated Columns").
 
-`REPLACE` supports explicit partition selection using the `PARTITION` clause with a list of comma-separated names of partitions, subpartitions, or both. As with [`INSERT`](insert.html "13.2.5 INSERT Statement"), if it is not possible to insert the new row into any of these partitions or subpartitions, the `REPLACE` statement fails with the error Found a row not matching the given partition set. For more information and examples, see [Section 22.5, “Partition Selection”](partitioning-selection.html "22.5 Partition Selection").
+O `REPLACE` suporta a seleção explícita de Partition usando a cláusula `PARTITION` com uma lista de nomes de Partitions, Subpartitions ou ambos, separados por vírgulas. Assim como acontece com o `INSERT`, se não for possível inserir a nova linha em nenhuma dessas Partitions ou Subpartitions, a declaração `REPLACE` falha com o erro Found a row not matching the given partition set. Para mais informações e exemplos, consulte [Seção 22.5, “Seleção de Partition”](partitioning-selection.html "22.5 Partition Selection").
 
-The [`REPLACE`](replace.html "13.2.8 REPLACE Statement") statement returns a count to indicate the number of rows affected. This is the sum of the rows deleted and inserted. If the count is 1 for a single-row [`REPLACE`](replace.html "13.2.8 REPLACE Statement"), a row was inserted and no rows were deleted. If the count is greater than 1, one or more old rows were deleted before the new row was inserted. It is possible for a single row to replace more than one old row if the table contains multiple unique indexes and the new row duplicates values for different old rows in different unique indexes.
+A declaração `REPLACE` retorna uma contagem para indicar o número de linhas afetadas. Este é o somatório das linhas excluídas e inseridas. Se a contagem for 1 para uma declaração `REPLACE` de linha única, uma linha foi inserida e nenhuma linha foi excluída. Se a contagem for maior que 1, uma ou mais linhas antigas foram excluídas antes que a nova linha fosse inserida. É possível que uma única linha substitua mais de uma linha antiga se a tabela contiver múltiplos Unique Indexes e a nova linha duplicar valores para diferentes linhas antigas em diferentes Unique Indexes.
 
-The affected-rows count makes it easy to determine whether [`REPLACE`](replace.html "13.2.8 REPLACE Statement") only added a row or whether it also replaced any rows: Check whether the count is 1 (added) or greater (replaced).
+A contagem de linhas afetadas facilita a determinação se o `REPLACE` apenas adicionou uma linha ou se também substituiu alguma linha: Verifique se a contagem é 1 (adicionada) ou maior (substituída).
 
-If you are using the C API, the affected-rows count can be obtained using the [`mysql_affected_rows()`](/doc/c-api/5.7/en/mysql-affected-rows.html) function.
+Se você estiver usando a C API, a contagem de linhas afetadas pode ser obtida usando a função [`mysql_affected_rows()`](/doc/c-api/5.7/en/mysql-affected-rows.html).
 
-You cannot replace into a table and select from the same table in a subquery.
+Você não pode substituir dados em uma tabela e selecionar dados da mesma tabela em uma subquery.
 
-MySQL uses the following algorithm for [`REPLACE`](replace.html "13.2.8 REPLACE Statement") (and [`LOAD DATA ... REPLACE`](load-data.html "13.2.6 LOAD DATA Statement")):
+O MySQL usa o seguinte algoritmo para o `REPLACE` (e `LOAD DATA ... REPLACE`):
 
-1. Try to insert the new row into the table
-2. While the insertion fails because a duplicate-key error occurs for a primary key or unique index:
+1. Tente inserir a nova linha na tabela
+2. Enquanto a inserção falhar devido a um erro de duplicate-key para uma Primary Key ou Unique Index:
 
-   1. Delete from the table the conflicting row that has the duplicate key value
+   1. Exclua da tabela a linha conflitante que possui o valor da duplicate key
+   2. Tente novamente inserir a nova linha na tabela
 
-   2. Try again to insert the new row into the table
+É possível que, no caso de um erro de duplicate-key, um storage engine execute o `REPLACE` como um `update` em vez de um `delete` mais um `insert`, mas a semântica é a mesma. Não há efeitos visíveis para o usuário, exceto por uma possível diferença na forma como o storage engine incrementa as variáveis de status `Handler_xxx`.
 
-It is possible that in the case of a duplicate-key error, a storage engine may perform the `REPLACE` as an update rather than a delete plus insert, but the semantics are the same. There are no user-visible effects other than a possible difference in how the storage engine increments `Handler_xxx` status variables.
+Como os resultados das declarações `REPLACE ... SELECT` dependem da ordenação das linhas do `SELECT` e essa ordem nem sempre pode ser garantida, é possível que ao registrar essas declarações, o source e a replica divergirem. Por esse motivo, as declarações `REPLACE ... SELECT` são sinalizadas como inseguras para Statement-Based Replication. Tais declarações geram um aviso no error log ao usar o modo statement-based e são escritas no Binary Log usando o formato row-based quando no modo `MIXED`. Consulte também [Seção 16.2.1.1, “Vantagens e Desvantagens da Replicação Statement-Based e Row-Based”](replication-sbr-rbr.html "16.2.1.1 Advantages and Disadvantages of Statement-Based and Row-Based Replication").
 
-Because the results of `REPLACE ... SELECT` statements depend on the ordering of rows from the [`SELECT`](select.html "13.2.9 SELECT Statement") and this order cannot always be guaranteed, it is possible when logging these statements for the source and the replica to diverge. For this reason, `REPLACE ... SELECT` statements are flagged as unsafe for statement-based replication. such statements produce a warning in the error log when using statement-based mode and are written to the binary log using the row-based format when using `MIXED` mode. See also [Section 16.2.1.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”](replication-sbr-rbr.html "16.2.1.1 Advantages and Disadvantages of Statement-Based and Row-Based Replication").
-
-When modifying an existing table that is not partitioned to accommodate partitioning, or, when modifying the partitioning of an already partitioned table, you may consider altering the table's primary key (see [Section 22.6.1, “Partitioning Keys, Primary Keys, and Unique Keys”](partitioning-limitations-partitioning-keys-unique-keys.html "22.6.1 Partitioning Keys, Primary Keys, and Unique Keys")). You should be aware that, if you do this, the results of `REPLACE` statements may be affected, just as they would be if you modified the primary key of a nonpartitioned table. Consider the table created by the following [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement:
+Ao modificar uma tabela existente que não está Partitioned para acomodar Partitioning, ou, ao modificar o Partitioning de uma tabela já Partitioned, você pode considerar alterar a Primary Key da tabela (consulte [Seção 22.6.1, “Partitioning Keys, Primary Keys e Unique Keys”](partitioning-limitations-partitioning-keys-unique-keys.html "22.6.1 Partitioning Keys, Primary Keys, and Unique Keys")). Você deve estar ciente de que, se fizer isso, os resultados das declarações `REPLACE` podem ser afetados, assim como seriam se você modificasse a Primary Key de uma tabela não Partitioned. Considere a tabela criada pela seguinte declaração `CREATE TABLE`:
 
 ```sql
 CREATE TABLE test (
@@ -81,7 +80,7 @@ CREATE TABLE test (
 );
 ```
 
-When we create this table and run the statements shown in the mysql client, the result is as follows:
+Quando criamos esta tabela e executamos as declarações mostradas no cliente mysql, o resultado é o seguinte:
 
 ```sql
 mysql> REPLACE INTO test VALUES (1, 'Old', '2014-08-20 18:47:00');
@@ -99,7 +98,7 @@ mysql> SELECT * FROM test;
 1 row in set (0.00 sec)
 ```
 
-Now we create a second table almost identical to the first, except that the primary key now covers 2 columns, as shown here (emphasized text):
+Agora criamos uma segunda tabela quase idêntica à primeira, exceto que a Primary Key agora cobre 2 columns, conforme mostrado aqui (texto em destaque):
 
 ```sql
 CREATE TABLE test2 (
@@ -110,7 +109,7 @@ CREATE TABLE test2 (
 );
 ```
 
-When we run on `test2` the same two `REPLACE` statements as we did on the original `test` table, we obtain a different result:
+Quando executamos em `test2` as mesmas duas declarações `REPLACE` que fizemos na tabela `test` original, obtemos um resultado diferente:
 
 ```sql
 mysql> REPLACE INTO test2 VALUES (1, 'Old', '2014-08-20 18:47:00');
@@ -129,6 +128,6 @@ mysql> SELECT * FROM test2;
 2 rows in set (0.00 sec)
 ```
 
-This is due to the fact that, when run on `test2`, both the `id` and `ts` column values must match those of an existing row for the row to be replaced; otherwise, a row is inserted.
+Isso se deve ao fato de que, quando executado em `test2`, os valores das columns `id` e `ts` devem corresponder aos de uma linha existente para que a linha seja substituída; caso contrário, uma linha é inserida.
 
-A `REPLACE` statement affecting a partitioned table using a storage engine such as [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") that employs table-level locks locks only those partitions containing rows that match the `REPLACE` statement `WHERE` clause, as long as none of the table partitioning columns are updated; otherwise the entire table is locked. (For storage engines such as [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") that employ row-level locking, no locking of partitions takes place.) For more information, see [Section 22.6.4, “Partitioning and Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking").
+Uma declaração `REPLACE` que afeta uma tabela Partitioned usando um storage engine como o `MyISAM`, que emprega Table-Level Locks, bloqueia apenas aquelas Partitions que contêm linhas que correspondem à cláusula `WHERE` da declaração `REPLACE`, desde que nenhuma das Partitioning columns da tabela seja atualizada; caso contrário, a tabela inteira é bloqueada. (Para storage engines como o `InnoDB` que empregam Row-Level Locking, nenhum bloqueio de Partitions ocorre.) Para mais informações, consulte [Seção 22.6.4, “Partitioning e Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking").

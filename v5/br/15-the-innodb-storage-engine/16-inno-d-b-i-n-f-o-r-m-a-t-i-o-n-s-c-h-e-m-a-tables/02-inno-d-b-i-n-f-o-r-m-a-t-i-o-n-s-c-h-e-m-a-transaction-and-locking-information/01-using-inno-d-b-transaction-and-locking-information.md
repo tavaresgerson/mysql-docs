@@ -1,12 +1,12 @@
-#### 14.16.2.1 Using InnoDB Transaction and Locking Information
+#### 14.16.2.1 Usando Informações de Transação e Locking do InnoDB
 
-##### Identifying Blocking Transactions
+##### Identificando Transações Bloqueadoras
 
-It is sometimes helpful to identify which transaction blocks another. The tables that contain information about `InnoDB` transactions and data locks enable you to determine which transaction is waiting for another, and which resource is being requested. (For descriptions of these tables, see Section 14.16.2, “InnoDB INFORMATION_SCHEMA Transaction and Locking Information”.)
+Às vezes, é útil identificar qual transação está bloqueando outra. As tabelas que contêm informações sobre transações `InnoDB` e data locks permitem determinar qual transação está esperando por outra e qual recurso está sendo solicitado. (Para descrições dessas tabelas, consulte Seção 14.16.2, “Informações de Transação e Locking do INFORMATION_SCHEMA do InnoDB”.)
 
-Suppose that three sessions are running concurrently. Each session corresponds to a MySQL thread, and executes one transaction after another. Consider the state of the system when these sessions have issued the following statements, but none has yet committed its transaction:
+Suponha que três sessões estejam sendo executadas simultaneamente. Cada sessão corresponde a um MySQL Thread e executa uma transação após a outra. Considere o estado do sistema quando essas sessões emitiram as seguintes statements, mas nenhuma delas ainda fez commit de sua transação:
 
-* Session A:
+* Sessão A:
 
   ```sql
   BEGIN;
@@ -14,19 +14,19 @@ Suppose that three sessions are running concurrently. Each session corresponds t
   SELECT SLEEP(100);
   ```
 
-* Session B:
+* Sessão B:
 
   ```sql
   SELECT b FROM t FOR UPDATE;
   ```
 
-* Session C:
+* Sessão C:
 
   ```sql
   SELECT c FROM t FOR UPDATE;
   ```
 
-In this scenario, use the following query to see which transactions are waiting and which transactions are blocking them:
+Neste cenário, use a seguinte Query para ver quais transações estão esperando e quais transações as estão bloqueando:
 
 ```sql
 SELECT
@@ -43,7 +43,7 @@ INNER JOIN information_schema.innodb_trx r
   ON r.trx_id = w.requesting_trx_id;
 ```
 
-Or, more simply, use the `sys` schema `innodb_lock_waits` view:
+Ou, de forma mais simples, use a view `innodb_lock_waits` do schema `sys`:
 
 ```sql
 SELECT
@@ -56,96 +56,96 @@ SELECT
 FROM sys.innodb_lock_waits;
 ```
 
-If a NULL value is reported for the blocking query, see Identifying a Blocking Query After the Issuing Session Becomes Idle.
+Se um valor NULL for reportado para a blocking query, consulte Identificando uma Blocking Query Após a Sessão Emissora Entrar em Ociosidade.
 
-<table summary="The result set of a query against the INFORMATION_SCHEMA.INNODB_LOCK_WAITS and INFORMATION_SCHEMA.INNODB_TRX tables, shown in the preceding text, indicating which InnoDB threads are waiting for which other threads."><col style="width: 9%"/><col style="width: 9%"/><col style="width: 33%"/><col style="width: 10%"/><col style="width: 10%"/><col style="width: 33%"/><thead><tr> <th>waiting trx id</th> <th>waiting thread</th> <th>waiting query</th> <th>blocking trx id</th> <th>blocking thread</th> <th>blocking query</th> </tr></thead><tbody><tr> <th><code>A4</code></th> <td><code>6</code></td> <td><code>SELECT b FROM t FOR UPDATE</code></td> <td><code>A3</code></td> <td><code>5</code></td> <td><code>SELECT SLEEP(100)</code></td> </tr><tr> <th><code>A5</code></th> <td><code>7</code></td> <td><code>SELECT c FROM t FOR UPDATE</code></td> <td><code>A3</code></td> <td><code>5</code></td> <td><code>SELECT SLEEP(100)</code></td> </tr><tr> <th><code>A5</code></th> <td><code>7</code></td> <td><code>SELECT c FROM t FOR UPDATE</code></td> <td><code>A4</code></td> <td><code>6</code></td> <td><code>SELECT b FROM t FOR UPDATE</code></td> </tr></tbody></table>
+<table summary="A tabela de resultados de uma query contra INFORMATION_SCHEMA.INNODB_LOCK_WAITS e INFORMATION_SCHEMA.INNODB_TRX, mostrada no texto precedente, indicando quais threads InnoDB estão esperando por quais outros threads."><col style="width: 9%"/><col style="width: 9%"/><col style="width: 33%"/><col style="width: 10%"/><col style="width: 10%"/><col style="width: 33%"/><thead><tr> <th>ID da trx em espera</th> <th>thread em espera</th> <th>query em espera</th> <th>ID da trx bloqueadora</th> <th>thread bloqueadora</th> <th>query bloqueadora</th> </tr></thead><tbody><tr> <th>`A4`</th> <td>`6`</td> <td>`SELECT b FROM t FOR UPDATE`</td> <td>`A3`</td> <td>`5`</td> <td>`SELECT SLEEP(100)`</td> </tr><tr> <th>`A5`</th> <td>`7`</td> <td>`SELECT c FROM t FOR UPDATE`</td> <td>`A3`</td> <td>`5`</td> <td>`SELECT SLEEP(100)`</td> </tr><tr> <th>`A5`</th> <td>`7`</td> <td>`SELECT c FROM t FOR UPDATE`</td> <td>`A4`</td> <td>`6`</td> <td>`SELECT b FROM t FOR UPDATE`</td> </tr> </tbody></table>
 
-In the preceding table, you can identify sessions by the “waiting query” or “blocking query” columns. As you can see:
+Na tabela anterior, você pode identificar sessões pelas colunas “query em espera” ou “query bloqueadora”. Como você pode ver:
 
-* Session B (trx id `A4`, thread `6`) and Session C (trx id `A5`, thread `7`) are both waiting for Session A (trx id `A3`, thread `5`).
+* A Sessão B (ID da trx `A4`, Thread `6`) e a Sessão C (ID da trx `A5`, Thread `7`) estão ambas esperando pela Sessão A (ID da trx `A3`, Thread `5`).
 
-* Session C is waiting for Session B as well as Session A.
+* A Sessão C está esperando pela Sessão B, bem como pela Sessão A.
 
-You can see the underlying data in the tables `INNODB_TRX`, `INNODB_LOCKS`, and `INNODB_LOCK_WAITS`.
+Você pode ver os dados subjacentes nas tabelas `INNODB_TRX`, `INNODB_LOCKS` e `INNODB_LOCK_WAITS`.
 
-The following table shows some sample contents of the Information Schema `INNODB_TRX` table.
+A tabela a seguir mostra alguns dados de exemplo da tabela `INFORMATION_SCHEMA.INNODB_TRX`.
 
-<table summary="Sample data from the INFORMATION_SCHEMA.INNODB_TRX table, showing the typical types of entries for each column."><col style="width: 10%"/><col style="width: 13%"/><col style="width: 36%"/><col style="width: 30%"/><col style="width: 36%"/><col style="width: 19%"/><col style="width: 23%"/><col style="width: 45%"/><thead><tr> <th>trx id</th> <th>trx state</th> <th>trx started</th> <th>trx requested lock id</th> <th>trx wait started</th> <th>trx weight</th> <th>trx mysql thread id</th> <th>trx query</th> </tr></thead><tbody><tr> <th><code>A3</code></th> <td><code>RUN­NING</code></td> <td><code>2008-01-15 16:44:54</code></td> <td><code>NULL</code></td> <td><code>NULL</code></td> <td><code>2</code></td> <td><code>5</code></td> <td><code>SELECT SLEEP(100)</code></td> </tr><tr> <th><code>A4</code></th> <td><code>LOCK WAIT</code></td> <td><code>2008-01-15 16:45:09</code></td> <td><code>A4:1:3:2</code></td> <td><code>2008-01-15 16:45:09</code></td> <td><code>2</code></td> <td><code>6</code></td> <td><code>SELECT b FROM t FOR UPDATE</code></td> </tr><tr> <th><code>A5</code></th> <td><code>LOCK WAIT</code></td> <td><code>2008-01-15 16:45:14</code></td> <td><code>A5:1:3:2</code></td> <td><code>2008-01-15 16:45:14</code></td> <td><code>2</code></td> <td><code>7</code></td> <td><code>SELECT c FROM t FOR UPDATE</code></td> </tr></tbody></table>
+<table summary="Dados de exemplo da tabela INFORMATION_SCHEMA.INNODB_TRX, mostrando os tipos típicos de entradas para cada coluna."><col style="width: 10%"/><col style="width: 13%"/><col style="width: 36%"/><col style="width: 30%"/><col style="width: 36%"/><col style="width: 19%"/><col style="width: 23%"/><col style="width: 45%"/><thead><tr> <th>ID da trx</th> <th>estado da trx</th> <th>trx iniciada</th> <th>ID do lock solicitado pela trx</th> <th>espera da trx iniciada</th> <th>peso da trx</th> <th>ID do thread MySQL da trx</th> <th>query da trx</th> </tr></thead><tbody><tr> <th>`A3`</th> <td>`RUNNING` (EM EXECUÇÃO)</td> <td>`2008-01-15 16:44:54`</td> <td>`NULL`</td> <td>`NULL`</td> <td>`2`</td> <td>`5`</td> <td>`SELECT SLEEP(100)`</td> </tr><tr> <th>`A4`</th> <td>`LOCK WAIT` (ESPERANDO LOCK)</td> <td>`2008-01-15 16:45:09`</td> <td>`A4:1:3:2`</td> <td>`2008-01-15 16:45:09`</td> <td>`2`</td> <td>`6`</td> <td>`SELECT b FROM t FOR UPDATE`</td> </tr><tr> <th>`A5`</th> <td>`LOCK WAIT` (ESPERANDO LOCK)</td> <td>`2008-01-15 16:45:14`</td> <td>`A5:1:3:2`</td> <td>`2008-01-15 16:45:14`</td> <td>`2`</td> <td>`7`</td> <td>`SELECT c FROM t FOR UPDATE`</td> </tr> </tbody></table>
 
-The following table shows some sample contents of the Information Schema `INNODB_LOCKS` table.
+A tabela a seguir mostra alguns dados de exemplo da tabela `INFORMATION_SCHEMA.INNODB_LOCKS`.
 
-<table summary="Sample data from the INFORMATION_SCHEMA.INNODB_LOCKS table, showing the typical types of entries for each column."><col style="width: 26%"/><col style="width: 13%"/><col style="width: 14%"/><col style="width: 21%"/><col style="width: 31%"/><col style="width: 29%"/><col style="width: 20%"/><thead><tr> <th>lock id</th> <th>lock trx id</th> <th>lock mode</th> <th>lock type</th> <th>lock table</th> <th>lock index</th> <th>lock data</th> </tr></thead><tbody><tr> <th><code>A3:1:3:2</code></th> <td><code>A3</code></td> <td><code>X</code></td> <td><code>RECORD</code></td> <td><code>test.t</code></td> <td><code>PRIMARY</code></td> <td><code>0x0200</code></td> </tr><tr> <th><code>A4:1:3:2</code></th> <td><code>A4</code></td> <td><code>X</code></td> <td><code>RECORD</code></td> <td><code>test.t</code></td> <td><code>PRIMARY</code></td> <td><code>0x0200</code></td> </tr><tr> <th><code>A5:1:3:2</code></th> <td><code>A5</code></td> <td><code>X</code></td> <td><code>RECORD</code></td> <td><code>test.t</code></td> <td><code>PRIMARY</code></td> <td><code>0x0200</code></td> </tr></tbody></table>
+<table summary="Dados de exemplo da tabela INFORMATION_SCHEMA.INNODB_LOCKS, mostrando os tipos típicos de entradas para cada coluna."><col style="width: 26%"/><col style="width: 13%"/><col style="width: 14%"/><col style="width: 21%"/><col style="width: 31%"/><col style="width: 29%"/><col style="width: 20%"/><thead><tr> <th>ID do lock</th> <th>ID da trx do lock</th> <th>modo do lock</th> <th>tipo do lock</th> <th>tabela do lock</th> <th>Index do lock</th> <th>dados do lock</th> </tr></thead><tbody><tr> <th>`A3:1:3:2`</th> <td>`A3`</td> <td>`X`</td> <td>`RECORD`</td> <td>`test.t`</td> <td>`PRIMARY`</td> <td>`0x0200`</td> </tr><tr> <th>`A4:1:3:2`</th> <td>`A4`</td> <td>`X`</td> <td>`RECORD`</td> <td>`test.t`</td> <td>`PRIMARY`</td> <td>`0x0200`</td> </tr><tr> <th>`A5:1:3:2`</th> <td>`A5`</td> <td>`X`</td> <td>`RECORD`</td> <td>`test.t`</td> <td>`PRIMARY`</td> <td>`0x0200`</td> </tr> </tbody></table>
 
-The following table shows some sample contents of the Information Schema `INNODB_LOCK_WAITS` table.
+A tabela a seguir mostra alguns dados de exemplo da tabela `INFORMATION_SCHEMA.INNODB_LOCK_WAITS`.
 
-<table summary="Sample data from the INFORMATION_SCHEMA.INNODB_LOCK_WAITS table, showing the typical types of entries for each column."><col style="width: 10%"/><col style="width: 15%"/><col style="width: 10%"/><col style="width: 15%"/><thead><tr> <th>requesting trx id</th> <th>requested lock id</th> <th>blocking trx id</th> <th>blocking lock id</th> </tr></thead><tbody><tr> <th><code>A4</code></th> <td><code>A4:1:3:2</code></td> <td><code>A3</code></td> <td><code>A3:1:3:2</code></td> </tr><tr> <th><code>A5</code></th> <td><code>A5:1:3:2</code></td> <td><code>A3</code></td> <td><code>A3:1:3:2</code></td> </tr><tr> <th><code>A5</code></th> <td><code>A5:1:3:2</code></td> <td><code>A4</code></td> <td><code>A4:1:3:2</code></td> </tr></tbody></table>
+<table summary="Dados de exemplo da tabela INFORMATION_SCHEMA.INNODB_LOCK_WAITS, mostrando os tipos típicos de entradas para cada coluna."><col style="width: 10%"/><col style="width: 15%"/><col style="width: 10%"/><col style="width: 15%"/><thead><tr> <th>ID da trx solicitante</th> <th>ID do lock solicitado</th> <th>ID da trx bloqueadora</th> <th>ID do lock bloqueador</th> </tr></thead><tbody><tr> <th>`A4`</th> <td>`A4:1:3:2`</td> <td>`A3`</td> <td>`A3:1:3:2`</td> </tr><tr> <th>`A5`</th> <td>`A5:1:3:2`</td> <td>`A3`</td> <td>`A3:1:3:2`</td> </tr><tr> <th>`A5`</th> <td>`A5:1:3:2`</td> <td>`A4`</td> <td>`A4:1:3:2`</td> </tr> </tbody></table>
 
-##### Identifying a Blocking Query After the Issuing Session Becomes Idle
+##### Identificando uma Blocking Query Após a Sessão Emissora Entrar em Ociosidade
 
-When identifying blocking transactions, a NULL value is reported for the blocking query if the session that issued the query has become idle. In this case, use the following steps to determine the blocking query:
+Ao identificar blocking transactions, um valor NULL é reportado para a blocking query se a sessão que emitiu a Query tiver se tornado ociosa (idle). Neste caso, use os seguintes passos para determinar a blocking query:
 
-1. Identify the processlist ID of the blocking transaction. In the `sys.innodb_lock_waits` table, the processlist ID of the blocking transaction is the `blocking_pid` value.
+1. Identifique o processlist ID da blocking transaction. Na tabela `sys.innodb_lock_waits`, o processlist ID da blocking transaction é o valor `blocking_pid`.
 
-2. Using the `blocking_pid`, query the MySQL Performance Schema `threads` table to determine the `THREAD_ID` of the blocking transaction. For example, if the `blocking_pid` is 6, issue this query:
+2. Usando o `blocking_pid`, faça Query na tabela `threads` do Performance Schema do MySQL para determinar o `THREAD_ID` da blocking transaction. Por exemplo, se o `blocking_pid` for 6, emita esta Query:
 
    ```sql
    SELECT THREAD_ID FROM performance_schema.threads WHERE PROCESSLIST_ID = 6;
    ```
 
-3. Using the `THREAD_ID`, query the Performance Schema `events_statements_current` table to determine the last query executed by the thread. For example, if the `THREAD_ID` is 28, issue this query:
+3. Usando o `THREAD_ID`, faça Query na tabela `events_statements_current` do Performance Schema para determinar a última Query executada pelo Thread. Por exemplo, se o `THREAD_ID` for 28, emita esta Query:
 
    ```sql
    SELECT THREAD_ID, SQL_TEXT FROM performance_schema.events_statements_current
    WHERE THREAD_ID = 28\G
    ```
 
-4. If the last query executed by the thread is not enough information to determine why a lock is held, you can query the Performance Schema `events_statements_history` table to view the last 10 statements executed by the thread.
+4. Se a última Query executada pelo Thread não fornecer informações suficientes para determinar por que um Lock está sendo mantido, você pode fazer Query na tabela `events_statements_history` do Performance Schema para visualizar as últimas 10 statements executadas pelo Thread.
 
    ```sql
    SELECT THREAD_ID, SQL_TEXT FROM performance_schema.events_statements_history
    WHERE THREAD_ID = 28 ORDER BY EVENT_ID;
    ```
 
-##### Correlating InnoDB Transactions with MySQL Sessions
+##### Correlacionando Transações InnoDB com Sessões MySQL
 
-Sometimes it is useful to correlate internal `InnoDB` locking information with the session-level information maintained by MySQL. For example, you might like to know, for a given `InnoDB` transaction ID, the corresponding MySQL session ID and name of the session that may be holding a lock, and thus blocking other transactions.
+Às vezes, é útil correlacionar informações internas de locking do `InnoDB` com as informações de nível de sessão mantidas pelo MySQL. Por exemplo, você pode querer saber, para um dado ID de transação `InnoDB`, o ID de sessão MySQL correspondente e o nome da sessão que pode estar mantendo um Lock e, portanto, bloqueando outras transações.
 
-The following output from the `INFORMATION_SCHEMA` tables is taken from a somewhat loaded system. As can be seen, there are several transactions running.
+O output a seguir das tabelas `INFORMATION_SCHEMA` foi extraído de um sistema com alguma carga. Como pode ser visto, existem várias transações em execução.
 
-The following `INNODB_LOCKS` and `INNODB_LOCK_WAITS` tables show that:
+As tabelas `INNODB_LOCKS` e `INNODB_LOCK_WAITS` a seguir mostram que:
 
-* Transaction `77F` (executing an `INSERT`) is waiting for transactions `77E`, `77D`, and `77B` to commit.
+* A Transação `77F` (executando um `INSERT`) está esperando que as transações `77E`, `77D` e `77B` façam commit.
 
-* Transaction `77E` (executing an `INSERT`) is waiting for transactions `77D` and `77B` to commit.
+* A Transação `77E` (executando um `INSERT`) está esperando que as transações `77D` e `77B` façam commit.
 
-* Transaction `77D` (executing an `INSERT`) is waiting for transaction `77B` to commit.
+* A Transação `77D` (executando um `INSERT`) está esperando que a transação `77B` faça commit.
 
-* Transaction `77B` (executing an `INSERT`) is waiting for transaction `77A` to commit.
+* A Transação `77B` (executando um `INSERT`) está esperando que a transação `77A` faça commit.
 
-* Transaction `77A` is running, currently executing `SELECT`.
+* A Transação `77A` está em execução, atualmente executando `SELECT`.
 
-* Transaction `E56` (executing an `INSERT`) is waiting for transaction `E55` to commit.
+* A Transação `E56` (executando um `INSERT`) está esperando que a transação `E55` faça commit.
 
-* Transaction `E55` (executing an `INSERT`) is waiting for transaction `19C` to commit.
+* A Transação `E55` (executando um `INSERT`) está esperando que a transação `19C` faça commit.
 
-* Transaction `19C` is running, currently executing an `INSERT`.
+* A Transação `19C` está em execução, atualmente executando um `INSERT`.
 
-Note
+Nota
 
-There may be inconsistencies between queries shown in the `INFORMATION_SCHEMA` `PROCESSLIST` and `INNODB_TRX` tables. For an explanation, see Section 14.16.2.3, “Persistence and Consistency of InnoDB Transaction and Locking Information”.
+Pode haver inconsistências entre as Queries mostradas nas tabelas `PROCESSLIST` e `INNODB_TRX` do `INFORMATION_SCHEMA`. Para uma explicação, consulte Seção 14.16.2.3, “Persistência e Consistência das Informações de Transação e Locking do InnoDB”.
 
-The following table shows the contents of the Information Schema `PROCESSLIST` table for a system running a heavy workload.
+A tabela a seguir mostra o conteúdo da tabela `INFORMATION_SCHEMA.PROCESSLIST` para um sistema executando uma carga de trabalho pesada.
 
-<table summary="Sample data from the INFORMATION_SCHEMA.PROCESSLIST table, showing the internal workings of MySQL processes under a heavy workload."><col style="width: 8%"/><col style="width: 11%"/><col style="width: 21%"/><col style="width: 10%"/><col style="width: 20%"/><col style="width: 10%"/><col style="width: 20%"/><col style="width: 25%"/><thead><tr> <th>ID</th> <th>USER</th> <th>HOST</th> <th>DB</th> <th>COMMAND</th> <th>TIME</th> <th>STATE</th> <th>INFO</th> </tr></thead><tbody><tr> <th><code>384</code></th> <td><code>root</code></td> <td><code>localhost</code></td> <td><code>test</code></td> <td><code>Query</code></td> <td><code>10</code></td> <td><code>update</code></td> <td><code>INSERT INTO t2 VALUES …</code></td> </tr><tr> <th><code>257</code></th> <td><code>root</code></td> <td><code>localhost</code></td> <td><code>test</code></td> <td><code>Query</code></td> <td><code>3</code></td> <td><code>update</code></td> <td><code>INSERT INTO t2 VALUES …</code></td> </tr><tr> <th><code>130</code></th> <td><code>root</code></td> <td><code>localhost</code></td> <td><code>test</code></td> <td><code>Query</code></td> <td><code>0</code></td> <td><code>update</code></td> <td><code>INSERT INTO t2 VALUES …</code></td> </tr><tr> <th><code>61</code></th> <td><code>root</code></td> <td><code>localhost</code></td> <td><code>test</code></td> <td><code>Query</code></td> <td><code>1</code></td> <td><code>update</code></td> <td><code>INSERT INTO t2 VALUES …</code></td> </tr><tr> <th><code>8</code></th> <td><code>root</code></td> <td><code>localhost</code></td> <td><code>test</code></td> <td><code>Query</code></td> <td><code>1</code></td> <td><code>update</code></td> <td><code>INSERT INTO t2 VALUES …</code></td> </tr><tr> <th><code>4</code></th> <td><code>root</code></td> <td><code>localhost</code></td> <td><code>test</code></td> <td><code>Query</code></td> <td><code>0</code></td> <td><code>preparing</code></td> <td><code>SELECT * FROM PROCESSLIST</code></td> </tr><tr> <th><code>2</code></th> <td><code>root</code></td> <td><code>localhost</code></td> <td><code>test</code></td> <td><code>Sleep</code></td> <td><code>566</code></td> <td><code></code></td> <td><code>NULL</code></td> </tr></tbody></table>
+<table summary="Dados de exemplo da tabela INFORMATION_SCHEMA.PROCESSLIST, mostrando o funcionamento interno dos processos MySQL sob uma carga de trabalho pesada."><col style="width: 8%"/><col style="width: 11%"/><col style="width: 21%"/><col style="width: 10%"/><col style="width: 20%"/><col style="width: 10%"/><col style="width: 20%"/><col style="width: 25%"/><thead><tr> <th>ID</th> <th>Usuário</th> <th>Host</th> <th>Banco de Dados</th> <th>Comando</th> <th>Tempo</th> <th>Estado</th> <th>Informação</th> </tr></thead><tbody><tr> <th>`384`</th> <td>`root`</td> <td>`localhost`</td> <td>`test`</td> <td>`Query`</td> <td>`10`</td> <td>`atualização`</td> <td>`INSERT INTO t2 VALUES …`</td> </tr><tr> <th>`257`</th> <td>`root`</td> <td>`localhost`</td> <td>`test`</td> <td>`Query`</td> <td>`3`</td> <td>`atualização`</td> <td>`INSERT INTO t2 VALUES …`</td> </tr><tr> <th>`130`</th> <td>`root`</td> <td>`localhost`</td> <td>`test`</td> <td>`Query`</td> <td>`0`</td> <td>`atualização`</td> <td>`INSERT INTO t2 VALUES …`</td> </tr><tr> <th>`61`</th> <td>`root`</td> <td>`localhost`</td> <td>`test`</td> <td>`Query`</td> <td>`1`</td> <td>`atualização`</td> <td>`INSERT INTO t2 VALUES …`</td> </tr><tr> <th>`8`</th> <td>`root`</td> <td>`localhost`</td> <td>`test`</td> <td>`Query`</td> <td>`1`</td> <td>`atualização`</td> <td>`INSERT INTO t2 VALUES …`</td> </tr><tr> <th>`4`</th> <td>`root`</td> <td>`localhost`</td> <td>`test`</td> <td>`Query`</td> <td>`0`</td> <td>`preparando`</td> <td>`SELECT * FROM PROCESSLIST`</td> </tr><tr> <th>`2`</th> <td>`root`</td> <td>`localhost`</td> <td>`test`</td> <td>`Sleep`</td> <td>`566`</td> <td></td> <td>`NULL`</td> </tr> </tbody></table>
 
-The following table shows the contents of the Information Schema `INNODB_TRX` table for a system running a heavy workload.
+A tabela a seguir mostra o conteúdo da tabela `INFORMATION_SCHEMA.INNODB_TRX` para um sistema executando uma carga de trabalho pesada.
 
-<table summary="Sample data from the INFORMATION_SCHEMA.INNODB_TRX table, showing the internal workings of InnoDB transactions under a heavy workload."><col style="width: 8%"/><col style="width: 10%"/><col style="width: 19%"/><col style="width: 21%"/><col style="width: 19%"/><col style="width: 10%"/><col style="width: 10%"/><col style="width: 31%"/><thead><tr> <th>trx id</th> <th>trx state</th> <th>trx started</th> <th>trx requested lock id</th> <th>trx wait started</th> <th>trx weight</th> <th>trx mysql thread id</th> <th>trx query</th> </tr></thead><tbody><tr> <th><code>77F</code></th> <td><code>LOCK WAIT</code></td> <td><code>2008-01-15 13:10:16</code></td> <td><code>77F</code></td> <td><code>2008-01-15 13:10:16</code></td> <td><code>1</code></td> <td><code>876</code></td> <td><code>INSERT INTO t09 (D, B, C) VALUES …</code></td> </tr><tr> <th><code>77E</code></th> <td><code>LOCK WAIT</code></td> <td><code>2008-01-15 13:10:16</code></td> <td><code>77E</code></td> <td><code>2008-01-15 13:10:16</code></td> <td><code>1</code></td> <td><code>875</code></td> <td><code>INSERT INTO t09 (D, B, C) VALUES …</code></td> </tr><tr> <th><code>77D</code></th> <td><code>LOCK WAIT</code></td> <td><code>2008-01-15 13:10:16</code></td> <td><code>77D</code></td> <td><code>2008-01-15 13:10:16</code></td> <td><code>1</code></td> <td><code>874</code></td> <td><code>INSERT INTO t09 (D, B, C) VALUES …</code></td> </tr><tr> <th><code>77B</code></th> <td><code>LOCK WAIT</code></td> <td><code>2008-01-15 13:10:16</code></td> <td><code>77B:733:12:1</code></td> <td><code>2008-01-15 13:10:16</code></td> <td><code>4</code></td> <td><code>873</code></td> <td><code>INSERT INTO t09 (D, B, C) VALUES …</code></td> </tr><tr> <th><code>77A</code></th> <td><code>RUN­NING</code></td> <td><code>2008-01-15 13:10:16</code></td> <td><code>NULL</code></td> <td><code>NULL</code></td> <td><code>4</code></td> <td><code>872</code></td> <td><code>SELECT b, c FROM t09 WHERE …</code></td> </tr><tr> <th><code>E56</code></th> <td><code>LOCK WAIT</code></td> <td><code>2008-01-15 13:10:06</code></td> <td><code>E56:743:6:2</code></td> <td><code>2008-01-15 13:10:06</code></td> <td><code>5</code></td> <td><code>384</code></td> <td><code>INSERT INTO t2 VALUES …</code></td> </tr><tr> <th><code>E55</code></th> <td><code>LOCK WAIT</code></td> <td><code>2008-01-15 13:10:06</code></td> <td><code>E55:743:38:2</code></td> <td><code>2008-01-15 13:10:13</code></td> <td><code>965</code></td> <td><code>257</code></td> <td><code>INSERT INTO t2 VALUES …</code></td> </tr><tr> <th><code>19C</code></th> <td><code>RUN­NING</code></td> <td><code>2008-01-15 13:09:10</code></td> <td><code>NULL</code></td> <td><code>NULL</code></td> <td><code>2900</code></td> <td><code>130</code></td> <td><code>INSERT INTO t2 VALUES …</code></td> </tr><tr> <th><code>E15</code></th> <td><code>RUN­NING</code></td> <td><code>2008-01-15 13:08:59</code></td> <td><code>NULL</code></td> <td><code>NULL</code></td> <td><code>5395</code></td> <td><code>61</code></td> <td><code>INSERT INTO t2 VALUES …</code></td> </tr><tr> <th><code>51D</code></th> <td><code>RUN­NING</code></td> <td><code>2008-01-15 13:08:47</code></td> <td><code>NULL</code></td> <td><code>NULL</code></td> <td><code>9807</code></td> <td><code>8</code></td> <td><code>INSERT INTO t2 VALUES …</code></td> </tr></tbody></table>
+<table summary="Dados de exemplo da tabela INFORMATION_SCHEMA.INNODB_TRX, mostrando o funcionamento interno das transações InnoDB sob uma carga de trabalho pesada."><col style="width: 8%"/><col style="width: 10%"/><col style="width: 19%"/><col style="width: 21%"/><col style="width: 19%"/><col style="width: 10%"/><col style="width: 10%"/><col style="width: 31%"/><thead><tr> <th>ID da trx</th> <th>estado da trx</th> <th>trx iniciada</th> <th>ID do lock solicitado pela trx</th> <th>espera da trx iniciada</th> <th>peso da trx</th> <th>ID do thread MySQL da trx</th> <th>query da trx</th> </tr></thead><tbody><tr> <th>`77F`</th> <td>`LOCK WAIT` (ESPERANDO LOCK)</td> <td>`2008-01-15 13:10:16`</td> <td>`77F`</td> <td>`2008-01-15 13:10:16`</td> <td>`1`</td> <td>`876`</td> <td>`INSERT INTO t09 (D, B, C) VALUES …`</td> </tr><tr> <th>`77E`</th> <td>`LOCK WAIT` (ESPERANDO LOCK)</td> <td>`2008-01-15 13:10:16`</td> <td>`77E`</td> <td>`2008-01-15 13:10:16`</td> <td>`1`</td> <td>`875`</td> <td>`INSERT INTO t09 (D, B, C) VALUES …`</td> </tr><tr> <th>`77D`</th> <td>`LOCK WAIT` (ESPERANDO LOCK)</td> <td>`2008-01-15 13:10:16`</td> <td>`77D`</td> <td>`2008-01-15 13:10:16`</td> <td>`1`</td> <td>`874`</td> <td>`INSERT INTO t09 (D, B, C) VALUES …`</td> </tr><tr> <th>`77B`</th> <td>`LOCK WAIT` (ESPERANDO LOCK)</td> <td>`2008-01-15 13:10:16`</td> <td>`77B:733:12:1`</td> <td>`2008-01-15 13:10:16`</td> <td>`4`</td> <td>`873`</td> <td>`INSERT INTO t09 (D, B, C) VALUES …`</td> </tr><tr> <th>`77A`</th> <td>`RUNNING` (EM EXECUÇÃO)</td> <td>`2008-01-15 13:10:16`</td> <td>`NULL`</td> <td>`NULL`</td> <td>`4`</td> <td>`872`</td> <td>`SELECT b, c FROM t09 WHERE …`</td> </tr><tr> <th>`E56`</th> <td>`LOCK WAIT` (ESPERANDO LOCK)</td> <td>`2008-01-15 13:10:06`</td> <td>`E56:743:6:2`</td> <td>`2008-01-15 13:10:06`</td> <td>`5`</td> <td>`384`</td> <td>`INSERT INTO t2 VALUES …`</td> </tr><tr> <th>`E55`</th> <td>`LOCK WAIT` (ESPERANDO LOCK)</td> <td>`2008-01-15 13:10:06`</td> <td>`E55:743:38:2`</td> <td>`2008-01-15 13:10:13`</td> <td>`965`</td> <td>`257`</td> <td>`INSERT INTO t2 VALUES …`</td> </tr><tr> <th>`19C`</th> <td>`RUNNING` (EM EXECUÇÃO)</td> <td>`2008-01-15 13:09:10`</td> <td>`NULL`</td> <td>`NULL`</td> <td>`2900`</td> <td>`130`</td> <td>`INSERT INTO t2 VALUES …`</td> </tr><tr> <th>`E15`</th> <td>`RUNNING` (EM EXECUÇÃO)</td> <td>`2008-01-15 13:08:59`</td> <td>`NULL`</td> <td>`NULL`</td> <td>`5395`</td> <td>`61`</td> <td>`INSERT INTO t2 VALUES …`</td> </tr><tr> <th>`51D`</th> <td>`RUNNING` (EM EXECUÇÃO)</td> <td>`2008-01-15 13:08:47`</td> <td>`NULL`</td> <td>`NULL`</td> <td>`9807`</td> <td>`8`</td> <td>`INSERT INTO t2 VALUES …`</td> </tr> </tbody></table>
 
-The following table shows the contents of the Information Schema `INNODB_LOCK_WAITS` table for a system running a heavy workload.
+A tabela a seguir mostra o conteúdo da tabela `INFORMATION_SCHEMA.INNODB_LOCK_WAITS` para um sistema executando uma carga de trabalho pesada.
 
-<table summary="Sample data from the INFORMATION_SCHEMA.INNODB_LOCK_WAITS table, showing the internal workings of InnoDB locking under a heavy workload."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th>requesting trx id</th> <th>requested lock id</th> <th>blocking trx id</th> <th>blocking lock id</th> </tr></thead><tbody><tr> <th><code>77F</code></th> <td><code>77F:806</code></td> <td><code>77E</code></td> <td><code>77E:806</code></td> </tr><tr> <th><code>77F</code></th> <td><code>77F:806</code></td> <td><code>77D</code></td> <td><code>77D:806</code></td> </tr><tr> <th><code>77F</code></th> <td><code>77F:806</code></td> <td><code>77B</code></td> <td><code>77B:806</code></td> </tr><tr> <th><code>77E</code></th> <td><code>77E:806</code></td> <td><code>77D</code></td> <td><code>77D:806</code></td> </tr><tr> <th><code>77E</code></th> <td><code>77E:806</code></td> <td><code>77B</code></td> <td><code>77B:806</code></td> </tr><tr> <th><code>77D</code></th> <td><code>77D:806</code></td> <td><code>77B</code></td> <td><code>77B:806</code></td> </tr><tr> <th><code>77B</code></th> <td><code>77B:733:12:1</code></td> <td><code>77A</code></td> <td><code>77A:733:12:1</code></td> </tr><tr> <th><code>E56</code></th> <td><code>E56:743:6:2</code></td> <td><code>E55</code></td> <td><code>E55:743:6:2</code></td> </tr><tr> <th><code>E55</code></th> <td><code>E55:743:38:2</code></td> <td><code>19C</code></td> <td><code>19C:743:38:2</code></td> </tr></tbody></table>
+<table summary="Dados de exemplo da tabela INFORMATION_SCHEMA.INNODB_LOCK_WAITS, mostrando o funcionamento interno do locking do InnoDB sob uma carga de trabalho pesada."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th>ID da trx solicitante</th> <th>ID do lock solicitado</th> <th>ID da trx bloqueadora</th> <th>ID do lock bloqueador</th> </tr></thead><tbody><tr> <th>`77F`</th> <td>`77F:806`</td> <td>`77E`</td> <td>`77E:806`</td> </tr><tr> <th>`77F`</th> <td>`77F:806`</td> <td>`77D`</td> <td>`77D:806`</td> </tr><tr> <th>`77F`</th> <td>`77F:806`</td> <td>`77B`</td> <td>`77B:806`</td> </tr><tr> <th>`77E`</th> <td>`77E:806`</td> <td>`77D`</td> <td>`77D:806`</td> </tr><tr> <th>`77E`</th> <td>`77E:806`</td> <td>`77B`</td> <td>`77B:806`</td> </tr><tr> <th>`77D`</th> <td>`77D:806`</td> <td>`77B`</td> <td>`77B:806`</td> </tr><tr> <th>`77B`</th> <td>`77B:733:12:1`</td> <td>`77A`</td> <td>`77A:733:12:1`</td> </tr><tr> <th>`E56`</th> <td>`E56:743:6:2`</td> <td>`E55`</td> <td>`E55:743:6:2`</td> </tr><tr> <th>`E55`</th> <td>`E55:743:38:2`</td> <td>`19C`</td> <td>`19C:743:38:2`</td> </tr> </tbody></table>
 
-The following table shows the contents of the Information Schema `INNODB_LOCKS` table for a system running a heavy workload.
+A tabela a seguir mostra o conteúdo da tabela `INFORMATION_SCHEMA.INNODB_LOCKS` para um sistema executando uma carga de trabalho pesada.
 
-<table summary="Sample data from the INFORMATION_SCHEMA.INNODB_LOCKS table, showing the internal workings of InnoDB locking under a heavy workload."><col style="width: 18%"/><col style="width: 9%"/><col style="width: 12%"/><col style="width: 12%"/><col style="width: 14%"/><col style="width: 17%"/><col style="width: 17%"/><thead><tr> <th>lock id</th> <th>lock trx id</th> <th>lock mode</th> <th>lock type</th> <th>lock table</th> <th>lock index</th> <th>lock data</th> </tr></thead><tbody><tr> <th><code>77F:806</code></th> <td><code>77F</code></td> <td><code>AUTO_INC</code></td> <td><code>TABLE</code></td> <td><code>test.t09</code></td> <td><code>NULL</code></td> <td><code>NULL</code></td> </tr><tr> <th><code>77E:806</code></th> <td><code>77E</code></td> <td><code>AUTO_INC</code></td> <td><code>TABLE</code></td> <td><code>test.t09</code></td> <td><code>NULL</code></td> <td><code>NULL</code></td> </tr><tr> <th><code>77D:806</code></th> <td><code>77D</code></td> <td><code>AUTO_INC</code></td> <td><code>TABLE</code></td> <td><code>test.t09</code></td> <td><code>NULL</code></td> <td><code>NULL</code></td> </tr><tr> <th><code>77B:806</code></th> <td><code>77B</code></td> <td><code>AUTO_INC</code></td> <td><code>TABLE</code></td> <td><code>test.t09</code></td> <td><code>NULL</code></td> <td><code>NULL</code></td> </tr><tr> <th><code>77B:733:12:1</code></th> <td><code>77B</code></td> <td><code>X</code></td> <td><code>RECORD</code></td> <td><code>test.t09</code></td> <td><code>PRIMARY</code></td> <td><code>supremum pseudo-record</code></td> </tr><tr> <th><code>77A:733:12:1</code></th> <td><code>77A</code></td> <td><code>X</code></td> <td><code>RECORD</code></td> <td><code>test.t09</code></td> <td><code>PRIMARY</code></td> <td><code>supremum pseudo-record</code></td> </tr><tr> <th><code>E56:743:6:2</code></th> <td><code>E56</code></td> <td><code>S</code></td> <td><code>RECORD</code></td> <td><code>test.t2</code></td> <td><code>PRIMARY</code></td> <td><code>0, 0</code></td> </tr><tr> <th><code>E55:743:6:2</code></th> <td><code>E55</code></td> <td><code>X</code></td> <td><code>RECORD</code></td> <td><code>test.t2</code></td> <td><code>PRIMARY</code></td> <td><code>0, 0</code></td> </tr><tr> <th><code>E55:743:38:2</code></th> <td><code>E55</code></td> <td><code>S</code></td> <td><code>RECORD</code></td> <td><code>test.t2</code></td> <td><code>PRIMARY</code></td> <td><code>1922, 1922</code></td> </tr><tr> <th><code>19C:743:38:2</code></th> <td><code>19C</code></td> <td><code>X</code></td> <td><code>RECORD</code></td> <td><code>test.t2</code></td> <td><code>PRIMARY</code></td> <td><code>1922, 1922</code></td> </tr></tbody></table>
+<table summary="Dados de exemplo da tabela INFORMATION_SCHEMA.INNODB_LOCKS, mostrando o funcionamento interno do locking do InnoDB sob uma carga de trabalho pesada."><col style="width: 18%"/><col style="width: 9%"/><col style="width: 12%"/><col style="width: 12%"/><col style="width: 14%"/><col style="width: 17%"/><col style="width: 17%"/><thead><tr> <th>ID do lock</th> <th>ID da trx do lock</th> <th>modo do lock</th> <th>tipo do lock</th> <th>tabela do lock</th> <th>Index do lock</th> <th>dados do lock</th> </tr></thead><tbody><tr> <th>`77F:806`</th> <td>`77F`</td> <td>`AUTO_INC`</td> <td>`TABLE`</td> <td>`test.t09`</td> <td>`NULL`</td> <td>`NULL`</td> </tr><tr> <th>`77E:806`</th> <td>`77E`</td> <td>`AUTO_INC`</td> <td>`TABLE`</td> <td>`test.t09`</td> <td>`NULL`</td> <td>`NULL`</td> </tr><tr> <th>`77D:806`</th> <td>`77D`</td> <td>`AUTO_INC`</td> <td>`TABLE`</td> <td>`test.t09`</td> <td>`NULL`</td> <td>`NULL`</td> </tr><tr> <th>`77B:806`</th> <td>`77B`</td> <td>`AUTO_INC`</td> <td>`TABLE`</td> <td>`test.t09`</td> <td>`NULL`</td> <td>`NULL`</td> </tr><tr> <th>`77B:733:12:1`</th> <td>`77B`</td> <td>`X`</td> <td>`RECORD`</td> <td>`test.t09`</td> <td>`PRIMARY`</td> <td>`supremum pseudo-record`</td> </tr><tr> <th>`77A:733:12:1`</th> <td>`77A`</td> <td>`X`</td> <td>`RECORD`</td> <td>`test.t09`</td> <td>`PRIMARY`</td> <td>`supremum pseudo-record`</td> </tr><tr> <th>`E56:743:6:2`</th> <td>`E56`</td> <td>`S`</td> <td>`RECORD`</td> <td>`test.t2`</td> <td>`PRIMARY`</td> <td>`0, 0`</td> </tr><tr> <th>`E55:743:6:2`</th> <td>`E55`</td> <td>`X`</td> <td>`RECORD`</td> <td>`test.t2`</td> <td>`PRIMARY`</td> <td>`0, 0`</td> </tr><tr> <th>`E55:743:38:2`</th> <td>`E55`</td> <td>`S`</td> <td>`RECORD`</td> <td>`test.t2`</td> <td>`PRIMARY`</td> <td>`1922, 1922`</td> </tr><tr> <th>`19C:743:38:2`</th> <td>`19C`</td> <td>`X`</td> <td>`RECORD`</td> <td>`test.t2`</td> <td>`PRIMARY`</td> <td>`1922, 1922`</td> </tr> </tbody></table>

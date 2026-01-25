@@ -1,33 +1,33 @@
-## 26.1 Prerequisites for Using the sys Schema
+## 26.1 Pré-requisitos para Usar o Schema sys
 
-Before using the `sys` schema, the prerequisites described in this section must be satisfied.
+Antes de usar o schema `sys`, os pré-requisitos descritos nesta seção devem ser satisfeitos.
 
-Because the `sys` schema provides an alternative means of accessing the Performance Schema, the Performance Schema must be enabled for the `sys` schema to work. See Section 25.3, “Performance Schema Startup Configuration”.
+Como o schema `sys` fornece um meio alternativo de acessar o Performance Schema, o Performance Schema deve estar habilitado para que o schema `sys` funcione. Consulte a Seção 25.3, “Configuração de Inicialização do Performance Schema”.
 
-For full access to the `sys` schema, a user must have these privileges:
+Para acesso total ao schema `sys`, um usuário deve ter estes privilégios:
 
-* `SELECT` on all `sys` tables and views
+* `SELECT` em todas as tabelas e views do `sys`
 
-* `EXECUTE` on all `sys` stored procedures and functions
+* `EXECUTE` em todos os procedimentos armazenados e functions do `sys`
 
-* `INSERT` and `UPDATE` for the `sys_config` table, if changes are to be made to it
+* `INSERT` e `UPDATE` para a tabela `sys_config`, caso alterações precisem ser feitas nela
 
-* Additional privileges for certain `sys` schema stored procedures and functions, as noted in their descriptions (for example, the `ps_setup_save()` Procedure") procedure)
+* Privilégios adicionais para certos procedimentos armazenados e functions do schema `sys`, conforme observado em suas descrições (por exemplo, o procedimento `ps_setup_save()`)
 
-It is also necessary to have privileges for the objects underlying the `sys` schema objects:
+Também é necessário ter privilégios para os objetos subjacentes aos objetos do schema `sys`:
 
-* `SELECT` on any Performance Schema tables accessed by `sys` schema objects, and `UPDATE` for any tables to be updated using `sys` schema objects
+* `SELECT` em quaisquer tabelas do Performance Schema acessadas por objetos do schema `sys`, e `UPDATE` para quaisquer tabelas a serem atualizadas usando objetos do schema `sys`
 
-* `PROCESS` for the `INFORMATION_SCHEMA` `INNODB_BUFFER_PAGE` table
+* `PROCESS` para a tabela `INNODB_BUFFER_PAGE` do `INFORMATION_SCHEMA`
 
-Certain Performance Schema instruments and consumers must be enabled and (for instruments) timed to take full advantage of `sys` schema capabilities:
+Certos instruments e consumers do Performance Schema devem ser habilitados e (para instruments) cronometrados para aproveitar totalmente os recursos do schema `sys`:
 
-* All `wait` instruments
-* All `stage` instruments
-* All `statement` instruments
-* `xxx_current` and `xxx_history_long` consumers for all events
+* Todos os instruments de `wait`
+* Todos os instruments de `stage`
+* Todos os instruments de `statement`
+* Consumers `xxx_current` e `xxx_history_long` para todos os events
 
-You can use the `sys` schema itself to enable all of the additional instruments and consumers:
+Você pode usar o próprio schema `sys` para habilitar todos os instruments e consumers adicionais:
 
 ```sql
 CALL sys.ps_setup_enable_instrument('wait');
@@ -39,7 +39,7 @@ CALL sys.ps_setup_enable_consumer('history_long');
 
 Note
 
-For many uses of the `sys` schema, the default Performance Schema is sufficient for data collection. Enabling all the instruments and consumers just mentioned has a performance impact, so it is preferable to enable only the additional configuration you need. Also, remember that if you enable additional configuration, you can easily restore the default configuration like this:
+Para muitos usos do schema `sys`, o Performance Schema padrão é suficiente para a coleta de dados. Habilitar todos os instruments e consumers mencionados acima tem um impacto no performance, portanto, é preferível habilitar apenas a configuração adicional de que você precisa. Além disso, lembre-se de que, se você habilitar a configuração adicional, poderá restaurar facilmente a configuração padrão desta forma:
 
 ```sql
 CALL sys.ps_setup_reset_to_default(TRUE);

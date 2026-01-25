@@ -1,31 +1,31 @@
-### 11.3.5 The ENUM Type
+### 11.3.5 O Tipo ENUM
 
-An `ENUM` is a string object with a value chosen from a list of permitted values that are enumerated explicitly in the column specification at table creation time.
+Um `ENUM` é um objeto string com um valor escolhido a partir de uma lista de valores permitidos que são explicitamente enumerados na especificação da coluna no momento da criação da tabela.
 
-See Section 11.3.1, “String Data Type Syntax” for `ENUM` type syntax and length limits.
+Consulte a Seção 11.3.1, “Sintaxe de Tipo de Dados String” para a sintaxe e limites de comprimento do tipo `ENUM`.
 
-The `ENUM` type has these advantages:
+O tipo `ENUM` possui as seguintes vantagens:
 
-* Compact data storage in situations where a column has a limited set of possible values. The strings you specify as input values are automatically encoded as numbers. See Section 11.7, “Data Type Storage Requirements” for storage requirements for the `ENUM` type.
+* Armazenamento de dados compacto em situações onde uma coluna tem um conjunto limitado de valores possíveis. As strings que você especifica como valores de entrada são automaticamente codificadas como números. Consulte a Seção 11.7, “Requisitos de Armazenamento de Tipo de Dados” para os requisitos de armazenamento para o tipo `ENUM`.
 
-* Readable queries and output. The numbers are translated back to the corresponding strings in query results.
+* Queries e saída legíveis. Os números são traduzidos de volta para as strings correspondentes nos resultados da Query.
 
-and these potential issues to consider:
+e estas potenciais questões a considerar:
 
-* If you make enumeration values that look like numbers, it is easy to mix up the literal values with their internal index numbers, as explained in Enumeration Limitations.
+* Se você criar valores de enumeração que pareçam números, é fácil confundir os valores literais com seus números de Index internos, conforme explicado em Limitações de Enumeração.
 
-* Using `ENUM` columns in `ORDER BY` clauses requires extra care, as explained in Enumeration Sorting.
+* Usar colunas `ENUM` em cláusulas `ORDER BY` requer cuidado extra, conforme explicado em Ordenação de Enumeração.
 
-* Creating and Using ENUM Columns
-* Index Values for Enumeration Literals
-* Handling of Enumeration Literals
-* Empty or NULL Enumeration Values
-* Enumeration Sorting
-* Enumeration Limitations
+* Criação e Uso de Colunas ENUM
+* Valores de Index para Literais de Enumeração
+* Manipulação de Literais de Enumeração
+* Valores de Enumeração Vazios ou NULL
+* Ordenação de Enumeração
+* Limitações de Enumeração
 
-#### Creating and Using ENUM Columns
+#### Criação e Uso de Colunas ENUM
 
-An enumeration value must be a quoted string literal. For example, you can create a table with an `ENUM` column like this:
+Um valor de enumeração deve ser um literal de string entre aspas. Por exemplo, você pode criar uma tabela com uma coluna `ENUM` assim:
 
 ```sql
 CREATE TABLE shirts (
@@ -44,51 +44,51 @@ UPDATE shirts SET size = 'small' WHERE size = 'large';
 COMMIT;
 ```
 
-Inserting 1 million rows into this table with a value of `'medium'` would require 1 million bytes of storage, as opposed to 6 million bytes if you stored the actual string `'medium'` in a `VARCHAR` column.
+Inserir 1 milhão de linhas nesta tabela com um valor de `'medium'` exigiria 1 milhão de bytes de armazenamento, em oposição a 6 milhões de bytes se você armazenasse a string real `'medium'` em uma coluna `VARCHAR`.
 
-#### Index Values for Enumeration Literals
+#### Valores de Index para Literais de Enumeração
 
-Each enumeration value has an index:
+Cada valor de enumeração tem um Index:
 
-* The elements listed in the column specification are assigned index numbers, beginning with 1.
+* Os elementos listados na especificação da coluna recebem números de Index, começando em 1.
 
-* The index value of the empty string error value is 0. This means that you can use the following `SELECT` statement to find rows into which invalid `ENUM` values were assigned:
+* O valor de Index do valor de erro de string vazia é 0. Isso significa que você pode usar o seguinte comando `SELECT` para encontrar linhas nas quais valores `ENUM` inválidos foram atribuídos:
 
   ```sql
   mysql> SELECT * FROM tbl_name WHERE enum_col=0;
   ```
 
-* The index of the `NULL` value is `NULL`.
+* O Index do valor `NULL` é `NULL`.
 
-* The term “index” here refers to a position within the list of enumeration values. It has nothing to do with table indexes.
+* O termo “Index” aqui se refere a uma posição dentro da lista de valores de enumeração. Não tem relação com os Indexes da tabela.
 
-For example, a column specified as `ENUM('Mercury', 'Venus', 'Earth')` can have any of the values shown here. The index of each value is also shown.
+Por exemplo, uma coluna especificada como `ENUM('Mercury', 'Venus', 'Earth')` pode ter qualquer um dos valores mostrados aqui. O Index de cada valor também é mostrado.
 
-<table summary="Possible values for a column specified as ENUM('Mercury', 'Venus', 'Earth'). The table also shows the index of each value."><col style="width: 15%"/><col style="width: 15%"/><thead><tr> <th>Value</th> <th>Index</th> </tr></thead><tbody><tr> <td><code>NULL</code></td> <td><code>NULL</code></td> </tr><tr> <td><code>''</code></td> <td>0</td> </tr><tr> <td><code>'Mercury'</code></td> <td>1</td> </tr><tr> <td><code>'Venus'</code></td> <td>2</td> </tr><tr> <td><code>'Earth'</code></td> <td>3</td> </tr></tbody></table>
+<table summary="Valores possíveis para uma coluna especificada como ENUM('Mercury', 'Venus', 'Earth'). A tabela também mostra o Index de cada valor."><col style="width: 15%"/><col style="width: 15%"/><thead><tr> <th>Valor</th> <th>Index</th> </tr></thead><tbody><tr> <td><code>NULL</code></td> <td><code>NULL</code></td> </tr><tr> <td><code>''</code></td> <td>0</td> </tr><tr> <td><code>'Mercury'</code></td> <td>1</td> </tr><tr> <td><code>'Venus'</code></td> <td>2</td> </tr><tr> <td><code>'Earth'</code></td> <td>3</td> </tr></tbody></table>
 
-An `ENUM` column can have a maximum of 65,535 distinct elements. (The practical limit is less than 3000.) A table can have no more than 255 unique element list definitions among its `ENUM` and `SET` columns considered as a group. For more information on these limits, see Limits Imposed by .frm File Structure.
+Uma coluna `ENUM` pode ter um máximo de 65.535 elementos distintos. (O limite prático é inferior a 3000.) Uma tabela pode ter no máximo 255 definições de listas de elementos exclusivos entre suas colunas `ENUM` e `SET` consideradas como um grupo. Para mais informações sobre esses limites, consulte Limites Impostos pela Estrutura do Arquivo .frm.
 
-If you retrieve an `ENUM` value in a numeric context, the column value's index is returned. For example, you can retrieve numeric values from an `ENUM` column like this:
+Se você recuperar um valor `ENUM` em um contexto numérico, o Index do valor da coluna será retornado. Por exemplo, você pode recuperar valores numéricos de uma coluna `ENUM` assim:
 
 ```sql
 mysql> SELECT enum_col+0 FROM tbl_name;
 ```
 
-Functions such as `SUM()` or `AVG()` that expect a numeric argument cast the argument to a number if necessary. For `ENUM` values, the index number is used in the calculation.
+Funções como `SUM()` ou `AVG()` que esperam um argumento numérico convertem o argumento para um número, se necessário. Para valores `ENUM`, o número do Index é usado no cálculo.
 
-#### Handling of Enumeration Literals
+#### Manipulação de Literais de Enumeração
 
-Trailing spaces are automatically deleted from `ENUM` member values in the table definition when a table is created.
+Espaços finais (trailing spaces) são automaticamente excluídos dos valores de membros `ENUM` na definição da tabela quando uma tabela é criada.
 
-When retrieved, values stored into an `ENUM` column are displayed using the lettercase that was used in the column definition. Note that `ENUM` columns can be assigned a character set and collation. For binary or case-sensitive collations, lettercase is taken into account when assigning values to the column.
+Quando recuperados, os valores armazenados em uma coluna `ENUM` são exibidos usando o casing (uso de maiúsculas/minúsculas) que foi utilizado na definição da coluna. Observe que colunas `ENUM` podem receber um `character set` e uma `collation`. Para `collations` binárias ou `case-sensitive`, o casing é levado em consideração ao atribuir valores à coluna.
 
-If you store a number into an `ENUM` column, the number is treated as the index into the possible values, and the value stored is the enumeration member with that index. (However, this does *not* work with `LOAD DATA`, which treats all input as strings.) If the numeric value is quoted, it is still interpreted as an index if there is no matching string in the list of enumeration values. For these reasons, it is not advisable to define an `ENUM` column with enumeration values that look like numbers, because this can easily become confusing. For example, the following column has enumeration members with string values of `'0'`, `'1'`, and `'2'`, but numeric index values of `1`, `2`, and `3`:
+Se você armazenar um número em uma coluna `ENUM`, o número é tratado como o Index dos valores possíveis, e o valor armazenado é o membro da enumeração com aquele Index. (No entanto, isso *não* funciona com `LOAD DATA`, que trata todas as entradas como strings.) Se o valor numérico estiver entre aspas, ele ainda será interpretado como um Index se não houver uma string correspondente na lista de valores de enumeração. Por essas razões, não é aconselhável definir uma coluna `ENUM` com valores de enumeração que pareçam números, pois isso pode facilmente causar confusão. Por exemplo, a coluna a seguir tem membros de enumeração com valores string de `'0'`, `'1'` e `'2'`, mas valores de Index numéricos de `1`, `2` e `3`:
 
 ```sql
 numbers ENUM('0','1','2')
 ```
 
-If you store `2`, it is interpreted as an index value, and becomes `'1'` (the value with index 2). If you store `'2'`, it matches an enumeration value, so it is stored as `'2'`. If you store `'3'`, it does not match any enumeration value, so it is treated as an index and becomes `'2'` (the value with index 3).
+Se você armazenar `2`, ele é interpretado como um valor de Index e se torna `'1'` (o valor com Index 2). Se você armazenar `'2'`, ele corresponde a um valor de enumeração, então é armazenado como `'2'`. Se você armazenar `'3'`, ele não corresponde a nenhum valor de enumeração, então é tratado como um Index e se torna `'2'` (o valor com Index 3).
 
 ```sql
 mysql> INSERT INTO t (numbers) VALUES(2),('2'),('3');
@@ -102,35 +102,35 @@ mysql> SELECT * FROM t;
 +---------+
 ```
 
-To determine all possible values for an `ENUM` column, use `SHOW COLUMNS FROM tbl_name LIKE 'enum_col'` and parse the `ENUM` definition in the `Type` column of the output.
+Para determinar todos os valores possíveis para uma coluna `ENUM`, use `SHOW COLUMNS FROM tbl_name LIKE 'enum_col'` e faça o parse (análise) da definição `ENUM` na coluna `Type` da saída.
 
-In the C API, `ENUM` values are returned as strings. For information about using result set metadata to distinguish them from other strings, see C API Basic Data Structures.
+Na C API, os valores `ENUM` são retornados como strings. Para informações sobre como usar metadados do result set para distingui-los de outras strings, consulte Estruturas de Dados Básicas da C API.
 
-#### Empty or NULL Enumeration Values
+#### Valores de Enumeração Vazios ou NULL
 
-An enumeration value can also be the empty string (`''`) or `NULL` under certain circumstances:
+Um valor de enumeração também pode ser a string vazia (`''`) ou `NULL` sob certas circunstâncias:
 
-* If you insert an invalid value into an `ENUM` (that is, a string not present in the list of permitted values), the empty string is inserted instead as a special error value. This string can be distinguished from a “normal” empty string by the fact that this string has the numeric value 0. See Index Values for Enumeration Literals for details about the numeric indexes for the enumeration values.
+* Se você inserir um valor inválido em um `ENUM` (ou seja, uma string não presente na lista de valores permitidos), a string vazia é inserida como um valor de erro especial. Esta string pode ser distinguida de uma string vazia “normal” pelo fato de que ela tem o valor numérico 0. Consulte Valores de Index para Literais de Enumeração para detalhes sobre os Indexes numéricos para os valores de enumeração.
 
-  If strict SQL mode is enabled, attempts to insert invalid `ENUM` values result in an error.
+  Se o `strict SQL mode` estiver habilitado, as tentativas de inserir valores `ENUM` inválidos resultam em um erro.
 
-* If an `ENUM` column is declared to permit `NULL`, the `NULL` value is a valid value for the column, and the default value is `NULL`. If an `ENUM` column is declared `NOT NULL`, its default value is the first element of the list of permitted values.
+* Se uma coluna `ENUM` for declarada para permitir `NULL`, o valor `NULL` é um valor válido para a coluna, e o valor padrão é `NULL`. Se uma coluna `ENUM` for declarada `NOT NULL`, seu valor padrão é o primeiro elemento da lista de valores permitidos.
 
-#### Enumeration Sorting
+#### Ordenação de Enumeração
 
-`ENUM` values are sorted based on their index numbers, which depend on the order in which the enumeration members were listed in the column specification. For example, `'b'` sorts before `'a'` for `ENUM('b', 'a')`. The empty string sorts before nonempty strings, and `NULL` values sort before all other enumeration values.
+Os valores `ENUM` são ordenados com base em seus números de Index, que dependem da ordem em que os membros da enumeração foram listados na especificação da coluna. Por exemplo, `'b'` é ordenado antes de `'a'` para `ENUM('b', 'a')`. A string vazia é ordenada antes das strings não vazias, e os valores `NULL` são ordenados antes de todos os outros valores de enumeração.
 
-To prevent unexpected results when using the `ORDER BY` clause on an `ENUM` column, use one of these techniques:
+Para evitar resultados inesperados ao usar a cláusula `ORDER BY` em uma coluna `ENUM`, utilize uma destas técnicas:
 
-* Specify the `ENUM` list in alphabetic order.
+* Especifique a lista `ENUM` em ordem alfabética.
 
-* Make sure that the column is sorted lexically rather than by index number by coding `ORDER BY CAST(col AS CHAR)` or `ORDER BY CONCAT(col)`.
+* Certifique-se de que a coluna seja ordenada lexicalmente em vez de por número de Index, codificando `ORDER BY CAST(col AS CHAR)` ou `ORDER BY CONCAT(col)`.
 
-#### Enumeration Limitations
+#### Limitações de Enumeração
 
-An enumeration value cannot be an expression, even one that evaluates to a string value.
+Um valor de enumeração não pode ser uma expressão, mesmo uma que avalie para um valor string.
 
-For example, this `CREATE TABLE` statement does *not* work because the `CONCAT` function cannot be used to construct an enumeration value:
+Por exemplo, este comando `CREATE TABLE` *não* funciona porque a função `CONCAT` não pode ser usada para construir um valor de enumeração:
 
 ```sql
 CREATE TABLE sizes (
@@ -138,7 +138,7 @@ CREATE TABLE sizes (
 );
 ```
 
-You also cannot employ a user variable as an enumeration value. This pair of statements do *not* work:
+Você também não pode empregar uma variável de usuário como valor de enumeração. Este par de comandos *não* funciona:
 
 ```sql
 SET @mysize = 'medium';
@@ -148,6 +148,6 @@ CREATE TABLE sizes (
 );
 ```
 
-We strongly recommend that you do *not* use numbers as enumeration values, because it does not save on storage over the appropriate `TINYINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") or `SMALLINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") type, and it is easy to mix up the strings and the underlying number values (which might not be the same) if you quote the `ENUM` values incorrectly. If you do use a number as an enumeration value, always enclose it in quotation marks. If the quotation marks are omitted, the number is regarded as an index. See Handling of Enumeration Literals to see how even a quoted number could be mistakenly used as a numeric index value.
+Recomendamos fortemente que você *não* use números como valores de enumeração, porque isso não economiza armazenamento em comparação com o tipo apropriado `TINYINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") ou `SMALLINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), e é fácil confundir as strings e os valores numéricos subjacentes (que podem não ser os mesmos) se você citar os valores `ENUM` incorretamente. Se você usar um número como valor de enumeração, sempre o coloque entre aspas. Se as aspas forem omitidas, o número será considerado um Index. Consulte Manipulação de Literais de Enumeração para ver como mesmo um número entre aspas pode ser usado erroneamente como um valor de Index numérico.
 
-Duplicate values in the definition cause a warning, or an error if strict SQL mode is enabled.
+Valores duplicados na definição causam um `warning` (aviso), ou um `error` (erro) se o `strict SQL mode` estiver habilitado.

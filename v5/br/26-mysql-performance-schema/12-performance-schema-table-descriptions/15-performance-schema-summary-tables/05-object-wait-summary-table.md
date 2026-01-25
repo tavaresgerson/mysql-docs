@@ -1,8 +1,8 @@
-#### 25.12.15.5 Object Wait Summary Table
+#### 25.12.15.5 Tabela de Resumo de Espera de Objetos
 
-The Performance Schema maintains the [`objects_summary_global_by_type`](performance-schema-objects-summary-global-by-type-table.html "25.12.15.5 Object Wait Summary Table") table for aggregating object wait events.
+O Performance Schema mantém a tabela [`objects_summary_global_by_type`](performance-schema-objects-summary-global-by-type-table.html "25.12.15.5 Tabela de Resumo de Espera de Objetos") para agregar eventos de espera de objeto.
 
-Example object wait event summary information:
+Exemplo de informações de resumo de eventos de espera de objeto:
 
 ```sql
 mysql> SELECT * FROM performance_schema.objects_summary_global_by_type\G
@@ -29,8 +29,8 @@ MAX_TIMER_WAIT: 334783032
 ...
 ```
 
-The [`objects_summary_global_by_type`](performance-schema-objects-summary-global-by-type-table.html "25.12.15.5 Object Wait Summary Table") table has these grouping columns to indicate how the table aggregates events: `OBJECT_TYPE`, `OBJECT_SCHEMA`, and `OBJECT_NAME`. Each row summarizes events for the given object.
+A tabela [`objects_summary_global_by_type`](performance-schema-objects-summary-global-by-type-table.html "25.12.15.5 Tabela de Resumo de Espera de Objetos") possui estas colunas de agrupamento para indicar como a tabela agrega eventos: `OBJECT_TYPE`, `OBJECT_SCHEMA` e `OBJECT_NAME`. Cada linha resume eventos para o objeto fornecido.
 
-[`objects_summary_global_by_type`](performance-schema-objects-summary-global-by-type-table.html "25.12.15.5 Object Wait Summary Table") has the same summary columns as the `events_waits_summary_by_xxx` tables. See [Section 25.12.15.1, “Wait Event Summary Tables”](performance-schema-wait-summary-tables.html "25.12.15.1 Wait Event Summary Tables").
+A tabela [`objects_summary_global_by_type`](performance-schema-objects-summary-global-by-type-table.html "25.12.15.5 Tabela de Resumo de Espera de Objetos") possui as mesmas colunas de resumo que as tabelas `events_waits_summary_by_xxx`. Consulte [Seção 25.12.15.1, “Tabelas de Resumo de Eventos de Espera”](performance-schema-wait-summary-tables.html "25.12.15.1 Wait Event Summary Tables").
 
-[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is permitted for the object summary table. It resets the summary columns to zero rather than removing rows.
+O uso de [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") é permitido para a tabela de resumo de objetos. Ele redefine as colunas de resumo para zero, em vez de remover as linhas.

@@ -1,11 +1,11 @@
-### 13.1.31 DROP TRIGGER Statement
+### 13.1.31 Declaração DROP TRIGGER
 
 ```sql
 DROP TRIGGER [IF EXISTS] [schema_name.]trigger_name
 ```
 
-This statement drops a trigger. The schema (database) name is optional. If the schema is omitted, the trigger is dropped from the default schema. [`DROP TRIGGER`](drop-trigger.html "13.1.31 DROP TRIGGER Statement") requires the [`TRIGGER`](privileges-provided.html#priv_trigger) privilege for the table associated with the trigger.
+Esta declaração descarta um trigger. O nome do schema (database) é opcional. Se o schema for omitido, o trigger é descartado do schema padrão. O [`DROP TRIGGER`](drop-trigger.html "13.1.31 DROP TRIGGER Statement") exige o privilégio [`TRIGGER`](privileges-provided.html#priv_trigger) para a tabela associada ao trigger.
 
-Use `IF EXISTS` to prevent an error from occurring for a trigger that does not exist. A `NOTE` is generated for a nonexistent trigger when using `IF EXISTS`. See [Section 13.7.5.40, “SHOW WARNINGS Statement”](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement").
+Use `IF EXISTS` para evitar que ocorra um erro para um trigger que não existe. Uma `NOTE` é gerada para um trigger inexistente ao usar `IF EXISTS`. Consulte [Seção 13.7.5.40, “Declaração SHOW WARNINGS”](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement").
 
-Triggers for a table are also dropped if you drop the table.
+Triggers associados a uma tabela também são descartados se você descartar a tabela.

@@ -1,18 +1,18 @@
-#### 14.7.2.3 Consistent Nonlocking Reads
+#### 14.7.2.3 Leituras Consistentes Sem Lock (Nonlocking Reads)
 
-A consistent read means that `InnoDB` uses multi-versioning to present to a query a snapshot of the database at a point in time. The query sees the changes made by transactions that committed before that point in time, and no changes made by later or uncommitted transactions. The exception to this rule is that the query sees the changes made by earlier statements within the same transaction. This exception causes the following anomaly: If you update some rows in a table, a `SELECT` sees the latest version of the updated rows, but it might also see older versions of any rows. If other sessions simultaneously update the same table, the anomaly means that you might see the table in a state that never existed in the database.
+Uma consistent read significa que o `InnoDB` utiliza multi-versionamento para apresentar a uma Query um snapshot do Database em um determinado ponto no tempo. A Query vê as alterações feitas por Transactions que fizeram Commit antes desse ponto no tempo e nenhuma alteração feita por Transactions posteriores ou não commitadas (uncommitted). A exceção a essa regra é que a Query vê as alterações feitas por instruções anteriores dentro da mesma Transaction. Essa exceção causa a seguinte anomalia: Se você atualizar algumas rows em uma tabela, um `SELECT` verá a versão mais recente das rows atualizadas, mas também poderá ver versões mais antigas de quaisquer rows. Se outras sessions atualizarem a mesma tabela simultaneamente, a anomalia significa que você pode ver a tabela em um estado que nunca existiu no Database.
 
-If the transaction isolation level is `REPEATABLE READ` (the default level), all consistent reads within the same transaction read the snapshot established by the first such read in that transaction. You can get a fresher snapshot for your queries by committing the current transaction and after that issuing new queries.
+Se o isolation level da Transaction for `REPEATABLE READ` (o nível padrão), todas as consistent reads dentro da mesma Transaction lerão o snapshot estabelecido pela primeira leitura desse tipo naquela Transaction. Você pode obter um snapshot mais atualizado para suas Queries fazendo Commit da Transaction atual e, depois disso, emitindo novas Queries.
 
-With `READ COMMITTED` isolation level, each consistent read within a transaction sets and reads its own fresh snapshot.
+Com o isolation level `READ COMMITTED`, cada consistent read dentro de uma Transaction define e lê seu próprio snapshot atualizado.
 
-Consistent read is the default mode in which `InnoDB` processes `SELECT` statements in `READ COMMITTED` and `REPEATABLE READ` isolation levels. A consistent read does not set any locks on the tables it accesses, and therefore other sessions are free to modify those tables at the same time a consistent read is being performed on the table.
+Consistent read é o modo padrão no qual o `InnoDB` processa instruções `SELECT` nos isolation levels `READ COMMITTED` e `REPEATABLE READ`. Uma consistent read não define nenhum Lock nas tabelas que acessa e, portanto, outras sessions estão livres para modificar essas tabelas ao mesmo tempo em que uma consistent read está sendo executada na tabela.
 
-Suppose that you are running in the default `REPEATABLE READ` isolation level. When you issue a consistent read (that is, an ordinary `SELECT` statement), `InnoDB` gives your transaction a timepoint according to which your query sees the database. If another transaction deletes a row and commits after your timepoint was assigned, you do not see the row as having been deleted. Inserts and updates are treated similarly.
+Suponha que você esteja executando no isolation level padrão `REPEATABLE READ`. Quando você emite uma consistent read (ou seja, uma instrução `SELECT` comum), o `InnoDB` atribui à sua Transaction um timepoint de acordo com o qual sua Query visualiza o Database. Se outra Transaction excluir uma row e fizer Commit após o seu timepoint ter sido atribuído, você não verá a row como excluída. Inserts e Updates são tratados de forma semelhante.
 
-Note
+Nota
 
-The snapshot of the database state applies to `SELECT` statements within a transaction, not necessarily to DML statements. If you insert or modify some rows and then commit that transaction, a `DELETE` or `UPDATE` statement issued from another concurrent `REPEATABLE READ` transaction could affect those just-committed rows, even though the session could not query them. If a transaction does update or delete rows committed by a different transaction, those changes do become visible to the current transaction. For example, you might encounter a situation like the following:
+O snapshot do estado do Database se aplica a instruções `SELECT` dentro de uma Transaction, não necessariamente a instruções DML. Se você inserir ou modificar algumas rows e, em seguida, fizer Commit dessa Transaction, uma instrução `DELETE` ou `UPDATE` emitida a partir de outra Transaction concorrente `REPEATABLE READ` poderá afetar essas rows recém-commitadas, mesmo que a session não pudesse consultá-las. Se uma Transaction atualizar ou excluir rows commitadas por uma Transaction diferente, essas alterações se tornarão visíveis para a Transaction atual. Por exemplo, você pode encontrar uma situação como a seguinte:
 
 ```sql
 SELECT COUNT(c1) FROM t1 WHERE c1 = 'xyz';
@@ -28,11 +28,11 @@ SELECT COUNT(c2) FROM t1 WHERE c2 = 'cba';
 -- Returns 10: this txn can now see the rows it just updated.
 ```
 
-You can advance your timepoint by committing your transaction and then doing another `SELECT` or `START TRANSACTION WITH CONSISTENT SNAPSHOT`.
+Você pode avançar seu timepoint fazendo Commit de sua Transaction e, em seguida, executando outro `SELECT` ou `START TRANSACTION WITH CONSISTENT SNAPSHOT`.
 
-This is called multi-versioned concurrency control.
+Isso é chamado de multi-versioned concurrency control.
 
-In the following example, session A sees the row inserted by B only when B has committed the insert and A has committed as well, so that the timepoint is advanced past the commit of B.
+No exemplo a seguir, a session A vê a row inserida por B somente quando B fez Commit do Insert e A também fez Commit, de modo que o timepoint é avançado para além do Commit de B.
 
 ```sql
              Session A              Session B
@@ -58,22 +58,22 @@ v          SELECT * FROM t;
            ---------------------
 ```
 
-If you want to see the “freshest” state of the database, use either the `READ COMMITTED` isolation level or a locking read:
+Se você deseja ver o estado "mais atualizado" (freshest) do Database, use o isolation level `READ COMMITTED` ou uma locking read:
 
 ```sql
 SELECT * FROM t LOCK IN SHARE MODE;
 ```
 
-With `READ COMMITTED` isolation level, each consistent read within a transaction sets and reads its own fresh snapshot. With `LOCK IN SHARE MODE`, a locking read occurs instead: A `SELECT` blocks until the transaction containing the freshest rows ends (see Section 14.7.2.4, “Locking Reads”).
+Com o isolation level `READ COMMITTED`, cada consistent read dentro de uma Transaction define e lê seu próprio snapshot atualizado. Com `LOCK IN SHARE MODE`, ocorre uma locking read: Um `SELECT` é bloqueado até que a Transaction contendo as rows mais atualizadas termine (consulte a Seção 14.7.2.4, “Locking Reads”).
 
-Consistent read does not work over certain DDL statements:
+Consistent read não funciona sobre certas instruções DDL:
 
-* Consistent read does not work over `DROP TABLE`, because MySQL cannot use a table that has been dropped and `InnoDB` destroys the table.
+* Consistent read não funciona sobre `DROP TABLE`, porque o MySQL não pode usar uma tabela que foi descartada (dropped) e o `InnoDB` destrói a tabela.
 
-* Consistent read does not work over `ALTER TABLE` operations that make a temporary copy of the original table and delete the original table when the temporary copy is built. When you reissue a consistent read within a transaction, rows in the new table are not visible because those rows did not exist when the transaction's snapshot was taken. In this case, the transaction returns an error: `ER_TABLE_DEF_CHANGED`, “Table definition has changed, please retry transaction”.
+* Consistent read não funciona sobre operações `ALTER TABLE` que criam uma cópia temporária da tabela original e excluem a tabela original quando a cópia temporária é construída. Quando você reemite uma consistent read dentro de uma Transaction, as rows na nova tabela não são visíveis porque essas rows não existiam quando o snapshot da Transaction foi tirado. Neste caso, a Transaction retorna um erro: `ER_TABLE_DEF_CHANGED`, “Table definition has changed, please retry transaction”.
 
-The type of read varies for selects in clauses like `INSERT INTO ... SELECT`, `UPDATE ... (SELECT)`, and `CREATE TABLE ... SELECT` that do not specify `FOR UPDATE` or `LOCK IN SHARE MODE`:
+O tipo de read varia para os selects em cláusulas como `INSERT INTO ... SELECT`, `UPDATE ... (SELECT)` e `CREATE TABLE ... SELECT` que não especificam `FOR UPDATE` ou `LOCK IN SHARE MODE`:
 
-* By default, `InnoDB` uses stronger locks in those statements and the `SELECT` part acts like `READ COMMITTED`, where each consistent read, even within the same transaction, sets and reads its own fresh snapshot.
+* Por padrão, o `InnoDB` usa Locks mais fortes nessas instruções e a parte `SELECT` atua como `READ COMMITTED`, onde cada consistent read, mesmo dentro da mesma Transaction, define e lê seu próprio snapshot atualizado.
 
-* To perform a nonlocking read in such cases, enable the `innodb_locks_unsafe_for_binlog` option and set the isolation level of the transaction to `READ UNCOMMITTED`, `READ COMMITTED`, or `REPEATABLE READ` to avoid setting locks on rows read from the selected table.
+* Para realizar uma nonlocking read nesses casos, ative a opção `innodb_locks_unsafe_for_binlog` e defina o isolation level da Transaction para `READ UNCOMMITTED`, `READ COMMITTED` ou `REPEATABLE READ` para evitar a definição de Locks nas rows lidas da tabela selecionada.

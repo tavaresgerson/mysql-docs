@@ -1,8 +1,8 @@
-### 14.16.6 InnoDB INFORMATION_SCHEMA Metrics Table
+### 14.16.6 Tabela de Métricas INFORMATION_SCHEMA do InnoDB
 
-The `INNODB_METRICS` table provides information about `InnoDB` performance and resource-related counters.
+A tabela `INNODB_METRICS` fornece informações sobre desempenho e contadores relacionados a recursos do `InnoDB`.
 
-`INNODB_METRICS` table columns are shown below. For column descriptions, see Section 24.4.16, “The INFORMATION_SCHEMA INNODB_METRICS Table”.
+As colunas da tabela `INNODB_METRICS` são mostradas abaixo. Para descrições das colunas, consulte a Seção 24.4.16, “A Tabela INFORMATION_SCHEMA INNODB_METRICS”.
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_METRICS WHERE NAME="dml_inserts" \G
@@ -26,54 +26,54 @@ AVG_COUNT_RESET: NULL
         COMMENT: Number of rows inserted
 ```
 
-#### Enabling, Disabling, and Resetting Counters
+#### Habilitando, Desabilitando e Reiniciando Counters
 
-You can enable, disable, and reset counters using the following variables:
+Você pode habilitar, desabilitar e reiniciar counters usando as seguintes variáveis:
 
-* `innodb_monitor_enable`: Enables counters.
+* `innodb_monitor_enable`: Habilita counters.
 
   ```sql
   SET GLOBAL innodb_monitor_enable = [counter-name|module_name|pattern|all];
   ```
 
-* `innodb_monitor_disable`: Disables counters.
+* `innodb_monitor_disable`: Desabilita counters.
 
   ```sql
   SET GLOBAL innodb_monitor_disable = [counter-name|module_name|pattern|all];
   ```
 
-* `innodb_monitor_reset`: Resets counter values to zero.
+* `innodb_monitor_reset`: Reinicia (Resets) os valores dos counters para zero.
 
   ```sql
   SET GLOBAL innodb_monitor_reset = [counter-name|module_name|pattern|all];
   ```
 
-* `innodb_monitor_reset_all`: Resets all counter values. A counter must be disabled before using `innodb_monitor_reset_all`.
+* `innodb_monitor_reset_all`: Reinicia todos os valores de counter. Um counter deve ser desabilitado antes de usar `innodb_monitor_reset_all`.
 
   ```sql
   SET GLOBAL innodb_monitor_reset_all = [counter-name|module_name|pattern|all];
   ```
 
-Counters and counter modules can also be enabled at startup using the MySQL server configuration file. For example, to enable the `log` module, `metadata_table_handles_opened` and `metadata_table_handles_closed` counters, enter the following line in the `[mysqld]` section of the MySQL server configuration file..
+Counters e módulos de counter também podem ser habilitados na inicialização usando o arquivo de configuração do servidor MySQL. Por exemplo, para habilitar o módulo `log`, os counters `metadata_table_handles_opened` e `metadata_table_handles_closed`, insira a seguinte linha na seção `[mysqld]` do arquivo de configuração do servidor MySQL.
 
 ```sql
 [mysqld]
 innodb_monitor_enable = module_recovery,metadata_table_handles_opened,metadata_table_handles_closed
 ```
 
-When enabling multiple counters or modules in a configuration file, specify the `innodb_monitor_enable` variable followed by counter and module names separated by a comma, as shown above. Only the `innodb_monitor_enable` variable can be used in a configuration file. The `innodb_monitor_disable` and `innodb_monitor_reset` variables are supported on the command line only.
+Ao habilitar múltiplos counters ou módulos em um arquivo de configuração, especifique a variável `innodb_monitor_enable` seguida pelos nomes do counter e do módulo separados por vírgula, conforme mostrado acima. Apenas a variável `innodb_monitor_enable` pode ser usada em um arquivo de configuração. As variáveis `innodb_monitor_disable` e `innodb_monitor_reset` são suportadas apenas na linha de comando.
 
-Note
+Nota
 
-Because each counter adds a degree of runtime overhead, use counters conservatively on production servers to diagnose specific issues or monitor specific functionality. A test or development server is recommended for more extensive use of counters.
+Como cada counter adiciona um certo grau de sobrecarga de tempo de execução (runtime overhead), use os counters de forma conservadora em servidores de produção para diagnosticar problemas específicos ou monitorar funcionalidades específicas. Recomenda-se um servidor de teste ou desenvolvimento para um uso mais extenso dos counters.
 
 #### Counters
 
-The list of available counters is subject to change. Query the Information Schema `INNODB_METRICS` table for counters available in your MySQL server version.
+A lista de counters disponíveis está sujeita a alterações. Faça uma Query na tabela `INNODB_METRICS` do Information Schema para verificar os counters disponíveis na sua versão do servidor MySQL.
 
-The counters enabled by default correspond to those shown in `SHOW ENGINE INNODB STATUS` output. Counters shown in `SHOW ENGINE INNODB STATUS` output are always enabled at a system level but can be disable for the `INNODB_METRICS` table. Counter status is not persistent. Unless configured otherwise, counters revert to their default enabled or disabled status when the server is restarted.
+Os counters habilitados por padrão correspondem àqueles mostrados na saída de `SHOW ENGINE INNODB STATUS`. Os counters mostrados na saída de `SHOW ENGINE INNODB STATUS` estão sempre habilitados em nível de sistema, mas podem ser desabilitados para a tabela `INNODB_METRICS`. O STATUS do counter não é persistente. A menos que configurados de outra forma, os counters revertem para o seu STATUS padrão, habilitado ou desabilitado, quando o servidor é reiniciado.
 
-If you run programs that would be affected by the addition or removal of counters, it is recommended that you review the releases notes and query the `INNODB_METRICS` table to identify those changes as part of your upgrade process.
+Se você executa programas que seriam afetados pela adição ou remoção de counters, é recomendável que você revise as notas de lançamento e faça Query na tabela `INNODB_METRICS` para identificar essas alterações como parte do seu processo de upgrade.
 
 ```sql
 mysql> SELECT name, subsystem, status FROM INFORMATION_SCHEMA.INNODB_METRICS ORDER BY NAME;
@@ -319,9 +319,9 @@ mysql> SELECT name, subsystem, status FROM INFORMATION_SCHEMA.INNODB_METRICS ORD
 235 rows in set (0.01 sec)
 ```
 
-#### Counter Modules
+#### Módulos de Counter
 
-Each counter is associated with a particular module. Module names can be used to enable, disable, or reset all counters for a particular subsystem. For example, use `module_dml` to enable all counters associated with the `dml` subsystem.
+Cada counter está associado a um módulo específico. Nomes de módulos podem ser usados para habilitar, desabilitar ou reiniciar todos os counters para um SUBSYSTEM específico. Por exemplo, use `module_dml` para habilitar todos os counters associados ao SUBSYSTEM `dml`.
 
 ```sql
 mysql> SET GLOBAL innodb_monitor_enable = module_dml;
@@ -338,9 +338,9 @@ mysql> SELECT name, subsystem, status FROM INFORMATION_SCHEMA.INNODB_METRICS
 +-------------+-----------+---------+
 ```
 
-Module names can be used with `innodb_monitor_enable` and related variables.
+Nomes de módulos podem ser usados com `innodb_monitor_enable` e variáveis relacionadas.
 
-Module names and corresponding `SUBSYSTEM` names are listed below.
+Os nomes dos módulos e os nomes correspondentes dos `SUBSYSTEM` estão listados abaixo.
 
 * `module_adaptive_hash` (subsystem = `adaptive_hash_index`)
 
@@ -376,11 +376,11 @@ Module names and corresponding `SUBSYSTEM` names are listed below.
 
 * `module_trx` (subsystem = `transaction`)
 
-**Example 14.11 Working with INNODB_METRICS Table Counters**
+**Exemplo 14.11 Trabalhando com Counters da Tabela INNODB_METRICS**
 
-This example demonstrates enabling, disabling, and resetting a counter, and querying counter data in the `INNODB_METRICS` table.
+Este exemplo demonstra como habilitar, desabilitar e reiniciar (reset) um counter, e como fazer Query dos dados do counter na tabela `INNODB_METRICS`.
 
-1. Create a simple `InnoDB` table:
+1. Crie uma tabela `InnoDB` simples:
 
    ```sql
    mysql> USE test;
@@ -390,14 +390,14 @@ This example demonstrates enabling, disabling, and resetting a counter, and quer
    Query OK, 0 rows affected (0.02 sec)
    ```
 
-2. Enable the `dml_inserts` counter.
+2. Habilite o counter `dml_inserts`.
 
    ```sql
    mysql> SET GLOBAL innodb_monitor_enable = dml_inserts;
    Query OK, 0 rows affected (0.01 sec)
    ```
 
-   A description of the `dml_inserts` counter can be found in the `COMMENT` column of the `INNODB_METRICS` table:
+   Uma descrição do counter `dml_inserts` pode ser encontrada na coluna `COMMENT` da tabela `INNODB_METRICS`:
 
    ```sql
    mysql> SELECT NAME, COMMENT FROM INFORMATION_SCHEMA.INNODB_METRICS WHERE NAME="dml_inserts";
@@ -408,7 +408,7 @@ This example demonstrates enabling, disabling, and resetting a counter, and quer
    +-------------+-------------------------+
    ```
 
-3. Query the `INNODB_METRICS` table for the `dml_inserts` counter data. Because no DML operations have been performed, the counter values are zero or NULL. The `TIME_ENABLED` and `TIME_ELAPSED` values indicate when the counter was last enabled and how many seconds have elapsed since that time.
+3. Faça Query na tabela `INNODB_METRICS` para obter os dados do counter `dml_inserts`. Como nenhuma operação DML foi realizada, os valores do counter são zero ou NULL. Os valores `TIME_ENABLED` e `TIME_ELAPSED` indicam quando o counter foi habilitado pela última vez e quantos segundos se passaram desde então.
 
    ```sql
    mysql>  SELECT * FROM INFORMATION_SCHEMA.INNODB_METRICS WHERE NAME="dml_inserts" \G
@@ -432,7 +432,7 @@ This example demonstrates enabling, disabling, and resetting a counter, and quer
            COMMENT: Number of rows inserted
    ```
 
-4. Insert three rows of data into the table.
+4. Insira três linhas de dados na tabela.
 
    ```sql
    mysql> INSERT INTO t1 values(1);
@@ -445,7 +445,7 @@ This example demonstrates enabling, disabling, and resetting a counter, and quer
    Query OK, 1 row affected (0.00 sec)
    ```
 
-5. Query the `INNODB_METRICS` table again for the `dml_inserts` counter data. A number of counter values have now incremented including `COUNT`, `MAX_COUNT`, `AVG_COUNT`, and `COUNT_RESET`. Refer to the `INNODB_METRICS` table definition for descriptions of these values.
+5. Faça Query na tabela `INNODB_METRICS` novamente para obter os dados do counter `dml_inserts`. Vários valores de counter agora foram incrementados, incluindo `COUNT`, `MAX_COUNT`, `AVG_COUNT` e `COUNT_RESET`. Consulte a definição da tabela `INNODB_METRICS` para descrições desses valores.
 
    ```sql
    mysql>  SELECT * FROM INFORMATION_SCHEMA.INNODB_METRICS WHERE NAME="dml_inserts"\G
@@ -469,7 +469,7 @@ This example demonstrates enabling, disabling, and resetting a counter, and quer
            COMMENT: Number of rows inserted
    ```
 
-6. Reset the `dml_inserts` counter and query the `INNODB_METRICS` table again for the `dml_inserts` counter data. The `%_RESET` values that were reported previously, such as `COUNT_RESET` and `MAX_RESET`, are set back to zero. Values such as `COUNT`, `MAX_COUNT`, and `AVG_COUNT`, which cumulatively collect data from the time the counter is enabled, are unaffected by the reset.
+6. Reinicie (Reset) o counter `dml_inserts` e faça Query na tabela `INNODB_METRICS` novamente para obter os dados do counter `dml_inserts`. Os valores `%_RESET` que foram relatados anteriormente, como `COUNT_RESET` e `MAX_RESET`, são redefinidos para zero. Valores como `COUNT`, `MAX_COUNT` e `AVG_COUNT`, que coletam dados cumulativamente desde o momento em que o counter é habilitado, não são afetados pelo reset.
 
    ```sql
    mysql> SET GLOBAL innodb_monitor_reset = dml_inserts;
@@ -496,7 +496,7 @@ This example demonstrates enabling, disabling, and resetting a counter, and quer
            COMMENT: Number of rows inserted
    ```
 
-7. To reset all counter values, you must first disable the counter. Disabling the counter sets the `STATUS` value to `disabled`.
+7. Para reiniciar todos os valores de counter, você deve primeiro desabilitar o counter. Desabilitar o counter define o valor `STATUS` como `disabled`.
 
    ```sql
    mysql> SET GLOBAL innodb_monitor_disable = dml_inserts;
@@ -523,11 +523,11 @@ This example demonstrates enabling, disabling, and resetting a counter, and quer
            COMMENT: Number of rows inserted
    ```
 
-   Note
+   Nota
 
-   Wildcard match is supported for counter and module names. For example, instead of specifying the full `dml_inserts` counter name, you can specify `dml_i%`. You can also enable, disable, or reset multiple counters or modules at once using a wildcard match. For example, specify `dml_%` to enable, disable, or reset all counters that begin with `dml_`.
+   A correspondência por curinga (wildcard match) é suportada para nomes de counter e módulo. Por exemplo, em vez de especificar o nome completo do counter `dml_inserts`, você pode especificar `dml_i%`. Você também pode habilitar, desabilitar ou reiniciar múltiplos counters ou módulos de uma só vez usando uma correspondência por curinga. Por exemplo, especifique `dml_%` para habilitar, desabilitar ou reiniciar todos os counters que começam com `dml_`.
 
-8. After the counter is disabled, you can reset all counter values using the `innodb_monitor_reset_all` option. All values are set to zero or NULL.
+8. Depois que o counter for desabilitado, você pode reiniciar todos os valores de counter usando a opção `innodb_monitor_reset_all`. Todos os valores são definidos como zero ou NULL.
 
    ```sql
    mysql> SET GLOBAL innodb_monitor_reset_all = dml_inserts;

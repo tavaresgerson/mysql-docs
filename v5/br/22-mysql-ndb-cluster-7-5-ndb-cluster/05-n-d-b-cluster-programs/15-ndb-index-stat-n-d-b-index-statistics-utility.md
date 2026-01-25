@@ -1,16 +1,16 @@
-### 21.5.15 ndb_index_stat — NDB Index Statistics Utility
+### 21.5.15 ndb_index_stat — Utilitário de Estatísticas de Index NDB
 
-[**ndb_index_stat**](mysql-cluster-programs-ndb-index-stat.html "21.5.15 ndb_index_stat — NDB Index Statistics Utility") provides per-fragment statistical information about indexes on `NDB` tables. This includes cache version and age, number of index entries per partition, and memory consumption by indexes.
+[**ndb_index_stat**](mysql-cluster-programs-ndb-index-stat.html "21.5.15 ndb_index_stat — NDB Index Statistics Utility") fornece informações estatísticas por fragmento sobre Indexes em tabelas `NDB`. Isso inclui versão e idade do cache, número de entradas de Index por partition e consumo de memória pelos Indexes.
 
-#### Usage
+#### Uso
 
-To obtain basic index statistics about a given [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table, invoke [**ndb_index_stat**](mysql-cluster-programs-ndb-index-stat.html "21.5.15 ndb_index_stat — NDB Index Statistics Utility") as shown here, with the name of the table as the first argument and the name of the database containing this table specified immediately following it, using the [`--database`](mysql-cluster-programs-ndb-index-stat.html#option_ndb_index_stat_database) (`-d`) option:
+Para obter estatísticas básicas de Index sobre uma determinada tabela [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"), invoque [**ndb_index_stat**](mysql-cluster-programs-ndb-index-stat.html "21.5.15 ndb_index_stat — NDB Index Statistics Utility") conforme mostrado aqui, com o nome da tabela como o primeiro argumento e o nome do Database contendo esta tabela especificado imediatamente após, usando a opção [`--database`](mysql-cluster-programs-ndb-index-stat.html#option_ndb_index_stat_database) (`-d`):
 
 ```sql
 ndb_index_stat table -d database
 ```
 
-In this example, we use [**ndb_index_stat**](mysql-cluster-programs-ndb-index-stat.html "21.5.15 ndb_index_stat — NDB Index Statistics Utility") to obtain such information about an `NDB` table named `mytable` in the `test` database:
+Neste exemplo, usamos [**ndb_index_stat**](mysql-cluster-programs-ndb-index-stat.html "21.5.15 ndb_index_stat — NDB Index Statistics Utility") para obter tais informações sobre uma tabela `NDB` chamada `mytable` no Database `test`:
 
 ```sql
 $> ndb_index_stat -d test mytable
@@ -22,27 +22,27 @@ times in ms: save: 7.133 sort: 1.974 sort per sample: 0.000
 NDBT_ProgramExit: 0 - OK
 ```
 
-`sampleVersion` is the version number of the cache from which the statistics data is taken. Running [**ndb_index_stat**](mysql-cluster-programs-ndb-index-stat.html "21.5.15 ndb_index_stat — NDB Index Statistics Utility") with the [`--update`](mysql-cluster-programs-ndb-index-stat.html#option_ndb_index_stat_update) option causes sampleVersion to be incremented.
+`sampleVersion` é o número da versão do cache a partir do qual os dados estatísticos são extraídos. Executar [**ndb_index_stat**](mysql-cluster-programs-ndb-index-stat.html "21.5.15 ndb_index_stat — NDB Index Statistics Utility") com a opção [`--update`](mysql-cluster-programs-ndb-index-stat.html#option_ndb_index_stat_update) faz com que sampleVersion seja incrementado.
 
-`loadTime` shows when the cache was last updated. This is expressed as seconds since the Unix Epoch.
+`loadTime` mostra quando o cache foi atualizado pela última vez. Isso é expresso em segundos desde o Unix Epoch.
 
-`sampleCount` is the number of index entries found per partition. You can estimate the total number of entries by multiplying this by the number of fragments (shown as `fragCount`).
+`sampleCount` é o número de entradas de Index encontradas por partition. Você pode estimar o número total de entradas multiplicando-o pelo número de fragmentos (mostrado como `fragCount`).
 
-`sampleCount` can be compared with the cardinality of [`SHOW INDEX`](show-index.html "13.7.5.22 SHOW INDEX Statement") or [`INFORMATION_SCHEMA.STATISTICS`](information-schema-statistics-table.html "24.3.24 The INFORMATION_SCHEMA STATISTICS Table"), although the latter two provide a view of the table as a whole, while [**ndb_index_stat**](mysql-cluster-programs-ndb-index-stat.html "21.5.15 ndb_index_stat — NDB Index Statistics Utility") provides a per-fragment average.
+`sampleCount` pode ser comparado com a cardinality de [`SHOW INDEX`](show-index.html "13.7.5.22 SHOW INDEX Statement") ou [`INFORMATION_SCHEMA.STATISTICS`](information-schema-statistics-table.html "24.3.24 The INFORMATION_SCHEMA STATISTICS Table"), embora estes dois últimos forneçam uma visão da tabela como um todo, enquanto [**ndb_index_stat**](mysql-cluster-programs-ndb-index-stat.html "21.5.15 ndb_index_stat — NDB Index Statistics Utility") fornece uma média por fragmento.
 
-`keyBytes` is the number of bytes used by the index. In this example, the primary key is an integer, which requires four bytes for each index, so `keyBytes` can be calculated in this case as shown here:
+`keyBytes` é o número de bytes usados pelo Index. Neste exemplo, a Primary Key é um integer, que requer quatro bytes para cada Index, portanto `keyBytes` pode ser calculado neste caso conforme mostrado aqui:
 
 ```sql
     keyBytes = sampleCount * (4 bytes per index) = 1994 * 4 = 7976
 ```
 
-This information can also be obtained using the corresponding column definitions from the Information Schema [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table (this requires a MySQL Server and a MySQL client application).
+Esta informação também pode ser obtida usando as definições de column correspondentes da tabela [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") do Information Schema (isso requer um MySQL Server e uma aplicação client MySQL).
 
-`totalBytes` is the total memory consumed by all indexes on the table, in bytes.
+`totalBytes` é a memória total consumida por todos os Indexes na tabela, em bytes.
 
-Timings shown in the preceding examples are specific to each invocation of [**ndb_index_stat**](mysql-cluster-programs-ndb-index-stat.html "21.5.15 ndb_index_stat — NDB Index Statistics Utility").
+Os tempos (Timings) mostrados nos exemplos anteriores são específicos para cada invocação de [**ndb_index_stat**](mysql-cluster-programs-ndb-index-stat.html "21.5.15 ndb_index_stat — NDB Index Statistics Utility").
 
-The [`--verbose`](mysql-cluster-programs-ndb-index-stat.html#option_ndb_index_stat_verbose) option provides some additional output, as shown here:
+A opção [`--verbose`](mysql-cluster-programs-ndb-index-stat.html#option_ndb_index_stat_verbose) fornece alguma saída (output) adicional, conforme mostrado aqui:
 
 ```sql
 $> ndb_index_stat -d test mytable --verbose
@@ -62,209 +62,209 @@ NDBT_ProgramExit: 0 - OK
 $>
 ```
 
-If the only output from the program is `NDBT_ProgramExit: 0 - OK`, this may indicate that no statistics yet exist. To force them to be created (or updated if they already exist), invoke [**ndb_index_stat**](mysql-cluster-programs-ndb-index-stat.html "21.5.15 ndb_index_stat — NDB Index Statistics Utility") with the [`--update`](mysql-cluster-programs-ndb-index-stat.html#option_ndb_index_stat_update) option, or execute [`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement") on the table in the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client.
+Se a única saída (output) do programa for `NDBT_ProgramExit: 0 - OK`, isso pode indicar que nenhuma estatística existe ainda. Para forçar sua criação (ou atualização, se já existirem), invoque [**ndb_index_stat**](mysql-cluster-programs-ndb-index-stat.html "21.5.15 ndb_index_stat — NDB Index Statistics Utility") com a opção [`--update`](mysql-cluster-programs-ndb-index-stat.html#option_ndb_index_stat_update), ou execute [`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement") na tabela no client [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client").
 
-#### Options
+#### Opções
 
-The following table includes options that are specific to the NDB Cluster [**ndb_index_stat**](mysql-cluster-programs-ndb-index-stat.html "21.5.15 ndb_index_stat — NDB Index Statistics Utility") utility. Additional descriptions are listed following the table.
+A tabela a seguir inclui opções que são específicas para o utilitário [**ndb_index_stat**](mysql-cluster-programs-ndb-index-stat.html "21.5.15 ndb_index_stat — NDB Index Statistics Utility") do NDB Cluster. Descrições adicionais são listadas após a tabela.
 
-**Table 21.34 Command-line options used with the program ndb_index_stat**
+**Tabela 21.34 Opções de linha de comando usadas com o programa ndb_index_stat**
 
-<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code> --character-sets-dir=path </code> </p></th> <td>Directory containing character sets</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retries=# </code> </p></th> <td>Number of times to retry connection before giving up</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retry-delay=# </code> </p></th> <td>Number of seconds to wait between attempts to contact management server</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Same as --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --core-file </code> </p></th> <td>Write core file on error; used in debugging</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--database=name</code>, </p><p> <code> -d name </code> </p></th> <td>Name of database containing table</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-extra-file=path </code> </p></th> <td>Read given file after global files are read</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-file=path </code> </p></th> <td>Read default options from given file only</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-group-suffix=string </code> </p></th> <td>Also read groups with concat(group, suffix)</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --delete </code> </p></th> <td>Delete index statistics for table, stopping any auto-update previously configured</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --dump </code> </p></th> <td>Print query cache</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>, </p><p> <code> -? </code> </p></th> <td>Display help text and exit</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --login-path=path </code> </p></th> <td>Read given path from login file</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --loops=# </code> </p></th> <td>Set the number of times to perform given command; default is 0</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Set connect string for connecting to ndb_mgmd. Syntax: "[nodeid=id;][host=]hostname[:port]". Overrides entries in NDB_CONNECTSTRING and my.cnf</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Same as --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb-nodeid=# </code> </p></th> <td>Set node ID for this node, overriding any ID set by --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb-optimized-node-selection </code> </p></th> <td>Enable optimizations for selection of nodes for transactions. Enabled by default; use --skip-ndb-optimized-node-selection to disable</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --no-defaults </code> </p></th> <td>Do not read default options from any option file other than login file</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --print-defaults </code> </p></th> <td>Print program argument list and exit</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --query=# </code> </p></th> <td>Perform random range queries on first key attr (must be int unsigned)</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --sys-drop </code> </p></th> <td>Drop any statistics tables and events in NDB kernel (all statistics are lost)</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --sys-create </code> </p></th> <td>Create all statistics tables and events in NDB kernel, if none of them already exist</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --sys-create-if-not-exist </code> </p></th> <td>Create any statistics tables and events in NDB kernel that do not already exist</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --sys-create-if-not-valid </code> </p></th> <td>Create any statistics tables or events that do not already exist in the NDB kernel, after dropping any that are invalid</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --sys-check </code> </p></th> <td>Verify that NDB system index statistics and event tables exist</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --sys-skip-tables </code> </p></th> <td>Do not apply sys-* options to tables</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --sys-skip-events </code> </p></th> <td>Do not apply sys-* options to events</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --update </code> </p></th> <td>Update index statistics for table, restarting any auto-update previously configured</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>, </p><p> <code> -? </code> </p></th> <td>Display help text and exit; same as --help</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--verbose</code>, </p><p> <code> -v </code> </p></th> <td>Turn on verbose output</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>, </p><p> <code> -V </code> </p></th> <td>Display version information and exit</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody></table>
+<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Formato</th> <th>Descrição</th> <th>Adicionado, Descontinuado ou Removido</th> </tr></thead><tbody><tr> <th><p> <code> --character-sets-dir=path </code> </p></th> <td>Diretório contendo character sets</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retries=# </code> </p></th> <td>Número de vezes para tentar novamente a conexão antes de desistir</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retry-delay=# </code> </p></th> <td>Número de segundos para esperar entre as tentativas de contatar o management server</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --core-file </code> </p></th> <td>Escreve arquivo core em caso de erro; usado em debugging</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--database=name</code>, </p><p> <code> -d name </code> </p></th> <td>Nome do Database contendo a tabela</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-extra-file=path </code> </p></th> <td>Lê o arquivo fornecido após a leitura dos arquivos globais</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-file=path </code> </p></th> <td>Lê opções default apenas do arquivo fornecido</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-group-suffix=string </code> </p></th> <td>Também lê grupos com concat(group, suffix)</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --delete </code> </p></th> <td>Exclui estatísticas de Index para a tabela, parando qualquer auto-update configurado anteriormente</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --dump </code> </p></th> <td>Imprime o query cache</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>, </p><p> <code> -? </code> </p></th> <td>Exibe o texto de ajuda e sai</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --login-path=path </code> </p></th> <td>Lê o path fornecido a partir do arquivo de login</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --loops=# </code> </p></th> <td>Define o número de vezes para executar o comando fornecido; default é 0</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Define a connect string para conectar-se ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Sobrescreve entradas em NDB_CONNECTSTRING e my.cnf</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb-nodeid=# </code> </p></th> <td>Define o ID de node para este node, sobrescrevendo qualquer ID definido por --ndb-connectstring</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb-optimized-node-selection </code> </p></th> <td>Habilita otimizações para seleção de nodes para transactions. Habilitado por default; use --skip-ndb-optimized-node-selection para desabilitar</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --no-defaults </code> </p></th> <td>Não lê opções default de nenhum arquivo de opção além do arquivo de login</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --print-defaults </code> </p></th> <td>Imprime a lista de argumentos do programa e sai</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --query=# </code> </p></th> <td>Executa random range queries no primeiro atributo Key (deve ser int unsigned)</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --sys-drop </code> </p></th> <td>Descarta quaisquer tabelas e events de estatísticas no NDB kernel (todas as estatísticas são perdidas)</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --sys-create </code> </p></th> <td>Cria todas as tabelas e events de estatísticas no NDB kernel, se nenhuma delas existir previamente</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --sys-create-if-not-exist </code> </p></th> <td>Cria quaisquer tabelas e events de estatísticas no NDB kernel que ainda não existam</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --sys-create-if-not-valid </code> </p></th> <td>Cria quaisquer tabelas ou events de estatísticas que não existam no NDB kernel, após descartar quaisquer que sejam inválidos</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --sys-check </code> </p></th> <td>Verifica se as estatísticas de Index do sistema NDB e as tabelas de events existem</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --sys-skip-tables </code> </p></th> <td>Não aplica opções sys-* a tabelas</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --sys-skip-events </code> </p></th> <td>Não aplica opções sys-* a events</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --update </code> </p></th> <td>Atualiza estatísticas de Index para a tabela, reiniciando qualquer auto-update configurado anteriormente</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>, </p><p> <code> -? </code> </p></th> <td>Exibe texto de ajuda e sai; o mesmo que --help</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--verbose</code>, </p><p> <code> -v </code> </p></th> <td>Ativa a saída (output) verbose</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>, </p><p> <code> -V </code> </p></th> <td>Exibe informações de versão e sai</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody></table>
 
 * `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Directory containing character sets.
+  Diretório contendo character sets.
 
 * `--connect-retries`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>12</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Number of times to retry connection before giving up.
+  Número de vezes para tentar novamente a conexão antes de desistir.
 
 * `--connect-retry-delay`
 
-  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>5</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>5</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>5</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>5</code></td> </tr></tbody></table>
 
-  Number of seconds to wait between attempts to contact management server.
+  Número de segundos para esperar entre as tentativas de contatar o management server.
 
 * `--connect-string`
 
-  <table frame="box" rules="all" summary="Properties for connect-string"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-string=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-string"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--connect-string=connection_string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Default</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Same as [`--ndb-connectstring`](mysql-cluster-programs-ndb-index-stat.html#option_ndb_index_stat_ndb-connectstring).
+  O mesmo que [`--ndb-connectstring`](mysql-cluster-programs-ndb-index-stat.html#option_ndb_index_stat_ndb-connectstring).
 
 * `--core-file`
 
-  <table frame="box" rules="all" summary="Properties for core-file"><tbody><tr><th>Command-Line Format</th> <td><code>--core-file</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para core-file"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--core-file</code></td> </tr></tbody></table>
 
-  Write core file on error; used in debugging.
+  Escreve arquivo core em caso de erro; usado em debugging.
 
 * `--database=name`, `-d name`
 
-  <table frame="box" rules="all" summary="Properties for database"><tbody><tr><th>Command-Line Format</th> <td><code>--database=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr><tr><th>Minimum Value</th> <td><code></code></td> </tr><tr><th>Maximum Value</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para database"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--database=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Default</th> <td><code>[none]</code></td> </tr><tr><th>Valor Mínimo</th> <td><code></code></td> </tr><tr><th>Valor Máximo</th> <td><code></code></td> </tr></tbody></table>
 
-  The name of the database that contains the table being queried.
+  O nome do Database que contém a tabela sendo consultada.
 
 * `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Default</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Read given file after global files are read.
+  Lê o arquivo fornecido após a leitura dos arquivos globais.
 
 * `--defaults-file`
 
-  <table frame="box" rules="all" summary="Properties for defaults-file"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--defaults-file=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Default</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Read default options from given file only.
+  Lê opções default apenas do arquivo fornecido.
 
 * `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-group-suffix=string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--defaults-group-suffix=string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Default</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Also read groups with concat(group, suffix).
+  Também lê grupos com concat(group, suffix).
 
 * `--delete`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Delete the index statistics for the given table, stopping any auto-update that was previously configured.
+  Exclui as estatísticas de Index para a tabela fornecida, parando qualquer auto-update que tenha sido configurado previamente.
 
 * `--dump`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Dump the contents of the query cache.
+  Despeja (Dump) o conteúdo do query cache.
 
 * `--help`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Display help text and exit.
+  Exibe o texto de ajuda e sai.
 
 * `--login-path`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Read given path from login file.
+  Lê o path fornecido a partir do arquivo de login.
 
 * `--loops=#`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Repeat commands this number of times (for use in testing).
+  Repete comandos este número de vezes (para uso em testes).
 
 * `--ndb-connectstring`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Set connect string for connecting to ndb_mgmd. Syntax: "[nodeid=id;][host=]hostname[:port]". Overrides entries in NDB_CONNECTSTRING and my.cnf.
+  Define a connect string para conectar-se ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Sobrescreve entradas em NDB_CONNECTSTRING e my.cnf.
 
 * `--ndb-mgmd-host`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Same as [`--ndb-connectstring`](mysql-cluster-programs-ndb-index-stat.html#option_ndb_index_stat_ndb-connectstring).
+  O mesmo que [`--ndb-connectstring`](mysql-cluster-programs-ndb-index-stat.html#option_ndb_index_stat_ndb-connectstring).
 
 * `--ndb-nodeid`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Set node ID for this node, overriding any ID set by [`--ndb-connectstring`](mysql-cluster-programs-ndb-index-stat.html#option_ndb_index_stat_ndb-connectstring).
+  Define o ID de node para este node, sobrescrevendo qualquer ID definido por [`--ndb-connectstring`](mysql-cluster-programs-ndb-index-stat.html#option_ndb_index_stat_ndb-connectstring).
 
 * `--ndb-optimized-node-selection`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Enable optimizations for selection of nodes for transactions. Enabled by default; use `--skip-ndb-optimized-node-selection` to disable.
+  Habilita otimizações para seleção de nodes para transactions. Habilitado por default; use `--skip-ndb-optimized-node-selection` para desabilitar.
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Do not read default options from any option file other than login file.
+  Não lê opções default de nenhum arquivo de opção além do arquivo de login.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>12</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Print program argument list and exit.
+  Imprime a lista de argumentos do programa e sai.
 
 * `--query=#`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>12</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Perform random range queries on first key attribute (must be int unsigned).
+  Executa random range queries no primeiro atributo Key (deve ser int unsigned).
 
 * `--sys-drop`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>12</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Drop all statistics tables and events in the NDB kernel. *This causes all statistics to be lost*.
+  Descarta todas as tabelas e events de estatísticas no NDB kernel. *Isso faz com que todas as estatísticas sejam perdidas*.
 
 * `--sys-create`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>12</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Create all statistics tables and events in the NDB kernel. This works only if none of them exist previously.
+  Cria todas as tabelas e events de estatísticas no NDB kernel. Isso funciona apenas se nenhuma delas existir previamente.
 
 * `--sys-create-if-not-exist`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>12</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Create any NDB system statistics tables or events (or both) that do not already exist when the program is invoked.
+  Cria quaisquer tabelas ou events de estatísticas do sistema NDB (ou ambos) que ainda não existam quando o programa for invocado.
 
 * `--sys-create-if-not-valid`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>12</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Create any NDB system statistics tables or events that do not already exist, after dropping any that are invalid.
+  Cria quaisquer tabelas ou events de estatísticas do sistema NDB que ainda não existam, após descartar quaisquer que sejam inválidos.
 
 * `--sys-check`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>12</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Verify that all required system statistics tables and events exist in the NDB kernel.
+  Verifica se todas as tabelas e events de estatísticas de sistema necessárias existem no NDB kernel.
 
 * `--sys-skip-tables`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>12</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Do not apply any `--sys-*` options to any statistics tables.
+  Não aplica nenhuma opção `--sys-*` a nenhuma tabela de estatísticas.
 
 * `--sys-skip-events`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>12</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Do not apply any `--sys-*` options to any events.
+  Não aplica nenhuma opção `--sys-*` a nenhum event.
 
 * `--update`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>12</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Update the index statistics for the given table, and restart any auto-update that was previously configured.
+  Atualiza as estatísticas de Index para a tabela fornecida e reinicia qualquer auto-update que tenha sido configurado previamente.
 
 * `--usage`
 
-  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>5</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>5</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>5</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>5</code></td> </tr></tbody></table>
 
-  Display help text and exit; same as [`--help`](mysql-cluster-programs-ndb-index-stat.html#option_ndb_index_stat_help).
+  Exibe o texto de ajuda e sai; o mesmo que [`--help`](mysql-cluster-programs-ndb-index-stat.html#option_ndb_index_stat_help).
 
 * `--verbose`
 
-  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>5</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>5</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>5</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>5</code></td> </tr></tbody></table>
 
-  Turn on verbose output.
+  Ativa a saída (output) verbose.
 
 * `--version`
 
-  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>5</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>5</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>5</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>5</code></td> </tr></tbody></table>
 
-  Display version information and exit.
+  Exibe informações de versão e sai.
 
-**ndb_index_stat system options.** The following options are used to generate and update the statistics tables in the NDB kernel. None of these options can be mixed with statistics options (see [ndb_index_stat statistics options](mysql-cluster-programs-ndb-index-stat.html#ndb-index-stat-options-statistics "ndb_index_stat statistics options")).
+**Opções de sistema ndb_index_stat.** As seguintes opções são usadas para gerar e atualizar as tabelas de estatísticas no NDB kernel. Nenhuma destas opções pode ser misturada com opções de estatísticas (consulte [opções de estatísticas ndb_index_stat](mysql-cluster-programs-ndb-index-stat.html#ndb-index-stat-options-statistics "ndb_index_stat statistics options")).
 
 * [`--sys-drop`](mysql-cluster-programs-ndb-index-stat.html#option_ndb_index_stat_sys-drop)
 * [`--sys-create`](mysql-cluster-programs-ndb-index-stat.html#option_ndb_index_stat_sys-create)
@@ -274,7 +274,7 @@ The following table includes options that are specific to the NDB Cluster [**ndb
 * [`--sys-skip-tables`](mysql-cluster-programs-ndb-index-stat.html#option_ndb_index_stat_sys-skip-tables)
 * [`--sys-skip-events`](mysql-cluster-programs-ndb-index-stat.html#option_ndb_index_stat_sys-skip-events)
 
-**ndb_index_stat statistics options.** The options listed here are used to generate index statistics. They work with a given table and database. They cannot be mixed with system options (see [ndb_index_stat system options](mysql-cluster-programs-ndb-index-stat.html#ndb-index-stat-options-system "ndb_index_stat system options")).
+**Opções de estatísticas ndb_index_stat.** As opções listadas aqui são usadas para gerar estatísticas de Index. Elas funcionam com uma determinada tabela e Database. Não podem ser misturadas com opções de sistema (consulte [opções de sistema ndb_index_stat](mysql-cluster-programs-ndb-index-stat.html#ndb-index-stat-options-system "ndb_index_stat system options")).
 
 * [`--database`](mysql-cluster-programs-ndb-index-stat.html#option_ndb_index_stat_database)
 * [`--delete`](mysql-cluster-programs-ndb-index-stat.html#option_ndb_index_stat_delete)

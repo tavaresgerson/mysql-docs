@@ -1,6 +1,6 @@
-#### 13.2.10.12 Restrictions on Subqueries
+#### 13.2.10.12 Restrições em Subqueries
 
-* In general, you cannot modify a table and select from the same table in a subquery. For example, this limitation applies to statements of the following forms:
+* Em geral, você não pode modificar uma table e selecionar da mesma table em uma Subquery. Por exemplo, esta limitação se aplica a statements das seguintes formas:
 
   ```sql
   DELETE FROM t WHERE ... (SELECT ... FROM t ...);
@@ -8,37 +8,37 @@
   {INSERT|REPLACE} INTO t (SELECT ... FROM t ...);
   ```
 
-  Exception: The preceding prohibition does not apply if for the modified table you are using a derived table and that derived table is materialized rather than merged into the outer query. (See [Section 8.2.2.4, “Optimizing Derived Tables and View References with Merging or Materialization”](derived-table-optimization.html "8.2.2.4 Optimizing Derived Tables and View References with Merging or Materialization").) Example:
+  Exceção: A proibição anterior não se aplica se, para a table modificada, você estiver usando uma Derived Table e essa Derived Table for Materialized em vez de mesclada na Outer Query. (Veja [Seção 8.2.2.4, “Otimizando Derived Tables e Referências de View com Merging ou Materialization”](derived-table-optimization.html "8.2.2.4 Optimizing Derived Tables and View References with Merging or Materialization").) Exemplo:
 
   ```sql
   UPDATE t ... WHERE col = (SELECT * FROM (SELECT ... FROM t...) AS dt ...);
   ```
 
-  Here the result from the derived table is materialized as a temporary table, so the relevant rows in `t` have already been selected by the time the update to `t` takes place.
+  Aqui, o resultado da Derived Table é Materialized como uma temporary table, de modo que as linhas relevantes em `t` já foram selecionadas no momento em que o Update em `t` ocorre.
 
-* Row comparison operations are only partially supported:
+* Operações de comparação de linha (Row comparison operations) são suportadas apenas parcialmente:
 
-  + For `expr [NOT] IN subquery`, *`expr`* can be an *`n`*-tuple (specified using row constructor syntax) and the subquery can return rows of *`n`*-tuples. The permitted syntax is therefore more specifically expressed as `row_constructor [NOT] IN table_subquery`
+  + Para `expr [NOT] IN subquery`, *`expr`* pode ser uma *`n`*-tuple (especificada usando a sintaxe de construtor de linha) e a subquery pode retornar linhas de *`n`*-tuples. A sintaxe permitida é, portanto, expressa de forma mais específica como `row_constructor [NOT] IN table_subquery`
 
-  + For `expr op {ALL|ANY|SOME} subquery`, *`expr`* must be a scalar value and the subquery must be a column subquery; it cannot return multiple-column rows.
+  + Para `expr op {ALL|ANY|SOME} subquery`, *`expr`* deve ser um valor scalar e a subquery deve ser uma column subquery; ela não pode retornar linhas de múltiplas colunas.
 
-  In other words, for a subquery that returns rows of *`n`*-tuples, this is supported:
+  Em outras palavras, para uma subquery que retorna linhas de *`n`*-tuples, isto é suportado:
 
   ```sql
   (expr_1, ..., expr_n) [NOT] IN table_subquery
   ```
 
-  But this is not supported:
+  Mas isto não é suportado:
 
   ```sql
   (expr_1, ..., expr_n) op {ALL|ANY|SOME} subquery
   ```
 
-  The reason for supporting row comparisons for `IN` but not for the others is that `IN` is implemented by rewriting it as a sequence of [`=`](comparison-operators.html#operator_equal) comparisons and [`AND`](logical-operators.html#operator_and) operations. This approach cannot be used for `ALL`, `ANY`, or `SOME`.
+  A razão para suportar row comparisons para `IN`, mas não para os outros, é que `IN` é implementado reescrevendo-o como uma sequência de comparações [`=`](comparison-operators.html#operator_equal) e operações [`AND`](logical-operators.html#operator_and). Essa abordagem não pode ser usada para `ALL`, `ANY` ou `SOME`.
 
-* Subqueries in the `FROM` clause cannot be correlated subqueries. They are materialized in whole (evaluated to produce a result set) during query execution, so they cannot be evaluated per row of the outer query. The optimizer delays materialization until the result is needed, which may permit materialization to be avoided. See [Section 8.2.2.4, “Optimizing Derived Tables and View References with Merging or Materialization”](derived-table-optimization.html "8.2.2.4 Optimizing Derived Tables and View References with Merging or Materialization").
+* Subqueries na cláusula `FROM` não podem ser correlated subqueries. Elas são Materialized integralmente (avaliadas para produzir um Result Set) durante a Query Execution, então não podem ser avaliadas por linha da Outer Query. O Optimizer atrasa a Materialization até que o resultado seja necessário, o que pode permitir que a Materialization seja evitada. Veja [Seção 8.2.2.4, “Otimizando Derived Tables e Referências de View com Merging ou Materialization”](derived-table-optimization.html "8.2.2.4 Optimizing Derived Tables e View References com Merging ou Materialization").
 
-* MySQL does not support `LIMIT` in subqueries for certain subquery operators:
+* O MySQL não suporta `LIMIT` em Subqueries para certos operadores de Subquery:
 
   ```sql
   mysql> SELECT * FROM t1
@@ -47,12 +47,12 @@
    'LIMIT & IN/ALL/ANY/SOME subquery'
   ```
 
-* MySQL permits a subquery to refer to a stored function that has data-modifying side effects such as inserting rows into a table. For example, if `f()` inserts rows, the following query can modify data:
+* O MySQL permite que uma subquery se refira a uma Stored Function que tenha efeitos colaterais de modificação de dados, como a inserção de linhas em uma table. Por exemplo, se `f()` inserir linhas, a seguinte Query pode modificar dados:
 
   ```sql
   SELECT ... WHERE x IN (SELECT f() ...);
   ```
 
-  This behavior is an extension to the SQL standard. In MySQL, it can produce nondeterministic results because `f()` might be executed a different number of times for different executions of a given query depending on how the optimizer chooses to handle it.
+  Este comportamento é uma extensão ao padrão SQL. No MySQL, ele pode produzir resultados não determinísticos porque `f()` pode ser executada um número diferente de vezes para diferentes execuções de uma determinada Query, dependendo de como o Optimizer escolhe lidar com ela.
 
-  For statement-based or mixed-format replication, one implication of this indeterminism is that such a query can produce different results on the source and its replicas.
+  Para Replication baseada em Statement ou em formato misto, uma implicação desse indeterminismo é que tal Query pode produzir resultados diferentes na Source e em suas réplicas.

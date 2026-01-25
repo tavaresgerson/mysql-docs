@@ -1,53 +1,53 @@
-#### 21.4.2.3 NDB Cluster SQL Node and API Node Configuration Parameters
+#### 21.4.2.3 Parâmetros de Configuração de Nó SQL e Nó API do NDB Cluster
 
-The listing in this section provides information about parameters used in the `[mysqld]` and `[api]` sections of a `config.ini` file for configuring NDB Cluster SQL nodes and API nodes. For detailed descriptions and other additional information about each of these parameters, see [Section 21.4.3.7, “Defining SQL and Other API Nodes in an NDB Cluster”](mysql-cluster-api-definition.html "21.4.3.7 Defining SQL and Other API Nodes in an NDB Cluster").
+A lista nesta seção fornece informações sobre os parâmetros usados nas seções `[mysqld]` e `[api]` de um arquivo `config.ini` para configurar nós SQL e nós API do NDB Cluster. Para descrições detalhadas e informações adicionais sobre cada um desses parâmetros, consulte [Seção 21.4.3.7, “Definindo Nós SQL e Outros Nós API em um NDB Cluster”](mysql-cluster-api-definition.html "21.4.3.7 Definindo Nós SQL e Outros Nós API em um NDB Cluster").
 
-* `ApiVerbose`: Enable NDB API debugging; for NDB development.
+* `ApiVerbose`: Habilita a depuração da NDB API; para desenvolvimento NDB.
 
-* `ArbitrationDelay`: When asked to arbitrate, arbitrator waits this many milliseconds before voting.
+* `ArbitrationDelay`: Quando solicitado a arbitrar, o árbitro espera esta quantidade de milissegundos antes de votar.
 
-* `ArbitrationRank`: If 0, then API node is not arbitrator. Kernel selects arbitrators in order 1, 2.
+* `ArbitrationRank`: Se 0, o nó API não é árbitro. O Kernel seleciona árbitros na ordem 1, 2.
 
-* `AutoReconnect`: Specifies whether an API node should reconnect fully when disconnected from cluster.
+* `AutoReconnect`: Especifica se um nó API deve se reconectar totalmente quando desconectado do Cluster.
 
-* `BatchByteSize`: Default batch size in bytes.
+* `BatchByteSize`: Tamanho de Batch padrão em bytes.
 
-* `BatchSize`: Default batch size in number of records.
+* `BatchSize`: Tamanho de Batch padrão em número de registros.
 
-* `ConnectBackoffMaxTime`: Specifies longest time in milliseconds (~100ms resolution) to allow between connection attempts to any given data node by this API node. Excludes time elapsed while connection attempts are ongoing, which in worst case can take several seconds. Disable by setting to 0. If no data nodes are currently connected to this API node, StartConnectBackoffMaxTime is used instead.
+* `ConnectBackoffMaxTime`: Especifica o tempo máximo em milissegundos (resolução de ~100ms) permitido entre as tentativas de conexão a qualquer nó de dados por este nó API. Exclui o tempo decorrido enquanto as tentativas de conexão estão em andamento, o que, no pior caso, pode levar vários segundos. Desative definindo como 0. Se nenhum nó de dados estiver atualmente conectado a este nó API, `StartConnectBackoffMaxTime` é usado em seu lugar.
 
-* `ConnectionMap`: Specifies which data nodes to connect.
+* `ConnectionMap`: Especifica a quais nós de dados se conectar.
 
-* `DefaultHashMapSize`: Set size (in buckets) to use for table hash maps. Three values are supported: 0, 240, and 3840.
+* `DefaultHashMapSize`: Define o tamanho (em buckets) a ser usado para hash maps de tabela. Três valores são suportados: 0, 240 e 3840.
 
-* `DefaultOperationRedoProblemAction`: How operations are handled in event that RedoOverCommitCounter is exceeded.
+* `DefaultOperationRedoProblemAction`: Como as operações são tratadas caso o `RedoOverCommitCounter` seja excedido.
 
-* `ExecuteOnComputer`: String referencing earlier defined COMPUTER.
+* `ExecuteOnComputer`: String que faz referência a um `COMPUTER` definido anteriormente.
 
-* `ExtraSendBufferMemory`: Memory to use for send buffers in addition to any allocated by TotalSendBufferMemory or SendBufferMemory. Default (0) allows up to 16MB.
+* `ExtraSendBufferMemory`: Memória a ser usada para send buffers além de qualquer memória alocada por `TotalSendBufferMemory` ou `SendBufferMemory`. O padrão (0) permite até 16MB.
 
-* `HeartbeatThreadPriority`: Set heartbeat thread policy and priority for API nodes; see manual for allowed values.
+* `HeartbeatThreadPriority`: Define a política e a prioridade da Thread de Heartbeat para nós API; consulte o manual para valores permitidos.
 
-* `HostName`: Host name or IP address for this SQL or API node.
+* `HostName`: Nome de Host ou endereço IP para este nó SQL ou API.
 
-* `Id`: Number identifying MySQL server or API node (Id). Now deprecated; use NodeId instead.
+* `Id`: Número que identifica o servidor MySQL ou o nó API (Id). Agora obsoleto; use `NodeId` em seu lugar.
 
-* `LocationDomainId`: Assign this API node to specific availability domain or zone. 0 (default) leaves this unset.
+* `LocationDomainId`: Atribui este nó API a um domínio ou zona de disponibilidade específico. 0 (padrão) deixa este campo não definido.
 
-* `MaxScanBatchSize`: Maximum collective batch size for one scan.
+* `MaxScanBatchSize`: Tamanho máximo coletivo de Batch para um Scan.
 
-* `NodeId`: Number uniquely identifying SQL node or API node among all nodes in cluster.
+* `NodeId`: Número que identifica de forma única o nó SQL ou o nó API entre todos os nós no Cluster.
 
-* `StartConnectBackoffMaxTime`: Same as ConnectBackoffMaxTime except that this parameter is used in its place if no data nodes are connected to this API node.
+* `StartConnectBackoffMaxTime`: O mesmo que `ConnectBackoffMaxTime`, exceto que este parâmetro é usado em seu lugar se nenhum nó de dados estiver conectado a este nó API.
 
-* `TotalSendBufferMemory`: Total memory to use for all transporter send buffers.
+* `TotalSendBufferMemory`: Memória total a ser usada para todos os send buffers de transportadores.
 
-* `wan`: Use WAN TCP setting as default.
+* `wan`: Usa a configuração WAN TCP como padrão.
 
-For a discussion of MySQL server options for NDB Cluster, see [Section 21.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "21.4.3.9.1 MySQL Server Options for NDB Cluster"). For information about MySQL server system variables relating to NDB Cluster, see [Section 21.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "21.4.3.9.2 NDB Cluster System Variables").
+Para uma discussão sobre as opções do servidor MySQL para NDB Cluster, consulte [Seção 21.4.3.9.1, “Opções do Servidor MySQL para NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "21.4.3.9.1 Opções do Servidor MySQL para NDB Cluster"). Para obter informações sobre variáveis de sistema do servidor MySQL relacionadas ao NDB Cluster, consulte [Seção 21.4.3.9.2, “Variáveis de Sistema do NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "21.4.3.9.2 Variáveis de Sistema do NDB Cluster").
 
 Note
 
-To add new SQL or API nodes to the configuration of a running NDB Cluster, it is necessary to perform a rolling restart of all cluster nodes after adding new `[mysqld]` or `[api]` sections to the `config.ini` file (or files, if you are using more than one management server). This must be done before the new SQL or API nodes can connect to the cluster.
+Para adicionar novos nós SQL ou API à configuração de um NDB Cluster em execução, é necessário realizar um *rolling restart* de todos os nós do Cluster após adicionar novas seções `[mysqld]` ou `[api]` ao arquivo `config.ini` (ou arquivos, se você estiver usando mais de um servidor de gerenciamento). Isso deve ser feito antes que os novos nós SQL ou API possam se conectar ao Cluster.
 
-It is *not* necessary to perform any restart of the cluster if new SQL or API nodes can employ previously unused API slots in the cluster configuration to connect to the cluster.
+*Não* é necessário realizar qualquer restart do Cluster se os novos nós SQL ou API puderem usar slots API não utilizados anteriormente na configuração do Cluster para se conectar ao Cluster.

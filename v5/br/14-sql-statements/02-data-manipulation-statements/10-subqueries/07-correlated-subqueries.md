@@ -1,6 +1,6 @@
-#### 13.2.10.7 Correlated Subqueries
+#### 13.2.10.7 Subqueries Correlacionadas
 
-A *correlated subquery* is a subquery that contains a reference to a table that also appears in the outer query. For example:
+Uma *Subquery correlacionada* é uma Subquery que contém uma referência a uma tabela que também aparece na Query externa. Por exemplo:
 
 ```sql
 SELECT * FROM t1
@@ -8,11 +8,11 @@ SELECT * FROM t1
                        WHERE t2.column2 = t1.column2);
 ```
 
-Notice that the subquery contains a reference to a column of `t1`, even though the subquery's `FROM` clause does not mention a table `t1`. So, MySQL looks outside the subquery, and finds `t1` in the outer query.
+Note que a Subquery contém uma referência a uma coluna de `t1`, embora a cláusula `FROM` da Subquery não mencione uma tabela `t1`. Portanto, o MySQL procura fora da Subquery e encontra `t1` na Query externa.
 
-Suppose that table `t1` contains a row where `column1 = 5` and `column2 = 6`; meanwhile, table `t2` contains a row where `column1 = 5` and `column2 = 7`. The simple expression `... WHERE column1 = ANY (SELECT column1 FROM t2)` would be `TRUE`, but in this example, the `WHERE` clause within the subquery is `FALSE` (because `(5,6)` is not equal to `(5,7)`), so the expression as a whole is `FALSE`.
+Suponha que a tabela `t1` contenha uma linha onde `column1 = 5` e `column2 = 6`; enquanto isso, a tabela `t2` contém uma linha onde `column1 = 5` e `column2 = 7`. A expressão simples `... WHERE column1 = ANY (SELECT column1 FROM t2)` seria `TRUE`, mas neste exemplo, a cláusula `WHERE` dentro da Subquery é `FALSE` (porque `(5,6)` não é igual a `(5,7)`), portanto, a expressão como um todo é `FALSE`.
 
-**Scoping rule:** MySQL evaluates from inside to outside. For example:
+**Regra de Escopo:** O MySQL avalia de dentro para fora. Por exemplo:
 
 ```sql
 SELECT column1 FROM t1 AS x
@@ -21,16 +21,16 @@ SELECT column1 FROM t1 AS x
       WHERE x.column2 = t3.column1));
 ```
 
-In this statement, `x.column2` must be a column in table `t2` because `SELECT column1 FROM t2 AS x ...` renames `t2`. It is not a column in table `t1` because `SELECT column1 FROM t1 ...` is an outer query that is *farther out*.
+Nesta instrução, `x.column2` deve ser uma coluna na tabela `t2` porque `SELECT column1 FROM t2 AS x ...` renomeia `t2`. Não é uma coluna na tabela `t1` porque `SELECT column1 FROM t1 ...` é uma Query externa que está *mais distante*.
 
-For subqueries in `HAVING` or `ORDER BY` clauses, MySQL also looks for column names in the outer select list.
+Para Subqueries nas cláusulas `HAVING` ou `ORDER BY`, o MySQL também procura nomes de colunas na lista de seleção externa.
 
-For certain cases, a correlated subquery is optimized. For example:
+Para certos casos, uma Subquery correlacionada é otimizada. Por exemplo:
 
 ```sql
 val IN (SELECT key_val FROM tbl_name WHERE correlated_condition)
 ```
 
-Otherwise, they are inefficient and likely to be slow. Rewriting the query as a join might improve performance.
+Caso contrário, elas são ineficientes e provavelmente lentas. Reescrever a Query como um JOIN pode melhorar o desempenho.
 
-Aggregate functions in correlated subqueries may contain outer references, provided the function contains nothing but outer references, and provided the function is not contained in another function or expression.
+Funções de agregação em Subqueries correlacionadas podem conter referências externas, desde que a função contenha apenas referências externas, e desde que a função não esteja contida em outra função ou expressão.

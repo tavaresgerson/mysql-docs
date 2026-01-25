@@ -1,27 +1,27 @@
-#### 21.6.8.1 NDB Cluster Backup Concepts
+#### 21.6.8.1 Conceitos de Backup do NDB Cluster
 
-A backup is a snapshot of the database at a given time. The backup consists of three main parts:
+Um Backup é um instantâneo do Database em um determinado momento. O Backup consiste em três partes principais:
 
-* **Metadata.** The names and definitions of all database tables
+* **Metadata.** Os nomes e as definições de todas as tabelas do Database
 
-* **Table records.** The data actually stored in the database tables at the time that the backup was made
+* **Table records (Registros da Tabela).** Os dados realmente armazenados nas tabelas do Database no momento em que o Backup foi realizado
 
-* **Transaction log.** A sequential record telling how and when data was stored in the database
+* **Transaction log.** Um registro sequencial informando como e quando os dados foram armazenados no Database
 
-Each of these parts is saved on all nodes participating in the backup. During backup, each node saves these three parts into three files on disk:
+Cada uma dessas partes é salva em todos os *nodes* que participam do Backup. Durante o Backup, cada *node* salva essas três partes em três arquivos no disco:
 
 * `BACKUP-backup_id.node_id.ctl`
 
-  A control file containing control information and metadata. Each node saves the same table definitions (for all tables in the cluster) to its own version of this file.
+  Um arquivo de controle (*control file*) contendo informações de controle e *Metadata*. Cada *node* salva as mesmas definições de tabela (para todas as tabelas no Cluster) em sua própria versão deste arquivo.
 
 * `BACKUP-backup_id-0.node_id.data`
 
-  A data file containing the table records, which are saved on a per-fragment basis. That is, different nodes save different fragments during the backup. The file saved by each node starts with a header that states the tables to which the records belong. Following the list of records there is a footer containing a checksum for all records.
+  Um arquivo de dados (*data file*) contendo os registros da tabela, que são salvos com base em fragmentos (*per-fragment basis*). Ou seja, diferentes *nodes* salvam diferentes *fragments* durante o Backup. O arquivo salvo por cada *node* começa com um cabeçalho que indica a quais tabelas os registros pertencem. Após a lista de registros, há um rodapé contendo um *checksum* para todos os registros.
 
 * `BACKUP-backup_id.node_id.log`
 
-  A log file containing records of committed transactions. Only transactions on tables stored in the backup are stored in the log. Nodes involved in the backup save different records because different nodes host different database fragments.
+  Um arquivo de *log* (*log file*) contendo registros de *transactions* comitadas. Somente *transactions* em tabelas armazenadas no Backup são salvas no *log*. *Nodes* envolvidos no Backup salvam registros diferentes porque diferentes *nodes* hospedam diferentes *fragments* do Database.
 
-In the listing just shown, *`backup_id`* stands for the backup identifier and *`node_id`* is the unique identifier for the node creating the file.
+Na listagem recém-exibida, *`backup_id`* representa o identificador do Backup e *`node_id`* é o identificador exclusivo do *node* que está criando o arquivo.
 
-The location of the backup files is determined by the [`BackupDataDir`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupdatadir) parameter.
+A localização dos arquivos de Backup é determinada pelo parâmetro [`BackupDataDir`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupdatadir).

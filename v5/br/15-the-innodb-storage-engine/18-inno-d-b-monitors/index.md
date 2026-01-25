@@ -1,9 +1,9 @@
-## 14.18 InnoDB Monitors
+## 14.18 Monitores do InnoDB
 
-14.18.1 InnoDB Monitor Types
+14.18.1 Tipos de Monitor do InnoDB
 
-14.18.2 Enabling InnoDB Monitors
+14.18.2 Habilitando Monitores do InnoDB
 
-14.18.3 InnoDB Standard Monitor and Lock Monitor Output
+14.18.3 Saída do Monitor Padrão do InnoDB e do Monitor de Lock
 
-`InnoDB` monitors provide information about the `InnoDB` internal state. This information is useful for performance tuning.
+Os **Monitores** do `InnoDB` fornecem informações sobre o estado interno do `InnoDB`. Estas informações são úteis para o ajuste de desempenho.

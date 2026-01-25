@@ -1,6 +1,6 @@
-#### 13.2.9.2 JOIN Clause
+#### 13.2.9.2 Cláusula JOIN
 
-MySQL supports the following `JOIN` syntax for the *`table_references`* part of [`SELECT`](select.html "13.2.9 SELECT Statement") statements and multiple-table [`DELETE`](delete.html "13.2.2 DELETE Statement") and [`UPDATE`](update.html "13.2.11 UPDATE Statement") statements:
+O MySQL suporta a seguinte sintaxe `JOIN` para a parte *`table_references`* das instruções [`SELECT`](select.html "13.2.9 SELECT Statement") e das instruções [`DELETE`](delete.html "13.2.2 DELETE Statement") e [`UPDATE`](update.html "13.2.11 UPDATE Statement") que envolvem múltiplas tabelas:
 
 ```sql
 table_references:
@@ -53,35 +53,35 @@ index_list:
     index_name [, index_name] ...
 ```
 
-A table reference is also known as a join expression.
+Uma referência de tabela também é conhecida como uma expressão JOIN.
 
-A table reference (when it refers to a partitioned table) may contain a `PARTITION` clause, including a list of comma-separated partitions, subpartitions, or both. This option follows the name of the table and precedes any alias declaration. The effect of this option is that rows are selected only from the listed partitions or subpartitions. Any partitions or subpartitions not named in the list are ignored. For more information and examples, see [Section 22.5, “Partition Selection”](partitioning-selection.html "22.5 Partition Selection").
+Uma referência de tabela (quando se refere a uma tabela particionada) pode conter uma cláusula `PARTITION`, incluindo uma lista de PARTITIONs, subpartitions ou ambas, separadas por vírgulas. Esta opção segue o nome da tabela e precede qualquer declaração de ALIAS. O efeito desta opção é que as linhas são selecionadas apenas das PARTITIONs ou subpartitions listadas. Qualquer PARTITION ou subpartition não nomeada na lista é ignorada. Para mais informações e exemplos, consulte [Section 22.5, “Partition Selection”](partitioning-selection.html "22.5 Partition Selection").
 
-The syntax of *`table_factor`* is extended in MySQL in comparison with standard SQL. The standard accepts only *`table_reference`*, not a list of them inside a pair of parentheses.
+A sintaxe de *`table_factor`* é estendida no MySQL em comparação com o SQL padrão. O padrão aceita apenas *`table_reference`*, e não uma lista delas dentro de um par de parênteses.
 
-This is a conservative extension if each comma in a list of *`table_reference`* items is considered as equivalent to an inner join. For example:
+Esta é uma extensão conservadora se cada vírgula em uma lista de itens *`table_reference`* for considerada como equivalente a um INNER JOIN. Por exemplo:
 
 ```sql
 SELECT * FROM t1 LEFT JOIN (t2, t3, t4)
                  ON (t2.a = t1.a AND t3.b = t1.b AND t4.c = t1.c)
 ```
 
-is equivalent to:
+é equivalente a:
 
 ```sql
 SELECT * FROM t1 LEFT JOIN (t2 CROSS JOIN t3 CROSS JOIN t4)
                  ON (t2.a = t1.a AND t3.b = t1.b AND t4.c = t1.c)
 ```
 
-In MySQL, `JOIN`, `CROSS JOIN`, and `INNER JOIN` are syntactic equivalents (they can replace each other). In standard SQL, they are not equivalent. `INNER JOIN` is used with an `ON` clause, `CROSS JOIN` is used otherwise.
+No MySQL, `JOIN`, `CROSS JOIN` e `INNER JOIN` são equivalentes sintáticos (podem ser substituídos um pelo outro). No SQL padrão, eles não são equivalentes. `INNER JOIN` é usado com uma cláusula `ON`, e `CROSS JOIN` é usado no caso contrário.
 
-In general, parentheses can be ignored in join expressions containing only inner join operations. MySQL also supports nested joins. See [Section 8.2.1.7, “Nested Join Optimization”](nested-join-optimization.html "8.2.1.7 Nested Join Optimization").
+Em geral, os parênteses podem ser ignorados em expressões JOIN que contenham apenas operações de INNER JOIN. O MySQL também suporta JOINs aninhados. Consulte [Section 8.2.1.7, “Nested Join Optimization”](nested-join-optimization.html "8.2.1.7 Nested Join Optimization").
 
-Index hints can be specified to affect how the MySQL optimizer makes use of indexes. For more information, see [Section 8.9.4, “Index Hints”](index-hints.html "8.9.4 Index Hints"). Optimizer hints and the `optimizer_switch` system variable are other ways to influence optimizer use of indexes. See [Section 8.9.3, “Optimizer Hints”](optimizer-hints.html "8.9.3 Optimizer Hints"), and [Section 8.9.2, “Switchable Optimizations”](switchable-optimizations.html "8.9.2 Switchable Optimizations").
+Index hints podem ser especificados para influenciar como o otimizador do MySQL utiliza os Indexes. Para mais informações, consulte [Section 8.9.4, “Index Hints”](index-hints.html "8.9.4 Index Hints"). Optimizer hints e a variável de sistema `optimizer_switch` são outras formas de influenciar o uso de Indexes pelo otimizador. Consulte [Section 8.9.3, “Optimizer Hints”](optimizer-hints.html "8.9.3 Optimizer Hints") e [Section 8.9.2, “Switchable Optimizations”](switchable-optimizations.html "8.9.2 Switchable Optimizations").
 
-The following list describes general factors to take into account when writing joins:
+A lista a seguir descreve fatores gerais a serem levados em consideração ao escrever JOINs:
 
-* A table reference can be aliased using `tbl_name AS alias_name` or *`tbl_name alias_name`*:
+* Uma referência de tabela pode receber um ALIAS (apelido) usando `tbl_name AS alias_name` ou *`tbl_name alias_name`*:
 
   ```sql
   SELECT t1.name, t2.salary
@@ -91,21 +91,21 @@ The following list describes general factors to take into account when writing j
     FROM employee t1 INNER JOIN info t2 ON t1.name = t2.name;
   ```
 
-* A *`table_subquery`* is also known as a derived table or subquery in the `FROM` clause. See [Section 13.2.10.8, “Derived Tables”](derived-tables.html "13.2.10.8 Derived Tables"). Such subqueries *must* include an alias to give the subquery result a table name. A trivial example follows:
+* Uma *`table_subquery`* também é conhecida como uma *derived table* ou subquery na cláusula `FROM`. Consulte [Section 13.2.10.8, “Derived Tables”](derived-tables.html "13.2.10.8 Derived Tables"). Tais subqueries *devem* incluir um ALIAS para dar um nome de tabela ao resultado da subquery. Segue um exemplo trivial:
 
   ```sql
   SELECT * FROM (SELECT 1, 2, 3) AS t1;
   ```
 
-* The maximum number of tables that can be referenced in a single join is 61. This includes a join handled by merging derived tables and views in the `FROM` clause into the outer query block (see [Section 8.2.2.4, “Optimizing Derived Tables and View References with Merging or Materialization”](derived-table-optimization.html "8.2.2.4 Optimizing Derived Tables and View References with Merging or Materialization")).
+* O número máximo de tabelas que podem ser referenciadas em um único JOIN é 61. Isso inclui um JOIN tratado pela mesclagem de *derived tables* e *Views* na cláusula `FROM` no bloco de Query externo (consulte [Section 8.2.2.4, “Optimizing Derived Tables and View References with Merging or Materialization”](derived-table-optimization.html "8.2.2.4 Optimizing Derived Tables and View References with Merging or Materialization")).
 
-* `INNER JOIN` and `,` (comma) are semantically equivalent in the absence of a join condition: both produce a Cartesian product between the specified tables (that is, each and every row in the first table is joined to each and every row in the second table).
+* `INNER JOIN` e `,` (vírgula) são semanticamente equivalentes na ausência de uma condição JOIN: ambos produzem um produto cartesiano entre as tabelas especificadas (ou seja, cada linha na primeira tabela é unida a cada linha na segunda tabela).
 
-  However, the precedence of the comma operator is less than that of `INNER JOIN`, `CROSS JOIN`, `LEFT JOIN`, and so on. If you mix comma joins with the other join types when there is a join condition, an error of the form `Unknown column 'col_name' in 'on clause'` may occur. Information about dealing with this problem is given later in this section.
+  No entanto, a precedência do operador vírgula é menor do que a de `INNER JOIN`, `CROSS JOIN`, `LEFT JOIN` e assim por diante. Se você misturar JOINs por vírgula com os outros tipos de JOIN quando houver uma condição JOIN, um erro na forma `Unknown column 'col_name' in 'on clause'` pode ocorrer. Informações sobre como lidar com este problema são fornecidas mais adiante nesta seção.
 
-* The *`search_condition`* used with `ON` is any conditional expression of the form that can be used in a `WHERE` clause. Generally, the `ON` clause serves for conditions that specify how to join tables, and the `WHERE` clause restricts which rows to include in the result set.
+* A *`search_condition`* usada com `ON` é qualquer expressão condicional na forma que pode ser utilizada em uma cláusula `WHERE`. Geralmente, a cláusula `ON` serve para condições que especificam como unir tabelas, e a cláusula `WHERE` restringe quais linhas incluir no conjunto de resultados.
 
-* If there is no matching row for the right table in the `ON` or `USING` part in a `LEFT JOIN`, a row with all columns set to `NULL` is used for the right table. You can use this fact to find rows in a table that have no counterpart in another table:
+* Se não houver uma linha correspondente para a tabela direita na parte `ON` ou `USING` em um `LEFT JOIN`, uma linha com todas as colunas definidas como `NULL` é usada para a tabela direita. Você pode usar este fato para encontrar linhas em uma tabela que não têm contrapartida em outra tabela:
 
   ```sql
   SELECT left_tbl.*
@@ -113,19 +113,19 @@ The following list describes general factors to take into account when writing j
     WHERE right_tbl.id IS NULL;
   ```
 
-  This example finds all rows in `left_tbl` with an `id` value that is not present in `right_tbl` (that is, all rows in `left_tbl` with no corresponding row in `right_tbl`). See [Section 8.2.1.8, “Outer Join Optimization”](outer-join-optimization.html "8.2.1.8 Outer Join Optimization").
+  Este exemplo encontra todas as linhas em `left_tbl` com um valor `id` que não está presente em `right_tbl` (ou seja, todas as linhas em `left_tbl` sem linha correspondente em `right_tbl`). Consulte [Section 8.2.1.8, “Outer Join Optimization”](outer-join-optimization.html "8.2.1.8 Outer Join Optimization").
 
-* The `USING(join_column_list)` clause names a list of columns that must exist in both tables. If tables `a` and `b` both contain columns `c1`, `c2`, and `c3`, the following join compares corresponding columns from the two tables:
+* A cláusula `USING(join_column_list)` nomeia uma lista de colunas que devem existir em ambas as tabelas. Se as tabelas `a` e `b` contiverem ambas as colunas `c1`, `c2` e `c3`, o seguinte JOIN compara as colunas correspondentes das duas tabelas:
 
   ```sql
   a LEFT JOIN b USING (c1, c2, c3)
   ```
 
-* The `NATURAL [LEFT] JOIN` of two tables is defined to be semantically equivalent to an `INNER JOIN` or a `LEFT JOIN` with a `USING` clause that names all columns that exist in both tables.
+* O `NATURAL [LEFT] JOIN` de duas tabelas é definido como semanticamente equivalente a um `INNER JOIN` ou a um `LEFT JOIN` com uma cláusula `USING` que nomeia todas as colunas que existem em ambas as tabelas.
 
-* `RIGHT JOIN` works analogously to `LEFT JOIN`. To keep code portable across databases, it is recommended that you use `LEFT JOIN` instead of `RIGHT JOIN`.
+* O `RIGHT JOIN` funciona analogamente ao `LEFT JOIN`. Para manter o código portável entre Databases, é recomendável que você use `LEFT JOIN` em vez de `RIGHT JOIN`.
 
-* The `{ OJ ... }` syntax shown in the join syntax description exists only for compatibility with ODBC. The curly braces in the syntax should be written literally; they are not metasyntax as used elsewhere in syntax descriptions.
+* A sintaxe `{ OJ ... }` mostrada na descrição da sintaxe JOIN existe apenas para compatibilidade com ODBC. As chaves na sintaxe devem ser escritas literalmente; elas não são metassintaxe como usado em outras descrições de sintaxe.
 
   ```sql
   SELECT left_tbl.*
@@ -134,11 +134,11 @@ The following list describes general factors to take into account when writing j
       WHERE right_tbl.id IS NULL;
   ```
 
-  You can use other types of joins within `{ OJ ... }`, such as `INNER JOIN` or `RIGHT OUTER JOIN`. This helps with compatibility with some third-party applications, but is not official ODBC syntax.
+  Você pode usar outros tipos de JOINs dentro de `{ OJ ... }`, como `INNER JOIN` ou `RIGHT OUTER JOIN`. Isso ajuda na compatibilidade com alguns aplicativos de terceiros, mas não é uma sintaxe ODBC oficial.
 
-* `STRAIGHT_JOIN` is similar to `JOIN`, except that the left table is always read before the right table. This can be used for those (few) cases for which the join optimizer processes the tables in a suboptimal order.
+* `STRAIGHT_JOIN` é semelhante a `JOIN`, exceto que a tabela esquerda é sempre lida antes da tabela direita. Isso pode ser usado nos (poucos) casos em que o otimizador JOIN processa as tabelas em uma ordem não ideal.
 
-Some join examples:
+Alguns exemplos de JOIN:
 
 ```sql
 SELECT * FROM table1, table2;
@@ -153,9 +153,9 @@ SELECT * FROM table1 LEFT JOIN table2 ON table1.id = table2.id
   LEFT JOIN table3 ON table2.id = table3.id;
 ```
 
-Natural joins and joins with `USING`, including outer join variants, are processed according to the SQL:2003 standard:
+NATURAL JOINs e JOINs com `USING`, incluindo variantes de *Outer Join*, são processados de acordo com o padrão SQL:2003:
 
-* Redundant columns of a `NATURAL` join do not appear. Consider this set of statements:
+* Colunas redundantes de um `NATURAL JOIN` não aparecem. Considere este conjunto de instruções:
 
   ```sql
   CREATE TABLE t1 (i INT, j INT);
@@ -166,9 +166,9 @@ Natural joins and joins with `USING`, including outer join variants, are process
   SELECT * FROM t1 JOIN t2 USING (j);
   ```
 
-  In the first [`SELECT`](select.html "13.2.9 SELECT Statement") statement, column `j` appears in both tables and thus becomes a join column, so, according to standard SQL, it should appear only once in the output, not twice. Similarly, in the second SELECT statement, column `j` is named in the `USING` clause and should appear only once in the output, not twice.
+  Na primeira instrução [`SELECT`](select.html "13.2.9 SELECT Statement"), a coluna `j` aparece em ambas as tabelas e, portanto, se torna uma coluna JOIN; assim, de acordo com o SQL padrão, ela deve aparecer apenas uma vez na saída, e não duas vezes. Da mesma forma, na segunda instrução SELECT, a coluna `j` é nomeada na cláusula `USING` e deve aparecer apenas uma vez na saída, e não duas vezes.
 
-  Thus, the statements produce this output:
+  Assim, as instruções produzem esta saída:
 
   ```sql
   +------+------+------+
@@ -183,23 +183,23 @@ Natural joins and joins with `USING`, including outer join variants, are process
   +------+------+------+
   ```
 
-  Redundant column elimination and column ordering occurs according to standard SQL, producing this display order:
+  A eliminação de colunas redundantes e a ordenação de colunas ocorrem de acordo com o SQL padrão, produzindo esta ordem de exibição:
 
-  + First, coalesced common columns of the two joined tables, in the order in which they occur in the first table
+  + Primeiro, colunas comuns unidas (coalesced) das duas tabelas unidas, na ordem em que ocorrem na primeira tabela.
 
-  + Second, columns unique to the first table, in order in which they occur in that table
+  + Segundo, colunas exclusivas da primeira tabela, na ordem em que ocorrem nessa tabela.
 
-  + Third, columns unique to the second table, in order in which they occur in that table
+  + Terceiro, colunas exclusivas da segunda tabela, na ordem em que ocorrem nessa tabela.
 
-  The single result column that replaces two common columns is defined using the coalesce operation. That is, for two `t1.a` and `t2.a` the resulting single join column `a` is defined as `a = COALESCE(t1.a, t2.a)`, where:
+  A coluna de resultado única que substitui duas colunas comuns é definida usando a operação COALESCE. Ou seja, para `t1.a` e `t2.a`, a única coluna JOIN resultante `a` é definida como `a = COALESCE(t1.a, t2.a)`, onde:
 
   ```sql
   COALESCE(x, y) = (CASE WHEN x IS NOT NULL THEN x ELSE y END)
   ```
 
-  If the join operation is any other join, the result columns of the join consist of the concatenation of all columns of the joined tables.
+  Se a operação JOIN for qualquer outra, as colunas de resultado do JOIN consistem na concatenação de todas as colunas das tabelas unidas.
 
-  A consequence of the definition of coalesced columns is that, for outer joins, the coalesced column contains the value of the non-`NULL` column if one of the two columns is always `NULL`. If neither or both columns are `NULL`, both common columns have the same value, so it does not matter which one is chosen as the value of the coalesced column. A simple way to interpret this is to consider that a coalesced column of an outer join is represented by the common column of the inner table of a `JOIN`. Suppose that the tables `t1(a, b)` and `t2(a, c)` have the following contents:
+  Uma consequência da definição de colunas unidas (coalesced) é que, para *Outer JOINs*, a coluna unida contém o valor da coluna não-`NULL` se uma das duas colunas for sempre `NULL`. Se nenhuma ou ambas as colunas forem `NULL`, ambas as colunas comuns terão o mesmo valor, portanto, não importa qual seja escolhida como o valor da coluna unida. Uma maneira simples de interpretar isso é considerar que uma coluna unida de um *Outer JOIN* é representada pela coluna comum da tabela INNER de um `JOIN`. Suponha que as tabelas `t1(a, b)` e `t2(a, c)` tenham o seguinte conteúdo:
 
   ```sql
   t1    t2
@@ -208,7 +208,7 @@ Natural joins and joins with `USING`, including outer join variants, are process
   2 y   3 w
   ```
 
-  Then, for this join, column `a` contains the values of `t1.a`:
+  Então, para este JOIN, a coluna `a` contém os valores de `t1.a`:
 
   ```sql
   mysql> SELECT * FROM t1 NATURAL LEFT JOIN t2;
@@ -220,7 +220,7 @@ Natural joins and joins with `USING`, including outer join variants, are process
   +------+------+------+
   ```
 
-  By contrast, for this join, column `a` contains the values of `t2.a`.
+  Em contraste, para este JOIN, a coluna `a` contém os valores de `t2.a`.
 
   ```sql
   mysql> SELECT * FROM t1 NATURAL RIGHT JOIN t2;
@@ -232,7 +232,7 @@ Natural joins and joins with `USING`, including outer join variants, are process
   +------+------+------+
   ```
 
-  Compare those results to the otherwise equivalent queries with `JOIN ... ON`:
+  Compare esses resultados com as Querys de outra forma equivalentes com `JOIN ... ON`:
 
   ```sql
   mysql> SELECT * FROM t1 LEFT JOIN t2 ON (t1.a = t2.a);
@@ -254,32 +254,32 @@ Natural joins and joins with `USING`, including outer join variants, are process
   +------+------+------+------+
   ```
 
-* A `USING` clause can be rewritten as an `ON` clause that compares corresponding columns. However, although `USING` and `ON` are similar, they are not quite the same. Consider the following two queries:
+* Uma cláusula `USING` pode ser reescrita como uma cláusula `ON` que compara colunas correspondentes. No entanto, embora `USING` e `ON` sejam semelhantes, eles não são exatamente iguais. Considere as duas Querys a seguir:
 
   ```sql
   a LEFT JOIN b USING (c1, c2, c3)
   a LEFT JOIN b ON a.c1 = b.c1 AND a.c2 = b.c2 AND a.c3 = b.c3
   ```
 
-  With respect to determining which rows satisfy the join condition, both joins are semantically identical.
+  No que diz respeito a determinar quais linhas satisfazem a condição JOIN, ambos os JOINs são semanticamente idênticos.
 
-  With respect to determining which columns to display for `SELECT *` expansion, the two joins are not semantically identical. The `USING` join selects the coalesced value of corresponding columns, whereas the `ON` join selects all columns from all tables. For the `USING` join, `SELECT *` selects these values:
+  No que diz respeito a determinar quais colunas exibir para a expansão `SELECT *`, os dois JOINs não são semanticamente idênticos. O JOIN `USING` seleciona o valor unido (coalesced) das colunas correspondentes, enquanto o JOIN `ON` seleciona todas as colunas de todas as tabelas. Para o JOIN `USING`, `SELECT *` seleciona estes valores:
 
   ```sql
   COALESCE(a.c1, b.c1), COALESCE(a.c2, b.c2), COALESCE(a.c3, b.c3)
   ```
 
-  For the `ON` join, `SELECT *` selects these values:
+  Para o JOIN `ON`, `SELECT *` seleciona estes valores:
 
   ```sql
   a.c1, a.c2, a.c3, b.c1, b.c2, b.c3
   ```
 
-  With an inner join, [`COALESCE(a.c1, b.c1)`](comparison-operators.html#function_coalesce) is the same as either `a.c1` or `b.c1` because both columns have the same value. With an outer join (such as `LEFT JOIN`), one of the two columns can be `NULL`. That column is omitted from the result.
+  Com um INNER JOIN, [`COALESCE(a.c1, b.c1)`](comparison-operators.html#function_coalesce) é o mesmo que `a.c1` ou `b.c1` porque ambas as colunas têm o mesmo valor. Com um *Outer JOIN* (como `LEFT JOIN`), uma das duas colunas pode ser `NULL`. Essa coluna é omitida do resultado.
 
-* An `ON` clause can refer only to its operands.
+* Uma cláusula `ON` pode se referir apenas aos seus operandos.
 
-  Example:
+  Exemplo:
 
   ```sql
   CREATE TABLE t1 (i1 INT);
@@ -288,15 +288,15 @@ Natural joins and joins with `USING`, including outer join variants, are process
   SELECT * FROM t1 JOIN t2 ON (i1 = i3) JOIN t3;
   ```
 
-  The statement fails with an `Unknown column 'i3' in 'on clause'` error because `i3` is a column in `t3`, which is not an operand of the `ON` clause. To enable the join to be processed, rewrite the statement as follows:
+  A instrução falha com um erro `Unknown column 'i3' in 'on clause'` porque `i3` é uma coluna em `t3`, que não é um operando da cláusula `ON`. Para permitir que o JOIN seja processado, reescreva a instrução da seguinte forma:
 
   ```sql
   SELECT * FROM t1 JOIN t2 JOIN t3 ON (i1 = i3);
   ```
 
-* `JOIN` has higher precedence than the comma operator (`,`), so the join expression `t1, t2 JOIN t3` is interpreted as `(t1, (t2 JOIN t3))`, not as `((t1, t2) JOIN t3)`. This affects statements that use an `ON` clause because that clause can refer only to columns in the operands of the join, and the precedence affects interpretation of what those operands are.
+* `JOIN` tem maior precedência do que o operador vírgula (`,`), de modo que a expressão JOIN `t1, t2 JOIN t3` é interpretada como `(t1, (t2 JOIN t3))`, e não como `((t1, t2) JOIN t3)`. Isso afeta instruções que usam uma cláusula `ON` porque essa cláusula pode se referir apenas a colunas nos operandos do JOIN, e a precedência afeta a interpretação de quais são esses operandos.
 
-  Example:
+  Exemplo:
 
   ```sql
   CREATE TABLE t1 (i1 INT, j1 INT);
@@ -308,22 +308,22 @@ Natural joins and joins with `USING`, including outer join variants, are process
   SELECT * FROM t1, t2 JOIN t3 ON (t1.i1 = t3.i3);
   ```
 
-  The `JOIN` takes precedence over the comma operator, so the operands for the `ON` clause are `t2` and `t3`. Because `t1.i1` is not a column in either of the operands, the result is an `Unknown column 't1.i1' in 'on clause'` error.
+  O `JOIN` tem precedência sobre o operador vírgula, então os operandos para a cláusula `ON` são `t2` e `t3`. Como `t1.i1` não é uma coluna em nenhum dos operandos, o resultado é um erro `Unknown column 't1.i1' in 'on clause'`.
 
-  To enable the join to be processed, use either of these strategies:
+  Para permitir que o JOIN seja processado, use uma destas estratégias:
 
-  + Group the first two tables explicitly with parentheses so that the operands for the `ON` clause are `(t1, t2)` and `t3`:
+  + Agrupe as duas primeiras tabelas explicitamente com parênteses para que os operandos da cláusula `ON` sejam `(t1, t2)` e `t3`:
 
     ```sql
     SELECT * FROM (t1, t2) JOIN t3 ON (t1.i1 = t3.i3);
     ```
 
-  + Avoid the use of the comma operator and use `JOIN` instead:
+  + Evite o uso do operador vírgula e use `JOIN` em vez disso:
 
     ```sql
     SELECT * FROM t1 JOIN t2 JOIN t3 ON (t1.i1 = t3.i3);
     ```
 
-  The same precedence interpretation also applies to statements that mix the comma operator with `INNER JOIN`, `CROSS JOIN`, `LEFT JOIN`, and `RIGHT JOIN`, all of which have higher precedence than the comma operator.
+  A mesma interpretação de precedência também se aplica a instruções que misturam o operador vírgula com `INNER JOIN`, `CROSS JOIN`, `LEFT JOIN` e `RIGHT JOIN`, todos os quais têm precedência superior ao operador vírgula.
 
-* A MySQL extension compared to the SQL:2003 standard is that MySQL permits you to qualify the common (coalesced) columns of `NATURAL` or `USING` joins, whereas the standard disallows that.
+* Uma extensão do MySQL em comparação com o padrão SQL:2003 é que o MySQL permite qualificar as colunas comuns (unidas/coalesced) de JOINs `NATURAL` ou `USING`, enquanto o padrão não permite isso.

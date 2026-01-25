@@ -1,19 +1,19 @@
-## 21.4 Configuration of NDB Cluster
+## 21.4 Configuração do NDB Cluster
 
-[21.4.1 Quick Test Setup of NDB Cluster](mysql-cluster-quick.html)
+[21.4.1 Configuração de Teste Rápido do NDB Cluster](mysql-cluster-quick.html)
 
-[21.4.2 Overview of NDB Cluster Configuration Parameters, Options, and Variables](mysql-cluster-configuration-overview.html)
+[21.4.2 Visão Geral dos Parâmetros, Opções e Variáveis de Configuração do NDB Cluster](mysql-cluster-configuration-overview.html)
 
-[21.4.3 NDB Cluster Configuration Files](mysql-cluster-config-file.html)
+[21.4.3 Arquivos de Configuração do NDB Cluster](mysql-cluster-config-file.html)
 
-[21.4.4 Using High-Speed Interconnects with NDB Cluster](mysql-cluster-interconnects.html)
+[21.4.4 Usando Interconexões de Alta Velocidade com o NDB Cluster](mysql-cluster-interconnects.html)
 
-A MySQL server that is part of an NDB Cluster differs in one chief respect from a normal (nonclustered) MySQL server, in that it employs the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine. This engine is also referred to sometimes as [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"), although `NDB` is preferred.
+Um MySQL server que faz parte de um NDB Cluster difere em um aspecto principal de um MySQL server normal (não-clustered): ele emprega o storage engine [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"). Este engine também é, às vezes, referido como [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"), embora `NDB` seja o termo preferido.
 
-To avoid unnecessary allocation of resources, the server is configured by default with the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine disabled. To enable [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"), you must modify the server's `my.cnf` configuration file, or start the server with the [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster) option.
+Para evitar alocação desnecessária de recursos, o server é configurado por padrão com o storage engine [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") desabilitado. Para habilitar [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"), você deve modificar o arquivo de configuração `my.cnf` do server, ou iniciar o server com a opção [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster).
 
-This MySQL server is a part of the cluster, so it also must know how to access a management node to obtain the cluster configuration data. The default behavior is to look for the management node on `localhost`. However, should you need to specify that its location is elsewhere, this can be done in `my.cnf`, or with the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client. Before the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine can be used, at least one management node must be operational, as well as any desired data nodes.
+Este MySQL server faz parte do cluster, portanto, também deve saber como acessar um management node para obter os dados de configuração do cluster. O comportamento padrão é procurar o management node em `localhost`. No entanto, caso precise especificar que sua localização é em outro lugar, isso pode ser feito em `my.cnf`, ou com o [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client. Antes que o storage engine [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") possa ser usado, pelo menos um management node deve estar operacional, assim como quaisquer data nodes desejados.
 
-For more information about [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster) and other [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") options specific to NDB Cluster, see [Section 21.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "21.4.3.9.1 MySQL Server Options for NDB Cluster").
+Para mais informações sobre [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster) e outras opções do [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") específicas para o NDB Cluster, consulte [Seção 21.4.3.9.1, “Opções do MySQL Server para NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "21.4.3.9.1 MySQL Server Options for NDB Cluster").
 
-For general information about installing NDB Cluster, see [Section 21.3, “NDB Cluster Installation”](mysql-cluster-installation.html "21.3 NDB Cluster Installation").
+Para informações gerais sobre a instalação do NDB Cluster, consulte [Seção 21.3, “Instalação do NDB Cluster”](mysql-cluster-installation.html "21.3 NDB Cluster Installation").

@@ -1,14 +1,14 @@
-#### B.3.3.1 Problems with File Permissions
+#### B.3.3.1 Problemas com Permissões de Arquivo
 
-If you have problems with file permissions, the `UMASK` or `UMASK_DIR` environment variable might be set incorrectly when [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") starts. For example, [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") might issue the following error message when you create a table:
+Se você tiver problemas com permissões de arquivo, a variável de ambiente `UMASK` ou `UMASK_DIR` pode estar definida incorretamente quando o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") inicia. Por exemplo, o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") pode emitir a seguinte mensagem de erro ao criar uma table:
 
 ```sql
 ERROR: Can't find file: 'path/with/filename.frm' (Errcode: 13)
 ```
 
-The default `UMASK` and `UMASK_DIR` values are `0640` and `0750`, respectively. [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") assumes that the value for `UMASK` or `UMASK_DIR` is in octal if it starts with a zero. For example, setting `UMASK=0600` is equivalent to `UMASK=384` because 0600 octal is 384 decimal.
+Os valores padrão para `UMASK` e `UMASK_DIR` são `0640` e `0750`, respectivamente. O [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") assume que o valor para `UMASK` ou `UMASK_DIR` está em octal se começar com zero. Por exemplo, definir `UMASK=0600` é equivalente a `UMASK=384` porque 0600 em octal é 384 em decimal.
 
-Assuming that you start [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") using [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script"), change the default `UMASK` value as follows:
+Assumindo que você inicie o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") usando o [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script"), altere o valor padrão de `UMASK` da seguinte forma:
 
 ```sql
 UMASK=384  # = 600 in octal
@@ -18,9 +18,9 @@ mysqld_safe &
 
 Note
 
-An exception applies for the error log file if you start [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") using [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script"), which does not respect `UMASK`: [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") may create the error log file if it does not exist prior to starting [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), and [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") uses a umask set to a strict value of `0137`. If this is unsuitable, create the error file manually with the desired access mode prior to executing [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script").
+Aplica-se uma exceção para o arquivo de error log se você iniciar o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") usando o [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script"), que não respeita o `UMASK`: o [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") pode criar o arquivo de error log se ele não existir antes de iniciar o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), e o [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") usa um umask definido para o valor estrito de `0137`. Se isso for inadequado, crie o arquivo de erro manualmente com o modo de acesso desejado antes de executar o [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script").
 
-By default, [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") creates database directories with an access permission value of `0750`. To modify this behavior, set the `UMASK_DIR` variable. If you set its value, new directories are created with the combined `UMASK` and `UMASK_DIR` values. For example, to give group access to all new directories, start [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") as follows:
+Por padrão, o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") cria diretórios de Database com um valor de permissão de acesso de `0750`. Para modificar esse comportamento, defina a variável `UMASK_DIR`. Se você definir seu valor, novos diretórios são criados com os valores combinados de `UMASK` e `UMASK_DIR`. Por exemplo, para conceder acesso de grupo a todos os novos diretórios, inicie o [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") da seguinte forma:
 
 ```sql
 UMASK_DIR=504  # = 770 in octal
@@ -28,4 +28,4 @@ export UMASK_DIR
 mysqld_safe &
 ```
 
-For additional details, see [Section 4.9, “Environment Variables”](environment-variables.html "4.9 Environment Variables").
+Para detalhes adicionais, consulte a [Section 4.9, “Environment Variables”](environment-variables.html "4.9 Environment Variables").

@@ -1,6 +1,6 @@
-## 27.1 MySQL Connector/C++
+## 27.1 MySQL Connector/C++
 
-The MySQL Connector/C++ manual is published in standalone form, not as part of the MySQL Reference Manual. For information, see these documents:
+O manual do MySQL Connector/C++ é publicado em formato autônomo, não como parte do Manual de Referência do MySQL. Para obter informações, consulte estes documentos:
 
-* Main manual: [MySQL Connector/C++ 9.5 Developer Guide](/doc/connector-cpp/9.4/en/)
-* Release notes: [MySQL Connector/C++ Release Notes](/doc/relnotes/connector-cpp/en/)
+* Manual principal: [Guia do Desenvolvedor do MySQL Connector/C++ 9.5](/doc/connector-cpp/9.4/en/)
+* Notas de Release: [Notas de Release do MySQL Connector/C++](/doc/relnotes/connector-cpp/en/)

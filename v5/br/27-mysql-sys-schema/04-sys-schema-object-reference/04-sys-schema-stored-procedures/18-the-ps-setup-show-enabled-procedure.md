@@ -1,14 +1,14 @@
-#### 26.4.4.18 The ps_setup_show_enabled() Procedure
+#### 26.4.4.18 O Procedure ps_setup_show_enabled()
 
-Displays all currently enabled Performance Schema configuration.
+Exibe toda a configuração atualmente habilitada do Performance Schema.
 
-##### Parameters
+##### Parâmetros
 
-* `in_show_instruments BOOLEAN`: Whether to display enabled instruments. This might be a long list.
+* `in_show_instruments BOOLEAN`: Se deve exibir os instruments habilitados. Esta pode ser uma lista longa.
 
-* `in_show_threads BOOLEAN`: Whether to display enabled threads.
+* `in_show_threads BOOLEAN`: Se deve exibir os threads habilitados.
 
-##### Example
+##### Exemplo
 
 ```sql
 mysql> CALL sys.ps_setup_show_enabled(FALSE, FALSE);

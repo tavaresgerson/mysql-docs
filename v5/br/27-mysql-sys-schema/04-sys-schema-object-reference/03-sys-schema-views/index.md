@@ -1,112 +1,112 @@
-### 26.4.3 sys Schema Views
+### 26.4.3 Views do Schema sys
 
-26.4.3.1 The host_summary and x$host_summary Views
+26.4.3.1 As Views host_summary e x$host_summary
 
-26.4.3.2 The host_summary_by_file_io and x$host_summary_by_file_io Views
+26.4.3.2 As Views host_summary_by_file_io e x$host_summary_by_file_io
 
-26.4.3.3 The host_summary_by_file_io_type and x$host_summary_by_file_io_type Views
+26.4.3.3 As Views host_summary_by_file_io_type e x$host_summary_by_file_io_type
 
-26.4.3.4 The host_summary_by_stages and x$host_summary_by_stages Views
+26.4.3.4 As Views host_summary_by_stages e x$host_summary_by_stages
 
-26.4.3.5 The host_summary_by_statement_latency and x$host_summary_by_statement_latency Views
+26.4.3.5 As Views host_summary_by_statement_latency e x$host_summary_by_statement_latency
 
-26.4.3.6 The host_summary_by_statement_type and x$host_summary_by_statement_type Views
+26.4.3.6 As Views host_summary_by_statement_type e x$host_summary_by_statement_type
 
-26.4.3.7 The innodb_buffer_stats_by_schema and x$innodb_buffer_stats_by_schema Views
+26.4.3.7 As Views innodb_buffer_stats_by_schema e x$innodb_buffer_stats_by_schema
 
-26.4.3.8 The innodb_buffer_stats_by_table and x$innodb_buffer_stats_by_table Views
+26.4.3.8 As Views innodb_buffer_stats_by_table e x$innodb_buffer_stats_by_table
 
-26.4.3.9 The innodb_lock_waits and x$innodb_lock_waits Views
+26.4.3.9 As Views innodb_lock_waits e x$innodb_lock_waits
 
-26.4.3.10 The io_by_thread_by_latency and x$io_by_thread_by_latency Views
+26.4.3.10 As Views io_by_thread_by_latency e x$io_by_thread_by_latency
 
-26.4.3.11 The io_global_by_file_by_bytes and x$io_global_by_file_by_bytes Views
+26.4.3.11 As Views io_global_by_file_by_bytes e x$io_global_by_file_by_bytes
 
-26.4.3.12 The io_global_by_file_by_latency and x$io_global_by_file_by_latency Views
+26.4.3.12 As Views io_global_by_file_by_latency e x$io_global_by_file_by_latency
 
-26.4.3.13 The io_global_by_wait_by_bytes and x$io_global_by_wait_by_bytes Views
+26.4.3.13 As Views io_global_by_wait_by_bytes e x$io_global_by_wait_by_bytes
 
-26.4.3.14 The io_global_by_wait_by_latency and x$io_global_by_wait_by_latency Views
+26.4.3.14 As Views io_global_by_wait_by_latency e x$io_global_by_wait_by_latency
 
-26.4.3.15 The latest_file_io and x$latest_file_io Views
+26.4.3.15 As Views latest_file_io e x$latest_file_io
 
-26.4.3.16 The memory_by_host_by_current_bytes and x$memory_by_host_by_current_bytes Views
+26.4.3.16 As Views memory_by_host_by_current_bytes e x$memory_by_host_by_current_bytes
 
-26.4.3.17 The memory_by_thread_by_current_bytes and x$memory_by_thread_by_current_bytes Views
+26.4.3.17 As Views memory_by_thread_by_current_bytes e x$memory_by_thread_by_current_bytes
 
-26.4.3.18 The memory_by_user_by_current_bytes and x$memory_by_user_by_current_bytes Views
+26.4.3.18 As Views memory_by_user_by_current_bytes e x$memory_by_user_by_current_bytes
 
-26.4.3.19 The memory_global_by_current_bytes and x$memory_global_by_current_bytes Views
+26.4.3.19 As Views memory_global_by_current_bytes e x$memory_global_by_current_bytes
 
-26.4.3.20 The memory_global_total and x$memory_global_total Views
+26.4.3.20 As Views memory_global_total e x$memory_global_total
 
-26.4.3.21 The metrics View
+26.4.3.21 A View metrics
 
-26.4.3.22 The processlist and x$processlist Views
+26.4.3.22 As Views processlist e x$processlist
 
-26.4.3.23 The ps_check_lost_instrumentation View
+26.4.3.23 A View ps_check_lost_instrumentation
 
-26.4.3.24 The schema_auto_increment_columns View
+26.4.3.24 A View schema_auto_increment_columns
 
-26.4.3.25 The schema_index_statistics and x$schema_index_statistics Views
+26.4.3.25 As Views schema_index_statistics e x$schema_index_statistics
 
-26.4.3.26 The schema_object_overview View
+26.4.3.26 A View schema_object_overview
 
-26.4.3.27 The schema_redundant_indexes and x$schema_flattened_keys Views
+26.4.3.27 As Views schema_redundant_indexes e x$schema_flattened_keys
 
-26.4.3.28 The schema_table_lock_waits and x$schema_table_lock_waits Views
+26.4.3.28 As Views schema_table_lock_waits e x$schema_table_lock_waits
 
-26.4.3.29 The schema_table_statistics and x$schema_table_statistics Views
+26.4.3.29 As Views schema_table_statistics e x$schema_table_statistics
 
-26.4.3.30 The schema_table_statistics_with_buffer and x$schema_table_statistics_with_buffer Views
+26.4.3.30 As Views schema_table_statistics_with_buffer e x$schema_table_statistics_with_buffer
 
-26.4.3.31 The schema_tables_with_full_table_scans and x$schema_tables_with_full_table_scans Views
+26.4.3.31 As Views schema_tables_with_full_table_scans e x$schema_tables_with_full_table_scans
 
-26.4.3.32 The schema_unused_indexes View
+26.4.3.32 A View schema_unused_indexes
 
-26.4.3.33 The session and x$session Views
+26.4.3.33 As Views session e x$session
 
-26.4.3.34 The session_ssl_status View
+26.4.3.34 A View session_ssl_status
 
-26.4.3.35 The statement_analysis and x$statement_analysis Views
+26.4.3.35 As Views statement_analysis e x$statement_analysis
 
-26.4.3.36 The statements_with_errors_or_warnings and x$statements_with_errors_or_warnings Views
+26.4.3.36 As Views statements_with_errors_or_warnings e x$statements_with_errors_or_warnings
 
-26.4.3.37 The statements_with_full_table_scans and x$statements_with_full_table_scans Views
+26.4.3.37 As Views statements_with_full_table_scans e x$statements_with_full_table_scans
 
-26.4.3.38 The statements_with_runtimes_in_95th_percentile and x$statements_with_runtimes_in_95th_percentile Views
+26.4.3.38 As Views statements_with_runtimes_in_95th_percentile e x$statements_with_runtimes_in_95th_percentile
 
-26.4.3.39 The statements_with_sorting and x$statements_with_sorting Views
+26.4.3.39 As Views statements_with_sorting e x$statements_with_sorting
 
-26.4.3.40 The statements_with_temp_tables and x$statements_with_temp_tables Views
+26.4.3.40 As Views statements_with_temp_tables e x$statements_with_temp_tables
 
-26.4.3.41 The user_summary and x$user_summary Views
+26.4.3.41 As Views user_summary e x$user_summary
 
-26.4.3.42 The user_summary_by_file_io and x$user_summary_by_file_io Views
+26.4.3.42 As Views user_summary_by_file_io e x$user_summary_by_file_io
 
-26.4.3.43 The user_summary_by_file_io_type and x$user_summary_by_file_io_type Views
+26.4.3.43 As Views user_summary_by_file_io_type e x$user_summary_by_file_io_type
 
-26.4.3.44 The user_summary_by_stages and x$user_summary_by_stages Views
+26.4.3.44 As Views user_summary_by_stages e x$user_summary_by_stages
 
-26.4.3.45 The user_summary_by_statement_latency and x$user_summary_by_statement_latency Views
+26.4.3.45 As Views user_summary_by_statement_latency e x$user_summary_by_statement_latency
 
-26.4.3.46 The user_summary_by_statement_type and x$user_summary_by_statement_type Views
+26.4.3.46 As Views user_summary_by_statement_type e x$user_summary_by_statement_type
 
-26.4.3.47 The version View
+26.4.3.47 A View version
 
-26.4.3.48 The wait_classes_global_by_avg_latency and x$wait_classes_global_by_avg_latency Views
+26.4.3.48 As Views wait_classes_global_by_avg_latency e x$wait_classes_global_by_avg_latency
 
-26.4.3.49 The wait_classes_global_by_latency and x$wait_classes_global_by_latency Views
+26.4.3.49 As Views wait_classes_global_by_latency e x$wait_classes_global_by_latency
 
-26.4.3.50 The waits_by_host_by_latency and x$waits_by_host_by_latency Views
+26.4.3.50 As Views waits_by_host_by_latency e x$waits_by_host_by_latency
 
-26.4.3.51 The waits_by_user_by_latency and x$waits_by_user_by_latency Views
+26.4.3.51 As Views waits_by_user_by_latency e x$waits_by_user_by_latency
 
-26.4.3.52 The waits_global_by_latency and x$waits_global_by_latency Views
+26.4.3.52 As Views waits_global_by_latency e x$waits_global_by_latency
 
-The following sections describe `sys` schema views.
+As seções a seguir descrevem as Views do Schema `sys`.
 
-The `sys` schema contains many views that summarize Performance Schema tables in various ways. Most of these views come in pairs, such that one member of the pair has the same name as the other member, plus a `x$` prefix. For example, the `host_summary_by_file_io` view summarizes file I/O grouped by host and displays latencies converted from picoseconds to more readable values (with units);
+O Schema `sys` contém muitas Views que resumem tabelas do Performance Schema de várias maneiras. A maioria dessas Views é apresentada em pares, de modo que um membro do par tem o mesmo nome do outro membro, mais um prefixo `x$`. Por exemplo, a View `host_summary_by_file_io` resume o I/O de arquivo agrupado por host e exibe as Latencies convertidas de picosegundos para valores mais legíveis (com unidades);
 
 ```sql
 mysql> SELECT * FROM sys.host_summary_by_file_io;
@@ -118,7 +118,7 @@ mysql> SELECT * FROM sys.host_summary_by_file_io;
 +------------+-------+------------+
 ```
 
-The `x$host_summary_by_file_io` view summarizes the same data but displays unformatted picosecond latencies:
+A View `x$host_summary_by_file_io` resume os mesmos dados, mas exibe Latencies em picosegundos não formatados:
 
 ```sql
 mysql> SELECT * FROM sys.x$host_summary_by_file_io;
@@ -130,14 +130,14 @@ mysql> SELECT * FROM sys.x$host_summary_by_file_io;
 +------------+-------+---------------+
 ```
 
-The view without the `x$` prefix is intended to provide output that is more user friendly and easier to read. The view with the `x$` prefix that displays the same values in raw form is intended more for use with other tools that perform their own processing on the data.
+A View sem o prefixo `x$` é destinada a fornecer uma saída mais amigável e fácil de ler. A View com o prefixo `x$`, que exibe os mesmos valores em formato bruto (raw), é mais destinada para uso com outras ferramentas que realizam seu próprio processamento dos dados.
 
-Views without the `x$` prefix differ from the corresponding `x$` views in these ways:
+As Views sem o prefixo `x$` diferem das Views `x$` correspondentes destas formas:
 
-* Byte counts are formatted with size units using `format_bytes()` Function").
+* As contagens de Byte são formatadas com unidades de tamanho usando a `format_bytes()` Function.
 
-* Time values are formatted with temporal units using `format_time()` Function").
+* Os valores de tempo são formatados com unidades temporais usando a `format_time()` Function.
 
-* SQL statements are truncated to a maximum display width using `format_statement()` Function").
+* Os SQL statements são truncados para uma largura máxima de exibição usando a `format_statement()` Function.
 
-* Path name are shortened using `format_path()` Function").
+* Os nomes de Path (caminho) são encurtados usando a `format_path()` Function.

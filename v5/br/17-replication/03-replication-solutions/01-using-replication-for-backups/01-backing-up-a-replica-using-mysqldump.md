@@ -1,35 +1,35 @@
-#### 16.3.1.1 Backing Up a Replica Using mysqldump
+#### 16.3.1.1 Fazendo Backup de uma Réplica Usando mysqldump
 
-Using [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") to create a copy of a database enables you to capture all of the data in the database in a format that enables the information to be imported into another instance of MySQL Server (see [Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")). Because the format of the information is SQL statements, the file can easily be distributed and applied to running servers in the event that you need access to the data in an emergency. However, if the size of your data set is very large, [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") may be impractical.
+Usar [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") para criar uma cópia de um Database permite capturar todos os dados no Database em um formato que possibilita a importação das informações em outra instância do MySQL Server (veja [Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")). Como o formato da informação são instruções SQL, o arquivo pode ser facilmente distribuído e aplicado a servidores em execução caso seja necessário acessar os dados em uma emergência. No entanto, se o tamanho do seu conjunto de dados (data set) for muito grande, o [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") pode ser impraticável.
 
-When using [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program"), you should stop replication on the replica before starting the dump process to ensure that the dump contains a consistent set of data:
+Ao usar [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program"), você deve parar a *replication* na réplica antes de iniciar o processo de *dump* para garantir que o *dump* contenha um conjunto de dados consistente:
 
-1. Stop the replica from processing requests. You can stop replication completely on the replica using [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program"):
+1. Pare a réplica de processar requisições. Você pode parar a *replication* completamente na réplica usando [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program"):
 
    ```sql
    $> mysqladmin stop-slave
    ```
 
-   Alternatively, you can stop only the replication SQL thread to pause event execution:
+   Alternativamente, você pode parar apenas o `replication SQL thread` para pausar a execução de eventos:
 
    ```sql
    $> mysql -e 'STOP SLAVE SQL_THREAD;'
    ```
 
-   This enables the replica to continue to receive data change events from the source's binary log and store them in the relay logs using the I/O thread, but prevents the replica from executing these events and changing its data. Within busy replication environments, permitting the I/O thread to run during backup may speed up the catch-up process when you restart the replication SQL thread.
+   Isso permite que a réplica continue a receber eventos de alteração de dados do *Binary Log* da *source* (origem) e armazená-los nos *relay logs* usando o *I/O thread*, mas impede que a réplica execute esses eventos e altere seus dados. Em ambientes de *replication* movimentados, permitir que o *I/O thread* seja executado durante o backup pode acelerar o processo de recuperação quando você reiniciar o `replication SQL thread`.
 
-2. Run [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") to dump your databases. You may either dump all databases or select databases to be dumped. For example, to dump all databases:
+2. Execute [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") para fazer o *dump* dos seus Databases. Você pode fazer o *dump* de todos os Databases ou selecionar Databases específicos. Por exemplo, para fazer o *dump* de todos os Databases:
 
    ```sql
    $> mysqldump --all-databases > fulldb.dump
    ```
 
-3. Once the dump has completed, start replica operations again:
+3. Assim que o *dump* for concluído, inicie as operações da réplica novamente:
 
    ```sql
    $> mysqladmin start-slave
    ```
 
-In the preceding example, you may want to add login credentials (user name, password) to the commands, and bundle the process up into a script that you can run automatically each day.
+No exemplo anterior, você pode querer adicionar credenciais de login (nome de usuário, senha) aos comandos e empacotar o processo em um *script* que possa ser executado automaticamente todos os dias.
 
-If you use this approach, make sure you monitor the replication process to ensure that the time taken to run the backup does not affect the replica's ability to keep up with events from the source. See [Section 16.1.7.1, “Checking Replication Status”](replication-administration-status.html "16.1.7.1 Checking Replication Status"). If the replica is unable to keep up, you may want to add another replica and distribute the backup process. For an example of how to configure this scenario, see [Section 16.3.5, “Replicating Different Databases to Different Replicas”](replication-solutions-partitioning.html "16.3.5 Replicating Different Databases to Different Replicas").
+Se você usar esta abordagem, certifique-se de monitorar o *replication process* para garantir que o tempo necessário para executar o backup não afete a capacidade da réplica de acompanhar os eventos da *source*. Veja [Section 16.1.7.1, “Checking Replication Status”](replication-administration-status.html "16.1.7.1 Checking Replication Status"). Se a réplica for incapaz de acompanhar, você pode considerar adicionar outra réplica e distribuir o processo de backup. Para um exemplo de como configurar este cenário, veja [Section 16.3.5, “Replicating Different Databases to Different Replicas”](replication-solutions-partitioning.html "16.3.5 Replicating Different Databases to Different Replicas").

@@ -1,19 +1,19 @@
-#### 25.12.3.2 The file_instances Table
+#### 25.12.3.2 A Tabela file_instances
 
-The [`file_instances`](performance-schema-file-instances-table.html "25.12.3.2 The file_instances Table") table lists all the files seen by the Performance Schema when executing file I/O instrumentation. If a file on disk has never been opened, it is not in [`file_instances`](performance-schema-file-instances-table.html "25.12.3.2 The file_instances Table"). When a file is deleted from the disk, it is also removed from the [`file_instances`](performance-schema-file-instances-table.html "25.12.3.2 The file_instances Table") table.
+A Tabela [`file_instances`](performance-schema-file-instances-table.html "25.12.3.2 The file_instances Table") lista todos os arquivos vistos pelo Performance Schema ao executar a instrumentação de file I/O. Se um arquivo no disco nunca foi aberto, ele não está em [`file_instances`](performance-schema-file-instances-table.html "25.12.3.2 The file_instances Table"). Quando um arquivo é excluído do disco, ele também é removido da Tabela [`file_instances`](performance-schema-file-instances-table.html "25.12.3.2 The file_instances Table").
 
-The [`file_instances`](performance-schema-file-instances-table.html "25.12.3.2 The file_instances Table") table has these columns:
+A Tabela [`file_instances`](performance-schema-file-instances-table.html "25.12.3.2 The file_instances Table") possui as seguintes colunas:
 
 * `FILE_NAME`
 
-  The file name.
+  O nome do arquivo (file name).
 
 * `EVENT_NAME`
 
-  The instrument name associated with the file.
+  O nome do instrumento (instrument name) associado ao arquivo.
 
 * `OPEN_COUNT`
 
-  The count of open handles on the file. If a file was opened and then closed, it was opened 1 time, but `OPEN_COUNT` is 0. To list all the files currently opened by the server, use `WHERE OPEN_COUNT > 0`.
+  A contagem de *handles* abertos no arquivo. Se um arquivo foi aberto e depois fechado, ele foi aberto 1 vez, mas `OPEN_COUNT` é 0. Para listar todos os arquivos atualmente abertos pelo server, use `WHERE OPEN_COUNT > 0`.
 
-[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not permitted for the [`file_instances`](performance-schema-file-instances-table.html "25.12.3.2 The file_instances Table") table.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") não é permitido para a Tabela [`file_instances`](performance-schema-file-instances-table.html "25.12.3.2 The file_instances Table").

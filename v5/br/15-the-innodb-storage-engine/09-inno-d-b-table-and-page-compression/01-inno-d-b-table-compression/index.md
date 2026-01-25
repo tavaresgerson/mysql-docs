@@ -1,17 +1,17 @@
-### 14.9.1 InnoDB Table Compression
+### 14.9.1 Compressão de Tabela InnoDB
 
-14.9.1.1 Overview of Table Compression
+14.9.1.1 Visão Geral da Compressão de Tabela
 
-14.9.1.2 Creating Compressed Tables
+14.9.1.2 Criando Tabelas Comprimidas
 
-14.9.1.3 Tuning Compression for InnoDB Tables
+14.9.1.3 Ajustando a Compressão para Tabelas InnoDB
 
-14.9.1.4 Monitoring InnoDB Table Compression at Runtime
+14.9.1.4 Monitoramento da Compressão de Tabela InnoDB em Tempo de Execução
 
-14.9.1.5 How Compression Works for InnoDB Tables
+14.9.1.5 Como a Compressão Funciona para Tabelas InnoDB
 
-14.9.1.6 Compression for OLTP Workloads
+14.9.1.6 Compressão para Cargas de Trabalho OLTP
 
-14.9.1.7 SQL Compression Syntax Warnings and Errors
+14.9.1.7 Avisos e Erros de Sintaxe de Compressão SQL
 
-This section describes `InnoDB` table compression, which is supported with `InnoDB` tables that reside in file_per_table tablespaces or general tablespaces. Table compression is enabled using the `ROW_FORMAT=COMPRESSED` attribute with `CREATE TABLE` or `ALTER TABLE`.
+Esta seção descreve a compressão de tabela `InnoDB`, que é suportada para tabelas `InnoDB` que residem em *tablespaces* `file_per_table` ou *general tablespaces*. A compressão de tabela é ativada usando o atributo `ROW_FORMAT=COMPRESSED` com `CREATE TABLE` ou `ALTER TABLE`.

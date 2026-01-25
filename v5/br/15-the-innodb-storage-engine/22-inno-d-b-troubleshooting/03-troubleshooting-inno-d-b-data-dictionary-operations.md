@@ -1,12 +1,12 @@
-### 14.22.3 Troubleshooting InnoDB Data Dictionary Operations
+### 14.22.3 Solução de Problemas em Operações do Data Dictionary do InnoDB
 
-Information about table definitions is stored both in the `.frm` files, and in the InnoDB data dictionary. If you move `.frm` files around, or if the server crashes in the middle of a data dictionary operation, these sources of information can become inconsistent.
+As informações sobre definições de tabela são armazenadas tanto nos arquivos `.frm` quanto no data dictionary do InnoDB. Se você mover arquivos `.frm` ou se o servidor falhar no meio de uma operação do data dictionary, essas fontes de informação podem se tornar inconsistentes.
 
-If a data dictionary corruption or consistency issue prevents you from starting `InnoDB`, see Section 14.22.2, “Forcing InnoDB Recovery” for information about manual recovery.
+Se uma corrupção do data dictionary ou um problema de consistência impedir o início do `InnoDB`, consulte a Seção 14.22.2, “Forçando a Recuperação do InnoDB” para obter informações sobre recuperação manual.
 
-#### CREATE TABLE Failure Due to Orphan Table
+#### Falha no CREATE TABLE Devido a Tabela Órfã
 
-A symptom of an out-of-sync data dictionary is that a `CREATE TABLE` statement fails. If this occurs, look in the server's error log. If the log says that the table already exists inside the `InnoDB` internal data dictionary, you have an orphan table inside the `InnoDB` tablespace files that has no corresponding `.frm` file. The error message looks like this:
+Um sintoma de um data dictionary dessincronizado é a falha de uma instrução `CREATE TABLE`. Se isso ocorrer, verifique o log de erros do servidor. Se o log indicar que a tabela já existe dentro do data dictionary interno do `InnoDB`, você tem uma tabela órfã dentro dos arquivos de tablespace do `InnoDB` que não possui um arquivo `.frm` correspondente. A mensagem de erro se parece com isto:
 
 ```sql
 InnoDB: Error: table test/parent already exists in InnoDB internal
@@ -21,11 +21,11 @@ InnoDB: Then MySQL thinks the table exists, and DROP TABLE will
 InnoDB: succeed.
 ```
 
-You can drop the orphan table by following the instructions given in the error message. If you are still unable to use `DROP TABLE` successfully, the problem may be due to name completion in the **mysql** client. To work around this problem, start the **mysql** client with the `--skip-auto-rehash` option and try `DROP TABLE` again. (With name completion on, **mysql** tries to construct a list of table names, which fails when a problem such as just described exists.)
+Você pode remover (drop) a tabela órfã seguindo as instruções fornecidas na mensagem de erro. Se você ainda não conseguir usar `DROP TABLE` com sucesso, o problema pode ser devido à conclusão de nomes (name completion) no cliente **mysql**. Para contornar esse problema, inicie o cliente **mysql** com a opção `--skip-auto-rehash` e tente o `DROP TABLE` novamente. (Com a conclusão de nomes ativada, o **mysql** tenta construir uma lista de nomes de tabelas, o que falha quando existe um problema como o que acabamos de descrever.)
 
-#### Cannot Open Datafile
+#### Não é Possível Abrir o Datafile
 
-With `innodb_file_per_table` enabled (the default), the following messages may appear at startup if a file-per-table tablespace file (`.ibd` file) is missing:
+Com `innodb_file_per_table` habilitado (o padrão), as seguintes mensagens podem aparecer na inicialização se um arquivo de tablespace file-per-table (arquivo `.ibd`) estiver ausente:
 
 ```sql
 [ERROR] InnoDB: Operating system error number 2 in a file operation.
@@ -34,17 +34,17 @@ With `innodb_file_per_table` enabled (the default), the following messages may a
 [Warning] InnoDB: Ignoring tablespace `test/t1` because it could not be opened.
 ```
 
-To address these messages, issue `DROP TABLE` statement to remove data about the missing table from the data dictionary.
+Para resolver estas mensagens, execute uma instrução `DROP TABLE` para remover os dados sobre a tabela ausente do data dictionary.
 
-#### Cannot Open File Error
+#### Erro de Não é Possível Abrir o Arquivo
 
-Another symptom of an out-of-sync data dictionary is that MySQL prints an error that it cannot open an `InnoDB` file:
+Outro sintoma de um data dictionary dessincronizado é o MySQL imprimir um erro indicando que não pode abrir um arquivo `InnoDB`:
 
 ```sql
 ERROR 1016: Can't open file: 'child2.ibd'. (errno: 1)
 ```
 
-In the error log you can find a message like this:
+No log de erros você pode encontrar uma mensagem como esta:
 
 ```sql
 InnoDB: Cannot find table test/child2 from the internal data dictionary
@@ -53,95 +53,95 @@ InnoDB: have deleted and recreated InnoDB data files but have forgotten
 InnoDB: to delete the corresponding .frm files of InnoDB tables?
 ```
 
-This means that there is an orphan `.frm` file without a corresponding table inside `InnoDB`. You can drop the orphan `.frm` file by deleting it manually.
+Isso significa que existe um arquivo `.frm` órfão sem uma tabela correspondente dentro do `InnoDB`. Você pode remover (drop) o arquivo `.frm` órfão excluindo-o manualmente.
 
-#### Orphan Intermediate Tables
+#### Tabelas Intermediárias Órfãs
 
-If MySQL exits in the middle of an in-place `ALTER TABLE` operation (`ALGORITHM=INPLACE`), you may be left with an orphan intermediate table that takes up space on your system. Also, an orphan intermediate table in an otherwise empty general tablespace prevents you from dropping the general tablespace. This section describes how to identify and remove orphan intermediate tables.
+Se o MySQL encerrar no meio de uma operação `ALTER TABLE` in-place (`ALGORITHM=INPLACE`), você pode ficar com uma tabela intermediária órfã que ocupa espaço em seu sistema. Além disso, uma tabela intermediária órfã em um general tablespace vazio impede que você remova o general tablespace. Esta seção descreve como identificar e remover tabelas intermediárias órfãs.
 
-Intermediate table names begin with an `#sql-ib` prefix (e.g., `#sql-ib87-856498050`). The accompanying `.frm` file has an `#sql-*` prefix and is named differently (e.g., `#sql-36ab_2.frm`).
+Os nomes das tabelas intermediárias começam com um prefixo `#sql-ib` (por exemplo, `#sql-ib87-856498050`). O arquivo `.frm` que o acompanha tem um prefixo `#sql-*` e é nomeado de forma diferente (por exemplo, `#sql-36ab_2.frm`).
 
-To identify orphan intermediate tables on your system, you can query the Information Schema `INNODB_SYS_TABLES` table. Look for table names that begin with `#sql`. If the original table resides in a file-per-table tablespace, the tablespace file (the `#sql-*.ibd` file) for the orphan intermediate table should be visible in the database directory.
+Para identificar tabelas intermediárias órfãs em seu sistema, você pode consultar a tabela `INNODB_SYS_TABLES` do Information Schema. Procure nomes de tabelas que comecem com `#sql`. Se a tabela original residir em um tablespace file-per-table, o arquivo de tablespace (o arquivo `#sql-*.ibd`) para a tabela intermediária órfã deve estar visível no diretório do database.
 
 ```sql
 SELECT * FROM INFORMATION_SCHEMA.INNODB_SYS_TABLES WHERE NAME LIKE '%#sql%';
 ```
 
-To remove an orphan intermediate table, perform the following steps:
+Para remover uma tabela intermediária órfã, execute os seguintes passos:
 
-1. In the database directory, rename the `#sql-*.frm` file to match the base name of the orphan intermediate table:
+1. No diretório do database, renomeie o arquivo `#sql-*.frm` para corresponder ao nome base da tabela intermediária órfã:
 
    ```sql
    $> mv #sql-36ab_2.frm #sql-ib87-856498050.frm
    ```
 
-   Note
+   Nota
 
-   If there is no `.frm` file, you can recreate it. The `.frm` file must have the same table schema as the orphan intermediate table (it must have the same columns and indexes) and must be placed in the database directory of the orphan intermediate table.
+   Se não houver um arquivo `.frm`, você pode recriá-lo. O arquivo `.frm` deve ter o mesmo table schema da tabela intermediária órfã (deve ter as mesmas columns e indexes) e deve ser colocado no diretório do database da tabela intermediária órfã.
 
-2. Drop the orphan intermediate table by issuing a `DROP TABLE` statement, prefixing the name of the table with `#mysql50#` and enclosing the table name in backticks. For example:
+2. Remova (drop) a tabela intermediária órfã executando uma instrução `DROP TABLE`, prefixando o nome da tabela com `#mysql50#` e envolvendo o nome da tabela em backticks (apóstrofos invertidos). Por exemplo:
 
    ```sql
    mysql> DROP TABLE `#mysql50##sql-ib87-856498050`;
    ```
 
-   The `#mysql50#` prefix tells MySQL to ignore `file name safe encoding` introduced in MySQL 5.1. Enclosing the table name in backticks is required to perform SQL statements on table names with special characters such as “#”.
+   O prefixo `#mysql50#` instrui o MySQL a ignorar a `file name safe encoding` (codificação de nome de arquivo segura) introduzida no MySQL 5.1. Envolver o nome da tabela em backticks é necessário para executar instruções SQL em nomes de tabela com caracteres especiais como “#”.
 
-Note
+Nota
 
-If an unexpected exit occurs during an in-place `ALTER TABLE` operation that was moving a table to a different tablespace, the recovery process restores the table to its original location but leaves an orphan intermediate table in the destination tablespace.
+Se ocorrer um encerramento inesperado durante uma operação `ALTER TABLE` in-place que estava movendo uma tabela para um tablespace diferente, o processo de recuperação restaura a tabela para sua localização original, mas deixa uma tabela intermediária órfã no tablespace de destino.
 
-Note
+Nota
 
-If MySQL exits in the middle of an in-place `ALTER TABLE` operation on a partitioned table, you may be left with multiple orphan intermediate tables, one per partition. In this case, use the following procedure to remove the orphan intermediate tables:
+Se o MySQL encerrar no meio de uma operação `ALTER TABLE` in-place em uma tabela particionada, você pode ficar com múltiplas tabelas intermediárias órfãs, uma por partition. Neste caso, use o seguinte procedimento para remover as tabelas intermediárias órfãs:
 
-1. In a separate instance of the same MySQL version, create a non-partitioned table with the same schema name and columns as the partitioned table.
+1. Em uma instância separada da mesma versão do MySQL, crie uma tabela não particionada com o mesmo schema name e columns da tabela particionada.
 
-2. Copy the `.frm` file of the non-partitioned table to the database directory with the orphan intermediate tables.
+2. Copie o arquivo `.frm` da tabela não particionada para o diretório do database contendo as tabelas intermediárias órfãs.
 
-3. Make a copy of the `.frm` file for each table, and rename the `.frm` files to match names of the orphan intermediate tables (as described above).
+3. Crie uma cópia do arquivo `.frm` para cada tabela e renomeie os arquivos `.frm` para corresponder aos nomes das tabelas intermediárias órfãs (conforme descrito acima).
 
-4. Perform a `DROP TABLE` operation (as described above) for each table.
+4. Execute uma operação `DROP TABLE` (conforme descrito acima) para cada tabela.
 
-#### Orphan Temporary Tables
+#### Tabelas Temporárias Órfãs
 
-If MySQL exits in the middle of a table-copying `ALTER TABLE` operation (`ALGORITHM=COPY`), you may be left with an orphan temporary table that takes up space on your system. Also, an orphan temporary table in an otherwise empty general tablespace prevents you from dropping the general tablespace. This section describes how to identify and remove orphan temporary tables.
+Se o MySQL encerrar no meio de uma operação `ALTER TABLE` de cópia de tabela (`ALGORITHM=COPY`), você pode ficar com uma tabela temporária órfã que ocupa espaço em seu sistema. Além disso, uma tabela temporária órfã em um general tablespace vazio impede que você remova o general tablespace. Esta seção descreve como identificar e remover tabelas temporárias órfãs.
 
-Orphan temporary table names begin with an `#sql-` prefix (e.g., `#sql-540_3`). The accompanying `.frm` file has the same base name as the orphan temporary table.
+Os nomes das tabelas temporárias órfãs começam com um prefixo `#sql-` (por exemplo, `#sql-540_3`). O arquivo `.frm` que o acompanha tem o mesmo nome base da tabela temporária órfã.
 
-Note
+Nota
 
-If there is no `.frm` file, you can recreate it. The `.frm` file must have the same table schema as the orphan temporary table (it must have the same columns and indexes) and must be placed in the database directory of the orphan temporary table.
+Se não houver um arquivo `.frm`, você pode recriá-lo. O arquivo `.frm` deve ter o mesmo table schema da tabela temporária órfã (deve ter as mesmas columns e indexes) e deve ser colocado no diretório do database da tabela temporária órfã.
 
-To identify orphan temporary tables on your system, you can query the Information Schema `INNODB_SYS_TABLES` table. Look for table names that begin with `#sql`. If the original table resides in a file-per-table tablespace, the tablespace file (the `#sql-*.ibd` file) for the orphan temporary table should be visible in the database directory.
+Para identificar tabelas temporárias órfãs em seu sistema, você pode consultar a tabela `INNODB_SYS_TABLES` do Information Schema. Procure nomes de tabelas que comecem com `#sql`. Se a tabela original residir em um tablespace file-per-table, o arquivo de tablespace (o arquivo `#sql-*.ibd`) para a tabela temporária órfã deve estar visível no diretório do database.
 
 ```sql
 SELECT * FROM INFORMATION_SCHEMA.INNODB_SYS_TABLES WHERE NAME LIKE '%#sql%';
 ```
 
-To remove an orphan temporary table, drop the table by issuing a `DROP TABLE` statement, prefixing the name of the table with `#mysql50#` and enclosing the table name in backticks. For example:
+Para remover uma tabela temporária órfã, remova a tabela executando uma instrução `DROP TABLE`, prefixando o nome da tabela com `#mysql50#` e envolvendo o nome da tabela em backticks. Por exemplo:
 
 ```sql
 mysql> DROP TABLE `#mysql50##sql-540_3`;
 ```
 
-The `#mysql50#` prefix tells MySQL to ignore `file name safe encoding` introduced in MySQL 5.1. Enclosing the table name in backticks is required to perform SQL statements on table names with special characters such as “#”.
+O prefixo `#mysql50#` instrui o MySQL a ignorar a `file name safe encoding` introduzida no MySQL 5.1. Envolver o nome da tabela em backticks é necessário para executar instruções SQL em nomes de tabela com caracteres especiais como “#”.
 
-Note
+Nota
 
-If MySQL exits in the middle of an table-copying `ALTER TABLE` operation on a partitioned table, you may be left with multiple orphan temporary tables, one per partition. In this case, use the following procedure to remove the orphan temporary tables:
+Se o MySQL encerrar no meio de uma operação `ALTER TABLE` de cópia de tabela em uma tabela particionada, você pode ficar com múltiplas tabelas temporárias órfãs, uma por partition. Neste caso, use o seguinte procedimento para remover as tabelas temporárias órfãs:
 
-1. In a separate instance of the same MySQL version, create a non-partitioned table with the same schema name and columns as the partitioned table.
+1. Em uma instância separada da mesma versão do MySQL, crie uma tabela não particionada com o mesmo schema name e columns da tabela particionada.
 
-2. Copy the `.frm` file of the non-partitioned table to the database directory with the orphan temporary tables.
+2. Copie o arquivo `.frm` da tabela não particionada para o diretório do database contendo as tabelas temporárias órfãs.
 
-3. Make a copy of the `.frm` file for each table, and rename the `.frm` files to match the names of the orphan temporary tables (as described above).
+3. Crie uma cópia do arquivo `.frm` para cada tabela e renomeie os arquivos `.frm` para corresponder aos nomes das tabelas temporárias órfãs (conforme descrito acima).
 
-4. Perform a `DROP TABLE` operation (as described above) for each table.
+4. Execute uma operação `DROP TABLE` (conforme descrito acima) para cada tabela.
 
-#### Tablespace Does Not Exist
+#### Tablespace Não Existe
 
-With `innodb_file_per_table` enabled, the following message might occur if the `.frm` or `.ibd` files (or both) are missing:
+Com `innodb_file_per_table` habilitado, a seguinte mensagem pode ocorrer se os arquivos `.frm` ou `.ibd` (ou ambos) estiverem faltando:
 
 ```sql
 InnoDB: in InnoDB data dictionary has tablespace id N,
@@ -152,23 +152,23 @@ InnoDB: whose .ibd and .frm files MySQL automatically removed, but the
 InnoDB: table still exists in the InnoDB internal data dictionary.
 ```
 
-If this occurs, try the following procedure to resolve the problem:
+Se isso ocorrer, tente o seguinte procedimento para resolver o problema:
 
-1. Create a matching `.frm` file in some other database directory and copy it to the database directory where the orphan table is located.
+1. Crie um arquivo `.frm` correspondente em algum outro diretório de database e copie-o para o diretório de database onde a tabela órfã está localizada.
 
-2. Issue `DROP TABLE` for the original table. That should successfully drop the table and `InnoDB` should print a warning to the error log that the `.ibd` file was missing.
+2. Execute `DROP TABLE` para a tabela original. Isso deve remover a tabela com sucesso e o `InnoDB` deve imprimir um aviso no log de erros indicando que o arquivo `.ibd` estava faltando.
 
-#### Restoring Orphan File-Per-Table ibd Files
+#### Restaurando Arquivos ibd Órfãos File-Per-Table
 
-This procedure describes how to restore orphan file-per-table `.ibd` files to another MySQL instance. You might use this procedure if the system tablespace is lost or unrecoverable and you want to restore `.ibd` file backups on a new MySQL instance.
+Este procedimento descreve como restaurar arquivos `.ibd` órfãos file-per-table em outra instância do MySQL. Você pode usar este procedimento se o system tablespace for perdido ou irrecuperável e você desejar restaurar backups de arquivos `.ibd` em uma nova instância do MySQL.
 
-The procedure is not supported for general tablespace `.ibd` files.
+O procedimento não é suportado para arquivos `.ibd` de general tablespace.
 
-The procedure assumes that you only have `.ibd` file backups, you are recovering to the same version of MySQL that initially created the orphan `.ibd` files, and that `.ibd` file backups are clean. See Section 14.6.1.4, “Moving or Copying InnoDB Tables” for information about creating clean backups.
+O procedimento assume que você tem apenas backups de arquivos `.ibd`, que está se recuperando para a mesma versão do MySQL que criou inicialmente os arquivos `.ibd` órfãos e que os backups dos arquivos `.ibd` estão "clean" (limpos). Consulte a Seção 14.6.1.4, “Movendo ou Copiando Tabelas InnoDB” para obter informações sobre a criação de backups limpos.
 
-Table import limitations outlined in Section 14.6.1.3, “Importing InnoDB Tables” are applicable to this procedure.
+As limitações de importação de tabela descritas na Seção 14.6.1.3, “Importando Tabelas InnoDB”, são aplicáveis a este procedimento.
 
-1. On the new MySQL instance, recreate the table in a database of the same name.
+1. Na nova instância do MySQL, recrie a tabela em um database com o mesmo nome.
 
    ```sql
    mysql> CREATE DATABASE sakila;
@@ -185,21 +185,21 @@ Table import limitations outlined in Section 14.6.1.3, “Importing InnoDB Tabl
           )ENGINE=InnoDB DEFAULT CHARSET=utf8;
    ```
 
-2. Discard the tablespace of the newly created table.
+2. Descarte o tablespace da tabela recém-criada.
 
    ```sql
    mysql> ALTER TABLE sakila.actor DISCARD TABLESPACE;
    ```
 
-3. Copy the orphan `.ibd` file from your backup directory to the new database directory.
+3. Copie o arquivo `.ibd` órfão do seu diretório de backup para o novo diretório do database.
 
    ```sql
    $> cp /backup_directory/actor.ibd path/to/mysql-5.7/data/sakila/
    ```
 
-4. Ensure that the `.ibd` file has the necessary file permissions.
+4. Certifique-se de que o arquivo `.ibd` tenha as permissões de arquivo necessárias.
 
-5. Import the orphan `.ibd` file. A warning is issued indicating that `InnoDB` tries to import the file without schema verification.
+5. Importe o arquivo `.ibd` órfão. Um aviso é emitido indicando que o `InnoDB` tentará importar o arquivo sem verificação de schema.
 
    ```sql
    mysql> ALTER TABLE sakila.actor IMPORT TABLESPACE; SHOW WARNINGS;
@@ -210,7 +210,7 @@ Table import limitations outlined in Section 14.6.1.3, “Importing InnoDB Tabl
    without schema verification
    ```
 
-6. Query the table to verify that the `.ibd` file was successfully restored.
+6. Consulte a tabela (Query) para verificar se o arquivo `.ibd` foi restaurado com sucesso.
 
    ```sql
    mysql> SELECT COUNT(*) FROM sakila.actor;

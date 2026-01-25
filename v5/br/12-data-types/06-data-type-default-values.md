@@ -1,13 +1,13 @@
-## 11.6 Data Type Default Values
+## 11.6 Valores Padrão de Tipos de Dados
 
-Data type specifications can have explicit or implicit default values.
+As especificações de tipos de dados podem ter valores padrão explícitos ou implícitos.
 
-* Explicit Default Handling
-* Implicit Default Handling
+* Tratamento Explícito de Padrão (Explicit Default Handling)
+* Tratamento Implícito de Padrão (Implicit Default Handling)
 
-### Explicit Default Handling
+### Tratamento Explícito de Padrão
 
-A `DEFAULT value` clause in a data type specification explicitly indicates a default value for a column. Examples:
+Uma cláusula `DEFAULT value` na especificação de um tipo de dado indica explicitamente um valor padrão para uma coluna. Exemplos:
 
 ```sql
 CREATE TABLE t1 (
@@ -17,33 +17,33 @@ CREATE TABLE t1 (
 );
 ```
 
-`SERIAL DEFAULT VALUE` is a special case. In the definition of an integer column, it is an alias for `NOT NULL AUTO_INCREMENT UNIQUE`.
+`SERIAL DEFAULT VALUE` é um caso especial. Na definição de uma coluna inteira, é um alias para `NOT NULL AUTO_INCREMENT UNIQUE`.
 
-With one exception, the default value specified in a `DEFAULT` clause must be a literal constant; it cannot be a function or an expression. This means, for example, that you cannot set the default for a date column to be the value of a function such as `NOW()` or `CURRENT_DATE`. The exception is that, for `TIMESTAMP` and `DATETIME` columns, you can specify `CURRENT_TIMESTAMP` as the default. See Section 11.2.6, “Automatic Initialization and Updating for TIMESTAMP and DATETIME”.
+Com uma exceção, o valor padrão especificado em uma cláusula `DEFAULT` deve ser uma constante literal; não pode ser uma função ou uma expressão. Isso significa, por exemplo, que você não pode definir o padrão para uma coluna de data como o valor de uma função como `NOW()` ou `CURRENT_DATE`. A exceção é que, para colunas `TIMESTAMP` e `DATETIME`, você pode especificar `CURRENT_TIMESTAMP` como padrão. Consulte a Seção 11.2.6, “Inicialização e Atualização Automática para TIMESTAMP e DATETIME”.
 
-The `BLOB`, `TEXT`, `GEOMETRY`, and `JSON` data types cannot be assigned a default value.
+Os tipos de dados `BLOB`, `TEXT`, `GEOMETRY` e `JSON` não podem ter um valor padrão atribuído.
 
-### Implicit Default Handling
+### Tratamento Implícito de Padrão
 
-If a data type specification includes no explicit `DEFAULT` value, MySQL determines the default value as follows:
+Se a especificação de um tipo de dado não incluir um valor `DEFAULT` explícito, o MySQL determina o valor padrão da seguinte forma:
 
-If the column can take `NULL` as a value, the column is defined with an explicit `DEFAULT NULL` clause.
+Se a coluna puder aceitar `NULL` como um valor, a coluna é definida com uma cláusula `DEFAULT NULL` explícita.
 
-If the column cannot take `NULL` as a value, MySQL defines the column with no explicit `DEFAULT` clause.
+Se a coluna não puder aceitar `NULL` como um valor, o MySQL define a coluna sem uma cláusula `DEFAULT` explícita.
 
-For data entry into a `NOT NULL` column that has no explicit `DEFAULT` clause, if an `INSERT` or `REPLACE` statement includes no value for the column, or an `UPDATE` statement sets the column to `NULL`, MySQL handles the column according to the SQL mode in effect at the time:
+Para a entrada de dados em uma coluna `NOT NULL` que não possui uma cláusula `DEFAULT` explícita, se uma instrução `INSERT` ou `REPLACE` não incluir um valor para a coluna, ou uma instrução `UPDATE` definir a coluna como `NULL`, o MySQL trata a coluna de acordo com o modo SQL em vigor no momento:
 
-* If strict SQL mode is enabled, an error occurs for transactional tables and the statement is rolled back. For nontransactional tables, an error occurs, but if this happens for the second or subsequent row of a multiple-row statement, any rows preceding the error have already been inserted.
+* Se o modo SQL estrito estiver ativado, ocorrerá um erro para tabelas transacionais e a instrução será revertida (rolled back). Para tabelas não transacionais, ocorre um erro, mas se isso acontecer para a segunda ou subsequente linha de uma instrução de múltiplas linhas, quaisquer linhas que precederam o erro já foram inseridas.
 
-* If strict mode is not enabled, MySQL sets the column to the implicit default value for the column data type.
+* Se o modo estrito não estiver ativado, o MySQL define a coluna para o valor padrão implícito para o tipo de dado da coluna.
 
-Suppose that a table `t` is defined as follows:
+Suponha que uma tabela `t` seja definida da seguinte forma:
 
 ```sql
 CREATE TABLE t (i INT NOT NULL);
 ```
 
-In this case, `i` has no explicit default, so in strict mode each of the following statements produce an error and no row is inserted. When not using strict mode, only the third statement produces an error; the implicit default is inserted for the first two statements, but the third fails because `DEFAULT(i)` cannot produce a value:
+Neste caso, `i` não tem um padrão explícito, então no modo estrito cada uma das seguintes instruções produz um erro e nenhuma linha é inserida. Quando não está usando o modo estrito, apenas a terceira instrução produz um erro; o padrão implícito é inserido para as duas primeiras instruções, mas a terceira falha porque `DEFAULT(i)` não pode produzir um valor:
 
 ```sql
 INSERT INTO t VALUES();
@@ -51,14 +51,14 @@ INSERT INTO t VALUES(DEFAULT);
 INSERT INTO t VALUES(DEFAULT(i));
 ```
 
-See Section 5.1.10, “Server SQL Modes”.
+Consulte a Seção 5.1.10, “Modos SQL do Servidor”.
 
-For a given table, the `SHOW CREATE TABLE` statement displays which columns have an explicit `DEFAULT` clause.
+Para uma determinada tabela, a instrução `SHOW CREATE TABLE` exibe quais colunas têm uma cláusula `DEFAULT` explícita.
 
-Implicit defaults are defined as follows:
+Os padrões implícitos são definidos da seguinte forma:
 
-* For numeric types, the default is `0`, with the exception that for integer or floating-point types declared with the `AUTO_INCREMENT` attribute, the default is the next value in the sequence.
+* Para tipos numéricos, o padrão é `0`, com a exceção de que para tipos inteiros ou de ponto flutuante declarados com o atributo `AUTO_INCREMENT`, o padrão é o próximo valor na sequência.
 
-* For date and time types other than `TIMESTAMP`, the default is the appropriate “zero” value for the type. This is also true for `TIMESTAMP` if the `explicit_defaults_for_timestamp` system variable is enabled (see Section 5.1.7, “Server System Variables”). Otherwise, for the first `TIMESTAMP` column in a table, the default value is the current date and time. See Section 11.2, “Date and Time Data Types”.
+* Para tipos de data e hora diferentes de `TIMESTAMP`, o padrão é o valor “zero” apropriado para o tipo. Isso também é verdade para `TIMESTAMP` se a variável de sistema `explicit_defaults_for_timestamp` estiver habilitada (consulte a Seção 5.1.7, “Variáveis de Sistema do Servidor”). Caso contrário, para a primeira coluna `TIMESTAMP` em uma tabela, o valor padrão é a data e hora atuais. Consulte a Seção 11.2, “Tipos de Dados de Data e Hora”.
 
-* For string types other than `ENUM`, the default value is the empty string. For `ENUM`, the default is the first enumeration value.
+* Para tipos String diferentes de `ENUM`, o valor padrão é a String vazia. Para `ENUM`, o padrão é o primeiro valor de enumeração.

@@ -1,17 +1,17 @@
-#### 25.12.8.3 The users Table
+#### 25.12.8.3 A Tabela users
 
-The [`users`](performance-schema-users-table.html "25.12.8.3 The users Table") table contains a row for each user who has connected to the MySQL server. For each user name, the table counts the current and total number of connections. The table size is autosized at server startup. To set the table size explicitly, set the [`performance_schema_users_size`](performance-schema-system-variables.html#sysvar_performance_schema_users_size) system variable at server startup. To disable user statistics, set this variable to 0.
+A tabela [`users`](performance-schema-users-table.html "25.12.8.3 The users Table") contém uma linha para cada usuário que se conectou ao *server* MySQL. Para cada nome de usuário, a tabela conta o número atual e total de conexões. O tamanho da tabela é ajustado automaticamente na inicialização do *server*. Para definir o tamanho da tabela explicitamente, defina a variável de sistema [`performance_schema_users_size`](performance-schema-system-variables.html#sysvar_performance_schema_users_size) na inicialização do *server*. Para desabilitar as estatísticas de usuário, defina esta variável como 0.
 
-The [`users`](performance-schema-users-table.html "25.12.8.3 The users Table") table has the following columns. For a description of how the Performance Schema maintains rows in this table, including the effect of [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement"), see [Section 25.12.8, “Performance Schema Connection Tables”](performance-schema-connection-tables.html "25.12.8 Performance Schema Connection Tables").
+A tabela [`users`](performance-schema-users-table.html "25.12.8.3 The users Table") possui as seguintes colunas. Para uma descrição de como o Performance Schema mantém as linhas nesta tabela, incluindo o efeito da instrução [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement"), consulte a [Seção 25.12.8, “Tabelas de Conexão do Performance Schema”](performance-schema-connection-tables.html "25.12.8 Performance Schema Connection Tables").
 
 * `USER`
 
-  The client user name for the connection. This is `NULL` for an internal thread, or for a user session that failed to authenticate.
+  O nome de usuário (user name) cliente para a conexão. Este campo é `NULL` para um *thread* interno ou para uma sessão de usuário que falhou na autenticação.
 
 * `CURRENT_CONNECTIONS`
 
-  The current number of connections for the user.
+  O número atual de conexões para o usuário.
 
 * `TOTAL_CONNECTIONS`
 
-  The total number of connections for the user.
+  O número total de conexões para o usuário.

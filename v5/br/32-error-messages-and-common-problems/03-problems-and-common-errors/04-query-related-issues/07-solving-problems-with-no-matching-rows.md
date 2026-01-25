@@ -1,24 +1,24 @@
-#### B.3.4.7 Solving Problems with No Matching Rows
+#### B.3.4.7 Solucionando Problemas com Nenhuma Linha Correspondente
 
-If you have a complicated query that uses many tables but that returns no rows, you should use the following procedure to find out what is wrong:
+Se você tem uma Query complicada que usa muitas tabelas, mas que não retorna nenhuma linha, você deve usar o seguinte procedimento para descobrir o que está errado:
 
-1. Test the query with [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") to check whether you can find something that is obviously wrong. See [Section 13.8.2, “EXPLAIN Statement”](explain.html "13.8.2 EXPLAIN Statement").
+1. Teste a Query com [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") para verificar se você consegue encontrar algo que esteja obviamente errado. Consulte [Seção 13.8.2, “EXPLAIN Statement”](explain.html "13.8.2 EXPLAIN Statement").
 
-2. Select only those columns that are used in the `WHERE` clause.
+2. Selecione apenas as colunas que são usadas na cláusula `WHERE`.
 
-3. Remove one table at a time from the query until it returns some rows. If the tables are large, it is a good idea to use `LIMIT 10` with the query.
+3. Remova uma tabela por vez da Query até que ela retorne algumas linhas. Se as tabelas forem grandes, é uma boa ideia usar `LIMIT 10` com a Query.
 
-4. Issue a [`SELECT`](select.html "13.2.9 SELECT Statement") for the column that should have matched a row against the table that was last removed from the query.
+4. Execute um [`SELECT`](select.html "13.2.9 SELECT Statement") para a coluna que deveria ter correspondido a uma linha na tabela que foi removida por último da Query.
 
-5. If you are comparing [`FLOAT`](floating-point-types.html "11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE") or [`DOUBLE`](floating-point-types.html "11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE") columns with numbers that have decimals, you cannot use equality (`=`) comparisons. This problem is common in most computer languages because not all floating-point values can be stored with exact precision. In some cases, changing the [`FLOAT`](floating-point-types.html "11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE") to a [`DOUBLE`](floating-point-types.html "11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE") fixes this. See [Section B.3.4.8, “Problems with Floating-Point Values”](problems-with-float.html "B.3.4.8 Problems with Floating-Point Values").
+5. Se você estiver comparando colunas [`FLOAT`](floating-point-types.html "11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE") ou [`DOUBLE`](floating-point-types.html "11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE") com números que possuem decimais, você não pode usar comparações de igualdade (`=`). Este problema é comum na maioria das linguagens de computador, pois nem todos os valores de ponto flutuante podem ser armazenados com precisão exata. Em alguns casos, alterar o [`FLOAT`](floating-point-types.html "11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE") para um [`DOUBLE`](floating-point-types.html "11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE") resolve isso. Consulte [Seção B.3.4.8, “Problems with Floating-Point Values”](problems-with-float.html "B.3.4.8 Problems with Floating-Point Values").
 
-6. If you still cannot figure out what is wrong, create a minimal test that can be run with `mysql test < query.sql` that shows your problems. You can create a test file by dumping the tables with [**mysqldump --quick db_name *`tbl_name_1`* ... *`tbl_name_n`* > query.sql**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program"). Open the file in an editor, remove some insert lines (if there are more than needed to demonstrate the problem), and add your [`SELECT`](select.html "13.2.9 SELECT Statement") statement at the end of the file.
+6. Se você ainda não conseguir descobrir o que está errado, crie um teste mínimo que possa ser executado com `mysql test < query.sql` e que demonstre seus problemas. Você pode criar um arquivo de teste fazendo o dump das tabelas com [**mysqldump --quick db_name *`tbl_name_1`* ... *`tbl_name_n`* > query.sql**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program"). Abra o arquivo em um editor, remova algumas linhas de `INSERT` (se houver mais do que o necessário para demonstrar o problema) e adicione sua instrução [`SELECT`](select.html "13.2.9 SELECT Statement") no final do arquivo.
 
-   Verify that the test file demonstrates the problem by executing these commands:
+   Verifique se o arquivo de teste demonstra o problema executando estes comandos:
 
    ```sql
    $> mysqladmin create test2
    $> mysql test2 < query.sql
    ```
 
-   Attach the test file to a bug report, which you can file using the instructions in [Section 1.5, “How to Report Bugs or Problems”](bug-reports.html "1.5 How to Report Bugs or Problems").
+   Anexe o arquivo de teste a um relatório de bug, que você pode registrar usando as instruções na [Seção 1.5, “How to Report Bugs or Problems”](bug-reports.html "1.5 How to Report Bugs or Problems").

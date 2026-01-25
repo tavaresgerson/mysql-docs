@@ -1,6 +1,6 @@
-## 26.3 sys Schema Progress Reporting
+## 26.3 Relatório de Progresso do Schema sys
 
-The following `sys` schema views provide progress reporting for long-running transactions:
+As seguintes views do `sys` schema fornecem relatórios de progresso para transactions de longa duração:
 
 ```sql
 processlist
@@ -9,9 +9,9 @@ x$processlist
 x$session
 ```
 
-Assuming that the required instruments and consumers are enabled, the `progress` column of these views shows the percentage of work completed for stages that support progress reporting.
+Assumindo que os instruments e consumers necessários estejam habilitados, a coluna `progress` dessas views mostra a porcentagem do trabalho concluído para stages que suportam relatórios de progresso.
 
-Stage progress reporting requires that the `events_stages_current` consumer be enabled, as well as the instruments for which progress information is desired. Instruments for these stages currently support progress reporting:
+O relatório de progresso de Stage requer que o consumer `events_stages_current` esteja habilitado, bem como os instruments para os quais a informação de progresso é desejada. Instruments para estes stages atualmente suportam relatórios de progresso:
 
 ```sql
 stage/sql/Copying to tmp table
@@ -25,4 +25,4 @@ stage/innodb/alter table (read PK and internal sort)
 stage/innodb/buffer pool load
 ```
 
-For stages that do not support estimated and completed work reporting, or if the required instruments or consumers are not enabled, the `progress` column is `NULL`.
+Para stages que não suportam relatórios de trabalho estimado e concluído, ou se os instruments ou consumers necessários não estiverem habilitados, a coluna `progress` é `NULL`.

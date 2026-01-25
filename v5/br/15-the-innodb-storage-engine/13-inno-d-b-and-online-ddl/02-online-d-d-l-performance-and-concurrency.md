@@ -1,62 +1,62 @@
-### 14.13.2 Online DDL Performance and Concurrency
+### 14.13.2 Desempenho e Concorrência do DDL Online
 
-Online DDL improves several aspects of MySQL operation:
+DDL Online melhora diversos aspectos da operação do MySQL:
 
-* Applications that access the table are more responsive because queries and DML operations on the table can proceed while the DDL operation is in progress. Reduced locking and waiting for MySQL server resources leads to greater scalability, even for operations that are not involved in the DDL operation.
+* Aplicações que acessam a table ficam mais responsivas porque as queries e operações DML na table podem prosseguir enquanto a operação DDL está em andamento. A redução de locking e da espera por recursos do servidor MySQL leva a uma maior escalabilidade, mesmo para operações que não estão envolvidas na operação DDL.
 
-* In-place operations avoid the disk I/O and CPU cycles associated with the table-copy method, which minimizes overall load on the database. Minimizing load helps maintain good performance and high throughput during the DDL operation.
+* Operações *in-place* (no local) evitam o I/O de disco e os ciclos de CPU associados ao método de cópia de table, o que minimiza a carga geral no Database. A minimização da carga ajuda a manter um bom desempenho e alto *throughput* durante a operação DDL.
 
-* In-place operations read less data into the buffer pool than the table-copy operations, which reduces purging of frequently accessed data from memory. Purging of frequently accessed data can cause a temporary performance dip after a DDL operation.
+* Operações *in-place* leem menos dados para o Buffer Pool do que as operações de cópia de table, o que reduz a remoção (*purging*) de dados acessados frequentemente da memória. A remoção de dados acessados frequentemente pode causar uma queda temporária de desempenho após uma operação DDL.
 
-#### The LOCK clause
+#### A cláusula LOCK
 
-By default, MySQL uses as little locking as possible during a DDL operation. The `LOCK` clause can be specified to enforce more restrictive locking, if required. If the `LOCK` clause specifies a less restrictive level of locking than is permitted for a particular DDL operation, the statement fails with an error. `LOCK` clauses are described below, in order of least to most restrictive:
+Por padrão, o MySQL usa o mínimo de locking possível durante uma operação DDL. A cláusula `LOCK` pode ser especificada para impor um locking mais restritivo, se necessário. Se a cláusula `LOCK` especificar um nível de locking menos restritivo do que o permitido para uma operação DDL específica, o statement falhará com um erro. As cláusulas `LOCK` são descritas abaixo, em ordem da menos para a mais restritiva:
 
 * `LOCK=NONE`:
 
-  Permits concurrent queries and DML.
+  Permite queries e DML concorrentes.
 
-  For example, use this clause for tables involving customer signups or purchases, to avoid making the tables unavailable during lengthy DDL operations.
+  Por exemplo, use esta cláusula para tables envolvendo cadastros ou compras de clientes, para evitar que as tables fiquem indisponíveis durante operações DDL demoradas.
 
 * `LOCK=SHARED`:
 
-  Permits concurrent queries but blocks DML.
+  Permite queries concorrentes, mas bloqueia DML.
 
-  For example, use this clause on data warehouse tables, where you can delay data load operations until the DDL operation is finished, but queries cannot be delayed for long periods.
+  Por exemplo, use esta cláusula em tables de *data warehouse*, onde você pode atrasar as operações de carregamento de dados até que a operação DDL seja concluída, mas as queries não podem ser atrasadas por longos períodos.
 
 * `LOCK=DEFAULT`:
 
-  Permits as much concurrency as possible (concurrent queries, DML, or both). Omitting the `LOCK` clause is the same as specifying `LOCK=DEFAULT`.
+  Permite o máximo de concorrência possível (queries concorrentes, DML, ou ambos). Omitir a cláusula `LOCK` é o mesmo que especificar `LOCK=DEFAULT`.
 
-  Use this clause when you know that the default locking level of the DDL statement does not cause availability problems for the table.
+  Use esta cláusula quando souber que o nível de locking padrão do statement DDL não causará problemas de disponibilidade para a table.
 
 * `LOCK=EXCLUSIVE`:
 
-  Blocks concurrent queries and DML.
+  Bloqueia queries e DML concorrentes.
 
-  Use this clause if the primary concern is finishing the DDL operation in the shortest amount of time possible, and concurrent query and DML access is not necessary. You might also use this clause if the server is supposed to be idle, to avoid unexpected table accesses.
+  Use esta cláusula se a principal preocupação for concluir a operação DDL no menor tempo possível, e o acesso concorrente de query e DML não for necessário. Você também pode usar esta cláusula se o servidor estiver supostamente ocioso, para evitar acessos inesperados à table.
 
-#### Online DDL and Metadata Locks
+#### DDL Online e Metadata Locks
 
-Online DDL operations can be viewed as having three phases:
+As operações DDL Online podem ser vistas como tendo três fases:
 
-* *Phase 1: Initialization*
+* *Fase 1: Inicialização*
 
-  In the initialization phase, the server determines how much concurrency is permitted during the operation, taking into account storage engine capabilities, operations specified in the statement, and user-specified `ALGORITHM` and `LOCK` options. During this phase, a shared upgradeable metadata lock is taken to protect the current table definition.
+  Na fase de inicialização, o servidor determina quanta concorrência é permitida durante a operação, levando em consideração os recursos do storage engine, as operações especificadas no statement e as opções `ALGORITHM` e `LOCK` especificadas pelo usuário. Durante esta fase, um *shared upgradeable Metadata Lock* é obtido para proteger a definição atual da table.
 
-* *Phase 2: Execution*
+* *Fase 2: Execução*
 
-  In this phase, the statement is prepared and executed. Whether the metadata lock is upgraded to exclusive depends on the factors assessed in the initialization phase. If an exclusive metadata lock is required, it is only taken briefly during statement preparation.
+  Nesta fase, o statement é preparado e executado. Se o Metadata Lock é atualizado para *exclusive* depende dos fatores avaliados na fase de inicialização. Se um Metadata Lock exclusivo for necessário, ele é obtido apenas brevemente durante a preparação do statement.
 
-* *Phase 3: Commit Table Definition*
+* *Fase 3: Commit da Definição da Table*
 
-  In the commit table definition phase, the metadata lock is upgraded to exclusive to evict the old table definition and commit the new one. Once granted, the duration of the exclusive metadata lock is brief.
+  Na fase de commit da definição da table, o Metadata Lock é atualizado para *exclusive* para despejar a antiga definição da table e realizar o commit da nova. Uma vez concedido, a duração do Metadata Lock exclusivo é breve.
 
-Due to the exclusive metadata lock requirements outlined above, an online DDL operation may have to wait for concurrent transactions that hold metadata locks on the table to commit or rollback. Transactions started before or during the DDL operation can hold metadata locks on the table being altered. In the case of a long running or inactive transaction, an online DDL operation can time out waiting for an exclusive metadata lock. Additionally, a pending exclusive metadata lock requested by an online DDL operation blocks subsequent transactions on the table.
+Devido aos requisitos de Metadata Lock exclusivo descritos acima, uma operação DDL online pode ter que esperar que as transações concorrentes que detêm Metadata Locks na table façam commit ou rollback. Transações iniciadas antes ou durante a operação DDL podem manter Metadata Locks na table que está sendo alterada. No caso de uma transação de longa duração ou inativa, uma operação DDL online pode atingir o tempo limite (*time out*) enquanto espera por um Metadata Lock exclusivo. Além disso, um Metadata Lock exclusivo pendente solicitado por uma operação DDL online bloqueia transações subsequentes na table.
 
-The following example demonstrates an online DDL operation waiting for an exclusive metadata lock, and how a pending metadata lock blocks subsequent transactions on the table.
+O exemplo a seguir demonstra uma operação DDL online esperando por um Metadata Lock exclusivo e como um Metadata Lock pendente bloqueia transações subsequentes na table.
 
-Session 1:
+Sessão 1:
 
 ```sql
 mysql> CREATE TABLE t1 (c1 INT) ENGINE=InnoDB;
@@ -64,25 +64,25 @@ mysql> START TRANSACTION;
 mysql> SELECT * FROM t1;
 ```
 
-The session 1 `SELECT` statement takes a shared metadata lock on table t1.
+O statement `SELECT` da sessão 1 obtém um Metadata Lock compartilhado na table t1.
 
-Session 2:
+Sessão 2:
 
 ```sql
 mysql> ALTER TABLE t1 ADD COLUMN x INT, ALGORITHM=INPLACE, LOCK=NONE;
 ```
 
-The online DDL operation in session 2, which requires an exclusive metadata lock on table t1 to commit table definition changes, must wait for the session 1 transaction to commit or roll back.
+A operação DDL online na sessão 2, que requer um Metadata Lock exclusivo na table t1 para fazer commit das alterações de definição da table, deve esperar que a transação da sessão 1 faça commit ou roll back.
 
-Session 3:
+Sessão 3:
 
 ```sql
 mysql> SELECT * FROM t1;
 ```
 
-The `SELECT` statement issued in session 3 is blocked waiting for the exclusive metadata lock requested by the `ALTER TABLE` operation in session 2 to be granted.
+O statement `SELECT` emitido na sessão 3 é bloqueado esperando que o Metadata Lock exclusivo solicitado pela operação `ALTER TABLE` na sessão 2 seja concedido.
 
-You can use `SHOW FULL PROCESSLIST` to determine if transactions are waiting for a metadata lock.
+Você pode usar `SHOW FULL PROCESSLIST` para determinar se as transações estão esperando por um Metadata Lock.
 
 ```sql
 mysql> SHOW FULL PROCESSLIST\G
@@ -109,45 +109,45 @@ Command: Query
 4 rows in set (0.00 sec)
 ```
 
-Metadata lock information is also exposed through the Performance Schema `metadata_locks` table, which provides information about metadata lock dependencies between sessions, the metadata lock a session is waiting for, and the session that currently holds the metadata lock. For more information, see Section 25.12.12.1, “The metadata_locks Table”.
+As informações de Metadata Lock também são expostas através da tabela `metadata_locks` do Performance Schema, que fornece informações sobre dependências de Metadata Lock entre sessões, o Metadata Lock que uma sessão está esperando e a sessão que atualmente detém o Metadata Lock. Para mais informações, consulte a Seção 25.12.12.1, “The metadata_locks Table”.
 
-#### Online DDL Performance
+#### Desempenho do DDL Online
 
-The performance of a DDL operation is largely determined by whether the operation is performed in place and whether it rebuilds the table.
+O desempenho de uma operação DDL é em grande parte determinado pelo fato de a operação ser executada *in-place* (no local) e se ela reconstrói a table.
 
-To assess the relative performance of a DDL operation, you can compare results using `ALGORITHM=INPLACE` with results using `ALGORITHM=COPY`. Alternatively, you can compare results with `old_alter_table` disabled and enabled.
+Para avaliar o desempenho relativo de uma operação DDL, você pode comparar os resultados usando `ALGORITHM=INPLACE` com os resultados usando `ALGORITHM=COPY`. Alternativamente, você pode comparar os resultados com `old_alter_table` desabilitado e habilitado.
 
-For DDL operations that modify table data, you can determine whether a DDL operation performs changes in place or performs a table copy by looking at the “rows affected” value displayed after the command finishes. For example:
+Para operações DDL que modificam dados da table, você pode determinar se uma operação DDL executa alterações *in place* ou se realiza uma cópia da table observando o valor de “rows affected” (linhas afetadas) exibido após a conclusão do comando. Por exemplo:
 
-* Changing the default value of a column (fast, does not affect the table data):
+* Alterando o valor padrão de uma coluna (rápido, não afeta os dados da table):
 
   ```sql
   Query OK, 0 rows affected (0.07 sec)
   ```
 
-* Adding an index (takes time, but `0 rows affected` shows that the table is not copied):
+* Adicionando um Index (leva tempo, mas `0 rows affected` mostra que a table não é copiada):
 
   ```sql
   Query OK, 0 rows affected (21.42 sec)
   ```
 
-* Changing the data type of a column (takes substantial time and requires rebuilding all the rows of the table):
+* Alterando o tipo de dado de uma coluna (leva um tempo considerável e requer a reconstrução de todas as rows da table):
 
   ```sql
   Query OK, 1671168 rows affected (1 min 35.54 sec)
   ```
 
-Before running a DDL operation on a large table, check whether the operation is fast or slow as follows:
+Antes de executar uma operação DDL em uma table grande, verifique se a operação é rápida ou lenta da seguinte forma:
 
-1. Clone the table structure.
-2. Populate the cloned table with a small amount of data.
-3. Run the DDL operation on the cloned table.
-4. Check whether the “rows affected” value is zero or not. A nonzero value means the operation copies table data, which might require special planning. For example, you might do the DDL operation during a period of scheduled downtime, or on each replica server one at a time.
+1. Clone a estrutura da table.
+2. Popule a table clonada com uma pequena quantidade de dados.
+3. Execute a operação DDL na table clonada.
+4. Verifique se o valor de “rows affected” é zero ou não. Um valor diferente de zero significa que a operação copia os dados da table, o que pode exigir um planejamento especial. Por exemplo, você pode realizar a operação DDL durante um período de inatividade programada ou em cada servidor replica, um de cada vez.
 
-Note
+Nota
 
-For a greater understanding of the MySQL processing associated with a DDL operation, examine Performance Schema and `INFORMATION_SCHEMA` tables related to `InnoDB` before and after DDL operations to see the number of physical reads, writes, memory allocations, and so on.
+Para uma melhor compreensão do processamento do MySQL associado a uma operação DDL, examine as tabelas Performance Schema e `INFORMATION_SCHEMA` relacionadas ao `InnoDB` antes e depois das operações DDL para ver o número de leituras físicas, gravações, alocações de memória e assim por diante.
 
-Performance Schema stage events can be used to monitor `ALTER TABLE` progress. See Section 14.17.1, “Monitoring ALTER TABLE Progress for InnoDB Tables Using Performance Schema”.
+Eventos de estágio do Performance Schema podem ser usados para monitorar o progresso do `ALTER TABLE`. Consulte a Seção 14.17.1, “Monitoring ALTER TABLE Progress for InnoDB Tables Using Performance Schema”.
 
-Because there is some processing work involved with recording the changes made by concurrent DML operations, then applying those changes at the end, an online DDL operation could take longer overall than the table-copy mechanism that blocks table access from other sessions. The reduction in raw performance is balanced against better responsiveness for applications that use the table. When evaluating the techniques for changing table structure, consider end-user perception of performance, based on factors such as load times for web pages.
+Como há algum trabalho de processamento envolvido no registro das alterações feitas pelas operações DML concorrentes e, em seguida, na aplicação dessas alterações no final, uma operação DDL online pode demorar mais no geral do que o mecanismo de cópia de table que bloqueia o acesso à table de outras sessões. A redução no desempenho bruto é equilibrada pela melhor responsividade para aplicações que usam a table. Ao avaliar as técnicas para alterar a estrutura da table, considere a percepção de desempenho do usuário final, com base em fatores como tempos de carregamento de páginas web.

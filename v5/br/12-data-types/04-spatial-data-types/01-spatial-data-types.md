@@ -1,35 +1,35 @@
-### 11.4.1 Spatial Data Types
+### 11.4.1 Tipos de Dados Espaciais
 
-MySQL has spatial data types that correspond to OpenGIS classes. The basis for these types is described in Section 11.4.2, “The OpenGIS Geometry Model”.
+O MySQL possui tipos de dados espaciais que correspondem às classes OpenGIS. A base para esses tipos é descrita na Seção 11.4.2, “O Modelo de Geometry OpenGIS”.
 
-Some spatial data types hold single geometry values:
+Alguns tipos de dados espaciais armazenam valores de geometry únicos:
 
 * `GEOMETRY`
 * `POINT`
 * `LINESTRING`
 * `POLYGON`
 
-`GEOMETRY` can store geometry values of any type. The other single-value types (`POINT`, `LINESTRING`, and `POLYGON`) restrict their values to a particular geometry type.
+`GEOMETRY` pode armazenar valores de geometry de qualquer tipo. Os outros tipos de valor único (`POINT`, `LINESTRING` e `POLYGON`) restringem seus valores a um tipo de geometry específico.
 
-The other spatial data types hold collections of values:
+Os outros tipos de dados espaciais armazenam coleções de valores:
 
 * `MULTIPOINT`
 * `MULTILINESTRING`
 * `MULTIPOLYGON`
 * `GEOMETRYCOLLECTION`
 
-`GEOMETRYCOLLECTION` can store a collection of objects of any type. The other collection types (`MULTIPOINT`, `MULTILINESTRING`, and `MULTIPOLYGON`) restrict collection members to those having a particular geometry type.
+`GEOMETRYCOLLECTION` pode armazenar uma coleção de objetos de qualquer tipo. Os outros tipos de coleção (`MULTIPOINT`, `MULTILINESTRING` e `MULTIPOLYGON`) restringem os membros da coleção àqueles que possuem um tipo de geometry específico.
 
-Example: To create a table named `geom` that has a column named `g` that can store values of any geometry type, use this statement:
+Exemplo: Para criar uma table chamada `geom` que tenha uma coluna chamada `g` que possa armazenar valores de qualquer tipo de geometry, utilize esta instrução:
 
 ```sql
 CREATE TABLE geom (g GEOMETRY);
 ```
 
-`SPATIAL` indexes can be created on `NOT NULL` spatial columns, so if you plan to index the column, declare it `NOT NULL`:
+Indexes `SPATIAL` podem ser criados em colunas espaciais `NOT NULL`, portanto, se você planeja criar um Index na coluna, declare-a como `NOT NULL`:
 
 ```sql
 CREATE TABLE geom (g GEOMETRY NOT NULL);
 ```
 
-For other examples showing how to use spatial data types in MySQL, see Section 11.4.5, “Creating Spatial Columns”.
+Para outros exemplos mostrando como usar tipos de dados espaciais no MySQL, consulte a Seção 11.4.5, “Criação de Colunas Espaciais”.

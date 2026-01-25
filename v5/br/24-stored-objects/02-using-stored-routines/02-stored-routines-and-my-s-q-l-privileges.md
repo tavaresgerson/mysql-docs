@@ -1,15 +1,15 @@
-### 23.2.2 Stored Routines and MySQL Privileges
+### 23.2.2 Stored Routines e Privilégios do MySQL
 
-The MySQL grant system takes stored routines into account as follows:
+O sistema de concessão (grant system) do MySQL considera as Stored Routines da seguinte forma:
 
-* The `CREATE ROUTINE` privilege is needed to create stored routines.
+* O `CREATE ROUTINE` privilege é necessário para criar Stored Routines.
 
-* The `ALTER ROUTINE` privilege is needed to alter or drop stored routines. This privilege is granted automatically to the creator of a routine if necessary, and dropped from the creator when the routine is dropped.
+* O `ALTER ROUTINE` privilege é necessário para alterar ou remover (drop) Stored Routines. Este privilégio é concedido automaticamente ao criador de uma routine, se necessário, e removido do criador quando a routine é removida (dropped).
 
-* The `EXECUTE` privilege is required to execute stored routines. However, this privilege is granted automatically to the creator of a routine if necessary (and dropped from the creator when the routine is dropped). Also, the default `SQL SECURITY` characteristic for a routine is `DEFINER`, which enables users who have access to the database with which the routine is associated to execute the routine.
+* O `EXECUTE` privilege é exigido para executar Stored Routines. No entanto, este privilégio é concedido automaticamente ao criador de uma routine, se necessário (e removido do criador quando a routine é removida). Além disso, a característica padrão de `SQL SECURITY` para uma routine é `DEFINER`, o que permite que usuários que têm acesso ao Database ao qual a routine está associada a executem.
 
-* If the `automatic_sp_privileges` system variable is 0, the `EXECUTE` and `ALTER ROUTINE` privileges are not automatically granted to and dropped from the routine creator.
+* Se a system variable `automatic_sp_privileges` for 0, os privilégios `EXECUTE` e `ALTER ROUTINE` não são concedidos e removidos automaticamente do criador da routine.
 
-* The creator of a routine is the account used to execute the `CREATE` statement for it. This might not be the same as the account named as the `DEFINER` in the routine definition.
+* O criador de uma routine é a account usada para executar o `CREATE` statement para ela. Isso pode não ser o mesmo que a account nomeada como o `DEFINER` na definição da routine.
 
-The server manipulates the `mysql.proc` table in response to statements that create, alter, or drop stored routines. Manual manipulation of this table is not supported.
+O servidor manipula a tabela `mysql.proc` em resposta aos statements que criam, alteram ou removem (drop) Stored Routines. A manipulação manual desta tabela não é suportada.

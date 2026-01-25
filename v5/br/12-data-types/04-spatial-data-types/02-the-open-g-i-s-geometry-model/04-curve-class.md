@@ -1,19 +1,19 @@
-#### 11.4.2.4 Curve Class
+#### 11.4.2.4 Classe Curve
 
-A `Curve` is a one-dimensional geometry, usually represented by a sequence of points. Particular subclasses of `Curve` define the type of interpolation between points. `Curve` is a noninstantiable class.
+Uma `Curve` é uma geometry unidimensional, geralmente representada por uma sequência de points. Subclasses particulares de `Curve` definem o tipo de interpolação entre os points. `Curve` é uma classe não instanciável.
 
-**`Curve` Properties**
+**Propriedades da Curve**
 
-* A `Curve` has the coordinates of its points.
+* Uma `Curve` possui as coordenadas de seus points.
 
-* A `Curve` is defined as a one-dimensional geometry.
+* Uma `Curve` é definida como uma geometry unidimensional.
 
-* A `Curve` is simple if it does not pass through the same point twice, with the exception that a curve can still be simple if the start and end points are the same.
+* Uma `Curve` é simple se ela não passa pelo mesmo point duas vezes, com a exceção de que uma curve ainda pode ser simple se os points de início (start) e fim (end) forem os mesmos.
 
-* A `Curve` is closed if its start point is equal to its endpoint.
+* Uma `Curve` é closed se seu point de início for igual ao seu endpoint.
 
-* The boundary of a closed `Curve` is empty.
+* O boundary de uma `Curve` closed é vazio.
 
-* The boundary of a nonclosed `Curve` consists of its two endpoints.
+* O boundary de uma `Curve` não closed consiste em seus dois endpoints.
 
-* A `Curve` that is simple and closed is a `LinearRing`.
+* Uma `Curve` que é simple e closed é um `LinearRing`.

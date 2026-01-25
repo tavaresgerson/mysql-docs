@@ -1,48 +1,48 @@
-## 21.3 NDB Cluster Installation
+## 21.3 Instalação do NDB Cluster
 
-[21.3.1 Installation of NDB Cluster on Linux](mysql-cluster-install-linux.html)
+[21.3.1 Instalação do NDB Cluster no Linux](mysql-cluster-install-linux.html)
 
-[21.3.2 Installing NDB Cluster on Windows](mysql-cluster-install-windows.html)
+[21.3.2 Instalação do NDB Cluster no Windows](mysql-cluster-install-windows.html)
 
-[21.3.3 Initial Configuration of NDB Cluster](mysql-cluster-install-configuration.html)
+[21.3.3 Configuração Inicial do NDB Cluster](mysql-cluster-install-configuration.html)
 
-[21.3.4 Initial Startup of NDB Cluster](mysql-cluster-install-first-start.html)
+[21.3.4 Inicialização Inicial do NDB Cluster](mysql-cluster-install-first-start.html)
 
-[21.3.5 NDB Cluster Example with Tables and Data](mysql-cluster-install-example-data.html)
+[21.3.5 Exemplo de NDB Cluster com Tabelas e Dados](mysql-cluster-install-example-data.html)
 
-[21.3.6 Safe Shutdown and Restart of NDB Cluster](mysql-cluster-install-shutdown-restart.html)
+[21.3.6 Desligamento e Reinicialização Segura do NDB Cluster](mysql-cluster-install-shutdown-restart.html)
 
-[21.3.7 Upgrading and Downgrading NDB Cluster](mysql-cluster-upgrade-downgrade.html)
+[21.3.7 Atualização (Upgrading) e Reversão (Downgrading) do NDB Cluster](mysql-cluster-upgrade-downgrade.html)
 
-[21.3.8 The NDB Cluster Auto-Installer (NDB 7.5) (NO LONGER SUPPORTED)](mysql-cluster-install-auto.html)
+[21.3.8 O Auto-Instalador do NDB Cluster (NDB 7.5) (NÃO MAIS SUPORTADO)](mysql-cluster-install-auto.html)
 
-[21.3.9 The NDB Cluster Auto-Installer (NO LONGER SUPPORTED)](mysql-cluster-installer.html)
+[21.3.9 O Auto-Instalador do NDB Cluster (NÃO MAIS SUPORTADO)](mysql-cluster-installer.html)
 
-This section describes the basics for planning, installing, configuring, and running an NDB Cluster. Whereas the examples in [Section 21.4, “Configuration of NDB Cluster”](mysql-cluster-configuration.html "21.4 Configuration of NDB Cluster") provide more in-depth information on a variety of clustering options and configuration, the result of following the guidelines and procedures outlined here should be a usable NDB Cluster which meets the *minimum* requirements for availability and safeguarding of data.
+Esta seção descreve o básico para planejar, instalar, configurar e executar um NDB Cluster. Embora os exemplos na [Seção 21.4, “Configuração do NDB Cluster”](mysql-cluster-configuration.html "21.4 Configuração do NDB Cluster") forneçam informações mais detalhadas sobre uma variedade de opções de clustering e configuração, o resultado de seguir as diretrizes e procedimentos aqui descritos deve ser um NDB Cluster utilizável que atenda aos requisitos *mínimos* de disponibilidade e proteção de dados.
 
-For information about upgrading or downgrading an NDB Cluster between release versions, see [Section 21.3.7, “Upgrading and Downgrading NDB Cluster”](mysql-cluster-upgrade-downgrade.html "21.3.7 Upgrading and Downgrading NDB Cluster").
+Para obter informações sobre atualização (upgrading) ou reversão (downgrading) de um NDB Cluster entre versões, consulte a [Seção 21.3.7, “Atualização (Upgrading) e Reversão (Downgrading) do NDB Cluster”](mysql-cluster-upgrade-downgrade.html "21.3.7 Atualização (Upgrading) e Reversão (Downgrading) do NDB Cluster").
 
-This section covers hardware and software requirements; networking issues; installation of NDB Cluster; basic configuration issues; starting, stopping, and restarting the cluster; loading of a sample database; and performing queries.
+Esta seção aborda requisitos de hardware e software; questões de rede; instalação do NDB Cluster; questões básicas de configuração; iniciar, parar e reiniciar o cluster; carregamento de um Database de exemplo; e execução de Queries.
 
-**Assumptions.** The following sections make a number of assumptions regarding the cluster's physical and network configuration. These assumptions are discussed in the next few paragraphs.
+**Pressupostos.** As seções a seguir fazem uma série de pressupostos em relação à configuração física e de rede do cluster. Esses pressupostos são discutidos nos próximos parágrafos.
 
-**Cluster nodes and host computers.** The cluster consists of four nodes, each on a separate host computer, and each with a fixed network address on a typical Ethernet network as shown here:
+**Nodes do Cluster e computadores Host.** O cluster consiste em quatro nodes, cada um em um computador host separado, e cada um com um endereço de rede fixo em uma rede Ethernet típica, conforme mostrado aqui:
 
-**Table 21.4 Network addresses of nodes in example cluster**
+**Tabela 21.4 Endereços de rede dos nodes no cluster de exemplo**
 
-<table><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Node</th> <th>IP Address</th> </tr></thead><tbody><tr> <td>Management node (<span><strong>mgmd</strong></span>)</td> <td>198.51.100.10</td> </tr><tr> <td>SQL node (<span><strong>mysqld</strong></span>)</td> <td>198.51.100.20</td> </tr><tr> <td>Data node "A" (<span><strong>ndbd</strong></span>)</td> <td>198.51.100.30</td> </tr><tr> <td>Data node "B" (<span><strong>ndbd</strong></span>)</td> <td>198.51.100.40</td> </tr></tbody></table>
+<table><thead><tr> <th>Node</th> <th>Endereço IP</th> </tr></thead><tbody><tr> <td>Management node (<span><strong>mgmd</strong></span>)</td> <td>198.51.100.10</td> </tr><tr> <td>SQL node (<span><strong>mysqld</strong></span>)</td> <td>198.51.100.20</td> </tr><tr> <td>Data node "A" (<span><strong>ndbd</strong></span>)</td> <td>198.51.100.30</td> </tr><tr> <td>Data node "B" (<span><strong>ndbd</strong></span>)</td> <td>198.51.100.40</td> </tr></tbody></table>
 
-This setup is also shown in the following diagram:
+Esta configuração também é mostrada no diagrama a seguir:
 
-**Figure 21.4 NDB Cluster Multi-Computer Setup**
+**Figura 21.4 Configuração Multi-Computador do NDB Cluster**
 
-![Most content is described in the surrounding text. The four nodes each connect to a central switch that connects to a network.](images/multi-comp-1.png)
+![O conteúdo principal é descrito no texto circundante. Os quatro nodes se conectam a um switch central que se conecta a uma rede.](images/multi-comp-1.png)
 
-**Network addressing.**
+**Endereçamento de rede.**
 
-In the interest of simplicity (and reliability), this *How-To* uses only numeric IP addresses. However, if DNS resolution is available on your network, it is possible to use host names in lieu of IP addresses in configuring Cluster. Alternatively, you can use the `hosts` file (typically `/etc/hosts` for Linux and other Unix-like operating systems, `C:\WINDOWS\system32\drivers\etc\hosts` on Windows, or your operating system's equivalent) for providing a means to do host lookup if such is available.
+No interesse da simplicidade (e confiabilidade), este *How-To* utiliza apenas endereços IP numéricos. No entanto, se a resolução DNS estiver disponível em sua rede, é possível usar nomes de host em vez de endereços IP ao configurar o Cluster. Alternativamente, você pode usar o arquivo `hosts` (tipicamente `/etc/hosts` para Linux e outros sistemas operacionais tipo Unix, `C:\WINDOWS\system32\drivers\etc\hosts` no Windows, ou o equivalente do seu sistema operacional) para fornecer um meio de realizar a pesquisa de host, se disponível.
 
-**Potential hosts file issues.** A common problem when trying to use host names for Cluster nodes arises because of the way in which some operating systems (including some Linux distributions) set up the system's own host name in the `/etc/hosts` during installation. Consider two machines with the host names `ndb1` and `ndb2`, both in the `cluster` network domain. Red Hat Linux (including some derivatives such as CentOS and Fedora) places the following entries in these machines' `/etc/hosts` files:
+**Possíveis problemas com o arquivo hosts.** Um problema comum ao tentar usar nomes de host para os nodes do Cluster surge devido à forma como alguns sistemas operacionais (incluindo algumas distribuições Linux) configuram o nome de host do próprio sistema em `/etc/hosts` durante a instalação. Considere duas máquinas com os nomes de host `ndb1` e `ndb2`, ambas no domínio de rede `cluster`. O Red Hat Linux (incluindo alguns derivados como CentOS e Fedora) coloca as seguintes entradas nos arquivos `/etc/hosts` dessas máquinas:
 
 ```sql
 #  ndb1 /etc/hosts:
@@ -54,7 +54,7 @@ In the interest of simplicity (and reliability), this *How-To* uses only numeric
 127.0.0.1   ndb2.cluster ndb2 localhost.localdomain localhost
 ```
 
-SUSE Linux (including OpenSUSE) places these entries in the machines' `/etc/hosts` files:
+O SUSE Linux (incluindo o OpenSUSE) coloca estas entradas nos arquivos `/etc/hosts` das máquinas:
 
 ```sql
 #  ndb1 /etc/hosts:
@@ -68,22 +68,22 @@ SUSE Linux (including OpenSUSE) places these entries in the machines' `/etc/host
 127.0.0.2       ndb2.cluster ndb2
 ```
 
-In both instances, `ndb1` routes `ndb1.cluster` to a loopback IP address, but gets a public IP address from DNS for `ndb2.cluster`, while `ndb2` routes `ndb2.cluster` to a loopback address and obtains a public address for `ndb1.cluster`. The result is that each data node connects to the management server, but cannot tell when any other data nodes have connected, and so the data nodes appear to hang while starting.
+Em ambas as instâncias, `ndb1` roteia `ndb1.cluster` para um endereço IP de loopback, mas obtém um endereço IP público do DNS para `ndb2.cluster`, enquanto `ndb2` roteia `ndb2.cluster` para um endereço de loopback e obtém um endereço público para `ndb1.cluster`. O resultado é que cada Data node se conecta ao Management server, mas não consegue saber quando outros Data nodes se conectaram, e assim os Data nodes parecem travar durante a inicialização.
 
-Caution
+Atenção
 
-You cannot mix `localhost` and other host names or IP addresses in `config.ini`. For these reasons, the solution in such cases (other than to use IP addresses for *all* `config.ini` `HostName` entries) is to remove the fully qualified host names from `/etc/hosts` and use these in `config.ini` for all cluster hosts.
+Você não pode misturar `localhost` e outros nomes de host ou endereços IP no `config.ini`. Por estas razões, a solução em tais casos (além de usar endereços IP para *todas* as entradas `HostName` no `config.ini`) é remover os nomes de host totalmente qualificados de `/etc/hosts` e usá-los no `config.ini` para todos os hosts do cluster.
 
-**Host computer type.** Each host computer in our installation scenario is an Intel-based desktop PC running a supported operating system installed to disk in a standard configuration, and running no unnecessary services. The core operating system with standard TCP/IP networking capabilities should be sufficient. Also for the sake of simplicity, we also assume that the file systems on all hosts are set up identically. In the event that they are not, you should adapt these instructions accordingly.
+**Tipo de computador Host.** Cada computador host em nosso cenário de instalação é um PC desktop baseado em Intel executando um sistema operacional suportado, instalado em disco em uma configuração padrão e sem serviços desnecessários em execução. O sistema operacional central com capacidades de rede TCP/IP padrão deve ser suficiente. Também por uma questão de simplicidade, assumimos que os sistemas de arquivos em todos os hosts estão configurados de forma idêntica. Caso não estejam, você deve adaptar estas instruções de acordo.
 
-**Network hardware.** Standard 100 Mbps or 1 gigabit Ethernet cards are installed on each machine, along with the proper drivers for the cards, and that all four hosts are connected through a standard-issue Ethernet networking appliance such as a switch. (All machines should use network cards with the same throughput. That is, all four machines in the cluster should have 100 Mbps cards *or* all four machines should have 1 Gbps cards.) NDB Cluster works in a 100 Mbps network; however, gigabit Ethernet provides better performance.
+**Hardware de rede.** Placas Ethernet padrão de 100 Mbps ou 1 gigabit estão instaladas em cada máquina, juntamente com os drivers apropriados para as placas, e todos os quatro hosts estão conectados por meio de um dispositivo de rede Ethernet padrão, como um switch. (Todas as máquinas devem usar placas de rede com a mesma taxa de transferência. Ou seja, todas as quatro máquinas no cluster devem ter placas de 100 Mbps *ou* todas as quatro máquinas devem ter placas de 1 Gbps.) O NDB Cluster funciona em uma rede de 100 Mbps; no entanto, o Ethernet gigabit oferece melhor performance.
 
-Important
+Importante
 
-NDB Cluster is *not* intended for use in a network for which throughput is less than 100 Mbps or which experiences a high degree of latency. For this reason (among others), attempting to run an NDB Cluster over a wide area network such as the Internet is not likely to be successful, and is not supported in production.
+O NDB Cluster *não* se destina ao uso em uma rede cuja taxa de transferência seja inferior a 100 Mbps ou que experimente um alto grau de latência. Por esta razão (entre outras), tentar executar um NDB Cluster através de uma rede de longa distância como a Internet não deve ser bem-sucedido e não é suportado em produção.
 
-**Sample data.** We use the `world` database which is available for download from the MySQL website (see [https://dev.mysql.com/doc/index-other.html](/doc/index-other.html)). We assume that each machine has sufficient memory for running the operating system, required NDB Cluster processes, and (on the data nodes) storing the database.
+**Dados de exemplo.** Usamos o Database `world`, que está disponível para download no site do MySQL (consulte [https://dev.mysql.com/doc/index-other.html](/doc/index-other.html)). Assumimos que cada máquina tem memória suficiente para executar o sistema operacional, os processos necessários do NDB Cluster e (nos Data nodes) armazenar o Database.
 
-For general information about installing MySQL, see [Chapter 2, *Installing and Upgrading MySQL*](installing.html "Chapter 2 Installing and Upgrading MySQL"). For information about installation of NDB Cluster on Linux and other Unix-like operating systems, see [Section 21.3.1, “Installation of NDB Cluster on Linux”](mysql-cluster-install-linux.html "21.3.1 Installation of NDB Cluster on Linux"). For information about installation of NDB Cluster on Windows operating systems, see [Section 21.3.2, “Installing NDB Cluster on Windows”](mysql-cluster-install-windows.html "21.3.2 Installing NDB Cluster on Windows").
+Para informações gerais sobre a instalação do MySQL, consulte [Capítulo 2, *Instalando e Atualizando o MySQL*](installing.html "Capítulo 2 Instalando e Atualizando o MySQL"). Para informações sobre a instalação do NDB Cluster no Linux e outros sistemas operacionais tipo Unix, consulte a [Seção 21.3.1, “Instalação do NDB Cluster no Linux”](mysql-cluster-install-linux.html "21.3.1 Instalação do NDB Cluster no Linux"). Para informações sobre a instalação do NDB Cluster em sistemas operacionais Windows, consulte a [Seção 21.3.2, “Instalação do NDB Cluster no Windows”](mysql-cluster-install-windows.html "21.3.2 Instalação do NDB Cluster no Windows").
 
-For general information about NDB Cluster hardware, software, and networking requirements, see [Section 21.2.3, “NDB Cluster Hardware, Software, and Networking Requirements”](mysql-cluster-overview-requirements.html "21.2.3 NDB Cluster Hardware, Software, and Networking Requirements").
+Para informações gerais sobre os requisitos de hardware, software e rede do NDB Cluster, consulte a [Seção 21.2.3, “Requisitos de Hardware, Software e Rede do NDB Cluster”](mysql-cluster-overview-requirements.html "21.2.3 Requisitos de Hardware, Software e Rede do NDB Cluster").

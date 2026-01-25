@@ -1,97 +1,97 @@
-#### 26.4.3.35 The statement_analysis and x$statement_analysis Views
+#### 26.4.3.35 As Views statement_analysis e x$statement_analysis
 
-These views list normalized statements with aggregated statistics. The content mimics the MySQL Enterprise Monitor Query Analysis view. By default, rows are sorted by descending total latency.
+Essas views listam instruções (statements) normalizadas com estatísticas agregadas. O conteúdo imita a view Query Analysis do MySQL Enterprise Monitor. Por padrão, as linhas são ordenadas pela total latency decrescente.
 
-The `statement_analysis` and `x$statement_analysis` views have these columns:
+As views `statement_analysis` e `x$statement_analysis` possuem as seguintes colunas:
 
 * `query`
 
-  The normalized statement string.
+  A string da instrução normalizada.
 
 * `db`
 
-  The default database for the statement, or `NULL` if there is none.
+  O Database padrão para a instrução, ou `NULL` se não houver.
 
 * `full_scan`
 
-  The total number of full table scans performed by occurrences of the statement.
+  O número total de full table scans realizadas por ocorrências da instrução.
 
 * `exec_count`
 
-  The total number of times the statement has executed.
+  O número total de vezes que a instrução foi executada.
 
 * `err_count`
 
-  The total number of errors produced by occurrences of the statement.
+  O número total de erros produzidos por ocorrências da instrução.
 
 * `warn_count`
 
-  The total number of warnings produced by occurrences of the statement.
+  O número total de avisos (warnings) produzidos por ocorrências da instrução.
 
 * `total_latency`
 
-  The total wait time of timed occurrences of the statement.
+  O tempo de espera total das ocorrências cronometradas da instrução.
 
 * `max_latency`
 
-  The maximum single wait time of timed occurrences of the statement.
+  O tempo de espera máximo de ocorrências cronometradas da instrução.
 
 * `avg_latency`
 
-  The average wait time per timed occurrence of the statement.
+  O tempo de espera médio por ocorrência cronometrada da instrução.
 
 * `lock_latency`
 
-  The total time waiting for locks by timed occurrences of the statement.
+  O tempo total de espera por Locks por ocorrências cronometradas da instrução.
 
 * `rows_sent`
 
-  The total number of rows returned by occurrences of the statement.
+  O número total de linhas retornadas por ocorrências da instrução.
 
 * `rows_sent_avg`
 
-  The average number of rows returned per occurrence of the statement.
+  O número médio de linhas retornadas por ocorrência da instrução.
 
 * `rows_examined`
 
-  The total number of rows read from storage engines by occurrences of the statement.
+  O número total de linhas lidas dos storage engines por ocorrências da instrução.
 
 * `rows_examined_avg`
 
-  The average number of rows read from storage engines per occurrence of the statement.
+  O número médio de linhas lidas dos storage engines por ocorrência da instrução.
 
 * `rows_affected`
 
-  The total number of rows affected by occurrences of the statement.
+  O número total de linhas afetadas por ocorrências da instrução.
 
 * `rows_affected_avg`
 
-  The average number of rows affected per occurrence of the statement.
+  O número médio de linhas afetadas por ocorrência da instrução.
 
 * `tmp_tables`
 
-  The total number of internal in-memory temporary tables created by occurrences of the statement.
+  O número total de temporary tables internas na memória criadas por ocorrências da instrução.
 
 * `tmp_disk_tables`
 
-  The total number of internal on-disk temporary tables created by occurrences of the statement.
+  O número total de temporary tables internas em disco criadas por ocorrências da instrução.
 
 * `rows_sorted`
 
-  The total number of rows sorted by occurrences of the statement.
+  O número total de linhas ordenadas por ocorrências da instrução.
 
 * `sort_merge_passes`
 
-  The total number of sort merge passes by occurrences of the statement.
+  O número total de sort merge passes por ocorrências da instrução.
 
 * `digest`
 
-  The statement digest.
+  O digest da instrução.
 
 * `first_seen`
 
-  The time at which the statement was first seen.
+  A hora em que a instrução foi vista pela primeira vez.
 
 * `last_seen`
 
-  The time at which the statement was most recently seen.
+  A hora em que a instrução foi vista mais recentemente.

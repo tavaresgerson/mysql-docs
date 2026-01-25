@@ -1,18 +1,18 @@
-### 19.4.1 Using Encrypted Connections with X Plugin
+### 19.4.1 Usando Conexões Criptografadas com o X Plugin
 
-This section explains how to configure X Plugin to use encrypted connections. For more background information, see Section 6.3, “Using Encrypted Connections”.
+Esta seção explica como configurar o X Plugin para usar conexões criptografadas. Para mais informações conceituais, consulte a Seção 6.3, “Usando Conexões Criptografadas”.
 
-To enable configuring support for encrypted connections, X Plugin has `mysqlx_ssl_xxx` system variables, which can have different values from the `ssl_xxx` system variables used with MySQL Server. For example, X Plugin can have SSL key, certificate, and certificate authority files that differ from those used for MySQL Server. These variables are described at Section 19.4.2.2, “X Plugin Options and System Variables”. Similarly, X Plugin has its own `Mysqlx_ssl_xxx` status variables that correspond to the MySQL Server encrypted-connection `Ssl_xxx` status variables. See Section 19.4.2.3, “X Plugin Status Variables”.
+Para habilitar a configuração de suporte a conexões criptografadas, o X Plugin possui as system variables `mysqlx_ssl_xxx`, que podem ter valores diferentes das system variables `ssl_xxx` usadas com o MySQL Server. Por exemplo, o X Plugin pode ter arquivos SSL de key, certificate e certificate authority que diferem daqueles usados para o MySQL Server. Essas variables são descritas na Seção 19.4.2.2, “Opções e System Variables do X Plugin”. Da mesma forma, o X Plugin tem suas próprias status variables `Mysqlx_ssl_xxx` que correspondem às status variables `Ssl_xxx` de conexão criptografada do MySQL Server. Consulte a Seção 19.4.2.3, “Status Variables do X Plugin”.
 
-At initialization, X Plugin determines its configuration for encrypted connections as follows:
+Na inicialização, o X Plugin determina sua configuração para conexões criptografadas da seguinte forma:
 
-* If all `mysqlx_ssl_xxx` system variables have their default values, X Plugin configures encrypted connections using the values of the MySQL Server `ssl_xxx` system variables.
+* Se todas as system variables `mysqlx_ssl_xxx` tiverem seus valores default, o X Plugin configura as conexões criptografadas usando os valores das system variables `ssl_xxx` do MySQL Server.
 
-* If any `mysqlx_ssl_xxx` variable has a nondefault value, X Plugin configures encrypted connections using the values of its own system variables. (This is the case if any `mysqlx_ssl_xxx` system variable is set to a value different from its default.)
+* Se qualquer variable `mysqlx_ssl_xxx` tiver um valor não-default, o X Plugin configura as conexões criptografadas usando os valores de suas próprias system variables. (Este é o caso se qualquer system variable `mysqlx_ssl_xxx` for definida com um valor diferente do seu default.)
 
-This means that, on a server with X Plugin enabled, you can choose to have MySQL Protocol and X Protocol connections share the same encryption configuration by setting only the `ssl_xxx` variables, or have separate encryption configurations for MySQL Protocol and X Protocol connections by configuring the `ssl_xxx` and `mysqlx_ssl_xxx` variables separately.
+Isso significa que, em um server com o X Plugin habilitado, você pode optar por fazer com que as conexões do MySQL Protocol e X Protocol compartilhem a mesma configuração de encryption, definindo apenas as variables `ssl_xxx`, ou ter configurações de encryption separadas para conexões MySQL Protocol e X Protocol, configurando as variables `ssl_xxx` e `mysqlx_ssl_xxx` separadamente.
 
-To have MySQL Protocol and X Protocol connections use the same encryption configuration, set only the `ssl_xxx` system variables in `my.cnf`:
+Para que as conexões MySQL Protocol e X Protocol usem a mesma configuração de encryption, defina apenas as system variables `ssl_xxx` em `my.cnf`:
 
 ```sql
 [mysqld]
@@ -21,7 +21,7 @@ ssl_cert=server-cert.pem
 ssl_key=server-key.pem
 ```
 
-To configure encryption separately for MySQL Protocol and X Protocol connections, set both the `ssl_xxx` and `mysqlx_ssl_xxx` system variables in `my.cnf`:
+Para configurar a encryption separadamente para conexões MySQL Protocol e X Protocol, defina as system variables `ssl_xxx` e `mysqlx_ssl_xxx` em `my.cnf`:
 
 ```sql
 [mysqld]
@@ -34,8 +34,8 @@ mysqlx_ssl_cert=server-cert2.pem
 mysqlx_ssl_key=server-key2.pem
 ```
 
-For general information about configuring connection-encryption support, see Section 6.3.1, “Configuring MySQL to Use Encrypted Connections”. That discussion is written for MySQL Server, but the parameter names are similar for X Plugin. (The X Plugin `mysqlx_ssl_xxx` system variable names correspond to the MySQL Server `ssl_xxx` system variable names.)
+Para informações gerais sobre como configurar o suporte à encryption de conexão, consulte a Seção 6.3.1, “Configuring MySQL to Use Encrypted Connections”. Essa discussão é escrita para o MySQL Server, mas os nomes dos parâmetros são semelhantes para o X Plugin. (Os nomes das system variables `mysqlx_ssl_xxx` do X Plugin correspondem aos nomes das system variables `ssl_xxx` do MySQL Server.)
 
-The `tls_version` system variable that determines the permitted TLS versions for MySQL Protocol connections also applies to X Protocol connections. The permitted TLS versions for both types of connections are therefore the same.
+A system variable `tls_version` que determina as versões TLS permitidas para conexões MySQL Protocol também se aplica às conexões X Protocol. As versões TLS permitidas para ambos os tipos de conexões são, portanto, as mesmas.
 
-Encryption per connection is optional, but a specific user can be required to use encryption for X Protocol and MySQL Protocol connections by including an appropriate `REQUIRE` clause in the `CREATE USER` statement that creates the user. For details, see Section 13.7.1.2, “CREATE USER Statement”. Alternatively, to require all users to use encryption for X Protocol and MySQL Protocol connections, enable the `require_secure_transport` system variable. For additional information, see Configuring Encrypted Connections as Mandatory.
+A Encryption por conexão é opcional, mas um user específico pode ser obrigado a usar encryption para conexões X Protocol e MySQL Protocol, incluindo uma cláusula `REQUIRE` apropriada na instrução `CREATE USER` que cria o user. Para detalhes, consulte a Seção 13.7.1.2, “CREATE USER Statement”. Alternativamente, para exigir que todos os users utilizem encryption para conexões X Protocol e MySQL Protocol, habilite a system variable `require_secure_transport`. Para informações adicionais, consulte Configuring Encrypted Connections as Mandatory.

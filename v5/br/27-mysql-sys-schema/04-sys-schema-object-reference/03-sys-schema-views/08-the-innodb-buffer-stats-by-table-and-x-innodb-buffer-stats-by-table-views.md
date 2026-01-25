@@ -1,41 +1,41 @@
-#### 26.4.3.8 The innodb_buffer_stats_by_table and x$innodb_buffer_stats_by_table Views
+#### 26.4.3.8 As Visualizações innodb_buffer_stats_by_table e x$innodb_buffer_stats_by_table
 
-These views summarize the information in the `INFORMATION_SCHEMA` `INNODB_BUFFER_PAGE` table, grouped by schema and table. By default, rows are sorted by descending buffer size.
+Estas visualizações resumem as informações contidas na tabela `INNODB_BUFFER_PAGE` do `INFORMATION_SCHEMA`, agrupadas por schema e tabela. Por padrão, as linhas são ordenadas pelo tamanho decrescente do Buffer.
 
-Warning
+Aviso
 
-Querying views that access the `INNODB_BUFFER_PAGE` table can affect performance. Do not query these views on a production system unless you are aware of the performance impact and have determined it to be acceptable. To avoid impacting performance on a production system, reproduce the issue you want to investigate and query buffer pool statistics on a test instance.
+A Query de Views que acessam a tabela `INNODB_BUFFER_PAGE` pode afetar o desempenho. Não execute Queries nessas Views em um sistema de produção a menos que você esteja ciente do impacto no desempenho e o tenha determinado como aceitável. Para evitar impactar o desempenho em um sistema de produção, reproduza o problema que deseja investigar e consulte as estatísticas do Buffer Pool em uma instância de teste.
 
-The `innodb_buffer_stats_by_table` and `x$innodb_buffer_stats_by_table` views have these columns:
+As visualizações `innodb_buffer_stats_by_table` e `x$innodb_buffer_stats_by_table` possuem estas colunas:
 
 * `object_schema`
 
-  The schema name for the object, or `InnoDB System` if the table belongs to the `InnoDB` storage engine.
+  O nome do schema para o objeto, ou `InnoDB System` se a tabela pertencer ao storage engine `InnoDB`.
 
 * `object_name`
 
-  The table name.
+  O nome da tabela.
 
 * `allocated`
 
-  The total number of bytes allocated for the table.
+  O número total de bytes alocados para a tabela.
 
 * `data`
 
-  The number of data bytes allocated for the table.
+  O número de bytes de dados alocados para a tabela.
 
 * `pages`
 
-  The total number of pages allocated for the table.
+  O número total de pages alocadas para a tabela.
 
 * `pages_hashed`
 
-  The number of hashed pages allocated for the table.
+  O número de pages com hash (hashed pages) alocadas para a tabela.
 
 * `pages_old`
 
-  The number of old pages allocated for the table.
+  O número de old pages alocadas para a tabela.
 
 * `rows_cached`
 
-  The number of cached rows for the table.
+  O número de rows em cache para a tabela.

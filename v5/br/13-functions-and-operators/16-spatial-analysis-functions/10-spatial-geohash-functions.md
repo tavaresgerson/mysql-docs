@@ -1,18 +1,18 @@
-### 12.16.10 Spatial Geohash Functions
+### 12.16.10 Funções Geohash Espaciais
 
-Geohash is a system for encoding latitude and longitude coordinates of arbitrary precision into a text string. Geohash values are strings that contain only characters chosen from `"0123456789bcdefghjkmnpqrstuvwxyz"`.
+Geohash é um sistema para codificar coordenadas de latitude e longitude de precisão arbitrária em uma string de texto. Valores Geohash são strings que contêm apenas caracteres escolhidos de `"0123456789bcdefghjkmnpqrstuvwxyz"`.
 
-The functions in this section enable manipulation of geohash values, which provides applications the capabilities of importing and exporting geohash data, and of indexing and searching geohash values.
+As funções nesta seção permitem a manipulação de valores geohash, o que fornece aos aplicativos as capacidades de importação e exportação de dados geohash, bem como de Indexing e pesquisa de valores geohash.
 
 * `ST_GeoHash(longitude, latitude, max_length)`, `ST_GeoHash(point, max_length)`
 
-  Returns a geohash string in the connection character set and collation.
+  Retorna uma string geohash no conjunto de caracteres e collation da conexão.
 
-  If any argument is `NULL`, the return value is `NULL`. If any argument is invalid, an error occurs.
+  Se qualquer argumento for `NULL`, o valor de retorno é `NULL`. Se qualquer argumento for inválido, ocorre um erro.
 
-  For the first syntax, the *`longitude`* must be a number in the range [−180, 180], and the *`latitude`* must be a number in the range [−90, 90]. For the second syntax, a `POINT` value is required, where the X and Y coordinates are in the valid ranges for longitude and latitude, respectively.
+  Para a primeira sintaxe, o *`longitude`* deve ser um número no intervalo [−180, 180], e o *`latitude`* deve ser um número no intervalo [−90, 90]. Para a segunda sintaxe, é exigido um valor `POINT`, onde as coordenadas X e Y estão nos intervalos válidos para longitude e latitude, respectivamente.
 
-  The resulting string is no longer than *`max_length`* characters, which has an upper limit of 100. The string might be shorter than *`max_length`* characters because the algorithm that creates the geohash value continues until it has created a string that is either an exact representation of the location or *`max_length`* characters, whichever comes first.
+  A string resultante não é maior que *`max_length`* caracteres, que tem um limite superior de 100. A string pode ser menor que *`max_length`* caracteres porque o algoritmo que cria o valor geohash continua até que tenha criado uma string que seja uma representação exata da localização ou *`max_length`* caracteres, o que ocorrer primeiro.
 
   ```sql
   mysql> SELECT ST_GeoHash(180,0,10), ST_GeoHash(-180,-90,15);
@@ -25,11 +25,11 @@ The functions in this section enable manipulation of geohash values, which provi
 
 * `ST_LatFromGeoHash(geohash_str)`
 
-  Returns the latitude from a geohash string value, as a `DOUBLE` - FLOAT, DOUBLE") value in the range [−90, 90].
+  Retorna a latitude de um valor string geohash, como um valor `DOUBLE` (FLOAT, DOUBLE) no intervalo [−90, 90].
 
-  If the argument is `NULL`, the return value is `NULL`. If the argument is invalid, an error occurs.
+  Se o argumento for `NULL`, o valor de retorno é `NULL`. Se o argumento for inválido, ocorre um erro.
 
-  The `ST_LatFromGeoHash()` decoding function reads no more than 433 characters from the *`geohash_str`* argument. That represents the upper limit on information in the internal representation of coordinate values. Characters past the 433rd are ignored, even if they are otherwise illegal and produce an error.
+  A função de decodificação `ST_LatFromGeoHash()` lê no máximo 433 caracteres do argumento *`geohash_str`*. Isso representa o limite superior de informação na representação interna dos valores de coordenada. Caracteres após o 433º são ignorados, mesmo que sejam ilegais e produzam um erro.
 
   ```sql
   mysql> SELECT ST_LatFromGeoHash(ST_GeoHash(45,-20,10));
@@ -42,11 +42,11 @@ The functions in this section enable manipulation of geohash values, which provi
 
 * `ST_LongFromGeoHash(geohash_str)`
 
-  Returns the longitude from a geohash string value, as a `DOUBLE` - FLOAT, DOUBLE") value in the range [−180, 180].
+  Retorna a longitude de um valor string geohash, como um valor `DOUBLE` (FLOAT, DOUBLE) no intervalo [−180, 180].
 
-  If the argument is `NULL`, the return value is `NULL`. If the argument is invalid, an error occurs.
+  Se o argumento for `NULL`, o valor de retorno é `NULL`. Se o argumento for inválido, ocorre um erro.
 
-  The remarks in the description of `ST_LatFromGeoHash()` regarding the maximum number of characters processed from the *`geohash_str`* argument also apply to `ST_LongFromGeoHash()`.
+  As observações na descrição de `ST_LatFromGeoHash()` relativas ao número máximo de caracteres processados a partir do argumento *`geohash_str`* também se aplicam a `ST_LongFromGeoHash()`.
 
   ```sql
   mysql> SELECT ST_LongFromGeoHash(ST_GeoHash(45,-20,10));
@@ -59,15 +59,15 @@ The functions in this section enable manipulation of geohash values, which provi
 
 * `ST_PointFromGeoHash(geohash_str, srid)`
 
-  Returns a `POINT` value containing the decoded geohash value, given a geohash string value.
+  Retorna um valor `POINT` contendo o valor geohash decodificado, dado um valor string geohash.
 
-  The X and Y coordinates of the point are the longitude in the range [−180, 180] and the latitude in the range [−90, 90], respectively.
+  As coordenadas X e Y do Point são a longitude no intervalo [−180, 180] e a latitude no intervalo [−90, 90], respectivamente.
 
-  If any argument is `NULL`, the return value is `NULL`. If any argument is invalid, an error occurs.
+  Se qualquer argumento for `NULL`, o valor de retorno é `NULL`. Se qualquer argumento for inválido, ocorre um erro.
 
-  The *`srid`* argument is an unsigned 32-bit integer.
+  O argumento *`srid`* é um inteiro não assinado de 32 bits.
 
-  The remarks in the description of `ST_LatFromGeoHash()` regarding the maximum number of characters processed from the *`geohash_str`* argument also apply to `ST_PointFromGeoHash()`.
+  As observações na descrição de `ST_LatFromGeoHash()` relativas ao número máximo de caracteres processados a partir do argumento *`geohash_str`* também se aplicam a `ST_PointFromGeoHash()`.
 
   ```sql
   mysql> SET @gh = ST_GeoHash(45,-20,10);

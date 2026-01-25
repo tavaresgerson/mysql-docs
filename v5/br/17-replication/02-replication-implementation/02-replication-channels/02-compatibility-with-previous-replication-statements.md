@@ -1,28 +1,28 @@
-#### 16.2.2.2 Compatibility with Previous Replication Statements
+#### 16.2.2.2 Compatibilidade com Declarações de Replication Anteriores
 
-When a replica has multiple channels and a `FOR CHANNEL channel` option is not specified, a valid statement generally acts on all available channels, with some specific exceptions.
+Quando uma replica possui múltiplos channels e a opção `FOR CHANNEL channel` não é especificada, uma declaração válida geralmente age em todos os channels disponíveis, com algumas exceções específicas.
 
-For example, the following statements behave as expected for all except certain Group Replication channels:
+Por exemplo, as seguintes declarações se comportam conforme o esperado para todos, exceto para determinados channels de Group Replication:
 
-* [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement") starts replication threads for all channels, except the `group_replication_recovery` and `group_replication_applier` channels.
+* [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement") inicia os replication threads para todos os channels, exceto os channels `group_replication_recovery` e `group_replication_applier`.
 
-* [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement") stops replication threads for all channels, except the `group_replication_recovery` and `group_replication_applier` channels.
+* [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement") para os replication threads para todos os channels, exceto os channels `group_replication_recovery` e `group_replication_applier`.
 
-* [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") reports the status for all channels, except the `group_replication_applier` channel.
+* [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") reporta o status para todos os channels, exceto o channel `group_replication_applier`.
 
-* [`FLUSH RELAY LOGS`](flush.html "13.7.6.3 FLUSH Statement") flushes the relay logs for all channels, except the `group_replication_applier` channel.
+* [`FLUSH RELAY LOGS`](flush.html "13.7.6.3 FLUSH Statement") faz o flush dos relay logs para todos os channels, exceto o channel `group_replication_applier`.
 
-* [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") resets all channels.
+* [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") faz o reset de todos os channels.
 
-Warning
+Aviso
 
-Use `RESET SLAVE` with caution as this statement deletes all existing channels, purges their relay log files, and recreates only the default channel.
+Use `RESET SLAVE` com cautela, pois esta declaração deleta todos os channels existentes, purga seus relay log files e recria apenas o channel padrão.
 
-Some replication statements cannot operate on all channels. In this case, error 1964 Multiple channels exist on the slave. Please provide channel name as an argument. is generated. The following statements and functions generate this error when used in a multi-source replication topology and a `FOR CHANNEL channel` option is not used to specify which channel to act on:
+Algumas declarações de replication não podem operar em todos os channels. Neste caso, o erro 1964 Multiple channels exist on the slave. Please provide channel name as an argument. é gerado. As seguintes declarações e funções geram este erro quando utilizadas em uma topologia de multi-source replication e quando a opção `FOR CHANNEL channel` não é usada para especificar em qual channel agir:
 
 * [`SHOW RELAYLOG EVENTS`](show-relaylog-events.html "13.7.5.32 SHOW RELAYLOG EVENTS Statement")
 * [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement")
 * [`MASTER_POS_WAIT()`](miscellaneous-functions.html#function_master-pos-wait)
 * [`WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()`](gtid-functions.html#function_wait-until-sql-thread-after-gtids)
 
-Note that a default channel always exists in a single source replication topology, where statements and functions behave as in previous versions of MySQL.
+Note que um channel padrão sempre existe em uma topologia de single source replication, onde as declarações e funções se comportam como nas versões anteriores do MySQL.

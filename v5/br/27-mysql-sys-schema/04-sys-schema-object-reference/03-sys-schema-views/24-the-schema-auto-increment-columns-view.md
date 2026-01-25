@@ -1,47 +1,47 @@
-#### 26.4.3.24 The schema_auto_increment_columns View
+#### 26.4.3.24 A View `schema_auto_increment_columns`
 
-This view indicates which tables have `AUTO_INCREMENT` columns and provides information about those columns, such as the current and maximum column values and the usage ratio (ratio of used to possible values). By default, rows are sorted by descending usage ratio and maximum column value.
+Esta view indica quais tabelas possuem colunas `AUTO_INCREMENT` e fornece informações sobre essas colunas, como os valores atuais e máximos da coluna e o *usage ratio* (proporção de valores usados em relação aos valores possíveis). Por padrão, as linhas são ordenadas pelo *usage ratio* decrescente e pelo valor máximo da coluna.
 
-Tables in these schemas are excluded from view output: `mysql`, `sys`, `INFORMATION_SCHEMA`, `performance_schema`.
+Tabelas nestes schemas são excluídas da saída da view: `mysql`, `sys`, `INFORMATION_SCHEMA`, `performance_schema`.
 
-The `schema_auto_increment_columns` view has these columns:
+A view `schema_auto_increment_columns` possui as seguintes colunas:
 
 * `table_schema`
 
-  The schema that contains the table.
+  O schema que contém a tabela.
 
 * `table_name`
 
-  The table that contains the `AUTO_INCREMENT` column.
+  A tabela que contém a coluna `AUTO_INCREMENT`.
 
 * `column_name`
 
-  The name of the `AUTO_INCREMENT` column.
+  O nome da coluna `AUTO_INCREMENT`.
 
 * `data_type`
 
-  The data type of the column.
+  O tipo de dado da coluna.
 
 * `column_type`
 
-  The column type of the column, which is the data type plus possibly other information. For example, for a column with a `bigint(20) unsigned` column type, the data type is just `bigint`.
+  O tipo de coluna da coluna, que é o tipo de dado mais possivelmente outras informações. Por exemplo, para uma coluna com um `column type` de `bigint(20) unsigned`, o tipo de dado é apenas `bigint`.
 
 * `is_signed`
 
-  Whether the column type is signed.
+  Indica se o tipo de coluna é assinado (*signed*).
 
 * `is_unsigned`
 
-  Whether the column type is unsigned.
+  Indica se o tipo de coluna é não assinado (*unsigned*).
 
 * `max_value`
 
-  The maximum permitted value for the column.
+  O valor máximo permitido para a coluna.
 
 * `auto_increment`
 
-  The current `AUTO_INCREMENT` value for the column.
+  O valor `AUTO_INCREMENT` atual para a coluna.
 
 * `auto_increment_ratio`
 
-  The ratio of used to permitted values for the column. This indicates how much of the sequence of values is “used up.”
+  A proporção de valores usados em relação aos valores permitidos para a coluna. Isso indica o quanto da sequência de valores foi “consumida” (*“used up”*).

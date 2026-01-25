@@ -1,13 +1,13 @@
-### 13.1.28 DROP SERVER Statement
+### 13.1.28 Instrução DROP SERVER
 
 ```sql
 DROP SERVER [ IF EXISTS ] server_name
 ```
 
-Drops the server definition for the server named `server_name`. The corresponding row in the `mysql.servers` table is deleted. This statement requires the [`SUPER`](privileges-provided.html#priv_super) privilege.
+Remove a definição do Server para o Server nomeado `server_name`. A linha correspondente na tabela `mysql.servers` é excluída. Esta instrução requer o Privilege [`SUPER`](privileges-provided.html#priv_super).
 
-Dropping a server for a table does not affect any `FEDERATED` tables that used this connection information when they were created. See [Section 13.1.17, “CREATE SERVER Statement”](create-server.html "13.1.17 CREATE SERVER Statement").
+Remover um Server para uma tabela não afeta nenhuma tabela `FEDERATED` que usou essa informação de conexão quando foi criada. Consulte [Seção 13.1.17, “Instrução CREATE SERVER”](create-server.html "13.1.17 Instrução CREATE SERVER").
 
-`DROP SERVER` causes an implicit commit. See [Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit").
+`DROP SERVER` causa um Commit implícito. Consulte [Seção 13.3.3, “Instruções Que Causam um Commit Implícito”](implicit-commit.html "13.3.3 Instruções Que Causam um Commit Implícito").
 
-`DROP SERVER` is not written to the binary log, regardless of the logging format that is in use.
+`DROP SERVER` não é escrita no Binary Log, independentemente do formato de logging que está em uso.

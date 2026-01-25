@@ -1,18 +1,18 @@
-#### 26.4.4.14 The ps_setup_save() Procedure
+#### 26.4.4.14 O Procedure ps_setup_save()
 
-Saves the current Performance Schema configuration. This enables you to alter the configuration temporarily for debugging or other purposes, then restore it to the previous state by invoking the `ps_setup_reload_saved()` Procedure") procedure.
+Salva a configuração atual do Performance Schema. Isso permite que você altere a configuration temporariamente para fins de debugging ou outros propósitos, e então a restaure ao estado anterior invocando o `Procedure ps_setup_reload_saved()`.
 
-To prevent other simultaneous calls to save the configuration, `ps_setup_save()` Procedure") acquires an advisory lock named `sys.ps_setup_save` by calling the `GET_LOCK()` function. `ps_setup_save()` Procedure") takes a timeout parameter to indicate how many seconds to wait if the lock already exists (which indicates that some other session has a saved configuration outstanding). If the timeout expires without obtaining the lock, `ps_setup_save()` Procedure") fails.
+Para prevenir outras chamadas simultâneas para salvar a configuration, o `Procedure ps_setup_save()` adquire um advisory lock chamado `sys.ps_setup_save` através da chamada da função `GET_LOCK()`. O `Procedure ps_setup_save()` aceita um parâmetro de timeout para indicar quantos segundos deve esperar caso o lock já exista (o que indica que alguma outra session tem uma configuração salva pendente). Se o timeout expirar sem obter o lock, o `Procedure ps_setup_save()` falha.
 
-It is intended you call `ps_setup_reload_saved()` Procedure") later within the *same* session as `ps_setup_save()` Procedure") because the configuration is saved in `TEMPORARY` tables. `ps_setup_save()` Procedure") drops the temporary tables and releases the lock. If you end your session without invoking `ps_setup_save()` Procedure"), the tables and lock disappear automatically.
+Pretende-se que você chame o `Procedure ps_setup_reload_saved()` posteriormente dentro da *mesma* session do `Procedure ps_setup_save()`, pois a configuração é salva em `TEMPORARY` tables. O `Procedure ps_setup_save()` descarta as temporary tables e libera o lock. Se você encerrar sua session sem invocar o `Procedure ps_setup_save()`, as tables e o lock desaparecem automaticamente.
 
-This procedure disables binary logging during its execution by manipulating the session value of the `sql_log_bin` system variable. That is a restricted operation, so the procedure requires privileges sufficient to set restricted session variables. See Section 5.1.8.1, “System Variable Privileges”.
+Este procedure desabilita o binary logging durante sua execução manipulando o valor da session da system variable `sql_log_bin`. Essa é uma operação restrita, portanto, o procedure requer privilégios suficientes para definir restricted session variables. Consulte a Seção 5.1.8.1, “Privilégios de System Variables”.
 
-##### Parameters
+##### Parâmetros
 
-* `in_timeout INT`: How many seconds to wait to obtain the `sys.ps_setup_save` lock. A negative timeout value means infinite timeout.
+* `in_timeout INT`: Quantos segundos esperar para obter o lock `sys.ps_setup_save`. Um valor de timeout negativo significa timeout infinito.
 
-##### Example
+##### Exemplo
 
 ```sql
 mysql> CALL sys.ps_setup_save(10);

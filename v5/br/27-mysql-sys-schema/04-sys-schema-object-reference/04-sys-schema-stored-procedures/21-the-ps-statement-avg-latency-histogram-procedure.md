@@ -1,16 +1,16 @@
-#### 26.4.4.21 The ps_statement_avg_latency_histogram() Procedure
+#### 26.4.4.21 O Procedure ps_statement_avg_latency_histogram()
 
-Displays a textual histogram graph of the average latency values across all normalized statements tracked within the Performance Schema `events_statements_summary_by_digest` table.
+Exibe um gráfico de `histogram` textual dos valores de `latency` média em todos os `statements` normalizados rastreados na tabela `events_statements_summary_by_digest` do `Performance Schema`.
 
-This procedure can be used to display a very high-level picture of the latency distribution of statements running within this MySQL instance.
+Este `Procedure` pode ser usado para exibir uma visão de altíssimo nível da distribuição de `latency` dos `statements` em execução nesta `MySQL instance`.
 
-##### Parameters
+##### Parâmetros
 
-None.
+Nenhuns.
 
-##### Example
+##### Exemplo
 
-The histogram output in statement units. For example, `* = 2 units` in the histogram legend means that each `*` character represents 2 statements.
+A saída do `histogram` em unidades de `statement`. Por exemplo, `* = 2 units` na legenda do `histogram` significa que cada caractere `*` representa 2 `statements`.
 
 ```sql
 mysql> CALL sys.ps_statement_avg_latency_histogram()\G

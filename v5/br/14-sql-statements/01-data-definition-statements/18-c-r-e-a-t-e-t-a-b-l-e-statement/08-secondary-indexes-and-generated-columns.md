@@ -1,24 +1,24 @@
-#### 13.1.18.8 Secondary Indexes and Generated Columns
+#### 13.1.18.8 Secondary Indexes e Colunas Geradas
 
-`InnoDB` supports secondary indexes on virtual generated columns. Other index types are not supported. A secondary index defined on a virtual column is sometimes referred to as a “virtual index”.
+O `InnoDB` suporta Secondary Indexes em colunas geradas virtuais. Outros tipos de Index não são suportados. Um Secondary Index definido em uma coluna virtual é, por vezes, referido como um "virtual index".
 
-A secondary index may be created on one or more virtual columns or on a combination of virtual columns and regular columns or stored generated columns. Secondary indexes that include virtual columns may be defined as `UNIQUE`.
+Um Secondary Index pode ser criado em uma ou mais colunas virtuais ou em uma combinação de colunas virtuais e colunas regulares ou colunas geradas stored. Secondary Indexes que incluem colunas virtuais podem ser definidos como `UNIQUE`.
 
-When a secondary index is created on a virtual generated column, generated column values are materialized in the records of the index. If the index is a [covering index](glossary.html#glos_covering_index "covering index") (one that includes all the columns retrieved by a query), generated column values are retrieved from materialized values in the index structure instead of computed “on the fly”.
+Quando um Secondary Index é criado em uma coluna gerada virtual, os valores da coluna gerada são materializados nos registros do Index. Se o Index for um [covering index](glossary.html#glos_covering_index "covering index") (aquele que inclui todas as colunas recuperadas por uma Query), os valores da coluna gerada são recuperados dos valores materializados na estrutura do Index, em vez de serem computados "on the fly".
 
-There are additional write costs to consider when using a secondary index on a virtual column due to computation performed when materializing virtual column values in secondary index records during [`INSERT`](insert.html "13.2.5 INSERT Statement") and [`UPDATE`](update.html "13.2.11 UPDATE Statement") operations. Even with additional write costs, secondary indexes on virtual columns may be preferable to generated *stored* columns, which are materialized in the clustered index, resulting in larger tables that require more disk space and memory. If a secondary index is not defined on a virtual column, there are additional costs for reads, as virtual column values must be computed each time the column's row is examined.
+Existem custos de escrita adicionais a considerar ao usar um Secondary Index em uma coluna virtual devido ao cálculo realizado ao materializar os valores da coluna virtual nos registros do Secondary Index durante as operações de [`INSERT`](insert.html "13.2.5 INSERT Statement") e [`UPDATE`](update.html "13.2.11 UPDATE Statement"). Mesmo com custos de escrita adicionais, Secondary Indexes em colunas virtuais podem ser preferíveis às colunas geradas *stored*, que são materializadas no clustered index, resultando em tabelas maiores que exigem mais disk space e memory. Se um Secondary Index não for definido em uma coluna virtual, há custos adicionais para reads, pois os valores da coluna virtual devem ser computados sempre que a linha da coluna for examinada.
 
-Values of an indexed virtual column are MVCC-logged to avoid unnecessary recomputation of generated column values during rollback or during a purge operation. The data length of logged values is limited by the index key limit of 767 bytes for `COMPACT` and `REDUNDANT` row formats, and 3072 bytes for `DYNAMIC` and `COMPRESSED` row formats.
+Os valores de uma coluna virtual indexada são registrados via MVCC para evitar o recálculo desnecessário dos valores da coluna gerada durante um rollback ou durante uma operação de purge. O data length dos valores registrados é limitado pelo limite de index key de 767 bytes para os formatos de linha `COMPACT` e `REDUNDANT`, e 3072 bytes para os formatos de linha `DYNAMIC` e `COMPRESSED`.
 
-Adding or dropping a secondary index on a virtual column is an in-place operation.
+Adicionar ou remover um Secondary Index em uma coluna virtual é uma operação in-place.
 
-Prior to 5.7.16, a foreign key constraint cannot reference a secondary index defined on a virtual generated column.
+Antes da versão 5.7.16, uma foreign key constraint não pode referenciar um Secondary Index definido em uma coluna gerada virtual.
 
-In MySQL 5.7.13 and earlier, `InnoDB` does not permit defining a foreign key constraint with a cascading referential action on the base column of an indexed generated virtual column. This restriction is lifted in MySQL 5.7.14.
+No MySQL 5.7.13 e versões anteriores, o `InnoDB` não permite definir uma foreign key constraint com uma ação referencial em cascata na coluna base de uma coluna virtual gerada indexada. Essa restrição foi removida no MySQL 5.7.14.
 
-##### Indexing a Generated Column to Provide a JSON Column Index
+##### Indexando uma Coluna Gerada para Fornecer um Index de Coluna JSON
 
-As noted elsewhere, [`JSON`](json.html "11.5 The JSON Data Type") columns cannot be indexed directly. To create an index that references such a column indirectly, you can define a generated column that extracts the information that should be indexed, then create an index on the generated column, as shown in this example:
+Conforme observado em outros lugares, colunas [`JSON`](json.html "11.5 The JSON Data Type") não podem ser indexadas diretamente. Para criar um Index que referencie tal coluna indiretamente, você pode definir uma coluna gerada que extrai a informação que deve ser indexada e, em seguida, criar um Index na coluna gerada, conforme mostrado neste exemplo:
 
 ```sql
 mysql> CREATE TABLE jemp (
@@ -70,11 +70,11 @@ AS `name` from `test`.`jemp` where (`test`.`jemp`.`g` > 2)
 1 row in set (0.00 sec)
 ```
 
-(We have wrapped the output from the last statement in this example to fit the viewing area.)
+(Ajustamos a quebra da saída da última instrução neste exemplo para caber na área de visualização.)
 
-The [`->`](json-search-functions.html#operator_json-column-path) operator is supported in MySQL 5.7.9 and later. The [`->>`](json-search-functions.html#operator_json-inline-path) operator is supported beginning with MySQL 5.7.13.
+O operador [`->`](json-search-functions.html#operator_json-column-path) é suportado no MySQL 5.7.9 e versões posteriores. O operador [`->>`](json-search-functions.html#operator_json-inline-path) é suportado a partir do MySQL 5.7.13.
 
-When you use [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") on a [`SELECT`](select.html "13.2.9 SELECT Statement") or other SQL statement containing one or more expressions that use the `->` or `->>` operator, these expressions are translated into their equivalents using `JSON_EXTRACT()` and (if needed) `JSON_UNQUOTE()` instead, as shown here in the output from [`SHOW WARNINGS`](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement") immediately following this `EXPLAIN` statement:
+Quando você usa [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") em uma instrução [`SELECT`](select.html "13.2.9 SELECT Statement") ou outra instrução SQL contendo uma ou mais expressões que utilizam o operador `->` ou `->>`, essas expressões são traduzidas para seus equivalentes usando `JSON_EXTRACT()` e (se necessário) `JSON_UNQUOTE()`, conforme mostrado aqui na saída de [`SHOW WARNINGS`](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement") imediatamente após esta instrução `EXPLAIN`:
 
 ```sql
 mysql> EXPLAIN SELECT c->>"$.name"
@@ -104,19 +104,19 @@ json_extract(`test`.`jemp`.`c`,'$.name')
 1 row in set (0.00 sec)
 ```
 
-See the descriptions of the [`->`](json-search-functions.html#operator_json-column-path) and [`->>`](json-search-functions.html#operator_json-inline-path) operators, as well as those of the [`JSON_EXTRACT()`](json-search-functions.html#function_json-extract) and [`JSON_UNQUOTE()`](json-modification-functions.html#function_json-unquote) functions, for additional information and examples.
+Consulte as descrições dos operadores [`->`](json-search-functions.html#operator_json-column-path) e [`->>`](json-search-functions.html#operator_json-inline-path), bem como as das funções [`JSON_EXTRACT()`](json-search-functions.html#function_json-extract) e [`JSON_UNQUOTE()`](json-modification-functions.html#function_json-unquote), para obter informações e exemplos adicionais.
 
-This technique also can be used to provide indexes that indirectly reference columns of other types that cannot be indexed directly, such as `GEOMETRY` columns.
+Essa técnica também pode ser usada para fornecer Indexes que referenciam indiretamente colunas de outros tipos que não podem ser indexadas diretamente, como colunas `GEOMETRY`.
 
-###### JSON columns and indirect indexing in NDB Cluster
+###### Colunas JSON e Indexação indireta no NDB Cluster
 
-It is also possible to use indirect indexing of JSON columns in MySQL NDB Cluster, subject to the following conditions:
+Também é possível usar a indexação indireta de colunas JSON no MySQL NDB Cluster, sujeita às seguintes condições:
 
-1. [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") handles a [`JSON`](json.html "11.5 The JSON Data Type") column value internally as a [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types"). This means that any `NDB` table having one or more JSON columns must have a primary key, else it cannot be recorded in the binary log.
+1. O [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") trata um valor de coluna [`JSON`](json.html "11.5 The JSON Data Type") internamente como um [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types"). Isso significa que qualquer tabela `NDB` que tenha uma ou mais colunas JSON deve ter uma primary key, caso contrário, não poderá ser registrada no binary log.
 
-2. The [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine does not support indexing of virtual columns. Since the default for generated columns is `VIRTUAL`, you must specify explicitly the generated column to which to apply the indirect index as `STORED`.
+2. O storage engine [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") não suporta a indexação de colunas virtuais. Como o padrão para colunas geradas é `VIRTUAL`, você deve especificar explicitamente a coluna gerada à qual aplicar o Index indireto como `STORED`.
 
-The **`CREATE TABLE`** statement used to create the table `jempn` shown here is a version of the `jemp` table shown previously, with modifications making it compatible with `NDB`:
+A instrução **`CREATE TABLE`** usada para criar a tabela `jempn` mostrada aqui é uma versão da tabela `jemp` mostrada anteriormente, com modificações que a tornam compatível com `NDB`:
 
 ```sql
 CREATE TABLE jempn (
@@ -127,7 +127,7 @@ CREATE TABLE jempn (
 ) ENGINE=NDB;
 ```
 
-We can populate this table using the following [`INSERT`](insert.html "13.2.5 INSERT Statement") statement:
+Podemos popular esta tabela usando a seguinte instrução [`INSERT`](insert.html "13.2.5 INSERT Statement"):
 
 ```sql
 INSERT INTO jempn (a, c) VALUES
@@ -137,7 +137,7 @@ INSERT INTO jempn (a, c) VALUES
   (NULL, '{"id": "4", "name": "Betty"}');
 ```
 
-Now `NDB` can use index `i`, as shown here:
+Agora o `NDB` pode usar o index `i`, conforme mostrado aqui:
 
 ```sql
 mysql> EXPLAIN SELECT c->>"$.name" AS name
@@ -167,4 +167,4 @@ json_unquote(json_extract(`test`.`jempn`.`c`,'$.name')) AS `name` from
 1 row in set (0.00 sec)
 ```
 
-You should keep in mind that a stored generated column, as well as any index on such a column, uses [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory). In NDB 7.5, an index on a stored generated column also uses [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory).
+Você deve ter em mente que uma coluna gerada stored, bem como qualquer Index nessa coluna, usa [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory). No NDB 7.5, um Index em uma coluna gerada stored também usa [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory).

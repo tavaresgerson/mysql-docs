@@ -1,21 +1,21 @@
-## 12.10 Cast Functions and Operators
+## 12.10 Funções e Operadores de Cast
 
-**Table 12.15 Cast Functions and Operators**
+**Tabela 12.15 Funções e Operadores de Cast**
 
-<table frame="box" rules="all" summary="A reference that lists cast functions and operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>BINARY</code></td> <td> Cast a string to a binary string </td> </tr><tr><td><code>CAST()</code></td> <td> Cast a value as a certain type </td> </tr><tr><td><code>CONVERT()</code></td> <td> Cast a value as a certain type </td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista funções e operadores de cast."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>BINARY</code></td> <td> Converte uma string para uma string binária </td> </tr><tr><td><code>CAST()</code></td> <td> Converte um valor para um tipo específico </td> </tr><tr><td><code>CONVERT()</code></td> <td> Converte um valor para um tipo específico </td> </tr></tbody></table>
 
-Cast functions and operators enable conversion of values from one data type to another.
+Funções e operadores de Cast permitem a conversão de valores de um tipo de dado para outro.
 
-* Cast Function and Operator Descriptions
-* Character Set Conversions
-* Character Set Conversions for String Comparisons
-* Other Uses for Cast Operations
+* Descrições de Funções e Operadores de Cast
+* Conversões de Character Set
+* Conversões de Character Set para Comparações de String
+* Outros Usos para Operações de Cast
 
-### Cast Function and Operator Descriptions
+### Descrições de Funções e Operadores de Cast
 
 * `BINARY` *`expr`*
 
-  The `BINARY` operator converts the expression to a binary string (a string that has the `binary` character set and `binary` collation). A common use for `BINARY` is to force a character string comparison to be done byte by byte using numeric byte values rather than character by character. The `BINARY` operator also causes trailing spaces in comparisons to be significant. For information about the differences between the `binary` collation of the `binary` character set and the `_bin` collations of nonbinary character sets, see Section 10.8.5, “The binary Collation Compared to _bin Collations”.
+  O operador `BINARY` converte a expression para uma binary string (uma string que possui o character set `binary` e a collation `binary`). Um uso comum para `BINARY` é forçar uma comparação de string de caracteres a ser feita byte a byte usando valores de byte numéricos em vez de caractere a caractere. O operador `BINARY` também faz com que espaços finais em comparações sejam significativos. Para informações sobre as diferenças entre a collation `binary` do character set `binary` e as collations `_bin` de character sets não binários, consulte a Seção 10.8.5, “A Collation binary Comparada às Collations _bin”.
 
   ```sql
   mysql> SELECT 'a' = 'A';
@@ -28,9 +28,9 @@ Cast functions and operators enable conversion of values from one data type to a
           -> 0
   ```
 
-  In a comparison, `BINARY` affects the entire operation; it can be given before either operand with the same result.
+  Em uma comparação, `BINARY` afeta toda a operação; ele pode ser fornecido antes de qualquer operando com o mesmo resultado.
 
-  To convert a string expression to a binary string, these constructs are equivalent:
+  Para converter uma string expression para uma binary string, estas construções são equivalentes:
 
   ```sql
   CONVERT(expr USING BINARY)
@@ -38,7 +38,7 @@ Cast functions and operators enable conversion of values from one data type to a
   BINARY expr
   ```
 
-  If a value is a string literal, it can be designated as a binary string without converting it by using the `_binary` character set introducer:
+  Se um valor for um literal de string, ele pode ser designado como uma binary string sem convertê-lo, usando o introducer de character set `_binary`:
 
   ```sql
   mysql> SELECT 'a' = 'A';
@@ -47,16 +47,16 @@ Cast functions and operators enable conversion of values from one data type to a
           -> 0
   ```
 
-  For information about introducers, see Section 10.3.8, “Character Set Introducers”.
+  Para informações sobre introducers, consulte a Seção 10.3.8, “Character Set Introducers”.
 
-  The `BINARY` operator in expressions differs in effect from the `BINARY` attribute in character column definitions. For a character column defined with the `BINARY` attribute, MySQL assigns the table default character set and the binary (`_bin`) collation of that character set. Every nonbinary character set has a `_bin` collation. For example, if the table default character set is `utf8`, these two column definitions are equivalent:
+  O operador `BINARY` em expressions difere no efeito do atributo `BINARY` em definições de coluna de caracteres. Para uma coluna de caracteres definida com o atributo `BINARY`, o MySQL atribui o character set padrão da tabela e a collation binária (`_bin`) desse character set. Cada character set não binário possui uma collation `_bin`. Por exemplo, se o character set padrão da tabela for `utf8`, estas duas definições de coluna são equivalentes:
 
   ```sql
   CHAR(10) BINARY
   CHAR(10) CHARACTER SET utf8 COLLATE utf8_bin
   ```
 
-  The use of `CHARACTER SET binary` in the definition of a `CHAR`, `VARCHAR`, or `TEXT` column causes the column to be treated as the corresponding binary string data type. For example, the following pairs of definitions are equivalent:
+  O uso de `CHARACTER SET binary` na definição de uma coluna `CHAR`, `VARCHAR` ou `TEXT` faz com que a coluna seja tratada como o tipo de dado binary string correspondente. Por exemplo, os seguintes pares de definições são equivalentes:
 
   ```sql
   CHAR(10) CHARACTER SET binary
@@ -69,93 +69,93 @@ Cast functions and operators enable conversion of values from one data type to a
   BLOB
   ```
 
-  If `BINARY` is invoked from within the **mysql** client, binary strings display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see Section 4.5.1, “mysql — The MySQL Command-Line Client”.
+  Se `BINARY` for invocado de dentro do cliente **mysql**, as binary strings são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O Cliente de Linha de Comando MySQL”.
 
 * `CAST(expr AS type)`
 
-  `CAST(expr AS type` takes an expression of any type and produces a result value of the specified type. This operation may also be expressed as `CONVERT(expr, type)`, which is equivalent.
+  `CAST(expr AS type` recebe uma expression de qualquer tipo e produz um valor resultante do tipo especificado. Esta operação também pode ser expressa como `CONVERT(expr, type)`, que é equivalente.
 
-  These *`type`* values are permitted:
+  Estes valores de *`type`* são permitidos:
 
   + `BINARY[(N)]`
 
-    Produces a string with the `VARBINARY` data type, except that when the expression *`expr`* is empty (zero length), the result type is `BINARY(0)`. If the optional length *`N`* is given, `BINARY(N)` causes the cast to use no more than *`N`* bytes of the argument. Values shorter than *`N`* bytes are padded with `0x00` bytes to a length of *`N`*. If the optional length *`N`* is not given, MySQL calculates the maximum length from the expression. If the supplied or calculated length is greater than an internal threshold, the result type is `BLOB`. If the length is still too long, the result type is `LONGBLOB`.
+    Produz uma string com o tipo de dado `VARBINARY`, exceto que quando a expression *`expr`* está vazia (comprimento zero), o tipo resultante é `BINARY(0)`. Se o comprimento opcional *`N`* for fornecido, `BINARY(N)` faz com que o cast utilize no máximo *`N`* bytes do argumento. Valores menores que *`N`* bytes são preenchidos com bytes `0x00` até um comprimento de *`N`*. Se o comprimento opcional *`N`* não for fornecido, o MySQL calcula o comprimento máximo a partir da expression. Se o comprimento fornecido ou calculado for maior do que um limite interno, o tipo resultante é `BLOB`. Se o comprimento ainda for muito longo, o tipo resultante é `LONGBLOB`.
 
-    For a description of how casting to `BINARY` affects comparisons, see Section 11.3.3, “The BINARY and VARBINARY Types”.
+    Para uma descrição de como o cast para `BINARY` afeta comparações, consulte a Seção 11.3.3, “Os Tipos BINARY e VARBINARY”.
 
   + `CHAR[(N)] [charset_info]`
 
-    Produces a string with the `VARCHAR` data type, unless the expression *`expr`* is empty (zero length), in which case the result type is `CHAR(0)`. If the optional length *`N`* is given, `CHAR(N)` causes the cast to use no more than *`N`* characters of the argument. No padding occurs for values shorter than *`N`* characters. If the optional length *`N`* is not given, MySQL calculates the maximum length from the expression. If the supplied or calculated length is greater than an internal threshold, the result type is `TEXT`. If the length is still too long, the result type is `LONGTEXT`.
+    Produz uma string com o tipo de dado `VARCHAR`, a menos que a expression *`expr`* esteja vazia (comprimento zero), caso em que o tipo resultante é `CHAR(0)`. Se o comprimento opcional *`N`* for fornecido, `CHAR(N)` faz com que o cast utilize no máximo *`N`* caracteres do argumento. Nenhum preenchimento ocorre para valores menores que *`N`* caracteres. Se o comprimento opcional *`N`* não for fornecido, o MySQL calcula o comprimento máximo a partir da expression. Se o comprimento fornecido ou calculado for maior do que um limite interno, o tipo resultante é `TEXT`. Se o comprimento ainda for muito longo, o tipo resultante é `LONGTEXT`.
 
-    With no *`charset_info`* clause, `CHAR` produces a string with the default character set. To specify the character set explicitly, these *`charset_info`* values are permitted:
+    Sem uma cláusula *`charset_info`*, `CHAR` produz uma string com o character set padrão. Para especificar o character set explicitamente, estes valores de *`charset_info`* são permitidos:
 
-    - `CHARACTER SET charset_name`: Produces a string with the given character set.
+    - `CHARACTER SET charset_name`: Produz uma string com o character set fornecido.
 
-    - `ASCII`: Shorthand for `CHARACTER SET latin1`.
+    - `ASCII`: Abreviação para `CHARACTER SET latin1`.
 
-    - `UNICODE`: Shorthand for `CHARACTER SET ucs2`.
+    - `UNICODE`: Abreviação para `CHARACTER SET ucs2`.
 
-    In all cases, the string has the character set default collation.
+    Em todos os casos, a string tem a collation padrão do character set.
 
   + `DATE`
 
-    Produces a `DATE` value.
+    Produz um valor `DATE`.
 
   + `DATETIME[(M)]`
 
-    Produces a `DATETIME` value. If the optional *`M`* value is given, it specifies the fractional seconds precision.
+    Produz um valor `DATETIME`. Se o valor opcional *`M`* for fornecido, ele especifica a precisão de segundos fracionários.
 
   + `DECIMAL[(M[,D])]`
 
-    Produces a `DECIMAL` - DECIMAL, NUMERIC") value. If the optional *`M`* and *`D`* values are given, they specify the maximum number of digits (the precision) and the number of digits following the decimal point (the scale). If *`D`* is omitted, 0 is assumed. If *`M`* is omitted, 10 is assumed.
+    Produz um valor `DECIMAL`. Se os valores opcionais *`M`* e *`D`* forem fornecidos, eles especificam o número máximo de dígitos (a precisão) e o número de dígitos após o ponto decimal (a escala). Se *`D`* for omitido, 0 é assumido. Se *`M`* for omitido, 10 é assumido.
 
   + `JSON`
 
-    Produces a `JSON` value. For details on the rules for conversion of values between `JSON` and other types, see Comparison and Ordering of JSON Values.
+    Produz um valor `JSON`. Para detalhes sobre as regras de conversão de valores entre `JSON` e outros tipos, consulte Comparação e Ordenação de Valores JSON.
 
   + `NCHAR[(N)]`
 
-    Like `CHAR`, but produces a string with the national character set. See Section 10.3.7, “The National Character Set”.
+    Semelhante a `CHAR`, mas produz uma string com o national character set. Consulte a Seção 10.3.7, “O National Character Set”.
 
-    Unlike `CHAR`, `NCHAR` does not permit trailing character set information to be specified.
+    Diferentemente de `CHAR`, `NCHAR` não permite que informações de character set subsequentes sejam especificadas.
 
   + `SIGNED [INTEGER]`
 
-    Produces a signed `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") value.
+    Produz um valor `BIGINT` assinado.
 
   + `TIME[(M)]`
 
-    Produces a `TIME` value. If the optional *`M`* value is given, it specifies the fractional seconds precision.
+    Produz um valor `TIME`. Se o valor opcional *`M`* for fornecido, ele especifica a precisão de segundos fracionários.
 
   + `UNSIGNED [INTEGER]`
 
-    Produces an unsigned `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") value.
+    Produz um valor `BIGINT` não assinado.
 
 * `CONVERT(expr USING transcoding_name)`
 
   `CONVERT(expr,type)`
 
-  `CONVERT(expr USING transcoding_name)` is standard SQL syntax. The non-`USING` form of `CONVERT()` is ODBC syntax.
+  `CONVERT(expr USING transcoding_name)` é sintaxe SQL padrão. A forma não-`USING` de `CONVERT()` é sintaxe ODBC.
 
-  `CONVERT(expr USING transcoding_name)` converts data between different character sets. In MySQL, transcoding names are the same as the corresponding character set names. For example, this statement converts the string `'abc'` in the default character set to the corresponding string in the `utf8` character set:
+  `CONVERT(expr USING transcoding_name)` converte dados entre diferentes character sets. No MySQL, os nomes de transcoding são os mesmos que os nomes correspondentes de character set. Por exemplo, esta instrução converte a string `'abc'` no character set padrão para a string correspondente no character set `utf8`:
 
   ```sql
   SELECT CONVERT('abc' USING utf8);
   ```
 
-  `CONVERT(expr, type)` syntax (without `USING`) takes an expression and a *`type`* value specifying a result type, and produces a result value of the specified type. This operation may also be expressed as `CAST(expr AS type)`, which is equivalent. For more information, see the description of `CAST()`.
+  A sintaxe `CONVERT(expr, type)` (sem `USING`) recebe uma expression e um valor *`type`* especificando um tipo de resultado, e produz um valor resultante do tipo especificado. Esta operação também pode ser expressa como `CAST(expr AS type)`, que é equivalente. Para mais informações, consulte a descrição de `CAST()`.
 
-### Character Set Conversions
+### Conversões de Character Set
 
-`CONVERT()` with a `USING` clause converts data between character sets:
+`CONVERT()` com uma cláusula `USING` converte dados entre character sets:
 
 ```sql
 CONVERT(expr USING transcoding_name)
 ```
 
-In MySQL, transcoding names are the same as the corresponding character set names.
+No MySQL, os nomes de transcoding são os mesmos que os nomes de character set correspondentes.
 
-Examples:
+Exemplos:
 
 ```sql
 SELECT CONVERT('test' USING utf8);
@@ -164,23 +164,23 @@ INSERT INTO utf8_table (utf8_column)
     SELECT CONVERT(latin1_column USING utf8) FROM latin1_table;
 ```
 
-To convert strings between character sets, you can also use `CONVERT(expr, type)` syntax (without `USING`), or `CAST(expr AS type)`, which is equivalent:
+Para converter strings entre character sets, você também pode usar a sintaxe `CONVERT(expr, type)` (sem `USING`), ou `CAST(expr AS type)`, que é equivalente:
 
 ```sql
 CONVERT(string, CHAR[(N)] CHARACTER SET charset_name)
 CAST(string AS CHAR[(N)] CHARACTER SET charset_name)
 ```
 
-Examples:
+Exemplos:
 
 ```sql
 SELECT CONVERT('test', CHAR CHARACTER SET utf8);
 SELECT CAST('test' AS CHAR CHARACTER SET utf8);
 ```
 
-If you specify `CHARACTER SET charset_name` as just shown, the character set and collation of the result are *`charset_name`* and the default collation of *`charset_name`*. If you omit `CHARACTER SET charset_name`, the character set and collation of the result are defined by the `character_set_connection` and `collation_connection` system variables that determine the default connection character set and collation (see Section 10.4, “Connection Character Sets and Collations”).
+Se você especificar `CHARACTER SET charset_name` conforme mostrado, o character set e a collation do resultado são *`charset_name`* e a collation padrão de *`charset_name`*. Se você omitir `CHARACTER SET charset_name`, o character set e a collation do resultado são definidos pelas variáveis de sistema `character_set_connection` e `collation_connection` que determinam o character set e a collation de conexão padrão (consulte a Seção 10.4, “Character Sets e Collations de Conexão”).
 
-A `COLLATE` clause is not permitted within a `CONVERT()` or `CAST()` call, but you can apply it to the function result. For example, these are legal:
+Uma cláusula `COLLATE` não é permitida dentro de uma chamada `CONVERT()` ou `CAST()`, mas você pode aplicá-la ao resultado da função. Por exemplo, estas são legais:
 
 ```sql
 SELECT CONVERT('test' USING utf8) COLLATE utf8_bin;
@@ -188,7 +188,7 @@ SELECT CONVERT('test', CHAR CHARACTER SET utf8) COLLATE utf8_bin;
 SELECT CAST('test' AS CHAR CHARACTER SET utf8) COLLATE utf8_bin;
 ```
 
-But these are illegal:
+Mas estas são ilegais:
 
 ```sql
 SELECT CONVERT('test' USING utf8 COLLATE utf8_bin);
@@ -196,27 +196,27 @@ SELECT CONVERT('test', CHAR CHARACTER SET utf8 COLLATE utf8_bin);
 SELECT CAST('test' AS CHAR CHARACTER SET utf8 COLLATE utf8_bin);
 ```
 
-For string literals, another way to specify the character set is to use a character set introducer. `_latin1` and `_latin2` in the preceding example are instances of introducers. Unlike conversion functions such as `CAST()`, or `CONVERT()`, which convert a string from one character set to another, an introducer designates a string literal as having a particular character set, with no conversion involved. For more information, see Section 10.3.8, “Character Set Introducers”.
+Para literais de string, outra maneira de especificar o character set é usar um character set introducer. `_latin1` e `_latin2` no exemplo anterior são instâncias de introducers. Diferentemente das funções de conversão como `CAST()` ou `CONVERT()`, que convertem uma string de um character set para outro, um introducer designa um literal de string como tendo um character set específico, sem conversão envolvida. Para mais informações, consulte a Seção 10.3.8, “Character Set Introducers”.
 
-### Character Set Conversions for String Comparisons
+### Conversões de Character Set para Comparações de String
 
-Normally, you cannot compare a `BLOB` value or other binary string in case-insensitive fashion because binary strings use the `binary` character set, which has no collation with the concept of lettercase. To perform a case-insensitive comparison, first use the `CONVERT()` or `CAST()` function to convert the value to a nonbinary string. Comparisons of the resulting string use its collation. For example, if the conversion result collation is not case-sensitive, a `LIKE` operation is not case-sensitive. That is true for the following operation because the default `latin1` collation (`latin1_swedish_ci`) is not case-sensitive:
+Normalmente, você não pode comparar um valor `BLOB` ou outra binary string de maneira case-insensitive (não sensível a maiúsculas/minúsculas) porque binary strings usam o character set `binary`, que não possui uma collation com o conceito de caixa de letras. Para realizar uma comparação case-insensitive, primeiro use a função `CONVERT()` ou `CAST()` para converter o valor em uma string não binária. Comparações da string resultante usam sua collation. Por exemplo, se a collation do resultado da conversão não for case-sensitive, uma operação `LIKE` não será case-sensitive. Isso é verdade para a seguinte operação porque a collation `latin1` padrão (`latin1_swedish_ci`) não é case-sensitive:
 
 ```sql
 SELECT 'A' LIKE CONVERT(blob_col USING latin1)
   FROM tbl_name;
 ```
 
-To specify a particular collation for the converted string, use a `COLLATE` clause following the `CONVERT()` call:
+Para especificar uma collation particular para a string convertida, use uma cláusula `COLLATE` após a chamada `CONVERT()`:
 
 ```sql
 SELECT 'A' LIKE CONVERT(blob_col USING latin1) COLLATE latin1_german1_ci
   FROM tbl_name;
 ```
 
-To use a different character set, substitute its name for `latin1` in the preceding statements (and similarly to use a different collation).
+Para usar um character set diferente, substitua o nome dele por `latin1` nas instruções anteriores (e, de forma semelhante, para usar uma collation diferente).
 
-`CONVERT()` and `CAST()` can be used more generally for comparing strings represented in different character sets. For example, a comparison of these strings results in an error because they have different character sets:
+`CONVERT()` e `CAST()` podem ser usados de forma mais geral para comparar strings representadas em diferentes character sets. Por exemplo, uma comparação destas strings resulta em um erro porque elas possuem character sets diferentes:
 
 ```sql
 mysql> SET @s1 = _latin1 'abc', @s2 = _latin2 'abc';
@@ -225,7 +225,7 @@ ERROR 1267 (HY000): Illegal mix of collations (latin1_swedish_ci,IMPLICIT)
 and (latin2_general_ci,IMPLICIT) for operation '='
 ```
 
-Converting one of the strings to a character set compatible with the other enables the comparison to occur without error:
+A conversão de uma das strings para um character set compatível com a outra permite que a comparação ocorra sem erro:
 
 ```sql
 mysql> SELECT @s1 = CONVERT(@s2 USING latin1);
@@ -236,7 +236,7 @@ mysql> SELECT @s1 = CONVERT(@s2 USING latin1);
 +---------------------------------+
 ```
 
-Character set conversion is also useful preceding lettercase conversion of binary strings. `LOWER()` and `UPPER()` are ineffective when applied directly to binary strings because the concept of lettercase does not apply. To perform lettercase conversion of a binary string, first convert it to a nonbinary string using a character set appropriate for the data stored in the string:
+A conversão de character set também é útil precedendo a conversão de caixa de letras (lettercase) de binary strings. `LOWER()` e `UPPER()` são ineficazes quando aplicados diretamente a binary strings porque o conceito de caixa de letras não se aplica. Para realizar a conversão de caixa de letras de uma binary string, primeiro converta-a para uma string não binária usando um character set apropriado para os dados armazenados na string:
 
 ```sql
 mysql> SET @str = BINARY 'New York';
@@ -248,11 +248,11 @@ mysql> SELECT LOWER(@str), LOWER(CONVERT(@str USING latin1));
 +-------------+-----------------------------------+
 ```
 
-Be aware that if you apply `BINARY`, `CAST()`, or `CONVERT()` to an indexed column, MySQL may not be able to use the index efficiently.
+Esteja ciente de que, se você aplicar `BINARY`, `CAST()` ou `CONVERT()` a uma coluna indexed, o MySQL pode não ser capaz de usar o Index de forma eficiente.
 
-### Other Uses for Cast Operations
+### Outros Usos para Operações de Cast
 
-The cast functions are useful for creating a column with a specific type in a `CREATE TABLE ... SELECT` statement:
+As funções de cast são úteis para criar uma coluna com um tipo específico em uma instrução `CREATE TABLE ... SELECT`:
 
 ```sql
 mysql> CREATE TABLE new_table SELECT CAST('2000-01-01' AS DATE) AS c1;
@@ -264,24 +264,24 @@ Create Table: CREATE TABLE `new_table` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 ```
 
-The cast functions are useful for sorting `ENUM` columns in lexical order. Normally, sorting of `ENUM` columns occurs using the internal numeric values. Casting the values to `CHAR` results in a lexical sort:
+As funções de cast são úteis para ordenar colunas `ENUM` em ordem lexical. Normalmente, a ordenação de colunas `ENUM` ocorre usando os valores numéricos internos. Fazer o Cast dos valores para `CHAR` resulta em uma ordenação lexical:
 
 ```sql
 SELECT enum_col FROM tbl_name ORDER BY CAST(enum_col AS CHAR);
 ```
 
-`CAST()` also changes the result if you use it as part of a more complex expression such as `CONCAT('Date: ',CAST(NOW() AS DATE))`.
+`CAST()` também altera o resultado se você usá-lo como parte de uma expression mais complexa, como `CONCAT('Date: ',CAST(NOW() AS DATE))`.
 
-For temporal values, there is little need to use `CAST()` to extract data in different formats. Instead, use a function such as `EXTRACT()`, `DATE_FORMAT()`, or `TIME_FORMAT()`. See Section 12.7, “Date and Time Functions”.
+Para valores temporais, há pouca necessidade de usar `CAST()` para extrair dados em formatos diferentes. Em vez disso, use uma função como `EXTRACT()`, `DATE_FORMAT()` ou `TIME_FORMAT()`. Consulte a Seção 12.7, “Funções de Data e Hora”.
 
-To cast a string to a number, it normally suffices to use the string value in numeric context:
+Para converter uma string para um número, normalmente basta usar o valor da string em contexto numérico:
 
 ```sql
 mysql> SELECT 1+'1';
        -> 2
 ```
 
-That is also true for hexadecimal and bit literals, which are binary strings by default:
+Isso também é verdade para literais hexadecimais e de bit, que são binary strings por padrão:
 
 ```sql
 mysql> SELECT X'41', X'41'+0;
@@ -290,18 +290,18 @@ mysql> SELECT b'1100001', b'1100001'+0;
         -> 'a', 97
 ```
 
-A string used in an arithmetic operation is converted to a floating-point number during expression evaluation.
+Uma string usada em uma operação aritmética é convertida para um número de ponto flutuante durante a avaliação da expression.
 
-A number used in string context is converted to a string:
+Um número usado em contexto de string é convertido para uma string:
 
 ```sql
 mysql> SELECT CONCAT('hello you ',2);
         -> 'hello you 2'
 ```
 
-For information about implicit conversion of numbers to strings, see Section 12.3, “Type Conversion in Expression Evaluation”.
+Para informações sobre a conversão implícita de números para strings, consulte a Seção 12.3, “Conversão de Tipo na Avaliação de Expression”.
 
-MySQL supports arithmetic with both signed and unsigned 64-bit values. For numeric operators (such as `+` or `-`) where one of the operands is an unsigned integer, the result is unsigned by default (see Section 12.6.1, “Arithmetic Operators”). To override this, use the `SIGNED` or `UNSIGNED` cast operator to cast a value to a signed or unsigned 64-bit integer, respectively.
+O MySQL suporta aritmética com valores de 64 bits, tanto signed (assinados) quanto unsigned (não assinados). Para operadores numéricos (como `+` ou `-`) onde um dos operandos é um integer unsigned, o resultado é unsigned por padrão (consulte a Seção 12.6.1, “Operadores Aritméticos”). Para anular isso, use o operador de cast `SIGNED` ou `UNSIGNED` para converter um valor, respectivamente, para um integer de 64 bits signed ou unsigned.
 
 ```sql
 mysql> SELECT 1 - 2;
@@ -312,15 +312,15 @@ mysql> SELECT CAST(CAST(1 - 2 AS UNSIGNED) AS SIGNED);
         -> -1
 ```
 
-If either operand is a floating-point value, the result is a floating-point value and is not affected by the preceding rule. (In this context, `DECIMAL` - DECIMAL, NUMERIC") column values are regarded as floating-point values.)
+Se qualquer operando for um valor de ponto flutuante, o resultado é um valor de ponto flutuante e não é afetado pela regra anterior. (Neste contexto, os valores de coluna `DECIMAL` são considerados valores de ponto flutuante.)
 
 ```sql
 mysql> SELECT CAST(1 AS UNSIGNED) - 2.0;
         -> -1.0
 ```
 
-The SQL mode affects the result of conversion operations (see Section 5.1.10, “Server SQL Modes”). Examples:
+O SQL mode afeta o resultado das operações de conversão (consulte a Seção 5.1.10, “SQL Modes do Servidor”). Exemplos:
 
-* For conversion of a “zero” date string to a date, `CONVERT()` and `CAST()` return `NULL` and produce a warning when the `NO_ZERO_DATE` SQL mode is enabled.
+* Para conversão de uma string de data “zero” para uma data, `CONVERT()` e `CAST()` retornam `NULL` e produzem um warning quando o SQL mode `NO_ZERO_DATE` está habilitado.
 
-* For integer subtraction, if the `NO_UNSIGNED_SUBTRACTION` SQL mode is enabled, the subtraction result is signed even if any operand is unsigned.
+* Para subtração de integer, se o SQL mode `NO_UNSIGNED_SUBTRACTION` estiver habilitado, o resultado da subtração é signed mesmo que qualquer operando seja unsigned.

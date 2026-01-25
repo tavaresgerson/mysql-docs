@@ -1,29 +1,29 @@
-#### 21.3.1.3 Installing NDB Cluster Using .deb Files
+#### 21.3.1.3 Instalando o NDB Cluster Usando Arquivos .deb
 
-The section provides information about installing NDB Cluster on Debian and related Linux distributions such Ubuntu using the `.deb` files supplied by Oracle for this purpose.
+Esta seção fornece informações sobre a instalação do NDB Cluster em Debian e distribuições Linux relacionadas, como Ubuntu, usando os arquivos .deb fornecidos pela Oracle para este fim.
 
-For NDB Cluster 7.5.6 and later, Oracle also provides an APT repository for Debian and other distributions. See [*Installing MySQL NDB Cluster Using the APT Repository*](/doc/mysql-apt-repo-quick-guide/en/#repo-qg-apt-cluster-install), for instructions and additional information.
+Para o NDB Cluster 7.5.6 e superior, a Oracle também fornece um APT repository para Debian e outras distribuições. Consulte [*Instalando o MySQL NDB Cluster Usando o APT Repository*](/doc/mysql-apt-repo-quick-guide/en/#repo-qg-apt-cluster-install) para instruções e informações adicionais.
 
-Oracle provides `.deb` installer files for NDB Cluster 7.5 and later for 32-bit and 64-bit platforms. For a Debian-based system, only a single installer file is necessary. This file is named using the pattern shown here, according to the applicable NDB Cluster version, Debian version, and architecture:
+A Oracle fornece arquivos installer .deb para o NDB Cluster 7.5 e superior para plataformas de 32 bits e 64 bits. Para um sistema baseado em Debian, apenas um único arquivo installer é necessário. Este arquivo é nomeado usando o padrão mostrado abaixo, de acordo com a versão aplicável do NDB Cluster, versão do Debian e architecture:
 
 ```sql
 mysql-cluster-gpl-ndbver-debiandebianver-arch.deb
 ```
 
-Here, *`ndbver`* is the 3-part `NDB` engine version number, *`debianver`* is the major version of Debian (`8` or `9`), and *`arch`* is one of `i686` or `x86_64`. In the examples that follow, we assume you wish to install NDB 7.6.35 on a 64-bit Debian 9 system; in this case, the installer file is named `mysql-cluster-gpl-7.6.35-debian9-x86_64.deb-bundle.tar`.
+Aqui, *`ndbver`* é o número de versão do engine `NDB` de 3 partes, *`debianver`* é a versão principal do Debian (`8` ou `9`), e *`arch`* é um de `i686` ou `x86_64`. Nos exemplos que se seguem, assumimos que você deseja instalar o NDB 7.6.35 em um sistema Debian 9 de 64 bits; neste caso, o arquivo installer é nomeado `mysql-cluster-gpl-7.6.35-debian9-x86_64.deb-bundle.tar`.
 
-Once you have downloaded the appropriate `.deb` file, you can untar it, and then install it from the command line using `dpkg`, like this:
+Assim que você tiver baixado o arquivo `.deb` apropriado, você pode descompactá-lo (untar), e então instalá-lo a partir da linha de comando usando `dpkg`, assim:
 
 ```sql
 $> dpkg -i mysql-cluster-gpl-7.6.35-debian9-i686.deb
 ```
 
-You can also remove it using `dpkg` as shown here:
+Você também pode removê-lo usando `dpkg`, conforme mostrado aqui:
 
 ```sql
 $> dpkg -r mysql
 ```
 
-The installer file should also be compatible with most graphical package managers that work with `.deb` files, such as `GDebi` for the Gnome desktop.
+O arquivo installer também deve ser compatível com a maioria dos package managers gráficos que funcionam com arquivos .deb, como o `GDebi` para o desktop Gnome.
 
-The `.deb` file installs NDB Cluster under `/opt/mysql/server-version/`, where *`version`* is the 2-part release series version for the included MySQL server. For NDB 7.5 and later, this is always `5.7`. The directory layout is the same as that for the generic Linux binary distribution (see [Table 2.3, “MySQL Installation Layout for Generic Unix/Linux Binary Package”](binary-installation.html#binary-installation-layout "Table 2.3 MySQL Installation Layout for Generic Unix/Linux Binary Package")), with the exception that startup scripts and configuration files are found in `support-files` instead of `share`. All NDB Cluster executables, such as [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client"), [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon"), and [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"), are placed in the `bin` directory.
+O arquivo .deb instala o NDB Cluster em `/opt/mysql/server-version/`, onde *`version`* é a versão da série de lançamento de 2 partes para o MySQL server incluído. Para NDB 7.5 e superior, esta é sempre `5.7`. O layout do diretório é o mesmo que o da distribuição binária genérica do Linux (consulte [Tabela 2.3, “Layout de Instalação do MySQL para Pacotes Binários Genéricos Unix/Linux”](binary-installation.html#binary-installation-layout "Table 2.3 MySQL Installation Layout for Generic Unix/Linux Binary Package")), com a exceção de que os startup scripts e arquivos de configuração são encontrados em `support-files` em vez de `share`. Todos os executáveis do NDB Cluster, como [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client"), [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") e [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"), são colocados no diretório `bin`.

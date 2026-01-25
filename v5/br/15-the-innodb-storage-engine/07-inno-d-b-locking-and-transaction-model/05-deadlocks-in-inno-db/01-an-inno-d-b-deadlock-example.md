@@ -1,8 +1,8 @@
-#### 14.7.5.1 An InnoDB Deadlock Example
+#### 14.7.5.1 Um Exemplo de Deadlock do InnoDB
 
-The following example illustrates how an error can occur when a lock request causes a deadlock. The example involves two clients, A and B.
+O exemplo a seguir ilustra como um erro pode ocorrer quando uma solicitação de Lock causa um Deadlock. O exemplo envolve dois Clients, A e B.
 
-First, client A creates a table containing one row, and then begins a transaction. Within the transaction, A obtains an `S` lock on the row by selecting it in share mode:
+Primeiro, o Client A cria uma tabela contendo uma única row e, em seguida, inicia uma Transaction. Dentro da Transaction, A obtém um Lock S na row selecionando-a em modo compartilhado (share mode):
 
 ```sql
 mysql> CREATE TABLE t (i INT) ENGINE = InnoDB;
@@ -22,7 +22,7 @@ mysql> SELECT * FROM t WHERE i = 1 LOCK IN SHARE MODE;
 +------+
 ```
 
-Next, client B begins a transaction and attempts to delete the row from the table:
+Em seguida, o Client B inicia uma Transaction e tenta deletar a row da tabela:
 
 ```sql
 mysql> START TRANSACTION;
@@ -31,19 +31,19 @@ Query OK, 0 rows affected (0.00 sec)
 mysql> DELETE FROM t WHERE i = 1;
 ```
 
-The delete operation requires an `X` lock. The lock cannot be granted because it is incompatible with the `S` lock that client A holds, so the request goes on the queue of lock requests for the row and client B blocks.
+A operação de Delete requer um Lock X. O Lock não pode ser concedido porque é incompatível com o Lock S que o Client A está mantendo, então a solicitação entra na fila de solicitações de Lock para a row e o Client B é bloqueado (blocks).
 
-Finally, client A also attempts to delete the row from the table:
+Finalmente, o Client A também tenta deletar a row da tabela:
 
 ```sql
 mysql> DELETE FROM t WHERE i = 1;
 ```
 
-Deadlock occurs here because client A needs an `X` lock to delete the row. However, that lock request cannot be granted because client B already has a request for an `X` lock and is waiting for client A to release its `S` lock. Nor can the `S` lock held by A be upgraded to an `X` lock because of the prior request by B for an `X` lock. As a result, `InnoDB` generates an error for one of the clients and releases its locks. The client returns this error:
+O Deadlock ocorre aqui porque o Client A precisa de um Lock X para deletar a row. No entanto, essa solicitação de Lock não pode ser concedida porque o Client B já tem uma solicitação de Lock X e está esperando que o Client A libere seu Lock S. O Lock S mantido por A também não pode ser atualizado (upgraded) para um Lock X devido à solicitação anterior de Lock X feita por B. Como resultado, o `InnoDB` gera um erro para um dos Clients e libera seus Locks. O Client retorna este erro:
 
 ```sql
 ERROR 1213 (40001): Deadlock found when trying to get lock;
 try restarting transaction
 ```
 
-At that point, the lock request for the other client can be granted and it deletes the row from the table.
+Nesse ponto, a solicitação de Lock para o outro Client pode ser concedida, e ele deleta a row da tabela.

@@ -1,4 +1,4 @@
-#### 13.7.1.7 SET PASSWORD Statement
+#### 13.7.1.7 Instrução SET PASSWORD
 
 ```sql
 SET PASSWORD [FOR user] = password_option
@@ -9,81 +9,81 @@ password_option: {
 }
 ```
 
-The [`SET PASSWORD`](set-password.html "13.7.1.7 SET PASSWORD Statement") statement assigns a password to a MySQL user account. `'auth_string'` represents a cleartext (unencrypted) password.
+A instrução [`SET PASSWORD`](set-password.html "13.7.1.7 Instrução SET PASSWORD") atribui uma senha a uma conta de usuário MySQL. `'auth_string'` representa uma senha em *cleartext* (não criptografada).
 
-Note
+Nota
 
-* [`SET PASSWORD ... = PASSWORD('auth_string')`](set-password.html "13.7.1.7 SET PASSWORD Statement") syntax is deprecated in MySQL 5.7 and is removed in MySQL 8.0.
+* A sintaxe [`SET PASSWORD ... = PASSWORD('auth_string')`](set-password.html "13.7.1.7 Instrução SET PASSWORD") está obsoleta (deprecated) no MySQL 5.7 e foi removida no MySQL 8.0.
 
-* [`SET PASSWORD ... = 'auth_string'`](set-password.html "13.7.1.7 SET PASSWORD Statement") syntax is not deprecated, but [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") is the preferred statement for account alterations, including assigning passwords. For example:
+* A sintaxe [`SET PASSWORD ... = 'auth_string'`](set-password.html "13.7.1.7 Instrução SET PASSWORD") não está obsoleta, mas [`ALTER USER`](alter-user.html "13.7.1.1 Instrução ALTER USER") é a instrução preferida para alterações de conta, incluindo a atribuição de senhas. Por exemplo:
 
   ```sql
   ALTER USER user IDENTIFIED BY 'auth_string';
   ```
 
-Important
+Importante
 
-Under some circumstances, [`SET PASSWORD`](set-password.html "13.7.1.7 SET PASSWORD Statement") may be recorded in server logs or on the client side in a history file such as `~/.mysql_history`, which means that cleartext passwords may be read by anyone having read access to that information. For information about the conditions under which this occurs for the server logs and how to control it, see [Section 6.1.2.3, “Passwords and Logging”](password-logging.html "6.1.2.3 Passwords and Logging"). For similar information about client-side logging, see [Section 4.5.1.3, “mysql Client Logging”](mysql-logging.html "4.5.1.3 mysql Client Logging").
+Sob algumas circunstâncias, [`SET PASSWORD`](set-password.html "13.7.1.7 Instrução SET PASSWORD") pode ser registrado nos *logs* do servidor ou no lado do *client* em um arquivo de histórico, como `~/.mysql_history`, o que significa que as senhas em *cleartext* podem ser lidas por qualquer pessoa que tenha acesso de leitura a essa informação. Para obter informações sobre as condições em que isso ocorre para os *logs* do servidor e como controlá-lo, consulte [Seção 6.1.2.3, “Senhas e Logging”](password-logging.html "6.1.2.3 Senhas e Logging"). Para informações semelhantes sobre *logging* no lado do *client*, consulte [Seção 4.5.1.3, “mysql Client Logging”](mysql-logging.html "4.5.1.3 mysql Client Logging").
 
-[`SET PASSWORD`](set-password.html "13.7.1.7 SET PASSWORD Statement") can be used with or without a `FOR` clause that explicitly names a user account:
+[`SET PASSWORD`](set-password.html "13.7.1.7 Instrução SET PASSWORD") pode ser usado com ou sem uma cláusula `FOR` que nomeia explicitamente uma conta de usuário:
 
-* With a `FOR user` clause, the statement sets the password for the named account, which must exist:
+* Com uma cláusula `FOR user`, a instrução define a senha para a conta nomeada, que deve existir:
 
   ```sql
   SET PASSWORD FOR 'jeffrey'@'localhost' = 'auth_string';
   ```
 
-* With no `FOR user` clause, the statement sets the password for the current user:
+* Sem uma cláusula `FOR user`, a instrução define a senha para o usuário atual:
 
   ```sql
   SET PASSWORD = 'auth_string';
   ```
 
-  Any client who connects to the server using a nonanonymous account can change the password for that account. (In particular, you can change your own password.) To see which account the server authenticated you as, invoke the [`CURRENT_USER()`](information-functions.html#function_current-user) function:
+  Qualquer *client* que se conecta ao servidor usando uma conta não anônima pode alterar a senha dessa conta. (Em particular, você pode alterar sua própria senha.) Para ver como o servidor autenticou você, chame a função [`CURRENT_USER()`](information-functions.html#function_current-user):
 
   ```sql
   SELECT CURRENT_USER();
   ```
 
-If a `FOR user` clause is given, the account name uses the format described in [Section 6.2.4, “Specifying Account Names”](account-names.html "6.2.4 Specifying Account Names"). For example:
+Se uma cláusula `FOR user` for fornecida, o nome da conta usa o formato descrito na [Seção 6.2.4, “Especificando Nomes de Contas”](account-names.html "6.2.4 Especificando Nomes de Contas"). Por exemplo:
 
 ```sql
 SET PASSWORD FOR 'bob'@'%.example.org' = 'auth_string';
 ```
 
-The host name part of the account name, if omitted, defaults to `'%'`.
+A parte do nome do *host* do nome da conta, se omitida, assume o padrão `'%'`.
 
-Setting the password for a named account (with a `FOR` clause) requires the [`UPDATE`](privileges-provided.html#priv_update) privilege for the `mysql` system database. Setting the password for yourself (for a nonanonymous account with no `FOR` clause) requires no special privileges. When the [`read_only`](server-system-variables.html#sysvar_read_only) system variable is enabled, [`SET PASSWORD`](set-password.html "13.7.1.7 SET PASSWORD Statement") requires the [`SUPER`](privileges-provided.html#priv_super) privilege in addition to any other required privileges.
+Definir a senha para uma conta nomeada (com uma cláusula `FOR`) requer o *privilege* [`UPDATE`](privileges-provided.html#priv_update) para o *database* de sistema `mysql`. Definir a senha para você mesmo (para uma conta não anônima sem uma cláusula `FOR`) não requer *privileges* especiais. Quando a *system variable* [`read_only`](server-system-variables.html#sysvar_read_only) está habilitada, [`SET PASSWORD`](set-password.html "13.7.1.7 Instrução SET PASSWORD") requer o *privilege* [`SUPER`](privileges-provided.html#priv_super) além de quaisquer outros *privileges* requeridos.
 
-The password can be specified in these ways:
+A senha pode ser especificada das seguintes maneiras:
 
-* Use a string without [`PASSWORD()`](encryption-functions.html#function_password)
+* Use uma string sem [`PASSWORD()`](encryption-functions.html#function_password)
 
   ```sql
   SET PASSWORD FOR 'jeffrey'@'localhost' = 'password';
   ```
 
-  [`SET PASSWORD`](set-password.html "13.7.1.7 SET PASSWORD Statement") interprets the string as a cleartext string, passes it to the authentication plugin associated with the account, and stores the result returned by the plugin in the account row in the `mysql.user` system table. (The plugin is given the opportunity to hash the value into the encryption format it expects. The plugin may use the value as specified, in which case no hashing occurs.)
+  [`SET PASSWORD`](set-password.html "13.7.1.7 Instrução SET PASSWORD") interpreta a *string* como uma *string cleartext*, a passa para o *authentication plugin* associado à conta e armazena o resultado retornado pelo *plugin* na linha da conta na tabela de sistema `mysql.user`. (O *plugin* tem a oportunidade de fazer o *hash* do valor no formato de criptografia que ele espera. O *plugin* pode usar o valor conforme especificado, caso em que nenhum *hashing* ocorre.)
 
-* Use the [`PASSWORD()`](encryption-functions.html#function_password) function (deprecated in MySQL 5.7)
+* Use a função [`PASSWORD()`](encryption-functions.html#function_password) (obsoleta no MySQL 5.7)
 
   ```sql
   SET PASSWORD FOR 'jeffrey'@'localhost' = PASSWORD('password');
   ```
 
-  The [`PASSWORD()`](encryption-functions.html#function_password) argument is the cleartext (unencrypted) password. [`PASSWORD()`](encryption-functions.html#function_password) hashes the password and returns the encrypted password string for storage in the account row in the `mysql.user` system table.
+  O argumento de [`PASSWORD()`](encryption-functions.html#function_password) é a senha em *cleartext* (não criptografada). [`PASSWORD()`](encryption-functions.html#function_password) faz o *hash* da senha e retorna a *string* de senha criptografada para armazenamento na linha da conta na tabela de sistema `mysql.user`.
 
-  The [`PASSWORD()`](encryption-functions.html#function_password) function hashes the password using the hashing method determined by the value of the [`old_passwords`](server-system-variables.html#sysvar_old_passwords) system variable value. Be sure that [`old_passwords`](server-system-variables.html#sysvar_old_passwords) has the value corresponding to the hashing method expected by the authentication plugin associated with the account. For example, if the account uses the `mysql_native_password` plugin, the [`old_passwords`](server-system-variables.html#sysvar_old_passwords) value must be 0:
+  A função [`PASSWORD()`](encryption-functions.html#function_password) faz o *hash* da senha usando o método de *hashing* determinado pelo valor da *system variable* [`old_passwords`](server-system-variables.html#sysvar_old_passwords). Certifique-se de que [`old_passwords`](server-system-variables.html#sysvar_old_passwords) tenha o valor correspondente ao método de *hashing* esperado pelo *authentication plugin* associado à conta. Por exemplo, se a conta usar o *plugin* `mysql_native_password`, o valor de [`old_passwords`](server-system-variables.html#sysvar_old_passwords) deve ser 0:
 
   ```sql
   SET old_passwords = 0;
   SET PASSWORD FOR 'jeffrey'@'localhost' = PASSWORD('password');
   ```
 
-  If the [`old_passwords`](server-system-variables.html#sysvar_old_passwords) value differs from that required by the authentication plugin, the hashed password value returned by [`PASSWORD()`](encryption-functions.html#function_password) cannot be used by the plugin and correct authentication of client connections cannot occur.
+  Se o valor de [`old_passwords`](server-system-variables.html#sysvar_old_passwords) for diferente do exigido pelo *authentication plugin*, o valor da senha com *hash* retornado por [`PASSWORD()`](encryption-functions.html#function_password) não poderá ser usado pelo *plugin* e a autenticação correta das conexões do *client* não poderá ocorrer.
 
-The following table shows, for each password hashing method, the permitted value of `old_passwords` and which authentication plugins use the hashing method.
+A tabela a seguir mostra, para cada método de *hashing* de senha, o valor permitido de `old_passwords` e quais *authentication plugins* usam o método de *hashing*.
 
-<table summary="For each password hashing method, the permitted value of old_passwords and which authentication plugins use the hashing method"><col style="width: 40%"/><col style="width: 20%"/><col style="width: 40%"/><thead><tr> <th>Password Hashing Method</th> <th>old_passwords Value</th> <th>Associated Authentication Plugin</th> </tr></thead><tbody><tr> <th>MySQL 4.1 native hashing</th> <td>0</td> <td><code>mysql_native_password</code></td> </tr><tr> <th>SHA-256 hashing</th> <td>2</td> <td><code>sha256_password</code></td> </tr></tbody></table>
+<table summary="Para cada método de hashing de senha, o valor permitido de old_passwords e quais plugins de autenticação usam o método de hashing"><col style="width: 40%"/><col style="width: 20%"/><col style="width: 40%"/><thead><tr> <th>Método de Hashing da Senha</th> <th>Valor de old_passwords</th> <th>Authentication Plugin Associado</th> </tr></thead><tbody><tr> <th>Hashing nativo do MySQL 4.1</th> <td>0</td> <td><code>mysql_native_password</code></td> </tr><tr> <th>Hashing SHA-256</th> <td>2</td> <td><code>sha256_password</code></td> </tr> </tbody></table>
 
-For additional information about setting passwords and authentication plugins, see [Section 6.2.10, “Assigning Account Passwords”](assigning-passwords.html "6.2.10 Assigning Account Passwords"), and [Section 6.2.13, “Pluggable Authentication”](pluggable-authentication.html "6.2.13 Pluggable Authentication").
+Para informações adicionais sobre a definição de senhas e *authentication plugins*, consulte [Seção 6.2.10, “Atribuindo Senhas de Conta”](assigning-passwords.html "6.2.10 Atribuindo Senhas de Conta"), e [Seção 6.2.13, “Autenticação Pluggable”](pluggable-authentication.html "6.2.13 Autenticação Pluggable").

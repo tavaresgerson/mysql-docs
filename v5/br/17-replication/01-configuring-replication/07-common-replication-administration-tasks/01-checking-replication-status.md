@@ -1,10 +1,10 @@
-#### 16.1.7.1 Checking Replication Status
+#### 16.1.7.1 Verificando o Status da Replicação
 
-The most common task when managing a replication process is to ensure that replication is taking place and that there have been no errors between the replica and the source.
+A tarefa mais comum ao gerenciar um processo de Replication é garantir que a Replication esteja ocorrendo e que não houve erros entre a replica e o source.
 
-The [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") statement, which you must execute on each replica, provides information about the configuration and status of the connection between the replica server and the source server. From MySQL 5.7, the Performance Schema has replication tables that provide this information in a more accessible form. See [Section 25.12.11, “Performance Schema Replication Tables”](performance-schema-replication-tables.html "25.12.11 Performance Schema Replication Tables").
+A instrução [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement"), que você deve executar em cada replica, fornece informações sobre a configuração e o status da conexão entre o replica server e o source server. A partir do MySQL 5.7, o Performance Schema possui tabelas de Replication que fornecem essas informações de uma forma mais acessível. Consulte [Seção 25.12.11, “Performance Schema Replication Tables”](performance-schema-replication-tables.html "25.12.11 Performance Schema Replication Tables").
 
-The [`SHOW STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") statement also provided some information relating specifically to replicas. As of MySQL version 5.7.5, the following status variables previously monitored using [`SHOW STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") were deprecated and moved to the Performance Schema replication tables:
+A instrução [`SHOW STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") também forneceu algumas informações relacionadas especificamente às replicas. A partir da versão 5.7.5 do MySQL, as seguintes variáveis de status previamente monitoradas usando [`SHOW STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") foram descontinuadas e movidas para as tabelas de Replication do Performance Schema:
 
 * [`Slave_retried_transactions`](server-status-variables.html#statvar_Slave_retried_transactions)
 * [`Slave_last_heartbeat`](server-status-variables.html#statvar_Slave_last_heartbeat)
@@ -12,9 +12,9 @@ The [`SHOW STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") stateme
 * [`Slave_heartbeat_period`](server-status-variables.html#statvar_Slave_heartbeat_period)
 * [`Slave_running`](server-status-variables.html#statvar_Slave_running)
 
-The replication heartbeat information shown in the Performance Schema replication tables lets you check that the replication connection is active even if the source has not sent events to the replica recently. The source sends a heartbeat signal to a replica if there are no updates to, and no unsent events in, the binary log for a longer period than the heartbeat interval. The `MASTER_HEARTBEAT_PERIOD` setting on the source (set by the [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement) specifies the frequency of the heartbeat, which defaults to half of the connection timeout interval for the replica ([`slave_net_timeout`](replication-options-replica.html#sysvar_slave_net_timeout)). The [`replication_connection_status`](performance-schema-replication-connection-status-table.html "25.12.11.2 The replication_connection_status Table") Performance Schema table shows when the most recent heartbeat signal was received by a replica, and how many heartbeat signals it has received.
+As informações de heartbeat da Replication mostradas nas tabelas de Replication do Performance Schema permitem verificar se a conexão de Replication está ativa, mesmo que o source não tenha enviado eventos para a replica recentemente. O source envia um sinal de heartbeat para uma replica se não houver atualizações e nem eventos não enviados no Binary Log por um período maior do que o intervalo de heartbeat. A configuração `MASTER_HEARTBEAT_PERIOD` no source (definida pela instrução [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement")) especifica a frequência do heartbeat, que por padrão é metade do intervalo de timeout de conexão para a replica ([`slave_net_timeout`](replication-options-replica.html#sysvar_slave_net_timeout)). A tabela [`replication_connection_status`](performance-schema-replication-connection-status-table.html "25.12.11.2 The replication_connection_status Table") do Performance Schema mostra quando o sinal de heartbeat mais recente foi recebido por uma replica e quantos sinais de heartbeat ela recebeu.
 
-If you are using the [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") statement to check on the status of an individual replica, the statement provides the following information:
+Se você estiver usando a instrução [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") para verificar o status de uma replica individual, a instrução fornece as seguintes informações:
 
 ```sql
 mysql> SHOW SLAVE STATUS\G
@@ -60,31 +60,31 @@ Master_SSL_Verify_Server_Cert: No
   Replicate_Ignore_Server_Ids: 0
 ```
 
-The key fields from the status report to examine are:
+Os campos chave do relatório de status a serem examinados são:
 
-* `Slave_IO_State`: The current status of the replica. See [Section 8.14.6, “Replication Replica I/O Thread States”](replica-io-thread-states.html "8.14.6 Replication Replica I/O Thread States"), and [Section 8.14.7, “Replication Replica SQL Thread States”](replica-sql-thread-states.html "8.14.7 Replication Replica SQL Thread States"), for more information.
+* `Slave_IO_State`: O status atual da replica. Consulte [Seção 8.14.6, “Replication Replica I/O Thread States”](replica-io-thread-states.html "8.14.6 Replication Replica I/O Thread States") e [Seção 8.14.7, “Replication Replica SQL Thread States”](replica-sql-thread-states.html "8.14.7 Replication Replica SQL Thread States"), para mais informações.
 
-* `Slave_IO_Running`: Whether the I/O thread for reading the source's binary log is running. Normally, you want this to be `Yes` unless you have not yet started replication or have explicitly stopped it with [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement").
+* `Slave_IO_Running`: Se o I/O Thread para leitura do Binary Log do source está em execução. Normalmente, você deseja que isso seja `Yes`, a menos que você ainda não tenha iniciado a Replication ou a tenha parado explicitamente com [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement").
 
-* `Slave_SQL_Running`: Whether the SQL thread for executing events in the relay log is running. As with the I/O thread, this should normally be `Yes`.
+* `Slave_SQL_Running`: Se o SQL Thread para execução de eventos no Relay Log está em execução. Assim como o I/O Thread, isso deve ser `Yes` normalmente.
 
-* `Last_IO_Error`, `Last_SQL_Error`: The last errors registered by the I/O and SQL threads when processing the relay log. Ideally these should be blank, indicating no errors.
+* `Last_IO_Error`, `Last_SQL_Error`: Os últimos erros registrados pelos I/O Threads e SQL Threads ao processar o Relay Log. Idealmente, eles devem estar em branco, indicando que não há erros.
 
-* `Seconds_Behind_Master`: The number of seconds that the replication SQL thread is behind processing the source's binary log. A high number (or an increasing one) can indicate that the replica is unable to handle events from the source in a timely fashion.
+* `Seconds_Behind_Master`: O número de segundos que o SQL Thread da Replication está atrasado no processamento do Binary Log do source. Um número alto (ou crescente) pode indicar que a replica é incapaz de lidar com eventos do source em tempo hábil.
 
-  A value of 0 for `Seconds_Behind_Master` can usually be interpreted as meaning that the replica has caught up with the source, but there are some cases where this is not strictly true. For example, this can occur if the network connection between source and replica is broken but the replication I/O thread has not yet noticed this—that is, [`slave_net_timeout`](replication-options-replica.html#sysvar_slave_net_timeout) has not yet elapsed.
+  Um valor de 0 para `Seconds_Behind_Master` geralmente pode ser interpretado como um sinal de que a replica alcançou o source, mas há alguns casos em que isso não é estritamente verdade. Por exemplo, isso pode ocorrer se a conexão de rede entre source e replica for interrompida, mas o I/O Thread da Replication ainda não tiver percebido isso – ou seja, o [`slave_net_timeout`](replication-options-replica.html#sysvar_slave_net_timeout) ainda não expirou.
 
-  It is also possible that transient values for `Seconds_Behind_Master` may not reflect the situation accurately. When the replication SQL thread has caught up on I/O, `Seconds_Behind_Master` displays 0; but when the replication I/O thread is still queuing up a new event, `Seconds_Behind_Master` may show a large value until the SQL thread finishes executing the new event. This is especially likely when the events have old timestamps; in such cases, if you execute [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") several times in a relatively short period, you may see this value change back and forth repeatedly between 0 and a relatively large value.
+  Também é possível que valores transientes para `Seconds_Behind_Master` não reflitam a situação com precisão. Quando o SQL Thread da Replication alcança o I/O, `Seconds_Behind_Master` exibe 0; mas quando o I/O Thread da Replication ainda está enfileirando um novo evento, `Seconds_Behind_Master` pode mostrar um valor alto até que o SQL Thread termine de executar o novo evento. Isso é especialmente provável quando os eventos têm carimbos de data/hora (timestamps) antigos; nesses casos, se você executar [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") várias vezes em um período relativamente curto, você poderá ver esse valor alternar repetidamente entre 0 e um valor relativamente grande.
 
-Several pairs of fields provide information about the progress of the replica in reading events from the source's binary log and processing them in the relay log:
+Vários pares de campos fornecem informações sobre o progresso da replica na leitura de eventos do Binary Log do source e no processamento deles no Relay Log:
 
-* (`Master_Log_file`, `Read_Master_Log_Pos`): Coordinates in the source's binary log indicating how far the replication I/O thread has read events from that log.
+* (`Master_Log_file`, `Read_Master_Log_Pos`): Coordenadas no Binary Log do source indicando o quão longe o I/O Thread da Replication leu eventos desse log.
 
-* (`Relay_Master_Log_File`, `Exec_Master_Log_Pos`): Coordinates in the source's binary log indicating how far the replication SQL thread has executed events received from that log.
+* (`Relay_Master_Log_File`, `Exec_Master_Log_Pos`): Coordenadas no Binary Log do source indicando o quão longe o SQL Thread da Replication executou eventos recebidos desse log.
 
-* (`Relay_Log_File`, `Relay_Log_Pos`): Coordinates in the replica's relay log indicating how far the replication SQL thread has executed the relay log. These correspond to the preceding coordinates, but are expressed in the replica's relay log coordinates rather than the source's binary log coordinates.
+* (`Relay_Log_File`, `Relay_Log_Pos`): Coordenadas no Relay Log da replica indicando o quão longe o SQL Thread da Replication executou o Relay Log. Estas correspondem às coordenadas anteriores, mas são expressas nas coordenadas do Relay Log da replica, em vez das coordenadas do Binary Log do source.
 
-On the source, you can check the status of connected replicas using [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") to examine the list of running processes. Replica connections have `Binlog Dump` in the `Command` field:
+No source, você pode verificar o status das replicas conectadas usando [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") para examinar a lista de processos em execução. Conexões de replica têm `Binlog Dump` no campo `Command`:
 
 ```sql
 mysql> SHOW PROCESSLIST \G;
@@ -99,9 +99,9 @@ Command: Binlog Dump
    Info: NULL
 ```
 
-Because it is the replica that drives the replication process, very little information is available in this report.
+Como é a replica que conduz o processo de Replication, muito pouca informação está disponível neste relatório.
 
-For replicas that were started with the [`--report-host`](replication-options-replica.html#sysvar_report_host) option and are connected to the source, the [`SHOW SLAVE HOSTS`](show-slave-hosts.html "13.7.5.33 SHOW SLAVE HOSTS Statement") statement on the source shows basic information about the replicas. The output includes the ID of the replica server, the value of the [`--report-host`](replication-options-replica.html#sysvar_report_host) option, the connecting port, and source ID:
+Para replicas que foram iniciadas com a opção [`--report-host`](replication-options-replica.html#sysvar_report_host) e estão conectadas ao source, a instrução [`SHOW SLAVE HOSTS`](show-slave-hosts.html "13.7.5.33 SHOW SLAVE HOSTS Statement") no source mostra informações básicas sobre as replicas. A saída inclui o ID do replica server, o valor da opção [`--report-host`](replication-options-replica.html#sysvar_report_host), a porta de conexão (connecting port) e o ID do source:
 
 ```sql
 mysql> SHOW SLAVE HOSTS;

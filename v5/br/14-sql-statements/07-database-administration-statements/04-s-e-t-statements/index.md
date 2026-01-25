@@ -1,19 +1,19 @@
-### 13.7.4 SET Statements
+### 13.7.4 Instruções SET
 
-[13.7.4.1 SET Syntax for Variable Assignment](set-variable.html)
+[13.7.4.1 Sintaxe SET para Atribuição de Variáveis](set-variable.html)
 
-[13.7.4.2 SET CHARACTER SET Statement](set-character-set.html)
+[13.7.4.2 Instrução SET CHARACTER SET](set-character-set.html)
 
-[13.7.4.3 SET NAMES Statement](set-names.html)
+[13.7.4.3 Instrução SET NAMES](set-names.html)
 
-The [`SET`](set-statement.html "13.7.4 SET Statements") statement has several forms. Descriptions for those forms that are not associated with a specific server capability appear in subsections of this section:
+A instrução [`SET`](set-statement.html "13.7.4 SET Statements") possui várias formas. As descrições para aquelas formas que não estão associadas a uma capacidade específica do server aparecem nas subseções desta seção:
 
-* [`SET var_name = value`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") enables you to assign values to variables that affect the operation of the server or clients. See [Section 13.7.4.1, “SET Syntax for Variable Assignment”](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment").
+* [`SET var_name = value`](set-variable.html "13.7.4.1 Sintaxe SET para Atribuição de Variáveis") permite que você atribua valores a variáveis que afetam a operação do server ou dos clients. Consulte [Seção 13.7.4.1, “Sintaxe SET para Atribuição de Variáveis”](set-variable.html "13.7.4.1 Sintaxe SET para Atribuição de Variáveis").
 
-* [`SET CHARACTER SET`](set-character-set.html "13.7.4.2 SET CHARACTER SET Statement") and [`SET NAMES`](set-names.html "13.7.4.3 SET NAMES Statement") assign values to character set and collation variables associated with the current connection to the server. See [Section 13.7.4.2, “SET CHARACTER SET Statement”](set-character-set.html "13.7.4.2 SET CHARACTER SET Statement"), and [Section 13.7.4.3, “SET NAMES Statement”](set-names.html "13.7.4.3 SET NAMES Statement").
+* [`SET CHARACTER SET`](set-character-set.html "13.7.4.2 Instrução SET CHARACTER SET") e [`SET NAMES`](set-names.html "13.7.4.3 Instrução SET NAMES") atribuem valores a variáveis de *character set* e *collation* associadas à conexão atual com o server. Consulte [Seção 13.7.4.2, “Instrução SET CHARACTER SET”](set-character-set.html "13.7.4.2 Instrução SET CHARACTER SET"), e [Seção 13.7.4.3, “Instrução SET NAMES”](set-names.html "13.7.4.3 Instrução SET NAMES").
 
-Descriptions for the other forms appear elsewhere, grouped with other statements related to the capability they help implement:
+As descrições para as outras formas aparecem em outro lugar, agrupadas com outras instruções relacionadas à capacidade que elas ajudam a implementar:
 
-* [`SET PASSWORD`](set-password.html "13.7.1.7 SET PASSWORD Statement") assigns account passwords. See [Section 13.7.1.7, “SET PASSWORD Statement”](set-password.html "13.7.1.7 SET PASSWORD Statement").
+* [`SET PASSWORD`](set-password.html "13.7.1.7 Instrução SET PASSWORD") atribui *passwords* de account. Consulte [Seção 13.7.1.7, “Instrução SET PASSWORD”](set-password.html "13.7.1.7 Instrução SET PASSWORD").
 
-* [`SET TRANSACTION ISOLATION LEVEL`](set-transaction.html "13.3.6 SET TRANSACTION Statement") sets the isolation level for transaction processing. See [Section 13.3.6, “SET TRANSACTION Statement”](set-transaction.html "13.3.6 SET TRANSACTION Statement").
+* [`SET TRANSACTION ISOLATION LEVEL`](set-transaction.html "13.3.6 Instrução SET TRANSACTION") define o *isolation level* para processamento de *transaction*. Consulte [Seção 13.3.6, “Instrução SET TRANSACTION”](set-transaction.html "13.3.6 Instrução SET TRANSACTION").

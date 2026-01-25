@@ -1,69 +1,69 @@
-### 14.7.1 InnoDB Locking
+### 14.7.1 Bloqueio do InnoDB
 
-This section describes lock types used by `InnoDB`.
+Esta seção descreve os tipos de lock usados pelo `InnoDB`.
 
-* Shared and Exclusive Locks
-* Intention Locks
-* Record Locks
-* Gap Locks
-* Next-Key Locks
-* Insert Intention Locks
-* AUTO-INC Locks
-* Predicate Locks for Spatial Indexes
+* Locks Compartilhados e Exclusivos
+* Locks de Intenção
+* Locks de Registro (Record Locks)
+* Locks de Gap (Gap Locks)
+* Locks de Próxima Chave (Next-Key Locks)
+* Locks de Intenção de Inserção
+* Locks AUTO-INC
+* Locks de Predicado para Indexes Espaciais
 
-#### Shared and Exclusive Locks
+#### Locks Compartilhados e Exclusivos
 
-`InnoDB` implements standard row-level locking where there are two types of locks, shared (`S`) locks and exclusive (`X`) locks.
+O `InnoDB` implementa o locking padrão de nível de linha, onde existem dois tipos de locks: locks compartilhados (`S`) e locks exclusivos (`X`).
 
-* A shared (`S`) lock permits the transaction that holds the lock to read a row.
+* Um lock compartilhado (`S`) permite que a transaction que detém o lock leia uma linha.
 
-* An exclusive (`X`) lock permits the transaction that holds the lock to update or delete a row.
+* Um lock exclusivo (`X`) permite que a transaction que detém o lock atualize ou exclua uma linha.
 
-If transaction `T1` holds a shared (`S`) lock on row `r`, then requests from some distinct transaction `T2` for a lock on row `r` are handled as follows:
+Se a transaction `T1` detém um lock compartilhado (`S`) na linha `r`, as solicitações de alguma transaction distinta `T2` por um lock na linha `r` são tratadas da seguinte forma:
 
-* A request by `T2` for an `S` lock can be granted immediately. As a result, both `T1` and `T2` hold an `S` lock on `r`.
+* Uma solicitação de `T2` por um lock `S` pode ser concedida imediatamente. Como resultado, tanto `T1` quanto `T2` detêm um lock `S` em `r`.
 
-* A request by `T2` for an `X` lock cannot be granted immediately.
+* Uma solicitação de `T2` por um lock `X` não pode ser concedida imediatamente.
 
-If a transaction `T1` holds an exclusive (`X`) lock on row `r`, a request from some distinct transaction `T2` for a lock of either type on `r` cannot be granted immediately. Instead, transaction `T2` has to wait for transaction `T1` to release its lock on row `r`.
+Se uma transaction `T1` detém um lock exclusivo (`X`) na linha `r`, uma solicitação de alguma transaction distinta `T2` por um lock de qualquer tipo em `r` não pode ser concedida imediatamente. Em vez disso, a transaction `T2` deve esperar que a transaction `T1` libere seu lock na linha `r`.
 
-#### Intention Locks
+#### Locks de Intenção
 
-`InnoDB` supports *multiple granularity locking* which permits coexistence of row locks and table locks. For example, a statement such as `LOCK TABLES ... WRITE` takes an exclusive lock (an `X` lock) on the specified table. To make locking at multiple granularity levels practical, `InnoDB` uses intention locks. Intention locks are table-level locks that indicate which type of lock (shared or exclusive) a transaction requires later for a row in a table. There are two types of intention locks:
+O `InnoDB` suporta *locking de granularidade múltipla*, o que permite a coexistência de locks de linha e locks de tabela. Por exemplo, uma instrução como `LOCK TABLES ... WRITE` adquire um lock exclusivo (um lock `X`) na tabela especificada. Para tornar o locking em múltiplos níveis de granularidade prático, o `InnoDB` usa locks de intenção. Locks de intenção são locks de nível de tabela que indicam qual tipo de lock (compartilhado ou exclusivo) uma transaction exigirá posteriormente para uma linha na tabela. Existem dois tipos de locks de intenção:
 
-* An intention shared lock (`IS`) indicates that a transaction intends to set a *shared* lock on individual rows in a table.
+* Um lock de intenção compartilhada (`IS`) indica que uma transaction pretende definir um lock *compartilhado* em linhas individuais de uma tabela.
 
-* An intention exclusive lock (`IX`) indicates that a transaction intends to set an exclusive lock on individual rows in a table.
+* Um lock de intenção exclusiva (`IX`) indica que uma transaction pretende definir um lock exclusivo em linhas individuais de uma tabela.
 
-For example, `SELECT ... LOCK IN SHARE MODE` sets an `IS` lock, and `SELECT ... FOR UPDATE` sets an `IX` lock.
+Por exemplo, `SELECT ... LOCK IN SHARE MODE` define um lock `IS`, e `SELECT ... FOR UPDATE` define um lock `IX`.
 
-The intention locking protocol is as follows:
+O protocolo de locking de intenção é o seguinte:
 
-* Before a transaction can acquire a shared lock on a row in a table, it must first acquire an `IS` lock or stronger on the table.
+* Antes que uma transaction possa adquirir um lock compartilhado em uma linha de uma tabela, ela deve primeiro adquirir um lock `IS` ou mais forte na tabela.
 
-* Before a transaction can acquire an exclusive lock on a row in a table, it must first acquire an `IX` lock on the table.
+* Antes que uma transaction possa adquirir um lock exclusivo em uma linha de uma tabela, ela deve primeiro adquirir um lock `IX` na tabela.
 
-Table-level lock type compatibility is summarized in the following matrix.
+A compatibilidade do tipo de lock em nível de tabela é resumida na matriz a seguir.
 
-<table summary='A matrix showing table-level lock type compatibility. Each cell in the matrix is marked as either "Compatible" or "Conflict".'><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th></th> <th><code>X</code></th> <th><code>IX</code></th> <th><code>S</code></th> <th><code>IS</code></th> </tr></thead><tbody><tr> <th><code>X</code></th> <td>Conflict</td> <td>Conflict</td> <td>Conflict</td> <td>Conflict</td> </tr><tr> <th><code>IX</code></th> <td>Conflict</td> <td>Compatible</td> <td>Conflict</td> <td>Compatible</td> </tr><tr> <th><code>S</code></th> <td>Conflict</td> <td>Conflict</td> <td>Compatible</td> <td>Compatible</td> </tr><tr> <th><code>IS</code></th> <td>Conflict</td> <td>Compatible</td> <td>Compatible</td> <td>Compatible</td> </tr></tbody></table>
+<table summary='Uma matriz mostrando a compatibilidade do tipo de lock em nível de tabela. Cada célula na matriz é marcada como "Compatível" ou "Conflito".'><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th></th> <th><code>X</code></th> <th><code>IX</code></th> <th><code>S</code></th> <th><code>IS</code></th> </tr></thead><tbody><tr> <th><code>X</code></th> <td>Conflito</td> <td>Conflito</td> <td>Conflito</td> <td>Conflito</td> </tr><tr> <th><code>IX</code></th> <td>Conflito</td> <td>Compatível</td> <td>Conflito</td> <td>Compatível</td> </tr><tr> <th><code>S</code></th> <td>Conflito</td> <td>Conflito</td> <td>Compatível</td> <td>Compatível</td> </tr><tr> <th><code>IS</code></th> <td>Conflito</td> <td>Compatível</td> <td>Compatível</td> <td>Compatível</td> </tr></tbody></table>
 
-A lock is granted to a requesting transaction if it is compatible with existing locks, but not if it conflicts with existing locks. A transaction waits until the conflicting existing lock is released. If a lock request conflicts with an existing lock and cannot be granted because it would cause deadlock, an error occurs.
+Um lock é concedido a uma transaction solicitante se for compatível com os locks existentes, mas não se entrar em conflito com os locks existentes. Uma transaction espera até que o lock existente conflitante seja liberado. Se uma solicitação de lock conflitar com um lock existente e não puder ser concedida porque causaria um deadlock, ocorrerá um erro.
 
-Intention locks do not block anything except full table requests (for example, `LOCK TABLES ... WRITE`). The main purpose of intention locks is to show that someone is locking a row, or going to lock a row in the table.
+Locks de intenção não bloqueiam nada, exceto solicitações de tabela inteira (por exemplo, `LOCK TABLES ... WRITE`). O principal objetivo dos locks de intenção é mostrar que alguém está bloqueando uma linha, ou irá bloquear uma linha na tabela.
 
-Transaction data for an intention lock appears similar to the following in `SHOW ENGINE INNODB STATUS` and InnoDB monitor output:
+Os dados de transaction para um lock de intenção aparecem de forma semelhante ao seguinte no `SHOW ENGINE INNODB STATUS` e na saída do monitor InnoDB:
 
 ```sql
 TABLE LOCK table `test`.`t` trx id 10080 lock mode IX
 ```
 
-#### Record Locks
+#### Locks de Registro (Record Locks)
 
-A record lock is a lock on an index record. For example, `SELECT c1 FROM t WHERE c1 = 10 FOR UPDATE;` prevents any other transaction from inserting, updating, or deleting rows where the value of `t.c1` is `10`.
+Um lock de registro é um lock em um registro de Index. Por exemplo, `SELECT c1 FROM t WHERE c1 = 10 FOR UPDATE;` impede que qualquer outra transaction insira, atualize ou exclua linhas onde o valor de `t.c1` seja `10`.
 
-Record locks always lock index records, even if a table is defined with no indexes. For such cases, `InnoDB` creates a hidden clustered index and uses this index for record locking. See Section 14.6.2.1, “Clustered and Secondary Indexes”.
+Os locks de registro sempre bloqueiam registros de Index, mesmo que uma tabela seja definida sem Indexes. Nesses casos, o `InnoDB` cria um Index clusterizado oculto e usa este Index para locking de registro. Consulte a Seção 14.6.2.1, “Indexes Clusterizados e Secundários”.
 
-Transaction data for a record lock appears similar to the following in `SHOW ENGINE INNODB STATUS` and InnoDB monitor output:
+Os dados de transaction para um lock de registro aparecem de forma semelhante ao seguinte no `SHOW ENGINE INNODB STATUS` e na saída do monitor InnoDB:
 
 ```sql
 RECORD LOCKS space id 58 page no 3 n bits 72 index `PRIMARY` of table `test`.`t`
@@ -74,37 +74,37 @@ Record lock, heap no 2 PHYSICAL RECORD: n_fields 3; compact format; info bits 0
  2: len 7; hex b60000019d0110; asc        ;;
 ```
 
-#### Gap Locks
+#### Locks de Gap (Gap Locks)
 
-A gap lock is a lock on a gap between index records, or a lock on the gap before the first or after the last index record. For example, `SELECT c1 FROM t WHERE c1 BETWEEN 10 and 20 FOR UPDATE;` prevents other transactions from inserting a value of `15` into column `t.c1`, whether or not there was already any such value in the column, because the gaps between all existing values in the range are locked.
+Um gap lock é um lock em um gap entre registros de Index, ou um lock no gap antes do primeiro ou depois do último registro de Index. Por exemplo, `SELECT c1 FROM t WHERE c1 BETWEEN 10 and 20 FOR UPDATE;` impede que outras transactions insiram um valor de `15` na coluna `t.c1`, independentemente de já existir tal valor na coluna, porque os gaps entre todos os valores existentes no range são bloqueados.
 
-A gap might span a single index value, multiple index values, or even be empty.
+Um gap pode abranger um único valor de Index, múltiplos valores de Index, ou até mesmo estar vazio.
 
-Gap locks are part of the tradeoff between performance and concurrency, and are used in some transaction isolation levels and not others.
+Gap locks fazem parte da compensação entre performance e concurrency e são usados em alguns níveis de isolation de transaction e não em outros.
 
-Gap locking is not needed for statements that lock rows using a unique index to search for a unique row. (This does not include the case that the search condition includes only some columns of a multiple-column unique index; in that case, gap locking does occur.) For example, if the `id` column has a unique index, the following statement uses only an index-record lock for the row having `id` value 100 and it does not matter whether other sessions insert rows in the preceding gap:
+O Gap locking não é necessário para instruções que bloqueiam linhas usando um Index único para procurar uma linha única. (Isso não inclui o caso em que a condição de busca inclui apenas algumas colunas de um Index único de múltiplas colunas; nesse caso, o Gap locking ocorre.) Por exemplo, se a coluna `id` tiver um Index único, a instrução a seguir usa apenas um lock de registro de Index para a linha com valor `id` 100 e não importa se outras sessions inserem linhas no gap precedente:
 
 ```sql
 SELECT * FROM child WHERE id = 100;
 ```
 
-If `id` is not indexed or has a nonunique index, the statement does lock the preceding gap.
+Se `id` não for indexado ou tiver um Index não exclusivo, a instrução bloqueia o gap precedente.
 
-It is also worth noting here that conflicting locks can be held on a gap by different transactions. For example, transaction A can hold a shared gap lock (gap S-lock) on a gap while transaction B holds an exclusive gap lock (gap X-lock) on the same gap. The reason conflicting gap locks are allowed is that if a record is purged from an index, the gap locks held on the record by different transactions must be merged.
+Vale a pena notar também que locks conflitantes podem ser mantidos em um gap por transactions diferentes. Por exemplo, a transaction A pode manter um shared gap lock (gap S-lock) em um gap enquanto a transaction B detém um exclusive gap lock (gap X-lock) no mesmo gap. O motivo pelo qual locks de gap conflitantes são permitidos é que, se um registro for purgado de um Index, os gap locks mantidos no registro por transactions diferentes devem ser mesclados.
 
-Gap locks in `InnoDB` are “purely inhibitive”, which means that their only purpose is to prevent other transactions from inserting to the gap. Gap locks can co-exist. A gap lock taken by one transaction does not prevent another transaction from taking a gap lock on the same gap. There is no difference between shared and exclusive gap locks. They do not conflict with each other, and they perform the same function.
+Os gap locks no `InnoDB` são “puramente inibitórios”, o que significa que seu único propósito é impedir que outras transactions insiram no gap. Os gap locks podem coexistir. Um gap lock adquirido por uma transaction não impede que outra transaction adquira um gap lock no mesmo gap. Não há diferença entre gap locks compartilhados e exclusivos. Eles não entram em conflito entre si e executam a mesma função.
 
-Gap locking can be disabled explicitly. This occurs if you change the transaction isolation level to `READ COMMITTED` or enable the `innodb_locks_unsafe_for_binlog` system variable (which is now deprecated). In this case, gap locking is disabled for searches and index scans and is used only for foreign-key constraint checking and duplicate-key checking.
+O Gap locking pode ser desativado explicitamente. Isso ocorre se você alterar o nível de isolation de transaction para `READ COMMITTED` ou habilitar a variável de sistema `innodb_locks_unsafe_for_binlog` (que agora está obsoleta). Neste caso, o Gap locking é desativado para buscas e Index scans e é usado apenas para verificação de restrições de Foreign Key e verificação de chaves duplicadas.
 
-There are also other effects of using the `READ COMMITTED` isolation level or enabling `innodb_locks_unsafe_for_binlog`. Record locks for nonmatching rows are released after MySQL has evaluated the `WHERE` condition. For `UPDATE` statements, `InnoDB` does a “semi-consistent” read, such that it returns the latest committed version to MySQL so that MySQL can determine whether the row matches the `WHERE` condition of the `UPDATE`.
+Existem também outros efeitos do uso do nível de isolation `READ COMMITTED` ou da habilitação de `innodb_locks_unsafe_for_binlog`. Locks de registro para linhas não correspondentes são liberados depois que o MySQL avaliou a condição `WHERE`. Para instruções `UPDATE`, o `InnoDB` faz uma leitura “semi-consistente”, de modo que retorna a versão mais recente confirmada (committed) ao MySQL para que o MySQL possa determinar se a linha corresponde à condição `WHERE` do `UPDATE`.
 
-#### Next-Key Locks
+#### Locks de Próxima Chave (Next-Key Locks)
 
-A next-key lock is a combination of a record lock on the index record and a gap lock on the gap before the index record.
+Um next-key lock é uma combinação de um lock de registro no registro de Index e um gap lock no gap antes do registro de Index.
 
-`InnoDB` performs row-level locking in such a way that when it searches or scans a table index, it sets shared or exclusive locks on the index records it encounters. Thus, the row-level locks are actually index-record locks. A next-key lock on an index record also affects the “gap” before that index record. That is, a next-key lock is an index-record lock plus a gap lock on the gap preceding the index record. If one session has a shared or exclusive lock on record `R` in an index, another session cannot insert a new index record in the gap immediately before `R` in the index order.
+O `InnoDB` executa o locking no nível de linha de tal forma que, ao buscar ou escanear um Index de tabela, ele define locks compartilhados ou exclusivos nos registros de Index que encontra. Assim, os locks de nível de linha são, na verdade, locks de registro de Index. Um next-key lock em um registro de Index também afeta o “gap” antes desse registro de Index. Ou seja, um next-key lock é um lock de registro de Index mais um gap lock no gap que precede o registro de Index. Se uma session tiver um lock compartilhado ou exclusivo no registro `R` em um Index, outra session não poderá inserir um novo registro de Index no gap imediatamente anterior a `R` na ordem do Index.
 
-Suppose that an index contains the values 10, 11, 13, and 20. The possible next-key locks for this index cover the following intervals, where a round bracket denotes exclusion of the interval endpoint and a square bracket denotes inclusion of the endpoint:
+Suponha que um Index contenha os valores 10, 11, 13 e 20. Os next-key locks possíveis para este Index cobrem os seguintes intervalos, onde um parêntese redondo denota exclusão do ponto final do intervalo e um colchete denota inclusão do ponto final:
 
 ```sql
 (negative infinity, 10]
@@ -114,11 +114,11 @@ Suppose that an index contains the values 10, 11, 13, and 20. The possible next-
 (20, positive infinity)
 ```
 
-For the last interval, the next-key lock locks the gap above the largest value in the index and the “supremum” pseudo-record having a value higher than any value actually in the index. The supremum is not a real index record, so, in effect, this next-key lock locks only the gap following the largest index value.
+Para o último intervalo, o next-key lock bloqueia o gap acima do maior valor no Index e o pseudo-registro “supremum” que tem um valor superior a qualquer valor realmente presente no Index. O supremum não é um registro de Index real, então, na verdade, este next-key lock bloqueia apenas o gap após o maior valor de Index.
 
-By default, `InnoDB` operates in `REPEATABLE READ` transaction isolation level. In this case, `InnoDB` uses next-key locks for searches and index scans, which prevents phantom rows (see Section 14.7.4, “Phantom Rows”).
+Por padrão, o `InnoDB` opera no nível de isolation de transaction `REPEATABLE READ`. Neste caso, o `InnoDB` usa next-key locks para buscas e Index scans, o que evita linhas fantasma (consulte a Seção 14.7.4, “Linhas Fantasma”).
 
-Transaction data for a next-key lock appears similar to the following in `SHOW ENGINE INNODB STATUS` and InnoDB monitor output:
+Os dados de transaction para um next-key lock aparecem de forma semelhante ao seguinte no `SHOW ENGINE INNODB STATUS` e na saída do monitor InnoDB:
 
 ```sql
 RECORD LOCKS space id 58 page no 3 n bits 72 index `PRIMARY` of table `test`.`t`
@@ -132,13 +132,13 @@ Record lock, heap no 2 PHYSICAL RECORD: n_fields 3; compact format; info bits 0
  2: len 7; hex b60000019d0110; asc        ;;
 ```
 
-#### Insert Intention Locks
+#### Locks de Intenção de Inserção
 
-An insert intention lock is a type of gap lock set by `INSERT` operations prior to row insertion. This lock signals the intent to insert in such a way that multiple transactions inserting into the same index gap need not wait for each other if they are not inserting at the same position within the gap. Suppose that there are index records with values of 4 and 7. Separate transactions that attempt to insert values of 5 and 6, respectively, each lock the gap between 4 and 7 with insert intention locks prior to obtaining the exclusive lock on the inserted row, but do not block each other because the rows are nonconflicting.
+Um lock de intenção de inserção é um tipo de gap lock definido por operações `INSERT` antes da inserção da linha. Este lock sinaliza a intenção de inserir de tal forma que múltiplas transactions inserindo no mesmo gap de Index não precisam esperar umas pelas outras se não estiverem inserindo na mesma posição dentro do gap. Suponha que existam registros de Index com valores 4 e 7. Transactions separadas que tentam inserir valores 5 e 6, respectivamente, bloqueiam o gap entre 4 e 7 com locks de intenção de inserção antes de obter o exclusive lock na linha inserida, mas não se bloqueiam mutuamente porque as linhas não estão em conflito.
 
-The following example demonstrates a transaction taking an insert intention lock prior to obtaining an exclusive lock on the inserted record. The example involves two clients, A and B.
+O exemplo a seguir demonstra uma transaction adquirindo um lock de intenção de inserção antes de obter um exclusive lock no registro inserido. O exemplo envolve dois clients, A e B.
 
-Client A creates a table containing two index records (90 and 102) and then starts a transaction that places an exclusive lock on index records with an ID greater than 100. The exclusive lock includes a gap lock before record 102:
+O Client A cria uma tabela contendo dois registros de Index (90 e 102) e então inicia uma transaction que coloca um exclusive lock em registros de Index com um ID maior que 100. O exclusive lock inclui um gap lock antes do registro 102:
 
 ```sql
 mysql> CREATE TABLE child (id int(11) NOT NULL, PRIMARY KEY(id)) ENGINE=InnoDB;
@@ -153,14 +153,14 @@ mysql> SELECT * FROM child WHERE id > 100 FOR UPDATE;
 +-----+
 ```
 
-Client B begins a transaction to insert a record into the gap. The transaction takes an insert intention lock while it waits to obtain an exclusive lock.
+O Client B inicia uma transaction para inserir um registro no gap. A transaction adquire um lock de intenção de inserção enquanto espera para obter um exclusive lock.
 
 ```sql
 mysql> START TRANSACTION;
 mysql> INSERT INTO child (id) VALUES (101);
 ```
 
-Transaction data for an insert intention lock appears similar to the following in `SHOW ENGINE INNODB STATUS` and InnoDB monitor output:
+Os dados de transaction para um lock de intenção de inserção aparecem de forma semelhante ao seguinte no `SHOW ENGINE INNODB STATUS` e na saída do monitor InnoDB:
 
 ```sql
 RECORD LOCKS space id 31 page no 3 n bits 72 index `PRIMARY` of table `test`.`child`
@@ -171,18 +171,18 @@ Record lock, heap no 3 PHYSICAL RECORD: n_fields 3; compact format; info bits 0
  2: len 7; hex 9000000172011c; asc     r  ;;...
 ```
 
-#### AUTO-INC Locks
+#### Locks AUTO-INC
 
-An `AUTO-INC` lock is a special table-level lock taken by transactions inserting into tables with `AUTO_INCREMENT` columns. In the simplest case, if one transaction is inserting values into the table, any other transactions must wait to do their own inserts into that table, so that rows inserted by the first transaction receive consecutive primary key values.
+Um lock `AUTO-INC` é um lock especial de nível de tabela adquirido por transactions que inserem em tabelas com colunas `AUTO_INCREMENT`. No caso mais simples, se uma transaction estiver inserindo valores na tabela, quaisquer outras transactions devem esperar para fazer suas próprias inserções nessa tabela, para que as linhas inseridas pela primeira transaction recebam valores de Primary Key consecutivos.
 
-The `innodb_autoinc_lock_mode` variable controls the algorithm used for auto-increment locking. It allows you to choose how to trade off between predictable sequences of auto-increment values and maximum concurrency for insert operations.
+A variável `innodb_autoinc_lock_mode` controla o algoritmo usado para locking de auto-incremento. Ela permite que você escolha como equilibrar a previsibilidade das sequências de valores de auto-incremento e a concurrency máxima para operações de inserção.
 
-For more information, see Section 14.6.1.6, “AUTO_INCREMENT Handling in InnoDB”.
+Para mais informações, consulte a Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”.
 
-#### Predicate Locks for Spatial Indexes
+#### Locks de Predicado para Indexes Espaciais
 
-`InnoDB` supports `SPATIAL` indexing of columns containing spatial data (see Section 11.4.8, “Optimizing Spatial Analysis”).
+O `InnoDB` suporta indexing `SPATIAL` de colunas contendo dados espaciais (consulte a Seção 11.4.8, “Otimizando a Análise Espacial”).
 
-To handle locking for operations involving `SPATIAL` indexes, next-key locking does not work well to support `REPEATABLE READ` or `SERIALIZABLE` transaction isolation levels. There is no absolute ordering concept in multidimensional data, so it is not clear which is the “next” key.
+Para lidar com o locking para operações que envolvem Indexes `SPATIAL`, o next-key locking não funciona bem para suportar os níveis de isolation de transaction `REPEATABLE READ` ou `SERIALIZABLE`. Não há um conceito de ordenação absoluta em dados multidimensionais, então não está claro qual é a “próxima” chave.
 
-To enable support of isolation levels for tables with `SPATIAL` indexes, `InnoDB` uses predicate locks. A `SPATIAL` index contains minimum bounding rectangle (MBR) values, so `InnoDB` enforces consistent read on the index by setting a predicate lock on the MBR value used for a query. Other transactions cannot insert or modify a row that would match the query condition.
+Para habilitar o suporte a níveis de isolation para tabelas com Indexes `SPATIAL`, o `InnoDB` usa locks de predicado. Um Index `SPATIAL` contém valores de minimum bounding rectangle (MBR), então o `InnoDB` impõe uma leitura consistente no Index definindo um lock de predicado no valor MBR usado para uma Query. Outras transactions não podem inserir ou modificar uma linha que corresponderia à condição da Query.

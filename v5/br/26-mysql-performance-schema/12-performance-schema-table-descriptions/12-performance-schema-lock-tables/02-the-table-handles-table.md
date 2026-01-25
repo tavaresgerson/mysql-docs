@@ -1,30 +1,30 @@
-#### 25.12.12.2 The table_handles Table
+#### 25.12.12.2 A Tabela table_handles
 
-The Performance Schema exposes table lock information through the [`table_handles`](performance-schema-table-handles-table.html "25.12.12.2 The table_handles Table") table to show the table locks currently in effect for each opened table handle. [`table_handles`](performance-schema-table-handles-table.html "25.12.12.2 The table_handles Table") reports what is recorded by the table lock instrumentation. This information shows which table handles the server has open, how they are locked, and by which sessions.
+O Performance Schema expõe informações de `table lock` (bloqueio de tabela) através da tabela [`table_handles`](performance-schema-table-handles-table.html "25.12.12.2 The table_handles Table") para mostrar os `table locks` atualmente em vigor para cada `table handle` (manipulador de tabela) aberto. [`table_handles`](performance-schema-table-handles-table.html "25.12.12.2 The table_handles Table") relata o que é registrado pela instrumentação de `table lock`. Esta informação mostra quais `table handles` o servidor tem abertos, como eles estão bloqueados e por quais sessões.
 
-The [`table_handles`](performance-schema-table-handles-table.html "25.12.12.2 The table_handles Table") table is read only and cannot be updated. It is autosized by default; to configure the table size, set the [`performance_schema_max_table_handles`](performance-schema-system-variables.html#sysvar_performance_schema_max_table_handles) system variable at server startup.
+A tabela [`table_handles`](performance-schema-table-handles-table.html "25.12.12.2 The table_handles Table") é somente leitura e não pode ser atualizada. Ela possui dimensionamento automático por padrão; para configurar o tamanho da tabela, defina a variável de sistema [`performance_schema_max_table_handles`](performance-schema-system-variables.html#sysvar_performance_schema_max_table_handles) na inicialização do servidor.
 
-Table lock instrumentation uses the `wait/lock/table/sql/handler` instrument, which is enabled by default.
+A instrumentação de `table lock` usa o instrumento `wait/lock/table/sql/handler`, que é habilitado por padrão.
 
-To control table lock instrumentation state at server startup, use lines like these in your `my.cnf` file:
+Para controlar o estado da instrumentação de `table lock` na inicialização do servidor, use linhas como estas no seu arquivo `my.cnf`:
 
-* Enable:
+* Habilitar:
 
   ```sql
   [mysqld]
   performance-schema-instrument='wait/lock/table/sql/handler=ON'
   ```
 
-* Disable:
+* Desabilitar:
 
   ```sql
   [mysqld]
   performance-schema-instrument='wait/lock/table/sql/handler=OFF'
   ```
 
-To control table lock instrumentation state at runtime, update the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table:
+Para controlar o estado da instrumentação de `table lock` em tempo de execução (`runtime`), atualize a tabela [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table"):
 
-* Enable:
+* Habilitar:
 
   ```sql
   UPDATE performance_schema.setup_instruments
@@ -32,7 +32,7 @@ To control table lock instrumentation state at runtime, update the [`setup_instr
   WHERE NAME = 'wait/lock/table/sql/handler';
   ```
 
-* Disable:
+* Desabilitar:
 
   ```sql
   UPDATE performance_schema.setup_instruments
@@ -40,38 +40,38 @@ To control table lock instrumentation state at runtime, update the [`setup_instr
   WHERE NAME = 'wait/lock/table/sql/handler';
   ```
 
-The [`table_handles`](performance-schema-table-handles-table.html "25.12.12.2 The table_handles Table") table has these columns:
+A tabela [`table_handles`](performance-schema-table-handles-table.html "25.12.12.2 The table_handles Table") possui as seguintes colunas:
 
 * `OBJECT_TYPE`
 
-  The table opened by a table handle.
+  A tabela aberta por um `table handle`.
 
 * `OBJECT_SCHEMA`
 
-  The schema that contains the object.
+  O `schema` que contém o objeto.
 
 * `OBJECT_NAME`
 
-  The name of the instrumented object.
+  O nome do objeto instrumentado.
 
 * `OBJECT_INSTANCE_BEGIN`
 
-  The table handle address in memory.
+  O endereço do `table handle` na memória.
 
 * `OWNER_THREAD_ID`
 
-  The thread owning the table handle.
+  O `Thread` (linha de execução) que possui o `table handle`.
 
 * `OWNER_EVENT_ID`
 
-  The event which caused the table handle to be opened.
+  O evento que causou a abertura do `table handle`.
 
 * `INTERNAL_LOCK`
 
-  The table lock used at the SQL level. The value is one of `READ`, `READ WITH SHARED LOCKS`, `READ HIGH PRIORITY`, `READ NO INSERT`, `WRITE ALLOW WRITE`, `WRITE CONCURRENT INSERT`, `WRITE LOW PRIORITY`, or `WRITE`. For information about these lock types, see the `include/thr_lock.h` source file.
+  O `table lock` usado no nível SQL. O valor é um dos seguintes: `READ`, `READ WITH SHARED LOCKS`, `READ HIGH PRIORITY`, `READ NO INSERT`, `WRITE ALLOW WRITE`, `WRITE CONCURRENT INSERT`, `WRITE LOW PRIORITY`, ou `WRITE`. Para obter informações sobre esses tipos de `lock`, consulte o arquivo fonte `include/thr_lock.h`.
 
 * `EXTERNAL_LOCK`
 
-  The table lock used at the storage engine level. The value is one of `READ EXTERNAL` or `WRITE EXTERNAL`.
+  O `table lock` usado no nível do `storage engine` (motor de armazenamento). O valor é um dos seguintes: `READ EXTERNAL` ou `WRITE EXTERNAL`.
 
-[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not permitted for the [`table_handles`](performance-schema-table-handles-table.html "25.12.12.2 The table_handles Table") table.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") não é permitido para a tabela [`table_handles`](performance-schema-table-handles-table.html "25.12.12.2 The table_handles Table").

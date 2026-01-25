@@ -1,78 +1,78 @@
-## B.1 Error Message Sources and Elements
+## B.1 Fontes e Elementos de Mensagens de Erro
 
-This section discusses how error messages originate within MySQL and the elements they contain.
+Esta seção discute como as mensagens de erro se originam no MySQL e os elementos que elas contêm.
 
-* [Error Message Sources](error-message-elements.html#error-sources "Error Message Sources")
-* [Error Message Elements](error-message-elements.html#error-elements "Error Message Elements")
+* [Fontes de Mensagens de Erro](error-message-elements.html#error-sources "Fontes de Mensagens de Erro")
+* [Elementos de Mensagens de Erro](error-message-elements.html#error-elements "Elementos de Mensagens de Erro")
 
-### Error Message Sources
+### Fontes de Mensagens de Erro
 
-Error messages can originate on the server side or the client side:
+Mensagens de erro podem se originar no lado do servidor (server side) ou no lado do cliente (client side):
 
-* On the server side, error messages may occur during the startup and shutdown processes, as a result of issues that occur during SQL statement execution, and so forth.
+* No lado do servidor, as mensagens de erro podem ocorrer durante os processos de startup e shutdown, como resultado de problemas que surgem durante a execução de instruções SQL, e assim por diante.
 
-  + The MySQL server writes some error messages to its error log. These indicate issues of interest to database administrators or that require DBA action.
+  + O servidor MySQL escreve algumas mensagens de erro no seu error log. Estas indicam problemas de interesse para administradores de Database ou que requerem ação do DBA.
 
-  + The server sends other error messages to client programs. These indicate issues pertaining only to a particular client. The MySQL client library takes errors received from the server and makes them available to the host client program.
+  + O servidor envia outras mensagens de erro para programas cliente. Estas indicam problemas que pertencem apenas a um cliente específico. A client library do MySQL recebe os erros do servidor e os disponibiliza para o programa cliente hospedeiro.
 
-* Client-side error messages are generated from within the MySQL client library, usually involving problems communicating with the server.
+* Mensagens de erro do lado do cliente são geradas a partir da client library do MySQL, geralmente envolvendo problemas de comunicação com o servidor.
 
-Example server-side error messages written to the error log:
+Exemplos de mensagens de erro do lado do servidor gravadas no error log:
 
-* This message produced during the startup process provides a status or progress indicator:
+* Esta mensagem produzida durante o processo de startup fornece um indicador de status ou progresso:
 
   ```sql
   2018-09-26T14:46:06.326016Z 0 [Note] Skipping generation of SSL
   certificates as options related to SSL are specified.
   ```
 
-* This message indicates an issue that requires DBA action:
+* Esta mensagem indica um problema que requer ação do DBA:
 
   ```sql
   2018-10-02T03:20:39.410387Z 0 [ERROR] Plugin 'InnoDB'
   registration as a STORAGE ENGINE failed.
   ```
 
-Example server-side error message sent to client programs, as displayed by the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client:
+Exemplo de mensagem de erro do lado do servidor enviada a programas cliente, conforme exibida pelo cliente [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"):
 
 ```sql
 mysql> SELECT * FROM no_such_table;
 ERROR 1146 (42S02): Table 'test.no_such_table' doesn't exist
 ```
 
-Example client-side error message originating from within the client library, as displayed by the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client:
+Exemplo de mensagem de erro do lado do cliente originada na client library, conforme exibida pelo cliente [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"):
 
 ```sql
 $> mysql -h no-such-host
 ERROR 2005 (HY000): Unknown MySQL server host 'no-such-host' (0)
 ```
 
-Whether an error originates from within the client library or is received from the server, a MySQL client program may respond in varying ways. As just illustrated, the client may display the error message so the user can take corrective measures. The client may instead internally attempt to resolve or retry a failed operation, or take other action.
+Se um erro se origina na client library ou é recebido do servidor, um programa cliente MySQL pode responder de várias maneiras. Como acabamos de ilustrar, o cliente pode exibir a mensagem de erro para que o usuário possa tomar medidas corretivas. O cliente pode, em vez disso, tentar internamente resolver ou retentar uma operação falha, ou tomar outra ação.
 
-### Error Message Elements
+### Elementos de Mensagens de Erro
 
-When an error occurs, error information includes several elements: an error code, SQLSTATE value, and message string. These elements have the following characteristics:
+Quando um erro ocorre, as informações de erro incluem vários elementos: um error code, o valor SQLSTATE e a message string. Esses elementos têm as seguintes características:
 
-* Error code: This value is numeric. It is MySQL-specific and is not portable to other database systems.
+* Error code (Código de erro): Este valor é numérico. É específico do MySQL e não é portável para outros sistemas de Database.
 
-  Each error number has a corresponding symbolic value. Examples:
+  Cada número de erro tem um valor simbólico correspondente. Exemplos:
 
-  + The symbol for server error number `1146` is [`ER_NO_SUCH_TABLE`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_no_such_table).
+  + O símbolo para o número de erro do servidor `1146` é [`ER_NO_SUCH_TABLE`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_no_such_table).
 
-  + The symbol for client error number `2005` is [`CR_UNKNOWN_HOST`](/doc/mysql-errors/5.7/en/client-error-reference.html#error_cr_unknown_host).
+  + O símbolo para o número de erro do cliente `2005` é [`CR_UNKNOWN_HOST`](/doc/mysql-errors/5.7/en/client-error-reference.html#error_cr_unknown_host).
 
-  Error codes are stable across General Availability (GA) releases of a given MySQL series. Before a series reaches GA status, new codes may still be under development and are subject to change.
+  Os error codes são estáveis em todos os lançamentos General Availability (GA) de uma determinada série MySQL. Antes que uma série atinja o status GA, novos códigos ainda podem estar em desenvolvimento e estão sujeitos a alterações.
 
-* SQLSTATE value: This value is a five-character string (for example, `'42S02'`). SQLSTATE values are taken from ANSI SQL and ODBC and are more standardized than the numeric error codes. The first two characters of an SQLSTATE value indicate the error class:
+* Valor SQLSTATE: Este valor é uma string de cinco caracteres (por exemplo, `'42S02'`). Os valores SQLSTATE são extraídos dos padrões ANSI SQL e ODBC e são mais padronizados do que os códigos de erro numéricos. Os dois primeiros caracteres de um valor SQLSTATE indicam a classe de erro:
 
-  + Class = `'00'` indicates success.
-  + Class = `'01'` indicates a warning.
-  + Class = `'02'` indicates “not found.” This is relevant within the context of cursors and is used to control what happens when a cursor reaches the end of a data set. This condition also occurs for `SELECT ... INTO var_list` statements that retrieve no rows.
+  + Classe = `'00'` indica sucesso.
+  + Classe = `'01'` indica um warning (aviso).
+  + Classe = `'02'` indica “não encontrado” (not found). Isso é relevante no contexto de cursors e é usado para controlar o que acontece quando um cursor atinge o final de um conjunto de dados. Essa condição também ocorre para instruções `SELECT ... INTO var_list` que não recuperam nenhuma linha.
 
-  + Class > `'02'` indicates an exception.
+  + Classe > `'02'` indica uma exception (exceção).
 
-  For server-side errors, not all MySQL error numbers have corresponding SQLSTATE values. In these cases, `'HY000'` (general error) is used.
+  Para erros do lado do servidor, nem todos os números de erro do MySQL têm valores SQLSTATE correspondentes. Nesses casos, `'HY000'` (general error) é usado.
 
-  For client-side errors, the SQLSTATE value is always `'HY000'` (general error), so it is not meaningful for distinguishing one client error from another.
+  Para erros do lado do cliente, o valor SQLSTATE é sempre `'HY000'` (general error), portanto, não é significativo para distinguir um erro de cliente do outro.
 
-* Message string: This string provides a textual description of the error.
+* Message string (String da mensagem): Esta string fornece uma descrição textual do erro.

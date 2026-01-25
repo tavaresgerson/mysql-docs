@@ -1,10 +1,10 @@
-#### 21.2.7.6 Unsupported or Missing Features in NDB Cluster
+#### 21.2.7.6 Recursos Não Suportados ou Ausentes no NDB Cluster
 
-A number of features supported by other storage engines are not supported for [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables. Trying to use any of these features in NDB Cluster does not cause errors in or of itself; however, errors may occur in applications that expects the features to be supported or enforced. Statements referencing such features, even if effectively ignored by `NDB`, must be syntactically and otherwise valid.
+Vários recursos suportados por outros *storage engines* não são suportados para tabelas [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"). Tentar usar qualquer um desses recursos no NDB Cluster não causa erros em si; no entanto, podem ocorrer erros em aplicações que esperam que esses recursos sejam suportados ou aplicados. As instruções que fazem referência a tais recursos, mesmo que efetivamente ignoradas pelo `NDB`, devem ser sintaticamente e, de outras formas, válidas.
 
-* **Index prefixes.** Prefixes on indexes are not supported for `NDB` tables. If a prefix is used as part of an index specification in a statement such as [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement"), [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"), or [`CREATE INDEX`](create-index.html "13.1.14 CREATE INDEX Statement"), the prefix is not created by `NDB`.
+* **Prefixos de Index.** Prefixos em Indexes não são suportados para tabelas `NDB`. Se um prefixo for usado como parte de uma especificação de Index em uma instrução como [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement"), [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") ou [`CREATE INDEX`](create-index.html "13.1.14 CREATE INDEX Statement"), o prefixo não é criado pelo `NDB`.
 
-  A statement containing an index prefix, and creating or modifying an `NDB` table, must still be syntactically valid. For example, the following statement always fails with Error 1089 Incorrect prefix key; the used key part isn't a string, the used length is longer than the key part, or the storage engine does not support unique prefix keys, regardless of storage engine:
+  Uma instrução contendo um prefixo de Index, e que crie ou modifique uma tabela `NDB`, ainda deve ser sintaticamente válida. Por exemplo, a instrução a seguir sempre falha com o Erro 1089 Incorrect prefix key; the used key part isn't a string, the used length is longer than the key part, or the storage engine does not support unique prefix keys, independentemente do *storage engine*:
 
   ```sql
   CREATE TABLE t1 (
@@ -14,26 +14,26 @@ A number of features supported by other storage engines are not supported for [`
   );
   ```
 
-  This happens on account of the SQL syntax rule that no index may have a prefix larger than itself.
+  Isso ocorre devido à regra de sintaxe SQL de que nenhum Index pode ter um prefixo maior que o próprio Index.
 
-* **Savepoints and rollbacks.** Savepoints and rollbacks to savepoints are ignored as in [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine").
+* **Savepoints e rollbacks.** *Savepoints* e *rollbacks* para *savepoints* são ignorados, como ocorre no [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine").
 
-* **Durability of commits.** There are no durable commits on disk. Commits are replicated, but there is no guarantee that logs are flushed to disk on commit.
+* **Durabilidade dos commits.** Não há *commits* duráveis em disco. Os *commits* são replicados, mas não há garantia de que os *logs* sejam descarregados em disco no momento do *commit*.
 
-* **Replication.** Statement-based replication is not supported. Use [`--binlog-format=ROW`](replication-options-binary-log.html#sysvar_binlog_format) (or [`--binlog-format=MIXED`](replication-options-binary-log.html#sysvar_binlog_format)) when setting up cluster replication. See [Section 21.7, “NDB Cluster Replication”](mysql-cluster-replication.html "21.7 NDB Cluster Replication"), for more information.
+* **Replicação.** A Replicação baseada em instrução (*Statement-based replication*) não é suportada. Use [`--binlog-format=ROW`](replication-options-binary-log.html#sysvar_binlog_format) (ou [`--binlog-format=MIXED`](replication-options-binary-log.html#sysvar_binlog_format)) ao configurar a replicação do cluster. Consulte [Section 21.7, “NDB Cluster Replication”](mysql-cluster-replication.html "21.7 NDB Cluster Replication"), para obter mais informações.
 
-  Replication using global transaction identifiers (GTIDs) is not compatible with NDB Cluster, and is not supported in NDB Cluster 7.5 or NDB CLuster 7.6. Do not enable GTIDs when using the `NDB` storage engine, as this is very likely to cause problems up to and including failure of NDB Cluster Replication.
+  A Replicação usando identificadores de transação globais (GTIDs) não é compatível com NDB Cluster e não é suportada no NDB Cluster 7.5 ou NDB Cluster 7.6. Não ative GTIDs ao usar o *storage engine* `NDB`, pois isso é muito provável que cause problemas, incluindo a falha do NDB Cluster Replication.
 
-  Semisynchronous replication is not supported in NDB Cluster.
+  A replicação semissíncrona não é suportada no NDB Cluster.
 
-  When replicating between clusters, it is possible to use IPv6 addresses between SQL nodes in different clusters, but all connections within a given cluster must use IPv4 addressing. For more information, see [NDB Cluster Replication and IPv6](mysql-cluster-replication-issues.html#mysql-cluster-replication-ipv6 "NDB Cluster Replication and IPv6").
+  Ao replicar entre clusters, é possível usar endereços IPv6 entre SQL nodes em clusters diferentes, mas todas as conexões dentro de um determinado cluster devem usar endereçamento IPv4. Para mais informações, consulte [NDB Cluster Replication and IPv6](mysql-cluster-replication-issues.html#mysql-cluster-replication-ipv6 "NDB Cluster Replication and IPv6").
 
-* **Generated columns.** The `NDB` storage engine does not support indexes on virtual generated columns.
+* **Generated columns.** O *storage engine* `NDB` não suporta Indexes em *virtual generated columns*.
 
-  As with other storage engines, you can create an index on a stored generated column, but you should bear in mind that `NDB` uses [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) for storage of the generated column as well as [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory) for the index. See [JSON columns and indirect indexing in NDB Cluster](create-table-secondary-indexes.html#json-column-indirect-index-mysql-cluster "JSON columns and indirect indexing in NDB Cluster"), for an example.
+  Assim como em outros *storage engines*, você pode criar um Index em uma *stored generated column*, mas deve ter em mente que o `NDB` utiliza [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) para o armazenamento da coluna gerada, bem como [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory) para o Index. Consulte [JSON columns and indirect indexing in NDB Cluster](create-table-secondary-indexes.html#json-column-indirect-index-mysql-cluster "JSON columns and indirect indexing in NDB Cluster"), para um exemplo.
 
-  NDB Cluster writes changes in stored generated columns to the binary log, but does log not those made to virtual columns. This should not effect NDB Cluster Replication or replication between `NDB` and other MySQL storage engines.
+  O NDB Cluster escreve alterações em *stored generated columns* no *binary log*, mas não registra aquelas feitas em *virtual columns*. Isso não deve afetar o NDB Cluster Replication ou a replicação entre `NDB` e outros *storage engines* do MySQL.
 
 Note
 
-See [Section 21.2.7.3, “Limits Relating to Transaction Handling in NDB Cluster”](mysql-cluster-limitations-transactions.html "21.2.7.3 Limits Relating to Transaction Handling in NDB Cluster"), for more information relating to limitations on transaction handling in [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6").
+Consulte [Section 21.2.7.3, “Limits Relating to Transaction Handling in NDB Cluster”](mysql-cluster-limitations-transactions.html "21.2.7.3 Limits Relating to Transaction Handling in NDB Cluster"), para obter mais informações relacionadas às limitações no tratamento de transações no [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6").

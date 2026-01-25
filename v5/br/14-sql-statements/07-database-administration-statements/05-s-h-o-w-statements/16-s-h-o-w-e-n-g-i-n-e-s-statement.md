@@ -1,12 +1,12 @@
-#### 13.7.5.16 SHOW ENGINES Statement
+#### 13.7.5.16 Instrução SHOW ENGINES
 
 ```sql
 SHOW [STORAGE] ENGINES
 ```
 
-[`SHOW ENGINES`](show-engines.html "13.7.5.16 SHOW ENGINES Statement") displays status information about the server's storage engines. This is particularly useful for checking whether a storage engine is supported, or to see what the default engine is.
+A instrução [`SHOW ENGINES`](show-engines.html "13.7.5.16 SHOW ENGINES Statement") exibe informações de status sobre os storage engines do servidor. Isso é particularmente útil para verificar se um storage engine é suportado ou para ver qual é o default engine.
 
-For information about MySQL storage engines, see [Chapter 14, *The InnoDB Storage Engine*](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"), and [Chapter 15, *Alternative Storage Engines*](storage-engines.html "Chapter 15 Alternative Storage Engines").
+Para obter informações sobre os storage engines do MySQL, consulte [Capítulo 14, *O Storage Engine InnoDB*](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"), e [Capítulo 15, *Storage Engines Alternativos*](storage-engines.html "Chapter 15 Alternative Storage Engines").
 
 ```sql
 mysql> SHOW ENGINES\G
@@ -75,42 +75,42 @@ Transactions: NO
   Savepoints: NO
 ```
 
-The output from [`SHOW ENGINES`](show-engines.html "13.7.5.16 SHOW ENGINES Statement") may vary according to the MySQL version used and other factors.
+A saída da instrução [`SHOW ENGINES`](show-engines.html "13.7.5.16 SHOW ENGINES Statement") pode variar de acordo com a versão do MySQL utilizada e outros fatores.
 
-[`SHOW ENGINES`](show-engines.html "13.7.5.16 SHOW ENGINES Statement") output has these columns:
+A saída de [`SHOW ENGINES`](show-engines.html "13.7.5.16 SHOW ENGINES Statement") possui as seguintes colunas:
 
 * `Engine`
 
-  The name of the storage engine.
+  O nome do storage engine.
 
 * `Support`
 
-  The server's level of support for the storage engine, as shown in the following table.
+  O nível de suporte do servidor para o storage engine, conforme mostrado na tabela a seguir.
 
-  <table summary="Values for the Support column in the output of the SHOW ENGINES statement."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Value</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><code>YES</code></td> <td>The engine is supported and is active</td> </tr><tr> <td><code>DEFAULT</code></td> <td>Like <code>YES</code>, plus this is the default engine</td> </tr><tr> <td><code>NO</code></td> <td>The engine is not supported</td> </tr><tr> <td><code>DISABLED</code></td> <td>The engine is supported but has been disabled</td> </tr></tbody></table>
+  <table summary="Valores para a coluna Support na saída da instrução SHOW ENGINES."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Valor</th> <th>Significado</th> </tr></thead><tbody><tr> <td><code>YES</code></td> <td>O engine é suportado e está ativo</td> </tr><tr> <td><code>DEFAULT</code></td> <td>Semelhante a <code>YES</code>, além de ser o default engine</td> </tr><tr> <td><code>NO</code></td> <td>O engine não é suportado</td> </tr><tr> <td><code>DISABLED</code></td> <td>O engine é suportado, mas foi desabilitado</td> </tr></tbody></table>
 
-  A value of `NO` means that the server was compiled without support for the engine, so it cannot be enabled at runtime.
+  Um valor de `NO` significa que o servidor foi compilado sem suporte para o engine, portanto, ele não pode ser habilitado em tempo de execução (runtime).
 
-  A value of `DISABLED` occurs either because the server was started with an option that disables the engine, or because not all options required to enable it were given. In the latter case, the error log should contain a reason indicating why the option is disabled. See [Section 5.4.2, “The Error Log”](error-log.html "5.4.2 The Error Log").
+  Um valor de `DISABLED` ocorre porque o servidor foi iniciado com uma opção que desabilita o engine, ou porque nem todas as opções necessárias para habilitá-lo foram fornecidas. Neste último caso, o error log deve conter um motivo indicando por que a opção está desabilitada. Consulte [Seção 5.4.2, “O Error Log”](error-log.html "5.4.2 The Error Log").
 
-  You might also see `DISABLED` for a storage engine if the server was compiled to support it, but was started with a `--skip-engine_name` option. For the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine, `DISABLED` means the server was compiled with support for NDB Cluster, but was not started with the [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster) option.
+  Você também pode ver `DISABLED` para um storage engine se o servidor foi compilado para suportá-lo, mas foi iniciado com a opção `--skip-engine_name`. Para o storage engine [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"), `DISABLED` significa que o servidor foi compilado com suporte para NDB Cluster, mas não foi iniciado com a opção [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster).
 
-  All MySQL servers support `MyISAM` tables. It is not possible to disable `MyISAM`.
+  Todos os servidores MySQL suportam tabelas `MyISAM`. Não é possível desabilitar o `MyISAM`.
 
 * `Comment`
 
-  A brief description of the storage engine.
+  Uma breve descrição do storage engine.
 
 * `Transactions`
 
-  Whether the storage engine supports transactions.
+  Se o storage engine suporta Transactions.
 
 * `XA`
 
-  Whether the storage engine supports XA transactions.
+  Se o storage engine suporta XA transactions.
 
 * `Savepoints`
 
-  Whether the storage engine supports savepoints.
+  Se o storage engine suporta Savepoints.
 
-Storage engine information is also available from the `INFORMATION_SCHEMA` [`ENGINES`](information-schema-engines-table.html "24.3.7 The INFORMATION_SCHEMA ENGINES Table") table. See [Section 24.3.7, “The INFORMATION_SCHEMA ENGINES Table”](information-schema-engines-table.html "24.3.7 The INFORMATION_SCHEMA ENGINES Table").
+Informações sobre storage engines também estão disponíveis na tabela [`ENGINES`](information-schema-engines-table.html "24.3.7 The INFORMATION_SCHEMA ENGINES Table") do `INFORMATION_SCHEMA`. Consulte [Seção 24.3.7, “A Tabela INFORMATION_SCHEMA ENGINES”](information-schema-engines-table.html "24.3.7 The INFORMATION_SCHEMA ENGINES Table").

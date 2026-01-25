@@ -1,52 +1,52 @@
-#### 13.7.2.1 ANALYZE TABLE Statement
+#### 13.7.2.1 Instrução ANALYZE TABLE
 
 ```sql
 ANALYZE [NO_WRITE_TO_BINLOG | LOCAL]
     TABLE tbl_name [, tbl_name] ...
 ```
 
-[`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement") performs a key distribution analysis and stores the distribution for the named table or tables. For `MyISAM` tables, this statement is equivalent to using [**myisamchk --analyze**](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility").
+A instrução `ANALYZE TABLE` executa uma análise de distribuição de Key e armazena essa distribuição para a(s) table(s) nomeada(s). Para tables `MyISAM`, esta instrução é equivalente a usar [**myisamchk --analyze**](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility").
 
-This statement requires [`SELECT`](privileges-provided.html#priv_select) and [`INSERT`](privileges-provided.html#priv_insert) privileges for the table.
+Esta instrução requer os privilégios [`SELECT`](privileges-provided.html#priv_select) e [`INSERT`](privileges-provided.html#priv_insert) para a table.
 
-[`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement") works with `InnoDB`, `NDB`, and `MyISAM` tables. It does not work with views.
+`ANALYZE TABLE` funciona com tables `InnoDB`, `NDB` e `MyISAM`. Não funciona com Views.
 
-[`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement") is supported for partitioned tables, and you can use `ALTER TABLE ... ANALYZE PARTITION` to analyze one or more partitions; for more information, see [Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement"), and [Section 22.3.4, “Maintenance of Partitions”](partitioning-maintenance.html "22.3.4 Maintenance of Partitions").
+`ANALYZE TABLE` é suportado para tables particionadas, e você pode usar `ALTER TABLE ... ANALYZE PARTITION` para analisar uma ou mais Partitions; para mais informações, consulte [Seção 13.1.8, “Instrução ALTER TABLE”](alter-table.html "13.1.8 ALTER TABLE Statement"), e [Seção 22.3.4, “Manutenção de Partitions”](partitioning-maintenance.html "22.3.4 Maintenance of Partitions").
 
-During the analysis, the table is locked with a read lock for `InnoDB` and `MyISAM`.
+Durante a análise, a table é bloqueada com um Read Lock para `InnoDB` e `MyISAM`.
 
-[`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement") removes the table from the table definition cache, which requires a flush lock. If there are long running statements or transactions still using the table, subsequent statements and transactions must wait for those operations to finish before the flush lock is released. Because [`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement") itself typically finishes quickly, it may not be apparent that delayed transactions or statements involving the same table are due to the remaining flush lock.
+`ANALYZE TABLE` remove a table do cache de definição da table, o que requer um Flush Lock. Se houver instruções ou Transactions de longa duração ainda usando a table, as instruções e Transactions subsequentes devem esperar que essas operações terminem antes que o Flush Lock seja liberado. Como o próprio `ANALYZE TABLE` geralmente termina rapidamente, pode não ser aparente que as Transactions ou instruções atrasadas envolvendo a mesma table sejam devidas ao Flush Lock restante.
 
-By default, the server writes [`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement") statements to the binary log so that they replicate to replicas. To suppress logging, specify the optional `NO_WRITE_TO_BINLOG` keyword or its alias `LOCAL`.
+Por padrão, o servidor grava as instruções `ANALYZE TABLE` no Binary Log para que sejam replicadas para as Replicas. Para suprimir o log, especifique a palavra-chave opcional `NO_WRITE_TO_BINLOG` ou seu alias `LOCAL`.
 
-* [ANALYZE TABLE Output](analyze-table.html#analyze-table-output "ANALYZE TABLE Output")
-* [Key Distribution Analysis](analyze-table.html#analyze-table-key-distribution-analysis "Key Distribution Analysis")
-* [Other Considerations](analyze-table.html#analyze-table-other-considerations "Other Considerations")
+* [Saída do ANALYZE TABLE](analyze-table.html#analyze-table-output "ANALYZE TABLE Output")
+* [Análise de Distribuição de Key](analyze-table.html#analyze-table-key-distribution-analysis "Key Distribution Analysis")
+* [Outras Considerações](analyze-table.html#analyze-table-other-considerations "Other Considerations")
 
-##### ANALYZE TABLE Output
+##### Saída do ANALYZE TABLE
 
-[`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement") returns a result set with the columns shown in the following table.
+`ANALYZE TABLE` retorna um conjunto de resultados com as colunas mostradas na tabela a seguir.
 
-<table summary="Columns of the ANALYZE TABLE result set."><col style="width: 15%"/><col style="width: 60%"/><thead><tr> <th>Column</th> <th>Value</th> </tr></thead><tbody><tr> <td><code>Table</code></td> <td>The table name</td> </tr><tr> <td><code>Op</code></td> <td>Always <code>analyze</code></td> </tr><tr> <td><code>Msg_type</code></td> <td><code>status</code>, <code>error</code>, <code>info</code>, <code>note</code>, or <code>warning</code></td> </tr><tr> <td><code>Msg_text</code></td> <td>An informational message</td> </tr></tbody></table>
+<table summary="Colunas do conjunto de resultados do ANALYZE TABLE."><col style="width: 15%"/><col style="width: 60%"/><thead><tr> <th>Coluna</th> <th>Valor</th> </tr></thead><tbody><tr> <td><code>Table</code></td> <td>O nome da table</td> </tr><tr> <td><code>Op</code></td> <td>Sempre <code>analyze</code></td> </tr><tr> <td><code>Msg_type</code></td> <td><code>status</code>, <code>error</code>, <code>info</code>, <code>note</code>, ou <code>warning</code></td> </tr><tr> <td><code>Msg_text</code></td> <td>Uma mensagem informativa</td> </tr> </tbody></table>
 
-##### Key Distribution Analysis
+##### Análise de Distribuição de Key
 
-If the table has not changed since the last key distribution analysis, the table is not analyzed again.
+Se a table não foi alterada desde a última análise de distribuição de Key, a table não é analisada novamente.
 
-MySQL uses the stored key distribution to decide the table join order for joins on something other than a constant. In addition, key distributions can be used when deciding which indexes to use for a specific table within a query.
+O MySQL usa a distribuição de Key armazenada para decidir a ordem de JOIN das tables para JOINs em algo diferente de uma constante. Além disso, as distribuições de Key podem ser usadas ao decidir quais Indexes usar para uma table específica dentro de uma Query.
 
-To check the stored key distribution cardinality, use the [`SHOW INDEX`](show-index.html "13.7.5.22 SHOW INDEX Statement") statement or the `INFORMATION_SCHEMA` [`STATISTICS`](information-schema-statistics-table.html "24.3.24 The INFORMATION_SCHEMA STATISTICS Table") table. See [Section 13.7.5.22, “SHOW INDEX Statement”](show-index.html "13.7.5.22 SHOW INDEX Statement"), and [Section 24.3.24, “The INFORMATION_SCHEMA STATISTICS Table”](information-schema-statistics-table.html "24.3.24 The INFORMATION_SCHEMA STATISTICS Table").
+Para verificar a Cardinality da distribuição de Key armazenada, use a instrução [`SHOW INDEX`](show-index.html "13.7.5.22 SHOW INDEX Statement") ou a table [`STATISTICS`](information-schema-statistics-table.html "24.3.24 The INFORMATION_SCHEMA STATISTICS Table") do `INFORMATION_SCHEMA`. Consulte [Seção 13.7.5.22, “Instrução SHOW INDEX”](show-index.html "13.7.5.22 SHOW INDEX Statement"), e [Seção 24.3.24, “A Tabela INFORMATION_SCHEMA STATISTICS”](information-schema-statistics-table.html "24.3.24 The INFORMATION_SCHEMA STATISTICS Table").
 
-For `InnoDB` tables, [`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement") determines index cardinality by performing random dives on each of the index trees and updating index cardinality estimates accordingly. Because these are only estimates, repeated runs of [`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement") could produce different numbers. This makes [`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement") fast on `InnoDB` tables but not 100% accurate because it does not take all rows into account.
+Para tables `InnoDB`, `ANALYZE TABLE` determina a Cardinality do Index realizando 'mergulhos' (dives) aleatórios em cada uma das árvores de Index e atualizando as estimativas de Cardinality do Index de acordo. Como estas são apenas estimativas, execuções repetidas de `ANALYZE TABLE` podem produzir números diferentes. Isso torna o `ANALYZE TABLE` rápido em tables `InnoDB`, mas não 100% preciso porque não leva todas as Rows em consideração.
 
-You can make the [statistics](glossary.html#glos_statistics "statistics") collected by [`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement") more precise and more stable by enabling [`innodb_stats_persistent`](innodb-parameters.html#sysvar_innodb_stats_persistent), as explained in [Section 14.8.11.1, “Configuring Persistent Optimizer Statistics Parameters”](innodb-persistent-stats.html "14.8.11.1 Configuring Persistent Optimizer Statistics Parameters"). When [`innodb_stats_persistent`](innodb-parameters.html#sysvar_innodb_stats_persistent) is enabled, it is important to run [`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement") after major changes to index column data, as statistics are not recalculated periodically (such as after a server restart).
+Você pode tornar as Statistics coletadas por `ANALYZE TABLE` mais precisas e mais estáveis ativando [`innodb_stats_persistent`], conforme explicado na [Seção 14.8.11.1, “Configurando Parâmetros de Statistics Persistentes do Optimizer”](innodb-persistent-stats.html "14.8.11.1 Configuring Persistent Optimizer Statistics Parameters"). Quando [`innodb_stats_persistent`] está ativado, é importante executar `ANALYZE TABLE` após grandes alterações nos dados da coluna do Index, pois as Statistics não são recalculadas periodicamente (como após a reinicialização de um servidor).
 
-If [`innodb_stats_persistent`](innodb-parameters.html#sysvar_innodb_stats_persistent) is enabled, you can change the number of random dives by modifying the [`innodb_stats_persistent_sample_pages`](innodb-parameters.html#sysvar_innodb_stats_persistent_sample_pages) system variable. If [`innodb_stats_persistent`](innodb-parameters.html#sysvar_innodb_stats_persistent) is disabled, modify [`innodb_stats_transient_sample_pages`](innodb-parameters.html#sysvar_innodb_stats_transient_sample_pages) instead.
+Se [`innodb_stats_persistent`] estiver ativado, você pode alterar o número de 'mergulhos' aleatórios modificando a variável de sistema [`innodb_stats_persistent_sample_pages`]. Se [`innodb_stats_persistent`] estiver desativado, modifique [`innodb_stats_transient_sample_pages`] em vez disso.
 
-For more information about key distribution analysis in `InnoDB`, see [Section 14.8.11.1, “Configuring Persistent Optimizer Statistics Parameters”](innodb-persistent-stats.html "14.8.11.1 Configuring Persistent Optimizer Statistics Parameters"), and [Section 14.8.11.3, “Estimating ANALYZE TABLE Complexity for InnoDB Tables”](innodb-analyze-table-complexity.html "14.8.11.3 Estimating ANALYZE TABLE Complexity for InnoDB Tables").
+Para mais informações sobre a análise de distribuição de Key no `InnoDB`, consulte [Seção 14.8.11.1, “Configurando Parâmetros de Statistics Persistentes do Optimizer”](innodb-persistent-stats.html "14.8.11.1 Configuring Persistent Optimizer Statistics Parameters"), e [Seção 14.8.11.3, “Estimando a Complexidade do ANALYZE TABLE para Tables InnoDB”](innodb-analyze-table-complexity.html "14.8.11.3 Estimating ANALYZE TABLE Complexity for InnoDB Tables").
 
-MySQL uses index cardinality estimates in join optimization. If a join is not optimized in the right way, try running [`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement"). In the few cases that [`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement") does not produce values good enough for your particular tables, you can use `FORCE INDEX` with your queries to force the use of a particular index, or set the [`max_seeks_for_key`](server-system-variables.html#sysvar_max_seeks_for_key) system variable to ensure that MySQL prefers index lookups over table scans. See [Section B.3.5, “Optimizer-Related Issues”](optimizer-issues.html "B.3.5 Optimizer-Related Issues").
+O MySQL usa estimativas de Cardinality de Index na otimização de JOIN. Se um JOIN não for otimizado da maneira correta, tente executar `ANALYZE TABLE`. Nos poucos casos em que `ANALYZE TABLE` não produz valores bons o suficiente para suas tables específicas, você pode usar `FORCE INDEX` com suas Queries para forçar o uso de um Index específico, ou definir a variável de sistema [`max_seeks_for_key`] para garantir que o MySQL prefira Index Lookups em vez de Table Scans. Consulte [Seção B.3.5, “Questões Relacionadas ao Optimizer”](optimizer-issues.html "B.3.5 Optimizer-Related Issues").
 
-##### Other Considerations
+##### Outras Considerações
 
-`ANALYZE TABLE` clears table statistics from the Information Schema [`INNODB_SYS_TABLESTATS`](information-schema-innodb-sys-tablestats-table.html "24.4.25 The INFORMATION_SCHEMA INNODB_SYS_TABLESTATS View") table and sets the `STATS_INITIALIZED` column to `Uninitialized`. Statistics are collected again the next time the table is accessed.
+`ANALYZE TABLE` limpa as Statistics da table na View [`INNODB_SYS_TABLESTATS`] do Information Schema e define a coluna `STATS_INITIALIZED` como `Uninitialized`. As Statistics são coletadas novamente na próxima vez que a table for acessada.

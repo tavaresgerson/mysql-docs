@@ -1,39 +1,39 @@
-#### 13.7.5.35 SHOW STATUS Statement
+#### 13.7.5.35 Instrução SHOW STATUS
 
 ```sql
 SHOW [GLOBAL | SESSION] STATUS
     [LIKE 'pattern' | WHERE expr]
 ```
 
-Note
+Nota
 
-The value of the [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56) system variable affects the information available from and privileges required for the statement described here. For details, see the description of that variable in [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").
+O valor da variável de sistema [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56) afeta as informações disponíveis e os privilégios necessários para a instrução aqui descrita. Para detalhes, consulte a descrição dessa variável em [Seção 5.1.7, “Variáveis de Sistema do Server”](server-system-variables.html "5.1.7 Server System Variables").
 
-[`SHOW STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") provides server status information (see [Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")). This statement does not require any privilege. It requires only the ability to connect to the server.
+[`SHOW STATUS`](show-status.html "13.7.5.35 Instrução SHOW STATUS") fornece informações de Status do Server (consulte [Seção 5.1.9, “Variáveis de Status do Server”](server-status-variables.html "5.1.9 Server Status Variables")). Esta instrução não requer nenhum privilégio. Ela exige apenas a capacidade de se conectar ao Server.
 
-Status variable information is also available from these sources:
+As informações da variável de Status também estão disponíveis nestas fontes:
 
-* Performance Schema tables. See [Section 25.12.14, “Performance Schema Status Variable Tables”](performance-schema-status-variable-tables.html "25.12.14 Performance Schema Status Variable Tables").
+* Tabelas do Performance Schema. Consulte [Seção 25.12.14, “Tabelas de Variáveis de Status do Performance Schema”](performance-schema-status-variable-tables.html "25.12.14 Performance Schema Status Variable Tables").
 
-* The [`GLOBAL_STATUS`](information-schema-status-table.html "24.3.10 The INFORMATION_SCHEMA GLOBAL_STATUS and SESSION_STATUS Tables") and [`SESSION_STATUS`](information-schema-status-table.html "24.3.10 The INFORMATION_SCHEMA GLOBAL_STATUS and SESSION_STATUS Tables") tables. See [Section 24.3.10, “The INFORMATION_SCHEMA GLOBAL_STATUS and SESSION_STATUS Tables”](information-schema-status-table.html "24.3.10 The INFORMATION_SCHEMA GLOBAL_STATUS and SESSION_STATUS Tables").
+* As tabelas [`GLOBAL_STATUS`](information-schema-status-table.html "24.3.10 The INFORMATION_SCHEMA GLOBAL_STATUS and SESSION_STATUS Tables") e [`SESSION_STATUS`](information-schema-status-table.html "24.3.10 The INFORMATION_SCHEMA GLOBAL_STATUS and SESSION_STATUS Tables"). Consulte [Seção 24.3.10, “As Tabelas INFORMATION_SCHEMA GLOBAL_STATUS e SESSION_STATUS”](information-schema-status-table.html "24.3.10 The INFORMATION_SCHEMA GLOBAL_STATUS and SESSION_STATUS Tables").
 
-* The [**mysqladmin extended-status**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") command. See [Section 4.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program").
+* O comando [**mysqladmin extended-status**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program"). Consulte [Seção 4.5.2, “mysqladmin — Um Programa de Administração do MySQL Server”](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program").
 
-For [`SHOW STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), a [`LIKE`](string-comparison-functions.html#operator_like) clause, if present, indicates which variable names to match. A `WHERE` clause can be given to select rows using more general conditions, as discussed in [Section 24.8, “Extensions to SHOW Statements”](extended-show.html "24.8 Extensions to SHOW Statements").
+Para [`SHOW STATUS`](show-status.html "13.7.5.35 Instrução SHOW STATUS"), uma cláusula [`LIKE`](string-comparison-functions.html#operator_like), se presente, indica quais nomes de variáveis devem ser correspondidos. Uma cláusula `WHERE` pode ser fornecida para selecionar linhas usando condições mais gerais, conforme discutido em [Seção 24.8, “Extensões para Instruções SHOW”](extended-show.html "24.8 Extensions to SHOW Statements").
 
-[`SHOW STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") accepts an optional `GLOBAL` or `SESSION` variable scope modifier:
+[`SHOW STATUS`](show-status.html "13.7.5.35 Instrução SHOW STATUS") aceita um modificador de escopo de variável opcional `GLOBAL` ou `SESSION`:
 
-* With a `GLOBAL` modifier, the statement displays the global status values. A global status variable may represent status for some aspect of the server itself (for example, `Aborted_connects`), or the aggregated status over all connections to MySQL (for example, `Bytes_received` and `Bytes_sent`). If a variable has no global value, the session value is displayed.
+* Com um modificador `GLOBAL`, a instrução exibe os valores de Status Global. Uma variável de Status Global pode representar o Status para algum aspecto do próprio Server (por exemplo, `Aborted_connects`), ou o Status agregado em todas as conexões com o MySQL (por exemplo, `Bytes_received` e `Bytes_sent`). Se uma variável não tiver um valor Global, o valor Session é exibido.
 
-* With a `SESSION` modifier, the statement displays the status variable values for the current connection. If a variable has no session value, the global value is displayed. `LOCAL` is a synonym for `SESSION`.
+* Com um modificador `SESSION`, a instrução exibe os valores da variável de Status para a conexão atual. Se uma variável não tiver um valor Session, o valor Global é exibido. `LOCAL` é um sinônimo para `SESSION`.
 
-* If no modifier is present, the default is `SESSION`.
+* Se nenhum modificador estiver presente, o padrão é `SESSION`.
 
-The scope for each status variable is listed at [Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables").
+O escopo para cada variável de Status está listado em [Seção 5.1.9, “Variáveis de Status do Server”](server-status-variables.html "5.1.9 Server Status Variables").
 
-Each invocation of the [`SHOW STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") statement uses an internal temporary table and increments the global [`Created_tmp_tables`](server-status-variables.html#statvar_Created_tmp_tables) value.
+Cada invocação da instrução [`SHOW STATUS`](show-status.html "13.7.5.35 Instrução SHOW STATUS") usa uma tabela temporária interna e incrementa o valor Global [`Created_tmp_tables`](server-status-variables.html#statvar_Created_tmp_tables).
 
-Partial output is shown here. The list of names and values may differ for your server. The meaning of each variable is given in [Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables").
+A saída parcial é mostrada aqui. A lista de nomes e valores pode ser diferente para o seu Server. O significado de cada variável é dado em [Seção 5.1.9, “Variáveis de Status do Server”](server-status-variables.html "5.1.9 Server Status Variables").
 
 ```sql
 mysql> SHOW STATUS;
@@ -65,7 +65,7 @@ mysql> SHOW STATUS;
 +--------------------------+------------+
 ```
 
-With a [`LIKE`](string-comparison-functions.html#operator_like) clause, the statement displays only rows for those variables with names that match the pattern:
+Com uma cláusula [`LIKE`](string-comparison-functions.html#operator_like), a instrução exibe apenas linhas para as variáveis cujos nomes correspondem ao padrão:
 
 ```sql
 mysql> SHOW STATUS LIKE 'Key%';

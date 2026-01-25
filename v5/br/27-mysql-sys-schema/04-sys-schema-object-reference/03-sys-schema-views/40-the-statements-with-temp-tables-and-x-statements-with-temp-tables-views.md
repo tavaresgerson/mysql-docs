@@ -1,49 +1,49 @@
-#### 26.4.3.40 The statements_with_temp_tables and x$statements_with_temp_tables Views
+#### 26.4.3.40 As Views statements_with_temp_tables e x$statements_with_temp_tables
 
-These views list normalized statements that have used temporary tables. By default, rows are sorted by descending number of on-disk temporary tables used and descending number of in-memory temporary tables used.
+Essas views listam statements normalizados que usaram temporary tables. Por padrão, as linhas são ordenadas pelo número decrescente de temporary tables em disco utilizadas e pelo número decrescente de temporary tables em memória utilizadas.
 
-The `statements_with_temp_tables` and `x$statements_with_temp_tables` views have these columns:
+As views `statements_with_temp_tables` e `x$statements_with_temp_tables` possuem estas colunas:
 
 * `query`
 
-  The normalized statement string.
+  A string do statement normalizado.
 
 * `db`
 
-  The default database for the statement, or `NULL` if there is none.
+  O Database padrão para o statement, ou `NULL` se não houver nenhum.
 
 * `exec_count`
 
-  The total number of times the statement has executed.
+  O número total de vezes que o statement foi executado.
 
 * `total_latency`
 
-  The total wait time of timed occurrences of the statement.
+  O tempo total de espera (wait time) de ocorrências cronometradas do statement.
 
 * `memory_tmp_tables`
 
-  The total number of internal in-memory temporary tables created by occurrences of the statement.
+  O número total de temporary tables internas em memória criadas pelas ocorrências do statement.
 
 * `disk_tmp_tables`
 
-  The total number of internal on-disk temporary tables created by occurrences of the statement.
+  O número total de temporary tables internas em disco criadas pelas ocorrências do statement.
 
 * `avg_tmp_tables_per_query`
 
-  The average number of internal temporary tables created per occurrence of the statement.
+  O número médio de temporary tables internas criadas por ocorrência do statement.
 
 * `tmp_tables_to_disk_pct`
 
-  The percentage of internal in-memory temporary tables that were converted to on-disk tables.
+  A porcentagem de temporary tables internas em memória que foram convertidas para tabelas em disco.
 
 * `first_seen`
 
-  The time at which the statement was first seen.
+  O horário em que o statement foi visto pela primeira vez.
 
 * `last_seen`
 
-  The time at which the statement was most recently seen.
+  O horário em que o statement foi visto mais recentemente.
 
 * `digest`
 
-  The statement digest.
+  O statement digest.

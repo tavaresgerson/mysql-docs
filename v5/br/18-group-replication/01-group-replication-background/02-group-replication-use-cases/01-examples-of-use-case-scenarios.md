@@ -1,11 +1,11 @@
-#### 17.1.2.1 Examples of Use Case Scenarios
+#### 17.1.2.1 Exemplos de Cenários de Caso de Uso
 
-The following examples are typical use cases for Group Replication.
+Os exemplos a seguir são casos de uso típicos para o Group Replication.
 
-* *Elastic Replication* - Environments that require a very fluid replication infrastructure, where the number of servers has to grow or shrink dynamically and with as few side-effects as possible. For instance, database services for the cloud.
+* *Elastic Replication* - Ambientes que exigem uma infraestrutura de Replication muito fluida, onde o número de Servers precisa crescer ou diminuir dinamicamente e com o mínimo de efeitos colaterais possível. Por exemplo, serviços de Database para a cloud.
 
-* *Highly Available Shards* - Sharding is a popular approach to achieve write scale-out. Use MySQL Group Replication to implement highly available shards, where each shard maps to a replication group.
+* *Highly Available Shards* - Sharding é uma abordagem popular para alcançar write scale-out. Use o MySQL Group Replication para implementar shards de alta disponibilidade, onde cada shard mapeia para um grupo de Replication.
 
-* *Alternative to Source-Replica replication* - In certain situations, using a single source server makes it a single point of contention. Writing to an entire group may prove more scalable under certain circumstances.
+* *Alternative to Source-Replica replication* - Em certas situações, usar um único source server o torna um single point of contention. Escrever para um grupo inteiro pode se mostrar mais scalable sob certas circunstâncias.
 
-* *Autonomic Systems* - Additionally, you can deploy MySQL Group Replication purely for the automation that is built into the replication protocol (described already in this and previous chapters).
+* *Autonomic Systems* - Além disso, você pode implantar o MySQL Group Replication puramente pela automation que está embutida no replication protocol (já descrita neste e nos capítulos anteriores).

@@ -1,12 +1,12 @@
-### 16.3.8 Setting Up Replication to Use Encrypted Connections
+### 16.3.8 Configurando a Replication para Usar Conexões Criptografadas
 
-To use an encrypted connection for the transfer of the binary log required during replication, both the source and the replica servers must support encrypted network connections. If either server does not support encrypted connections (because it has not been compiled or configured for them), replication through an encrypted connection is not possible.
+Para usar uma conexão criptografada para a transferência do binary log exigido durante a replication, ambos os servidores source e replica devem suportar conexões de rede criptografadas. Se qualquer um dos servidores não suportar conexões criptografadas (por não ter sido compilado ou configurado para elas), a replication por meio de uma conexão criptografada não é possível.
 
-Setting up encrypted connections for replication is similar to doing so for client/server connections. You must obtain (or create) a suitable security certificate that you can use on the source, and a similar certificate (from the same certificate authority) on each replica. You must also obtain suitable key files.
+Configurar conexões criptografadas para replication é semelhante a fazê-lo para conexões client/server. Você deve obter (ou criar) um security certificate adequado que você possa usar no source, e um certificate similar (da mesma certificate authority) em cada replica. Você também deve obter key files adequados.
 
-For more information on setting up a server and client for encrypted connections, see [Section 6.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "6.3.1 Configuring MySQL to Use Encrypted Connections").
+Para mais informações sobre como configurar um server e client para conexões criptografadas, veja [Seção 6.3.1, “Configurando o MySQL para Usar Conexões Criptografadas”](using-encrypted-connections.html "6.3.1 Configurando o MySQL para Usar Conexões Criptografadas").
 
-To enable encrypted connections on the source, you must create or obtain suitable certificate and key files, and then add the following configuration parameters to the source's configuration within the `[mysqld]` section of the source's `my.cnf` file, changing the file names as necessary:
+Para habilitar conexões criptografadas no source, você deve criar ou obter certificate e key files adequados e, em seguida, adicionar os seguintes configuration parameters à configuração do source dentro da seção `[mysqld]` do arquivo `my.cnf` do source, alterando os nomes dos arquivos conforme necessário:
 
 ```sql
 [mysqld]
@@ -15,19 +15,19 @@ ssl_cert=server-cert.pem
 ssl_key=server-key.pem
 ```
 
-The paths to the files may be relative or absolute; we recommend that you always use complete paths for this purpose.
+Os paths para os arquivos podem ser relativos ou absolutos; recomendamos que você sempre use paths completos para este propósito.
 
-The configuration parameters are as follows:
+Os configuration parameters são os seguintes:
 
-* [`ssl_ca`](server-system-variables.html#sysvar_ssl_ca): The path name of the Certificate Authority (CA) certificate file. (`--ssl-capath` is similar but specifies the path name of a directory of CA certificate files.)
+* [`ssl_ca`](server-system-variables.html#sysvar_ssl_ca): O path name do arquivo de certificate da Certificate Authority (CA). (`--ssl-capath` é similar, mas especifica o path name de um directory de arquivos de certificate da CA.)
 
-* [`ssl_cert`](server-system-variables.html#sysvar_ssl_cert): The path name of the server public key certificate file. This certificate can be sent to the client and authenticated against the CA certificate that it has.
+* [`ssl_cert`](server-system-variables.html#sysvar_ssl_cert): O path name do arquivo de certificate de public key do server. Este certificate pode ser enviado ao client e autenticado contra o CA certificate que ele possui.
 
-* [`ssl_key`](server-system-variables.html#sysvar_ssl_key): The path name of the server private key file.
+* [`ssl_key`](server-system-variables.html#sysvar_ssl_key): O path name do arquivo de private key do server.
 
-To enable encrypted connections on the replica, use the [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement.
+Para habilitar conexões criptografadas no replica, use o statement [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement").
 
-* To name the replica's certificate and SSL private key files using [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement"), add the appropriate `MASTER_SSL_xxx` options, like this:
+* Para nomear os certificate e SSL private key files do replica usando [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement"), adicione as opções `MASTER_SSL_xxx` apropriadas, desta forma:
 
   ```sql
       -> MASTER_SSL_CA = 'ca_file_name',
@@ -36,26 +36,26 @@ To enable encrypted connections on the replica, use the [`CHANGE MASTER TO`](cha
       -> MASTER_SSL_KEY = 'key_file_name',
   ```
 
-  These options correspond to the `--ssl-xxx` options with the same names, as described in [Command Options for Encrypted Connections](connection-options.html#encrypted-connection-options "Command Options for Encrypted Connections"). For these options to take effect, `MASTER_SSL=1` must also be set. For a replication connection, specifying a value for either of `MASTER_SSL_CA` or `MASTER_SSL_CAPATH` corresponds to setting `--ssl-mode=VERIFY_CA`. The connection attempt succeeds only if a valid matching Certificate Authority (CA) certificate is found using the specified information.
+  Estas opções correspondem às opções `--ssl-xxx` com os mesmos nomes, conforme descrito em [Command Options for Encrypted Connections](connection-options.html#encrypted-connection-options "Command Options for Encrypted Connections"). Para que estas opções tenham efeito, `MASTER_SSL=1` também deve ser definido. Para uma replication connection, especificar um valor para `MASTER_SSL_CA` ou `MASTER_SSL_CAPATH` corresponde a definir `--ssl-mode=VERIFY_CA`. A connection attempt só é bem-sucedida se um Certificate Authority (CA) certificate correspondente válido for encontrado usando a informação especificada.
 
-* To activate host name identity verification, add the `MASTER_SSL_VERIFY_SERVER_CERT` option:
+* Para ativar a verificação de identidade de host name, adicione a opção `MASTER_SSL_VERIFY_SERVER_CERT`:
 
   ```sql
       -> MASTER_SSL_VERIFY_SERVER_CERT=1,
   ```
 
-  This option corresponds to the `--ssl-verify-server-cert` option, which is deprecated as of MySQL 5.7.11 and removed in MySQL 8.0. For a replication connection, specifying `MASTER_SSL_VERIFY_SERVER_CERT=1` corresponds to setting `--ssl-mode=VERIFY_IDENTITY`, as described in [Command Options for Encrypted Connections](connection-options.html#encrypted-connection-options "Command Options for Encrypted Connections"). For this option to take effect, `MASTER_SSL=1` must also be set. Host name identity verification does not work with self-signed certificates.
+  Esta opção corresponde à opção `--ssl-verify-server-cert`, que está deprecated a partir do MySQL 5.7.11 e foi removida no MySQL 8.0. Para uma replication connection, especificar `MASTER_SSL_VERIFY_SERVER_CERT=1` corresponde a definir `--ssl-mode=VERIFY_IDENTITY`, conforme descrito em [Command Options for Encrypted Connections](connection-options.html#encrypted-connection-options "Command Options for Encrypted Connections"). Para que esta opção tenha efeito, `MASTER_SSL=1` também deve ser definido. A verificação de identidade de Host name não funciona com self-signed certificates.
 
-* To activate certificate revocation list (CRL) checks, add the `MASTER_SSL_CRL` or `MASTER_SSL_CRLPATH` option, as shown here:
+* Para ativar verificações de certificate revocation list (CRL), adicione a opção `MASTER_SSL_CRL` ou `MASTER_SSL_CRLPATH`, conforme mostrado aqui:
 
   ```sql
       -> MASTER_SSL_CRL = 'crl_file_name',
       -> MASTER_SSL_CRLPATH = 'crl_directory_name',
   ```
 
-  These options correspond to the `--ssl-xxx` options with the same names, as described in [Command Options for Encrypted Connections](connection-options.html#encrypted-connection-options "Command Options for Encrypted Connections"). If they are not specified, no CRL checking takes place.
+  Estas opções correspondem às opções `--ssl-xxx` com os mesmos nomes, conforme descrito em [Command Options for Encrypted Connections](connection-options.html#encrypted-connection-options "Command Options for Encrypted Connections"). Se elas não forem especificadas, nenhuma checagem de CRL ocorre.
 
-* To specify lists of ciphers and encryption protocols permitted by the replica for the replication connection, add the `MASTER_SSL_CIPHER` and `MASTER_TLS_VERSION` options, like this:
+* Para especificar lists de ciphers e encryption protocols permitidos pelo replica para a replication connection, adicione as opções `MASTER_SSL_CIPHER` e `MASTER_TLS_VERSION`, desta forma:
 
   ```sql
       -> MASTER_SSL_CIPHER = 'cipher_list',
@@ -63,17 +63,17 @@ To enable encrypted connections on the replica, use the [`CHANGE MASTER TO`](cha
       -> SOURCE_TLS_CIPHERSUITES = 'ciphersuite_list',
   ```
 
-  The `MASTER_SSL_CIPHER` option specifies the list of ciphers permitted by the replica for the replication connection, with one or more cipher names separated by colons. The `MASTER_TLS_VERSION` option specifies the encryption protocols permitted by the replica for the replication connection. The format is like that for the [`tls_version`](server-system-variables.html#sysvar_tls_version) system variable, with one or more comma-separated protocol versions. The protocols and ciphers that you can use in these lists depend on the SSL library used to compile MySQL. For information about the formats and permitted values, see [Section 6.3.2, “Encrypted Connection TLS Protocols and Ciphers”](encrypted-connection-protocols-ciphers.html "6.3.2 Encrypted Connection TLS Protocols and Ciphers").
+  A opção `MASTER_SSL_CIPHER` especifica a list de ciphers permitidos pelo replica para a replication connection, com um ou mais nomes de cipher separados por dois pontos. A opção `MASTER_TLS_VERSION` especifica os encryption protocols permitidos pelo replica para a replication connection. O format é semelhante ao da system variable [`tls_version`](server-system-variables.html#sysvar_tls_version), com uma ou mais protocol versions separadas por vírgula. Os protocols e ciphers que você pode usar nestas lists dependem da SSL library usada para compilar o MySQL. Para informações sobre os formats e valores permitidos, veja [Seção 6.3.2, “Encrypted Connection TLS Protocols and Ciphers”](encrypted-connection-protocols-ciphers.html "6.3.2 Encrypted Connection TLS Protocols and Ciphers").
 
-* After the source information has been updated, start the replication process on the replica, like this:
+* Após as informações do source terem sido atualizadas, inicie o replication process no replica, desta forma:
 
   ```sql
   mysql> START SLAVE;
   ```
 
-  You can use the [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") statement to confirm that an encrypted connection was established successfully.
+  Você pode usar o statement [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") para confirmar que uma conexão criptografada foi estabelecida com sucesso.
 
-* Requiring encrypted connections on the replica does not ensure that the source requires encrypted connections from replicas. If you want to ensure that the source only accepts replicas that connect using encrypted connections, create a replication user account on the source using the `REQUIRE SSL` option, then grant that user the [`REPLICATION SLAVE`](privileges-provided.html#priv_replication-slave) privilege. For example:
+* Exigir conexões criptografadas no replica não garante que o source exija conexões criptografadas dos replicas. Se você quiser garantir que o source aceite apenas replicas que se conectam usando conexões criptografadas, crie uma replication user account no source usando a opção `REQUIRE SSL`, e então conceda a esse user o privilege [`REPLICATION SLAVE`](privileges-provided.html#priv_replication-slave). Por exemplo:
 
   ```sql
   mysql> CREATE USER 'repl'@'%.example.com' IDENTIFIED BY 'password'
@@ -82,7 +82,7 @@ To enable encrypted connections on the replica, use the [`CHANGE MASTER TO`](cha
       -> TO 'repl'@'%.example.com';
   ```
 
-  If you have an existing replication user account on the source, you can add `REQUIRE SSL` to it with this statement:
+  Se você tiver uma replication user account existente no source, você pode adicionar `REQUIRE SSL` a ela com este statement:
 
   ```sql
   mysql> ALTER USER 'repl'@'%.example.com' REQUIRE SSL;

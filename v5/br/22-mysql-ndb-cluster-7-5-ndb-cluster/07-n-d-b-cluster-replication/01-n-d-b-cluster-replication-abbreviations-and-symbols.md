@@ -1,7 +1,20 @@
-### 21.7.1 NDB Cluster Replication: Abbreviations and Symbols
+### 21.7.1 Replicação de NDB Cluster: Abreviaturas e Símbolos
 
-Throughout this section, we use the following abbreviations or symbols for referring to the source and replica clusters, and to processes and commands run on the clusters or cluster nodes:
+Ao longo desta seção, usamos as seguintes abreviaturas ou símbolos para nos referirmos aos clusters source e replica, e aos processos e comandos executados nos clusters ou nós do cluster:
 
-**Table 21.63 Abbreviations used throughout this section referring to source and replica clusters, and to processes and commands run on cluster nodes**
+**Tabela 21.63 Abreviaturas usadas ao longo desta seção referentes aos clusters source e replica, e aos processos e comandos executados em nós do cluster**
 
-<table><thead><tr> <th>Symbol or Abbreviation</th> <th>Description (Refers to...)</th> </tr></thead><tbody><tr> <td><em><code>S</code></em></td> <td>The cluster serving as the (primary) replication source</td> </tr><tr> <td><em><code>R</code></em></td> <td>The cluster acting as the (primary) replica</td> </tr><tr> <td><code>shell<em><code>S</code></em>&gt;</code></td> <td>Shell command to be issued on the source cluster</td> </tr><tr> <td><code>mysql<em><code>S</code></em>&gt;</code></td> <td>MySQL client command issued on a single MySQL server running as an SQL node on the source cluster</td> </tr><tr> <td><code>mysql<em><code>S*</code></em>&gt;</code></td> <td>MySQL client command to be issued on all SQL nodes participating in the replication source cluster</td> </tr><tr> <td><code>shell<em><code>R</code></em>&gt;</code></td> <td>Shell command to be issued on the replica cluster</td> </tr><tr> <td><code>mysql<em><code>R</code></em>&gt;</code></td> <td>MySQL client command issued on a single MySQL server running as an SQL node on the replica cluster</td> </tr><tr> <td><code>mysql<em><code>R*</code></em>&gt;</code></td> <td>MySQL client command to be issued on all SQL nodes participating in the replica cluster</td> </tr><tr> <td><em><code>C</code></em></td> <td>Primary replication channel</td> </tr><tr> <td><em><code>C'</code></em></td> <td>Secondary replication channel</td> </tr><tr> <td><em><code>S'</code></em></td> <td>Secondary replication source</td> </tr><tr> <td><em><code>R'</code></em></td> <td>Secondary replica</td> </tr></tbody></table>
+| Símbolo ou Abreviatura | Descrição (Refere-se a...) |
+| :--- | :--- |
+| *`S`* | O cluster que serve como o source (primário) de Replication |
+| *`R`* | O cluster que atua como o replica (primário) |
+| `shellS&gt;` | Comando Shell a ser emitido no cluster source |
+| `mysqlS&gt;` | Comando do MySQL client emitido em um único MySQL server rodando como um SQL node no cluster source |
+| `mysqlS*&gt;` | Comando do MySQL client a ser emitido em todos os SQL nodes que participam do cluster source de Replication |
+| `shellR&gt;` | Comando Shell a ser emitido no cluster replica |
+| `mysqlR&gt;` | Comando do MySQL client emitido em um único MySQL server rodando como um SQL node no cluster replica |
+| `mysqlR*&gt;` | Comando do MySQL client a ser emitido em todos os SQL nodes que participam do cluster replica |
+| *`C`* | Primary replication channel |
+| *`C'`* | Secondary replication channel |
+| *`S'`* | Secondary replication source |
+| *`R'`* | Secondary replica |

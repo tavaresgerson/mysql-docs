@@ -1,14 +1,14 @@
-#### 21.3.1.2 Installing NDB Cluster from RPM
+#### 21.3.1.2 Instalando o NDB Cluster a partir de RPM
 
-This section covers the steps necessary to install the correct executables for each type of NDB Cluster node using RPM packages supplied by Oracle.
+Esta seção cobre os passos necessários para instalar os executáveis corretos para cada tipo de node do NDB Cluster utilizando pacotes RPM fornecidos pela Oracle.
 
-As an alternative to the method described in this section, Oracle provides MySQL Repositories for NDB Cluster 7.5.6 and later that are compatible with many common Linux distributions. Two repostories, listed here, are available for RPM-based distributions:
+Como alternativa ao método descrito nesta seção, a Oracle fornece Repositórios MySQL para NDB Cluster 7.5.6 e posterior, que são compatíveis com muitas distribuições Linux comuns. Dois repositórios, listados a seguir, estão disponíveis para distribuições baseadas em RPM:
 
-* For distributions using **yum** or **dnf**, you can use the MySQL Yum Repository for NDB Cluster. See [*Installing MySQL NDB Cluster Using the Yum Repository*](/doc/mysql-yum-repo-quick-guide/en/#repo-qg-yum-fresh-cluster-install), for instructions and additional information.
+* Para distribuições que utilizam **yum** ou **dnf**, você pode usar o MySQL Yum Repository para NDB Cluster. Consulte [*Instalando o MySQL NDB Cluster Utilizando o Repositório Yum*](/doc/mysql-yum-repo-quick-guide/en/#repo-qg-yum-fresh-cluster-install), para instruções e informações adicionais.
 
-* For SLES, you can use the MySQL SLES Repository for NDB Cluster. See [*Installing MySQL NDB Cluster Using the SLES Repository*](/doc/mysql-sles-repo-quick-guide/en/#repo-qg-sles-fresh-cluster-install), for instructions and additional information.
+* Para SLES, você pode usar o MySQL SLES Repository para NDB Cluster. Consulte [*Instalando o MySQL NDB Cluster Utilizando o Repositório SLES*](/doc/mysql-sles-repo-quick-guide/en/#repo-qg-sles-fresh-cluster-install), para instruções e informações adicionais.
 
-RPMs are available for both 32-bit and 64-bit Linux platforms. The filenames for these RPMs use the following pattern:
+RPMs estão disponíveis para plataformas Linux de 32-bit e 64-bit. Os nomes de arquivo para estes RPMs utilizam o seguinte padrão:
 
 ```sql
 mysql-cluster-community-data-node-7.5.8-1.el7.x86_64.rpm
@@ -28,81 +28,102 @@ mysql-cluster-license-component-ver-rev.distro.arch.rpm
     arch: {i686 | x86_64}
 ```
 
-*`license`* indicates whether the RPM is part of a Commercial or Community release of NDB Cluster. In the remainder of this section, we assume for the examples that you are installing a Community release.
+*`license`* indica se o RPM faz parte de um release Commercial (Comercial) ou Community (Comunitário) do NDB Cluster. No restante desta seção, assumimos nos exemplos que você está instalando um release Community.
 
-Possible values for *`component`*, with descriptions, can be found in the following table:
+Os valores possíveis para *`component`*, com descrições, podem ser encontrados na tabela a seguir:
 
-**Table 21.5 Components of the NDB Cluster RPM distribution**
+**Tabela 21.5 Componentes da distribuição RPM do NDB Cluster**
 
-<table><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Component</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>auto-installer</code></td> <td>NDB Cluster Auto Installer program (DEPRECATED); see Section 21.3.8, “The NDB Cluster Auto-Installer (NDB 7.5) (NO LONGER SUPPORTED)”, for usage</td> </tr><tr> <td><code>client</code></td> <td>MySQL and <code>NDB</code> client programs; includes <span><strong>mysql</strong></span> client, <span><strong>ndb_mgm</strong></span> client, and other client tools</td> </tr><tr> <td><code>common</code></td> <td>Character set and error message information needed by the MySQL server</td> </tr><tr> <td><code>data-node</code></td> <td><span><strong>ndbd</strong></span> and <span><strong>ndbmtd</strong></span> data node binaries</td> </tr><tr> <td><code>devel</code></td> <td>Headers and library files needed for MySQL client development</td> </tr><tr> <td><code>embedded</code></td> <td>Embedded MySQL server</td> </tr><tr> <td><code>embedded-compat</code></td> <td>Backwards-compatible embedded MySQL server</td> </tr><tr> <td><code>embedded-devel</code></td> <td>Header and library files for developing applications for embedded MySQL</td> </tr><tr> <td><code>java</code></td> <td>JAR files needed for support of ClusterJ applications</td> </tr><tr> <td><code>libs</code></td> <td>MySQL client libraries</td> </tr><tr> <td><code>libs-compat</code></td> <td>Backwards-compatible MySQL client libraries</td> </tr><tr> <td><code>management-server</code></td> <td>The NDB Cluster management server (<span><strong>ndb_mgmd</strong></span>)</td> </tr><tr> <td><code>memcached</code></td> <td>Files needed to support <code>ndbmemcache</code></td> </tr><tr> <td><code>minimal-debuginfo</code></td> <td>Debug information for package server-minimal; useful when developing applications that use this package or when debugging this package</td> </tr><tr> <td><code>ndbclient</code></td> <td><code>NDB</code> client library for running NDB API and MGM API applications (<code>libndbclient</code>)</td> </tr><tr> <td><code>ndbclient-devel</code></td> <td>Header and other files needed for developing NDB API and MGM API applications</td> </tr><tr> <td><code>nodejs</code></td> <td>Files needed to set up Node.JS support for NDB Cluster</td> </tr><tr> <td><code>server</code></td> <td>The MySQL server (<span><strong>mysqld</strong></span>) with <code>NDB</code> storage engine support included, and associated MySQL server programs</td> </tr><tr> <td><code>server-minimal</code></td> <td>Minimal installation of the MySQL server for NDB and related tools</td> </tr><tr> <td><code>test</code></td> <td><span><strong>mysqltest</strong></span>, other MySQL test programs, and support files</td> </tr></tbody></table>
+| Componente | Descrição |
+| :--- | :--- |
+| `auto-installer` | Programa NDB Cluster Auto Installer (DEPRECATED); consulte Seção 21.3.8, “The NDB Cluster Auto-Installer (NDB 7.5) (NO LONGER SUPPORTED)”, para uso |
+| `client` | Programas MySQL e `NDB` client; inclui o client **mysql**, o client **ndb_mgm** e outras ferramentas client |
+| `common` | Conjunto de caracteres e informações de mensagens de erro necessárias pelo MySQL server |
+| `data-node` | Binários **ndbd** e **ndbmtd** do data node |
+| `devel` | Cabeçalhos e arquivos de biblioteca necessários para o desenvolvimento de MySQL client |
+| `embedded` | MySQL server Embedded |
+| `embedded-compat` | MySQL server Embedded compatível com versões anteriores |
+| `embedded-devel` | Cabeçalho e arquivos de biblioteca para desenvolvimento de aplicações para MySQL Embedded |
+| `java` | Arquivos JAR necessários para suporte de aplicações ClusterJ |
+| `libs` | Bibliotecas MySQL client |
+| `libs-compat` | Bibliotecas MySQL client compatíveis com versões anteriores |
+| `management-server` | O management server do NDB Cluster (**ndb_mgmd**) |
+| `memcached` | Arquivos necessários para suportar `ndbmemcache` |
+| `minimal-debuginfo` | Informações de Debug para o pacote `server-minimal`; útil ao desenvolver ou depurar aplicações que usam este pacote ou ao depurar este pacote |
+| `ndbclient` | Biblioteca client `NDB` para execução de aplicações NDB API e MGM API (`libndbclient`) |
+| `ndbclient-devel` | Cabeçalho e outros arquivos necessários para o desenvolvimento de aplicações NDB API e MGM API |
+| `nodejs` | Arquivos necessários para configurar o suporte Node.JS para NDB Cluster |
+| `server` | O MySQL server (**mysqld**) com suporte à storage engine `NDB` incluído, e programas associados do MySQL server |
+| `server-minimal` | Instalação mínima do MySQL server para NDB e ferramentas relacionadas |
+| `test` | **mysqltest**, outros programas de test do MySQL e arquivos de suporte |
 
-A single bundle (`.tar` file) of all NDB Cluster RPMs for a given platform and architecture is also available. The name of this file follows the pattern shown here:
+Um bundle único (arquivo `.tar`) de todos os RPMs do NDB Cluster para uma determinada plataforma e arquitetura também está disponível. O nome deste arquivo segue o padrão mostrado aqui:
 
 ```sql
 mysql-cluster-license-ver-rev.distro.arch.rpm-bundle.tar
 ```
 
-You can extract the individual RPM files from this file using **tar** or your preferred tool for extracting archives.
+Você pode extrair os arquivos RPM individuais deste arquivo usando **tar** ou sua ferramenta preferida para extração de arquivos.
 
-The components required to install the three major types of NDB Cluster nodes are given in the following list:
+Os componentes necessários para instalar os três principais tipos de nodes do NDB Cluster são fornecidos na lista a seguir:
 
 * *Management node*: `management-server`
 
 * *Data node*: `data-node`
-* *SQL node*: `server` and `common`
+* *SQL node*: `server` e `common`
 
-In addition, the `client` RPM should be installed to provide the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") management client on at least one management node. You may also wish to install it on SQL nodes, to have [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") and other MySQL client programs available on these. We discuss installation of nodes by type later in this section.
+Além disso, o RPM `client` deve ser instalado para fornecer o client de gerenciamento [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") em pelo menos um management node. Você também pode querer instalá-lo em SQL nodes, para ter [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") e outros programas MySQL client disponíveis neles. Discutiremos a instalação de nodes por tipo mais adiante nesta seção.
 
-*`ver`* represents the three-part `NDB` storage engine version number in 7.6.*`x`* format, shown as `7.6.35` in the examples. `rev` provides the RPM revision number in *`major`*.*`minor`* format. In the examples shown in this section, we use `1.1` for this value.
+*`ver`* representa o número da versão de três partes da storage engine `NDB` no formato 7.6.*`x`*, mostrado como `7.6.35` nos exemplos. `rev` fornece o número de revisão do RPM no formato *`major`*.*`minor`*. Nos exemplos mostrados nesta seção, usamos `1.1` para este valor.
 
-The *`distro`* (Linux distribution) is one of `rhel5` (Oracle Linux 5, Red Hat Enterprise Linux 4 and 5), `el6` (Oracle Linux 6, Red Hat Enterprise Linux 6), `el7` (Oracle Linux 7, Red Hat Enterprise Linux 7), or `sles12` (SUSE Enterprise Linux 12). For the examples in this section, we assume that the host runs Oracle Linux 7, Red Hat Enterprise Linux 7, or the equivalent (`el7`).
+A *`distro`* (distribuição Linux) é uma de `rhel5` (Oracle Linux 5, Red Hat Enterprise Linux 4 e 5), `el6` (Oracle Linux 6, Red Hat Enterprise Linux 6), `el7` (Oracle Linux 7, Red Hat Enterprise Linux 7), ou `sles12` (SUSE Enterprise Linux 12). Para os exemplos nesta seção, assumimos que o host executa Oracle Linux 7, Red Hat Enterprise Linux 7, ou o equivalente (`el7`).
 
-*`arch`* is `i686` for 32-bit RPMs and `x86_64` for 64-bit versions. In the examples shown here, we assume a 64-bit platform.
+*`arch`* é `i686` para RPMs de 32-bit e `x86_64` para versões de 64-bit. Nos exemplos mostrados aqui, assumimos uma plataforma de 64-bit.
 
-The NDB Cluster version number in the RPM file names (shown here as `7.6.35`) can vary according to the version which you are actually using. *It is very important that all of the Cluster RPMs to be installed have the same version number*. The architecture should also be appropriate to the machine on which the RPM is to be installed; in particular, you should keep in mind that 64-bit RPMs (`x86_64`) cannot be used with 32-bit operating systems (use `i686` for the latter).
+O número de versão do NDB Cluster nos nomes de arquivo RPM (mostrado aqui como `7.6.35`) pode variar de acordo com a versão que você está realmente utilizando. *É muito importante que todos os RPMs do Cluster a serem instalados tenham o mesmo número de versão*. A arquitetura também deve ser apropriada para a máquina na qual o RPM será instalado; em particular, você deve ter em mente que RPMs de 64-bit (`x86_64`) não podem ser usados com sistemas operacionais de 32-bit (use `i686` para este último).
 
-**Data nodes.** On a computer that is to host an NDB Cluster data node it is necessary to install only the `data-node` RPM. To do so, copy this RPM to the data node host, and run the following command as the system root user, replacing the name shown for the RPM as necessary to match that of the RPM downloaded from the MySQL website:
+**Data nodes.** Em um computador que hospedará um data node do NDB Cluster, é necessário instalar apenas o RPM `data-node`. Para fazer isso, copie este RPM para o host do data node e execute o seguinte command como o usuário root do sistema, substituindo o nome mostrado para o RPM conforme necessário para corresponder ao RPM baixado do website do MySQL:
 
 ```sql
 $> rpm -Uhv mysql-cluster-community-data-node-7.6.35-1.el7.x86_64.rpm
 ```
 
-This installs the [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") and [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") data node binaries in `/usr/sbin`. Either of these can be used to run a data node process on this host.
+Isto instala os binários [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") e [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") do data node em `/usr/sbin`. Qualquer um deles pode ser usado para executar um processo data node neste host.
 
-**SQL nodes.** Copy the `server` and `common` RPMs to each machine to be used for hosting an NDB Cluster SQL node (`server` requires `common`). Install the `server` RPM by executing the following command as the system root user, replacing the name shown for the RPM as necessary to match the name of the RPM downloaded from the MySQL website:
+**SQL nodes.** Copie os RPMs `server` e `common` para cada máquina a ser usada para hospedar um SQL node do NDB Cluster (`server` requer `common`). Instale o RPM `server` executando o seguinte command como o usuário root do sistema, substituindo o nome mostrado para o RPM conforme necessário para corresponder ao nome do RPM baixado do website do MySQL:
 
 ```sql
 $> rpm -Uhv mysql-cluster-community-server-7.6.35-1.el7.x86_64.rpm
 ```
 
-This installs the MySQL server binary ([**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server")), with `NDB` storage engine support, in the `/usr/sbin` directory. It also installs all needed MySQL Server support files and useful MySQL server programs, including the [**mysql.server**](mysql-server.html "4.3.3 mysql.server — MySQL Server Startup Script") and [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") startup scripts (in `/usr/share/mysql` and `/usr/bin`, respectively). The RPM installer should take care of general configuration issues (such as creating the `mysql` user and group, if needed) automatically.
+Isto instala o binário do MySQL server ([**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server")), com suporte à storage engine `NDB`, no diretório `/usr/sbin`. Ele também instala todos os arquivos de suporte necessários do MySQL Server e programas úteis do MySQL server, incluindo os startup scripts [**mysql.server**](mysql-server.html "4.3.3 mysql.server — MySQL Server Startup Script") e [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") (em `/usr/share/mysql` e `/usr/bin`, respectivamente). O instalador RPM deve cuidar automaticamente das questões gerais de configuration (como criar o usuário e grupo `mysql`, se necessário).
 
-Important
+Importante
 
-You must use the versions of these RPMs released for NDB Cluster; those released for the standard MySQL server do not provide support for the `NDB` storage engine.
+Você deve usar as versões desses RPMs lançados para NDB Cluster; aqueles lançados para o MySQL server padrão não fornecem suporte para a storage engine `NDB`.
 
-To administer the SQL node (MySQL server), you should also install the `client` RPM, as shown here:
+Para administrar o SQL node (MySQL server), você também deve instalar o RPM `client`, conforme mostrado aqui:
 
 ```sql
 $> rpm -Uhv mysql-cluster-community-client-7.6.35-1.el7.x86_64.rpm
 ```
 
-This installs the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client and other MySQL client programs, such as [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") and [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program"), to `/usr/bin`.
+Isto instala o client [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") e outros programas MySQL client, como [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") e [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program"), em `/usr/bin`.
 
-**Management nodes.** To install the NDB Cluster management server, it is necessary only to use the `management-server` RPM. Copy this RPM to the computer intended to host the management node, and then install it by running the following command as the system root user (replace the name shown for the RPM as necessary to match that of the `management-server` RPM downloaded from the MySQL website):
+**Management nodes.** Para instalar o management server do NDB Cluster, é necessário apenas usar o RPM `management-server`. Copie este RPM para o computador destinado a hospedar o management node e instale-o executando o seguinte command como o usuário root do sistema (substitua o nome mostrado para o RPM conforme necessário para corresponder ao RPM `management-server` baixado do website do MySQL):
 
 ```sql
 $> rpm -Uhv mysql-cluster-community-management-server-7.6.35-1.el7.x86_64.rpm
 ```
 
-This RPM installs the management server binary [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") in the `/usr/sbin` directory. While this is the only program actually required for running a management node, it is also a good idea to have the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") NDB Cluster management client available as well. You can obtain this program, as well as other `NDB` client programs such as [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") and [**ndb_config**](mysql-cluster-programs-ndb-config.html "21.5.7 ndb_config — Extract NDB Cluster Configuration Information"), by installing the `client` RPM as described previously.
+Este RPM instala o binário do management server [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") no diretório `/usr/sbin`. Embora este seja o único programa realmente exigido para executar um management node, também é uma boa ideia ter o client de gerenciamento [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") do NDB Cluster disponível. Você pode obter este programa, bem como outros programas client `NDB` como [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") e [**ndb_config**](mysql-cluster-programs-ndb-config.html "21.5.7 ndb_config — Extract NDB Cluster Configuration Information"), instalando o RPM `client` conforme descrito anteriormente.
 
-Note
+Nota
 
-Previously, [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") was installed by the same RPM used to install the management server. In NDB 7.5 (and later), all `NDB` client programs are obtained from the same `client` RPM that installs [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") and other MySQL clients.
+Anteriormente, [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") era instalado pelo mesmo RPM usado para instalar o management server. No NDB 7.5 (e posterior), todos os programas client `NDB` são obtidos do mesmo RPM `client` que instala [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") e outros clients MySQL.
 
-See [Section 2.5.5, “Installing MySQL on Linux Using RPM Packages from Oracle”](linux-installation-rpm.html "2.5.5 Installing MySQL on Linux Using RPM Packages from Oracle"), for general information about installing MySQL using RPMs supplied by Oracle.
+Consulte [Seção 2.5.5, “Instalando MySQL no Linux Usando Pacotes RPM da Oracle”](linux-installation-rpm.html "2.5.5 Installing MySQL on Linux Using RPM Packages from Oracle"), para obter informações gerais sobre a instalação do MySQL usando RPMs fornecidos pela Oracle.
 
-After installing from RPM, you still need to configure the cluster; see [Section 21.3.3, “Initial Configuration of NDB Cluster”](mysql-cluster-install-configuration.html "21.3.3 Initial Configuration of NDB Cluster"), for the relevant information.
+Após a installation a partir do RPM, você ainda precisa configurar o cluster; consulte [Seção 21.3.3, “Configuração Inicial do NDB Cluster”](mysql-cluster-install-configuration.html "21.3.3 Initial Configuration of NDB Cluster"), para obter as informações relevantes.
 
-See [Section 2.5.5, “Installing MySQL on Linux Using RPM Packages from Oracle”](linux-installation-rpm.html "2.5.5 Installing MySQL on Linux Using RPM Packages from Oracle"), for general information about installing MySQL using RPMs supplied by Oracle. See [Section 21.3.3, “Initial Configuration of NDB Cluster”](mysql-cluster-install-configuration.html "21.3.3 Initial Configuration of NDB Cluster"), for information about required post-installation configuration.
+Consulte [Seção 2.5.5, “Instalando MySQL no Linux Usando Pacotes RPM da Oracle”](linux-installation-rpm.html "2.5.5 Installing MySQL on Linux Using RPM Packages from Oracle"), para obter informações gerais sobre a instalação do MySQL usando RPMs fornecidos pela Oracle. Consulte [Seção 21.3.3, “Configuração Inicial do NDB Cluster”](mysql-cluster-install-configuration.html "21.3.3 Initial Configuration of NDB Cluster"), para obter informações sobre a configuration pós-installation necessária.

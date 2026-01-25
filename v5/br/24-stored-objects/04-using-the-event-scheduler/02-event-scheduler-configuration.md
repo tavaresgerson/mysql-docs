@@ -1,16 +1,16 @@
-### 23.4.2 Event Scheduler Configuration
+### 23.4.2 Configuração do Event Scheduler
 
-Events are executed by a special event scheduler thread; when we refer to the Event Scheduler, we actually refer to this thread. When running, the event scheduler thread and its current state can be seen by users having the `PROCESS` privilege in the output of `SHOW PROCESSLIST`, as shown in the discussion that follows.
+Eventos são executados por uma `thread` especial do agendador de eventos; quando nos referimos ao Event Scheduler, estamos na verdade nos referindo a esta `thread`. Quando em execução, a `thread` do agendador de eventos e seu estado atual podem ser vistos por usuários com o privilégio `PROCESS` na saída de `SHOW PROCESSLIST`, conforme demonstrado na discussão a seguir.
 
-The global `event_scheduler` system variable determines whether the Event Scheduler is enabled and running on the server. It has one of the following values, which affect event scheduling as described:
+A variável de sistema global `event_scheduler` determina se o Event Scheduler está habilitado e em execução no servidor. Ela possui um dos seguintes valores, que afetam o agendamento de eventos conforme descrito:
 
-* `OFF`: The Event Scheduler is stopped. The event scheduler thread does not run, is not shown in the output of `SHOW PROCESSLIST`, and no scheduled events execute. `OFF` is the default `event_scheduler` value.
+* `OFF`: O Event Scheduler está parado. A `thread` do agendador de eventos não é executada, não é exibida na saída de `SHOW PROCESSLIST` e nenhum evento agendado é executado. `OFF` é o valor padrão de `event_scheduler`.
 
-  When the Event Scheduler is stopped (`event_scheduler` is `OFF`), it can be started by setting the value of `event_scheduler` to `ON`. (See next item.)
+  Quando o Event Scheduler está parado (`event_scheduler` é `OFF`), ele pode ser iniciado definindo o valor de `event_scheduler` como `ON`. (Veja o próximo item.)
 
-* `ON`: The Event Scheduler is started; the event scheduler thread runs and executes all scheduled events.
+* `ON`: O Event Scheduler está iniciado; a `thread` do agendador de eventos é executada e executa todos os eventos agendados.
 
-  When the Event Scheduler is `ON`, the event scheduler thread is listed in the output of `SHOW PROCESSLIST` as a daemon process, and its state is represented as shown here:
+  Quando o Event Scheduler está `ON`, a `thread` do agendador de eventos é listada na saída de `SHOW PROCESSLIST` como um processo `daemon`, e seu estado é representado conforme mostrado aqui:
 
   ```sql
   mysql> SHOW PROCESSLIST\G
@@ -35,11 +35,11 @@ The global `event_scheduler` system variable determines whether the Event Schedu
   2 rows in set (0.00 sec)
   ```
 
-  Event scheduling can be stopped by setting the value of `event_scheduler` to `OFF`.
+  O agendamento de eventos pode ser interrompido definindo o valor de `event_scheduler` como `OFF`.
 
-* `DISABLED`: This value renders the Event Scheduler nonoperational. When the Event Scheduler is `DISABLED`, the event scheduler thread does not run (and so does not appear in the output of `SHOW PROCESSLIST`). In addition, the Event Scheduler state cannot be changed at runtime.
+* `DISABLED`: Este valor torna o Event Scheduler não operacional. Quando o Event Scheduler está `DISABLED`, a `thread` do agendador de eventos não é executada (e, portanto, não aparece na saída de `SHOW PROCESSLIST`). Além disso, o estado do Event Scheduler não pode ser alterado em tempo de execução (`runtime`).
 
-If the Event Scheduler status has not been set to `DISABLED`, `event_scheduler` can be toggled between `ON` and `OFF` (using `SET`). It is also possible to use `0` for `OFF`, and `1` for `ON` when setting this variable. Thus, any of the following 4 statements can be used in the **mysql** client to turn on the Event Scheduler:
+Se o status do Event Scheduler não tiver sido definido como `DISABLED`, `event_scheduler` pode ser alternado entre `ON` e `OFF` (usando `SET`). Também é possível usar `0` para `OFF` e `1` para `ON` ao definir esta variável. Assim, qualquer uma das 4 instruções a seguir pode ser usada no cliente **mysql** para ligar o Event Scheduler:
 
 ```sql
 SET GLOBAL event_scheduler = ON;
@@ -48,7 +48,7 @@ SET GLOBAL event_scheduler = 1;
 SET @@GLOBAL.event_scheduler = 1;
 ```
 
-Similarly, any of these 4 statements can be used to turn off the Event Scheduler:
+Da mesma forma, qualquer uma destas 4 instruções pode ser usada para desligar o Event Scheduler:
 
 ```sql
 SET GLOBAL event_scheduler = OFF;
@@ -57,9 +57,9 @@ SET GLOBAL event_scheduler = 0;
 SET @@GLOBAL.event_scheduler = 0;
 ```
 
-Although `ON` and `OFF` have numeric equivalents, the value displayed for `event_scheduler` by `SELECT` or `SHOW VARIABLES` is always one of `OFF`, `ON`, or `DISABLED`. *`DISABLED` has no numeric equivalent*. For this reason, `ON` and `OFF` are usually preferred over `1` and `0` when setting this variable.
+Embora `ON` e `OFF` tenham equivalentes numéricos, o valor exibido para `event_scheduler` por `SELECT` ou `SHOW VARIABLES` é sempre um dos seguintes: `OFF`, `ON` ou `DISABLED`. *`DISABLED` não possui equivalente numérico*. Por este motivo, `ON` e `OFF` são geralmente preferidos em relação a `1` e `0` ao definir esta variável.
 
-Note that attempting to set `event_scheduler` without specifying it as a global variable causes an error:
+Note que tentar definir `event_scheduler` sem especificá-la como uma variável global causa um erro:
 
 ```sql
 mysql< SET @@event_scheduler = OFF;
@@ -67,34 +67,34 @@ ERROR 1229 (HY000): Variable 'event_scheduler' is a GLOBAL
 variable and should be set with SET GLOBAL
 ```
 
-Important
+Importante
 
-It is possible to set the Event Scheduler to `DISABLED` only at server startup. If `event_scheduler` is `ON` or `OFF`, you cannot set it to `DISABLED` at runtime. Also, if the Event Scheduler is set to `DISABLED` at startup, you cannot change the value of `event_scheduler` at runtime.
+É possível definir o Event Scheduler como `DISABLED` apenas na inicialização do servidor (`server startup`). Se `event_scheduler` estiver em `ON` ou `OFF`, você não pode defini-lo como `DISABLED` em tempo de execução. Além disso, se o Event Scheduler for definido como `DISABLED` na inicialização, você não pode alterar o valor de `event_scheduler` em tempo de execução.
 
-To disable the event scheduler, use one of the following two methods:
+Para desabilitar o agendador de eventos, use um dos dois métodos a seguir:
 
-* As a command-line option when starting the server:
+* Como uma opção de linha de comando ao iniciar o servidor:
 
   ```sql
   --event-scheduler=DISABLED
   ```
 
-* In the server configuration file (`my.cnf`, or `my.ini` on Windows systems), include the line where it can be read by the server (for example, in a `[mysqld]` section):
+* No arquivo de configuração do servidor (`my.cnf`, ou `my.ini` em sistemas Windows), inclua a linha onde ela possa ser lida pelo servidor (por exemplo, em uma seção `[mysqld]`):
 
   ```sql
   event_scheduler=DISABLED
   ```
 
-To enable the Event Scheduler, restart the server without the `--event-scheduler=DISABLED` command-line option, or after removing or commenting out the line containing `event-scheduler=DISABLED` in the server configuration file, as appropriate. Alternatively, you can use `ON` (or `1`) or `OFF` (or `0`) in place of the `DISABLED` value when starting the server.
+Para habilitar o Event Scheduler, reinicie o servidor sem a opção de linha de comando `--event-scheduler=DISABLED`, ou após remover ou comentar a linha contendo `event-scheduler=DISABLED` no arquivo de configuração do servidor, conforme apropriado. Alternativamente, você pode usar `ON` (ou `1`) ou `OFF` (ou `0`) no lugar do valor `DISABLED` ao iniciar o servidor.
 
-Note
+Nota
 
-You can issue event-manipulation statements when `event_scheduler` is set to `DISABLED`. No warnings or errors are generated in such cases (provided that the statements are themselves valid). However, scheduled events cannot execute until this variable is set to `ON` (or `1`). Once this has been done, the event scheduler thread executes all events whose scheduling conditions are satisfied.
+Você pode emitir instruções de manipulação de eventos quando `event_scheduler` está definido como `DISABLED`. Nenhum aviso ou erro é gerado em tais casos (desde que as instruções sejam válidas por si mesmas). No entanto, eventos agendados não podem ser executados até que esta variável seja definida como `ON` (ou `1`). Uma vez que isso tenha sido feito, a `thread` do agendador de eventos executa todos os eventos cujas condições de agendamento são satisfeitas.
 
-Starting the MySQL server with the `--skip-grant-tables` option causes `event_scheduler` to be set to `DISABLED`, overriding any other value set either on the command line or in the `my.cnf` or `my.ini` file (Bug #26807).
+Iniciar o servidor MySQL com a opção `--skip-grant-tables` faz com que `event_scheduler` seja definido como `DISABLED`, substituindo qualquer outro valor definido na linha de comando ou no arquivo `my.cnf` ou `my.ini` (Bug #26807).
 
-For SQL statements used to create, alter, and drop events, see Section 23.4.3, “Event Syntax”.
+Para instruções SQL usadas para criar, alterar e descartar (`drop`) eventos, consulte a Seção 23.4.3, “Sintaxe de Eventos”.
 
-MySQL provides an `EVENTS` table in the `INFORMATION_SCHEMA` database. This table can be queried to obtain information about scheduled events which have been defined on the server. See Section 23.4.4, “Event Metadata”, and Section 24.3.8, “The INFORMATION_SCHEMA EVENTS Table”, for more information.
+O MySQL fornece uma tabela `EVENTS` no `Database` `INFORMATION_SCHEMA`. Esta tabela pode ser consultada (`queried`) para obter informações sobre eventos agendados que foram definidos no servidor. Veja a Seção 23.4.4, “Metadados de Eventos”, e a Seção 24.3.8, “A Tabela INFORMATION_SCHEMA EVENTS”, para mais informações.
 
-For information regarding event scheduling and the MySQL privilege system, see Section 23.4.6, “The Event Scheduler and MySQL Privileges”.
+Para informações sobre o agendamento de eventos e o sistema de privilégios do MySQL, consulte a Seção 23.4.6, “O Event Scheduler e os Privilégios do MySQL”.

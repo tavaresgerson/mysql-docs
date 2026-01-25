@@ -1,3 +1,3 @@
-#### 16.4.1.36 Replication and User Name Length
+#### 16.4.1.36 Comprimento de User Name e Replication
 
-The maximum length of MySQL user names was increased from 16 characters to 32 characters in MySQL 5.7.8. Replication of user names longer than 16 characters to a replica that supports only shorter user names fails. However, this should occur only when replicating from a newer source to an older replica, which is not a recommended configuration.
+O comprimento máximo de user names do MySQL foi aumentado de 16 caracteres para 32 caracteres no MySQL 5.7.8. A Replication de user names com mais de 16 caracteres para uma replica que suporta apenas user names mais curtos falha. No entanto, isso só deve ocorrer ao replicar de um source mais recente para uma replica mais antiga, o que não é uma configuração recomendada.

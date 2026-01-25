@@ -1,142 +1,142 @@
-#### 21.6.15.29 The ndbinfo operations_per_fragment Table
+#### 21.6.15.29 A Tabela ndbinfo operations_per_fragment
 
-The `operations_per_fragment` table provides information about the operations performed on individual fragments and fragment replicas, as well as about some of the results from these operations.
+A tabela `operations_per_fragment` fornece informações sobre as operações realizadas em fragmentos individuais e réplicas de fragmentos, bem como sobre alguns dos resultados dessas operações.
 
-The `operations_per_fragment` table contains the following columns:
+A tabela `operations_per_fragment` contém as seguintes colunas:
 
 * `fq_name`
 
-  Name of this fragment
+  Nome deste fragmento
 
 * `parent_fq_name`
 
-  Name of this fragment's parent
+  Nome do pai deste fragmento
 
 * `type`
 
-  Type of object; see text for possible values
+  Tipo de objeto; veja o texto para valores possíveis
 
 * `table_id`
 
-  Table ID for this table
+  O ID da Table para esta tabela
 
 * `node_id`
 
-  Node ID for this node
+  O ID do Node para este node
 
 * `block_instance`
 
-  Kernel block instance ID
+  ID da Kernel block instance
 
 * `fragment_num`
 
-  Fragment ID (number)
+  ID (número) do Fragment
 
 * `tot_key_reads`
 
-  Total number of key reads for this fragment replica
+  Número total de key reads para esta réplica de fragmento
 
 * `tot_key_inserts`
 
-  Total number of key inserts for this fragment replica
+  Número total de key inserts para esta réplica de fragmento
 
 * `tot_key_updates`
 
-  total number of key updates for this fragment replica
+  Número total de key updates para esta réplica de fragmento
 
 * `tot_key_writes`
 
-  Total number of key writes for this fragment replica
+  Número total de key writes para esta réplica de fragmento
 
 * `tot_key_deletes`
 
-  Total number of key deletes for this fragment replica
+  Número total de key deletes para esta réplica de fragmento
 
 * `tot_key_refs`
 
-  Number of key operations refused
+  Número de key operations recusadas
 
 * `tot_key_attrinfo_bytes`
 
-  Total size of all `attrinfo` attributes
+  Tamanho total de todos os atributos `attrinfo`
 
 * `tot_key_keyinfo_bytes`
 
-  Total size of all `keyinfo` attributes
+  Tamanho total de todos os atributos `keyinfo`
 
 * `tot_key_prog_bytes`
 
-  Total size of all interpreted programs carried by `attrinfo` attributes
+  Tamanho total de todos os programas interpretados transportados pelos atributos `attrinfo`
 
 * `tot_key_inst_exec`
 
-  Total number of instructions executed by interpreted programs for key operations
+  Número total de instruções executadas por programas interpretados para key operations
 
 * `tot_key_bytes_returned`
 
-  Total size of all data and metadata returned from key read operations
+  Tamanho total de todos os dados e metadados retornados de key read operations
 
 * `tot_frag_scans`
 
-  Total number of scans performed on this fragment replica
+  Número total de scans realizados nesta réplica de fragmento
 
 * `tot_scan_rows_examined`
 
-  Total number of rows examined by scans
+  Número total de Rows examinadas por scans
 
 * `tot_scan_rows_returned`
 
-  Total number of rows returned to client
+  Número total de Rows retornadas ao cliente
 
 * `tot_scan_bytes_returned`
 
-  Total size of data and metadata returned to the client
+  Tamanho total dos dados e metadados retornados ao cliente
 
 * `tot_scan_prog_bytes`
 
-  Total size of interpreted programs for scan operations
+  Tamanho total dos programas interpretados para scan operations
 
 * `tot_scan_bound_bytes`
 
-  Total size of all bounds used in ordered index scans
+  Tamanho total de todos os bounds usados em ordered index scans
 
 * `tot_scan_inst_exec`
 
-  Total number of instructions executed for scans
+  Número total de instruções executadas para scans
 
 * `tot_qd_frag_scans`
 
-  Number of times that scans of this fragment replica have been queued
+  Número de vezes que scans desta réplica de fragmento foram colocados na fila (queued)
 
 * `conc_frag_scans`
 
-  Number of scans currently active on this fragment replica (excluding queued scans)
+  Número de scans atualmente ativos nesta réplica de fragmento (excluindo scans em fila)
 
 * `conc_qd_frag_scans`
 
-  Number of scans currently queued for this fragment replica
+  Número de scans atualmente em fila (queued) para esta réplica de fragmento
 
 * `tot_commits`
 
-  Total number of row changes committed to this fragment replica
+  Número total de mudanças de Row commitadas para esta réplica de fragmento
 
-##### Notes
+##### Notas
 
-The `fq_name` contains the fully qualified name of the schema object to which this fragment replica belongs. This currently has the following formats:
+O `fq_name` contém o nome totalmente qualificado do objeto de schema ao qual esta réplica de fragmento pertence. Atualmente, ele tem os seguintes formatos:
 
-* Base table: `DbName/def/TblName`
+* Tabela Base: `DbName/def/TblName`
 
-* `BLOB` table: `DbName/def/NDB$BLOB_BaseTblId_ColNo`
+* Tabela `BLOB`: `DbName/def/NDB$BLOB_BaseTblId_ColNo`
 
-* Ordered index: `sys/def/BaseTblId/IndexName`
+* Ordered Index: `sys/def/BaseTblId/IndexName`
 
-* Unique index: `sys/def/BaseTblId/IndexName$unique`
+* Unique Index: `sys/def/BaseTblId/IndexName$unique`
 
-The `$unique` suffix shown for unique indexes is added by [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"); for an index created by a different NDB API client application, this may differ, or not be present.
+O sufixo `$unique` mostrado para Unique Indexes é adicionado pelo [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"); para um Index criado por uma aplicação cliente NDB API diferente, isso pode ser diferente, ou não estar presente.
 
-The syntax just shown for fully qualified object names is an internal interface which is subject to change in future releases.
+A sintaxe mostrada para nomes de objetos totalmente qualificados é uma interface interna sujeita a alterações em versões futuras.
 
-Consider a table `t1` created and modified by the following SQL statements:
+Considere uma Table `t1` criada e modificada pelas seguintes declarações SQL:
 
 ```sql
 CREATE DATABASE mydb;
@@ -153,39 +153,39 @@ CREATE TABLE t1 (
 CREATE UNIQUE INDEX ix1 ON t1(b) USING HASH;
 ```
 
-If `t1` is assigned table ID 11, this yields the `fq_name` values shown here:
+Se `t1` receber o ID de Table 11, isso resultará nos valores de `fq_name` mostrados aqui:
 
-* Base table: `mydb/def/t1`
-* `BLOB` table: `mydb/def/NDB$BLOB_11_2`
+* Tabela Base: `mydb/def/t1`
+* Tabela `BLOB`: `mydb/def/NDB$BLOB_11_2`
 
-* Ordered index (primary key): `sys/def/11/PRIMARY`
+* Ordered Index (Primary Key): `sys/def/11/PRIMARY`
 
-* Unique index: `sys/def/11/ix1$unique`
+* Unique Index: `sys/def/11/ix1$unique`
 
-For indexes or `BLOB` tables, the `parent_fq_name` column contains the `fq_name` of the corresponding base table. For base tables, this column is always `NULL`.
+Para Indexes ou tabelas `BLOB`, a coluna `parent_fq_name` contém o `fq_name` da tabela base correspondente. Para tabelas base, esta coluna é sempre `NULL`.
 
-The `type` column shows the schema object type used for this fragment, which can take any one of the values `System table`, `User table`, `Unique hash index`, or `Ordered index`. `BLOB` tables are shown as `User table`.
+A coluna `type` mostra o tipo de objeto de schema usado para este fragmento, que pode assumir qualquer um dos valores `System table`, `User table`, `Unique hash index`, ou `Ordered index`. Tabelas `BLOB` são mostradas como `User table`.
 
-The `table_id` column value is unique at any given time, but can be reused if the corresponding object has been deleted. The same ID can be seen using the [**ndb_show_tables**](mysql-cluster-programs-ndb-show-tables.html "21.5.27 ndb_show_tables — Display List of NDB Tables") utility.
+O valor da coluna `table_id` é único a qualquer momento, mas pode ser reutilizado se o objeto correspondente tiver sido excluído. O mesmo ID pode ser visto usando o utilitário [**ndb_show_tables**](mysql-cluster-programs-ndb-show-tables.html "21.5.27 ndb_show_tables — Display List of NDB Tables").
 
-The `block_instance` column shows which LDM instance this fragment replica belongs to. You can use this to obtain information about specific threads from the [`threadblocks`](mysql-cluster-ndbinfo-threadblocks.html "21.6.15.41 The ndbinfo threadblocks Table") table. The first such instance is always numbered 0.
+A coluna `block_instance` mostra a qual instância LDM esta réplica de fragmento pertence. Você pode usar isso para obter informações sobre Threads específicas da tabela [`threadblocks`](mysql-cluster-ndbinfo-threadblocks.html "21.6.15.41 A Tabela ndbinfo threadblocks"). A primeira dessas instâncias é sempre numerada como 0.
 
-Since there are typically two replicas, and assuming that this is so, each `fragment_num` value should appear twice in the table, on two different data nodes from the same node group.
+Como tipicamente existem duas réplicas, e assumindo que seja este o caso, cada valor `fragment_num` deve aparecer duas vezes na tabela, em dois Data Nodes diferentes do mesmo node group.
 
-Since `NDB` does not use single-key access for ordered indexes, the counts for `tot_key_reads`, `tot_key_inserts`, `tot_key_updates`, `tot_key_writes`, and `tot_key_deletes` are not incremented by ordered index operations.
+Como o NDB não utiliza acesso de chave única para Ordered Indexes, as contagens para `tot_key_reads`, `tot_key_inserts`, `tot_key_updates`, `tot_key_writes` e `tot_key_deletes` não são incrementadas por Ordered Index operations.
 
-Note
+Nota
 
-When using `tot_key_writes`, you should keep in mind that a write operation in this context updates the row if the key exists, and inserts a new row otherwise. (One use of this is in the `NDB` implementation of the [`REPLACE`](replace.html "13.2.8 REPLACE Statement") SQL statement.)
+Ao usar `tot_key_writes`, você deve ter em mente que uma write operation neste contexto atualiza a Row se a Key existir, e insere uma nova Row caso contrário. (Um uso disso está na implementação NDB da declaração SQL [`REPLACE`](replace.html "13.2.8 REPLACE Statement").)
 
-The `tot_key_refs` column shows the number of key operations refused by the LDM. Generally, such a refusal is due to duplicate keys (inserts), Key not found errors (updates, deletes, and reads), or the operation was rejected by an interpreted program used as a predicate on the row matching the key.
+A coluna `tot_key_refs` mostra o número de key operations recusadas pelo LDM. Geralmente, tal recusa se deve a chaves duplicadas (inserts), erros Key not found (updates, deletes e reads), ou a operação foi rejeitada por um programa interpretado usado como predicado na Row que corresponde à Key.
 
-The `attrinfo` and `keyinfo` attributes counted by the `tot_key_attrinfo_bytes` and `tot_key_keyinfo_bytes` columns are attributes of an `LQHKEYREQ` signal (see [The NDB Communication Protocol](/doc/ndb-internals/en/ndb-internals-ndb-protocol.html)) used to initiate a key operation by the LDM. An `attrinfo` typically contains tuple field values (inserts and updates) or projection specifications (for reads); `keyinfo` contains the primary or unique key needed to locate a given tuple in this schema object.
+Os atributos `attrinfo` e `keyinfo` contados pelas colunas `tot_key_attrinfo_bytes` e `tot_key_keyinfo_bytes` são atributos de um sinal `LQHKEYREQ` (veja [The NDB Communication Protocol](/doc/ndb-internals/en/ndb-internals-ndb-protocol.html)) usado para iniciar uma key operation pelo LDM. Um `attrinfo` tipicamente contém valores de campo de tupla (inserts e updates) ou especificações de projeção (para reads); o `keyinfo` contém a Primary Key ou Unique Key necessária para localizar uma determinada tupla neste objeto de schema.
 
-The value shown by `tot_frag_scans` includes both full scans (that examine every row) and scans of subsets. Unique indexes and `BLOB` tables are never scanned, so this value, like other scan-related counts, is 0 for fragment replicas of these.
+O valor mostrado por `tot_frag_scans` inclui tanto scans completos (que examinam todas as Rows) quanto scans de subconjuntos. Unique Indexes e tabelas `BLOB` nunca são escaneados, portanto este valor, assim como outras contagens relacionadas a scan, é 0 para réplicas de fragmento destes.
 
-`tot_scan_rows_examined` may display less than the total number of rows in a given fragment replica, since ordered index scans can limited by bounds. In addition, a client may choose to end a scan before all potentially matching rows have been examined; this occurs when using an SQL statement containing a `LIMIT` or `EXISTS` clause, for example. `tot_scan_rows_returned` is always less than or equal to `tot_scan_rows_examined`.
+`tot_scan_rows_examined` pode exibir menos do que o número total de Rows em uma determinada réplica de fragmento, já que Ordered Index scans podem ser limitados por bounds. Além disso, um cliente pode optar por encerrar um scan antes que todas as Rows potencialmente correspondentes tenham sido examinadas; isso ocorre ao usar uma declaração SQL contendo uma cláusula `LIMIT` ou `EXISTS`, por exemplo. `tot_scan_rows_returned` é sempre menor ou igual a `tot_scan_rows_examined`.
 
-`tot_scan_bytes_returned` includes, in the case of pushed joins, projections returned to the [`DBSPJ`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbspj.html) block in the NDB kernel.
+`tot_scan_bytes_returned` inclui, no caso de JOINs empurrados (pushed joins), projeções retornadas ao bloco [`DBSPJ`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbspj.html) no kernel NDB.
 
-`tot_qd_frag_scans` can be effected by the setting for the [`MaxParallelScansPerFragment`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxparallelscansperfragment) data node configuration parameter, which limits the number of scans that may execute concurrently on a single fragment replica.
+`tot_qd_frag_scans` pode ser afetado pela configuração do parâmetro de configuração do Data Node [`MaxParallelScansPerFragment`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxparallelscansperfragment), que limita o número de scans que podem ser executados concorrentemente em uma única réplica de fragmento.

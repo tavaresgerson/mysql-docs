@@ -1,11 +1,11 @@
-### 12.16.9 Functions That Test Spatial Relations Between Geometry Objects
+### 12.16.9 Funções Que Testam Relações Espaciais Entre Objetos Geometry
 
-12.16.9.1 Spatial Relation Functions That Use Object Shapes
+12.16.9.1 Funções de Relação Espacial Que Usam Formas de Objeto
 
-12.16.9.2 Spatial Relation Functions That Use Minimum Bounding Rectangles
+12.16.9.2 Funções de Relação Espacial Que Usam Retângulos Delimitadores Mínimos
 
-The functions described in this section take two geometries as arguments and return a qualitative or quantitative relation between them.
+As funções descritas nesta seção recebem duas geometries como argumentos e retornam uma relação qualitativa ou quantitativa entre elas.
 
-MySQL implements two sets of functions using function names defined by the OpenGIS specification. One set tests the relationship between two geometry values using precise object shapes, the other set uses object minimum bounding rectangles (MBRs).
+O MySQL implementa dois conjuntos de funções usando nomes de função definidos pela especificação OpenGIS. Um conjunto testa a relação entre dois valores geometry usando formas de objeto precisas, o outro conjunto usa minimum bounding rectangles (MBRs) de objetos.
 
-There is also a MySQL-specific set of MBR-based functions available to test the relationship between two geometry values.
+Existe também um conjunto de funções específicas do MySQL baseadas em MBR disponíveis para testar a relação entre dois valores geometry.

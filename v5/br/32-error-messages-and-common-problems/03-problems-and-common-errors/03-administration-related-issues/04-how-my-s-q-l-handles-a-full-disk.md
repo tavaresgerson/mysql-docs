@@ -1,21 +1,21 @@
-#### B.3.3.4 How MySQL Handles a Full Disk
+#### B.3.3.4 Como o MySQL Lida com um Disco Cheio
 
-This section describes how MySQL responds to disk-full errors (such as “no space left on device”), and to quota-exceeded errors (such as “write failed” or “user block limit reached”).
+Esta seção descreve como o MySQL responde a erros de disco cheio (como "no space left on device" – sem espaço restante no dispositivo) e a erros de cota excedida (como "write failed" – falha na escrita – ou "user block limit reached" – limite de bloco do usuário atingido).
 
-This section is relevant for writes to `MyISAM` tables. It also applies for writes to binary log files and binary log index file, except that references to “row” and “record” should be understood to mean “event.”
+Esta seção é relevante para escritas em tabelas `MyISAM`. Ela também se aplica a escritas em arquivos Binary Log e ao arquivo Index do Binary Log, exceto que as referências a “row” e “record” devem ser entendidas como “event.”
 
-When a disk-full condition occurs, MySQL does the following:
+Quando uma condição de disco cheio ocorre, o MySQL faz o seguinte:
 
-* It checks once every minute to see whether there is enough space to write the current row. If there is enough space, it continues as if nothing had happened.
+* Ele verifica uma vez a cada minuto se há espaço suficiente para escrever a row atual. Se houver espaço suficiente, ele continua como se nada tivesse acontecido.
 
-* Every 10 minutes it writes an entry to the log file, warning about the disk-full condition.
+* A cada 10 minutos, ele escreve uma entrada no arquivo de log, alertando sobre a condição de disco cheio.
 
-To alleviate the problem, take the following actions:
+Para aliviar o problema, tome as seguintes ações:
 
-* To continue, you only have to free enough disk space to insert all records.
+* Para continuar, você só precisa liberar espaço em disco suficiente para inserir todos os records.
 
-* Alternatively, to abort the thread, use [**mysqladmin kill**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program"). The thread is aborted the next time it checks the disk (in one minute).
+* Alternativamente, para abortar o Thread, use [**mysqladmin kill**](mysqladmin.html "4.5.2 mysqladmin — Um Programa de Administração do Servidor MySQL"). O Thread é abortado na próxima vez que ele verifica o disco (em um minuto).
 
-* Other threads might be waiting for the table that caused the disk-full condition. If you have several “locked” threads, killing the one thread that is waiting on the disk-full condition enables the other threads to continue.
+* Outros Threads podem estar esperando pela tabela que causou a condição de disco cheio. Se você tiver vários Threads “locked” (travados), encerrar o Thread que está aguardando a condição de disco cheio permite que os outros Threads continuem.
 
-Exceptions to the preceding behavior are when you use [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") or [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") or when the indexes are created in a batch after [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") or after an [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement. All of these statements may create large temporary files that, if left to themselves, would cause big problems for the rest of the system. If the disk becomes full while MySQL is doing any of these operations, it removes the big temporary files and mark the table as crashed. The exception is that for [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"), the old table is left unchanged.
+Exceções ao comportamento anterior ocorrem quando você usa [`REPAIR TABLE`](repair-table.html "13.7.2.5 Instrução REPAIR TABLE") ou [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 Instrução OPTIMIZE TABLE") ou quando os Indexes são criados em lote após [`LOAD DATA`](load-data.html "13.2.6 Instrução LOAD DATA") ou após uma instrução [`ALTER TABLE`](alter-table.html "13.1.8 Instrução ALTER TABLE"). Todas essas instruções podem criar grandes arquivos temporários que, se não forem gerenciados, causariam grandes problemas para o restante do sistema. Se o disco ficar cheio enquanto o MySQL estiver realizando qualquer uma dessas operações, ele remove os grandes arquivos temporários e marca a tabela como *crashed* (falhada). A exceção é que para o [`ALTER TABLE`](alter-table.html "13.1.8 Instrução ALTER TABLE"), a tabela antiga permanece inalterada.

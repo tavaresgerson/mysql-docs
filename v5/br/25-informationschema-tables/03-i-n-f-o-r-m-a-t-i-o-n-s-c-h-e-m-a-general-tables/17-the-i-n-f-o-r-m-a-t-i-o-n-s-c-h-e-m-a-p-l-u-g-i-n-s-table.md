@@ -1,62 +1,62 @@
-### 24.3.17 The INFORMATION_SCHEMA PLUGINS Table
+### 24.3.17 A Tabela PLUGINS do INFORMATION_SCHEMA
 
-The [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") table provides information about server plugins.
+A tabela [`PLUGINS`](information-schema-plugins-table.html "24.3.17 A Tabela PLUGINS do INFORMATION_SCHEMA") fornece informações sobre os Plugins do servidor.
 
-The [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") table has these columns:
+A tabela [`PLUGINS`](information-schema-plugins-table.html "24.3.17 A Tabela PLUGINS do INFORMATION_SCHEMA") possui as seguintes colunas:
 
 * `PLUGIN_NAME`
 
-  The name used to refer to the plugin in statements such as [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") and [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement").
+  O nome usado para referenciar o Plugin em Statements como [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") e [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement").
 
 * `PLUGIN_VERSION`
 
-  The version from the plugin's general type descriptor.
+  A versão do descritor de tipo geral do Plugin.
 
 * `PLUGIN_STATUS`
 
-  The plugin status, one of `ACTIVE`, `INACTIVE`, `DISABLED`, or `DELETED`.
+  O status do Plugin, sendo um dos seguintes: `ACTIVE`, `INACTIVE`, `DISABLED` ou `DELETED`.
 
 * `PLUGIN_TYPE`
 
-  The type of plugin, such as `STORAGE ENGINE`, `INFORMATION_SCHEMA`, or `AUTHENTICATION`.
+  O tipo de Plugin, como `STORAGE ENGINE`, `INFORMATION_SCHEMA` ou `AUTHENTICATION`.
 
 * `PLUGIN_TYPE_VERSION`
 
-  The version from the plugin's type-specific descriptor.
+  A versão do descritor específico do tipo de Plugin.
 
 * `PLUGIN_LIBRARY`
 
-  The name of the plugin shared library file. This is the name used to refer to the plugin file in statements such as [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") and [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement"). This file is located in the directory named by the [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable. If the library name is `NULL`, the plugin is compiled in and cannot be uninstalled with [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement").
+  O nome do arquivo de biblioteca compartilhada do Plugin. Este é o nome usado para referenciar o arquivo do Plugin em Statements como [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") e [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement"). Este arquivo está localizado no diretório nomeado pela variável de sistema [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir). Se o nome da biblioteca for `NULL`, o Plugin é compilado internamente e não pode ser desinstalado com [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement").
 
 * `PLUGIN_LIBRARY_VERSION`
 
-  The plugin API interface version.
+  A versão da interface API do Plugin.
 
 * `PLUGIN_AUTHOR`
 
-  The plugin author.
+  O autor do Plugin.
 
 * `PLUGIN_DESCRIPTION`
 
-  A short description of the plugin.
+  Uma breve descrição do Plugin.
 
 * `PLUGIN_LICENSE`
 
-  How the plugin is licensed (for example, `GPL`).
+  Como o Plugin está licenciado (por exemplo, `GPL`).
 
 * `LOAD_OPTION`
 
-  How the plugin was loaded. The value is `OFF`, `ON`, `FORCE`, or `FORCE_PLUS_PERMANENT`. See [Section 5.5.1, “Installing and Uninstalling Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins").
+  Como o Plugin foi carregado. O valor é `OFF`, `ON`, `FORCE` ou `FORCE_PLUS_PERMANENT`. Consulte [Seção 5.5.1, “Instalando e Desinstalando Plugins”](plugin-loading.html "5.5.1 Instalando e Desinstalando Plugins").
 
-#### Notes
+#### Notas
 
-* [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") is a nonstandard `INFORMATION_SCHEMA` table.
+* [`PLUGINS`](information-schema-plugins-table.html "24.3.17 A Tabela PLUGINS do INFORMATION_SCHEMA") é uma tabela `INFORMATION_SCHEMA` não padrão.
 
-* For plugins installed with [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement"), the `PLUGIN_NAME` and `PLUGIN_LIBRARY` values are also registered in the `mysql.plugin` table.
+* Para Plugins instalados com [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement"), os valores de `PLUGIN_NAME` e `PLUGIN_LIBRARY` também são registrados na tabela `mysql.plugin`.
 
-* For information about plugin data structures that form the basis of the information in the [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") table, see [The MySQL Plugin API](/doc/extending-mysql/5.7/en/plugin-api.html).
+* Para obter informações sobre as estruturas de dados de Plugin que formam a base das informações na tabela [`PLUGINS`](information-schema-plugins-table.html "24.3.17 A Tabela PLUGINS do INFORMATION_SCHEMA"), consulte [The MySQL Plugin API](/doc/extending-mysql/5.7/en/plugin-api.html).
 
-Plugin information is also available from the [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") statement. See [Section 13.7.5.25, “SHOW PLUGINS Statement”](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement"). These statements are equivalent:
+As informações do Plugin também estão disponíveis por meio do Statement [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement"). Consulte [Seção 13.7.5.25, “SHOW PLUGINS Statement”](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement"). Estes Statements são equivalentes:
 
 ```sql
 SELECT

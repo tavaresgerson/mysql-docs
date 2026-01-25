@@ -4,9 +4,9 @@
 SHOW PLUGINS
 ```
 
-[`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") displays information about server plugins.
+O comando [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") exibe informações sobre os plugins do server.
 
-Example of [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") output:
+Exemplo da saída de [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement"):
 
 ```sql
 mysql> SHOW PLUGINS\G
@@ -37,30 +37,30 @@ License: GPL
 ...
 ```
 
-[`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") output has these columns:
+A saída de [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") possui estas colunas:
 
 * `Name`
 
-  The name used to refer to the plugin in statements such as [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") and [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement").
+  O nome usado para se referir ao plugin em comandos como [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") e [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement").
 
 * `Status`
 
-  The plugin status, one of `ACTIVE`, `INACTIVE`, `DISABLED`, or `DELETED`.
+  O Status do plugin, sendo um de `ACTIVE`, `INACTIVE`, `DISABLED` ou `DELETED`.
 
 * `Type`
 
-  The type of plugin, such as `STORAGE ENGINE`, `INFORMATION_SCHEMA`, or `AUTHENTICATION`.
+  O Type do plugin, como `STORAGE ENGINE`, `INFORMATION_SCHEMA` ou `AUTHENTICATION`.
 
 * `Library`
 
-  The name of the plugin shared library file. This is the name used to refer to the plugin file in statements such as [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") and [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement"). This file is located in the directory named by the [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable. If the library name is `NULL`, the plugin is compiled in and cannot be uninstalled with [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement").
+  O nome do arquivo de biblioteca compartilhada (shared library) do plugin. Este é o nome usado para se referir ao arquivo do plugin em comandos como [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") e [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement"). Este arquivo está localizado no diretório nomeado pela variável de sistema [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir). Se o nome da Library for `NULL`, o plugin está compilado internamente e não pode ser desinstalado com [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement").
 
 * `License`
 
-  How the plugin is licensed (for example, `GPL`).
+  Como o plugin é licenciado (por exemplo, `GPL`).
 
-For plugins installed with [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement"), the `Name` and `Library` values are also registered in the `mysql.plugin` system table.
+Para plugins instalados com [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement"), os valores de `Name` e `Library` também são registrados na tabela de sistema `mysql.plugin`.
 
-For information about plugin data structures that form the basis of the information displayed by [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement"), see [The MySQL Plugin API](/doc/extending-mysql/5.7/en/plugin-api.html).
+Para informações sobre as estruturas de dados de plugin que formam a base das informações exibidas por [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement"), consulte [The MySQL Plugin API](/doc/extending-mysql/5.7/en/plugin-api.html).
 
-Plugin information is also available from the `INFORMATION_SCHEMA` `.PLUGINS` table. See [Section 24.3.17, “The INFORMATION_SCHEMA PLUGINS Table”](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table").
+Informações do plugin também estão disponíveis na tabela `INFORMATION_SCHEMA.PLUGINS`. Consulte [Seção 24.3.17, “The INFORMATION_SCHEMA PLUGINS Table”](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table").

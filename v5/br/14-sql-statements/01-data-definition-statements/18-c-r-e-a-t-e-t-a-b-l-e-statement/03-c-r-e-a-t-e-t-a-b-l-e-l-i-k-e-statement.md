@@ -1,23 +1,23 @@
-#### 13.1.18.3 CREATE TABLE ... LIKE Statement
+#### 13.1.18.3 Instrução CREATE TABLE ... LIKE
 
-Use `CREATE TABLE ... LIKE` to create an empty table based on the definition of another table, including any column attributes and indexes defined in the original table:
+Use `CREATE TABLE ... LIKE` para criar uma tabela vazia baseada na definição de outra tabela, incluindo quaisquer atributos de coluna e Indexes definidos na tabela original:
 
 ```sql
 CREATE TABLE new_tbl LIKE orig_tbl;
 ```
 
-The copy is created using the same version of the table storage format as the original table. The [`SELECT`](privileges-provided.html#priv_select) privilege is required on the original table.
+A cópia é criada usando a mesma versão do formato de armazenamento da tabela (table storage format) que a tabela original. O privilégio [`SELECT`](privileges-provided.html#priv_select) é exigido na tabela original.
 
-`LIKE` works only for base tables, not for views.
+`LIKE` funciona apenas para tabelas base, não para views.
 
-Important
+Importante
 
-You cannot execute `CREATE TABLE` or `CREATE TABLE ... LIKE` while a [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") statement is in effect.
+Você não pode executar `CREATE TABLE` ou `CREATE TABLE ... LIKE` enquanto uma instrução [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") estiver em vigor.
 
-[`CREATE TABLE ... LIKE`](create-table.html "13.1.18 CREATE TABLE Statement") makes the same checks as [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") and does not just copy the `.frm` file. This means that, if the current SQL mode is different from the mode in effect when the original table was created, the table definition might be considered invalid for the new mode, and the statement fails.
+[`CREATE TABLE ... LIKE`](create-table.html "13.1.18 CREATE TABLE Statement") faz as mesmas verificações que [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") e não apenas copia o arquivo `.frm`. Isso significa que, se o SQL mode atual for diferente do mode em vigor quando a tabela original foi criada, a definição da tabela pode ser considerada inválida para o novo mode, e a instrução falhará.
 
-For `CREATE TABLE ... LIKE`, the destination table preserves generated column information from the original table.
+Para `CREATE TABLE ... LIKE`, a tabela de destino preserva as informações de coluna gerada da tabela original.
 
-`CREATE TABLE ... LIKE` does not preserve any `DATA DIRECTORY` or `INDEX DIRECTORY` table options that were specified for the original table, or any foreign key definitions.
+`CREATE TABLE ... LIKE` não preserva nenhuma opção de tabela `DATA DIRECTORY` ou `INDEX DIRECTORY` que foi especificada para a tabela original, nem quaisquer definições de Foreign Key.
 
-If the original table is a `TEMPORARY` table, `CREATE TABLE ... LIKE` does not preserve `TEMPORARY`. To create a `TEMPORARY` destination table, use `CREATE TEMPORARY TABLE ... LIKE`.
+Se a tabela original for uma tabela `TEMPORARY`, `CREATE TABLE ... LIKE` não preserva `TEMPORARY`. Para criar uma tabela de destino `TEMPORARY`, use `CREATE TEMPORARY TABLE ... LIKE`.

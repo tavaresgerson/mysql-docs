@@ -1,36 +1,36 @@
-#### 16.1.4.4 Verifying Replication of Anonymous Transactions
+#### 16.1.4.4 Verificando a Replicação de Anonymous Transactions
 
-This section explains how to monitor a replication topology and verify that all anonymous transactions have been replicated. This is helpful when changing the replication mode online as you can verify that it is safe to change to GTID transactions.
+Esta seção explica como monitorar uma topology de replication e verificar que todas as anonymous transactions foram replicadas. Isso é útil ao alterar o modo de replication online, pois você pode verificar que é seguro mudar para GTID transactions.
 
-There are several possible ways to wait for transactions to replicate:
+Existem várias maneiras possíveis de aguardar que as transactions sejam replicadas:
 
-The simplest method, which works regardless of your topology but relies on timing is as follows: if you are sure that the replica never lags more than N seconds, just wait for a bit more than N seconds. Or wait for a day, or whatever time period you consider safe for your deployment.
+O método mais simples, que funciona independentemente da sua topology, mas depende do tempo, é o seguinte: se você tem certeza de que a replica nunca atrasa mais do que N segundos, basta esperar um pouco mais do que N segundos. Ou espere um dia, ou o período de tempo que você considerar seguro para seu deployment.
 
-A safer method in the sense that it does not depend on timing: if you only have a source with one or more replicas, do the following:
+Um método mais seguro no sentido de que não depende de tempo: se você tiver apenas um source com uma ou mais replicas, faça o seguinte:
 
-1. On the source, execute:
+1. No source, execute:
 
    ```sql
    SHOW MASTER STATUS;
    ```
 
-   Note down the values in the `File` and `Position` column.
+   Anote os valores nas colunas `File` e `Position`.
 
-2. On every replica, use the file and position information from the source to execute:
+2. Em cada replica, use as informações de file e position do source para executar:
 
    ```sql
    SELECT MASTER_POS_WAIT(file, position);
    ```
 
-If you have a source and multiple levels of replicas, or in other words you have replicas of replicas, repeat step 2 on each level, starting from the source, then all the direct replicas, then all the replicas of replicas, and so on.
+Se você tem um source e múltiplos níveis de replicas, ou em outras palavras, você tem replicas de replicas, repita o passo 2 em cada nível, começando pelo source, depois em todas as replicas diretas, depois em todas as replicas de replicas, e assim por diante.
 
-If you use a circular replication topology where multiple servers may have write clients, perform step 2 for each source-replica connection, until you have completed the full circle. Repeat the whole process so that you do the full circle *twice*.
+Se você usa uma topology de replication circular onde múltiplos servers podem ter write clients, execute o passo 2 para cada conexão source-replica, até completar o ciclo completo. Repita o processo inteiro para que você faça o ciclo completo *duas vezes*.
 
-For example, suppose you have three servers A, B, and C, replicating in a circle so that A -> B -> C -> A. The procedure is then:
+Por exemplo, suponha que você tenha três servers A, B e C, replicando em círculo de forma que A -> B -> C -> A. O procedimento é então:
 
-* Do step 1 on A and step 2 on B.
-* Do step 1 on B and step 2 on C.
-* Do step 1 on C and step 2 on A.
-* Do step 1 on A and step 2 on B.
-* Do step 1 on B and step 2 on C.
-* Do step 1 on C and step 2 on A.
+* Faça o passo 1 em A e o passo 2 em B.
+* Faça o passo 1 em B e o passo 2 em C.
+* Faça o passo 1 em C e o passo 2 em A.
+* Faça o passo 1 em A e o passo 2 em B.
+* Faça o passo 1 em B e o passo 2 em C.
+* Faça o passo 1 em C e o passo 2 em A.

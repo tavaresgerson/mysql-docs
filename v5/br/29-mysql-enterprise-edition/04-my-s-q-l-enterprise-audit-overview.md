@@ -1,7 +1,7 @@
-## 28.4 MySQL Enterprise Audit Overview
+## 28.4 Visão Geral do MySQL Enterprise Audit
 
-MySQL Enterprise Edition includes MySQL Enterprise Audit, implemented using a server plugin. MySQL Enterprise Audit uses the open MySQL Audit API to enable standard, policy-based monitoring and logging of connection and query activity executed on specific MySQL servers. Designed to meet the Oracle audit specification, MySQL Enterprise Audit provides an out of box, easy to use auditing and compliance solution for applications that are governed by both internal and external regulatory guidelines.
+A MySQL Enterprise Edition inclui o MySQL Enterprise Audit, implementado usando um *plugin* de servidor. O MySQL Enterprise Audit usa a API de Auditoria MySQL aberta para permitir o monitoramento e o *logging* padrão, baseado em políticas, da atividade de conexão e de *Query* executada em servidores MySQL específicos. Projetado para atender à especificação de auditoria da Oracle, o MySQL Enterprise Audit fornece uma solução de auditoria e conformidade pronta para uso (*out of box*) e fácil de usar para aplicações regidas por diretrizes regulatórias internas e externas.
 
-When installed, the audit plugin enables MySQL Server to produce a log file containing an audit record of server activity. The log contents include when clients connect and disconnect, and what actions they perform while connected, such as which databases and tables they access.
+Quando instalado, o *plugin* de auditoria permite que o MySQL Server produza um arquivo de *log* contendo um registro de auditoria da atividade do servidor. O conteúdo do *log* inclui quando os clientes se conectam e desconectam, e quais ações eles realizam enquanto conectados, como quais *Databases* e tabelas eles acessam.
 
-For more information, see Section 6.4.5, “MySQL Enterprise Audit”.
+Para mais informações, consulte a Seção 6.4.5, “MySQL Enterprise Audit”.

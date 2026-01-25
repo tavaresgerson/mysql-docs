@@ -1,43 +1,44 @@
-### 22.3.3 Exchanging Partitions and Subpartitions with Tables
+### 22.3.3 Trocando Partições e Subpartições com Tabelas
 
-In MySQL 5.7, it is possible to exchange a table partition or subpartition with a table using `ALTER TABLE pt EXCHANGE PARTITION p WITH TABLE nt`, where *`pt`* is the partitioned table and *`p`* is the partition or subpartition of *`pt`* to be exchanged with unpartitioned table *`nt`*, provided that the following statements are true:
+No MySQL 5.7, é possível trocar uma Partition ou Subpartition de uma tabela com outra tabela usando `ALTER TABLE pt EXCHANGE PARTITION p WITH TABLE nt`, onde *`pt`* é a tabela particionada e *`p`* é a Partition ou Subpartition de *`pt`* a ser trocada com a tabela não particionada *`nt`*, desde que as seguintes condições sejam verdadeiras:
 
-1. Table *`nt`* is not itself partitioned.
+1. A tabela *`nt`* não é particionada.
 
-2. Table *`nt`* is not a temporary table.
+2. A tabela *`nt`* não é uma tabela temporária.
 
-3. The structures of tables *`pt`* and *`nt`* are otherwise identical.
+3. As estruturas das tabelas *`pt`* e *`nt`* são idênticas em todos os outros aspectos.
 
-4. Table `nt` contains no foreign key references, and no other table has any foreign keys that refer to `nt`.
+4. A tabela `nt` não contém referências de Foreign Key, e nenhuma outra tabela possui Foreign Keys que se referem a `nt`.
 
-5. There are no rows in *`nt`* that lie outside the boundaries of the partition definition for *`p`*. This condition does not apply if the `WITHOUT VALIDATION` option is used. The `[{WITH|WITHOUT} VALIDATION]` option was added in MySQL 5.7.5.
+5. Não há Rows em *`nt`* que estejam fora dos limites da definição da Partition para *`p`*. Esta condição não se aplica se a opção `WITHOUT VALIDATION` for usada. A opção `[{WITH|WITHOUT} VALIDATION]` foi adicionada no MySQL 5.7.5.
 
-6. Both tables must use the same character set and collation.
-7. For `InnoDB` tables, both tables must use the same row format. To determine the row format of an `InnoDB` table, query the Information Schema [`INNODB_SYS_TABLES`](information-schema-innodb-sys-tables-table.html "24.4.23 The INFORMATION_SCHEMA INNODB_SYS_TABLES Table") table.
+6. Ambas as tabelas devem usar o mesmo conjunto de caracteres (`character set`) e `collation`.
 
-8. Any partition-level `MAX_ROWS` setting for `p` must be the same as the table-level `MAX_ROWS` value set for `nt`. The setting for any partition-level `MIN_ROWS` setting for `p` must also be the same any table-level `MIN_ROWS` value set for `nt`.
+7. Para tabelas `InnoDB`, ambas as tabelas devem usar o mesmo Row Format. Para determinar o Row Format de uma tabela `InnoDB`, faça um Query na tabela [`INNODB_SYS_TABLES`](information-schema-innodb-sys-tables-table.html "24.4.23 The INFORMATION_SCHEMA INNODB_SYS_TABLES Table") do Information Schema.
 
-   This is true in either case whether not `pt` has an exlpicit table-level `MAX_ROWS` or `MIN_ROWS` option in effect.
+8. Qualquer configuração de `MAX_ROWS` no nível da Partition para `p` deve ser a mesma que o valor de `MAX_ROWS` no nível da tabela definido para `nt`. A configuração para qualquer valor de `MIN_ROWS` no nível da Partition para `p` também deve ser a mesma que o valor de `MIN_ROWS` no nível da tabela definido para `nt`.
 
-9. The `AVG_ROW_LENGTH` cannot differ between the two tables `pt` and `nt`.
+   Isso é verdadeiro, independentemente de *`pt`* ter ou não uma opção explícita de `MAX_ROWS` ou `MIN_ROWS` em vigor no nível da tabela.
 
-10. `pt` does not have any partitions that use the `DATA DIRECTORY` option. This restriction is lifted for `InnoDB` tables in MySQL 5.7.25 and later.
+9. O `AVG_ROW_LENGTH` não pode ser diferente entre as duas tabelas `pt` e `nt`.
 
-11. `INDEX DIRECTORY` cannot differ between the table and the partition to be exchanged with it.
+10. `pt` não possui nenhuma Partition que use a opção `DATA DIRECTORY`. Esta restrição é removida para tabelas `InnoDB` no MySQL 5.7.25 e posterior.
 
-12. No table or partition `TABLESPACE` options can be used in either of the tables.
+11. O `INDEX DIRECTORY` não pode ser diferente entre a tabela e a Partition a ser trocada.
 
-In addition to the [`ALTER`](privileges-provided.html#priv_alter), [`INSERT`](privileges-provided.html#priv_insert), and [`CREATE`](privileges-provided.html#priv_create) privileges usually required for [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statements, you must have the [`DROP`](privileges-provided.html#priv_drop) privilege to perform [`ALTER TABLE ... EXCHANGE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement").
+12. Nenhuma opção de `TABLESPACE` de tabela ou Partition pode ser usada em nenhuma das tabelas.
 
-You should also be aware of the following effects of [`ALTER TABLE ... EXCHANGE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement"):
+Além dos privilégios [`ALTER`](privileges-provided.html#priv_alter), [`INSERT`](privileges-provided.html#priv_insert) e [`CREATE`](privileges-provided.html#priv_create) geralmente exigidos para instruções [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"), você deve ter o privilégio [`DROP`](privileges-provided.html#priv_drop) para executar [`ALTER TABLE ... EXCHANGE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement").
 
-* Executing [`ALTER TABLE ... EXCHANGE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement") does not invoke any triggers on either the partitioned table or the table to be exchanged.
+Você também deve estar ciente dos seguintes efeitos de [`ALTER TABLE ... EXCHANGE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement"):
 
-* Any `AUTO_INCREMENT` columns in the exchanged table are reset.
+* A execução de [`ALTER TABLE ... EXCHANGE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement") não invoca nenhum Trigger, nem na tabela particionada, nem na tabela a ser trocada.
 
-* The `IGNORE` keyword has no effect when used with `ALTER TABLE ... EXCHANGE PARTITION`.
+* Quaisquer colunas `AUTO_INCREMENT` na tabela trocada são resetadas.
 
-The syntax of the [`ALTER TABLE ... EXCHANGE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement") statement is shown here, where *`pt`* is the partitioned table, *`p`* is the partition or subpartition to be exchanged, and *`nt`* is the nonpartitioned table to be exchanged with *`p`*:
+* A palavra-chave `IGNORE` não tem efeito quando usada com `ALTER TABLE ... EXCHANGE PARTITION`.
+
+A sintaxe da instrução [`ALTER TABLE ... EXCHANGE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement") é mostrada aqui, onde *`pt`* é a tabela particionada, *`p`* é a Partition ou Subpartition a ser trocada, e *`nt`* é a tabela não particionada a ser trocada com *`p`*:
 
 ```sql
 ALTER TABLE pt
@@ -45,13 +46,13 @@ ALTER TABLE pt
     WITH TABLE nt;
 ```
 
-Optionally, you can append a `WITH VALIDATION` or `WITHOUT VALIDATION` clause. When `WITHOUT VALIDATION` is specified, the [`ALTER TABLE ... EXCHANGE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement") operation does not perform row-by-row validation when exchanging a partition a nonpartitioned table, allowing database administrators to assume responsibility for ensuring that rows are within the boundaries of the partition definition. `WITH VALIDATION` is the default behavior and need not be specified explicitly. The `[{WITH|WITHOUT} VALIDATION]` option was added in MySQL 5.7.5.
+Opcionalmente, você pode anexar uma cláusula `WITH VALIDATION` ou `WITHOUT VALIDATION`. Quando `WITHOUT VALIDATION` é especificado, a operação [`ALTER TABLE ... EXCHANGE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement") não realiza a Validation Row por Row ao trocar uma Partition com uma tabela não particionada, permitindo que os administradores de Database assumam a responsabilidade de garantir que as Rows estejam dentro dos limites da definição da Partition. `WITH VALIDATION` é o comportamento padrão e não precisa ser especificado explicitamente. A opção `[{WITH|WITHOUT} VALIDATION]` foi adicionada no MySQL 5.7.5.
 
-One and only one partition or subpartition may be exchanged with one and only one nonpartitioned table in a single [`ALTER TABLE EXCHANGE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement") statement. To exchange multiple partitions or subpartitions, use multiple [`ALTER TABLE EXCHANGE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement") statements. `EXCHANGE PARTITION` may not be combined with other [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") options. The partitioning and (if applicable) subpartitioning used by the partitioned table may be of any type or types supported in MySQL 5.7.
+Uma e apenas uma Partition ou Subpartition pode ser trocada com uma e apenas uma tabela não particionada em uma única instrução [`ALTER TABLE EXCHANGE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement"). Para trocar múltiplas Partitions ou Subpartitions, use múltiplas instruções [`ALTER TABLE EXCHANGE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement"). `EXCHANGE PARTITION` não pode ser combinada com outras opções de [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"). O Partitioning e o Subpartitioning (se aplicável) usados pela tabela particionada podem ser de qualquer tipo ou tipos suportados no MySQL 5.7.
 
-#### Exchanging a Partition with a Nonpartitioned Table
+#### Trocando uma Partition com uma Tabela Não Particionada
 
-Suppose that a partitioned table `e` has been created and populated using the following SQL statements:
+Suponha que uma tabela particionada `e` tenha sido criada e preenchida usando as seguintes instruções SQL:
 
 ```sql
 CREATE TABLE e (
@@ -73,7 +74,7 @@ INSERT INTO e VALUES
     (2005, "Linda", "Black");
 ```
 
-Now we create a nonpartitioned copy of `e` named `e2`. This can be done using the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client as shown here:
+Agora, criamos uma cópia não particionada de `e` chamada `e2`. Isso pode ser feito usando o cliente [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"), conforme mostrado aqui:
 
 ```sql
 mysql> CREATE TABLE e2 LIKE e;
@@ -84,7 +85,7 @@ Query OK, 0 rows affected (0.90 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 ```
 
-You can see which partitions in table `e` contain rows by querying the Information Schema [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") table, like this:
+Você pode ver quais Partitions na tabela `e` contêm Rows, executando um Query na tabela [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") do Information Schema, da seguinte forma:
 
 ```sql
 mysql> SELECT PARTITION_NAME, TABLE_ROWS
@@ -101,18 +102,18 @@ mysql> SELECT PARTITION_NAME, TABLE_ROWS
 4 rows in set (0.00 sec)
 ```
 
-Note
+Nota
 
-For partitioned `InnoDB` tables, the row count given in the `TABLE_ROWS` column of the Information Schema [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") table is only an estimated value used in SQL optimization, and is not always exact.
+Para tabelas `InnoDB` particionadas, a contagem de Rows fornecida na coluna `TABLE_ROWS` da tabela [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") do Information Schema é apenas um valor estimado usado na otimização SQL e nem sempre é exato.
 
-To exchange partition `p0` in table `e` with table `e2`, you can use the [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") statement shown here:
+Para trocar a Partition `p0` na tabela `e` com a tabela `e2`, você pode usar a instrução [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") mostrada aqui:
 
 ```sql
 mysql> ALTER TABLE e EXCHANGE PARTITION p0 WITH TABLE e2;
 Query OK, 0 rows affected (0.28 sec)
 ```
 
-More precisely, the statement just issued causes any rows found in the partition to be swapped with those found in the table. You can observe how this has happened by querying the Information Schema [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") table, as before. The table row that was previously found in partition `p0` is no longer present:
+Mais precisamente, a instrução emitida faz com que quaisquer Rows encontradas na Partition sejam trocadas com aquelas encontradas na tabela. Você pode observar como isso ocorreu executando um Query na tabela [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") do Information Schema, como antes. A Row da tabela que estava anteriormente na Partition `p0` não está mais presente:
 
 ```sql
 mysql> SELECT PARTITION_NAME, TABLE_ROWS
@@ -129,7 +130,7 @@ mysql> SELECT PARTITION_NAME, TABLE_ROWS
 4 rows in set (0.00 sec)
 ```
 
-If you query table `e2`, you can see that the “missing” row can now be found there:
+Se você executar um Query na tabela `e2`, poderá ver que a Row "ausente" agora pode ser encontrada lá:
 
 ```sql
 mysql> SELECT * FROM e2;
@@ -141,7 +142,7 @@ mysql> SELECT * FROM e2;
 1 row in set (0.00 sec)
 ```
 
-The table to be exchanged with the partition does not necessarily have to be empty. To demonstrate this, we first insert a new row into table `e`, making sure that this row is stored in partition `p0` by choosing an `id` column value that is less than 50, and verifying this afterward by querying the [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") table:
+A tabela a ser trocada com a Partition não precisa necessariamente estar vazia. Para demonstrar isso, primeiro inserimos uma nova Row na tabela `e`, garantindo que esta Row seja armazenada na Partition `p0` ao escolher um valor de coluna `id` menor que 50, e verificando isso posteriormente executando um Query na tabela [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table"):
 
 ```sql
 mysql> INSERT INTO e VALUES (41, "Michael", "Green");
@@ -161,14 +162,14 @@ mysql> SELECT PARTITION_NAME, TABLE_ROWS
 4 rows in set (0.00 sec)
 ```
 
-Now we once again exchange partition `p0` with table `e2` using the same [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") statement as previously:
+Agora, trocamos novamente a Partition `p0` com a tabela `e2` usando a mesma instrução [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") que antes:
 
 ```sql
 mysql> ALTER TABLE e EXCHANGE PARTITION p0 WITH TABLE e2;
 Query OK, 0 rows affected (0.28 sec)
 ```
 
-The output of the following queries shows that the table row that was stored in partition `p0` and the table row that was stored in table `e2`, prior to issuing the [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") statement, have now switched places:
+O resultado dos seguintes Queries mostra que a Row da tabela que estava armazenada na Partition `p0` e a Row da tabela que estava armazenada na tabela `e2`, antes de emitir a instrução [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations"), agora trocaram de lugar:
 
 ```sql
 mysql> SELECT * FROM e;
@@ -204,9 +205,9 @@ mysql> SELECT * FROM e2;
 1 row in set (0.00 sec)
 ```
 
-#### Nonmatching Rows
+#### Rows Não Correspondentes
 
-You should keep in mind that any rows found in the nonpartitioned table prior to issuing the [`ALTER TABLE ... EXCHANGE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement") statement must meet the conditions required for them to be stored in the target partition; otherwise, the statement fails. To see how this occurs, first insert a row into `e2` that is outside the boundaries of the partition definition for partition `p0` of table `e`. For example, insert a row with an `id` column value that is too large; then, try to exchange the table with the partition again:
+Você deve ter em mente que quaisquer Rows encontradas na tabela não particionada antes de emitir a instrução [`ALTER TABLE ... EXCHANGE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement") devem atender às condições exigidas para serem armazenadas na Partition de destino; caso contrário, a instrução falha. Para ver como isso acontece, primeiro insira uma Row em `e2` que esteja fora dos limites da definição da Partition para a Partition `p0` da tabela `e`. Por exemplo, insira uma Row com um valor de coluna `id` muito grande; em seguida, tente trocar a tabela com a Partition novamente:
 
 ```sql
 mysql> INSERT INTO e2 VALUES (51, "Ellen", "McDonald");
@@ -216,20 +217,20 @@ mysql> ALTER TABLE e EXCHANGE PARTITION p0 WITH TABLE e2;
 ERROR 1707 (HY000): Found row that does not match the partition
 ```
 
-Only the `WITHOUT VALIDATION` option would permit this operation to succeed:
+Apenas a opção `WITHOUT VALIDATION` permitiria que esta operação fosse bem-sucedida:
 
 ```sql
 mysql> ALTER TABLE e EXCHANGE PARTITION p0 WITH TABLE e2 WITHOUT VALIDATION;
 Query OK, 0 rows affected (0.02 sec)
 ```
 
-When a partition is exchanged with a table that contains rows that do not match the partition definition, it is the responsibility of the database administrator to fix the non-matching rows, which can be performed using [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") or [`ALTER TABLE ... REPAIR PARTITION`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations").
+Quando uma Partition é trocada com uma tabela que contém Rows que não correspondem à definição da Partition, é responsabilidade do administrador do Database corrigir as Rows não correspondentes, o que pode ser feito usando [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") ou [`ALTER TABLE ... REPAIR PARTITION`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations").
 
-#### Exchanging Partitions Without Row-By-Row Validation
+#### Trocando Partitions Sem Validation Row por Row
 
-To avoid time consuming validation when exchanging a partition with a table that has many rows, it is possible to skip the row-by-row validation step by appending `WITHOUT VALIDATION` to the [`ALTER TABLE ... EXCHANGE PARTITION`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") statement.
+Para evitar a Validation demorada ao trocar uma Partition com uma tabela que possui muitas Rows, é possível pular a etapa de Validation Row por Row, anexando `WITHOUT VALIDATION` à instrução [`ALTER TABLE ... EXCHANGE PARTITION`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations").
 
-The following example compares the difference between execution times when exchanging a partition with a nonpartitioned table, with and without validation. The partitioned table (table `e`) contains two partitions of 1 million rows each. The rows in p0 of table e are removed and p0 is exchanged with a nonpartitioned table of 1 million rows. The `WITH VALIDATION` operation takes 0.74 seconds. By comparison, the `WITHOUT VALIDATION` operation takes 0.01 seconds.
+O exemplo a seguir compara a diferença entre os tempos de execução ao trocar uma Partition com uma tabela não particionada, com e sem Validation. A tabela particionada (tabela `e`) contém duas Partitions de 1 milhão de Rows cada. As Rows em p0 da tabela e são removidas e p0 é trocada com uma tabela não particionada de 1 milhão de Rows. A operação `WITH VALIDATION` leva 0,74 segundos. Em comparação, a operação `WITHOUT VALIDATION` leva 0,01 segundos.
 
 ```sql
 # Create a partitioned table with 1 million rows in each partition
@@ -359,11 +360,11 @@ mysql> SELECT PARTITION_NAME, TABLE_ROWS FROM INFORMATION_SCHEMA.PARTITIONS WHER
 2 rows in set (0.00 sec)
 ```
 
-If a partition is exchanged with a table that contains rows that do not match the partition definition, it is the responsibility of the database administrator to fix the non-matching rows, which can be performed using [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") or [`ALTER TABLE ... REPAIR PARTITION`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations").
+Se uma Partition for trocada com uma tabela que contenha Rows que não correspondem à definição da Partition, é responsabilidade do administrador do Database corrigir as Rows não correspondentes, o que pode ser feito usando [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") ou [`ALTER TABLE ... REPAIR PARTITION`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations").
 
-#### Exchanging a Subpartition with a Nonpartitioned Table
+#### Trocando uma Subpartition com uma Tabela Não Particionada
 
-You can also exchange a subpartition of a subpartitioned table (see [Section 22.2.6, “Subpartitioning”](partitioning-subpartitions.html "22.2.6 Subpartitioning")) with a nonpartitioned table using an [`ALTER TABLE ... EXCHANGE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement") statement. In the following example, we first create a table `es` that is partitioned by `RANGE` and subpartitioned by `KEY`, populate this table as we did table `e`, and then create an empty, nonpartitioned copy `es2` of the table, as shown here:
+Você também pode trocar uma Subpartition de uma tabela subparticionada (veja [Seção 22.2.6, “Subpartitioning”](partitioning-subpartitions.html "22.2.6 Subpartitioning")) com uma tabela não particionada usando uma instrução [`ALTER TABLE ... EXCHANGE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement"). No exemplo a seguir, primeiro criamos uma tabela `es` que é particionada por `RANGE` e subparticionada por `KEY`, preenchemos esta tabela como fizemos com a tabela `e` e, em seguida, criamos uma cópia vazia e não particionada, `es2`, da tabela, conforme mostrado aqui:
 
 ```sql
 mysql> CREATE TABLE es (
@@ -397,7 +398,7 @@ Query OK, 0 rows affected (0.70 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 ```
 
-Although we did not explicitly name any of the subpartitions when creating table `es`, we can obtain generated names for these by including the `SUBPARTITION_NAME` of the [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") table from `INFORMATION_SCHEMA` when selecting from that table, as shown here:
+Embora não tenhamos nomeado explicitamente nenhuma das Subpartitions ao criar a tabela `es`, podemos obter nomes gerados para elas incluindo o `SUBPARTITION_NAME` da tabela [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") do `INFORMATION_SCHEMA` ao selecionar a partir dessa tabela, conforme mostrado aqui:
 
 ```sql
 mysql> SELECT PARTITION_NAME, SUBPARTITION_NAME, TABLE_ROWS
@@ -418,14 +419,14 @@ mysql> SELECT PARTITION_NAME, SUBPARTITION_NAME, TABLE_ROWS
 8 rows in set (0.00 sec)
 ```
 
-The following [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") statement exchanges subpartition `p3sp0` table `es` with the nonpartitioned table `es2`:
+A seguinte instrução [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") troca a Subpartition `p3sp0` da tabela `es` com a tabela não particionada `es2`:
 
 ```sql
 mysql> ALTER TABLE es EXCHANGE PARTITION p3sp0 WITH TABLE es2;
 Query OK, 0 rows affected (0.29 sec)
 ```
 
-You can verify that the rows were exchanged by issuing the following queries:
+Você pode verificar se as Rows foram trocadas emitindo os seguintes Queries:
 
 ```sql
 mysql> SELECT PARTITION_NAME, SUBPARTITION_NAME, TABLE_ROWS
@@ -456,14 +457,14 @@ mysql> SELECT * FROM es2;
 3 rows in set (0.00 sec)
 ```
 
-If a table is subpartitioned, you can exchange only a subpartition of the table—not an entire partition—with an unpartitioned table, as shown here:
+Se uma tabela for subparticionada, você pode trocar apenas uma Subpartition da tabela—e não uma Partition inteira—com uma tabela não particionada, conforme mostrado aqui:
 
 ```sql
 mysql> ALTER TABLE es EXCHANGE PARTITION p3 WITH TABLE es2;
 ERROR 1704 (HY000): Subpartitioned table, use subpartition instead of partition
 ```
 
-The comparison of table structures used by MySQL is very strict. The number, order, names, and types of columns and indexes of the partitioned table and the nonpartitioned table must match exactly. In addition, both tables must use the same storage engine:
+A comparação das estruturas de tabela usadas pelo MySQL é muito rigorosa. O número, a ordem, os nomes e os tipos de colunas e Indexes da tabela particionada e da tabela não particionada devem corresponder exatamente. Além disso, ambas as tabelas devem usar o mesmo Storage Engine:
 
 ```sql
 mysql> CREATE TABLE es3 LIKE e;

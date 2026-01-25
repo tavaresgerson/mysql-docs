@@ -1,31 +1,31 @@
-#### 21.6.15.2 The ndbinfo arbitrator_validity_summary Table
+#### 21.6.15.2 A Tabela ndbinfo arbitrator_validity_summary
 
-The `arbitrator_validity_summary` table provides a composite view of the arbitrator with regard to the cluster's data nodes.
+A tabela `arbitrator_validity_summary` fornece uma visão composta do arbitrator em relação aos data nodes do cluster.
 
-The `arbitrator_validity_summary` table contains the following columns:
+A tabela `arbitrator_validity_summary` contém as seguintes colunas:
 
 * `arbitrator`
 
-  Node ID of arbitrator
+  ID do Node (Node ID) do arbitrator
 
 * `arb_ticket`
 
-  Internal identifier used to track arbitration
+  Identificador interno usado para rastrear a arbitration
 
 * `arb_connected`
 
-  Whether this arbitrator is connected to the cluster; either of `Yes` or `No`
+  Indica se este arbitrator está conectado ao cluster; pode ser `Yes` ou `No`
 
 * `consensus_count`
 
-  Number of data nodes that see this node as arbitrator
+  Número de data nodes que veem este node como arbitrator
 
-##### Notes
+##### Notas
 
-In normal operations, this table should have only 1 row for any appreciable length of time. If it has more than 1 row for longer than a few moments, then either not all nodes are connected to the arbitrator, or all nodes are connected, but do not agree on the same arbitrator.
+Em operações normais, esta tabela deve ter apenas 1 linha por um período de tempo significativo. Se ela tiver mais de 1 linha por mais do que alguns instantes, isso indica que nem todos os nodes estão conectados ao arbitrator, ou que todos os nodes estão conectados, mas não concordam sobre o mesmo arbitrator.
 
-The `arbitrator` column shows the arbitrator's node ID.
+A coluna `arbitrator` mostra o Node ID do arbitrator.
 
-`arb_ticket` is the internal identifier used by this arbitrator.
+`arb_ticket` é o identificador interno usado por este arbitrator.
 
-`arb_connected` shows whether this node is connected to the cluster as an arbitrator.
+`arb_connected` mostra se este node está conectado ao cluster como um arbitrator.

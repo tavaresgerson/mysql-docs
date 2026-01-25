@@ -1,8 +1,8 @@
-#### 13.2.10.10 Optimizing Subqueries
+#### 13.2.10.10 Otimizando Subqueries
 
-Development is ongoing, so no optimization tip is reliable for the long term. The following list provides some interesting tricks that you might want to play with. See also [Section 8.2.2, “Optimizing Subqueries, Derived Tables, and View References”](subquery-optimization.html "8.2.2 Optimizing Subqueries, Derived Tables, and View References").
+O desenvolvimento é contínuo, portanto, nenhuma dica de otimização é confiável a longo prazo. A lista a seguir fornece alguns truques interessantes que você pode querer experimentar. Consulte também [Seção 8.2.2, “Otimizando Subqueries, Derived Tables, and View References”](subquery-optimization.html "8.2.2 Otimizando Subqueries, Derived Tables, and View References").
 
-* Use subquery clauses that affect the number or order of the rows in the subquery. For example:
+* Use cláusulas de subquery que afetam o número ou a ordem das linhas na subquery. Por exemplo:
 
   ```sql
   SELECT * FROM t1 WHERE t1.column1 IN
@@ -13,56 +13,56 @@ Development is ongoing, so no optimization tip is reliable for the long term. Th
     (SELECT * FROM t2 LIMIT 1);
   ```
 
-* Replace a join with a subquery. For example, try this:
+* Substitua um JOIN por uma subquery. Por exemplo, tente isto:
 
   ```sql
   SELECT DISTINCT column1 FROM t1 WHERE t1.column1 IN (
     SELECT column1 FROM t2);
   ```
 
-  Instead of this:
+  Em vez disto:
 
   ```sql
   SELECT DISTINCT t1.column1 FROM t1, t2
     WHERE t1.column1 = t2.column1;
   ```
 
-* Some subqueries can be transformed to joins for compatibility with older versions of MySQL that do not support subqueries. However, in some cases, converting a subquery to a join may improve performance. See [Section 13.2.10.11, “Rewriting Subqueries as Joins”](rewriting-subqueries.html "13.2.10.11 Rewriting Subqueries as Joins").
+* Algumas subqueries podem ser transformadas em JOINs para compatibilidade com versões mais antigas do MySQL que não suportam subqueries. No entanto, em alguns casos, converter uma subquery para um JOIN pode melhorar o desempenho. Consulte [Seção 13.2.10.11, “Reescrevendo Subqueries como Joins”](rewriting-subqueries.html "13.2.10.11 Rewriting Subqueries as Joins").
 
-* Move clauses from outside to inside the subquery. For example, use this query:
+* Mova cláusulas de fora para dentro da subquery. Por exemplo, use esta Query:
 
   ```sql
   SELECT * FROM t1
     WHERE s1 IN (SELECT s1 FROM t1 UNION ALL SELECT s1 FROM t2);
   ```
 
-  Instead of this query:
+  Em vez desta Query:
 
   ```sql
   SELECT * FROM t1
     WHERE s1 IN (SELECT s1 FROM t1) OR s1 IN (SELECT s1 FROM t2);
   ```
 
-  For another example, use this query:
+  Para outro exemplo, use esta Query:
 
   ```sql
   SELECT (SELECT column1 + 5 FROM t1) FROM t2;
   ```
 
-  Instead of this query:
+  Em vez desta Query:
 
   ```sql
   SELECT (SELECT column1 FROM t1) + 5 FROM t2;
   ```
 
-* Use a row subquery instead of a correlated subquery. For example, use this query:
+* Use uma subquery de linha (row subquery) em vez de uma subquery correlacionada (correlated subquery). Por exemplo, use esta Query:
 
   ```sql
   SELECT * FROM t1
     WHERE (column1,column2) IN (SELECT column1,column2 FROM t2);
   ```
 
-  Instead of this query:
+  Em vez desta Query:
 
   ```sql
   SELECT * FROM t1
@@ -70,56 +70,56 @@ Development is ongoing, so no optimization tip is reliable for the long term. Th
                   AND t2.column2=t1.column2);
   ```
 
-* Use `NOT (a = ANY (...))` rather than `a <> ALL (...)`.
+* Use `NOT (a = ANY (...))` em vez de `a <> ALL (...)`.
 
-* Use `x = ANY (table containing (1,2))` rather than `x=1 OR x=2`.
+* Use `x = ANY (table containing (1,2))` em vez de `x=1 OR x=2`.
 
-* Use `= ANY` rather than `EXISTS`.
+* Use `= ANY` em vez de `EXISTS`.
 
-* For uncorrelated subqueries that always return one row, `IN` is always slower than `=`. For example, use this query:
+* Para subqueries não correlacionadas que sempre retornam uma linha, `IN` é sempre mais lento do que `=`. Por exemplo, use esta Query:
 
   ```sql
   SELECT * FROM t1
     WHERE t1.col_name = (SELECT a FROM t2 WHERE b = some_const);
   ```
 
-  Instead of this query:
+  Em vez desta Query:
 
   ```sql
   SELECT * FROM t1
     WHERE t1.col_name IN (SELECT a FROM t2 WHERE b = some_const);
   ```
 
-These tricks might cause programs to go faster or slower. Using MySQL facilities like the [`BENCHMARK()`](information-functions.html#function_benchmark) function, you can get an idea about what helps in your own situation. See [Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions").
+Estes truques podem fazer com que os programas executem mais rápido ou mais devagar. Usando recursos do MySQL como a função [`BENCHMARK()`](information-functions.html#function_benchmark), você pode ter uma ideia do que ajuda na sua própria situação. Consulte [Seção 12.15, “Information Functions”](information-functions.html "12.15 Information Functions").
 
-Some optimizations that MySQL itself makes are:
+Algumas otimizações que o próprio MySQL realiza são:
 
-* MySQL executes uncorrelated subqueries only once. Use [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") to make sure that a given subquery really is uncorrelated.
+* O MySQL executa subqueries não correlacionadas apenas uma vez. Use [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") para garantir que uma determinada subquery seja realmente não correlacionada.
 
-* MySQL rewrites `IN`, `ALL`, `ANY`, and `SOME` subqueries in an attempt to take advantage of the possibility that the select-list columns in the subquery are indexed.
+* O MySQL reescreve as subqueries `IN`, `ALL`, `ANY` e `SOME` na tentativa de tirar proveito da possibilidade de as colunas da lista de seleção (select-list columns) na subquery estarem indexadas.
 
-* MySQL replaces subqueries of the following form with an index-lookup function, which [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") describes as a special join type ([`unique_subquery`](explain-output.html#jointype_unique_subquery) or [`index_subquery`](explain-output.html#jointype_index_subquery)):
+* O MySQL substitui subqueries do seguinte formato por uma função de busca de Index (index-lookup function), que o [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") descreve como um tipo de JOIN especial ([`unique_subquery`](explain-output.html#jointype_unique_subquery) ou [`index_subquery`](explain-output.html#jointype_index_subquery)):
 
   ```sql
   ... IN (SELECT indexed_column FROM single_table ...)
   ```
 
-* MySQL enhances expressions of the following form with an expression involving [`MIN()`](aggregate-functions.html#function_min) or [`MAX()`](aggregate-functions.html#function_max), unless `NULL` values or empty sets are involved:
+* O MySQL aprimora expressões do seguinte formato com uma expressão que envolve [`MIN()`](aggregate-functions.html#function_min) ou [`MAX()`](aggregate-functions.html#function_max), a menos que valores `NULL` ou conjuntos vazios estejam envolvidos:
 
   ```sql
   value {ALL|ANY|SOME} {> | < | >= | <=} (uncorrelated subquery)
   ```
 
-  For example, this `WHERE` clause:
+  Por exemplo, esta cláusula `WHERE`:
 
   ```sql
   WHERE 5 > ALL (SELECT x FROM t)
   ```
 
-  might be treated by the optimizer like this:
+  pode ser tratada pelo Optimizer desta forma:
 
   ```sql
   WHERE 5 > (SELECT MAX(x) FROM t)
   ```
 
-See also [MySQL Internals: How MySQL Transforms Subqueries](/doc/internals/en/transformations.html).
+Consulte também [MySQL Internals: How MySQL Transforms Subqueries](/doc/internals/en/transformations.html).

@@ -1,38 +1,38 @@
-### 14.8.10 Purge Configuration
+### 14.8.10 Configuração do Purge
 
-`InnoDB` does not physically remove a row from the database immediately when you delete it with an SQL statement. A row and its index records are only physically removed when `InnoDB` discards the undo log record written for the deletion. This removal operation, which only occurs after the row is no longer required for multi-version concurrency control (MVCC) or rollback, is called a purge.
+O `InnoDB` não remove fisicamente uma linha do Database imediatamente quando você a deleta usando uma instrução SQL. Uma linha e seus registros de Index são removidos fisicamente apenas quando o `InnoDB` descarta o registro de undo log escrito para a exclusão. Essa operação de remoção, que só ocorre após a linha não ser mais necessária para Multi-Version Concurrency Control (MVCC) ou rollback, é chamada de *purge*.
 
-Purge runs on a periodic schedule. It parses and processes undo log pages from the history list, which is a list of undo log pages for committed transactions that is maintained by the `InnoDB` transaction system. Purge frees the undo log pages from the history list after processing them.
+O Purge é executado em um cronograma periódico. Ele analisa e processa as páginas de undo log da *history list*, que é uma lista de páginas de undo log para transações commitadas e é mantida pelo sistema de transação `InnoDB`. O Purge libera as páginas de undo log da *history list* após processá-las.
 
-#### Configuring Purge Threads
+#### Configurando Purge Threads
 
-Purge operations are performed in the background by one or more purge threads. The number of purge threads is controlled by the `innodb_purge_threads` variable. The default value is 4. If DML action is concentrated on a single table, purge operations for the table are performed by a single purge thread. If DML action is concentrated on a few tables, keep the `innodb_purge_threads` setting low so that the threads do not contend with each other for access to the busy tables. If DML operations are spread across many tables, consider a higher `innodb_purge_threads` setting. The maximum number of purge threads is 32.
+As operações de Purge são executadas em segundo plano por uma ou mais *purge threads*. O número de *purge threads* é controlado pela variável `innodb_purge_threads`. O valor padrão é 4. Se a ação DML estiver concentrada em uma única tabela, as operações de Purge para essa tabela serão executadas por uma única *purge thread*. Se a ação DML estiver concentrada em poucas tabelas, mantenha a configuração de `innodb_purge_threads` baixa para que as threads não disputem entre si o acesso às tabelas ocupadas. Se as operações DML estiverem distribuídas por muitas tabelas, considere uma configuração mais alta para `innodb_purge_threads`. O número máximo de *purge threads* é 32.
 
-The `innodb_purge_threads` setting is the maximum number of purge threads permitted. The purge system automatically adjusts the number of purge threads that are used.
+A configuração `innodb_purge_threads` é o número máximo de *purge threads* permitido. O sistema de Purge ajusta automaticamente o número de *purge threads* que são utilizadas.
 
-#### Configuring Purge Batch Size
+#### Configurando o Purge Batch Size
 
-The `innodb_purge_batch_size` variable defines the number of undo log pages that purge parses and processes in one batch from the history list. The default value is 300. In a multithreaded purge configuration, the coordinator purge thread divides `innodb_purge_batch_size` by `innodb_purge_threads` and assigns that number of pages to each purge thread.
+A variável `innodb_purge_batch_size` define o número de páginas de undo log que o Purge analisa e processa em um Batch da *history list*. O valor padrão é 300. Em uma configuração de Purge multi-threaded, a *coordinator purge thread* divide `innodb_purge_batch_size` por `innodb_purge_threads` e atribui esse número de páginas a cada *purge thread*.
 
-The purge system also frees the undo log pages that are no longer required. It does so every 128 iterations through the undo logs. In addition to defining the number of undo log pages parsed and processed in a batch, the `innodb_purge_batch_size` variable defines the number of undo log pages that purge frees every 128 iterations through the undo logs.
+O sistema de Purge também libera as páginas de undo log que não são mais necessárias. Ele faz isso a cada 128 iterações pelos undo logs. Além de definir o número de páginas de undo log analisadas e processadas em um Batch, a variável `innodb_purge_batch_size` define o número de páginas de undo log que o Purge libera a cada 128 iterações pelos undo logs.
 
-The `innodb_purge_batch_size` variable is intended for advanced performance tuning and experimentation. Most users need not change `innodb_purge_batch_size` from its default value.
+A variável `innodb_purge_batch_size` destina-se a *performance tuning* e experimentação avançados. A maioria dos usuários não precisa alterar o valor padrão de `innodb_purge_batch_size`.
 
-#### Configuring the Maximum Purge Lag
+#### Configurando o Maximum Purge Lag
 
-The `innodb_max_purge_lag` variable defines the desired maximum purge lag. When the purge lag exceeds the `innodb_max_purge_lag` threshold, a delay is imposed on `INSERT`, `UPDATE`, and `DELETE` operations to allow time for purge operations to catch up. The default value is 0, which means there is no maximum purge lag and no delay.
+A variável `innodb_max_purge_lag` define o *purge lag* máximo desejado. Quando o *purge lag* excede o limite de `innodb_max_purge_lag`, um atraso é imposto nas operações `INSERT`, `UPDATE` e `DELETE` para dar tempo para que as operações de Purge se atualizem (*catch up*). O valor padrão é 0, o que significa que não há *maximum purge lag* e nenhum atraso.
 
-The `InnoDB` transaction system maintains a list of transactions that have index records delete-marked by `UPDATE` or `DELETE` operations. The length of the list is the purge lag. The purge lag delay is calculated by the following formula, which results in a minimum delay of 5000 microseconds:
+O sistema de transação `InnoDB` mantém uma lista de transações que tiveram registros de Index marcados para exclusão por operações `UPDATE` ou `DELETE`. O comprimento dessa lista é o *purge lag*. O atraso do *purge lag* é calculado pela seguinte fórmula, resultando em um atraso mínimo de 5000 microssegundos:
 
 ```sql
 (purge lag/innodb_max_purge_lag - 0.5) * 10000
 ```
 
-The delay is calculated at the beginning of a purge batch
+O atraso é calculado no início de um *purge batch*.
 
-A typical `innodb_max_purge_lag` setting for a problematic workload might be 1000000 (1 million), assuming that transactions are small, only 100 bytes in size, and it is permissible to have 100MB of unpurged table rows.
+Uma configuração típica de `innodb_max_purge_lag` para uma workload problemática pode ser 1000000 (1 milhão), assumindo que as transações são pequenas, de apenas 100 bytes de tamanho, e é permissível ter 100 MB de linhas de tabela não purgadas.
 
-The purge lag is presented as the `History list length` value in the `TRANSACTIONS` section of `SHOW ENGINE INNODB STATUS` output.
+O *purge lag* é apresentado como o valor `History list length` na seção `TRANSACTIONS` da saída de `SHOW ENGINE INNODB STATUS`.
 
 ```sql
 mysql> SHOW ENGINE INNODB STATUS;
@@ -45,14 +45,13 @@ Purge done for trx's n:o < 0 290315608 undo n:o < 0 17
 History list length 20
 ```
 
-The `History list length` is typically a low value, usually less than a few thousand, but a write-heavy workload or long running transactions can cause it to increase, even for transactions that are read only. The reason that a long running transaction can cause the `History list length` to increase is that under a consistent read transaction isolation level such as `REPEATABLE READ`, a transaction must return the same result as when the read view for that transaction was created. Consequently, the `InnoDB` multi-version concurrency control (MVCC) system must keep a copy of the data in the undo log until all transactions that depend on that data have completed. The following are examples of long running transactions that could cause the `History list length` to increase:
+O `History list length` é tipicamente um valor baixo, geralmente inferior a alguns milhares, mas uma *workload* com alta taxa de escrita (*write-heavy*) ou transações de longa duração podem fazer com que ele aumente, mesmo para transações de apenas leitura. A razão pela qual uma transação de longa duração pode causar o aumento do `History list length` é que, sob um nível de isolamento de transação de *consistent read*, como `REPEATABLE READ`, uma transação deve retornar o mesmo resultado de quando a *read view* para essa transação foi criada. Consequentemente, o sistema Multi-Version Concurrency Control (MVCC) do `InnoDB` deve manter uma cópia dos dados no undo log até que todas as transações que dependem desses dados tenham sido concluídas. A seguir estão exemplos de transações de longa duração que podem causar o aumento do `History list length`:
 
-* A **mysqldump** operation that uses the `--single-transaction` option while there is a significant amount of concurrent DML.
+*   Uma operação **mysqldump** que usa a opção `--single-transaction` enquanto há uma quantidade significativa de DML concorrente.
+*   Executar uma Query `SELECT` após desabilitar o `autocommit` e esquecer de emitir um `COMMIT` ou `ROLLBACK` explícito.
 
-* Running a `SELECT` query after disabling `autocommit`, and forgetting to issue an explicit `COMMIT` or `ROLLBACK`.
+Para evitar atrasos excessivos em situações extremas onde o *purge lag* se torna muito grande, você pode limitar o atraso definindo a variável `innodb_max_purge_lag_delay`. A variável `innodb_max_purge_lag_delay` especifica o atraso máximo em microssegundos para o atraso imposto quando o limite `innodb_max_purge_lag` é excedido. O valor `innodb_max_purge_lag_delay` especificado é um limite superior para o período de atraso calculado pela fórmula `innodb_max_purge_lag`.
 
-To prevent excessive delays in extreme situations where the purge lag becomes huge, you can limit the delay by setting the `innodb_max_purge_lag_delay` variable. The `innodb_max_purge_lag_delay` variable specifies the maximum delay in microseconds for the delay imposed when the `innodb_max_purge_lag` threshold is exceeded. The specified `innodb_max_purge_lag_delay` value is an upper limit on the delay period calculated by the `innodb_max_purge_lag` formula.
+#### Purge e Truncamento de Undo Tablespace
 
-#### Purge and Undo Tablespace Truncation
-
-The purge system is also responsible for truncating undo tablespaces. You can configure the `innodb_purge_rseg_truncate_frequency` variable to control the frequency with which the purge system looks for undo tablespaces to truncate. For more information, see Truncating Undo Tablespaces.
+O sistema de Purge também é responsável por truncar *undo tablespaces*. Você pode configurar a variável `innodb_purge_rseg_truncate_frequency` para controlar a frequência com que o sistema de Purge procura *undo tablespaces* para truncar. Para mais informações, consulte Truncating Undo Tablespaces.

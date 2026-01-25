@@ -1,16 +1,16 @@
-#### 21.6.15.6 The ndbinfo cluster_transactions Table
+#### 21.6.15.6 A Tabela ndbinfo cluster_transactions
 
-The `cluster_transactions` table shows information about all ongoing transactions in an NDB Cluster.
+A tabela `cluster_transactions` exibe informações sobre todas as Transaction em andamento em um NDB Cluster.
 
-The `cluster_transactions` table contains the following columns:
+A tabela `cluster_transactions` contém as seguintes colunas:
 
 * `node_id`
 
-  Node ID of transaction coordinator
+  ID do Node do Transaction Coordinator
 
 * `block_instance`
 
-  TC block instance
+  Instância do TC block
 
 * `transid`
 
@@ -18,36 +18,36 @@ The `cluster_transactions` table contains the following columns:
 
 * `state`
 
-  Operation state (see text for possible values)
+  State da Operation (consulte o texto para valores possíveis)
 
 * `count_operations`
 
-  Number of stateful primary key operations in transaction (includes reads with locks, as well as DML operations)
+  Número de Primary Key operations stateful na Transaction (inclui reads com Locks, bem como DML operations)
 
 * `outstanding_operations`
 
-  Operations still being executed in local data management blocks
+  Operations ainda sendo executadas em local data management blocks
 
 * `inactive_seconds`
 
-  Time spent waiting for API
+  Tempo gasto esperando pela API
 
 * `client_node_id`
 
-  Client node ID
+  ID do Client Node
 
 * `client_block_ref`
 
-  Client block reference
+  Referência do Client Block
 
 ##### Notes
 
-The transaction ID is a unique 64-bit number which can be obtained using the NDB API's [`getTransactionId()`](/doc/ndbapi/en/ndb-ndbtransaction.html#ndb-ndbtransaction-gettransactionid) method. (Currently, the MySQL Server does not expose the NDB API transaction ID of an ongoing transaction.)
+O Transaction ID é um número exclusivo de 64 bits que pode ser obtido usando o método [`getTransactionId()`](/doc/ndbapi/en/ndb-ndbtransaction.html#ndb-ndbtransaction-gettransactionid) da NDB API. (Atualmente, o MySQL Server não expõe o Transaction ID da NDB API de uma Transaction em andamento.)
 
-`block_instance` refers to an instance of a kernel block. Together with the block name, this number can be used to look up a given instance in the [`threadblocks`](mysql-cluster-ndbinfo-threadblocks.html "21.6.15.41 The ndbinfo threadblocks Table") table.
+`block_instance` refere-se a uma instância de um kernel block. Juntamente com o nome do block, este número pode ser usado para procurar uma determinada instância na tabela [`threadblocks`](mysql-cluster-ndbinfo-threadblocks.html "21.6.15.41 The ndbinfo threadblocks Table").
 
-The `state` column can have any one of the values `CS_ABORTING`, `CS_COMMITTING`, `CS_COMMIT_SENT`, `CS_COMPLETE_SENT`, `CS_COMPLETING`, `CS_CONNECTED`, `CS_DISCONNECTED`, `CS_FAIL_ABORTED`, `CS_FAIL_ABORTING`, `CS_FAIL_COMMITTED`, `CS_FAIL_COMMITTING`, `CS_FAIL_COMPLETED`, `CS_FAIL_PREPARED`, `CS_PREPARE_TO_COMMIT`, `CS_RECEIVING`, `CS_REC_COMMITTING`, `CS_RESTART`, `CS_SEND_FIRE_TRIG_REQ`, `CS_STARTED`, `CS_START_COMMITTING`, `CS_START_SCAN`, `CS_WAIT_ABORT_CONF`, `CS_WAIT_COMMIT_CONF`, `CS_WAIT_COMPLETE_CONF`, `CS_WAIT_FIRE_TRIG_REQ`. (If the MySQL Server is running with [`ndbinfo_show_hidden`](mysql-cluster-options-variables.html#sysvar_ndbinfo_show_hidden) enabled, you can view this list of states by selecting from the `ndb$dbtc_apiconnect_state` table, which is normally hidden.)
+A coluna `state` pode ter qualquer um dos seguintes valores: `CS_ABORTING`, `CS_COMMITTING`, `CS_COMMIT_SENT`, `CS_COMPLETE_SENT`, `CS_COMPLETING`, `CS_CONNECTED`, `CS_DISCONNECTED`, `CS_FAIL_ABORTED`, `CS_FAIL_ABORTING`, `CS_FAIL_COMMITTED`, `CS_FAIL_COMMITTING`, `CS_FAIL_COMPLETED`, `CS_FAIL_PREPARED`, `CS_PREPARE_TO_COMMIT`, `CS_RECEIVING`, `CS_REC_COMMITTING`, `CS_RESTART`, `CS_SEND_FIRE_TRIG_REQ`, `CS_STARTED`, `CS_START_COMMITTING`, `CS_START_SCAN`, `CS_WAIT_ABORT_CONF`, `CS_WAIT_COMMIT_CONF`, `CS_WAIT_COMPLETE_CONF`, `CS_WAIT_FIRE_TRIG_REQ`. (Se o MySQL Server estiver rodando com [`ndbinfo_show_hidden`](mysql-cluster-options-variables.html#sysvar_ndbinfo_show_hidden) habilitado, você pode visualizar esta lista de states selecionando a tabela `ndb$dbtc_apiconnect_state`, que normalmente está oculta.)
 
-In `client_node_id` and `client_block_ref`, `client` refers to an NDB Cluster API or SQL node (that is, an NDB API client or a MySQL Server attached to the cluster).
+Em `client_node_id` e `client_block_ref`, `client` refere-se a um NDB Cluster API ou SQL node (ou seja, um NDB API client ou um MySQL Server anexado ao cluster).
 
-The `tc_block_instance` column provides the [`DBTC`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbtc.html) block instance number. You can use this along with the block name to obtain information about specific threads from the [`threadblocks`](mysql-cluster-ndbinfo-threadblocks.html "21.6.15.41 The ndbinfo threadblocks Table") table.
+A coluna `tc_block_instance` fornece o número da instância do [`DBTC`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbtc.html) block. Você pode usar isso junto com o nome do block para obter informações sobre Threads específicos da tabela [`threadblocks`](mysql-cluster-ndbinfo-threadblocks.html "21.6.15.41 The ndbinfo threadblocks Table").

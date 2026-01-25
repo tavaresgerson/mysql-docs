@@ -1,6 +1,6 @@
-#### 25.12.7.1 The events_transactions_current Table
+#### 25.12.7.1 A Tabela events_transactions_current
 
-The [`events_transactions_current`](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table") table contains current transaction events. The table stores one row per thread showing the current status of the thread's most recent monitored transaction event, so there is no system variable for configuring the table size. For example:
+A tabela [`events_transactions_current`](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table") contém eventos de Transaction atuais. A tabela armazena uma linha por Thread, mostrando o status atual do evento de Transaction monitorado mais recente do Thread, portanto, não há uma variável de sistema para configurar o tamanho da tabela. Por exemplo:
 
 ```sql
 mysql> SELECT *
@@ -30,88 +30,88 @@ NUMBER_OF_ROLLBACK_TO_SAVEPOINT: 0
              NESTING_EVENT_TYPE: STATEMENT
 ```
 
-Of the tables that contain transaction event rows, [`events_transactions_current`](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table") is the most fundamental. Other tables that contain transaction event rows are logically derived from the current events. For example, the [`events_transactions_history`](performance-schema-events-transactions-history-table.html "25.12.7.2 The events_transactions_history Table") and [`events_transactions_history_long`](performance-schema-events-transactions-history-long-table.html "25.12.7.3 The events_transactions_history_long Table") tables are collections of the most recent transaction events that have ended, up to a maximum number of rows per thread and globally across all threads, respectively.
+Entre as tabelas que contêm linhas de eventos de Transaction, [`events_transactions_current`](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table") é a mais fundamental. Outras tabelas que contêm linhas de eventos de Transaction são logicamente derivadas dos eventos atuais. Por exemplo, as tabelas [`events_transactions_history`](performance-schema-events-transactions-history-table.html "25.12.7.2 The events_transactions_history Table") e [`events_transactions_history_long`](performance-schema-events-transactions-history-long-table.html "25.12.7.3 The events_transactions_history_long Table") são coleções dos eventos de Transaction mais recentes que foram concluídos, até um número máximo de linhas por Thread e globalmente em todos os Threads, respectivamente.
 
-For more information about the relationship between the three transaction event tables, see [Section 25.9, “Performance Schema Tables for Current and Historical Events”](performance-schema-event-tables.html "25.9 Performance Schema Tables for Current and Historical Events").
+Para mais informações sobre o relacionamento entre as três tabelas de eventos de Transaction, consulte a [Seção 25.9, “Tabelas do Performance Schema para Eventos Atuais e Históricos”](performance-schema-event-tables.html "25.9 Performance Schema Tables for Current and Historical Events").
 
-For information about configuring whether to collect transaction events, see [Section 25.12.7, “Performance Schema Transaction Tables”](performance-schema-transaction-tables.html "25.12.7 Performance Schema Transaction Tables").
+Para obter informações sobre como configurar a coleta de eventos de Transaction, consulte a [Seção 25.12.7, “Tabelas de Transaction do Performance Schema”](performance-schema-transaction-tables.html "25.12.7 Performance Schema Transaction Tables").
 
-The [`events_transactions_current`](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table") table has these columns:
+A tabela [`events_transactions_current`](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table") possui as seguintes colunas:
 
 * `THREAD_ID`, `EVENT_ID`
 
-  The thread associated with the event and the thread current event number when the event starts. The `THREAD_ID` and `EVENT_ID` values taken together uniquely identify the row. No two rows have the same pair of values.
+  O Thread associado ao evento e o número do evento atual do Thread quando o evento começa. Os valores `THREAD_ID` e `EVENT_ID` juntos identificam a linha de forma exclusiva. Não há duas linhas com o mesmo par de valores.
 
 * `END_EVENT_ID`
 
-  This column is set to `NULL` when the event starts and updated to the thread current event number when the event ends.
+  Esta coluna é definida como `NULL` quando o evento começa e é atualizada para o número do evento atual do Thread quando o evento termina.
 
 * `EVENT_NAME`
 
-  The name of the instrument from which the event was collected. This is a `NAME` value from the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table. Instrument names may have multiple parts and form a hierarchy, as discussed in [Section 25.6, “Performance Schema Instrument Naming Conventions”](performance-schema-instrument-naming.html "25.6 Performance Schema Instrument Naming Conventions").
+  O nome do instrument a partir do qual o evento foi coletado. Este é um valor `NAME` da tabela [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table"). Nomes de instruments podem ter múltiplas partes e formar uma hierarquia, conforme discutido na [Seção 25.6, “Convenções de Nomenclatura de Instrumentos do Performance Schema”](performance-schema-instrument-naming.html "25.6 Performance Schema Instrument Naming Conventions").
 
 * `STATE`
 
-  The current transaction state. The value is `ACTIVE` (after [`START TRANSACTION`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") or [`BEGIN`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")), `COMMITTED` (after [`COMMIT`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")), or `ROLLED BACK` (after [`ROLLBACK`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")).
+  O estado atual da Transaction. O valor é `ACTIVE` (após [`START TRANSACTION`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") ou [`BEGIN`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")), `COMMITTED` (após [`COMMIT`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")), ou `ROLLED BACK` (após [`ROLLBACK`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")).
 
 * `TRX_ID`
 
-  Unused.
+  Não utilizado.
 
 * `GTID`
 
-  The GTID column contains the value of [`gtid_next`](replication-options-gtids.html#sysvar_gtid_next), which can be one of `ANONYMOUS`, `AUTOMATIC`, or a GTID using the format `UUID:NUMBER`. For transactions that use [`gtid_next=AUTOMATIC`](replication-options-gtids.html#sysvar_gtid_next), which is all normal client transactions, the GTID column changes when the transaction commits and the actual GTID is assigned. If [`gtid_mode`](replication-options-gtids.html#sysvar_gtid_mode) is either `ON` or `ON_PERMISSIVE`, the GTID column changes to the transaction's GTID. If `gtid_mode` is either `OFF` or `OFF_PERMISSIVE`, the GTID column changes to `ANONYMOUS`.
+  A coluna `GTID` contém o valor de [`gtid_next`](replication-options-gtids.html#sysvar_gtid_next), que pode ser `ANONYMOUS`, `AUTOMATIC`, ou um GTID usando o formato `UUID:NUMBER`. Para Transactions que usam [`gtid_next=AUTOMATIC`](replication-options-gtids.html#sysvar_gtid_next), que são todas as Transactions normais do cliente, a coluna GTID muda quando a Transaction faz o Commit e o GTID real é atribuído. Se [`gtid_mode`](replication-options-gtids.html#sysvar_gtid_mode) for `ON` ou `ON_PERMISSIVE`, a coluna GTID muda para o GTID da Transaction. Se `gtid_mode` for `OFF` ou `OFF_PERMISSIVE`, a coluna GTID muda para `ANONYMOUS`.
 
 * `XID_FORMAT_ID`, `XID_GTRID`, and `XID_BQUAL`
 
-  The elements of the XA transaction identifier. They have the format described in [Section 13.3.7.1, “XA Transaction SQL Statements”](xa-statements.html "13.3.7.1 XA Transaction SQL Statements").
+  Os elementos do identificador da Transaction XA. Eles possuem o formato descrito na [Seção 13.3.7.1, “Instruções SQL de Transaction XA”](xa-statements.html "13.3.7.1 XA Transaction SQL Statements").
 
 * `XA_STATE`
 
-  The state of the XA transaction. The value is `ACTIVE` (after [`XA START`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements")), `IDLE` (after [`XA END`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements")), `PREPARED` (after [`XA PREPARE`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements")), `ROLLED BACK` (after [`XA ROLLBACK`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements")), or `COMMITTED` (after [`XA COMMIT`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements")).
+  O estado da Transaction XA. O valor é `ACTIVE` (após [`XA START`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements")), `IDLE` (após [`XA END`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements")), `PREPARED` (após [`XA PREPARE`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements")), `ROLLED BACK` (após [`XA ROLLBACK`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements")), ou `COMMITTED` (após [`XA COMMIT`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements")).
 
-  On a replica, the same XA transaction can appear in the [`events_transactions_current`](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table") table with different states on different threads. This is because immediately after the XA transaction is prepared, it is detached from the replication applier thread, and can be committed or rolled back by any thread on the replica. The [`events_transactions_current`](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table") table displays the current status of the most recent monitored transaction event on the thread, and does not update this status when the thread is idle. So the XA transaction can still be displayed in the `PREPARED` state for the original applier thread, after it has been processed by another thread. To positively identify XA transactions that are still in the `PREPARED` state and need to be recovered, use the [`XA RECOVER`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements") statement rather than the Performance Schema transaction tables.
+  Em uma réplica, a mesma Transaction XA pode aparecer na tabela [`events_transactions_current`](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table") com estados diferentes em diferentes Threads. Isso ocorre porque, imediatamente após a Transaction XA ser preparada, ela é desvinculada do Thread aplicador de replicação e pode ser Committada ou sofrer Rollback por qualquer Thread na réplica. A tabela [`events_transactions_current`](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table") exibe o status atual do evento de Transaction monitorado mais recente no Thread e não atualiza esse status quando o Thread está ocioso. Portanto, a Transaction XA ainda pode ser exibida no estado `PREPARED` para o Thread aplicador original, depois de ter sido processada por outro Thread. Para identificar positivamente Transactions XA que ainda estão no estado `PREPARED` e precisam ser recuperadas, use a instrução [`XA RECOVER`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements") em vez das tabelas de Transaction do Performance Schema.
 
 * `SOURCE`
 
-  The name of the source file containing the instrumented code that produced the event and the line number in the file at which the instrumentation occurs. This enables you to check the source to determine exactly what code is involved.
+  O nome do arquivo de origem que contém o código instrumentado que produziu o evento e o número da linha no arquivo onde a instrumentação ocorre. Isso permite que você verifique a origem para determinar exatamente qual código está envolvido.
 
 * `TIMER_START`, `TIMER_END`, `TIMER_WAIT`
 
-  Timing information for the event. The unit for these values is picoseconds (trillionths of a second). The `TIMER_START` and `TIMER_END` values indicate when event timing started and ended. `TIMER_WAIT` is the event elapsed time (duration).
+  Informações de tempo (Timing) para o evento. A unidade para esses valores é picosegundos (trilionésimos de segundo). Os valores `TIMER_START` e `TIMER_END` indicam quando o timing do evento começou e terminou. `TIMER_WAIT` é o tempo decorrido (duração) do evento.
 
-  If an event has not finished, `TIMER_END` is the current timer value and `TIMER_WAIT` is the time elapsed so far (`TIMER_END` − `TIMER_START`).
+  Se um evento não foi concluído, `TIMER_END` é o valor atual do timer e `TIMER_WAIT` é o tempo decorrido até agora (`TIMER_END` − `TIMER_START`).
 
-  If an event is produced from an instrument that has `TIMED = NO`, timing information is not collected, and `TIMER_START`, `TIMER_END`, and `TIMER_WAIT` are all `NULL`.
+  Se um evento é produzido a partir de um instrument que tem `TIMED = NO`, as informações de timing não são coletadas e `TIMER_START`, `TIMER_END` e `TIMER_WAIT` são todos `NULL`.
 
-  For discussion of picoseconds as the unit for event times and factors that affect time values, see [Section 25.4.1, “Performance Schema Event Timing”](performance-schema-timing.html "25.4.1 Performance Schema Event Timing").
+  Para discussão sobre picosegundos como a unidade para tempos de evento e fatores que afetam os valores de tempo, consulte a [Seção 25.4.1, “Timing de Eventos do Performance Schema”](performance-schema-timing.html "25.4.1 Performance Schema Event Timing").
 
 * `ACCESS_MODE`
 
-  The transaction access mode. The value is `READ WRITE` or `READ ONLY`.
+  O modo de acesso da Transaction. O valor é `READ WRITE` ou `READ ONLY`.
 
 * `ISOLATION_LEVEL`
 
-  The transaction isolation level. The value is [`REPEATABLE READ`](innodb-transaction-isolation-levels.html#isolevel_repeatable-read), [`READ COMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-committed), [`READ UNCOMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-uncommitted), or [`SERIALIZABLE`](innodb-transaction-isolation-levels.html#isolevel_serializable).
+  O nível de Isolation da Transaction. O valor é [`REPEATABLE READ`](innodb-transaction-isolation-levels.html#isolevel_repeatable-read), [`READ COMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-committed), [`READ UNCOMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-uncommitted), ou [`SERIALIZABLE`](innodb-transaction-isolation-levels.html#isolevel_serializable).
 
 * `AUTOCOMMIT`
 
-  Whether autcommit mode was enabled when the transaction started.
+  Indica se o modo Autocommit estava habilitado quando a Transaction foi iniciada.
 
 * `NUMBER_OF_SAVEPOINTS`, `NUMBER_OF_ROLLBACK_TO_SAVEPOINT`, `NUMBER_OF_RELEASE_SAVEPOINT`
 
-  The number of [`SAVEPOINT`](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements"), [`ROLLBACK TO SAVEPOINT`](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements"), and [`RELEASE SAVEPOINT`](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements") statements issued during the transaction.
+  O número de instruções [`SAVEPOINT`](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements"), [`ROLLBACK TO SAVEPOINT`](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements") e [`RELEASE SAVEPOINT`](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements") emitidas durante a Transaction.
 
 * `OBJECT_INSTANCE_BEGIN`
 
-  Unused.
+  Não utilizado.
 
 * `NESTING_EVENT_ID`
 
-  The `EVENT_ID` value of the event within which this event is nested.
+  O valor `EVENT_ID` do evento dentro do qual este evento está aninhado.
 
 * `NESTING_EVENT_TYPE`
 
-  The nesting event type. The value is `TRANSACTION`, `STATEMENT`, `STAGE`, or `WAIT`. (`TRANSACTION` does not appear because transactions cannot be nested.)
+  O tipo de evento de aninhamento (nesting). O valor é `TRANSACTION`, `STATEMENT`, `STAGE`, ou `WAIT`. (`TRANSACTION` não aparece porque Transactions não podem ser aninhadas.)
 
-[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is permitted for the [`events_transactions_current`](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table") table. It removes the rows.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") é permitido para a tabela [`events_transactions_current`](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table"). Ele remove as linhas.

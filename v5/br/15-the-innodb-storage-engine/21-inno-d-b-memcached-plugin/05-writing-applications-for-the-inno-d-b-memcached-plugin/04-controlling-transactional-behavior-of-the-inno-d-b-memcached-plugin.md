@@ -1,42 +1,42 @@
-#### 14.21.5.4 Controlling Transactional Behavior of the InnoDB memcached Plugin
+#### 14.21.5.4 Controlando o Comportamento Transacional do Plugin memcached do InnoDB
 
-Unlike traditional **memcached**, the `daemon_memcached` plugin allows you to control durability of data values produced through calls to `add`, `set`, `incr`, and so on. By default, data written through the **memcached** interface is stored to disk, and calls to `get` return the most recent value from disk. Although the default behavior does not offer the best possible raw performance, it is still fast compared to the SQL interface for `InnoDB` tables.
+Ao contrário do **memcached** tradicional, o plugin `daemon_memcached` permite controlar a durabilidade dos valores de dados produzidos através de chamadas para `add`, `set`, `incr`, e assim por diante. Por padrão, os dados escritos através da interface **memcached** são armazenados em disco, e as chamadas para `get` retornam o valor mais recente do disco. Embora o comportamento padrão não ofereça o melhor desempenho bruto possível, ele ainda é rápido comparado à interface SQL para tabelas `InnoDB`.
 
-As you gain experience using the `daemon_memcached` plugin, you can consider relaxing durability settings for non-critical classes of data, at the risk of losing some updated values in the event of an outage, or returning data that is slightly out-of-date.
+À medida que você ganha experiência usando o plugin `daemon_memcached`, você pode considerar flexibilizar as configurações de durabilidade para classes de dados não críticos, correndo o risco de perder alguns valores atualizados no caso de uma falha (outage), ou retornar dados que estão ligeiramente desatualizados (out-of-date).
 
-##### Frequency of Commits
+##### Frequência de Commits
 
-One tradeoff between durability and raw performance is how frequently new and changed data is committed. If data is critical, is should be committed immediately so that it is safe in case of an unexpected exit or outage. If data is less critical, such as counters that are reset after an unexpected exit or logging data that you can afford to lose, you might prefer higher raw throughput that is available with less frequent commits.
+Um tradeoff (compromisso) entre durabilidade e desempenho bruto é a frequência com que os dados novos e alterados são submetidos (committed). Se os dados são críticos, eles devem ser committed imediatamente para que estejam seguros em caso de saída inesperada ou falha. Se os dados são menos críticos, como contadores que são redefinidos após uma saída inesperada ou dados de log que você pode se dar ao luxo de perder, você pode preferir uma taxa de transferência (throughput) bruta mais alta, disponível com commits menos frequentes.
 
-When a **memcached** operation inserts, updates, or deletes data in the underlying `InnoDB` table, the change might be committed to the `InnoDB` table instantly (if `daemon_memcached_w_batch_size=1`) or some time later (if the `daemon_memcached_w_batch_size` value is greater than 1). In either case, the change cannot be rolled back. If you increase the value of `daemon_memcached_w_batch_size` to avoid high I/O overhead during busy times, commits could become infrequent when the workload decreases. As a safety measure, a background thread automatically commits changes made through the **memcached** API at regular intervals. The interval is controlled by the `innodb_api_bk_commit_interval` configuration option, which has a default setting of `5` seconds.
+Quando uma operação **memcached** insere, atualiza ou exclui dados na tabela `InnoDB` subjacente, a alteração pode ser committed para a tabela `InnoDB` instantaneamente (se `daemon_memcached_w_batch_size=1`) ou algum tempo depois (se o valor de `daemon_memcached_w_batch_size` for maior que 1). Em ambos os casos, a alteração não pode ser rolled back. Se você aumentar o valor de `daemon_memcached_w_batch_size` para evitar alta sobrecarga de I/O durante períodos de pico, os commits podem se tornar infrequentes quando a carga de trabalho diminuir. Como medida de segurança, um Thread em segundo plano submete (commits) automaticamente as alterações feitas através da API **memcached** em intervalos regulares. O intervalo é controlado pela opção de configuração `innodb_api_bk_commit_interval`, que possui uma configuração padrão de `5` segundos.
 
-When a **memcached** operation inserts or updates data in the underlying `InnoDB` table, the changed data is immediately visible to other **memcached** requests because the new value remains in the memory cache, even if it is not yet committed on the MySQL side.
+Quando uma operação **memcached** insere ou atualiza dados na tabela `InnoDB` subjacente, os dados alterados ficam imediatamente visíveis para outras requisições **memcached** porque o novo valor permanece no cache de memória, mesmo que ainda não tenha sido committed no lado do MySQL.
 
 ##### Transaction Isolation
 
-When a **memcached** operation such as `get` or `incr` causes a query or DML operation on the underlying `InnoDB` table, you can control whether the operation sees the very latest data written to the table, only data that has been committed, or other variations of transaction isolation level. Use the `innodb_api_trx_level` configuration option to control this feature. The numeric values specified for this option correspond to isolation levels such as `REPEATABLE READ`. See the description of the `innodb_api_trx_level` option for information about other settings.
+Quando uma operação **memcached**, como `get` ou `incr`, causa uma Query ou operação DML na tabela `InnoDB` subjacente, você pode controlar se a operação vê os dados mais recentes escritos na tabela, apenas dados que foram committeds, ou outras variações do nível de Transaction Isolation. Use a opção de configuração `innodb_api_trx_level` para controlar esse recurso. Os valores numéricos especificados para esta opção correspondem a níveis de isolation, como `REPEATABLE READ`. Consulte a descrição da opção `innodb_api_trx_level` para obter informações sobre outras configurações.
 
-A strict isolation level ensures that data you retrieve is not rolled back or changed suddenly causing subsequent queries to return different values. However, strict isolation levels require greater locking overhead, which can cause waits. For a NoSQL-style application that does not use long-running transactions, you can typically use the default isolation level or switch to a less strict isolation level.
+Um nível de isolation estrito garante que os dados recuperados não sejam rolled back ou alterados repentinamente, fazendo com que Queries subsequentes retornem valores diferentes. No entanto, níveis de isolation estritos exigem maior sobrecarga de Locking, o que pode causar esperas. Para uma aplicação estilo NoSQL que não usa transactions de longa duração, você pode tipicamente usar o nível de isolation padrão ou mudar para um nível de isolation menos estrito.
 
-##### Disabling Row Locks for memcached DML Operations
+##### Desabilitando Row Locks para Operações DML do memcached
 
-The `innodb_api_disable_rowlock` option can be used to disable row locks when **memcached** requests through the `daemon_memcached` plugin cause DML operations. By default, `innodb_api_disable_rowlock` is set to `OFF` which means that **memcached** requests row locks for `get` and `set` operations. When `innodb_api_disable_rowlock` is set to `ON`, **memcached** requests a table lock instead of row locks.
+A opção `innodb_api_disable_rowlock` pode ser usada para desabilitar Row Locks quando requisições **memcached** através do plugin `daemon_memcached` causam operações DML. Por padrão, `innodb_api_disable_rowlock` é definida como `OFF`, o que significa que o **memcached** solicita Row Locks para operações `get` e `set`. Quando `innodb_api_disable_rowlock` é definida como `ON`, o **memcached** solicita um Table Lock em vez de Row Locks.
 
-The `innodb_api_disable_rowlock` option is not dynamic. It must be specified at startup on the **mysqld** command line or entered in a MySQL configuration file.
+A opção `innodb_api_disable_rowlock` não é dinâmica. Ela deve ser especificada na inicialização na linha de comando **mysqld** ou inserida em um arquivo de configuração do MySQL.
 
-##### Allowing or Disallowing DDL
+##### Permitindo ou Não Permitindo DDL
 
-By default, you can perform DDL operations such as `ALTER TABLE` on tables used by the `daemon_memcached` plugin. To avoid potential slowdowns when these tables are used for high-throughput applications, disable DDL operations on these tables by enabling `innodb_api_enable_mdl` at startup. This option is less appropriate when accessing the same tables through both **memcached** and SQL, because it blocks `CREATE INDEX` statements on the tables, which could be important for running reporting queries.
+Por padrão, você pode realizar operações DDL, como `ALTER TABLE`, em tabelas usadas pelo plugin `daemon_memcached`. Para evitar possíveis lentidões quando essas tabelas são usadas para aplicações de alta taxa de transferência (throughput), desabilite as operações DDL nessas tabelas habilitando `innodb_api_enable_mdl` na inicialização. Esta opção é menos apropriada ao acessar as mesmas tabelas através de **memcached** e SQL, pois bloqueia instruções `CREATE INDEX` nas tabelas, o que poderia ser importante para a execução de Reporting Queries.
 
-##### Storing Data on Disk, in Memory, or Both
+##### Armazenando Dados em Disco, na Memória ou em Ambos
 
-The `innodb_memcache.cache_policies` table specifies whether to store data written through the **memcached** interface to disk (`innodb_only`, the default); in memory only, as with traditional **memcached** (`cache_only`); or both (`caching`).
+A tabela `innodb_memcache.cache_policies` especifica se os dados escritos através da interface **memcached** devem ser armazenados em disco (`innodb_only`, o padrão); somente na memória, como no **memcached** tradicional (`cache_only`); ou em ambos (`caching`).
 
-With the `caching` setting, if **memcached** cannot find a key in memory, it searches for the value in an `InnoDB` table. Values returned from `get` calls under the `caching` setting could be out-of-date if the values were updated on disk in the `InnoDB` table but are not yet expired from the memory cache.
+Com a configuração `caching`, se o **memcached** não conseguir encontrar uma key na memória, ele procura pelo valor em uma tabela `InnoDB`. Os valores retornados das chamadas `get` sob a configuração `caching` podem estar desatualizados (out-of-date) se os valores foram atualizados no disco na tabela `InnoDB`, mas ainda não expiraram do cache de memória.
 
-The caching policy can be set independently for `get`, `set` (including `incr` and `decr`), `delete`, and `flush` operations.
+A política de caching pode ser definida independentemente para as operações `get`, `set` (incluindo `incr` e `decr`), `delete` e `flush`.
 
-For example, you might allow `get` and `set` operations to query or update a table and the **memcached** memory cache at the same time (using the `caching` setting), while making `delete`, `flush`, or both operate only on the in-memory copy (using the `cache_only` setting). That way, deleting or flushing an item only expires the item from the cache, and the latest value is returned from the `InnoDB` table the next time the item is requested.
+Por exemplo, você pode permitir que as operações `get` e `set` consultem ou atualizem uma tabela e o cache de memória **memcached** ao mesmo tempo (usando a configuração `caching`), enquanto faz com que `delete`, `flush`, ou ambos, operem apenas na cópia em memória (usando a configuração `cache_only`). Dessa forma, deletar ou fazer um flush de um item apenas o faz expirar do cache, e o valor mais recente é retornado da tabela `InnoDB` na próxima vez que o item for solicitado.
 
 ```sql
 mysql> SELECT * FROM innodb_memcache.cache_policies;
@@ -50,7 +50,7 @@ mysql> UPDATE innodb_memcache.cache_policies SET set_policy = 'caching'
        WHERE policy_name = 'cache_policy';
 ```
 
-`innodb_memcache.cache_policies` values are only read at startup. After changing values in this table, uninstall and reinstall the `daemon_memcached` plugin to ensure that changes take effect.
+Os valores de `innodb_memcache.cache_policies` são lidos apenas na inicialização. Após alterar os valores nesta tabela, desinstale e reinstale o plugin `daemon_memcached` para garantir que as alterações entrem em vigor.
 
 ```sql
 mysql> UNINSTALL PLUGIN daemon_memcached;

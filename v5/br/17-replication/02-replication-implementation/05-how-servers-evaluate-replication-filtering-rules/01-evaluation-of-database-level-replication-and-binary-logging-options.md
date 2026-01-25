@@ -1,79 +1,79 @@
-#### 16.2.5.1 Evaluation of Database-Level Replication and Binary Logging Options
+#### 16.2.5.1 Avaliação das Opções de Replication e Binary Logging em Nível de Database
 
-When evaluating replication options, the replica begins by checking to see whether there are any [`--replicate-do-db`](replication-options-replica.html#option_mysqld_replicate-do-db) or [`--replicate-ignore-db`](replication-options-replica.html#option_mysqld_replicate-ignore-db) options that apply. When using [`--binlog-do-db`](replication-options-binary-log.html#option_mysqld_binlog-do-db) or [`--binlog-ignore-db`](replication-options-binary-log.html#option_mysqld_binlog-ignore-db), the process is similar, but the options are checked on the source.
+Ao avaliar as opções de Replication, a Replica começa verificando se há alguma opção [`--replicate-do-db`](replication-options-replica.html#option_mysqld_replicate-do-db) ou [`--replicate-ignore-db`](replication-options-replica.html#option_mysqld_replicate-ignore-db) aplicável. Ao usar [`--binlog-do-db`](replication-options-binary-log.html#option_mysqld_binlog-do-db) ou [`--binlog-ignore-db`](replication-options-binary-log.html#option_mysqld_binlog-ignore-db), o processo é semelhante, mas as opções são verificadas na Source.
 
-The database that is checked for a match depends on the binary log format of the statement that is being handled. If the statement has been logged using the row format, the database where data is to be changed is the database that is checked. If the statement has been logged using the statement format, the default database (specified with a [`USE`](use.html "13.8.4 USE Statement") statement) is the database that is checked.
+A Database que é verificada quanto à correspondência depende do formato do Binary Log do Statement que está sendo processado. Se o Statement foi logado usando o Row Format, a Database onde os dados serão alterados é a Database verificada. Se o Statement foi logado usando o Statement Format, a Database padrão (especificada com um Statement [`USE`](use.html "13.8.4 USE Statement")) é a Database verificada.
 
 Note
 
-Only DML statements can be logged using the row format. DDL statements are always logged as statements, even when [`binlog_format=ROW`](replication-options-binary-log.html#sysvar_binlog_format). All DDL statements are therefore always filtered according to the rules for statement-based replication. This means that you must select the default database explicitly with a [`USE`](use.html "13.8.4 USE Statement") statement in order for a DDL statement to be applied.
+Apenas Statements DML podem ser logados usando o Row Format. Statements DDL são sempre logados como Statements, mesmo quando [`binlog_format=ROW`](replication-options-binary-log.html#sysvar_binlog_format). Todos os Statements DDL são, portanto, sempre filtrados de acordo com as regras para Statement-based Replication. Isso significa que você deve selecionar a Database padrão explicitamente com um Statement [`USE`](use.html "13.8.4 USE Statement") para que um Statement DDL seja aplicado.
 
-For replication, the steps involved are listed here:
+Para Replication, as etapas envolvidas estão listadas aqui:
 
-1. Which logging format is used?
+1. Qual formato de Logging é usado?
 
-   * **STATEMENT.** Test the default database.
+   * **STATEMENT.** Testa a Database padrão.
 
-   * **ROW.** Test the database affected by the changes.
+   * **ROW.** Testa a Database afetada pelas alterações.
 
-2. Are there any [`--replicate-do-db`](replication-options-replica.html#option_mysqld_replicate-do-db) options?
+2. Existem opções [`--replicate-do-db`](replication-options-replica.html#option_mysqld_replicate-do-db)?
 
-   * **Yes.** Does the database match any of them?
+   * **Sim.** A Database corresponde a alguma delas?
 
-     + **Yes.** Continue to Step 4.
+     + **Sim.** Continua para a Etapa 4.
 
-     + **No.** Ignore the update and exit.
+     + **Não.** Ignora o update e sai.
 
-   * **No.** Continue to step 3.
+   * **Não.** Continua para a Etapa 3.
 
-3. Are there any [`--replicate-ignore-db`](replication-options-replica.html#option_mysqld_replicate-ignore-db) options?
+3. Existem opções [`--replicate-ignore-db`](replication-options-replica.html#option_mysqld_replicate-ignore-db)?
 
-   * **Yes.** Does the database match any of them?
+   * **Sim.** A Database corresponde a alguma delas?
 
-     + **Yes.** Ignore the update and exit.
+     + **Sim.** Ignora o update e sai.
 
-     + **No.** Continue to step 4.
+     + **Não.** Continua para a Etapa 4.
 
-   * **No.** Continue to step 4.
+   * **Não.** Continua para a Etapa 4.
 
-4. Proceed to checking the table-level replication options, if there are any. For a description of how these options are checked, see [Section 16.2.5.2, “Evaluation of Table-Level Replication Options”](replication-rules-table-options.html "16.2.5.2 Evaluation of Table-Level Replication Options").
+4. Procede para a verificação das opções de Replication em nível de tabela, se houver. Para uma descrição de como essas opções são verificadas, consulte [Section 16.2.5.2, “Evaluation of Table-Level Replication Options”](replication-rules-table-options.html "16.2.5.2 Evaluation of Table-Level Replication Options").
 
    Important
 
-   A statement that is still permitted at this stage is not yet actually executed. The statement is not executed until all table-level options (if any) have also been checked, and the outcome of that process permits execution of the statement.
+   Um Statement que ainda é permitido nesta fase ainda não foi de fato executado. O Statement não é executado até que todas as opções em nível de tabela (se houver) também tenham sido verificadas, e o resultado desse processo permita a execução do Statement.
 
-For binary logging, the steps involved are listed here:
+Para Binary Logging, as etapas envolvidas estão listadas aqui:
 
-1. Are there any [`--binlog-do-db`](replication-options-binary-log.html#option_mysqld_binlog-do-db) or [`--binlog-ignore-db`](replication-options-binary-log.html#option_mysqld_binlog-ignore-db) options?
+1. Existem opções [`--binlog-do-db`](replication-options-binary-log.html#option_mysqld_binlog-do-db) ou [`--binlog-ignore-db`](replication-options-binary-log.html#option_mysqld_binlog-ignore-db)?
 
-   * **Yes.** Continue to step 2.
+   * **Sim.** Continua para a Etapa 2.
 
-   * **No.** Log the statement and exit.
+   * **Não.** Loga o Statement e sai.
 
-2. Is there a default database (has any database been selected by [`USE`](use.html "13.8.4 USE Statement"))?
+2. Existe uma Database padrão (alguma Database foi selecionada por [`USE`](use.html "13.8.4 USE Statement"))?
 
-   * **Yes.** Continue to step 3.
+   * **Sim.** Continua para a Etapa 3.
 
-   * **No.** Ignore the statement and exit.
+   * **Não.** Ignora o Statement e sai.
 
-3. There is a default database. Are there any [`--binlog-do-db`](replication-options-binary-log.html#option_mysqld_binlog-do-db) options?
+3. Existe uma Database padrão. Existem opções [`--binlog-do-db`](replication-options-binary-log.html#option_mysqld_binlog-do-db)?
 
-   * **Yes.** Do any of them match the database?
+   * **Sim.** Alguma delas corresponde à Database?
 
-     + **Yes.** Log the statement and exit.
+     + **Sim.** Loga o Statement e sai.
 
-     + **No.** Ignore the statement and exit.
+     + **Não.** Ignora o Statement e sai.
 
-   * **No.** Continue to step 4.
+   * **Não.** Continua para a Etapa 4.
 
-4. Do any of the [`--binlog-ignore-db`](replication-options-binary-log.html#option_mysqld_binlog-ignore-db) options match the database?
+4. Alguma das opções [`--binlog-ignore-db`](replication-options-binary-log.html#option_mysqld_binlog-ignore-db) corresponde à Database?
 
-   * **Yes.** Ignore the statement and exit.
+   * **Sim.** Ignora o Statement e sai.
 
-   * **No.** Log the statement and exit.
+   * **Não.** Loga o Statement e sai.
 
 Important
 
-For statement-based logging, an exception is made in the rules just given for the [`CREATE DATABASE`](create-database.html "13.1.11 CREATE DATABASE Statement"), [`ALTER DATABASE`](alter-database.html "13.1.1 ALTER DATABASE Statement"), and [`DROP DATABASE`](drop-database.html "13.1.22 DROP DATABASE Statement") statements. In those cases, the database being *created, altered, or dropped* replaces the default database when determining whether to log or ignore updates.
+Para Logging baseado em Statement (statement-based logging), uma exceção é feita nas regras acima para os Statements [`CREATE DATABASE`](create-database.html "13.1.11 CREATE DATABASE Statement"), [`ALTER DATABASE`](alter-database.html "13.1.1 ALTER DATABASE Statement") e [`DROP DATABASE`](drop-database.html "13.1.22 DROP DATABASE Statement"). Nesses casos, a Database sendo *criada, alterada ou descartada* substitui a Database padrão ao determinar se deve logar ou ignorar os updates.
 
-[`--binlog-do-db`](replication-options-binary-log.html#option_mysqld_binlog-do-db) can sometimes mean “ignore other databases”. For example, when using statement-based logging, a server running with only [`--binlog-do-db=sales`](replication-options-binary-log.html#option_mysqld_binlog-do-db) does not write to the binary log statements for which the default database differs from `sales`. When using row-based logging with the same option, the server logs only those updates that change data in `sales`.
+[`--binlog-do-db`](replication-options-binary-log.html#option_mysqld_binlog-do-db) pode, por vezes, significar “ignorar outras Databases”. Por exemplo, ao usar statement-based logging, um servidor rodando apenas com [`--binlog-do-db=sales`](replication-options-binary-log.html#option_mysqld_binlog-do-db) não grava no Binary Log Statements para os quais a Database padrão é diferente de `sales`. Ao usar row-based logging com a mesma opção, o servidor loga apenas aqueles updates que alteram dados em `sales`.

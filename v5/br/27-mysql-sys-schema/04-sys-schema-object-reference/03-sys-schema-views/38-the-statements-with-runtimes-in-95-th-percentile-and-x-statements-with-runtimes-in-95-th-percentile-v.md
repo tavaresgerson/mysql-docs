@@ -1,71 +1,71 @@
-#### 26.4.3.38 The statements_with_runtimes_in_95th_percentile and x$statements_with_runtimes_in_95th_percentile Views
+#### 26.4.3.38 As Views statements_with_runtimes_in_95th_percentile e x$statements_with_runtimes_in_95th_percentile
 
-These views list statements with runtimes in the 95th percentile. By default, rows are sorted by descending average latency.
+Estas views listam as statements com tempos de execução (runtimes) no percentil 95. Por padrão, as linhas são ordenadas pela average latency (latência média) decrescente.
 
-Both views use two helper views, `x$ps_digest_avg_latency_distribution` and `x$ps_digest_95th_percentile_by_avg_us`.
+Ambas as views utilizam duas views auxiliares (helper views), `x$ps_digest_avg_latency_distribution` e `x$ps_digest_95th_percentile_by_avg_us`.
 
-The `statements_with_runtimes_in_95th_percentile` and `x$statements_with_runtimes_in_95th_percentile` views have these columns:
+As views `statements_with_runtimes_in_95th_percentile` e `x$statements_with_runtimes_in_95th_percentile` possuem as seguintes colunas:
 
 * `query`
 
-  The normalized statement string.
+  O statement string normalizado.
 
 * `db`
 
-  The default database for the statement, or `NULL` if there is none.
+  O Database padrão para a statement, ou `NULL` se não houver nenhum.
 
 * `full_scan`
 
-  The total number of full table scans performed by occurrences of the statement.
+  O número total de full table scans realizados pelas ocorrências da statement.
 
 * `exec_count`
 
-  The total number of times the statement has executed.
+  O número total de vezes que a statement foi executada.
 
 * `err_count`
 
-  The total number of errors produced by occurrences of the statement.
+  O número total de erros produzidos pelas ocorrências da statement.
 
 * `warn_count`
 
-  The total number of warnings produced by occurrences of the statement.
+  O número total de warnings produzidos pelas ocorrências da statement.
 
 * `total_latency`
 
-  The total wait time of timed occurrences of the statement.
+  O tempo de espera (wait time) total das ocorrências cronometradas da statement.
 
 * `max_latency`
 
-  The maximum single wait time of timed occurrences of the statement.
+  O tempo de espera máximo único das ocorrências cronometradas da statement.
 
 * `avg_latency`
 
-  The average wait time per timed occurrence of the statement.
+  O tempo de espera médio (average wait time) por ocorrência cronometrada da statement.
 
 * `rows_sent`
 
-  The total number of rows returned by occurrences of the statement.
+  O número total de rows retornadas pelas ocorrências da statement.
 
 * `rows_sent_avg`
 
-  The average number of rows returned per occurrence of the statement.
+  O número médio de rows retornadas por ocorrência da statement.
 
 * `rows_examined`
 
-  The total number of rows read from storage engines by occurrences of the statement.
+  O número total de rows lidas dos storage engines pelas ocorrências da statement.
 
 * `rows_examined_avg`
 
-  The average number of rows read from storage engines per occurrence of the statement.
+  O número médio de rows lidas dos storage engines por ocorrência da statement.
 
 * `first_seen`
 
-  The time at which the statement was first seen.
+  O momento em que a statement foi vista pela primeira vez.
 
 * `last_seen`
 
-  The time at which the statement was most recently seen.
+  O momento em que a statement foi vista mais recentemente.
 
 * `digest`
 
-  The statement digest.
+  O statement digest.

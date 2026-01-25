@@ -1,47 +1,47 @@
-#### 21.6.15.8 The ndbinfo config_params Table
+#### 21.6.15.8 A Tabela ndbinfo config_params
 
-The `config_params` table is a static table which provides the names and internal ID numbers of and other information about NDB Cluster configuration parameters.
+A tabela `config_params` é uma tabela estática que fornece os nomes, números de ID internos e outras informações sobre os parâmetros de configuração do NDB Cluster.
 
-The `config_params` table contains the following columns:
+A tabela `config_params` contém as seguintes colunas:
 
 * `param_number`
 
-  The parameter's internal ID number
+  O número de ID interno do parâmetro.
 
 * `param_name`
 
-  The name of the parameter
+  O nome do parâmetro.
 
 * `param_description`
 
-  A brief description of the parameter
+  Uma breve descrição do parâmetro.
 
 * `param_type`
 
-  The parameter's data type
+  O tipo de dado do parâmetro.
 
 * `param_default`
 
-  The parameter's default value, if any
+  O valor default (padrão) do parâmetro, se houver.
 
 * `param_min`
 
-  The parameter's maximum value, if any
+  O valor máximo do parâmetro, se houver.
 
 * `param_max`
 
-  The parameter's minimum value, if any
+  O valor mínimo do parâmetro, se houver.
 
 * `param_mandatory`
 
-  This is 1 if the parameter is required, otherwise 0
+  É 1 se o parâmetro for obrigatório, caso contrário, 0.
 
 * `param_status`
 
-  Currently unused
+  Atualmente não utilizado.
 
-##### Notes
+##### Notas
 
-In NDB Cluster 7.5 (and later), this table is read-only. The `param_description`, `param_type`, `param_default`, `param_min`, `param_max`, `param_mandatory`, and `param_status` columns were all added in NDB 7.5.0.
+No NDB Cluster 7.5 (e posterior), esta tabela é somente leitura (read-only). As colunas `param_description`, `param_type`, `param_default`, `param_min`, `param_max`, `param_mandatory` e `param_status` foram todas adicionadas no NDB 7.5.0.
 
-Although this is a static table, its content can vary between NDB Cluster installations, since supported parameters can vary due to differences between software releases, cluster hardware configurations, and other factors.
+Embora esta seja uma tabela estática, seu conteúdo pode variar entre instalações do NDB Cluster, visto que os parâmetros suportados podem mudar devido a diferenças entre lançamentos de software (software releases), configurações de hardware do cluster e outros fatores.

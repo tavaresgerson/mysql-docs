@@ -1,11 +1,9 @@
-#### B.3.2.5 Too many connections
+#### B.3.2.5 Too many connections
 
-If clients encounter `Too many connections` errors when attempting to connect to the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server, all available connections are in use by other clients.
+Se os clientes encontrarem erros de `Too many connections` ao tentar se conectar ao servidor [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), significa que todas as conexões disponíveis estão em uso por outros clientes.
 
-The permitted number of connections is controlled by the [`max_connections`](server-system-variables.html#sysvar_max_connections) system variable. To support more connections, set [`max_connections`](server-system-variables.html#sysvar_max_connections) to a larger value.
+O número permitido de conexões é controlado pela variável de sistema [`max_connections`](server-system-variables.html#sysvar_max_connections). Para suportar mais conexões, defina [`max_connections`](server-system-variables.html#sysvar_max_connections) para um valor maior.
 
-[**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") actually permits [`max_connections`](server-system-variables.html#sysvar_max_connections)
+Na verdade, o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") permite [`max_connections`](server-system-variables.html#sysvar_max_connections) + 1 conexões de cliente. A conexão extra é reservada para uso por contas que possuem o privilégio [`SUPER`](privileges-provided.html#priv_super). Ao conceder o privilégio a administradores e não a usuários normais (que não deveriam precisar dele), um administrador que também possua o privilégio [`PROCESS`](privileges-provided.html#priv_process) pode se conectar ao servidor e usar [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") para diagnosticar problemas, mesmo que o número máximo de clientes não privilegiados esteja conectado. Consulte [Seção 13.7.5.29, “SHOW PROCESSLIST Statement”](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement").
 
-+ 1 client connections. The extra connection is reserved for use by accounts that have the [`SUPER`](privileges-provided.html#priv_super) privilege. By granting the privilege to administrators and not to normal users (who should not need it), an administrator who also has the [`PROCESS`](privileges-provided.html#priv_process) privilege can connect to the server and use [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") to diagnose problems even if the maximum number of unprivileged clients are connected. See [Section 13.7.5.29, “SHOW PROCESSLIST Statement”](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement").
-
-For more information about how the server handles client connections, see [Section 5.1.11.1, “Connection Interfaces”](connection-interfaces.html "5.1.11.1 Connection Interfaces").
+Para mais informações sobre como o servidor lida com conexões de cliente, consulte [Seção 5.1.11.1, “Connection Interfaces”](connection-interfaces.html "5.1.11.1 Connection Interfaces").

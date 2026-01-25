@@ -1,8 +1,8 @@
-### 12.19.2 GROUP BY Modifiers
+### 12.19.2 Modificadores GROUP BY
 
-The `GROUP BY` clause permits a `WITH ROLLUP` modifier that causes summary output to include extra rows that represent higher-level (that is, super-aggregate) summary operations. `ROLLUP` thus enables you to answer questions at multiple levels of analysis with a single query. For example, `ROLLUP` can be used to provide support for OLAP (Online Analytical Processing) operations.
+A cláusula `GROUP BY` permite o modificador `WITH ROLLUP`, que faz com que a saída de resumo inclua linhas extras que representam operações de resumo de nível superior (ou seja, super-agregadas). O `ROLLUP` permite, assim, responder a questões em múltiplos níveis de análise com uma única Query. Por exemplo, o `ROLLUP` pode ser usado para dar suporte a operações OLAP (Online Analytical Processing).
 
-Suppose that a `sales` table has `year`, `country`, `product`, and `profit` columns for recording sales profitability:
+Suponha que uma tabela `sales` tenha colunas `year`, `country`, `product` e `profit` para registrar a lucratividade das vendas:
 
 ```sql
 CREATE TABLE sales
@@ -14,7 +14,7 @@ CREATE TABLE sales
 );
 ```
 
-To summarize table contents per year, use a simple `GROUP BY` like this:
+Para resumir o conteúdo da tabela por ano, use um `GROUP BY` simples como este:
 
 ```sql
 mysql> SELECT year, SUM(profit) AS profit
@@ -28,7 +28,7 @@ mysql> SELECT year, SUM(profit) AS profit
 +------+--------+
 ```
 
-The output shows the total (aggregate) profit for each year. To also determine the total profit summed over all years, you must add up the individual values yourself or run an additional query. Or you can use `ROLLUP`, which provides both levels of analysis with a single query. Adding a `WITH ROLLUP` modifier to the `GROUP BY` clause causes the query to produce another (super-aggregate) row that shows the grand total over all year values:
+A saída mostra o lucro total (agregado) para cada ano. Para determinar também o lucro total somado ao longo de todos os anos, você deve somar os valores individuais ou executar uma Query adicional. Alternativamente, você pode usar o `ROLLUP`, que fornece ambos os níveis de análise com uma única Query. Adicionar um modificador `WITH ROLLUP` à cláusula `GROUP BY` faz com que a Query produza outra linha (super-agregada) que mostra o total geral em todos os valores de ano:
 
 ```sql
 mysql> SELECT year, SUM(profit) AS profit
@@ -43,11 +43,11 @@ mysql> SELECT year, SUM(profit) AS profit
 +------+--------+
 ```
 
-The `NULL` value in the `year` column identifies the grand total super-aggregate line.
+O valor `NULL` na coluna `year` identifica a linha super-agregada do total geral.
 
-`ROLLUP` has a more complex effect when there are multiple `GROUP BY` columns. In this case, each time there is a change in value in any but the last grouping column, the query produces an extra super-aggregate summary row.
+O `ROLLUP` tem um efeito mais complexo quando há múltiplas colunas no `GROUP BY`. Neste caso, sempre que houver uma alteração de valor em qualquer coluna de agrupamento, exceto a última, a Query produz uma linha de resumo super-agregada extra.
 
-For example, without `ROLLUP`, a summary of the `sales` table based on `year`, `country`, and `product` might look like this, where the output indicates summary values only at the year/country/product level of analysis:
+Por exemplo, sem o `ROLLUP`, um resumo da tabela `sales` baseado em `year`, `country` e `product` pode se parecer com isto, onde a saída indica valores de resumo apenas no nível de análise year/country/product:
 
 ```sql
 mysql> SELECT year, country, product, SUM(profit) AS profit
@@ -69,7 +69,7 @@ mysql> SELECT year, country, product, SUM(profit) AS profit
 +------+---------+------------+--------+
 ```
 
-With `ROLLUP` added, the query produces several extra rows:
+Com o `ROLLUP` adicionado, a Query produz várias linhas extras:
 
 ```sql
 mysql> SELECT year, country, product, SUM(profit) AS profit
@@ -99,25 +99,25 @@ mysql> SELECT year, country, product, SUM(profit) AS profit
 +------+---------+------------+--------+
 ```
 
-Now the output includes summary information at four levels of analysis, not just one:
+Agora a saída inclui informações de resumo em quatro níveis de análise, e não apenas um:
 
-* Following each set of product rows for a given year and country, an extra super-aggregate summary row appears showing the total for all products. These rows have the `product` column set to `NULL`.
+*   Após cada conjunto de linhas de product para um determinado year e country, aparece uma linha de resumo super-agregada extra mostrando o total para todos os products. Nessas linhas, a coluna `product` é definida como `NULL`.
 
-* Following each set of rows for a given year, an extra super-aggregate summary row appears showing the total for all countries and products. These rows have the `country` and `products` columns set to `NULL`.
+*   Após cada conjunto de linhas para um determinado year, aparece uma linha de resumo super-agregada extra mostrando o total para todos os countries e products. Nessas linhas, as colunas `country` e `products` são definidas como `NULL`.
 
-* Finally, following all other rows, an extra super-aggregate summary row appears showing the grand total for all years, countries, and products. This row has the `year`, `country`, and `products` columns set to `NULL`.
+*   Finalmente, após todas as outras linhas, aparece uma linha de resumo super-agregada extra mostrando o total geral para todos os years, countries e products. Nessa linha, as colunas `year`, `country` e `products` são definidas como `NULL`.
 
-The `NULL` indicators in each super-aggregate row are produced when the row is sent to the client. The server looks at the columns named in the `GROUP BY` clause following the leftmost one that has changed value. For any column in the result set with a name that matches any of those names, its value is set to `NULL`. (If you specify grouping columns by column position, the server identifies which columns to set to `NULL` by position.)
+Os indicadores `NULL` em cada linha super-agregada são produzidos quando a linha é enviada ao cliente. O servidor analisa as colunas nomeadas na cláusula `GROUP BY` após a coluna mais à esquerda que teve seu valor alterado. Para qualquer coluna no result set (conjunto de resultados) com um nome que corresponda a um desses nomes, seu valor é definido como `NULL`. (Se você especificar as colunas de agrupamento pela posição da coluna, o servidor identifica quais colunas definir como `NULL` pela posição.)
 
-Because the `NULL` values in the super-aggregate rows are placed into the result set at such a late stage in query processing, you can test them as `NULL` values only in the select list or `HAVING` clause. You cannot test them as `NULL` values in join conditions or the `WHERE` clause to determine which rows to select. For example, you cannot add `WHERE product IS NULL` to the query to eliminate from the output all but the super-aggregate rows.
+Como os valores `NULL` nas linhas super-agregadas são inseridos no result set em um estágio tão tardio do processamento da Query, você pode testá-los como valores `NULL` apenas na lista de seleção (select list) ou na cláusula `HAVING`. Você não pode testá-los como valores `NULL` em condições de JOIN ou na cláusula `WHERE` para determinar quais linhas selecionar. Por exemplo, você não pode adicionar `WHERE product IS NULL` à Query para eliminar da saída todas as linhas, exceto as super-agregadas.
 
-The `NULL` values do appear as `NULL` on the client side and can be tested as such using any MySQL client programming interface. However, at this point, you cannot distinguish whether a `NULL` represents a regular grouped value or a super-aggregate value. In MySQL 8.0, you can use the `GROUPING()` function to test the distinction.
+Os valores `NULL` aparecem como `NULL` no lado do cliente e podem ser testados como tal usando qualquer interface de programação de cliente MySQL. No entanto, neste ponto, você não consegue distinguir se um `NULL` representa um valor agrupado regular ou um valor super-agregado. No MySQL 8.0, você pode usar a função `GROUPING()` para testar essa distinção.
 
-#### Other Considerations When using ROLLUP
+#### Outras Considerações ao usar ROLLUP
 
-The following discussion lists some behaviors specific to the MySQL implementation of `ROLLUP`.
+A discussão a seguir lista alguns comportamentos específicos da implementação do `ROLLUP` no MySQL.
 
-When you use `ROLLUP`, you cannot also use an `ORDER BY` clause to sort the results. In other words, `ROLLUP` and `ORDER BY` are mutually exclusive in MySQL. However, you still have some control over sort order. To work around the restriction that prevents using `ROLLUP` with `ORDER BY` and achieve a specific sort order of grouped results, generate the grouped result set as a derived table and apply `ORDER BY` to it. For example:
+Ao usar `ROLLUP`, você não pode usar uma cláusula `ORDER BY` para ordenar os resultados. Em outras palavras, `ROLLUP` e `ORDER BY` são mutuamente exclusivos no MySQL. No entanto, você ainda tem algum controle sobre a ordem de classificação (sort order). Para contornar a restrição que impede o uso de `ROLLUP` com `ORDER BY` e obter uma ordem de classificação específica dos resultados agrupados, gere o result set agrupado como uma tabela derivada (derived table) e aplique o `ORDER BY` a ela. Por exemplo:
 
 ```sql
 mysql> SELECT * FROM
@@ -133,9 +133,9 @@ mysql> SELECT * FROM
 +------+--------+
 ```
 
-In this case, the super-aggregate summary rows sort with the rows from which they are calculated, and their placement depends on sort order (at the beginning for ascending sort, at the end for descending sort).
+Neste caso, as linhas de resumo super-agregadas são classificadas junto com as linhas a partir das quais são calculadas, e seu posicionamento depende da ordem de classificação (no início para classificação ascendente, no final para classificação descendente).
 
-`LIMIT` can be used to restrict the number of rows returned to the client. `LIMIT` is applied after `ROLLUP`, so the limit applies against the extra rows added by `ROLLUP`. For example:
+O `LIMIT` pode ser usado para restringir o número de linhas retornadas ao cliente. O `LIMIT` é aplicado após o `ROLLUP`, portanto, o limite se aplica às linhas extras adicionadas pelo `ROLLUP`. Por exemplo:
 
 ```sql
 mysql> SELECT year, country, product, SUM(profit) AS profit
@@ -153,9 +153,9 @@ mysql> SELECT year, country, product, SUM(profit) AS profit
 +------+---------+------------+--------+
 ```
 
-Using `LIMIT` with `ROLLUP` may produce results that are more difficult to interpret, because there is less context for understanding the super-aggregate rows.
+O uso de `LIMIT` com `ROLLUP` pode produzir resultados mais difíceis de interpretar, pois há menos contexto para a compreensão das linhas super-agregadas.
 
-A MySQL extension permits a column that does not appear in the `GROUP BY` list to be named in the select list. (For information about nonaggregated columns and `GROUP BY`, see Section 12.19.3, “MySQL Handling of GROUP BY”.) In this case, the server is free to choose any value from this nonaggregated column in summary rows, and this includes the extra rows added by `WITH ROLLUP`. For example, in the following query, `country` is a nonaggregated column that does not appear in the `GROUP BY` list and values chosen for this column are nondeterministic:
+Uma extensão do MySQL permite que uma coluna que não aparece na lista `GROUP BY` seja nomeada na select list. (Para obter informações sobre colunas não agregadas e `GROUP BY`, consulte a Seção 12.19.3, “Tratamento de GROUP BY pelo MySQL”.) Neste caso, o servidor é livre para escolher qualquer valor dessa coluna não agregada nas linhas de resumo, e isso inclui as linhas extras adicionadas por `WITH ROLLUP`. Por exemplo, na seguinte Query, `country` é uma coluna não agregada que não aparece na lista `GROUP BY`, e os valores escolhidos para esta coluna são não determinísticos:
 
 ```sql
 mysql> SELECT year, country, SUM(profit) AS profit
@@ -170,7 +170,7 @@ mysql> SELECT year, country, SUM(profit) AS profit
 +------+---------+--------+
 ```
 
-This behavior is permitted when the `ONLY_FULL_GROUP_BY` SQL mode is not enabled. If that mode is enabled, the server rejects the query as illegal because `country` is not listed in the `GROUP BY` clause. With `ONLY_FULL_GROUP_BY` enabled, you can still execute the query by using the `ANY_VALUE()` function for nondeterministic-value columns:
+Este comportamento é permitido quando o modo SQL `ONLY_FULL_GROUP_BY` não está habilitado. Se esse modo estiver habilitado, o servidor rejeitará a Query como ilegal, pois `country` não está listado na cláusula `GROUP BY`. Com `ONLY_FULL_GROUP_BY` habilitado, você ainda pode executar a Query usando a função `ANY_VALUE()` para colunas com valores não determinísticos:
 
 ```sql
 mysql> SELECT year, ANY_VALUE(country) AS country, SUM(profit) AS profit

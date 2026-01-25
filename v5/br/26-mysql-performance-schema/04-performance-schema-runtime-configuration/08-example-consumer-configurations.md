@@ -1,10 +1,10 @@
-### 25.4.8 Example Consumer Configurations
+### 25.4.8 Exemplos de Configurações de Consumers
 
-The consumer settings in the [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table form a hierarchy from higher levels to lower. The following discussion describes how consumers work, showing specific configurations and their effects as consumer settings are enabled progressively from high to low. The consumer values shown are representative. The general principles described here apply to other consumer values that may be available.
+As configurações de consumer na tabela [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") formam uma hierarquia de níveis mais altos para mais baixos. A discussão a seguir descreve como os consumers funcionam, mostrando configurações específicas e seus efeitos à medida que as configurações de consumer são ativadas progressivamente de cima para baixo. Os valores de consumer mostrados são representativos. Os princípios gerais descritos aqui se aplicam a outros valores de consumer que possam estar disponíveis.
 
-The configuration descriptions occur in order of increasing functionality and overhead. If you do not need the information provided by enabling lower-level settings, disable them and the Performance Schema executes less code on your behalf and you have less information to sift through.
+As descrições das configurações ocorrem em ordem crescente de funcionalidade e overhead. Se você não precisar das informações fornecidas pela ativação de configurações de nível inferior, desabilite-as, e o Performance Schema executará menos código em seu nome e você terá menos informação para analisar.
 
-The [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table contains the following hierarchy of values:
+A tabela [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") contém a seguinte hierarquia de valores:
 
 ```sql
 global_instrumentation
@@ -24,25 +24,24 @@ global_instrumentation
  statements_digest
 ```
 
-Note
+Nota
+Na hierarquia de consumer, os consumers para waits, stages, statements e transactions estão todos no mesmo nível. Isso difere da hierarquia de aninhamento de event, na qual wait events se aninham em stage events, que se aninham em statement events, que se aninham em transaction events.
 
-In the consumer hierarchy, the consumers for waits, stages, statements, and transactions are all at the same level. This differs from the event nesting hierarchy, for which wait events nest within stage events, which nest within statement events, which nest within transaction events.
+Se uma determinada configuração de consumer for `NO`, o Performance Schema desabilita a instrumentation associada a esse consumer e ignora todas as configurações de nível inferior. Se uma determinada configuração for `YES`, o Performance Schema habilita a instrumentation associada a ela e verifica as configurações no próximo nível mais baixo. Para uma descrição das regras para cada consumer, consulte [Seção 25.4.7, “Pré-Filtragem por Consumer”](performance-schema-consumer-filtering.html "25.4.7 Pre-Filtering by Consumer").
 
-If a given consumer setting is `NO`, the Performance Schema disables the instrumentation associated with the consumer and ignores all lower-level settings. If a given setting is `YES`, the Performance Schema enables the instrumentation associated with it and checks the settings at the next lowest level. For a description of the rules for each consumer, see [Section 25.4.7, “Pre-Filtering by Consumer”](performance-schema-consumer-filtering.html "25.4.7 Pre-Filtering by Consumer").
+Por exemplo, se `global_instrumentation` estiver ativada, `thread_instrumentation` é verificada. Se `thread_instrumentation` estiver ativada, os consumers `events_xxx_current` são verificados. Se, dentre estes, `events_waits_current` estiver ativado, `events_waits_history` e `events_waits_history_long` são verificados.
 
-For example, if `global_instrumentation` is enabled, `thread_instrumentation` is checked. If `thread_instrumentation` is enabled, the `events_xxx_current` consumers are checked. If of these `events_waits_current` is enabled, `events_waits_history` and `events_waits_history_long` are checked.
+Cada uma das descrições de configuração a seguir indica quais elementos de setup o Performance Schema verifica e quais tabelas de saída ele mantém (ou seja, para quais tabelas ele coleta informações).
 
-Each of the following configuration descriptions indicates which setup elements the Performance Schema checks and which output tables it maintains (that is, for which tables it collects information).
+* [Nenhuma Instrumentation](performance-schema-consumer-configurations.html#performance-schema-consumer-configurations-no-instrumentation "No Instrumentation")
+* [Somente Instrumentation Global](performance-schema-consumer-configurations.html#performance-schema-consumer-configurations-global-instrumentation-only "Global Instrumentation Only")
+* [Somente Instrumentation Global e Thread](performance-schema-consumer-configurations.html#performance-schema-consumer-configurations-global-and-thread-instrumentation-only "Global and Thread Instrumentation Only")
+* [Instrumentation Global, Thread e Current-Event](performance-schema-consumer-configurations.html#performance-schema-consumer-configurations-global-thread-and-current-event-instrumentation "Global, Thread, and Current-Event Instrumentation")
+* [Instrumentation Global, Thread, Current-Event e Event-History](performance-schema-consumer-configurations.html#performance-schema-consumer-configurations-global-thread-current-event-and-event-history-instrumentation "Global, Thread, Current-Event, and Event-History instrumentation")
 
-* [No Instrumentation](performance-schema-consumer-configurations.html#performance-schema-consumer-configurations-no-instrumentation "No Instrumentation")
-* [Global Instrumentation Only](performance-schema-consumer-configurations.html#performance-schema-consumer-configurations-global-instrumentation-only "Global Instrumentation Only")
-* [Global and Thread Instrumentation Only](performance-schema-consumer-configurations.html#performance-schema-consumer-configurations-global-and-thread-instrumentation-only "Global and Thread Instrumentation Only")
-* [Global, Thread, and Current-Event Instrumentation](performance-schema-consumer-configurations.html#performance-schema-consumer-configurations-global-thread-and-current-event-instrumentation "Global, Thread, and Current-Event Instrumentation")
-* [Global, Thread, Current-Event, and Event-History instrumentation](performance-schema-consumer-configurations.html#performance-schema-consumer-configurations-global-thread-current-event-and-event-history-instrumentation "Global, Thread, Current-Event, and Event-History instrumentation")
+#### Nenhuma Instrumentation
 
-#### No Instrumentation
-
-Server configuration state:
+Estado da configuração do Server:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_consumers;
@@ -54,19 +53,19 @@ mysql> SELECT * FROM performance_schema.setup_consumers;
 +---------------------------+---------+
 ```
 
-In this configuration, nothing is instrumented.
+Nesta configuração, nada é instrumentado.
 
-Setup elements checked:
+Elementos de Setup verificados:
 
-* Table [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table"), consumer `global_instrumentation`
+* Tabela [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table"), consumer `global_instrumentation`
 
-Output tables maintained:
+Tabelas de saída mantidas:
 
-* None
+* Nenhuma
 
-#### Global Instrumentation Only
+#### Somente Instrumentation Global
 
-Server configuration state:
+Estado da configuração do Server:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_consumers;
@@ -79,17 +78,17 @@ mysql> SELECT * FROM performance_schema.setup_consumers;
 +---------------------------+---------+
 ```
 
-In this configuration, instrumentation is maintained only for global states. Per-thread instrumentation is disabled.
+Nesta configuração, a instrumentation é mantida apenas para estados globais. A instrumentation por Thread é desabilitada.
 
-Additional setup elements checked, relative to the preceding configuration:
+Elementos de Setup adicionais verificados, em relação à configuração anterior:
 
-* Table [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table"), consumer `thread_instrumentation`
+* Tabela [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table"), consumer `thread_instrumentation`
 
-* Table [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table")
-* Table [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table")
-* Table [`setup_timers`](performance-schema-setup-timers-table.html "25.12.2.5 The setup_timers Table")
+* Tabela [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table")
+* Tabela [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table")
+* Tabela [`setup_timers`](performance-schema-setup-timers-table.html "25.12.2.5 The setup_timers Table")
 
-Additional output tables maintained, relative to the preceding configuration:
+Tabelas de saída adicionais mantidas, em relação à configuração anterior:
 
 * [`mutex_instances`](performance-schema-mutex-instances-table.html "25.12.3.3 The mutex_instances Table")
 * [`rwlock_instances`](performance-schema-rwlock-instances-table.html "25.12.3.4 The rwlock_instances Table")
@@ -112,9 +111,9 @@ Additional output tables maintained, relative to the preceding configuration:
 * [`events_statements_summary_global_by_event_name`](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables")
 * [`events_transactions_summary_global_by_event_name`](performance-schema-transaction-summary-tables.html "25.12.15.4 Transaction Summary Tables")
 
-#### Global and Thread Instrumentation Only
+#### Somente Instrumentation Global e Thread
 
-Server configuration state:
+Estado da configuração do Server:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_consumers;
@@ -134,22 +133,22 @@ mysql> SELECT * FROM performance_schema.setup_consumers;
 +----------------------------------+---------+
 ```
 
-In this configuration, instrumentation is maintained globally and per thread. No individual events are collected in the current-events or event-history tables.
+Nesta configuração, a instrumentation é mantida globalmente e por Thread. Nenhum event individual é coletado nas tabelas current-events ou event-history.
 
-Additional setup elements checked, relative to the preceding configuration:
+Elementos de Setup adicionais verificados, em relação à configuração anterior:
 
-* Table [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table"), consumers `events_xxx_current`, where *`xxx`* is `waits`, `stages`, `statements`, `transactions`
+* Tabela [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table"), consumers `events_xxx_current`, onde *`xxx`* é `waits`, `stages`, `statements`, `transactions`
 
-* Table [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table")
-* Column `threads.instrumented`
+* Tabela [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table")
+* Coluna `threads.instrumented`
 
-Additional output tables maintained, relative to the preceding configuration:
+Tabelas de saída adicionais mantidas, em relação à configuração anterior:
 
-* `events_xxx_summary_by_yyy_by_event_name`, where *`xxx`* is `waits`, `stages`, `statements`, `transactions`; and *`yyy`* is `thread`, `user`, `host`, `account`
+* `events_xxx_summary_by_yyy_by_event_name`, onde *`xxx`* é `waits`, `stages`, `statements`, `transactions`; e *`yyy`* é `thread`, `user`, `host`, `account`
 
-#### Global, Thread, and Current-Event Instrumentation
+#### Instrumentation Global, Thread e Current-Event
 
-Server configuration state:
+Estado da configuração do Server:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_consumers;
@@ -174,23 +173,23 @@ mysql> SELECT * FROM performance_schema.setup_consumers;
 +----------------------------------+---------+
 ```
 
-In this configuration, instrumentation is maintained globally and per thread. Individual events are collected in the current-events table, but not in the event-history tables.
+Nesta configuração, a instrumentation é mantida globalmente e por Thread. Events individuais são coletados na tabela current-events, mas não nas tabelas event-history.
 
-Additional setup elements checked, relative to the preceding configuration:
+Elementos de Setup adicionais verificados, em relação à configuração anterior:
 
-* Consumers `events_xxx_history`, where *`xxx`* is `waits`, `stages`, `statements`, `transactions`
+* Consumers `events_xxx_history`, onde *`xxx`* é `waits`, `stages`, `statements`, `transactions`
 
-* Consumers `events_xxx_history_long`, where *`xxx`* is `waits`, `stages`, `statements`, `transactions`
+* Consumers `events_xxx_history_long`, onde *`xxx`* é `waits`, `stages`, `statements`, `transactions`
 
-Additional output tables maintained, relative to the preceding configuration:
+Tabelas de saída adicionais mantidas, em relação à configuração anterior:
 
-* `events_xxx_current`, where *`xxx`* is `waits`, `stages`, `statements`, `transactions`
+* `events_xxx_current`, onde *`xxx`* é `waits`, `stages`, `statements`, `transactions`
 
-#### Global, Thread, Current-Event, and Event-History instrumentation
+#### Instrumentation Global, Thread, Current-Event e Event-History
 
-The preceding configuration collects no event history because the `events_xxx_history` and `events_xxx_history_long` consumers are disabled. Those consumers can be enabled separately or together to collect event history per thread, globally, or both.
+A configuração anterior não coleta event history porque os consumers `events_xxx_history` e `events_xxx_history_long` estão desabilitados. Esses consumers podem ser habilitados separadamente ou juntos para coletar event history por Thread, globalmente, ou ambos.
 
-This configuration collects event history per thread, but not globally:
+Esta configuração coleta event history por Thread, mas não globalmente:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_consumers;
@@ -215,11 +214,11 @@ mysql> SELECT * FROM performance_schema.setup_consumers;
 +----------------------------------+---------+
 ```
 
-Event-history tables maintained for this configuration:
+Tabelas de Event-History mantidas para esta configuração:
 
-* `events_xxx_history`, where *`xxx`* is `waits`, `stages`, `statements`, `transactions`
+* `events_xxx_history`, onde *`xxx`* é `waits`, `stages`, `statements`, `transactions`
 
-This configuration collects event history globally, but not per thread:
+Esta configuração coleta event history globalmente, mas não por Thread:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_consumers;
@@ -244,11 +243,11 @@ mysql> SELECT * FROM performance_schema.setup_consumers;
 +----------------------------------+---------+
 ```
 
-Event-history tables maintained for this configuration:
+Tabelas de Event-History mantidas para esta configuração:
 
-* `events_xxx_history_long`, where *`xxx`* is `waits`, `stages`, `statements`, `transactions`
+* `events_xxx_history_long`, onde *`xxx`* é `waits`, `stages`, `statements`, `transactions`
 
-This configuration collects event history per thread and globally:
+Esta configuração coleta event history por Thread e globalmente:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_consumers;
@@ -273,8 +272,8 @@ mysql> SELECT * FROM performance_schema.setup_consumers;
 +----------------------------------+---------+
 ```
 
-Event-history tables maintained for this configuration:
+Tabelas de Event-History mantidas para esta configuração:
 
-* `events_xxx_history`, where *`xxx`* is `waits`, `stages`, `statements`, `transactions`
+* `events_xxx_history`, onde *`xxx`* é `waits`, `stages`, `statements`, `transactions`
 
-* `events_xxx_history_long`, where *`xxx`* is `waits`, `stages`, `statements`, `transactions`
+* `events_xxx_history_long`, onde *`xxx`* é `waits`, `stages`, `statements`, `transactions`

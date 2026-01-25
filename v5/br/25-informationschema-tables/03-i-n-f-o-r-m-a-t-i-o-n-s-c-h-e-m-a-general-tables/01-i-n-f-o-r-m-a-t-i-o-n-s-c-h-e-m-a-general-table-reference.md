@@ -1,7 +1,40 @@
-### 24.3.1 INFORMATION_SCHEMA General Table Reference
+### 24.3.1 Referência Geral das Tabelas INFORMATION_SCHEMA
 
-The following table summarizes `INFORMATION_SCHEMA` general tables. For greater detail, see the individual table descriptions.
+A tabela a seguir resume as tabelas gerais do `INFORMATION_SCHEMA`. Para detalhes adicionais, consulte as descrições individuais de cada tabela.
 
-**Table 24.2 INFORMATION_SCHEMA General Tables**
+**Tabela 24.2 Tabelas Gerais do INFORMATION_SCHEMA**
 
-<table frame="box" rules="all" summary="A reference that lists INFORMATION_SCHEMA general tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>CHARACTER_SETS</code></td> <td>Available character sets</td> </tr><tr><td><code>COLLATION_CHARACTER_SET_APPLICABILITY</code></td> <td>Character set applicable to each collation</td> </tr><tr><td><code>COLLATIONS</code></td> <td>Collations for each character set</td> </tr><tr><td><code>COLUMN_PRIVILEGES</code></td> <td>Privileges defined on columns</td> </tr><tr><td><code>COLUMNS</code></td> <td>Columns in each table</td> </tr><tr><td><code>ENGINES</code></td> <td>Storage engine properties</td> </tr><tr><td><code>EVENTS</code></td> <td>Event Manager events</td> </tr><tr><td><code>FILES</code></td> <td>Files that store tablespace data</td> </tr><tr><td><code>GLOBAL_STATUS</code></td> <td>Global status variables</td> </tr><tr><td><code>GLOBAL_VARIABLES</code></td> <td>Global system variables</td> </tr><tr><td><code>KEY_COLUMN_USAGE</code></td> <td>Which key columns have constraints</td> </tr><tr><td><code>ndb_transid_mysql_connection_map</code></td> <td>NDB transaction information</td> </tr><tr><td><code>OPTIMIZER_TRACE</code></td> <td>Information produced by optimizer trace activity</td> </tr><tr><td><code>PARAMETERS</code></td> <td>Stored routine parameters and stored function return values</td> </tr><tr><td><code>PARTITIONS</code></td> <td>Table partition information</td> </tr><tr><td><code>PLUGINS</code></td> <td>Plugin information</td> </tr><tr><td><code>PROCESSLIST</code></td> <td>Information about currently executing threads</td> </tr><tr><td><code>PROFILING</code></td> <td>Statement profiling information</td> </tr><tr><td><code>REFERENTIAL_CONSTRAINTS</code></td> <td>Foreign key information</td> </tr><tr><td><code>ROUTINES</code></td> <td>Stored routine information</td> </tr><tr><td><code>SCHEMA_PRIVILEGES</code></td> <td>Privileges defined on schemas</td> </tr><tr><td><code>SCHEMATA</code></td> <td>Schema information</td> </tr><tr><td><code>SESSION_STATUS</code></td> <td>Status variables for current session</td> </tr><tr><td><code>SESSION_VARIABLES</code></td> <td>System variables for current session</td> </tr><tr><td><code>STATISTICS</code></td> <td>Table index statistics</td> </tr><tr><td><code>TABLE_CONSTRAINTS</code></td> <td>Which tables have constraints</td> </tr><tr><td><code>TABLE_PRIVILEGES</code></td> <td>Privileges defined on tables</td> </tr><tr><td><code>TABLES</code></td> <td>Table information</td> </tr><tr><td><code>TABLESPACES</code></td> <td>Tablespace information</td> </tr><tr><td><code>TRIGGERS</code></td> <td>Trigger information</td> </tr><tr><td><code>USER_PRIVILEGES</code></td> <td>Privileges defined globally per user</td> </tr><tr><td><code>VIEWS</code></td> <td>View information</td> </tr></tbody></table>
+| Nome da Tabela | Descrição |
+| :--- | :--- |
+| `CHARACTER_SETS` | Conjuntos de Character Set disponíveis |
+| `COLLATION_CHARACTER_SET_APPLICABILITY` | Character Set aplicável a cada collation |
+| `COLLATIONS` | Collations para cada Character Set |
+| `COLUMN_PRIVILEGES` | Privilégios definidos em columns |
+| `COLUMNS` | Columns em cada table |
+| `ENGINES` | Propriedades do Storage Engine |
+| `EVENTS` | Events do Event Manager |
+| `FILES` | Files que armazenam dados de tablespace |
+| `GLOBAL_STATUS` | Variáveis de status globais |
+| `GLOBAL_VARIABLES` | Variáveis de sistema globais |
+| `KEY_COLUMN_USAGE` | Quais key columns possuem constraints |
+| `ndb_transid_mysql_connection_map` | Informações sobre transações NDB |
+| `OPTIMIZER_TRACE` | Informações produzidas pela atividade de trace do Optimizer |
+| `PARAMETERS` | Parâmetros de Stored Routines e valores de retorno de Stored Functions |
+| `PARTITIONS` | Informações sobre Partition de tabela |
+| `PLUGINS` | Informações sobre Plugins |
+| `PROCESSLIST` | Informações sobre Threads em execução |
+| `PROFILING` | Informações de profiling de Statement |
+| `REFERENTIAL_CONSTRAINTS` | Informações sobre Foreign Key |
+| `ROUTINES` | Informações sobre Stored Routines |
+| `SCHEMA_PRIVILEGES` | Privilégios definidos em schemas |
+| `SCHEMATA` | Informações sobre Schemas |
+| `SESSION_STATUS` | Variáveis de Status para a session atual |
+| `SESSION_VARIABLES` | Variáveis de sistema para a session atual |
+| `STATISTICS` | Estatísticas de Index de tabela |
+| `TABLE_CONSTRAINTS` | Quais tables possuem constraints |
+| `TABLE_PRIVILEGES` | Privilégios definidos em tables |
+| `TABLES` | Informações sobre tables |
+| `TABLESPACES` | Informações sobre Tablespace |
+| `TRIGGERS` | Informações sobre Triggers |
+| `USER_PRIVILEGES` | Privilégios definidos globalmente por user |
+| `VIEWS` | Informações sobre Views |

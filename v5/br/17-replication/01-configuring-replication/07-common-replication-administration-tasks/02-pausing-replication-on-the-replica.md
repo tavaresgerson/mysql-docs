@@ -1,33 +1,33 @@
-#### 16.1.7.2 Pausing Replication on the Replica
+#### 16.1.7.2 Pausando a Replication na Replica
 
-You can stop and start replication on the replica using the [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement") and [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement") statements.
+Você pode parar e iniciar a Replication na Replica usando as instruções [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement") e [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement").
 
-To stop processing of the binary log from the source, use [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement"):
+Para interromper o processamento do Binary Log da Source, use [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement"):
 
 ```sql
 mysql> STOP SLAVE;
 ```
 
-When replication is stopped, the replication I/O thread stops reading events from the source's binary log and writing them to the relay log, and the replication SQL thread stops reading events from the relay log and executing them. You can pause the replication I/O and SQL threads individually by specifying the thread type:
+Quando a Replication é interrompida, o Replication I/O Thread para de ler eventos do Binary Log da Source e de escrevê-los no Relay Log, e o Replication SQL Thread para de ler eventos do Relay Log e executá-los. Você pode pausar os Replication I/O e SQL Threads individualmente, especificando o tipo de Thread:
 
 ```sql
 mysql> STOP SLAVE IO_THREAD;
 mysql> STOP SLAVE SQL_THREAD;
 ```
 
-To start execution again, use the [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement") statement:
+Para iniciar a execução novamente, use a instrução [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement"):
 
 ```sql
 mysql> START SLAVE;
 ```
 
-To start a particular thread, specify the thread type:
+Para iniciar um Thread específico, especifique o tipo de Thread:
 
 ```sql
 mysql> START SLAVE IO_THREAD;
 mysql> START SLAVE SQL_THREAD;
 ```
 
-For a replica that performs updates only by processing events from the source, stopping only the replication SQL thread can be useful if you want to perform a backup or other task. The replication I/O thread continues to read events from the source but they are not executed. This makes it easier for the replica to catch up when you restart the replication SQL thread.
+Para uma Replica que executa updates apenas processando eventos da Source, parar somente o Replication SQL Thread pode ser útil se você deseja realizar um backup ou outra tarefa. O Replication I/O Thread continua lendo eventos da Source, mas eles não são executados. Isso facilita que a Replica se atualize quando você reiniciar o Replication SQL Thread.
 
-Stopping only the replication I/O thread enables the events in the relay log to be executed by the replication SQL thread up to the point where the relay log ends. This can be useful when you want to pause execution to catch up with events already received from the source, when you want to perform administration on the replica but also ensure that it has processed all updates to a specific point. This method can also be used to pause event receipt on the replica while you conduct administration on the source. Stopping the I/O thread but permitting the SQL thread to run helps ensure that there is not a massive backlog of events to be executed when replication is started again.
+Parar apenas o Replication I/O Thread permite que os eventos no Relay Log sejam executados pelo Replication SQL Thread até o ponto onde o Relay Log termina. Isso pode ser útil quando você deseja pausar a execução para processar os eventos já recebidos da Source, quando você quer realizar a administração na Replica, mas também garantir que ela processou todos os updates até um ponto específico. Este método também pode ser usado para pausar o recebimento de eventos na Replica enquanto você conduz a administração na Source. Parar o I/O Thread, mas permitir que o SQL Thread continue em execução, ajuda a garantir que não haverá um *backlog* massivo de eventos a serem executados quando a Replication for iniciada novamente.

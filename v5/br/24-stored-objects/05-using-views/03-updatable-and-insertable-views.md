@@ -1,42 +1,42 @@
-### 23.5.3 Updatable and Insertable Views
+### 23.5.3 Views Atualizáveis e Inseríveis
 
-Some views are updatable and references to them can be used to specify tables to be updated in data change statements. That is, you can use them in statements such as `UPDATE`, `DELETE`, or `INSERT` to update the contents of the underlying table. Derived tables can also be specified in multiple-table `UPDATE` and `DELETE` statements, but can only be used for reading data to specify rows to be updated or deleted. Generally, the view references must be updatable, meaning that they may be merged and not materialized. Composite views have more complex rules.
+Algumas views são atualizáveis, e referências a elas podem ser usadas para especificar tabelas a serem atualizadas em instruções de mudança de dados. Ou seja, você pode usá-las em instruções como `UPDATE`, `DELETE` ou `INSERT` para atualizar o conteúdo da tabela subjacente. Tabelas derivadas também podem ser especificadas em instruções `UPDATE` e `DELETE` de múltiplas tabelas, mas só podem ser usadas para leitura de dados, a fim de especificar linhas a serem atualizadas ou excluídas. Geralmente, as referências de view devem ser atualizáveis, o que significa que podem ser submetidas ao algoritmo MERGE e não materializadas. Views compostas possuem regras mais complexas.
 
-For a view to be updatable, there must be a one-to-one relationship between the rows in the view and the rows in the underlying table. There are also certain other constructs that make a view nonupdatable. To be more specific, a view is not updatable if it contains any of the following:
+Para que uma view seja atualizável, deve haver um relacionamento um-para-um entre as linhas na view e as linhas na tabela subjacente. Existem também outras construções que tornam uma view não atualizável. Mais especificamente, uma view não é atualizável se contiver algum dos seguintes elementos:
 
-* Aggregate functions (`SUM()`, `MIN()`, `MAX()`, `COUNT()`, and so forth)
+* Funções de agregação (`SUM()`, `MIN()`, `MAX()`, `COUNT()`, etc.)
 
 * `DISTINCT`
 * `GROUP BY`
 * `HAVING`
-* `UNION` or `UNION ALL`
+* `UNION` ou `UNION ALL`
 
-* Subquery in the select list
+* Subquery na lista SELECT
 
-  Before MySQL 5.7.11, subqueries in the select list fail for `INSERT`, but are okay for `UPDATE`, `DELETE`. As of MySQL 5.7.11, that is still true for nondependent subqueries. For dependent subqueries in the select list, no data change statements are permitted.
+  Antes do MySQL 5.7.11, subqueries na lista SELECT falhavam para `INSERT`, mas eram aceitas para `UPDATE`, `DELETE`. A partir do MySQL 5.7.11, isso ainda é verdade para subqueries não dependentes. Para subqueries dependentes na lista SELECT, nenhuma instrução de alteração de dados é permitida.
 
-* Certain joins (see additional join discussion later in this section)
+* Certos JOINs (veja a discussão adicional sobre JOINs mais adiante nesta seção)
 
-* Reference to nonupdatable view in the `FROM` clause
+* Referência a view não atualizável na cláusula `FROM`
 
-* Subquery in the `WHERE` clause that refers to a table in the `FROM` clause
+* Subquery na cláusula `WHERE` que se refere a uma tabela na cláusula `FROM`
 
-* Refers only to literal values (in this case, there is no underlying table to update)
+* Refere-se apenas a valores literais (neste caso, não há tabela subjacente para atualizar)
 
-* `ALGORITHM = TEMPTABLE` (use of a temporary table always makes a view nonupdatable)
+* `ALGORITHM = TEMPTABLE` (o uso de uma tabela temporária sempre torna a view não atualizável)
 
-* Multiple references to any column of a base table (fails for `INSERT`, okay for `UPDATE`, `DELETE`)
+* Múltiplas referências a qualquer coluna de uma tabela base (falha para `INSERT`, aceita para `UPDATE`, `DELETE`)
 
-A generated column in a view is considered updatable because it is possible to assign to it. However, if such a column is updated explicitly, the only permitted value is `DEFAULT`. For information about generated columns, see Section 13.1.18.7, “CREATE TABLE and Generated Columns”.
+Uma coluna gerada em uma view é considerada atualizável porque é possível atribuir a ela. No entanto, se tal coluna for atualizada explicitamente, o único valor permitido é `DEFAULT`. Para informações sobre colunas geradas, consulte a Seção 13.1.18.7, “CREATE TABLE e Colunas Geradas”.
 
-It is sometimes possible for a multiple-table view to be updatable, assuming that it can be processed with the `MERGE` algorithm. For this to work, the view must use an inner join (not an outer join or a `UNION`). Also, only a single table in the view definition can be updated, so the `SET` clause must name only columns from one of the tables in the view. Views that use `UNION ALL` are not permitted even though they might be theoretically updatable.
+Às vezes, é possível que uma view de múltiplas tabelas seja atualizável, presumindo que ela possa ser processada com o algoritmo `MERGE`. Para que isso funcione, a view deve usar um inner JOIN (não um outer JOIN ou um `UNION`). Além disso, apenas uma única tabela na definição da view pode ser atualizada, então a cláusula `SET` deve nomear apenas colunas de uma das tabelas na view. Views que usam `UNION ALL` não são permitidas, mesmo que possam ser teoricamente atualizáveis.
 
-With respect to insertability (being updatable with `INSERT` statements), an updatable view is insertable if it also satisfies these additional requirements for the view columns:
+Em relação à inseribilidade (ser atualizável com instruções `INSERT`), uma view atualizável é inserível se também satisfizer estes requisitos adicionais para as colunas da view:
 
-* There must be no duplicate view column names.
-* The view must contain all columns in the base table that do not have a default value.
+* Não deve haver nomes de colunas duplicados na view.
+* A view deve conter todas as colunas na tabela base que não possuem um valor `DEFAULT`.
 
-* The view columns must be simple column references. They must not be expressions, such as these:
+* As colunas da view devem ser referências de coluna simples. Elas não devem ser expressões, como estas:
 
   ```sql
   3.14159
@@ -46,15 +46,15 @@ With respect to insertability (being updatable with `INSERT` statements), an upd
   (subquery)
   ```
 
-MySQL sets a flag, called the view updatability flag, at `CREATE VIEW` time. The flag is set to `YES` (true) if `UPDATE` and `DELETE` (and similar operations) are legal for the view. Otherwise, the flag is set to `NO` (false). The `IS_UPDATABLE` column in the Information Schema `VIEWS` table displays the status of this flag.
+O MySQL define um flag, chamado flag de atualizabilidade da view, no momento do `CREATE VIEW`. O flag é definido como `YES` (verdadeiro) se `UPDATE` e `DELETE` (e operações semelhantes) forem legais para a view. Caso contrário, o flag é definido como `NO` (falso). A coluna `IS_UPDATABLE` na tabela `VIEWS` do Information Schema exibe o status deste flag.
 
-If a view is not updatable, statements such `UPDATE`, `DELETE`, and `INSERT` are illegal and are rejected. (Even if a view is updatable, it might not be possible to insert into it, as described elsewhere in this section.)
+Se uma view não for atualizável, instruções como `UPDATE`, `DELETE` e `INSERT` são ilegais e rejeitadas. (Mesmo que uma view seja atualizável, pode não ser possível inserir dados nela, conforme descrito em outra parte desta seção.)
 
-The `IS_UPDATABLE` flag may be unreliable if a view depends on one or more other views, and one of these underlying views is updated. Regardless of the `IS_UPDATABLE` value, the server keeps track of the updatability of a view and correctly rejects data change operations to views that are not updatable. If the `IS_UPDATABLE` value for a view has become inaccurate to due to changes to underlying views, the value can be updated by deleting and re-creating the view.
+O flag `IS_UPDATABLE` pode não ser confiável se uma view depender de uma ou mais outras views, e uma dessas views subjacentes for atualizada. Independentemente do valor de `IS_UPDATABLE`, o servidor rastreia a atualizabilidade de uma view e rejeita corretamente as operações de alteração de dados em views que não são atualizáveis. Se o valor de `IS_UPDATABLE` para uma view se tornar impreciso devido a alterações nas views subjacentes, o valor pode ser atualizado excluindo e recriando a view.
 
-The updatability of views may be affected by the value of the `updatable_views_with_limit` system variable. See Section 5.1.7, “Server System Variables”.
+A atualizabilidade das views pode ser afetada pelo valor da variável de sistema `updatable_views_with_limit`. Consulte a Seção 5.1.7, “Variáveis de Sistema do Servidor”.
 
-For the following discussion, suppose that these tables and views exist:
+Para a discussão a seguir, suponha que estas tabelas e views existam:
 
 ```sql
 CREATE TABLE t1 (x INTEGER);
@@ -64,90 +64,90 @@ CREATE VIEW vup AS SELECT * FROM t2;
 CREATE VIEW vjoin AS SELECT * FROM vmat JOIN vup ON vmat.s=vup.c;
 ```
 
-`INSERT`, `UPDATE`, and `DELETE` statements are permitted as follows:
+As instruções `INSERT`, `UPDATE` e `DELETE` são permitidas da seguinte forma:
 
-* `INSERT`: The insert table of an `INSERT` statement may be a view reference that is merged. If the view is a join view, all components of the view must be updatable (not materialized). For a multiple-table updatable view, `INSERT` can work if it inserts into a single table.
+* `INSERT`: A tabela de inserção de uma instrução `INSERT` pode ser uma referência de view que é submetida ao algoritmo MERGE. Se a view for uma view JOIN, todos os componentes da view devem ser atualizáveis (não materializados). Para uma view atualizável de múltiplas tabelas, `INSERT` pode funcionar se inserir em uma única tabela.
 
-  This statement is invalid because one component of the join view is nonupdatable:
+  Esta instrução é inválida porque um componente da view JOIN não é atualizável:
 
   ```sql
   INSERT INTO vjoin (c) VALUES (1);
   ```
 
-  This statement is valid; the view contains no materialized components:
+  Esta instrução é válida; a view não contém componentes materializados:
 
   ```sql
   INSERT INTO vup (c) VALUES (1);
   ```
 
-* `UPDATE`: The table or tables to be updated in an `UPDATE` statement may be view references that are merged. If a view is a join view, at least one component of the view must be updatable (this differs from `INSERT`).
+* `UPDATE`: A tabela ou tabelas a serem atualizadas em uma instrução `UPDATE` podem ser referências de view que são submetidas ao algoritmo MERGE. Se uma view for uma view JOIN, pelo menos um componente da view deve ser atualizável (isso difere do `INSERT`).
 
-  In a multiple-table `UPDATE` statement, the updated table references of the statement must be base tables or updatable view references. Nonupdated table references may be materialized views or derived tables.
+  Em uma instrução `UPDATE` de múltiplas tabelas, as referências de tabela atualizadas da instrução devem ser tabelas base ou referências de view atualizáveis. Referências de tabela não atualizadas podem ser views materializadas ou tabelas derivadas.
 
-  This statement is valid; column `c` is from the updatable part of the join view:
+  Esta instrução é válida; a coluna `c` é da parte atualizável da view JOIN:
 
   ```sql
   UPDATE vjoin SET c=c+1;
   ```
 
-  This statement is invalid; column `x` is from the nonupdatable part:
+  Esta instrução é inválida; a coluna `x` é da parte não atualizável:
 
   ```sql
   UPDATE vjoin SET x=x+1;
   ```
 
-  This statement is valid; the updated table reference of the multiple-table `UPDATE` is an updatable view (`vup`):
+  Esta instrução é válida; a referência de tabela atualizada do `UPDATE` de múltiplas tabelas é uma view atualizável (`vup`):
 
   ```sql
   UPDATE vup JOIN (SELECT SUM(x) AS s FROM t1) AS dt ON ...
   SET c=c+1;
   ```
 
-  This statement is invalid; it tries to update a materialized derived table:
+  Esta instrução é inválida; ela tenta atualizar uma tabela derivada materializada:
 
   ```sql
   UPDATE vup JOIN (SELECT SUM(x) AS s FROM t1) AS dt ON ...
   SET s=s+1;
   ```
 
-* `DELETE`: The table or tables to be deleted from in a `DELETE` statement must be merged views. Join views are not allowed (this differs from `INSERT` and `UPDATE`).
+* `DELETE`: A tabela ou tabelas a serem excluídas em uma instrução `DELETE` devem ser views submetidas ao algoritmo MERGE. Views JOIN não são permitidas (isso difere de `INSERT` e `UPDATE`).
 
-  This statement is invalid because the view is a join view:
+  Esta instrução é inválida porque a view é uma view JOIN:
 
   ```sql
   DELETE vjoin WHERE ...;
   ```
 
-  This statement is valid because the view is a merged (updatable) view:
+  Esta instrução é válida porque a view é uma view submetida ao algoritmo MERGE (atualizável):
 
   ```sql
   DELETE vup WHERE ...;
   ```
 
-  This statement is valid because it deletes from a merged (updatable) view:
+  Esta instrução é válida porque exclui dados de uma view submetida ao algoritmo MERGE (atualizável):
 
   ```sql
   DELETE vup FROM vup JOIN (SELECT SUM(x) AS s FROM t1) AS dt ON ...;
   ```
 
-Additional discussion and examples follow.
+Seguem discussões e exemplos adicionais.
 
-Earlier discussion in this section pointed out that a view is not insertable if not all columns are simple column references (for example, if it contains columns that are expressions or composite expressions). Although such a view is not insertable, it can be updatable if you update only columns that are not expressions. Consider this view:
+A discussão anterior nesta seção apontou que uma view não é inserível se nem todas as colunas forem referências de coluna simples (por exemplo, se contiver colunas que são expressões ou expressões compostas). Embora tal view não seja inserível, ela pode ser atualizável se você atualizar apenas colunas que não são expressões. Considere esta view:
 
 ```sql
 CREATE VIEW v AS SELECT col1, 1 AS col2 FROM t;
 ```
 
-This view is not insertable because `col2` is an expression. But it is updatable if the update does not try to update `col2`. This update is permissible:
+Esta view não é inserível porque `col2` é uma expressão. Mas ela é atualizável se o `UPDATE` não tentar atualizar `col2`. Este `UPDATE` é permitido:
 
 ```sql
 UPDATE v SET col1 = 0;
 ```
 
-This update is not permissible because it attempts to update an expression column:
+Este `UPDATE` não é permitido porque tenta atualizar uma coluna de expressão:
 
 ```sql
 UPDATE v SET col2 = 0;
 ```
 
-If a table contains an `AUTO_INCREMENT` column, inserting into an insertable view on the table that does not include the `AUTO_INCREMENT` column does not change the value of `LAST_INSERT_ID()`, because the side effects of inserting default values into columns not part of the view should not be visible.
+Se uma tabela contiver uma coluna `AUTO_INCREMENT`, a inserção em uma view inserível nessa tabela que não inclui a coluna `AUTO_INCREMENT` não altera o valor de `LAST_INSERT_ID()`, porque os efeitos colaterais da inserção de valores `DEFAULT` em colunas que não fazem parte da view não devem ser visíveis.

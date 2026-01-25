@@ -1,14 +1,14 @@
-### 11.2.5 2-Digit YEAR(2) Limitations and Migrating to 4-Digit YEAR
+### 11.2.5 Limitações de YEAR(2) de 2 Dígitos e Migração para YEAR de 4 Dígitos
 
-This section describes problems that can occur when using the 2-digit `YEAR(2)` data type and provides information about converting existing `YEAR(2)` columns to 4-digit year-valued columns, which can be declared as `YEAR` with an implicit display width of 4 characters, or equivalently as `YEAR(4)` with an explicit display width.
+Esta seção descreve problemas que podem ocorrer ao usar o tipo de dado `YEAR(2)` de 2 dígitos e fornece informações sobre como converter colunas `YEAR(2)` existentes para colunas com valores de ano de 4 dígitos, que podem ser declaradas como `YEAR` com uma largura de exibição implícita de 4 caracteres, ou, de forma equivalente, como `YEAR(4)` com uma largura de exibição explícita.
 
-Although the internal range of values for `YEAR`/`YEAR(4)` and the deprecated `YEAR(2)` type is the same (`1901` to `2155`, and `0000`), the display width for `YEAR(2)` makes that type inherently ambiguous because displayed values indicate only the last two digits of the internal values and omit the century digits. The result can be a loss of information under certain circumstances. For this reason, avoid using `YEAR(2)` in your applications and use `YEAR`/`YEAR(4)` wherever you need a year-valued data type. As of MySQL 5.7.5, support for `YEAR(2)` is removed and existing 2-digit `YEAR(2)` columns must be converted to 4-digit `YEAR` columns to become usable again.
+Embora o range interno de valores para `YEAR`/`YEAR(4)` e o tipo obsoleto `YEAR(2)` seja o mesmo (`1901` a `2155` e `0000`), a largura de exibição para `YEAR(2)` torna esse tipo inerentemente ambíguo, pois os valores exibidos indicam apenas os dois últimos dígitos dos valores internos e omitem os dígitos do século. O resultado pode ser uma perda de informação em certas circunstâncias. Por esse motivo, evite usar `YEAR(2)` em suas aplicações e utilize `YEAR`/`YEAR(4)` sempre que precisar de um tipo de dado de valor de ano. A partir do MySQL 5.7.5, o suporte a `YEAR(2)` foi removido e colunas `YEAR(2)` de 2 dígitos existentes devem ser convertidas para colunas `YEAR` de 4 dígitos para se tornarem utilizáveis novamente.
 
-#### YEAR(2) Limitations
+#### Limitações de YEAR(2)
 
-Issues with the `YEAR(2)` data type include ambiguity of displayed values, and possible loss of information when values are dumped and reloaded or converted to strings.
+Problemas com o tipo de dado `YEAR(2)` incluem ambiguidade de valores exibidos e possível perda de informação quando os valores são despejados e recarregados ou convertidos em *strings*.
 
-* Displayed `YEAR(2)` values can be ambiguous. It is possible for up to three `YEAR(2)` values that have different internal values to have the same displayed value, as the following example demonstrates:
+* Valores `YEAR(2)` exibidos podem ser ambíguos. É possível que até três valores `YEAR(2)` que possuem valores internos diferentes tenham o mesmo valor exibido, conforme demonstra o exemplo a seguir:
 
   ```sql
   mysql> CREATE TABLE t (y2 YEAR(2), y4 YEAR);
@@ -33,21 +33,21 @@ Issues with the `YEAR(2)` data type include ambiguity of displayed values, and p
   3 rows in set (0.00 sec)
   ```
 
-* If you use **mysqldump** to dump the table created in the preceding example, the dump file represents all `y2` values using the same 2-digit representation (`12`). If you reload the table from the dump file, all resulting rows have internal value `2012` and display value `12`, thus losing the distinctions between them.
+* Se você usar o **mysqldump** para despejar a tabela criada no exemplo anterior, o arquivo *dump* representa todos os valores `y2` usando a mesma representação de 2 dígitos (`12`). Se você recarregar a tabela a partir do arquivo *dump*, todas as linhas resultantes terão o valor interno `2012` e o valor de exibição `12`, perdendo assim as distinções entre elas.
 
-* Conversion of a 2-digit or 4-digit `YEAR` data value to string form uses the data type display width. Suppose that a `YEAR(2)` column and a `YEAR`/`YEAR(4)` column both contain the value `1970`. Assigning each column to a string results in a value of `'70'` or `'1970'`, respectively. That is, loss of information occurs for conversion from `YEAR(2)` to string.
+* A conversão de um valor de dado `YEAR` de 2 ou 4 dígitos para o formato *string* usa a largura de exibição do tipo de dado. Suponha que uma coluna `YEAR(2)` e uma coluna `YEAR`/`YEAR(4)` contenham ambas o valor `1970`. Atribuir cada coluna a uma *string* resulta em um valor de `'70'` ou `'1970'`, respectivamente. Ou seja, ocorre perda de informação na conversão de `YEAR(2)` para *string*.
 
-* Values outside the range from `1970` to `2069` are stored incorrectly when inserted into a `YEAR(2)` column in a `CSV` table. For example, inserting `2211` results in a display value of `11` but an internal value of `2011`.
+* Valores fora do range de `1970` a `2069` são armazenados incorretamente quando inseridos em uma coluna `YEAR(2)` em uma tabela `CSV`. Por exemplo, a inserção de `2211` resulta em um valor de exibição de `11`, mas um valor interno de `2011`.
 
-To avoid these problems, use the 4-digit `YEAR` or `YEAR(4)` data type rather than the 2-digit `YEAR(2)` data type. Suggestions regarding migration strategies appear later in this section.
+Para evitar esses problemas, use o tipo de dado `YEAR` ou `YEAR(4)` de 4 dígitos em vez do tipo de dado `YEAR(2)` de 2 dígitos. Sugestões sobre estratégias de migração aparecem posteriormente nesta seção.
 
-#### Reduced/Removed YEAR(2) Support in MySQL 5.7
+#### Suporte Reduzido/Removido para YEAR(2) no MySQL 5.7
 
-Before MySQL 5.7.5, support for `YEAR(2)` is diminished. As of MySQL 5.7.5, support for `YEAR(2)` is removed.
+Antes do MySQL 5.7.5, o suporte para `YEAR(2)` foi diminuído. A partir do MySQL 5.7.5, o suporte para `YEAR(2)` foi removido.
 
-* `YEAR(2)` column definitions for new tables produce warnings or errors:
+* Definições de coluna `YEAR(2)` para novas tabelas produzem *warnings* ou *errors*:
 
-  + Before MySQL 5.7.5, `YEAR(2)` column definitions for new tables are converted (with an `ER_INVALID_YEAR_COLUMN_LENGTH` warning) to 4-digit `YEAR` columns:
+  + Antes do MySQL 5.7.5, as definições de coluna `YEAR(2)` para novas tabelas são convertidas (com um *warning* `ER_INVALID_YEAR_COLUMN_LENGTH`) para colunas `YEAR` de 4 dígitos:
 
     ```sql
     mysql> CREATE TABLE t1 (y YEAR(2));
@@ -69,63 +69,63 @@ Before MySQL 5.7.5, support for `YEAR(2)` is diminished. As of MySQL 5.7.5, supp
     1 row in set (0.00 sec)
     ```
 
-  + As of MySQL 5.7.5, `YEAR(2)` column definitions for new tables produce an `ER_INVALID_YEAR_COLUMN_LENGTH` error:
+  + A partir do MySQL 5.7.5, as definições de coluna `YEAR(2)` para novas tabelas produzem um *error* `ER_INVALID_YEAR_COLUMN_LENGTH`:
 
     ```sql
     mysql> CREATE TABLE t1 (y YEAR(2));
     ERROR 1818 (HY000): Supports only YEAR or YEAR(4) column.
     ```
 
-* `YEAR(2)` column in existing tables remain as `YEAR(2)`:
+* Colunas `YEAR(2)` em tabelas existentes permanecem como `YEAR(2)`:
 
-  + Before MySQL 5.7.5, `YEAR(2)` is processed in queries as in older versions of MySQL.
+  + Antes do MySQL 5.7.5, `YEAR(2)` é processado em *Queries* como nas versões mais antigas do MySQL.
 
-  + As of MySQL 5.7.5, `YEAR(2)` columns in queries produce warnings or errors.
+  + A partir do MySQL 5.7.5, colunas `YEAR(2)` em *queries* produzem *warnings* ou *errors*.
 
-* Several programs or statements convert `YEAR(2)` columns to 4-digit `YEAR` columns automatically:
+* Vários programas ou comandos convertem colunas `YEAR(2)` para colunas `YEAR` de 4 dígitos automaticamente:
 
-  + `ALTER TABLE` statements that result in a table rebuild.
+  + Comandos `ALTER TABLE` que resultam em uma reconstrução de tabela.
 
-  + `REPAIR TABLE` (which `CHECK TABLE` recommends you use, if it finds a table that contains `YEAR(2)` columns).
+  + `REPAIR TABLE` (que `CHECK TABLE` recomenda que você use, se encontrar uma tabela que contenha colunas `YEAR(2)`).
 
-  + **mysql_upgrade** (which uses `REPAIR TABLE`).
+  + **mysql_upgrade** (que usa `REPAIR TABLE`).
 
-  + Dumping with **mysqldump** and reloading the dump file. Unlike the conversions performed by the preceding three items, a dump and reload has the potential to change data values.
+  + Despejar com **mysqldump** e recarregar o arquivo *dump*. Diferentemente das conversões executadas pelos três itens anteriores, um *dump* e *reload* tem o potencial de alterar valores de dados.
 
-  A MySQL upgrade usually involves at least one of the last two items. However, with respect to `YEAR(2)`, **mysql_upgrade** is preferable to **mysqldump**, which, as noted, can change data values.
+Um *upgrade* do MySQL geralmente envolve pelo menos um dos dois últimos itens. No entanto, com relação a `YEAR(2)`, **mysql_upgrade** é preferível ao **mysqldump**, que, conforme observado, pode alterar valores de dados.
 
-#### Migrating from YEAR(2) to 4-Digit YEAR
+#### Migrando de YEAR(2) para YEAR de 4 Dígitos
 
-To convert 2-digit `YEAR(2)` columns to 4-digit `YEAR` columns, you can do so manually at any time without upgrading. Alternatively, you can upgrade to a version of MySQL with reduced or removed support for `YEAR(2)` (MySQL 5.6.6 or later), then have MySQL convert `YEAR(2)` columns automatically. In the latter case, avoid upgrading by dumping and reloading your data because that can change data values. In addition, if you use replication, there are upgrade considerations you must take into account.
+Para converter colunas `YEAR(2)` de 2 dígitos para colunas `YEAR` de 4 dígitos, você pode fazê-lo manualmente a qualquer momento, sem realizar um *upgrade*. Alternativamente, você pode fazer o *upgrade* para uma versão do MySQL com suporte reduzido ou removido para `YEAR(2)` (MySQL 5.6.6 ou posterior) e, em seguida, permitir que o MySQL converta as colunas `YEAR(2)` automaticamente. Neste último caso, evite fazer o *upgrade* despejando e recarregando seus dados, pois isso pode alterar os valores de dados. Além disso, se você usa *replication*, há considerações de *upgrade* que você deve levar em conta.
 
-To convert 2-digit `YEAR(2)` columns to 4-digit `YEAR` manually, use `ALTER TABLE` or `REPAIR TABLE`. Suppose that a table `t1` has this definition:
+Para converter colunas `YEAR(2)` de 2 dígitos para `YEAR` de 4 dígitos manualmente, use `ALTER TABLE` ou `REPAIR TABLE`. Suponha que uma tabela `t1` tenha esta definição:
 
 ```sql
 CREATE TABLE t1 (ycol YEAR(2) NOT NULL DEFAULT '70');
 ```
 
-Modify the column using `ALTER TABLE` as follows:
+Modifique a coluna usando `ALTER TABLE` da seguinte forma:
 
 ```sql
 ALTER TABLE t1 FORCE;
 ```
 
-The `ALTER TABLE` statement converts the table without changing `YEAR(2)` values. If the server is a replication source, the `ALTER TABLE` statement replicates to replicas and makes the corresponding table change on each one.
+O comando `ALTER TABLE` converte a tabela sem alterar os valores `YEAR(2)`. Se o servidor for uma *replication source*, o comando `ALTER TABLE` é replicado para as *replicas* e realiza a alteração de tabela correspondente em cada uma delas.
 
-Another migration method is to perform a binary upgrade: Upgrade MySQL in place without dumping and reloading your data. Then run **mysql_upgrade**, which uses `REPAIR TABLE` to convert 2-digit `YEAR(2)` columns to 4-digit `YEAR` columns without changing data values. If the server is a replication source, the `REPAIR TABLE` statements replicate to replicas and make the corresponding table changes on each one, unless you invoke **mysql_upgrade** with the `--skip-write-binlog` option.
+Outro método de migração é realizar um *binary upgrade*: Fazer o *upgrade* do MySQL *in place* (no local) sem despejar e recarregar seus dados. Em seguida, execute **mysql_upgrade**, que usa `REPAIR TABLE` para converter colunas `YEAR(2)` de 2 dígitos para colunas `YEAR` de 4 dígitos sem alterar os valores de dados. Se o servidor for uma *replication source*, os comandos `REPAIR TABLE` são replicados para as *replicas* e fazem as alterações de tabela correspondentes em cada uma delas, a menos que você invoque **mysql_upgrade** com a opção `--skip-write-binlog`.
 
-Upgrades to replication servers usually involve upgrading replicas to a newer version of MySQL, then upgrading the source. For example, if a source and replica both run MySQL 5.5, a typical upgrade sequence involves upgrading the replica to 5.6, then upgrading the source to 5.6. With regard to the different treatment of `YEAR(2)` as of MySQL 5.6.6, that upgrade sequence results in a problem: Suppose that the replica has been upgraded but not yet the source. Then creating a table containing a 2-digit `YEAR(2)` column on the source results in a table containing a 4-digit `YEAR` column on the replica. Consequently, the following operations have a different result on the source and replica, if you use statement-based replication:
+*Upgrades* em *replication servers* geralmente envolvem fazer o *upgrade* das *replicas* para uma versão mais recente do MySQL e, em seguida, fazer o *upgrade* da *source*. Por exemplo, se uma *source* e uma *replica* estiverem ambas executando o MySQL 5.5, uma sequência de *upgrade* típica envolve o *upgrade* da *replica* para 5.6 e, em seguida, o *upgrade* da *source* para 5.6. Com relação ao tratamento diferente de `YEAR(2)` a partir do MySQL 5.6.6, essa sequência de *upgrade* resulta em um problema: Suponha que a *replica* tenha sido atualizada, mas a *source* ainda não. Em seguida, a criação de uma tabela contendo uma coluna `YEAR(2)` de 2 dígitos na *source* resulta em uma tabela contendo uma coluna `YEAR` de 4 dígitos na *replica*. Consequentemente, as seguintes operações têm um resultado diferente na *source* e na *replica*, se você usar *statement-based replication*:
 
-* Inserting numeric `0`. The resulting value has an internal value of `2000` on the source but `0000` on the replica.
+* Inserir `0` numérico. O valor resultante tem um valor interno de `2000` na *source*, mas `0000` na *replica*.
 
-* Converting `YEAR(2)` to string. This operation uses the display value of `YEAR(2)` on the source but `YEAR(4)` on the replica.
+* Converter `YEAR(2)` para *string*. Esta operação usa o valor de exibição de `YEAR(2)` na *source*, mas `YEAR(4)` na *replica*.
 
-To avoid such problems, modify all 2-digit `YEAR(2)` columns on the source to 4-digit `YEAR` columns before upgrading. (Use `ALTER TABLE`, as described previously.) That makes it possible to upgrade normally (replica first, then source) without introducing any `YEAR(2)` to `YEAR(4)` differences between the source and replica.
+Para evitar tais problemas, modifique todas as colunas `YEAR(2)` de 2 dígitos na *source* para colunas `YEAR` de 4 dígitos antes de fazer o *upgrade*. (Use `ALTER TABLE`, conforme descrito anteriormente.) Isso possibilita fazer o *upgrade* normalmente (*replica* primeiro, depois *source*) sem introduzir quaisquer diferenças de `YEAR(2)` para `YEAR(4)` entre a *source* e a *replica*.
 
-One migration method should be avoided: Do not dump your data with **mysqldump** and reload the dump file after upgrading. That has the potential to change `YEAR(2)` values, as described previously.
+Um método de migração deve ser evitado: Não despeje seus dados com **mysqldump** e recarregue o arquivo *dump* após o *upgrade*. Isso tem o potencial de alterar valores `YEAR(2)`, conforme descrito anteriormente.
 
-A migration from 2-digit `YEAR(2)` columns to 4-digit `YEAR` columns should also involve examining application code for the possibility of changed behavior under conditions such as these:
+Uma migração de colunas `YEAR(2)` de 2 dígitos para colunas `YEAR` de 4 dígitos também deve envolver a análise do código da aplicação para verificar a possibilidade de comportamento alterado em condições como estas:
 
-* Code that expects selecting a `YEAR` column to produce exactly two digits.
+* Código que espera que a seleção de uma coluna `YEAR` produza exatamente dois dígitos.
 
-* Code that does not account for different handling for inserts of numeric `0`: Inserting `0` into `YEAR(2)` or `YEAR(4)` results in an internal value of `2000` or `0000`, respectively.
+* Código que não leva em conta o tratamento diferente para inserções de `0` numérico: Inserir `0` em `YEAR(2)` ou `YEAR(4)` resulta em um valor interno de `2000` ou `0000`, respectivamente.

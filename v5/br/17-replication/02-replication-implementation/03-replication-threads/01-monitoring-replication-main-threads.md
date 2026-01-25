@@ -1,10 +1,10 @@
-#### 16.2.3.1 Monitoring Replication Main Threads
+#### 16.2.3.1 Monitoramento dos Threads Principais de Replicação
 
-The [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") statement provides information that tells you what is happening on the source and on the replica regarding replication. For information on source states, see [Section 8.14.5, “Replication Source Thread States”](source-thread-states.html "8.14.5 Replication Source Thread States"). For replica states, see [Section 8.14.6, “Replication Replica I/O Thread States”](replica-io-thread-states.html "8.14.6 Replication Replica I/O Thread States"), and [Section 8.14.7, “Replication Replica SQL Thread States”](replica-sql-thread-states.html "8.14.7 Replication Replica SQL Thread States").
+A instrução [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") fornece informações que indicam o que está acontecendo no *source* e no *replica* em relação à replicação. Para obter informações sobre os *states* do *source*, consulte [Section 8.14.5, “Replication Source Thread States”](source-thread-states.html "8.14.5 Replication Source Thread States"). Para os *states* do *replica*, consulte [Section 8.14.6, “Replication Replica I/O Thread States”](replica-io-thread-states.html "8.14.6 Replication Replica I/O Thread States") e [Section 8.14.7, “Replication Replica SQL Thread States”](replica-sql-thread-states.html "8.14.7 Replication Replica SQL Thread States").
 
-The following example illustrates how the three main replication threads, the binary log dump thread, replicatin I/O thread, and replication SQL thread, show up in the output from [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement").
+O exemplo a seguir ilustra como os três *threads* principais de replicação—o *binary log dump thread*, o *replication I/O thread* e o *replication SQL thread*—aparecem na saída do [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement").
 
-On the source server, the output from [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") looks like this:
+No servidor *source*, a saída do [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") se parece com isto:
 
 ```sql
 mysql> SHOW PROCESSLIST\G
@@ -20,9 +20,9 @@ Command: Binlog Dump
    Info: NULL
 ```
 
-Here, thread 2 is a `Binlog Dump` thread that services a connected replica. The `State` information indicates that all outstanding updates have been sent to the replica and that the source is waiting for more updates to occur. If you see no `Binlog Dump` threads on a source server, this means that replication is not running; that is, no replicas are currently connected.
+Aqui, o *thread* 2 é um `Binlog Dump` thread que atende a um *replica* conectado. A informação do `State` indica que todas as atualizações pendentes foram enviadas ao *replica* e que o *source* está aguardando que mais atualizações ocorram. Se você não vir nenhum `Binlog Dump` thread em um servidor *source*, isso significa que a replicação não está em execução; ou seja, nenhum *replica* está conectado atualmente.
 
-On a replica server, the output from [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") looks like this:
+Em um servidor *replica*, a saída do [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") se parece com isto:
 
 ```sql
 mysql> SHOW PROCESSLIST\G
@@ -47,8 +47,8 @@ Command: Connect
    Info: NULL
 ```
 
-The `State` information indicates that thread 10 is the replication I/O thread that is communicating with the source server, and thread 11 is the replication SQL thread that is processing the updates stored in the relay logs. At the time that [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") was run, both threads were idle, waiting for further updates.
+A informação do `State` indica que o *thread* 10 é o *replication I/O thread* que está se comunicando com o servidor *source*, e o *thread* 11 é o *replication SQL thread* que está processando as atualizações armazenadas nos *relay logs*. No momento em que [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") foi executado, ambos os *threads* estavam ociosos, aguardando por novas atualizações.
 
-The value in the `Time` column can show how late the replica is compared to the source. See [Section A.14, “MySQL 5.7 FAQ: Replication”](faqs-replication.html "A.14 MySQL 5.7 FAQ: Replication"). If sufficient time elapses on the source side without activity on the `Binlog Dump` thread, the source determines that the replica is no longer connected. As for any other client connection, the timeouts for this depend on the values of `net_write_timeout` and `net_retry_count`; for more information about these, see [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").
+O valor na coluna `Time` pode mostrar o quão atrasado o *replica* está em comparação com o *source*. Consulte [Section A.14, “MySQL 5.7 FAQ: Replication”](faqs-replication.html "A.14 MySQL 5.7 FAQ: Replication"). Se um tempo suficiente decorrer no lado do *source* sem atividade no `Binlog Dump` thread, o *source* determina que o *replica* não está mais conectado. Assim como acontece com qualquer outra conexão de cliente, os *timeouts* para isso dependem dos valores de `net_write_timeout` e `net_retry_count`; para mais informações sobre estas, consulte [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").
 
-The [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") statement provides additional information about replication processing on a replica server. See [Section 16.1.7.1, “Checking Replication Status”](replication-administration-status.html "16.1.7.1 Checking Replication Status").
+A instrução [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") fornece informações adicionais sobre o processamento de replicação em um servidor *replica*. Consulte [Section 16.1.7.1, “Checking Replication Status”](replication-administration-status.html "16.1.7.1 Checking Replication Status").

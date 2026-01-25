@@ -1,86 +1,86 @@
-### 13.7.5 SHOW Statements
+### 13.7.5 Instruções SHOW
 
-[13.7.5.1 SHOW BINARY LOGS Statement](show-binary-logs.html)
+[13.7.5.1 Instrução SHOW BINARY LOGS](show-binary-logs.html)
 
-[13.7.5.2 SHOW BINLOG EVENTS Statement](show-binlog-events.html)
+[13.7.5.2 Instrução SHOW BINLOG EVENTS](show-binlog-events.html)
 
-[13.7.5.3 SHOW CHARACTER SET Statement](show-character-set.html)
+[13.7.5.3 Instrução SHOW CHARACTER SET](show-character-set.html)
 
-[13.7.5.4 SHOW COLLATION Statement](show-collation.html)
+[13.7.5.4 Instrução SHOW COLLATION](show-collation.html)
 
-[13.7.5.5 SHOW COLUMNS Statement](show-columns.html)
+[13.7.5.5 Instrução SHOW COLUMNS](show-columns.html)
 
-[13.7.5.6 SHOW CREATE DATABASE Statement](show-create-database.html)
+[13.7.5.6 Instrução SHOW CREATE DATABASE](show-create-database.html)
 
-[13.7.5.7 SHOW CREATE EVENT Statement](show-create-event.html)
+[13.7.5.7 Instrução SHOW CREATE EVENT](show-create-event.html)
 
-[13.7.5.8 SHOW CREATE FUNCTION Statement](show-create-function.html)
+[13.7.5.8 Instrução SHOW CREATE FUNCTION](show-create-function.html)
 
-[13.7.5.9 SHOW CREATE PROCEDURE Statement](show-create-procedure.html)
+[13.7.5.9 Instrução SHOW CREATE PROCEDURE](show-create-procedure.html)
 
-[13.7.5.10 SHOW CREATE TABLE Statement](show-create-table.html)
+[13.7.5.10 Instrução SHOW CREATE TABLE](show-create-table.html)
 
-[13.7.5.11 SHOW CREATE TRIGGER Statement](show-create-trigger.html)
+[13.7.5.11 Instrução SHOW CREATE TRIGGER](show-create-trigger.html)
 
-[13.7.5.12 SHOW CREATE USER Statement](show-create-user.html)
+[13.7.5.12 Instrução SHOW CREATE USER](show-create-user.html)
 
-[13.7.5.13 SHOW CREATE VIEW Statement](show-create-view.html)
+[13.7.5.13 Instrução SHOW CREATE VIEW](show-create-view.html)
 
-[13.7.5.14 SHOW DATABASES Statement](show-databases.html)
+[13.7.5.14 Instrução SHOW DATABASES](show-databases.html)
 
-[13.7.5.15 SHOW ENGINE Statement](show-engine.html)
+[13.7.5.15 Instrução SHOW ENGINE](show-engine.html)
 
-[13.7.5.16 SHOW ENGINES Statement](show-engines.html)
+[13.7.5.16 Instrução SHOW ENGINES](show-engines.html)
 
-[13.7.5.17 SHOW ERRORS Statement](show-errors.html)
+[13.7.5.17 Instrução SHOW ERRORS](show-errors.html)
 
-[13.7.5.18 SHOW EVENTS Statement](show-events.html)
+[13.7.5.18 Instrução SHOW EVENTS](show-events.html)
 
-[13.7.5.19 SHOW FUNCTION CODE Statement](show-function-code.html)
+[13.7.5.19 Instrução SHOW FUNCTION CODE](show-function-code.html)
 
-[13.7.5.20 SHOW FUNCTION STATUS Statement](show-function-status.html)
+[13.7.5.20 Instrução SHOW FUNCTION STATUS](show-function-status.html)
 
-[13.7.5.21 SHOW GRANTS Statement](show-grants.html)
+[13.7.5.21 Instrução SHOW GRANTS](show-grants.html)
 
-[13.7.5.22 SHOW INDEX Statement](show-index.html)
+[13.7.5.22 Instrução SHOW INDEX](show-index.html)
 
-[13.7.5.23 SHOW MASTER STATUS Statement](show-master-status.html)
+[13.7.5.23 Instrução SHOW MASTER STATUS](show-master-status.html)
 
-[13.7.5.24 SHOW OPEN TABLES Statement](show-open-tables.html)
+[13.7.5.24 Instrução SHOW OPEN TABLES](show-open-tables.html)
 
-[13.7.5.25 SHOW PLUGINS Statement](show-plugins.html)
+[13.7.5.25 Instrução SHOW PLUGINS](show-plugins.html)
 
-[13.7.5.26 SHOW PRIVILEGES Statement](show-privileges.html)
+[13.7.5.26 Instrução SHOW PRIVILEGES](show-privileges.html)
 
-[13.7.5.27 SHOW PROCEDURE CODE Statement](show-procedure-code.html)
+[13.7.5.27 Instrução SHOW PROCEDURE CODE](show-procedure-code.html)
 
-[13.7.5.28 SHOW PROCEDURE STATUS Statement](show-procedure-status.html)
+[13.7.5.28 Instrução SHOW PROCEDURE STATUS](show-procedure-status.html)
 
-[13.7.5.29 SHOW PROCESSLIST Statement](show-processlist.html)
+[13.7.5.29 Instrução SHOW PROCESSLIST](show-processlist.html)
 
-[13.7.5.30 SHOW PROFILE Statement](show-profile.html)
+[13.7.5.30 Instrução SHOW PROFILE](show-profile.html)
 
-[13.7.5.31 SHOW PROFILES Statement](show-profiles.html)
+[13.7.5.31 Instrução SHOW PROFILES](show-profiles.html)
 
-[13.7.5.32 SHOW RELAYLOG EVENTS Statement](show-relaylog-events.html)
+[13.7.5.32 Instrução SHOW RELAYLOG EVENTS](show-relaylog-events.html)
 
-[13.7.5.33 SHOW SLAVE HOSTS Statement](show-slave-hosts.html)
+[13.7.5.33 Instrução SHOW SLAVE HOSTS](show-slave-hosts.html)
 
-[13.7.5.34 SHOW SLAVE STATUS Statement](show-slave-status.html)
+[13.7.5.34 Instrução SHOW SLAVE STATUS](show-slave-status.html)
 
-[13.7.5.35 SHOW STATUS Statement](show-status.html)
+[13.7.5.35 Instrução SHOW STATUS](show-status.html)
 
-[13.7.5.36 SHOW TABLE STATUS Statement](show-table-status.html)
+[13.7.5.36 Instrução SHOW TABLE STATUS](show-table-status.html)
 
-[13.7.5.37 SHOW TABLES Statement](show-tables.html)
+[13.7.5.37 Instrução SHOW TABLES](show-tables.html)
 
-[13.7.5.38 SHOW TRIGGERS Statement](show-triggers.html)
+[13.7.5.38 Instrução SHOW TRIGGERS](show-triggers.html)
 
-[13.7.5.39 SHOW VARIABLES Statement](show-variables.html)
+[13.7.5.39 Instrução SHOW VARIABLES](show-variables.html)
 
-[13.7.5.40 SHOW WARNINGS Statement](show-warnings.html)
+[13.7.5.40 Instrução SHOW WARNINGS](show-warnings.html)
 
-[`SHOW`](show.html "13.7.5 SHOW Statements") has many forms that provide information about databases, tables, columns, or status information about the server. This section describes those following:
+A instrução [`SHOW`](show.html "13.7.5 Instruções SHOW") possui muitas formas que fornecem informações sobre Databases, tables, columns, ou informações de status sobre o server. Esta seção descreve as seguintes:
 
 ```sql
 SHOW {BINARY | MASTER} LOGS
@@ -129,8 +129,8 @@ like_or_where: {
 }
 ```
 
-If the syntax for a given [`SHOW`](show.html "13.7.5 SHOW Statements") statement includes a [`LIKE 'pattern'`](string-comparison-functions.html#operator_like) part, `'pattern'` is a string that can contain the SQL `%` and `_` wildcard characters. The pattern is useful for restricting statement output to matching values.
+Se a sintaxe para uma determinada instrução [`SHOW`](show.html "13.7.5 Instruções SHOW") incluir uma parte [`LIKE 'pattern'`](string-comparison-functions.html#operator_like), `'pattern'` é uma string que pode conter os caracteres curinga SQL `%` e `_`. O pattern é útil para restringir a saída da instrução a valores correspondentes.
 
-Several [`SHOW`](show.html "13.7.5 SHOW Statements") statements also accept a `WHERE` clause that provides more flexibility in specifying which rows to display. See [Section 24.8, “Extensions to SHOW Statements”](extended-show.html "24.8 Extensions to SHOW Statements").
+Diversas instruções [`SHOW`](show.html "13.7.5 Instruções SHOW") também aceitam uma cláusula `WHERE` que oferece mais flexibilidade ao especificar quais rows exibir. Consulte [Seção 24.8, “Extensões às Instruções SHOW”](extended-show.html "24.8 Extensões às Instruções SHOW").
 
-Many MySQL APIs (such as PHP) enable you to treat the result returned from a [`SHOW`](show.html "13.7.5 SHOW Statements") statement as you would a result set from a [`SELECT`](select.html "13.2.9 SELECT Statement"); see [Chapter 27, *Connectors and APIs*](connectors-apis.html "Chapter 27 Connectors and APIs"), or your API documentation for more information. In addition, you can work in SQL with results from queries on tables in the `INFORMATION_SCHEMA` database, which you cannot easily do with results from [`SHOW`](show.html "13.7.5 SHOW Statements") statements. See [Chapter 24, *INFORMATION_SCHEMA Tables*](information-schema.html "Chapter 24 INFORMATION_SCHEMA Tables").
+Muitas APIs MySQL (como PHP) permitem tratar o resultado retornado de uma instrução [`SHOW`](show.html "13.7.5 Instruções SHOW") como você trataria um result set de uma instrução [`SELECT`](select.html "13.2.9 SELECT Statement"); consulte [Capítulo 27, *Connectors and APIs*](connectors-apis.html "Chapter 27 Connectors and APIs"), ou a documentação de sua API para mais informações. Além disso, você pode trabalhar em SQL com resultados de Queries em tables no Database `INFORMATION_SCHEMA`, o que não é facilmente possível com resultados de instruções [`SHOW`](show.html "13.7.5 Instruções SHOW"). Consulte [Capítulo 24, *Tabelas INFORMATION_SCHEMA*](information-schema.html "Chapter 24 INFORMATION_SCHEMA Tables").

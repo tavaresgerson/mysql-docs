@@ -1,21 +1,21 @@
-#### 21.2.7.5 Limits Associated with Database Objects in NDB Cluster
+#### 21.2.7.5 Limites Associados a Objetos de Database no NDB Cluster
 
-Some database objects such as tables and indexes have different limitations when using the [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine:
+Alguns objetos de database, como tables e indexes, possuem limitações diferentes ao utilizar o storage engine [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"):
 
-* **Database and table names.** When using the `NDB` storage engine, the maximum allowed length both for database names and for table names is 63 characters. A statement using a database name or table name longer than this limit fails with an appropriate error.
+* **Nomes de Database e Table.** Ao usar o storage engine `NDB`, o comprimento máximo permitido tanto para nomes de database quanto para nomes de table é de 63 caracteres. Uma statement que use um nome de database ou table mais longo do que este limite falha com um erro apropriado.
 
-* **Number of database objects.** The maximum number of *all* [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") database objects in a single NDB Cluster—including databases, tables, and indexes—is limited to 20320.
+* **Número de objetos de Database.** O número máximo de *todos* os objetos de database [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") em um único NDB Cluster — incluindo databases, tables e indexes — é limitado a 20320.
 
-* **Attributes per table.** The maximum number of attributes (that is, columns and indexes) that can belong to a given table is 512.
+* **Atributos por Table.** O número máximo de atributos (isto é, colunas e indexes) que podem pertencer a uma determinada table é 512.
 
-* **Attributes per key.** The maximum number of attributes per key is 32.
+* **Atributos por Key.** O número máximo de atributos por key é 32.
 
-* **Row size.** The maximum permitted size of any one row is 14000 bytes.
+* **Tamanho da Row.** O tamanho máximo permitido para qualquer row é de 14000 bytes.
 
-  Each [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") or [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") column contributes 256 + 8 = 264 bytes to this total; this includes [`JSON`](json.html "11.5 The JSON Data Type") columns. See [String Type Storage Requirements](storage-requirements.html#data-types-storage-reqs-strings "String Type Storage Requirements"), as well as [JSON Storage Requirements](storage-requirements.html#data-types-storage-reqs-json "JSON Storage Requirements"), for more information relating to these types.
+  Cada coluna [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") ou [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") contribui com 256 + 8 = 264 bytes para este total; isto inclui colunas [`JSON`](json.html "11.5 The JSON Data Type"). Consulte [String Type Storage Requirements](storage-requirements.html#data-types-storage-reqs-strings "String Type Storage Requirements"), bem como [JSON Storage Requirements](storage-requirements.html#data-types-storage-reqs-json "JSON Storage Requirements"), para mais informações relacionadas a esses tipos.
 
-  In addition, the maximum offset for a fixed-width column of an `NDB` table is 8188 bytes; attempting to create a table that violates this limitation fails with NDB error 851 Maximum offset for fixed-size columns exceeded. For memory-based columns, you can work around this limitation by using a variable-width column type such as [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") or defining the column as `COLUMN_FORMAT=DYNAMIC`; this does not work with columns stored on disk. For disk-based columns, you may be able to do so by reordering one or more of the table's disk-based columns such that the combined width of all but the disk-based column defined last in the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement used to create the table does not exceed 8188 bytes, less any possible rounding performed for some data types such as [`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") or `VARCHAR`; otherwise it is necessary to use memory-based storage for one or more of the offending column or columns instead.
+  Além disso, o offset máximo para uma coluna de largura fixa de uma table `NDB` é de 8188 bytes; tentar criar uma table que viole esta limitação falha com o erro NDB 851 Maximum offset for fixed-size columns exceeded. Para colunas baseadas em memória, você pode contornar esta limitação usando um tipo de coluna de largura variável como [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") ou definindo a coluna como `COLUMN_FORMAT=DYNAMIC`; isto não funciona com colunas armazenadas em disco. Para colunas baseadas em disco, você pode ser capaz de contornar a limitação reordenando uma ou mais colunas baseadas em disco da table, de modo que a largura combinada de todas, exceto a coluna baseada em disco definida por último na statement [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") usada para criar a table, não exceda 8188 bytes, menos qualquer possível arredondamento realizado para alguns data types como [`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") ou `VARCHAR`; caso contrário, é necessário usar storage baseado em memória para uma ou mais colunas problemáticas.
 
-* **BIT column storage per table.** The maximum combined width for all [`BIT`](bit-type.html "11.1.5 Bit-Value Type - BIT") columns used in a given `NDB` table is 4096.
+* **Storage de coluna BIT por table.** A largura combinada máxima para todas as colunas [`BIT`](bit-type.html "11.1.5 Bit-Value Type - BIT") usadas em uma determinada table `NDB` é de 4096.
 
-* **FIXED column storage.** NDB Cluster 7.5 and later supports a maximum of 128 TB per fragment of data in `FIXED` columns. (Previously, this was 16 GB.)
+* **Storage de coluna FIXED.** NDB Cluster 7.5 e posterior suporta um máximo de 128 TB por fragmento de dados em colunas `FIXED`. (Anteriormente, este limite era de 16 GB.)

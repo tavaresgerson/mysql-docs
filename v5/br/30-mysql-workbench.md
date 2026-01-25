@@ -1,19 +1,19 @@
-# Chapter 29 MySQL Workbench
+# Capítulo 29 MySQL Workbench
 
-MySQL Workbench provides a graphical tool for working with MySQL servers and databases. MySQL Workbench is developed and tested with MySQL Server 8.0. MySQL Workbench may connect to MySQL Server 8.4 and higher but some MySQL Workbench features may not function with those newer server versions.
+O MySQL Workbench oferece uma ferramenta gráfica para trabalhar com servers e Databases MySQL. O MySQL Workbench é desenvolvido e testado com o MySQL Server 8.0. O MySQL Workbench pode se conectar ao MySQL Server 8.4 e superior, mas alguns recursos do MySQL Workbench podem não funcionar com essas versões mais recentes do server.
 
-The following discussion briefly describes MySQL Workbench capabilities. For more information, see the MySQL Workbench manual, available at [https://dev.mysql.com/doc/workbench/en/](/doc/workbench/en/).
+A discussão a seguir descreve brevemente os recursos do MySQL Workbench. Para mais informações, consulte o manual do MySQL Workbench, disponível em [https://dev.mysql.com/doc/workbench/en/](/doc/workbench/en/).
 
-MySQL Workbench provides five main areas of functionality:
+O MySQL Workbench oferece cinco áreas principais de funcionalidade:
 
-* **SQL Development**: Enables you to create and manage connections to database servers. As well as enabling you to configure connection parameters, MySQL Workbench provides the capability to execute SQL queries on the database connections using the built-in SQL Editor. This functionality replaces that previously provided by the Query Browser standalone application.
+* **SQL Development**: Permite criar e gerenciar conexões com servers de Database. Além de permitir a configuração de parâmetros de conexão, o MySQL Workbench fornece a capacidade de executar SQL Queries nas conexões de Database usando o SQL Editor integrado. Esta funcionalidade substitui aquela fornecida anteriormente pelo aplicativo autônomo Query Browser.
 
-* **Data Modeling**: Enables you to create models of your database schema graphically, reverse and forward engineer between a schema and a live database, and edit all aspects of your database using the comprehensive Table Editor. The Table Editor provides easy-to-use facilities for editing Tables, Columns, Indexes, Triggers, Partitioning, Options, Inserts and Privileges, Routines and Views.
+* **Data Modeling**: Permite criar modelos do seu Database Schema graficamente, realizar engenharia reversa e direta (reverse and forward engineer) entre um Schema e um Database ativo, e editar todos os aspectos do seu Database usando o abrangente Table Editor. O Table Editor oferece recursos fáceis de usar para editar Tables, Columns, Indexes, Triggers, Partitioning, Options, Inserts e Privileges, Routines e Views.
 
-* **Server Administration**: Enables you to create and administer server instances.
+* **Server Administration**: Permite criar e administrar instâncias de server.
 
-* **Data Migration**: Allows you to migrate from Microsoft SQL Server, Sybase ASE, SQLite, SQL Anywhere, PostreSQL, and other RDBMS tables, objects and data to MySQL. Migration also supports migrating from earlier versions of MySQL to the latest releases.
+* **Data Migration**: Permite migrar Tables, objetos e dados de Microsoft SQL Server, Sybase ASE, SQLite, SQL Anywhere, PostgreSQL e outros RDBMS para MySQL. A Migration também suporta a migração de versões anteriores do MySQL para os lançamentos mais recentes.
 
-* **MySQL Enterprise Support**: Support for Enterprise products such as MySQL Enterprise Backup and MySQL Audit.
+* **MySQL Enterprise Support**: Suporte para produtos Enterprise como MySQL Enterprise Backup e MySQL Audit.
 
-MySQL Workbench is available in two editions, the Community Edition and the Commercial Edition. The Community Edition is available free of charge. The Commercial Edition provides additional Enterprise features, such as database documentation generation, at low cost.
+O MySQL Workbench está disponível em duas edições (Editions), a Community Edition e a Commercial Edition. A Community Edition está disponível gratuitamente. A Commercial Edition oferece recursos Enterprise adicionais, como a geração de documentação de Database, a um custo baixo.

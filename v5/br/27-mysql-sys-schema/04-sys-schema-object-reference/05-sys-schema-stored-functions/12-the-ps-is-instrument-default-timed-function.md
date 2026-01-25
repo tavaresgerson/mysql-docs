@@ -1,16 +1,16 @@
-#### 26.4.5.12 The ps_is_instrument_default_timed() Function
+#### 26.4.5.12 A Função ps_is_instrument_default_timed()
 
-Returns `YES` or `NO` to indicate whether a given Performance Schema instrument is timed by default.
+Retorna `YES` ou `NO` para indicar se um determinado *Performance Schema instrument* é temporizado por padrão.
 
-##### Parameters
+##### Parâmetros
 
-* `in_instrument VARCHAR(128)`: The name of the instrument to check.
+* `in_instrument VARCHAR(128)`: O nome do *instrument* a ser verificado.
 
-##### Return Value
+##### Valor de Retorno
 
-An `ENUM('YES','NO')` value.
+Um valor `ENUM('YES','NO')`.
 
-##### Example
+##### Exemplo
 
 ```sql
 mysql> SELECT sys.ps_is_instrument_default_timed('memory/innodb/row_log_buf');

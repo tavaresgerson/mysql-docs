@@ -1,107 +1,107 @@
-#### 21.6.15.27 The ndbinfo memory_per_fragment Table
+#### 21.6.15.27 A Tabela ndbinfo memory_per_fragment
 
-* [memory_per_fragment Table: Notes](mysql-cluster-ndbinfo-memory-per-fragment.html#mysql-cluster-ndbinfo-memory-per-fragment-notes "memory_per_fragment Table: Notes")
-* [memory_per_fragment Table: Examples](mysql-cluster-ndbinfo-memory-per-fragment.html#mysql-cluster-ndbinfo-memory-per-fragment-examples "memory_per_fragment Table: Examples")
+* [Tabela memory_per_fragment: Notas](mysql-cluster-ndbinfo-memory-per-fragment.html#mysql-cluster-ndbinfo-memory-per-fragment-notes "memory_per_fragment Table: Notes")
+* [Tabela memory_per_fragment: Exemplos](mysql-cluster-ndbinfo-memory-per-fragment.html#mysql-cluster-ndbinfo-memory-per-fragment-examples "memory_per_fragment Table: Examples")
 
-The `memory_per_fragment` table provides information about the usage of memory by individual fragments. See the [Notes](mysql-cluster-ndbinfo-memory-per-fragment.html#mysql-cluster-ndbinfo-memory-per-fragment-notes "memory_per_fragment Table: Notes") later in this section to see how you can use this to find out how much memory is used by `NDB` tables.
+A tabela `memory_per_fragment` fornece informações sobre o uso de memória por `fragments` individuais. Consulte as [Notas](mysql-cluster-ndbinfo-memory-per-fragment.html#mysql-cluster-ndbinfo-memory-per-fragment-notes "memory_per_fragment Table: Notes") mais adiante nesta seção para ver como você pode usar isso para descobrir quanta memória é usada pelas tabelas `NDB`.
 
-The `memory_per_fragment` table contains the following columns:
+A tabela `memory_per_fragment` contém as seguintes colunas:
 
 * `fq_name`
 
-  Name of this fragment
+  Nome deste `fragment`
 
 * `parent_fq_name`
 
-  Name of this fragment's parent
+  Nome do pai (`parent`) deste `fragment`
 
 * `type`
 
-  Dictionary object type ([`Object::Type`](/doc/ndbapi/en/ndb-object.html#ndb-object-type), in the NDB API) used for this fragment; one of `System table`, `User table`, `Unique hash index`, `Hash index`, `Unique ordered index`, `Ordered index`, `Hash index trigger`, `Subscription trigger`, `Read only constraint`, `Index trigger`, `Reorganize trigger`, `Tablespace`, `Log file group`, `Data file`, `Undo file`, `Hash map`, `Foreign key definition`, `Foreign key parent trigger`, `Foreign key child trigger`, or `Schema transaction`.
+  Tipo de objeto de dicionário ([`Object::Type`](/doc/ndbapi/en/ndb-object.html#ndb-object-type), na NDB API) usado para este `fragment`; um dos seguintes: `System table`, `User table`, `Unique hash index`, `Hash index`, `Unique ordered index`, `Ordered index`, `Hash index trigger`, `Subscription trigger`, `Read only constraint`, `Index trigger`, `Reorganize trigger`, `Tablespace`, `Log file group`, `Data file`, `Undo file`, `Hash map`, `Foreign key definition`, `Foreign key parent trigger`, `Foreign key child trigger`, ou `Schema transaction`.
 
-  You can also obtain this list by executing [`TABLE`](/doc/refman/8.0/en/table.html) [`ndbinfo.dict_obj_types`](mysql-cluster-ndbinfo-dict-obj-types.html "21.6.15.16 The ndbinfo dict_obj_types Table") in the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client.
+  Você também pode obter esta lista executando [`TABLE`](/doc/refman/8.0/en/table.html) [`ndbinfo.dict_obj_types`](mysql-cluster-ndbinfo-dict-obj-types.html "21.6.15.16 The ndbinfo dict_obj_types Table") no cliente [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client").
 
 * `table_id`
 
-  Table ID for this table
+  ID da Tabela para esta tabela
 
 * `node_id`
 
-  Node ID for this node
+  ID do Node para este `node`
 
 * `block_instance`
 
-  NDB kernel block instance ID; you can use this number to obtain information about specific threads from the [`threadblocks`](mysql-cluster-ndbinfo-threadblocks.html "21.6.15.41 The ndbinfo threadblocks Table") table.
+  ID da instância do bloco do kernel NDB; você pode usar este número para obter informações sobre `threads` específicos da tabela [`threadblocks`](mysql-cluster-ndbinfo-threadblocks.html "21.6.15.41 The ndbinfo threadblocks Table").
 
 * `fragment_num`
 
-  Fragment ID (number)
+  ID (número) do Fragment
 
 * `fixed_elem_alloc_bytes`
 
-  Number of bytes allocated for fixed-sized elements
+  Número de bytes alocados para elementos de tamanho fixo
 
 * `fixed_elem_free_bytes`
 
-  Free bytes remaining in pages allocated to fixed-size elements
+  Bytes livres restantes nas páginas alocadas para elementos de tamanho fixo
 
 * `fixed_elem_size_bytes`
 
-  Length of each fixed-size element in bytes
+  Comprimento de cada elemento de tamanho fixo em bytes
 
 * `fixed_elem_count`
 
-  Number of fixed-size elements
+  Número de elementos de tamanho fixo
 
 * `fixed_elem_free_count`
 
-  Number of free rows for fixed-size elements
+  Número de linhas livres para elementos de tamanho fixo
 
 * `var_elem_alloc_bytes`
 
-  Number of bytes allocated for variable-size elements
+  Número de bytes alocados para elementos de tamanho variável
 
 * `var_elem_free_bytes`
 
-  Free bytes remaining in pages allocated to variable-size elements
+  Bytes livres restantes nas páginas alocadas para elementos de tamanho variável
 
 * `var_elem_count`
 
-  Number of variable-size elements
+  Número de elementos de tamanho variável
 
 * `hash_index_alloc_bytes`
 
-  Number of bytes allocated to hash indexes
+  Número de bytes alocados para `hash indexes`
 
-##### memory_per_fragment Table: Notes
+##### Tabela memory_per_fragment: Notas
 
-The `memory_per_fragment` table contains one row for every table fragment replica and every index fragment replica in the system; this means that, for example, when [`NoOfReplicas=2`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-noofreplicas), there are normally two fragment replicas for each fragment. This is true as long as all data nodes are running and connected to the cluster; for a data node that is missing, there are no rows for the fragment replicas that it hosts.
+A tabela `memory_per_fragment` contém uma linha para cada `replica` de `fragment` de tabela e cada `replica` de `fragment` de `Index` no sistema; isto significa que, por exemplo, quando [`NoOfReplicas=2`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-noofreplicas), há normalmente duas `replicas` de `fragment` para cada `fragment`. Isso é verdade enquanto todos os `Data Nodes` estiverem em execução e conectados ao `cluster`; para um `Data Node` ausente, não há linhas para as `replicas` de `fragment` que ele hospeda.
 
-The columns of the `memory_per_fragment` table can be grouped according to their function or purpose as follows:
+As colunas da tabela `memory_per_fragment` podem ser agrupadas de acordo com sua função ou propósito da seguinte forma:
 
-* *Key columns*: `fq_name`, `type`, `table_id`, `node_id`, `block_instance`, and `fragment_num`
+* *Colunas Chave*: `fq_name`, `type`, `table_id`, `node_id`, `block_instance` e `fragment_num`
 
-* *Relationship column*: `parent_fq_name`
+* *Coluna de Relacionamento*: `parent_fq_name`
 
-* *Fixed-size storage columns*: `fixed_elem_alloc_bytes`, `fixed_elem_free_bytes`, `fixed_elem_size_bytes`, `fixed_elem_count`, and `fixed_elem_free_count`
+* *Colunas de Armazenamento de Tamanho Fixo*: `fixed_elem_alloc_bytes`, `fixed_elem_free_bytes`, `fixed_elem_size_bytes`, `fixed_elem_count` e `fixed_elem_free_count`
 
-* *Variable-sized storage columns*: `var_elem_alloc_bytes`, `var_elem_free_bytes`, and `var_elem_count`
+* *Colunas de Armazenamento de Tamanho Variável*: `var_elem_alloc_bytes`, `var_elem_free_bytes` e `var_elem_count`
 
-* *Hash index column*: `hash_index_alloc_bytes`
+* *Coluna de Hash Index*: `hash_index_alloc_bytes`
 
-The `parent_fq_name` and `fq_name` columns can be used to identify indexes associated with a table. Similar schema object hierarchy information is available in other `ndbinfo` tables.
+As colunas `parent_fq_name` e `fq_name` podem ser usadas para identificar `indexes` associados a uma tabela. Informações de hierarquia de objetos de esquema semelhantes estão disponíveis em outras tabelas `ndbinfo`.
 
-Table and index fragment replicas allocate [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) in 32KB pages. These memory pages are managed as listed here:
+`Replicas` de `fragment` de tabela e `index` alocam [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) em páginas de 32KB. Essas páginas de memória são gerenciadas conforme listado aqui:
 
-* *Fixed-size pages*: These store the fixed-size parts of rows stored in a given fragment. Every row has a fixed-size part.
+* *Páginas de Tamanho Fixo*: Armazenam as partes de tamanho fixo das linhas armazenadas em um determinado `fragment`. Toda linha possui uma parte de tamanho fixo.
 
-* *Variable-sized pages*: These store variable-sized parts for rows in the fragment. Every row having one or more variable-sized, one or more dynamic columns (or both) has a variable-sized part.
+* *Páginas de Tamanho Variável*: Armazenam as partes de tamanho variável para as linhas no `fragment`. Toda linha que possui uma ou mais colunas de tamanho variável, uma ou mais colunas dinâmicas (ou ambas) tem uma parte de tamanho variável.
 
-* *Hash index pages*: These are allocated as 8 KB subpages, and store the primary key hash index structure.
+* *Páginas de Hash Index*: São alocadas como subpáginas de 8 KB e armazenam a estrutura do `Primary Key Hash Index`.
 
-Each row in an `NDB` table has a fixed-size part, consisting of a row header, and one or more fixed-size columns. The row may also contain one or more variable-size part references, one or more disk part references, or both. Each row also has a primary key hash index entry (corresponding to the hidden primary key that is part of every `NDB` table).
+Cada linha em uma tabela `NDB` tem uma parte de tamanho fixo, consistindo em um cabeçalho de linha e uma ou mais colunas de tamanho fixo. A linha também pode conter uma ou mais referências de partes de tamanho variável, uma ou mais referências de partes em disco, ou ambas. Cada linha também possui uma entrada de `Primary Key Hash Index` (correspondente à `Primary Key` oculta que faz parte de toda tabela `NDB`).
 
-From the foregoing we can see that each table fragment and index fragment together allocate the amount of [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) calculated as shown here:
+A partir do exposto, podemos ver que cada `fragment` de tabela e `fragment` de `index` juntos alocam a quantidade de [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) calculada conforme mostrado aqui:
 
 ```sql
 DataMemory =
@@ -109,9 +109,9 @@ DataMemory =
     + number_of_hash_pages * 8KB
 ```
 
-Since `fixed_elem_alloc_bytes` and `var_elem_alloc_bytes` are always multiples of 32768 bytes, we can further determine that `number_of_fixed_pages = fixed_elem_alloc_bytes / 32768` and `number_of_var_pages = var_elem_alloc_bytes / 32768`. `hash_index_alloc_bytes` is always a multiple of 8192 bytes, so `number_of_hash_pages = hash_index_alloc_bytes / 8192`.
+Como `fixed_elem_alloc_bytes` e `var_elem_alloc_bytes` são sempre múltiplos de 32768 bytes, podemos determinar ainda que `number_of_fixed_pages = fixed_elem_alloc_bytes / 32768` e `number_of_var_pages = var_elem_alloc_bytes / 32768`. `hash_index_alloc_bytes` é sempre um múltiplo de 8192 bytes, então `number_of_hash_pages = hash_index_alloc_bytes / 8192`.
 
-A fixed size page has an internal header and a number of fixed-size slots, each of which can contain one row's fixed-size part. The size of a given row's fixed size part is schema-dependent, and is provided by the `fixed_elem_size_bytes` column; the number of fixed-size slots per page can be determined by calculating the total number of slots and the total number of pages, like this:
+Uma página de tamanho fixo tem um cabeçalho interno e vários *slots* de tamanho fixo, cada um dos quais pode conter a parte de tamanho fixo de uma linha. O tamanho da parte de tamanho fixo de uma determinada linha depende do esquema e é fornecido pela coluna `fixed_elem_size_bytes`; o número de *slots* de tamanho fixo por página pode ser determinado calculando o número total de *slots* e o número total de páginas, assim:
 
 ```sql
 fixed_slots = fixed_elem_count + fixed_elem_free_count
@@ -121,9 +121,9 @@ fixed_pages = fixed_elem_alloc_bytes / 32768
 slots_per_page = total_slots / total_pages
 ```
 
-`fixed_elem_count` is in effect the row count for a given table fragment, since each row has 1 fixed element, `fixed_elem_free_count` is the total number of free fixed-size slots across the allocated pages. `fixed_elem_free_bytes` is equal to `fixed_elem_free_count * fixed_elem_size_bytes`.
+`fixed_elem_count` é, na verdade, a contagem de linhas para um determinado `fragment` de tabela, visto que cada linha tem 1 elemento fixo. `fixed_elem_free_count` é o número total de *slots* de tamanho fixo livres nas páginas alocadas. `fixed_elem_free_bytes` é igual a `fixed_elem_free_count * fixed_elem_size_bytes`.
 
-A fragment can have any number of fixed-size pages; when the last row on a fixed-size page is deleted, the page is released to the `DataMemory` page pool. Fixed-size pages can be fragmented, with more pages allocated than is required by the number of fixed-size slots in use. You can check whether this is the case by comparing the pages required to the pages allocated, which you can calculate like this:
+Um `fragment` pode ter qualquer número de páginas de tamanho fixo; quando a última linha em uma página de tamanho fixo é excluída, a página é liberada para o `page pool` do `DataMemory`. Páginas de tamanho fixo podem ser fragmentadas, com mais páginas alocadas do que o necessário pelo número de *slots* de tamanho fixo em uso. Você pode verificar se este é o caso comparando as páginas necessárias com as páginas alocadas, o que você pode calcular assim:
 
 ```sql
 fixed_pages_required = 1 + (fixed_elem_count / slots_per_page)
@@ -131,9 +131,9 @@ fixed_pages_required = 1 + (fixed_elem_count / slots_per_page)
 fixed_page_utilization = fixed_pages_required / fixed_pages
 ```
 
-A variable-sized page has an internal header and uses the remaining space to store one or more variable-sized row parts; the number of parts stored depends on the schema and the actual data stored. Since not all schemas or rows have a variable-sized part, `var_elem_count` can be less than `fixed_elem_count`. The total free space available on all variable-sized pages in the fragment is shown by the `var_elem_free_bytes` column; because this space may be spread over multiple pages, it cannot necessarily be used to store an entry of a particular size. Each variable-sized page is reorganized as needed to fit the changing size of variable-sized row parts as they are inserted, updated, and deleted; if a given row part grows too large for the page it is in, it can be moved to a different page.
+Uma página de tamanho variável possui um cabeçalho interno e usa o espaço restante para armazenar uma ou mais partes de linha de tamanho variável; o número de partes armazenadas depende do esquema e dos dados reais armazenados. Visto que nem todos os esquemas ou linhas possuem uma parte de tamanho variável, `var_elem_count` pode ser menor que `fixed_elem_count`. O espaço livre total disponível em todas as páginas de tamanho variável no `fragment` é mostrado pela coluna `var_elem_free_bytes`; como esse espaço pode estar espalhado por várias páginas, ele não pode ser necessariamente usado para armazenar uma entrada de um tamanho específico. Cada página de tamanho variável é reorganizada conforme necessário para se adequar ao tamanho variável das partes da linha de tamanho variável à medida que são inseridas, atualizadas e excluídas; se uma determinada parte da linha ficar muito grande para a página em que está, ela poderá ser movida para uma página diferente.
 
-Variable-sized page utilisation can be calculated as shown here:
+A utilização da página de tamanho variável pode ser calculada conforme mostrado aqui:
 
 ```sql
 var_page_used_bytes =  var_elem_alloc_bytes - var_elem_free_bytes
@@ -143,52 +143,52 @@ var_page_utilisation = var_page_used_bytes / var_elem_alloc_bytes
 avg_row_var_part_size = var_page_used_bytes / fixed_elem_count
 ```
 
-We can obtain the average variable part size per row like this:
+Podemos obter o tamanho médio da parte variável por linha assim:
 
 ```sql
 avg_row_var_part_size = var_page_used_bytes / fixed_elem_count
 ```
 
-Secondary unique indexes are implemented internally as independent tables with the following schema:
+`Secondary Unique Indexes` são implementados internamente como tabelas independentes com o seguinte esquema:
 
-* *Primary key*: Indexed columns in base table.
+* *Primary Key*: Colunas indexadas na tabela base.
 
-* *Values*: Primary key columns from base table.
+* *Valores*: Colunas de `Primary Key` da tabela base.
 
-These tables are distributed and fragmented as normal. This means that their fragment replicas use fixed, variable, and hash index pages as with any other `NDB` table.
+Essas tabelas são distribuídas e fragmentadas normalmente. Isso significa que suas `replicas` de `fragment` usam páginas fixas, variáveis e de `hash index`, assim como qualquer outra tabela `NDB`.
 
-Secondary ordered indexes are fragmented and distributed in the same way as the base table. Ordered index fragments are T-tree structures which maintain a balanced tree containing row references in the order implied by the indexed columns. Since the tree contains references rather than actual data, the T-tree storage cost is not dependent on the size or number of indexed columns, but is rather a function of the number of rows. The tree is constructed using fixed-size node structures, each of which may contain a number of row references; the number of nodes required depends on the number of rows in the table, and the tree structure necessary to represent the ordering. In the `memory_per_fragment` table, we can see that ordered indexes allocate only fixed-size pages, so as usual the relevant columns from this table are as listed here:
+`Secondary Ordered Indexes` são fragmentados e distribuídos da mesma forma que a tabela base. `Fragments` de `Ordered Index` são estruturas T-tree que mantêm uma árvore balanceada contendo referências de linha na ordem implícita pelas colunas indexadas. Como a árvore contém referências em vez de dados reais, o custo de armazenamento da T-tree não depende do tamanho ou número de colunas indexadas, mas sim de uma função do número de linhas. A árvore é construída usando estruturas de `node` de tamanho fixo, cada uma das quais pode conter um número de referências de linha; o número de `nodes` necessários depende do número de linhas na tabela e da estrutura da árvore necessária para representar a ordenação. Na tabela `memory_per_fragment`, podemos ver que os `ordered indexes` alocam apenas páginas de tamanho fixo, portanto, como de costume, as colunas relevantes desta tabela são as listadas aqui:
 
-* `fixed_elem_alloc_bytes`: This is equal to 32768 times the number of fixed-size pages.
+* `fixed_elem_alloc_bytes`: Isto é igual a 32768 vezes o número de páginas de tamanho fixo.
 
-* `fixed_elem_count`: The number of T-tree nodes in use.
+* `fixed_elem_count`: O número de `nodes` T-tree em uso.
 
-* `fixed_elem_size_bytes`: The number of bytes per T-tree node.
+* `fixed_elem_size_bytes`: O número de bytes por `node` T-tree.
 
-* `fixed_elem_free_count`: The number of T-tree node slots available in the pages allocated.
+* `fixed_elem_free_count`: O número de *slots* de `node` T-tree disponíveis nas páginas alocadas.
 
-* `fixed_elem_free_bytes`: This is equal to `fixed_elem_free_count * fixed_elem_size_bytes`.
+* `fixed_elem_free_bytes`: Isto é igual a `fixed_elem_free_count * fixed_elem_size_bytes`.
 
-If free space in a page is fragmented, the page is defragmented. [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") can be used to defragment a table's variable-sized pages; this moves row variable-sized parts between pages so that some whole pages can be freed for re-use.
+Se o espaço livre em uma página estiver fragmentado, a página é desfragmentada. [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") pode ser usado para desfragmentar as páginas de tamanho variável de uma tabela; isso move as partes de tamanho variável das linhas entre as páginas para que algumas páginas inteiras possam ser liberadas para reutilização.
 
-##### memory_per_fragment Table: Examples
+##### Tabela memory_per_fragment: Exemplos
 
-* [Getting general information about fragments and memory usage](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-memory-general "Getting general information about fragments and memory usage")
-* [Finding a table and its indexes](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-table-indexes "Finding a table and its indexes")
-* [Finding the memory allocated by schema elements](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-memory-allocated-per-element "Finding the memory allocated by schema elements")
-* [Finding the memory allocated for a table and all indexes](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-table-indexes-all "Finding the memory allocated for a table and all indexes")
-* [Finding the memory allocated per row](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-total-per-row "Finding the memory allocated per row")
-* [Finding the total memory in use per row](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-total-in-use-per-row "Finding the total memory in use per row")
-* [Finding the memory allocated per element](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-allocated-per-element "Finding the memory allocated per element")
-* [Finding the average memory allocated per row, by element](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-average-allocated-per-row-by-element "Finding the average memory allocated per row, by element")
-* [Finding the average memory allocated per row](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-average-allocated-per-row "Finding the average memory allocated per row")
-* [Finding the average memory allocated per row for a table](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-allocated-per-row-for-table "Finding the average memory allocated per row for a table")
-* [Finding the memory in use by each schema element](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-in-use-per-element "Finding the memory in use by each schema element")
-* [Finding the average memory in use by each schema element](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-avaerage-in-use-per-element "Finding the average memory in use by each schema element")
-* [Finding the average memory in use per row, by element](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-average-in-use-per-row-by-element "Finding the average memory in use per row, by element")
-* [Finding the total average memory in use per row](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-total-average-in-use-per-row "Finding the total average memory in use per row")
+* [Obtendo informações gerais sobre fragments e uso de memória](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-memory-general "Getting general information about fragments and memory usage")
+* [Encontrando uma tabela e seus indexes](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-table-indexes "Finding a table and its indexes")
+* [Encontrando a memória alocada por elementos do esquema](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-memory-allocated-per-element "Finding the memory allocated by schema elements")
+* [Encontrando a memória alocada para uma tabela e todos os indexes](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-table-indexes-all "Finding the memory allocated for a table and all indexes")
+* [Encontrando a memória alocada por linha](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-total-per-row "Finding the memory allocated per row")
+* [Encontrando o total de memória em uso por linha](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-total-in-use-per-row "Finding the total memory in use per row")
+* [Encontrando a memória alocada por elemento](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-allocated-per-element "Finding the memory allocated per element")
+* [Encontrando a memória média alocada por linha, por elemento](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-average-allocated-per-row-by-element "Finding the average memory allocated per row, by element")
+* [Encontrando a memória média alocada por linha](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-average-allocated-per-row "Finding the average memory allocated per row")
+* [Encontrando a memória média alocada por linha para uma tabela](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-allocated-per-row-for-table "Finding the average memory allocated per row for a table")
+* [Encontrando a memória em uso por cada elemento do esquema](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-in-use-per-element "Finding the memory in use by each schema element")
+* [Encontrando a memória média em uso por cada elemento do esquema](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-avaerage-in-use-per-element "Finding the average memory in use by each schema element")
+* [Encontrando a memória média em uso por linha, por elemento](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-average-in-use-per-row-by-element "Finding the average memory in use per row, by element")
+* [Encontrando o total de memória média em uso por linha](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-total-average-in-use-per-row "Finding the total average memory in use per row")
 
-For the following examples, we create a simple table with three integer columns, one of which has a primary key, one having a unique index, and one with no indexes, as well as one [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") column with no indexes, as shown here:
+Para os exemplos a seguir, criamos uma tabela simples com três colunas `integer`, uma das quais tem uma `Primary Key`, uma com um `Unique Index` e uma sem `indexes`, bem como uma coluna [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") sem `indexes`, conforme mostrado aqui:
 
 ```sql
 mysql> CREATE DATABASE IF NOT EXISTS test;
@@ -205,11 +205,11 @@ mysql> CREATE TABLE t1 (
 Query OK, 0 rows affected (0.27 sec)
 ```
 
-Following creation of the table, we insert 50,000 rows containing random data; the precise method of generating and inserting these rows makes no practical difference, and we leave the method of accomplishing as an exercise for the user.
+Após a criação da tabela, inserimos 50.000 linhas contendo dados aleatórios; o método preciso de geração e inserção dessas linhas não faz diferença prática, e deixamos o método de realização como um exercício para o usuário.
 
-###### Getting general information about fragments and memory usage
+###### Obtendo informações gerais sobre fragments e uso de memória
 
-This query shows general information about memory usage for each fragment:
+Esta `Query` mostra informações gerais sobre o uso de memória para cada `fragment`:
 
 ```sql
 mysql> SELECT
@@ -274,9 +274,9 @@ fixed_elem_alloc_bytes: 1114112
 4 rows in set (0.12 sec)
 ```
 
-###### Finding a table and its indexes
+###### Encontrando uma tabela e seus indexes
 
-This query can be used to find a specific table and its indexes:
+Esta `Query` pode ser usada para encontrar uma tabela específica e seus `indexes`:
 
 ```sql
 mysql> SELECT fq_name
@@ -302,9 +302,9 @@ mysql> SELECT COUNT(*) FROM t1;
 1 row in set (0.00 sec)
 ```
 
-###### Finding the memory allocated by schema elements
+###### Encontrando a memória alocada por elementos do esquema
 
-This query shows the memory allocated by each schema element (in total across all replicas):
+Esta `Query` mostra a memória alocada por cada elemento do esquema (no total em todas as `replicas`):
 
 ```sql
 mysql> SELECT
@@ -327,9 +327,9 @@ mysql> SELECT
 4 rows in set (0.11 sec)
 ```
 
-###### Finding the memory allocated for a table and all indexes
+###### Encontrando a memória alocada para uma tabela e todos os indexes
 
-The sum of memory allocated for the table and all its indexes (in total across all replicas) can be obtained using the query shown here:
+A soma da memória alocada para a tabela e todos os seus `indexes` (no total em todas as `replicas`) pode ser obtida usando a `Query` mostrada aqui:
 
 ```sql
 mysql> SELECT
@@ -347,7 +347,7 @@ mysql> SELECT
 1 row in set (0.12 sec)
 ```
 
-This is an abbreviated version of the previous query which shows only the total memory used by the table:
+Esta é uma versão abreviada da `Query` anterior que mostra apenas o total de memória usada pela tabela:
 
 ```sql
 mysql> SELECT
@@ -362,9 +362,9 @@ mysql> SELECT
 1 row in set (0.12 sec)
 ```
 
-###### Finding the memory allocated per row
+###### Encontrando a memória alocada por linha
 
-The following query shows the total memory allocated per row (across all replicas):
+A seguinte `Query` mostra a memória total alocada por linha (em todas as `replicas`):
 
 ```sql
 mysql> SELECT
@@ -381,9 +381,9 @@ mysql> SELECT
 1 row in set (0.12 sec)
 ```
 
-###### Finding the total memory in use per row
+###### Encontrando o total de memória em uso por linha
 
-To obtain the total memory in use per row (across all replicas), we need the total memory used divided by the row count, which is the `fixed_elem_count` for the base table like this:
+Para obter o total de memória em uso por linha (em todas as `replicas`), precisamos do total de memória usada dividido pela contagem de linhas, que é o `fixed_elem_count` para a tabela base, assim:
 
 ```sql
 mysql> SELECT
@@ -405,9 +405,9 @@ mysql> SELECT
 1 row in set (0.12 sec)
 ```
 
-###### Finding the memory allocated per element
+###### Encontrando a memória alocada por elemento
 
-The memory allocated by each schema element (in total across all replicas) can be found using the following query:
+A memória alocada por cada elemento do esquema (no total em todas as `replicas`) pode ser encontrada usando a seguinte `Query`:
 
 ```sql
 mysql> SELECT
@@ -431,9 +431,9 @@ mysql> SELECT
 4 rows in set (0.11 sec)
 ```
 
-###### Finding the average memory allocated per row, by element
+###### Encontrando a memória média alocada por linha, por elemento
 
-To obtain the average memory allocated per row by each schema element (in total across all replicas), we use a subquery to get the base table fixed element count each time to get an average per row since `fixed_elem_count` for the indexes is not necessarily the same as for the base table, as shown here:
+Para obter a memória média alocada por linha por cada elemento do esquema (no total em todas as `replicas`), usamos uma subquery para obter a contagem de elementos fixos da tabela base cada vez para obter uma média por linha, já que `fixed_elem_count` para os `indexes` não é necessariamente o mesmo que para a tabela base, conforme mostrado aqui:
 
 ```sql
 mysql> SELECT
@@ -480,9 +480,9 @@ mysql> SELECT
 4 rows in set (0.70 sec)
 ```
 
-###### Finding the average memory allocated per row
+###### Encontrando a memória média alocada por linha
 
-Average memory allocated per row (in total across all replicas):
+Memória média alocada por linha (no total em todas as `replicas`):
 
 ```sql
 mysql> SELECT
@@ -524,9 +524,9 @@ mysql> SELECT
 1 row in set (0.71 sec)
 ```
 
-###### Finding the average memory allocated per row for a table
+###### Encontrando a memória média alocada por linha para uma tabela
 
-To get the average amount of memory allocated per row for the entire table across all replicas, we can use the query shown here:
+Para obter a quantidade média de memória alocada por linha para toda a tabela em todas as `replicas`, podemos usar a `Query` mostrada aqui:
 
 ```sql
 mysql> SELECT
@@ -550,9 +550,9 @@ mysql> SELECT
 1 row in set (0.33 sec)
 ```
 
-###### Finding the memory in use by each schema element
+###### Encontrando a memória em uso por cada elemento do esquema
 
-To obtain the memory in use per schema element across all replicas, we need to sum the difference between allocated and free memory for each element, like this:
+Para obter a memória em uso por elemento do esquema em todas as `replicas`, precisamos somar a diferença entre a memória alocada e a memória livre para cada elemento, assim:
 
 ```sql
 mysql> SELECT
@@ -577,9 +577,9 @@ mysql> SELECT
 4 rows in set (0.13 sec)
 ```
 
-###### Finding the average memory in use by each schema element
+###### Encontrando a memória média em uso por cada elemento do esquema
 
-This query gets the average memory in use per schema element across all replicas:
+Esta `Query` obtém a memória média em uso por elemento do esquema em todas as `replicas`:
 
 ```sql
 mysql> SELECT
@@ -629,9 +629,9 @@ mysql> SELECT
 4 rows in set (0.72 sec)
 ```
 
-###### Finding the average memory in use per row, by element
+###### Encontrando a memória média em uso por linha, por elemento
 
-This query gets the average memory in use per row, by element, across all replicas:
+Esta `Query` obtém a memória média em uso por linha, por elemento, em todas as `replicas`:
 
 ```sql
 mysql> SELECT
@@ -676,9 +676,9 @@ mysql> SELECT
 1 row in set (0.68 sec)
 ```
 
-###### Finding the total average memory in use per row
+###### Encontrando o total de memória média em uso por linha
 
-This query obtains the total average memory in use, per row:
+Esta `Query` obtém o total de memória média em uso, por linha:
 
 ```sql
 mysql> SELECT

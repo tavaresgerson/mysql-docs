@@ -1,118 +1,118 @@
-### 24.3.8 The INFORMATION_SCHEMA EVENTS Table
+### 24.3.8 A Tabela EVENTS do INFORMATION_SCHEMA
 
-The [`EVENTS`](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table") table provides information about Event Manager events, which are discussed in [Section 23.4, “Using the Event Scheduler”](event-scheduler.html "23.4 Using the Event Scheduler").
+A tabela `EVENTS` fornece informações sobre os eventos do Event Manager, que são discutidos na [Seção 23.4, “Utilizando o Event Scheduler”](event-scheduler.html "23.4 Using the Event Scheduler").
 
-The [`EVENTS`](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table") table has these columns:
+A tabela `EVENTS` possui as seguintes colunas:
 
 * `EVENT_CATALOG`
 
-  The name of the catalog to which the event belongs. This value is always `def`.
+  O nome do catálogo ao qual o evento pertence. Este valor é sempre `def`.
 
 * `EVENT_SCHEMA`
 
-  The name of the schema (database) to which the event belongs.
+  O nome do schema (Database) ao qual o evento pertence.
 
 * `EVENT_NAME`
 
-  The name of the event.
+  O nome do evento.
 
 * `DEFINER`
 
-  The account named in the `DEFINER` clause (often the user who created the event), in `'user_name'@'host_name'` format.
+  A conta nomeada na cláusula `DEFINER` (geralmente o usuário que criou o evento), no formato `'user_name'@'host_name'`.
 
 * `TIME_ZONE`
 
-  The event time zone, which is the time zone used for scheduling the event and that is in effect within the event as it executes. The default value is `SYSTEM`.
+  O fuso horário do evento, que é o fuso horário usado para agendar o evento e que está em vigor dentro do evento durante sua execução. O valor padrão é `SYSTEM`.
 
 * `EVENT_BODY`
 
-  The language used for the statements in the event's [`DO`](do.html "13.2.3 DO Statement") clause. The value is always `SQL`.
+  A linguagem utilizada para as instruções na cláusula `DO` do evento. O valor é sempre `SQL`.
 
 * `EVENT_DEFINITION`
 
-  The text of the SQL statement making up the event's [`DO`](do.html "13.2.3 DO Statement") clause; in other words, the statement executed by this event.
+  O texto da instrução SQL que compõe a cláusula `DO` do evento; em outras palavras, a instrução executada por este evento.
 
 * `EVENT_TYPE`
 
-  The event repetition type, either `ONE TIME` (transient) or `RECURRING` (repeating).
+  O tipo de repetição do evento, sendo `ONE TIME` (transitório) ou `RECURRING` (repetitivo).
 
 * `EXECUTE_AT`
 
-  For a one-time event, this is the [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") value specified in the `AT` clause of the [`CREATE EVENT`](create-event.html "13.1.12 CREATE EVENT Statement") statement used to create the event, or of the last [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") statement that modified the event. The value shown in this column reflects the addition or subtraction of any `INTERVAL` value included in the event's `AT` clause. For example, if an event is created using `ON SCHEDULE AT CURRENT_TIMESTAMP + '1:6' DAY_HOUR`, and the event was created at 2018-02-09 14:05:30, the value shown in this column would be `'2018-02-10 20:05:30'`. If the event's timing is determined by an `EVERY` clause instead of an `AT` clause (that is, if the event is recurring), the value of this column is `NULL`.
+  Para um evento de única execução (one-time), este é o valor `DATETIME` especificado na cláusula `AT` da instrução `CREATE EVENT` usada para criar o evento, ou da última instrução `ALTER EVENT` que modificou o evento. O valor exibido nesta coluna reflete a adição ou subtração de qualquer valor `INTERVAL` incluído na cláusula `AT` do evento. Por exemplo, se um evento for criado usando `ON SCHEDULE AT CURRENT_TIMESTAMP + '1:6' DAY_HOUR`, e o evento foi criado em 2018-02-09 14:05:30, o valor exibido nesta coluna seria `'2018-02-10 20:05:30'`. Se o tempo do evento for determinado por uma cláusula `EVERY` em vez de uma cláusula `AT` (ou seja, se o evento for recorrente), o valor desta coluna é `NULL`.
 
 * `INTERVAL_VALUE`
 
-  For a recurring event, the number of intervals to wait between event executions. For a transient event, the value is always `NULL`.
+  Para um evento recorrente, o número de intervalos a aguardar entre as execuções do evento. Para um evento transitório, o valor é sempre `NULL`.
 
 * `INTERVAL_FIELD`
 
-  The time units used for the interval which a recurring event waits before repeating. For a transient event, the value is always `NULL`.
+  As unidades de tempo usadas para o intervalo que um evento recorrente aguarda antes de se repetir. Para um evento transitório, o valor é sempre `NULL`.
 
 * `SQL_MODE`
 
-  The SQL mode in effect when the event was created or altered, and under which the event executes. For the permitted values, see [Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes").
+  O SQL mode em vigor quando o evento foi criado ou alterado, e sob o qual o evento é executado. Para os valores permitidos, consulte [Seção 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes").
 
 * `STARTS`
 
-  The start date and time for a recurring event. This is displayed as a [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") value, and is `NULL` if no start date and time are defined for the event. For a transient event, this column is always `NULL`. For a recurring event whose definition includes a `STARTS` clause, this column contains the corresponding [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") value. As with the `EXECUTE_AT` column, this value resolves any expressions used. If there is no `STARTS` clause affecting the timing of the event, this column is `NULL`
+  A data e hora de início para um evento recorrente. Isso é exibido como um valor `DATETIME` e é `NULL` se nenhuma data e hora de início estiver definida para o evento. Para um evento transitório, esta coluna é sempre `NULL`. Para um evento recorrente cuja definição inclui uma cláusula `STARTS`, esta coluna contém o valor `DATETIME` correspondente. Assim como na coluna `EXECUTE_AT`, este valor resolve quaisquer expressões usadas. Se não houver uma cláusula `STARTS` afetando o tempo do evento, esta coluna é `NULL`.
 
 * `ENDS`
 
-  For a recurring event whose definition includes a `ENDS` clause, this column contains the corresponding [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") value. As with the `EXECUTE_AT` column, this value resolves any expressions used. If there is no `ENDS` clause affecting the timing of the event, this column is `NULL`.
+  Para um evento recorrente cuja definição inclui uma cláusula `ENDS`, esta coluna contém o valor `DATETIME` correspondente. Assim como na coluna `EXECUTE_AT`, este valor resolve quaisquer expressões usadas. Se não houver uma cláusula `ENDS` afetando o tempo do evento, esta coluna é `NULL`.
 
 * `STATUS`
 
-  The event status. One of `ENABLED`, `DISABLED`, or `SLAVESIDE_DISABLED`. `SLAVESIDE_DISABLED` indicates that the creation of the event occurred on another MySQL server acting as a replication source and replicated to the current MySQL server which is acting as a replica, but the event is not presently being executed on the replica. For more information, see [Section 16.4.1.16, “Replication of Invoked Features”](replication-features-invoked.html "16.4.1.16 Replication of Invoked Features"). information.
+  O status do evento. Um dos seguintes: `ENABLED`, `DISABLED` ou `SLAVESIDE_DISABLED`. `SLAVESIDE_DISABLED` indica que a criação do evento ocorreu em outro servidor MySQL atuando como fonte de replicação e foi replicado para o servidor MySQL atual que está atuando como réplica, mas o evento não está sendo executado no momento na réplica. Para mais informações, consulte [Seção 16.4.1.16, “Replication of Invoked Features”](replication-features-invoked.html "16.4.1.16 Replication of Invoked Features").
 
 * `ON_COMPLETION`
 
-  One of the two values `PRESERVE` or `NOT PRESERVE`.
+  Um dos dois valores: `PRESERVE` ou `NOT PRESERVE`.
 
 * `CREATED`
 
-  The date and time when the event was created. This is a [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") value.
+  A data e hora em que o evento foi criado. Este é um valor `TIMESTAMP`.
 
 * `LAST_ALTERED`
 
-  The date and time when the event was last modified. This is a [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") value. If the event has not been modified since its creation, this value is the same as the `CREATED` value.
+  A data e hora em que o evento foi modificado pela última vez. Este é um valor `TIMESTAMP`. Se o evento não foi modificado desde a sua criação, este valor é o mesmo que o valor `CREATED`.
 
 * `LAST_EXECUTED`
 
-  The date and time when the event last executed. This is a [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") value. If the event has never executed, this column is `NULL`.
+  A data e hora em que o evento foi executado pela última vez. Este é um valor `DATETIME`. Se o evento nunca foi executado, esta coluna é `NULL`.
 
-  `LAST_EXECUTED` indicates when the event started. As a result, the `ENDS` column is never less than `LAST_EXECUTED`.
+  `LAST_EXECUTED` indica quando o evento começou. Como resultado, a coluna `ENDS` nunca é menor que `LAST_EXECUTED`.
 
 * `EVENT_COMMENT`
 
-  The text of the comment, if the event has one. If not, this value is empty.
+  O texto do comentário, se o evento tiver um. Caso contrário, este valor é vazio.
 
 * `ORIGINATOR`
 
-  The server ID of the MySQL server on which the event was created; used in replication. This value may be updated by [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") to the server ID of the server on which that statement occurs, if executed on a replication source. The default value is 0.
+  O ID do servidor MySQL no qual o evento foi criado; usado na replicação. Este valor pode ser atualizado por `ALTER EVENT` para o ID do servidor no qual essa instrução ocorre, se executada em uma fonte de replicação. O valor padrão é 0.
 
 * `CHARACTER_SET_CLIENT`
 
-  The session value of the [`character_set_client`](server-system-variables.html#sysvar_character_set_client) system variable when the event was created.
+  O valor de sessão da variável de sistema `character_set_client` quando o evento foi criado.
 
 * `COLLATION_CONNECTION`
 
-  The session value of the [`collation_connection`](server-system-variables.html#sysvar_collation_connection) system variable when the event was created.
+  O valor de sessão da variável de sistema `collation_connection` quando o evento foi criado.
 
 * `DATABASE_COLLATION`
 
-  The collation of the database with which the event is associated.
+  O collation do Database ao qual o evento está associado.
 
-#### Notes
+#### Notas
 
-* [`EVENTS`](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table") is a nonstandard `INFORMATION_SCHEMA` table.
+* `EVENTS` é uma tabela não padrão do `INFORMATION_SCHEMA`.
 
-* Times in the [`EVENTS`](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table") table are displayed using the event time zone, the current session time zone, or UTC, as described in [Section 23.4.4, “Event Metadata”](events-metadata.html "23.4.4 Event Metadata").
+* Os horários na tabela `EVENTS` são exibidos usando o fuso horário do evento, o fuso horário da sessão atual ou UTC, conforme descrito em [Seção 23.4.4, “Metadados do Evento”](events-metadata.html "23.4.4 Event Metadata").
 
-* For more information about `SLAVESIDE_DISABLED` and the `ORIGINATOR` column, see [Section 16.4.1.16, “Replication of Invoked Features”](replication-features-invoked.html "16.4.1.16 Replication of Invoked Features").
+* Para mais informações sobre `SLAVESIDE_DISABLED` e a coluna `ORIGINATOR`, consulte [Seção 16.4.1.16, “Replication of Invoked Features”](replication-features-invoked.html "16.4.1.16 Replication of Invoked Features").
 
-#### Example
+#### Exemplo
 
-Suppose that the user `'jon'@'ghidora'` creates an event named `e_daily`, and then modifies it a few minutes later using an [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") statement, as shown here:
+Suponha que o usuário `'jon'@'ghidora'` crie um evento chamado `e_daily` e, em seguida, o modifique alguns minutos depois usando uma instrução `ALTER EVENT`, conforme mostrado aqui:
 
 ```sql
 DELIMITER |
@@ -135,9 +135,9 @@ ALTER EVENT e_daily
     ENABLE;
 ```
 
-(Note that comments can span multiple lines.)
+(Observe que os comentários podem abranger várias linhas.)
 
-This user can then run the following [`SELECT`](select.html "13.2.9 SELECT Statement") statement, and obtain the output shown:
+Este usuário pode então executar a seguinte instrução `SELECT` e obter a saída mostrada:
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.EVENTS
@@ -179,7 +179,7 @@ COLLATION_CONNECTION: utf8_general_ci
   DATABASE_COLLATION: latin1_swedish_ci
 ```
 
-Event information is also available from the [`SHOW EVENTS`](show-events.html "13.7.5.18 SHOW EVENTS Statement") statement. See [Section 13.7.5.18, “SHOW EVENTS Statement”](show-events.html "13.7.5.18 SHOW EVENTS Statement"). The following statements are equivalent:
+Informações do evento também estão disponíveis a partir da instrução `SHOW EVENTS`. Consulte [Seção 13.7.5.18, “SHOW EVENTS Statement”](show-events.html "13.7.5.18 SHOW EVENTS Statement"). As seguintes instruções são equivalentes:
 
 ```sql
 SELECT

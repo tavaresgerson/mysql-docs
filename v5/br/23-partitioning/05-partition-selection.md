@@ -1,12 +1,12 @@
-## 22.5 Partition Selection
+## 22.5 Seleção de Partições
 
-MySQL 5.7 supports explicit selection of partitions and subpartitions that, when executing a statement, should be checked for rows matching a given `WHERE` condition. Partition selection is similar to partition pruning, in that only specific partitions are checked for matches, but differs in two key respects:
+O MySQL 5.7 suporta a seleção explícita de partições e subpartições que, ao executar uma instrução, devem ser verificadas em busca de linhas que correspondam a uma dada condição `WHERE`. A seleção de partições é semelhante à *partition pruning* (poda de partição), pois apenas partições específicas são verificadas em busca de correspondências, mas difere em dois aspectos principais:
 
-1. The partitions to be checked are specified by the issuer of the statement, unlike partition pruning, which is automatic.
+1. As partições a serem verificadas são especificadas por quem emite a instrução, diferente da *partition pruning*, que é automática.
 
-2. Whereas partition pruning applies only to queries, explicit selection of partitions is supported for both queries and a number of DML statements.
+2. Enquanto a *partition pruning* se aplica apenas a *queries*, a seleção explícita de partições é suportada tanto para *queries* quanto para várias instruções DML.
 
-SQL statements supporting explicit partition selection are listed here:
+As instruções SQL que suportam a seleção explícita de partições estão listadas abaixo:
 
 * [`SELECT`](select.html "13.2.9 SELECT Statement")
 * [`DELETE`](delete.html "13.2.2 DELETE Statement")
@@ -16,9 +16,9 @@ SQL statements supporting explicit partition selection are listed here:
 * [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement").
 * [`LOAD XML`](load-xml.html "13.2.7 LOAD XML Statement").
 
-The remainder of this section discusses explicit partition selection as it applies generally to the statements just listed, and provides some examples.
+O restante desta seção discute a seleção explícita de partições conforme ela se aplica de forma geral às instruções listadas e fornece alguns exemplos.
 
-Explicit partition selection is implemented using a `PARTITION` option. For all supported statements, this option uses the syntax shown here:
+A seleção explícita de partições é implementada usando a opção `PARTITION`. Para todas as instruções suportadas, esta opção utiliza a sintaxe mostrada aqui:
 
 ```sql
       PARTITION (partition_names)
@@ -27,9 +27,9 @@ Explicit partition selection is implemented using a `PARTITION` option. For all 
           partition_name, ...
 ```
 
-This option always follows the name of the table to which the partition or partitions belong. *`partition_names`* is a comma-separated list of partitions or subpartitions to be used. Each name in this list must be the name of an existing partition or subpartition of the specified table; if any of the partitions or subpartitions are not found, the statement fails with an error (partition '*`partition_name`*' does not exist). Partitions and subpartitions named in *`partition_names`* may be listed in any order, and may overlap.
+Esta opção sempre segue o nome da tabela à qual a partição ou partições pertencem. *`partition_names`* é uma lista separada por vírgulas de partições ou subpartições a serem utilizadas. Cada nome nesta lista deve ser o nome de uma partição ou subpartição existente da tabela especificada; se alguma das partições ou subpartições não for encontrada, a instrução falhará com um erro (partition '*`partition_name`*' does not exist). Partições e subpartições nomeadas em *`partition_names`* podem ser listadas em qualquer ordem e podem se sobrepor.
 
-When the `PARTITION` option is used, only the partitions and subpartitions listed are checked for matching rows. This option can be used in a [`SELECT`](select.html "13.2.9 SELECT Statement") statement to determine which rows belong to a given partition. Consider a partitioned table named `employees`, created and populated using the statements shown here:
+Quando a opção `PARTITION` é usada, apenas as partições e subpartições listadas são verificadas em busca de linhas correspondentes. Esta opção pode ser usada em uma instrução [`SELECT`](select.html "13.2.9 SELECT Statement") para determinar quais linhas pertencem a uma dada partição. Considere uma tabela particionada chamada `employees`, criada e preenchida usando as instruções mostradas aqui:
 
 ```sql
 SET @@SQL_MODE = '';
@@ -60,7 +60,7 @@ INSERT INTO employees VALUES
     ('', 'Mark', 'Morgan', 3, 3), ('', 'Karen', 'Cole', 3, 2);
 ```
 
-You can see which rows are stored in partition `p1` like this:
+Você pode ver quais linhas estão armazenadas na partição `p1` assim:
 
 ```sql
 mysql> SELECT * FROM employees PARTITION (p1);
@@ -76,11 +76,11 @@ mysql> SELECT * FROM employees PARTITION (p1);
 5 rows in set (0.00 sec)
 ```
 
-The result is the same as obtained by the query `SELECT * FROM employees WHERE id BETWEEN 5 AND 9`.
+O resultado é o mesmo que o obtido pela *query* `SELECT * FROM employees WHERE id BETWEEN 5 AND 9`.
 
-To obtain rows from multiple partitions, supply their names as a comma-delimited list. For example, `SELECT * FROM employees PARTITION (p1, p2)` returns all rows from partitions `p1` and `p2` while excluding rows from the remaining partitions.
+Para obter linhas de múltiplas partições, forneça seus nomes como uma lista delimitada por vírgulas. Por exemplo, `SELECT * FROM employees PARTITION (p1, p2)` retorna todas as linhas das partições `p1` e `p2`, excluindo as linhas das partições restantes.
 
-Any valid query against a partitioned table can be rewritten with a `PARTITION` option to restrict the result to one or more desired partitions. You can use `WHERE` conditions, `ORDER BY` and `LIMIT` options, and so on. You can also use aggregate functions with `HAVING` and `GROUP BY` options. Each of the following queries produces a valid result when run on the `employees` table as previously defined:
+Qualquer *query* válida contra uma tabela particionada pode ser reescrita com a opção `PARTITION` para restringir o resultado a uma ou mais partições desejadas. Você pode usar condições `WHERE`, opções `ORDER BY` e `LIMIT`, e assim por diante. Você também pode usar funções de agregação com opções `HAVING` e `GROUP BY`. Cada uma das seguintes *queries* produz um resultado válido quando executada na tabela `employees` conforme definida anteriormente:
 
 ```sql
 mysql> SELECT * FROM employees PARTITION (p0, p2)
@@ -117,7 +117,7 @@ mysql> SELECT store_id, COUNT(department_id) AS c
 2 rows in set (0.00 sec)
 ```
 
-Statements using partition selection can be employed with tables using any of the partitioning types supported in MySQL 5.7. When a table is created using `[LINEAR] HASH` or `[LINEAR] KEY` partitioning and the names of the partitions are not specified, MySQL automatically names the partitions `p0`, `p1`, `p2`, ..., `pN-1`, where *`N`* is the number of partitions. For subpartitions not explicitly named, MySQL assigns automatically to the subpartitions in each partition `pX` the names `pXsp0`, `pXsp1`, `pXsp2`, ..., `pXspM-1`, where *`M`* is the number of subpartitions. When executing against this table a [`SELECT`](select.html "13.2.9 SELECT Statement") (or other SQL statement for which explicit partition selection is allowed), you can use these generated names in a `PARTITION` option, as shown here:
+Instruções que usam seleção de partições podem ser empregadas com tabelas que utilizam qualquer um dos tipos de particionamento suportados no MySQL 5.7. Quando uma tabela é criada usando particionamento `[LINEAR] HASH` ou `[LINEAR] KEY` e os nomes das partições não são especificados, o MySQL nomeia automaticamente as partições como `p0`, `p1`, `p2`, ..., `pN-1`, onde *`N`* é o número de partições. Para subpartições não nomeadas explicitamente, o MySQL atribui automaticamente às subpartições em cada partição `pX` os nomes `pXsp0`, `pXsp1`, `pXsp2`, ..., `pXspM-1`, onde *`M`* é o número de subpartições. Ao executar contra esta tabela uma instrução [`SELECT`](select.html "13.2.9 SELECT Statement") (ou outra instrução SQL para a qual a seleção explícita de partições é permitida), você pode usar esses nomes gerados na opção `PARTITION`, conforme mostrado aqui:
 
 ```sql
 mysql> CREATE TABLE employees_sub  (
@@ -154,7 +154,7 @@ mysql> SELECT id, CONCAT(fname, ' ', lname) AS name
 2 rows in set (0.00 sec)
 ```
 
-You may also use a `PARTITION` option in the [`SELECT`](select.html "13.2.9 SELECT Statement") portion of an [`INSERT ... SELECT`](insert-select.html "13.2.5.1 INSERT ... SELECT Statement") statement, as shown here:
+Você também pode usar uma opção `PARTITION` na porção [`SELECT`](select.html "13.2.9 SELECT Statement") de uma instrução [`INSERT ... SELECT`](insert-select.html "13.2.5.1 INSERT ... SELECT Statement"), conforme mostrado aqui:
 
 ```sql
 mysql> CREATE TABLE employees_copy LIKE employees;
@@ -178,7 +178,7 @@ mysql> SELECT * FROM employees_copy;
 5 rows in set (0.00 sec)
 ```
 
-Partition selection can also be used with joins. Suppose we create and populate two tables using the statements shown here:
+A seleção de partições também pode ser usada com *joins*. Suponha que criemos e preenchamos duas tabelas usando as instruções mostradas aqui:
 
 ```sql
 CREATE TABLE stores (
@@ -204,7 +204,7 @@ INSERT INTO departments VALUES
     ('', 'Delivery'), ('', 'Accounting');
 ```
 
-You can explicitly select partitions (or subpartitions, or both) from any or all of the tables in a join. (The `PARTITION` option used to select partitions from a given table immediately follows the name of the table, before all other options, including any table alias.) For example, the following query gets the name, employee ID, department, and city of all employees who work in the Sales or Delivery department (partition `p1` of the `departments` table) at the stores in either of the cities of Nambucca and Bellingen (partition `p0` of the `stores` table):
+Você pode selecionar explicitamente partições (ou subpartições, ou ambas) de qualquer ou de todas as tabelas em um *join*. (A opção `PARTITION` usada para selecionar partições de uma determinada tabela segue imediatamente o nome da tabela, antes de todas as outras opções, incluindo qualquer *table alias*.) Por exemplo, a seguinte *query* obtém o nome, ID do empregado, departamento e cidade de todos os empregados que trabalham no departamento de Vendas (*Sales*) ou Entrega (*Delivery*) (partição `p1` da tabela `departments`) nas lojas em Nambucca ou Bellingen (partição `p0` da tabela `stores`):
 
 ```sql
 mysql> SELECT
@@ -226,9 +226,9 @@ mysql> SELECT
 5 rows in set (0.00 sec)
 ```
 
-For general information about joins in MySQL, see [Section 13.2.9.2, “JOIN Clause”](join.html "13.2.9.2 JOIN Clause").
+Para informações gerais sobre *joins* no MySQL, consulte [Section 13.2.9.2, “JOIN Clause”](join.html "13.2.9.2 JOIN Clause").
 
-When the `PARTITION` option is used with [`DELETE`](delete.html "13.2.2 DELETE Statement") statements, only those partitions (and subpartitions, if any) listed with the option are checked for rows to be deleted. Any other partitions are ignored, as shown here:
+Quando a opção `PARTITION` é usada com instruções [`DELETE`](delete.html "13.2.2 DELETE Statement"), apenas aquelas partições (e subpartições, se houver) listadas com a opção são verificadas em busca de linhas a serem excluídas. Quaisquer outras partições são ignoradas, conforme mostrado aqui:
 
 ```sql
 mysql> SELECT * FROM employees WHERE fname LIKE 'j%';
@@ -254,9 +254,9 @@ mysql> SELECT * FROM employees WHERE fname LIKE 'j%';
 1 row in set (0.00 sec)
 ```
 
-Only the two rows in partitions `p0` and `p1` matching the `WHERE` condition were deleted. As you can see from the result when the [`SELECT`](select.html "13.2.9 SELECT Statement") is run a second time, there remains a row in the table matching the `WHERE` condition, but residing in a different partition (`p2`).
+Apenas as duas linhas nas partições `p0` e `p1` que correspondiam à condição `WHERE` foram excluídas. Como você pode ver pelo resultado quando a instrução [`SELECT`](select.html "13.2.9 SELECT Statement") é executada uma segunda vez, resta uma linha na tabela que corresponde à condição `WHERE`, mas que reside em uma partição diferente (`p2`).
 
-[`UPDATE`](update.html "13.2.11 UPDATE Statement") statements using explicit partition selection behave in the same way; only rows in the partitions referenced by the `PARTITION` option are considered when determining the rows to be updated, as can be seen by executing the following statements:
+Instruções [`UPDATE`](update.html "13.2.11 UPDATE Statement") que usam seleção explícita de partições se comportam da mesma maneira; apenas as linhas nas partições referenciadas pela opção `PARTITION` são consideradas ao determinar as linhas a serem atualizadas, como pode ser visto pela execução das seguintes instruções:
 
 ```sql
 mysql> UPDATE employees PARTITION (p0)
@@ -286,9 +286,9 @@ mysql> SELECT * FROM employees WHERE fname = 'Jill';
 1 row in set (0.00 sec)
 ```
 
-In the same way, when `PARTITION` is used with [`DELETE`](delete.html "13.2.2 DELETE Statement"), only rows in the partition or partitions named in the partition list are checked for deletion.
+Da mesma forma, quando `PARTITION` é usado com [`DELETE`](delete.html "13.2.2 DELETE Statement"), apenas as linhas na partição ou partições nomeadas na lista de partições são verificadas para exclusão.
 
-For statements that insert rows, the behavior differs in that failure to find a suitable partition causes the statement to fail. This is true for both [`INSERT`](insert.html "13.2.5 INSERT Statement") and [`REPLACE`](replace.html "13.2.8 REPLACE Statement") statements, as shown here:
+Para instruções que inserem linhas, o comportamento difere, pois a falha em encontrar uma partição adequada faz com que a instrução falhe. Isso é verdade tanto para instruções [`INSERT`](insert.html "13.2.5 INSERT Statement") quanto para [`REPLACE`](replace.html "13.2.8 REPLACE Statement"), conforme mostrado aqui:
 
 ```sql
 mysql> INSERT INTO employees PARTITION (p2) VALUES (20, 'Jan', 'Jones', 1, 3);
@@ -303,7 +303,7 @@ mysql> REPLACE INTO employees PARTITION (p3) VALUES (20, 'Jan', 'Jones', 3, 2);
 Query OK, 2 rows affected (0.09 sec)
 ```
 
-For statements that write multiple rows to a partitioned table that uses the [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") storage engine: If any row in the list following `VALUES` cannot be written to one of the partitions specified in the *`partition_names`* list, the entire statement fails and no rows are written. This is shown for [`INSERT`](insert.html "13.2.5 INSERT Statement") statements in the following example, reusing the `employees` table created previously:
+Para instruções que gravam múltiplas linhas em uma tabela particionada que usa o *storage engine* [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"): Se qualquer linha na lista que segue `VALUES` não puder ser gravada em uma das partições especificadas na lista *`partition_names`*, a instrução inteira falha e nenhuma linha é gravada. Isso é mostrado para instruções [`INSERT`](insert.html "13.2.5 INSERT Statement") no exemplo a seguir, reutilizando a tabela `employees` criada anteriormente:
 
 ```sql
 mysql> ALTER TABLE employees
@@ -345,6 +345,6 @@ Query OK, 2 rows affected (0.06 sec)
 Records: 2  Duplicates: 0  Warnings: 0
 ```
 
-The preceding is true for both [`INSERT`](insert.html "13.2.5 INSERT Statement") statements and [`REPLACE`](replace.html "13.2.8 REPLACE Statement") statements that write multiple rows.
+O precedente é verdadeiro tanto para instruções [`INSERT`](insert.html "13.2.5 INSERT Statement") quanto para instruções [`REPLACE`](replace.html "13.2.8 REPLACE Statement") que gravam múltiplas linhas.
 
-In MySQL 5.7.1 and later, partition selection is disabled for tables employing a storage engine that supplies automatic partitioning, such as `NDB`. (Bug #14827952)
+No MySQL 5.7.1 e posterior, a seleção de partições está desabilitada para tabelas que empregam um *storage engine* que fornece particionamento automático, como `NDB`. (Bug #14827952)

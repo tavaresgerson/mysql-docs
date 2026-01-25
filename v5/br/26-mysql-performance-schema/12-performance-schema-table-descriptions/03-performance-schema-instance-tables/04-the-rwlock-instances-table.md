@@ -1,35 +1,33 @@
-#### 25.12.3.4 The rwlock_instances Table
+#### 25.12.3.4 A Tabela rwlock_instances
 
-The [`rwlock_instances`](performance-schema-rwlock-instances-table.html "25.12.3.4 The rwlock_instances Table") table lists all the [rwlock](glossary.html#glos_rw_lock "rw-lock") (read write lock) instances seen by the Performance Schema while the server executes. An `rwlock` is a synchronization mechanism used in the code to enforce that threads at a given time can have access to some common resource following certain rules. The resource is said to be “protected” by the `rwlock`. The access is either shared (many threads can have a read lock at the same time), exclusive (only one thread can have a write lock at a given time), or shared-exclusive (a thread can have a write lock while permitting inconsistent reads by other threads). Shared-exclusive access is otherwise known as an `sxlock` and optimizes concurrency and improves scalability for read-write workloads.
+A tabela [`rwlock_instances`](performance-schema-rwlock-instances-table.html "25.12.3.4 The rwlock_instances Table") lista todas as instâncias de [rwlock](glossary.html#glos_rw_lock "rw-lock") (read write lock) vistas pelo Performance Schema enquanto o server está em execução. Um `rwlock` é um mecanismo de sincronização usado no código para garantir que os threads em um dado momento possam ter acesso a algum recurso comum seguindo certas regras. O recurso é dito ser "protegido" pelo `rwlock`. O acesso é compartilhado (shared) (muitos threads podem ter um read lock ao mesmo tempo), exclusivo (exclusive) (apenas um thread pode ter um write lock em um dado momento), ou compartilhado-exclusivo (shared-exclusive) (um thread pode ter um write lock enquanto permite reads inconsistentes por outros threads). O acesso compartilhado-exclusivo é também conhecido como `sxlock` e otimiza a concurrency e melhora a scalability para workloads de leitura e escrita (read-write).
 
-Depending on how many threads are requesting a lock, and the nature of the locks requested, access can be either granted in shared mode, exclusive mode, shared-exclusive mode or not granted at all, waiting for other threads to finish first.
+Dependendo de quantos threads estão solicitando um lock, e da natureza dos locks solicitados, o acesso pode ser concedido no modo shared, modo exclusive, modo shared-exclusive ou não ser concedido, aguardando que outros threads terminem primeiro.
 
-The [`rwlock_instances`](performance-schema-rwlock-instances-table.html "25.12.3.4 The rwlock_instances Table") table has these columns:
+A tabela [`rwlock_instances`](performance-schema-rwlock-instances-table.html "25.12.3.4 The rwlock_instances Table") possui estas colunas:
 
 * `NAME`
 
-  The instrument name associated with the lock.
+  O nome do instrument associado ao lock.
 
 * `OBJECT_INSTANCE_BEGIN`
 
-  The address in memory of the instrumented lock.
+  O endereço na memória do lock instrumentado.
 
 * `WRITE_LOCKED_BY_THREAD_ID`
 
-  When a thread currently has an `rwlock` locked in exclusive (write) mode, `WRITE_LOCKED_BY_THREAD_ID` is the `THREAD_ID` of the locking thread, otherwise it is `NULL`.
+  Quando um thread atualmente tem um `rwlock` bloqueado no modo exclusive (write), `WRITE_LOCKED_BY_THREAD_ID` é o `THREAD_ID` do thread que está bloqueando (locking thread); caso contrário, é `NULL`.
 
 * `READ_LOCKED_BY_COUNT`
 
-  When a thread currently has an `rwlock` locked in shared (read) mode, `READ_LOCKED_BY_COUNT` is incremented by
+  Quando um thread atualmente tem um `rwlock` bloqueado no modo shared (read), `READ_LOCKED_BY_COUNT` é incrementado em 1. Este é apenas um contador, portanto, não pode ser usado diretamente para descobrir qual thread detém um read lock, mas pode ser usado para ver se há uma contenção de leitura (read contention) em um `rwlock` e quantos leitores estão ativos no momento.
 
-  1. This is a counter only, so it cannot be used directly to find which thread holds a read lock, but it can be used to see whether there is a read contention on an `rwlock`, and see how many readers are currently active.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") não é permitido para a tabela [`rwlock_instances`](performance-schema-rwlock-instances-table.html "25.12.3.4 The rwlock_instances Table").
 
-[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not permitted for the [`rwlock_instances`](performance-schema-rwlock-instances-table.html "25.12.3.4 The rwlock_instances Table") table.
+Ao executar Queries em ambas as tabelas a seguir, um aplicativo de monitoramento ou um DBA pode detectar gargalos (bottlenecks) ou deadlocks entre threads que envolvam locks:
 
-By performing queries on both of the following tables, a monitoring application or a DBA may detect some bottlenecks or deadlocks between threads that involve locks:
+* [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table"), para ver por qual `rwlock` um thread está esperando
 
-* [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table"), to see what `rwlock` a thread is waiting for
+* [`rwlock_instances`](performance-schema-rwlock-instances-table.html "25.12.3.4 The rwlock_instances Table"), para ver qual outro thread atualmente possui um `rwlock`
 
-* [`rwlock_instances`](performance-schema-rwlock-instances-table.html "25.12.3.4 The rwlock_instances Table"), to see which other thread currently owns an `rwlock`
-
-There is a limitation: The [`rwlock_instances`](performance-schema-rwlock-instances-table.html "25.12.3.4 The rwlock_instances Table") can be used only to identify the thread holding a write lock, but not the threads holding a read lock.
+Há uma limitação: A tabela [`rwlock_instances`](performance-schema-rwlock-instances-table.html "25.12.3.4 The rwlock_instances Table") pode ser usada apenas para identificar o thread que detém um write lock, mas não os threads que detêm um read lock.

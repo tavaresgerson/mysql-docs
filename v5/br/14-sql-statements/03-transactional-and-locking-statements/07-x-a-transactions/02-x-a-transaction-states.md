@@ -1,20 +1,20 @@
-#### 13.3.7.2 XA Transaction States
+#### 13.3.7.2 Estados da Transação XA
 
-An XA transaction progresses through the following states:
+Uma transação XA progride através dos seguintes estados:
 
-1. Use [`XA START`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements") to start an XA transaction and put it in the `ACTIVE` state.
+1. Use [`XA START`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements") para iniciar uma transação XA e colocá-la no estado `ACTIVE`.
 
-2. For an `ACTIVE` XA transaction, issue the SQL statements that make up the transaction, and then issue an [`XA END`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements") statement. [`XA END`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements") puts the transaction in the `IDLE` state.
+2. Para uma transação XA `ACTIVE`, execute as instruções SQL que compõem a transação e, em seguida, execute uma instrução [`XA END`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements"). O [`XA END`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements") coloca a transação no estado `IDLE`.
 
-3. For an `IDLE` XA transaction, you can issue either an [`XA PREPARE`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements") statement or an `XA COMMIT ... ONE PHASE` statement:
+3. Para uma transação XA `IDLE`, você pode executar uma instrução [`XA PREPARE`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements") ou uma instrução `XA COMMIT ... ONE PHASE`:
 
-   * [`XA PREPARE`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements") puts the transaction in the `PREPARED` state. An [`XA RECOVER`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements") statement at this point includes the transaction's *`xid`* value in its output, because [`XA RECOVER`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements") lists all XA transactions that are in the `PREPARED` state.
+   * O [`XA PREPARE`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements") coloca a transação no estado `PREPARED`. Uma instrução [`XA RECOVER`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements") neste ponto inclui o valor *`xid`* da transação em sua saída, porque [`XA RECOVER`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements") lista todas as transações XA que estão no estado `PREPARED`.
 
-   * `XA COMMIT ... ONE PHASE` prepares and commits the transaction. The *`xid`* value is not listed by [`XA RECOVER`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements") because the transaction terminates.
+   * `XA COMMIT ... ONE PHASE` prepara e faz o COMMIT da transação. O valor *`xid`* não é listado por [`XA RECOVER`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements") porque a transação é encerrada.
 
-4. For a `PREPARED` XA transaction, you can issue an [`XA COMMIT`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements") statement to commit and terminate the transaction, or [`XA ROLLBACK`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements") to roll back and terminate the transaction.
+4. Para uma transação XA `PREPARED`, você pode executar uma instrução [`XA COMMIT`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements") para fazer o COMMIT e encerrar a transação, ou [`XA ROLLBACK`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements") para fazer o ROLLBACK e encerrar a transação.
 
-Here is a simple XA transaction that inserts a row into a table as part of a global transaction:
+Aqui está uma transação XA simples que insere uma linha em uma tabela como parte de uma transação global:
 
 ```sql
 mysql> XA START 'xatest';
@@ -33,13 +33,13 @@ mysql> XA COMMIT 'xatest';
 Query OK, 0 rows affected (0.00 sec)
 ```
 
-Within the context of a given client connection, XA transactions and local (non-XA) transactions are mutually exclusive. For example, if [`XA START`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements") has been issued to begin an XA transaction, a local transaction cannot be started until the XA transaction has been committed or rolled back. Conversely, if a local transaction has been started with [`START TRANSACTION`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements"), no XA statements can be used until the transaction has been committed or rolled back.
+No contexto de uma determinada conexão de cliente, as transações XA e as transações locais (não XA) são mutuamente exclusivas. Por exemplo, se [`XA START`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements") tiver sido executado para iniciar uma transação XA, uma transação local não poderá ser iniciada até que a transação XA tenha sido objeto de COMMIT ou ROLLBACK. Inversamente, se uma transação local tiver sido iniciada com [`START TRANSACTION`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements"), nenhuma instrução XA poderá ser usada até que a transação tenha sido objeto de COMMIT ou ROLLBACK.
 
-If an XA transaction is in the `ACTIVE` state, you cannot issue any statements that cause an implicit commit. That would violate the XA contract because you could not roll back the XA transaction. The following error is raised if you try to execute such a statement:
+Se uma transação XA estiver no estado `ACTIVE`, você não pode executar nenhuma instrução que cause um COMMIT implícito. Isso violaria o contrato XA porque você não conseguiria fazer o ROLLBACK da transação XA. O seguinte erro é gerado se você tentar executar tal instrução:
 
 ```sql
 ERROR 1399 (XAE07): XAER_RMFAIL: The command cannot be executed
 when global transaction is in the ACTIVE state
 ```
 
-Statements to which the preceding remark applies are listed at [Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit").
+As instruções às quais a observação anterior se aplica estão listadas na [Seção 13.3.3, “Instruções Que Causam um COMMIT Implícito”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit").

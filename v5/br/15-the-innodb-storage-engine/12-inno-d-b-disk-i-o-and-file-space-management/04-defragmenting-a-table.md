@@ -1,25 +1,25 @@
-### 14.12.4 Defragmenting a Table
+### 14.12.4 Desfragmentando uma Tabela
 
-Random insertions into or deletions from a secondary index can cause the index to become fragmented. Fragmentation means that the physical ordering of the index pages on the disk is not close to the index ordering of the records on the pages, or that there are many unused pages in the 64-page blocks that were allocated to the index.
+Inserções ou exclusões aleatórias em um *secondary Index* podem fazer com que o *Index* fique fragmentado. *Fragmentation* significa que a ordenação física das páginas do *Index* no disco não está próxima da ordenação dos *records* do *Index* nas páginas, ou que existem muitas páginas não utilizadas nos blocos de 64 páginas que foram alocados para o *Index*.
 
-One symptom of fragmentation is that a table takes more space than it “should” take. How much that is exactly, is difficult to determine. All `InnoDB` data and indexes are stored in B-trees, and their fill factor may vary from 50% to 100%. Another symptom of fragmentation is that a table scan such as this takes more time than it “should” take:
+Um sintoma de *Fragmentation* é que uma tabela ocupa mais *space* do que "deveria" ocupar. É difícil determinar exatamente quanto é isso. Todos os dados e *Indexes* do `InnoDB` são armazenados em *B-trees*, e seu fator de preenchimento pode variar de 50% a 100%. Outro sintoma de *Fragmentation* é que um *Table Scan* como este leva mais tempo do que "deveria" levar:
 
 ```sql
 SELECT COUNT(*) FROM t WHERE non_indexed_column <> 12345;
 ```
 
-The preceding query requires MySQL to perform a full table scan, the slowest type of query for a large table.
+A *Query* anterior exige que o MySQL execute um *Full Table Scan*, o tipo de *Query* mais lento para uma tabela grande.
 
-To speed up index scans, you can periodically perform a “null” `ALTER TABLE` operation, which causes MySQL to rebuild the table:
+Para acelerar os *Index Scans*, você pode realizar periodicamente uma operação `ALTER TABLE` "nula", que faz com que o MySQL reconstrua a tabela:
 
 ```sql
 ALTER TABLE tbl_name ENGINE=INNODB
 ```
 
-You can also use `ALTER TABLE tbl_name FORCE` to perform a “null” alter operation that rebuilds the table.
+Você também pode usar `ALTER TABLE tbl_name FORCE` para realizar uma operação *alter* "nula" que reconstrói a tabela.
 
-Both `ALTER TABLE tbl_name ENGINE=INNODB` and `ALTER TABLE tbl_name FORCE` use online DDL. For more information, see Section 14.13, “InnoDB and Online DDL”.
+Tanto `ALTER TABLE tbl_name ENGINE=INNODB` quanto `ALTER TABLE tbl_name FORCE` usam *Online DDL*. Para mais informações, consulte a Seção 14.13, “InnoDB and Online DDL”.
 
-Another way to perform a defragmentation operation is to use **mysqldump** to dump the table to a text file, drop the table, and reload it from the dump file.
+Outra forma de realizar uma operação de desfragmentação é usar o **mysqldump** para despejar a tabela em um arquivo de texto, *drop* (excluir) a tabela e recarregá-la a partir do arquivo despejado (*dump file*).
 
-If the insertions into an index are always ascending and records are deleted only from the end, the `InnoDB` filespace management algorithm guarantees that fragmentation in the index does not occur.
+Se as inserções em um *Index* forem sempre ascendentes e os *records* forem excluídos apenas do final, o algoritmo de gerenciamento de espaço de arquivo do `InnoDB` garante que a *Fragmentation* no *Index* não ocorra.

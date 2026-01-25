@@ -1,17 +1,17 @@
-### 24.3.4 The INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY Table
+### 24.3.4 A Tabela COLLATION_CHARACTER_SET_APPLICABILITY do INFORMATION_SCHEMA
 
-The [`COLLATION_CHARACTER_SET_APPLICABILITY`](information-schema-collation-character-set-applicability-table.html "24.3.4 The INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY Table") table indicates what character set is applicable for what collation.
+A tabela [`COLLATION_CHARACTER_SET_APPLICABILITY`](information-schema-collation-character-set-applicability-table.html "24.3.4 The INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY Table") indica qual `Character Set` é aplicável para qual `Collation`.
 
-The [`COLLATION_CHARACTER_SET_APPLICABILITY`](information-schema-collation-character-set-applicability-table.html "24.3.4 The INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY Table") table has these columns:
+A tabela [`COLLATION_CHARACTER_SET_APPLICABILITY`](information-schema-collation-character-set-applicability-table.html "24.3.4 The INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY Table") possui as seguintes colunas:
 
 * `COLLATION_NAME`
 
-  The collation name.
+  O nome da `Collation`.
 
 * `CHARACTER_SET_NAME`
 
-  The name of the character set with which the collation is associated.
+  O nome do `Character Set` ao qual a `Collation` está associada.
 
-#### Notes
+#### Notas
 
-The [`COLLATION_CHARACTER_SET_APPLICABILITY`](information-schema-collation-character-set-applicability-table.html "24.3.4 The INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY Table") columns are equivalent to the first two columns displayed by the [`SHOW COLLATION`](show-collation.html "13.7.5.4 SHOW COLLATION Statement") statement.
+As colunas da tabela [`COLLATION_CHARACTER_SET_APPLICABILITY`](information-schema-collation-character-set-applicability-table.html "24.3.4 The INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY Table") são equivalentes às duas primeiras colunas exibidas pela instrução [`SHOW COLLATION`](show-collation.html "13.7.5.4 SHOW COLLATION Statement").

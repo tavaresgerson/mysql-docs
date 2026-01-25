@@ -1,20 +1,20 @@
-### 14.18.2 Enabling InnoDB Monitors
+### 14.18.2 Habilitando os Monitores InnoDB
 
-When `InnoDB` monitors are enabled for periodic output, `InnoDB` writes the output to **mysqld** server standard error output (`stderr`) every 15 seconds, approximately.
+Quando os `InnoDB` Monitors são habilitados para Output periódico, o `InnoDB` grava o Output para a saída de erro padrão do **mysqld** Server (`stderr`) a cada 15 segundos, aproximadamente.
 
-`InnoDB` sends the monitor output to `stderr` rather than to `stdout` or fixed-size memory buffers to avoid potential buffer overflows.
+O `InnoDB` envia o Output do Monitor para `stderr` em vez de para `stdout` ou para Buffers de memória de tamanho fixo para evitar potenciais *buffer overflows*.
 
-On Windows, `stderr` is directed to the default log file unless configured otherwise. If you want to direct the output to the console window rather than to the error log, start the server from a command prompt in a console window with the `--console` option. For more information, see Section 5.4.2.1, “Error Logging on Windows”.
+No Windows, `stderr` é direcionado para o arquivo de Log padrão, a menos que configurado de outra forma. Se você quiser direcionar o Output para a janela do console em vez de para o Error Log, inicie o Server a partir de um *command prompt* em uma janela de console com a opção `--console`. Para mais informações, consulte a Seção 5.4.2.1, “Error Logging on Windows”.
 
-On Unix and Unix-like systems, `stderr` is typically directed to the terminal unless configured otherwise. For more information, see Section 5.4.2.2, “Error Logging on Unix and Unix-Like Systems”.
+Em sistemas Unix e semelhantes ao Unix, `stderr` é tipicamente direcionado para o terminal, a menos que configurado de outra forma. Para mais informações, consulte a Seção 5.4.2.2, “Error Logging on Unix and Unix-Like Systems”.
 
-`InnoDB` monitors should only be enabled when you actually want to see monitor information because output generation causes some performance decrement. Also, if monitor output is directed to the error log, the log may become quite large if you forget to disable the monitor later.
+Os `InnoDB` Monitors devem ser habilitados apenas quando você realmente deseja ver informações de Monitoramento, pois a geração de Output causa alguma diminuição de Performance. Além disso, se o Output do Monitor for direcionado para o Error Log, o Log poderá se tornar bastante grande se você se esquecer de desabilitar o Monitor mais tarde.
 
 Note
 
-To assist with troubleshooting, `InnoDB` temporarily enables standard `InnoDB` Monitor output under certain conditions. For more information, see Section 14.22, “InnoDB Troubleshooting”.
+Para auxiliar no *troubleshooting*, o `InnoDB` habilita temporariamente o Output padrão do `InnoDB` Monitor sob certas condições. Para mais informações, consulte a Seção 14.22, “InnoDB Troubleshooting”.
 
-`InnoDB` monitor output begins with a header containing a timestamp and the monitor name. For example:
+O Output do `InnoDB` Monitor começa com um *header* contendo um *timestamp* e o nome do Monitor. Por exemplo:
 
 ```sql
 =====================================
@@ -22,57 +22,57 @@ To assist with troubleshooting, `InnoDB` temporarily enables standard `InnoDB` M
 =====================================
 ```
 
-The header for the standard `InnoDB` Monitor (`INNODB MONITOR OUTPUT`) is also used for the Lock Monitor because the latter produces the same output with the addition of extra lock information.
+O *header* para o `InnoDB` Monitor padrão (`INNODB MONITOR OUTPUT`) também é usado para o Lock Monitor porque este último produz o mesmo Output com o acréscimo de informações de Lock extras.
 
-The `innodb_status_output` and `innodb_status_output_locks` system variables are used to enable the standard `InnoDB` Monitor and `InnoDB` Lock Monitor.
+As variáveis de sistema `innodb_status_output` e `innodb_status_output_locks` são usadas para habilitar o `InnoDB` Monitor padrão e o `InnoDB` Lock Monitor.
 
-The `PROCESS` privilege is required to enable or disable `InnoDB` Monitors.
+O `PROCESS` privilege é exigido para habilitar ou desabilitar os `InnoDB` Monitors.
 
-#### Enabling the Standard InnoDB Monitor
+#### Habilitando o InnoDB Monitor Padrão
 
-Enable the standard `InnoDB` Monitor by setting the `innodb_status_output` system variable to `ON`.
+Habilite o `InnoDB` Monitor padrão definindo a variável de sistema `innodb_status_output` como `ON`.
 
 ```sql
 SET GLOBAL innodb_status_output=ON;
 ```
 
-To disable the standard `InnoDB` Monitor, set `innodb_status_output` to `OFF`.
+Para desabilitar o `InnoDB` Monitor padrão, defina `innodb_status_output` como `OFF`.
 
-When you shut down the server, the `innodb_status_output` variable is set to the default `OFF` value.
+Quando você desliga o Server, a variável `innodb_status_output` é definida para o valor padrão `OFF`.
 
-#### Enabling the InnoDB Lock Monitor
+#### Habilitando o InnoDB Lock Monitor
 
-`InnoDB` Lock Monitor data is printed with the `InnoDB` Standard Monitor output. Both the `InnoDB` Standard Monitor and `InnoDB` Lock Monitor must be enabled to have `InnoDB` Lock Monitor data printed periodically.
+Os dados do `InnoDB` Lock Monitor são impressos com o Output do `InnoDB` Standard Monitor. Tanto o `InnoDB` Standard Monitor quanto o `InnoDB` Lock Monitor devem estar habilitados para que os dados do `InnoDB` Lock Monitor sejam impressos periodicamente.
 
-To enable the `InnoDB` Lock Monitor, set the `innodb_status_output_locks` system variable to `ON`. Both the `InnoDB` standard Monitor and `InnoDB` Lock Monitor must be enabled to have `InnoDB` Lock Monitor data printed periodically:
+Para habilitar o `InnoDB` Lock Monitor, defina a variável de sistema `innodb_status_output_locks` como `ON`. Tanto o `InnoDB` Standard Monitor quanto o `InnoDB` Lock Monitor devem estar habilitados para que os dados do `InnoDB` Lock Monitor sejam impressos periodicamente:
 
 ```sql
 SET GLOBAL innodb_status_output=ON;
 SET GLOBAL innodb_status_output_locks=ON;
 ```
 
-To disable the `InnoDB` Lock Monitor, set `innodb_status_output_locks` to `OFF`. Set `innodb_status_output` to `OFF` to also disable the `InnoDB` Standard Monitor.
+Para desabilitar o `InnoDB` Lock Monitor, defina `innodb_status_output_locks` como `OFF`. Defina `innodb_status_output` como `OFF` para também desabilitar o `InnoDB` Standard Monitor.
 
-When you shut down the server, the `innodb_status_output` and `innodb_status_output_locks` variables are set to the default `OFF` value.
+Quando você desliga o Server, as variáveis `innodb_status_output` e `innodb_status_output_locks` são definidas para o valor padrão `OFF`.
 
 Note
 
-To enable the `InnoDB` Lock Monitor for `SHOW ENGINE INNODB STATUS` output, you are only required to enable `innodb_status_output_locks`.
+Para habilitar o `InnoDB` Lock Monitor para o Output de `SHOW ENGINE INNODB STATUS`, é necessário apenas habilitar `innodb_status_output_locks`.
 
-#### Obtaining Standard InnoDB Monitor Output On Demand
+#### Obtendo o Output do InnoDB Monitor Padrão Sob Demanda
 
-As an alternative to enabling the standard `InnoDB` Monitor for periodic output, you can obtain standard `InnoDB` Monitor output on demand using the `SHOW ENGINE INNODB STATUS` SQL statement, which fetches the output to your client program. If you are using the **mysql** interactive client, the output is more readable if you replace the usual semicolon statement terminator with `\G`:
+Como alternativa a habilitar o `InnoDB` Monitor padrão para Output periódico, você pode obter o Output do `InnoDB` Monitor padrão sob demanda usando a instrução SQL `SHOW ENGINE INNODB STATUS`, que busca o Output para o seu Client program. Se você estiver usando o Client interativo **mysql**, o Output será mais legível se você substituir o terminador de instrução de ponto e vírgula usual por `\G`:
 
 ```sql
 mysql> SHOW ENGINE INNODB STATUS\G
 ```
 
-`SHOW ENGINE INNODB STATUS` output also includes `InnoDB` Lock Monitor data if the `InnoDB` Lock Monitor is enabled.
+O Output de `SHOW ENGINE INNODB STATUS` também inclui dados do `InnoDB` Lock Monitor se o `InnoDB` Lock Monitor estiver habilitado.
 
-#### Directing Standard InnoDB Monitor Output to a Status File
+#### Direcionando o Output do InnoDB Monitor Padrão para um Arquivo de Status
 
-Standard `InnoDB` Monitor output can be enabled and directed to a status file by specifying the `--innodb-status-file` option at startup. When this option is used, `InnoDB` creates a file named `innodb_status.pid` in the data directory and writes output to it every 15 seconds, approximately.
+O Output do `InnoDB` Monitor padrão pode ser habilitado e direcionado para um arquivo de Status especificando a opção `--innodb-status-file` na inicialização. Quando esta opção é usada, o `InnoDB` cria um arquivo chamado `innodb_status.pid` no diretório de dados e grava o Output nele a cada 15 segundos, aproximadamente.
 
-`InnoDB` removes the status file when the server is shut down normally. If an abnormal shutdown occurs, the status file may have to be removed manually.
+O `InnoDB` remove o arquivo de Status quando o Server é desligado normalmente. Se ocorrer um *shutdown* anormal, o arquivo de Status pode ter que ser removido manualmente.
 
-The `--innodb-status-file` option is intended for temporary use, as output generation can affect performance, and the `innodb_status.pid` file can become quite large over time.
+A opção `--innodb-status-file` destina-se ao uso temporário, pois a geração de Output pode afetar a Performance, e o arquivo `innodb_status.pid` pode se tornar bastante grande com o tempo.

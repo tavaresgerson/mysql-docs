@@ -1,11 +1,11 @@
-#### 21.2.7.4 NDB Cluster Error Handling
+#### 21.2.7.4 Tratamento de Erros no NDB Cluster
 
-Starting, stopping, or restarting a node may give rise to temporary errors causing some transactions to fail. These include the following cases:
+Iniciar, parar ou reiniciar um Node pode gerar erros temporários, fazendo com que algumas Transactions falhem. Esses casos incluem o seguinte:
 
-* **Temporary errors.** When first starting a node, it is possible that you may see Error 1204 Temporary failure, distribution changed and similar temporary errors.
+*   **Erros temporários.** Ao iniciar um Node pela primeira vez, é possível que você veja o Error 1204 (Temporary failure, distribution changed) e erros temporários semelhantes.
 
-* **Errors due to node failure.** The stopping or failure of any data node can result in a number of different node failure errors. (However, there should be no aborted transactions when performing a planned shutdown of the cluster.)
+*   **Erros devido à falha do Node.** A parada ou falha de qualquer Data Node pode resultar em vários erros diferentes de falha de Node. (Entretanto, não deve haver Transactions abortadas ao realizar um Shutdown planejado do Cluster.)
 
-In either of these cases, any errors that are generated must be handled within the application. This should be done by retrying the transaction.
+Em qualquer um desses casos, quaisquer Errors gerados devem ser tratados dentro da aplicação. Isso deve ser feito repetindo a Transaction.
 
-See also [Section 21.2.7.2, “Limits and Differences of NDB Cluster from Standard MySQL Limits”](mysql-cluster-limitations-limits.html "21.2.7.2 Limits and Differences of NDB Cluster from Standard MySQL Limits").
+Veja também [Seção 21.2.7.2, “Limites e Diferenças do NDB Cluster em relação aos Limites Padrão do MySQL”](mysql-cluster-limitations-limits.html "21.2.7.2 Limites e Diferenças do NDB Cluster em relação aos Limites Padrão do MySQL").

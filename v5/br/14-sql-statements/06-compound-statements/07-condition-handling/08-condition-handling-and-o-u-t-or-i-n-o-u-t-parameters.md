@@ -1,5 +1,5 @@
-#### 13.6.7.8 Condition Handling and OUT or INOUT Parameters
+#### 13.6.7.8 Tratamento de Condições e Parâmetros OUT ou INOUT
 
-If a stored procedure exits with an unhandled exception, modified values of `OUT` and `INOUT` parameters are not propogated back to the caller.
+Se um stored procedure é encerrado com uma exception não tratada, os valores modificados dos parâmetros `OUT` e `INOUT` não são propagados de volta para o chamador.
 
-If an exception is handled by a `CONTINUE` or `EXIT` handler that contains a [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") statement, execution of [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") pops the Diagnostics Area stack, thus signalling the exception (that is, the information that existed before entry into the handler). If the exception is an error, the values of `OUT` and `INOUT` parameters are not propogated back to the caller.
+Se uma exception é tratada por um `handler` `CONTINUE` ou `EXIT` que contém uma instrução [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement"), a execução de [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") retira (pop) elementos do `Diagnostics Area stack`, sinalizando assim a `exception` (ou seja, a informação que existia antes da entrada no `handler`). Se a `exception` for um erro, os valores dos parâmetros `OUT` e `INOUT` não são propagados de volta para o chamador.

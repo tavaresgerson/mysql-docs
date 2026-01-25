@@ -1,7 +1,7 @@
-### 24.6.1 INFORMATION_SCHEMA Connection Control Table Reference
+### 24.6.1 Referência da Tabela de Controle de Conexão do INFORMATION_SCHEMA
 
-The following table summarizes `INFORMATION_SCHEMA` connection control tables. For greater detail, see the individual table descriptions.
+A tabela a seguir resume as tabelas de controle de conexão do INFORMATION_SCHEMA. Para obter maiores detalhes, consulte as descrições individuais das tabelas.
 
-**Table 24.9 INFORMATION_SCHEMA Connection Control Tables**
+**Tabela 24.9 Tabelas de Controle de Conexão do INFORMATION_SCHEMA**
 
-<table frame="box" rules="all" summary="A reference that lists INFORMATION_SCHEMA connection control tables."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Table Name</th> <th>Description</th> <th>Introduced</th> </tr></thead><tbody><tr><th><code>CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS</code></th> <td>Current number of consecutive failed connection attempts per account</td> <td>5.7.17</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista tabelas de controle de conexão do INFORMATION_SCHEMA."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Nome da Tabela</th> <th>Descrição</th> <th>Introduzida</th> </tr></thead><tbody><tr><th><code>CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS</code></th> <td>Número atual de tentativas de conexão fracassadas consecutivas por account</td> <td>5.7.17</td> </tr></tbody></table>

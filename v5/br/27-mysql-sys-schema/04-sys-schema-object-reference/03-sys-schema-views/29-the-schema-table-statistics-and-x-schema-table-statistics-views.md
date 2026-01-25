@@ -1,83 +1,83 @@
-#### 26.4.3.29 The schema_table_statistics and x$schema_table_statistics Views
+#### 26.4.3.29 As Views schema_table_statistics e x$schema_table_statistics
 
-These views summarize table statistics. By default, rows are sorted by descending total wait time (tables with most contention first).
+Essas Views sumarizam estatísticas de table. Por padrão, as linhas são ordenadas pelo tempo total de espera descendente (as tables com maior contenção primeiro).
 
-These views user a helper view, `x$ps_schema_table_statistics_io`.
+Essas Views usam uma View auxiliar, `x$ps_schema_table_statistics_io`.
 
-The `schema_table_statistics` and `x$schema_table_statistics` views have these columns:
+As Views `schema_table_statistics` e `x$schema_table_statistics` possuem as seguintes colunas:
 
 * `table_schema`
 
-  The schema that contains the table.
+  O Schema que contém a table.
 
 * `table_name`
 
-  The table name.
+  O nome da table.
 
 * `total_latency`
 
-  The total wait time of timed I/O events for the table.
+  O tempo total de espera (wait time) dos eventos de I/O cronometrados (timed) para a table.
 
 * `rows_fetched`
 
-  The total number of rows read from the table.
+  O número total de linhas lidas (read) da table.
 
 * `fetch_latency`
 
-  The total wait time of timed read I/O events for the table.
+  O tempo total de espera dos eventos de I/O de leitura (read) cronometrados para a table.
 
 * `rows_inserted`
 
-  The total number of rows inserted into the table.
+  O número total de linhas inseridas (inserted) na table.
 
 * `insert_latency`
 
-  The total wait time of timed insert I/O events for the table.
+  O tempo total de espera dos eventos de I/O de inserção (insert) cronometrados para a table.
 
 * `rows_updated`
 
-  The total number of rows updated in the table.
+  O número total de linhas atualizadas (updated) na table.
 
 * `update_latency`
 
-  The total wait time of timed update I/O events for the table.
+  O tempo total de espera dos eventos de I/O de atualização (update) cronometrados para a table.
 
 * `rows_deleted`
 
-  The total number of rows deleted from the table.
+  O número total de linhas excluídas (deleted) da table.
 
 * `delete_latency`
 
-  The total wait time of timed delete I/O events for the table.
+  O tempo total de espera dos eventos de I/O de exclusão (delete) cronometrados para a table.
 
 * `io_read_requests`
 
-  The total number of read requests for the table.
+  O número total de Request de leitura (read Request) para a table.
 
 * `io_read`
 
-  The total number of bytes read from the table.
+  O número total de bytes lidos da table.
 
 * `io_read_latency`
 
-  The total wait time of reads from the table.
+  O tempo total de espera de leituras da table.
 
 * `io_write_requests`
 
-  The total number of write requests for the table.
+  O número total de Request de escrita (write Request) para a table.
 
 * `io_write`
 
-  The total number of bytes written to the table.
+  O número total de bytes escritos na table.
 
 * `io_write_latency`
 
-  The total wait time of writes to the table.
+  O tempo total de espera de escritas na table.
 
 * `io_misc_requests`
 
-  The total number of miscellaneous I/O requests for the table.
+  O número total de Request de I/O diversos/miscelâneos para a table.
 
 * `io_misc_latency`
 
-  The total wait time of miscellaneous I/O requests for the table.
+  O tempo total de espera dos Request de I/O diversos/miscelâneos para a table.

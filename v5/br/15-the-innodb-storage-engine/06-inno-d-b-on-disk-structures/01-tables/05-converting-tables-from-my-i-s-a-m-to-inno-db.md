@@ -1,96 +1,96 @@
-#### 14.6.1.5 Converting Tables from MyISAM to InnoDB
+#### 14.6.1.5 Convertendo Tabelas de MyISAM para InnoDB
 
-If you have `MyISAM` tables that you want to convert to `InnoDB` for better reliability and scalability, review the following guidelines and tips before converting.
+Se você possui tabelas `MyISAM` que deseja converter para `InnoDB` para obter melhor confiabilidade e escalabilidade, revise as seguintes diretrizes e dicas antes da conversão.
 
-* Adjusting Memory Usage for MyISAM and InnoDB
-* Handling Too-Long Or Too-Short Transactions
-* Handling Deadlocks
-* Storage Layout
-* Converting an Existing Table
-* Cloning the Structure of a Table
-* Transferring Data
-* Storage Requirements
-* Defining Primary Keys
-* Application Performance Considerations
-* Understanding Files Associated with InnoDB Tables
+* Ajustando o Uso de Memória para MyISAM e InnoDB
+* Lidando com Transactions Muito Longas ou Muito Curtas
+* Lidando com Deadlocks
+* Layout de Armazenamento
+* Convertendo uma Tabela Existente
+* Clonando a Estrutura de uma Tabela
+* Transferindo Dados
+* Requisitos de Armazenamento
+* Definindo Primary Keys
+* Considerações de Performance de Aplicação
+* Entendendo Arquivos Associados a Tabelas InnoDB
 
-##### Adjusting Memory Usage for MyISAM and InnoDB
+##### Ajustando o Uso de Memória para MyISAM e InnoDB
 
-As you transition away from `MyISAM` tables, lower the value of the `key_buffer_size` configuration option to free memory no longer needed for caching results. Increase the value of the `innodb_buffer_pool_size` configuration option, which performs a similar role of allocating cache memory for `InnoDB` tables. The `InnoDB` buffer pool caches both table data and index data, speeding up lookups for queries and keeping query results in memory for reuse. For guidance regarding buffer pool size configuration, see Section 8.12.4.1, “How MySQL Uses Memory”.
+À medida que você faz a transição das tabelas `MyISAM`, diminua o valor da opção de configuração `key_buffer_size` para liberar memória que não é mais necessária para cache de resultados. Aumente o valor da opção de configuração `innodb_buffer_pool_size`, que desempenha um papel semelhante na alocação de memória cache para tabelas `InnoDB`. O Buffer Pool do `InnoDB` armazena em cache dados de tabela e dados de Index, acelerando as buscas para Queries e mantendo os resultados das Queries na memória para reutilização. Para obter orientação sobre a configuração do tamanho do Buffer Pool, consulte a Seção 8.12.4.1, “Como o MySQL Usa a Memória”.
 
-On a busy server, run benchmarks with the query cache turned off. The `InnoDB` buffer pool provides similar benefits, so the query cache might be tying up memory unnecessarily. For information about the query cache, see Section 8.10.3, “The MySQL Query Cache”.
+Em um servidor com alto volume de tráfego, execute benchmarks com o Query Cache desativado. O Buffer Pool do `InnoDB` oferece benefícios semelhantes, portanto, o Query Cache pode estar prendendo memória desnecessariamente. Para obter informações sobre o Query Cache, consulte a Seção 8.10.3, “O Cache de Query do MySQL”.
 
-##### Handling Too-Long Or Too-Short Transactions
+##### Lidando com Transactions Muito Longas ou Muito Curtas
 
-Because `MyISAM` tables do not support transactions, you might not have paid much attention to the `autocommit` configuration option and the `COMMIT` and `ROLLBACK` statements. These keywords are important to allow multiple sessions to read and write `InnoDB` tables concurrently, providing substantial scalability benefits in write-heavy workloads.
+Como as tabelas `MyISAM` não suportam transactions, você pode não ter dado muita atenção à opção de configuração `autocommit` e às instruções `COMMIT` e `ROLLBACK`. Essas palavras-chave são importantes para permitir que múltiplas sessões leiam e escrevam em tabelas `InnoDB` concorrentemente, proporcionando benefícios substanciais de escalabilidade em workloads com alta intensidade de escrita (write-heavy).
 
-While a transaction is open, the system keeps a snapshot of the data as seen at the beginning of the transaction, which can cause substantial overhead if the system inserts, updates, and deletes millions of rows while a stray transaction keeps running. Thus, take care to avoid transactions that run for too long:
+Enquanto uma transaction estiver aberta, o sistema mantém um snapshot dos dados vistos no início da transaction, o que pode causar uma sobrecarga substancial se o sistema inserir, atualizar e excluir milhões de linhas enquanto uma transaction perdida continua em execução. Assim, tome cuidado para evitar transactions que demorem muito:
 
-* If you are using a **mysql** session for interactive experiments, always `COMMIT` (to finalize the changes) or `ROLLBACK` (to undo the changes) when finished. Close down interactive sessions rather than leave them open for long periods, to avoid keeping transactions open for long periods by accident.
+* Se você estiver usando uma sessão **mysql** para experimentos interativos, sempre execute `COMMIT` (para finalizar as alterações) ou `ROLLBACK` (para desfazer as alterações) quando terminar. Feche as sessões interativas em vez de deixá-las abertas por longos períodos, para evitar manter transactions abertas por engano por muito tempo.
 
-* Make sure that any error handlers in your application also `ROLLBACK` incomplete changes or `COMMIT` completed changes.
+* Certifique-se de que quaisquer handlers de erro em sua aplicação também executem `ROLLBACK` em alterações incompletas ou `COMMIT` em alterações concluídas.
 
-* `ROLLBACK` is a relatively expensive operation, because `INSERT`, `UPDATE`, and `DELETE` operations are written to `InnoDB` tables prior to the `COMMIT`, with the expectation that most changes are committed successfully and rollbacks are rare. When experimenting with large volumes of data, avoid making changes to large numbers of rows and then rolling back those changes.
+* `ROLLBACK` é uma operação relativamente cara, porque as operações `INSERT`, `UPDATE` e `DELETE` são escritas nas tabelas `InnoDB` antes do `COMMIT`, com a expectativa de que a maioria das alterações seja commitada com sucesso e que os rollbacks sejam raros. Ao experimentar com grandes volumes de dados, evite fazer alterações em um grande número de linhas e depois reverter essas alterações.
 
-* When loading large volumes of data with a sequence of `INSERT` statements, periodically `COMMIT` the results to avoid having transactions that last for hours. In typical load operations for data warehousing, if something goes wrong, you truncate the table (using `TRUNCATE TABLE`) and start over from the beginning rather than doing a `ROLLBACK`.
+* Ao carregar grandes volumes de dados com uma sequência de instruções `INSERT`, comite periodicamente os resultados com `COMMIT` para evitar transactions que durem horas. Em operações típicas de carga para data warehousing, se algo der errado, você trunca a tabela (usando `TRUNCATE TABLE`) e recomeça do início, em vez de fazer um `ROLLBACK`.
 
-The preceding tips save memory and disk space that can be wasted during too-long transactions. When transactions are shorter than they should be, the problem is excessive I/O. With each `COMMIT`, MySQL makes sure each change is safely recorded to disk, which involves some I/O.
+As dicas anteriores economizam memória e espaço em disco que podem ser desperdiçados durante transactions muito longas. Quando as transactions são mais curtas do que deveriam, o problema é o I/O excessivo. A cada `COMMIT`, o MySQL garante que cada alteração seja registrada com segurança no disco, o que envolve algum I/O.
 
-* For most operations on `InnoDB` tables, you should use the setting `autocommit=0`. From an efficiency perspective, this avoids unnecessary I/O when you issue large numbers of consecutive `INSERT`, `UPDATE`, or `DELETE` statements. From a safety perspective, this allows you to issue a `ROLLBACK` statement to recover lost or garbled data if you make a mistake on the **mysql** command line, or in an exception handler in your application.
+* Para a maioria das operações em tabelas `InnoDB`, você deve usar a configuração `autocommit=0`. De uma perspectiva de eficiência, isso evita I/O desnecessário quando você emite um grande número de instruções `INSERT`, `UPDATE` ou `DELETE` consecutivas. De uma perspectiva de segurança, isso permite que você emita uma instrução `ROLLBACK` para recuperar dados perdidos ou corrompidos se você cometer um erro na linha de comando **mysql** ou em um handler de exceção na sua aplicação.
 
-* `autocommit=1` is suitable for `InnoDB` tables when running a sequence of queries for generating reports or analyzing statistics. In this situation, there is no I/O penalty related to `COMMIT` or `ROLLBACK`, and `InnoDB` can automatically optimize the read-only workload.
+* `autocommit=1` é adequado para tabelas `InnoDB` ao executar uma sequência de Queries para gerar relatórios ou analisar estatísticas. Nesta situação, não há penalidade de I/O relacionada a `COMMIT` ou `ROLLBACK`, e o `InnoDB` pode otimizar automaticamente o workload de somente leitura.
 
-* If you make a series of related changes, finalize all the changes at once with a single `COMMIT` at the end. For example, if you insert related pieces of information into several tables, do a single `COMMIT` after making all the changes. Or if you run many consecutive `INSERT` statements, do a single `COMMIT` after all the data is loaded; if you are doing millions of `INSERT` statements, perhaps split up the huge transaction by issuing a `COMMIT` every ten thousand or hundred thousand records, so the transaction does not grow too large.
+* Se você fizer uma série de alterações relacionadas, finalize todas as alterações de uma só vez com um único `COMMIT` no final. Por exemplo, se você inserir informações relacionadas em várias tabelas, faça um único `COMMIT` após realizar todas as alterações. Ou se você executar muitas instruções `INSERT` consecutivas, faça um único `COMMIT` depois que todos os dados forem carregados; se estiver fazendo milhões de instruções `INSERT`, talvez divida a Transaction enorme emitindo um `COMMIT` a cada dez mil ou cem mil registros, para que a transaction não cresça demais.
 
-* Remember that even a `SELECT` statement opens a transaction, so after running some report or debugging queries in an interactive **mysql** session, either issue a `COMMIT` or close the **mysql** session.
+* Lembre-se de que mesmo uma instrução `SELECT` abre uma transaction, portanto, após executar alguns relatórios ou Queries de depuração em uma sessão interativa **mysql**, emita um `COMMIT` ou feche a sessão **mysql**.
 
-For related information, see Section 14.7.2.2, “autocommit, Commit, and Rollback”.
+Para informações relacionadas, consulte a Seção 14.7.2.2, “autocommit, Commit e Rollback”.
 
-##### Handling Deadlocks
+##### Lidando com Deadlocks
 
-You might see warning messages referring to “deadlocks” in the MySQL error log, or the output of `SHOW ENGINE INNODB STATUS`. A deadlock is not a serious issue for `InnoDB` tables, and often does not require any corrective action. When two transactions start modifying multiple tables, accessing the tables in a different order, they can reach a state where each transaction is waiting for the other and neither can proceed. When deadlock detection is enabled (the default), MySQL immediately detects this condition and cancels (rolls back) the “smaller” transaction, allowing the other to proceed. If deadlock detection is disabled using the `innodb_deadlock_detect` configuration option, `InnoDB` relies on the `innodb_lock_wait_timeout` setting to roll back transactions in case of a deadlock.
+Você pode ver mensagens de aviso referindo-se a “deadlocks” no log de erros do MySQL, ou na saída de `SHOW ENGINE INNODB STATUS`. Um Deadlock não é um problema grave para tabelas `InnoDB` e, muitas vezes, não requer nenhuma ação corretiva. Quando duas transactions começam a modificar múltiplas tabelas, acessando-as em uma ordem diferente, elas podem atingir um estado em que cada transaction está esperando pela outra e nenhuma pode prosseguir. Quando a detecção de Deadlock está habilitada (o padrão), o MySQL detecta imediatamente esta condição e cancela (rollback) a transaction “menor”, permitindo que a outra prossiga. Se a detecção de Deadlock estiver desabilitada usando a opção de configuração `innodb_deadlock_detect`, o `InnoDB` depende da configuração `innodb_lock_wait_timeout` para fazer o Rollback das transactions em caso de Deadlock.
 
-Either way, your applications need error-handling logic to restart a transaction that is forcibly cancelled due to a deadlock. When you re-issue the same SQL statements as before, the original timing issue no longer applies. Either the other transaction has already finished and yours can proceed, or the other transaction is still in progress and your transaction waits until it finishes.
+De qualquer forma, suas aplicações precisam de lógica de tratamento de erros para reiniciar uma transaction que é cancelada à força devido a um Deadlock. Ao reemitir as mesmas instruções SQL de antes, o problema de timing original não se aplica mais. Ou a outra transaction já terminou e a sua pode prosseguir, ou a outra transaction ainda está em andamento e a sua transaction espera até que ela termine.
 
-If deadlock warnings occur constantly, you might review the application code to reorder the SQL operations in a consistent way, or to shorten the transactions. You can test with the `innodb_print_all_deadlocks` option enabled to see all deadlock warnings in the MySQL error log, rather than only the last warning in the `SHOW ENGINE INNODB STATUS` output.
+Se os avisos de Deadlock ocorrerem constantemente, você pode revisar o código da aplicação para reordenar as operações SQL de forma consistente, ou para encurtar as transactions. Você pode testar com a opção `innodb_print_all_deadlocks` habilitada para ver todos os avisos de Deadlock no log de erros do MySQL, em vez de apenas o último aviso na saída de `SHOW ENGINE INNODB STATUS`.
 
-For more information, see Section 14.7.5, “Deadlocks in InnoDB”.
+Para mais informações, consulte a Seção 14.7.5, “Deadlocks em InnoDB”.
 
-##### Storage Layout
+##### Layout de Armazenamento
 
-To get the best performance from `InnoDB` tables, you can adjust a number of parameters related to storage layout.
+Para obter o melhor desempenho das tabelas `InnoDB`, você pode ajustar vários parâmetros relacionados ao layout de armazenamento.
 
-When you convert `MyISAM` tables that are large, frequently accessed, and hold vital data, investigate and consider the `innodb_file_per_table`, `innodb_file_format`, and `innodb_page_size` variables, and the `ROW_FORMAT` and `KEY_BLOCK_SIZE` clauses of the `CREATE TABLE` statement.
+Ao converter tabelas `MyISAM` que são grandes, acessadas frequentemente e contêm dados vitais, investigue e considere as variáveis `innodb_file_per_table`, `innodb_file_format` e `innodb_page_size`, bem como as cláusulas `ROW_FORMAT` e `KEY_BLOCK_SIZE` da instrução `CREATE TABLE`.
 
-During your initial experiments, the most important setting is `innodb_file_per_table`. When this setting is enabled, which is the default as of MySQL 5.6.6, new `InnoDB` tables are implicitly created in file-per-table tablespaces. In contrast with the `InnoDB` system tablespace, file-per-table tablespaces allow disk space to be reclaimed by the operating system when a table is truncated or dropped. File-per-table tablespaces also support the Barracuda file format and associated features such as table compression, efficient off-page storage for long variable-length columns, and large index prefixes. For more information, see Section 14.6.3.2, “File-Per-Table Tablespaces”.
+Durante seus experimentos iniciais, a configuração mais importante é `innodb_file_per_table`. Quando essa configuração está habilitada, o que é o padrão a partir do MySQL 5.6.6, novas tabelas `InnoDB` são criadas implicitamente em Tablespaces por tabela (file-per-table tablespaces). Em contraste com o system Tablespace do `InnoDB`, os Tablespaces por tabela permitem que o espaço em disco seja recuperado pelo sistema operacional quando uma tabela é truncada ou descartada (dropped). Os Tablespaces por tabela também suportam o formato de arquivo Barracuda e recursos associados, como compressão de tabela, armazenamento eficiente fora da página para colunas longas de tamanho variável e grandes prefixos de Index. Para obter mais informações, consulte a Seção 14.6.3.2, “Tablespaces por Tabela (File-Per-Table Tablespaces)”.
 
-You can also store `InnoDB` tables in a shared general tablespace. General tablespaces support the Barracuda file format and can contain multiple tables. For more information, see Section 14.6.3.3, “General Tablespaces”.
+Você também pode armazenar tabelas `InnoDB` em um Tablespace geral compartilhado. Os Tablespaces gerais suportam o formato de arquivo Barracuda e podem conter múltiplas tabelas. Para obter mais informações, consulte a Seção 14.6.3.3, “Tablespaces Gerais”.
 
-##### Converting an Existing Table
+##### Convertendo uma Tabela Existente
 
-To convert a non-`InnoDB` table to use `InnoDB` use `ALTER TABLE`:
+Para converter uma tabela que não seja `InnoDB` para usar `InnoDB`, use `ALTER TABLE`:
 
 ```sql
 ALTER TABLE table_name ENGINE=InnoDB;
 ```
 
-Warning
+Aviso
 
-Do *not* convert MySQL system tables in the `mysql` database from `MyISAM` to `InnoDB` tables. This is an unsupported operation. If you do this, MySQL does not restart until you restore the old system tables from a backup or regenerate them by reinitializing the data directory (see Section 2.9.1, “Initializing the Data Directory”).
+*Não* converta as tabelas do sistema MySQL no Database `mysql` de tabelas `MyISAM` para `InnoDB`. Esta é uma operação não suportada. Se você fizer isso, o MySQL não será reiniciado até que você restaure as tabelas antigas do sistema a partir de um backup ou as regenere reinicializando o diretório de dados (consulte a Seção 2.9.1, “Inicializando o Diretório de Dados”).
 
-##### Cloning the Structure of a Table
+##### Clonando a Estrutura de uma Tabela
 
-You might make an `InnoDB` table that is a clone of a MyISAM table, rather than using `ALTER TABLE` to perform conversion, to test the old and new table side-by-side before switching.
+Você pode criar uma tabela `InnoDB` que seja um clone de uma tabela MyISAM, em vez de usar `ALTER TABLE` para realizar a conversão, a fim de testar as tabelas antiga e nova lado a lado antes de fazer a troca.
 
-Create an empty `InnoDB` table with identical column and index definitions. Use `SHOW CREATE TABLE table_name\G` to see the full `CREATE TABLE` statement to use. Change the `ENGINE` clause to `ENGINE=INNODB`.
+Crie uma tabela `InnoDB` vazia com colunas e definições de Index idênticas. Use `SHOW CREATE TABLE table_name\G` para ver a instrução `CREATE TABLE` completa a ser usada. Altere a cláusula `ENGINE` para `ENGINE=INNODB`.
 
-##### Transferring Data
+##### Transferindo Dados
 
-To transfer a large volume of data into an empty `InnoDB` table created as shown in the previous section, insert the rows with `INSERT INTO innodb_table SELECT * FROM myisam_table ORDER BY primary_key_columns`.
+Para transferir um grande volume de dados para uma tabela `InnoDB` vazia criada conforme mostrado na seção anterior, insira as linhas com `INSERT INTO innodb_table SELECT * FROM myisam_table ORDER BY primary_key_columns`.
 
-You can also create the indexes for the `InnoDB` table after inserting the data. Historically, creating new secondary indexes was a slow operation for `InnoDB`, but now you can create the indexes after the data is loaded with relatively little overhead from the index creation step.
+Você também pode criar os Indexes para a tabela `InnoDB` após a inserção dos dados. Historicamente, a criação de novos Indexes secundários era uma operação lenta para o `InnoDB`, mas agora você pode criar os Indexes após o carregamento dos dados com relativamente pouca sobrecarga na etapa de criação de Index.
 
-If you have `UNIQUE` constraints on secondary keys, you can speed up a table import by turning off the uniqueness checks temporarily during the import operation:
+Se você tiver constraints `UNIQUE` em Keys secundárias, pode acelerar uma importação de tabela desativando as verificações de exclusividade temporariamente durante a operação de importação:
 
 ```sql
 SET unique_checks=0;
@@ -98,61 +98,61 @@ SET unique_checks=0;
 SET unique_checks=1;
 ```
 
-For big tables, this saves disk I/O because `InnoDB` can use its change buffer to write secondary index records as a batch. Be certain that the data contains no duplicate keys. `unique_checks` permits but does not require storage engines to ignore duplicate keys.
+Para tabelas grandes, isso economiza I/O de disco porque o `InnoDB` pode usar seu change buffer para escrever registros de Index secundário em lotes. Certifique-se de que os dados não contenham Keys duplicadas. `unique_checks` permite, mas não exige que os storage engines ignorem Keys duplicadas.
 
-For better control over the insertion process, you can insert big tables in pieces:
+Para melhor controle sobre o processo de inserção, você pode inserir tabelas grandes em partes:
 
 ```sql
 INSERT INTO newtable SELECT * FROM oldtable
    WHERE yourkey > something AND yourkey <= somethingelse;
 ```
 
-After all records are inserted, you can rename the tables.
+Depois que todos os registros forem inseridos, você pode renomear as tabelas.
 
-During the conversion of big tables, increase the size of the `InnoDB` buffer pool to reduce disk I/O. Typically, the recommended buffer pool size is 50 to 75 percent of system memory. You can also increase the size of `InnoDB` log files.
+Durante a conversão de tabelas grandes, aumente o tamanho do Buffer Pool do `InnoDB` para reduzir o I/O de disco. Normalmente, o tamanho recomendado do Buffer Pool é de 50 a 75% da memória do sistema. Você também pode aumentar o tamanho dos arquivos de log do `InnoDB`.
 
-##### Storage Requirements
+##### Requisitos de Armazenamento
 
-If you intend to make several temporary copies of your data in `InnoDB` tables during the conversion process, it is recommended that you create the tables in file-per-table tablespaces so that you can reclaim the disk space when you drop the tables. When the `innodb_file_per_table` configuration option is enabled (the default), newly created `InnoDB` tables are implicitly created in file-per-table tablespaces.
+Se você pretende fazer várias cópias temporárias de seus dados em tabelas `InnoDB` durante o processo de conversão, é recomendável que você crie as tabelas em Tablespaces por tabela para que possa recuperar o espaço em disco quando descartar as tabelas. Quando a opção de configuração `innodb_file_per_table` está habilitada (o padrão), as tabelas `InnoDB` recém-criadas são implicitamente criadas em Tablespaces por tabela.
 
-Whether you convert the `MyISAM` table directly or create a cloned `InnoDB` table, make sure that you have sufficient disk space to hold both the old and new tables during the process. **`InnoDB` tables require more disk space than `MyISAM` tables.** If an `ALTER TABLE` operation runs out of space, it starts a rollback, and that can take hours if it is disk-bound. For inserts, `InnoDB` uses the insert buffer to merge secondary index records to indexes in batches. That saves a lot of disk I/O. For rollback, no such mechanism is used, and the rollback can take 30 times longer than the insertion.
+Se você converter a tabela `MyISAM` diretamente ou criar uma tabela `InnoDB` clonada, certifique-se de ter espaço em disco suficiente para manter as tabelas antiga e nova durante o processo. **As tabelas `InnoDB` exigem mais espaço em disco do que as tabelas `MyISAM`.** Se uma operação `ALTER TABLE` ficar sem espaço, ela iniciará um Rollback, o que pode levar horas se estiver limitada pelo disco. Para inserts, o `InnoDB` usa o insert buffer para mesclar registros de Index secundário a Indexes em lotes. Isso economiza muito I/O de disco. Para o Rollback, nenhum mecanismo desse tipo é usado, e o Rollback pode levar 30 vezes mais tempo do que a inserção.
 
-In the case of a runaway rollback, if you do not have valuable data in your database, it may be advisable to kill the database process rather than wait for millions of disk I/O operations to complete. For the complete procedure, see Section 14.22.2, “Forcing InnoDB Recovery”.
+No caso de um Rollback descontrolado, se você não tiver dados valiosos no seu Database, pode ser aconselhável encerrar (kill) o processo do Database em vez de esperar que milhões de operações de I/O de disco sejam concluídas. Para o procedimento completo, consulte a Seção 14.22.2, “Forçando a Recuperação do InnoDB”.
 
-##### Defining Primary Keys
+##### Definindo Primary Keys
 
-The `PRIMARY KEY` clause is a critical factor affecting the performance of MySQL queries and the space usage for tables and indexes. The primary key uniquely identifies a row in a table. Every row in the table should have a primary key value, and no two rows can have the same primary key value.
+A cláusula `PRIMARY KEY` é um fator crítico que afeta a performance das Queries MySQL e o uso de espaço para tabelas e Indexes. A Primary Key identifica exclusivamente uma linha em uma tabela. Cada linha na tabela deve ter um valor de Primary Key, e nenhuma linha pode ter o mesmo valor de Primary Key.
 
-These are guidelines for the primary key, followed by more detailed explanations.
+Estas são diretrizes para a Primary Key, seguidas de explicações mais detalhadas.
 
-* Declare a `PRIMARY KEY` for each table. Typically, it is the most important column that you refer to in `WHERE` clauses when looking up a single row.
+* Declare uma `PRIMARY KEY` para cada tabela. Tipicamente, é a coluna mais importante à qual você se refere nas cláusulas `WHERE` ao buscar uma única linha.
 
-* Declare the `PRIMARY KEY` clause in the original `CREATE TABLE` statement, rather than adding it later through an `ALTER TABLE` statement.
+* Declare a cláusula `PRIMARY KEY` na instrução `CREATE TABLE` original, em vez de adicioná-la posteriormente através de uma instrução `ALTER TABLE`.
 
-* Choose the column and its data type carefully. Prefer numeric columns over character or string ones.
+* Escolha a coluna e seu tipo de dado cuidadosamente. Prefira colunas numéricas em vez de caracteres ou strings.
 
-* Consider using an auto-increment column if there is not another stable, unique, non-null, numeric column to use.
+* Considere usar uma coluna AUTO_INCREMENT se não houver outra coluna numérica estável, única e não nula para usar.
 
-* An auto-increment column is also a good choice if there is any doubt whether the value of the primary key column could ever change. Changing the value of a primary key column is an expensive operation, possibly involving rearranging data within the table and within each secondary index.
+* Uma coluna AUTO_INCREMENT também é uma boa escolha se houver qualquer dúvida se o valor da coluna Primary Key poderia mudar. Mudar o valor de uma coluna Primary Key é uma operação cara, possivelmente envolvendo reorganização de dados dentro da tabela e dentro de cada Index secundário.
 
-Consider adding a primary key to any table that does not already have one. Use the smallest practical numeric type based on the maximum projected size of the table. This can make each row slightly more compact, which can yield substantial space savings for large tables. The space savings are multiplied if the table has any secondary indexes, because the primary key value is repeated in each secondary index entry. In addition to reducing data size on disk, a small primary key also lets more data fit into the buffer pool, speeding up all kinds of operations and improving concurrency.
+Considere adicionar uma Primary Key a qualquer tabela que ainda não tenha uma. Use o tipo numérico prático mais pequeno com base no tamanho máximo projetado da tabela. Isso pode tornar cada linha ligeiramente mais compacta, o que pode gerar economias substanciais de espaço para tabelas grandes. A economia de espaço é multiplicada se a tabela tiver Indexes secundários, porque o valor da Primary Key é repetido em cada entrada do Index secundário. Além de reduzir o tamanho dos dados em disco, uma Primary Key pequena também permite que mais dados caibam no Buffer Pool, acelerando todos os tipos de operações e melhorando a concorrência.
 
-If the table already has a primary key on some longer column, such as a `VARCHAR`, consider adding a new unsigned `AUTO_INCREMENT` column and switching the primary key to that, even if that column is not referenced in queries. This design change can produce substantial space savings in the secondary indexes. You can designate the former primary key columns as `UNIQUE NOT NULL` to enforce the same constraints as the `PRIMARY KEY` clause, that is, to prevent duplicate or null values across all those columns.
+Se a tabela já tiver uma Primary Key em alguma coluna mais longa, como um `VARCHAR`, considere adicionar uma nova coluna `AUTO_INCREMENT` unsigned e mudar a Primary Key para ela, mesmo que essa coluna não seja referenciada em Queries. Essa mudança de design pode produzir economias substanciais de espaço nos Indexes secundários. Você pode designar as colunas Primary Key anteriores como `UNIQUE NOT NULL` para impor as mesmas constraints que a cláusula `PRIMARY KEY`, ou seja, para evitar valores duplicados ou nulos em todas essas colunas.
 
-If you spread related information across multiple tables, typically each table uses the same column for its primary key. For example, a personnel database might have several tables, each with a primary key of employee number. A sales database might have some tables with a primary key of customer number, and other tables with a primary key of order number. Because lookups using the primary key are very fast, you can construct efficient join queries for such tables.
+Se você espalhar informações relacionadas por várias tabelas, tipicamente cada tabela usará a mesma coluna para sua Primary Key. Por exemplo, um Database de pessoal pode ter várias tabelas, cada uma com uma Primary Key de número de funcionário. Um Database de vendas pode ter algumas tabelas com uma Primary Key de número de cliente, e outras tabelas com uma Primary Key de número de pedido. Como as buscas usando a Primary Key são muito rápidas, você pode construir Queries JOIN eficientes para tais tabelas.
 
-If you leave the `PRIMARY KEY` clause out entirely, MySQL creates an invisible one for you. It is a 6-byte value that might be longer than you need, thus wasting space. Because it is hidden, you cannot refer to it in queries.
+Se você omitir a cláusula `PRIMARY KEY` inteiramente, o MySQL criará uma invisível para você. É um valor de 6 bytes que pode ser mais longo do que você precisa, desperdiçando espaço. Como é oculto, você não pode se referir a ele em Queries.
 
-##### Application Performance Considerations
+##### Considerações de Performance de Aplicação
 
-The reliability and scalability features of `InnoDB` require more disk storage than equivalent `MyISAM` tables. You might change the column and index definitions slightly, for better space utilization, reduced I/O and memory consumption when processing result sets, and better query optimization plans making efficient use of index lookups.
+Os recursos de confiabilidade e escalabilidade do `InnoDB` exigem mais armazenamento em disco do que as tabelas `MyISAM` equivalentes. Você pode alterar ligeiramente as definições de coluna e Index, para melhor utilização do espaço, I/O reduzido e consumo de memória ao processar conjuntos de resultados, e melhores planos de otimização de Query que fazem uso eficiente das buscas de Index.
 
-If you set up a numeric ID column for the primary key, use that value to cross-reference with related values in any other tables, particularly for join queries. For example, rather than accepting a country name as input and doing queries searching for the same name, do one lookup to determine the country ID, then do other queries (or a single join query) to look up relevant information across several tables. Rather than storing a customer or catalog item number as a string of digits, potentially using up several bytes, convert it to a numeric ID for storing and querying. A 4-byte unsigned `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") column can index over 4 billion items (with the US meaning of billion: 1000 million). For the ranges of the different integer types, see Section 11.1.2, “Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT” - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT").
+Se você configurar uma coluna de ID numérica para a Primary Key, use esse valor para referência cruzada com valores relacionados em quaisquer outras tabelas, particularmente para Queries JOIN. Por exemplo, em vez de aceitar um nome de país como entrada e fazer Queries buscando o mesmo nome, faça uma busca para determinar o ID do país e, em seguida, faça outras Queries (ou uma única Query JOIN) para buscar informações relevantes em várias tabelas. Em vez de armazenar um número de cliente ou item de catálogo como uma string de dígitos, potencialmente usando vários bytes, converta-o para um ID numérico para armazenamento e Query. Uma coluna `INT` unsigned (INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT) de 4 bytes pode indexar mais de 4 bilhões de itens (com o significado americano de billion: 1000 milhões). Para os intervalos dos diferentes tipos de inteiros, consulte a Seção 11.1.2, “Tipos de Inteiros (Valor Exato) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT”.
 
-##### Understanding Files Associated with InnoDB Tables
+##### Entendendo Arquivos Associados a Tabelas InnoDB
 
-`InnoDB` files require more care and planning than `MyISAM` files do.
+Os arquivos `InnoDB` exigem mais cuidado e planejamento do que os arquivos `MyISAM`.
 
-* You must not delete the ibdata files that represent the `InnoDB` system tablespace.
+* Você não deve excluir os arquivos `ibdata` que representam o system Tablespace do `InnoDB`.
 
-* Methods of moving or copying `InnoDB` tables to a different server are described in Section 14.6.1.4, “Moving or Copying InnoDB Tables”.
+* Os métodos de mover ou copiar tabelas `InnoDB` para um servidor diferente são descritos na Seção 14.6.1.4, “Movendo ou Copiando Tabelas InnoDB”.

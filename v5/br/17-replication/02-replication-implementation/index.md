@@ -1,25 +1,25 @@
-## 16.2 Replication Implementation
+## 16.2 Implementação da Replicação
 
-[16.2.1 Replication Formats](replication-formats.html)
+[16.2.1 Formatos de Replicação](replication-formats.html)
 
-[16.2.2 Replication Channels](replication-channels.html)
+[16.2.2 Canais de Replicação](replication-channels.html)
 
-[16.2.3 Replication Threads](replication-threads.html)
+[16.2.3 Threads de Replicação](replication-threads.html)
 
-[16.2.4 Relay Log and Replication Metadata Repositories](replica-logs.html)
+[16.2.4 Relay Log e Repositórios de Metadados de Replicação](replica-logs.html)
 
-[16.2.5 How Servers Evaluate Replication Filtering Rules](replication-rules.html)
+[16.2.5 Como Servidores Avaliam Regras de Filtragem de Replicação](replication-rules.html)
 
-Replication is based on the replication source server keeping track of all changes to its databases (updates, deletes, and so on) in its binary log. The binary log serves as a written record of all events that modify database structure or content (data) from the moment the server was started. Typically, [`SELECT`](select.html "13.2.9 SELECT Statement") statements are not recorded because they modify neither database structure nor content.
+A Replicação é baseada no servidor *source* (fonte) de replicação mantendo o controle de todas as alterações em seus Databases (updates, deletes, e assim por diante) em seu binary log. O binary log serve como um registro escrito de todos os eventos que modificam a estrutura ou o conteúdo (dados) do Database a partir do momento em que o servidor foi iniciado. Tipicamente, instruções [`SELECT`](select.html "13.2.9 SELECT Statement") não são registradas porque não modificam nem a estrutura nem o conteúdo do Database.
 
-Each replica that connects to the source requests a copy of the binary log. That is, it pulls the data from the source, rather than the source pushing the data to the replica. The replica also executes the events from the binary log that it receives. This has the effect of repeating the original changes just as they were made on the source. Tables are created or their structure modified, and data is inserted, deleted, and updated according to the changes that were originally made on the source.
+Cada *replica* (réplica) que se conecta à *source* solicita uma cópia do binary log. Ou seja, ela *puxa* (pulls) os dados da *source*, em vez de a *source* *empurrar* (pushing) os dados para a *replica*. A *replica* também executa os eventos do binary log que recebe. Isso tem o efeito de repetir as alterações originais exatamente como foram feitas na *source*. Tabelas são criadas ou suas estruturas são modificadas, e dados são inseridos, excluídos e atualizados de acordo com as alterações que foram originalmente feitas na *source*.
 
-Because each replica is independent, the replaying of the changes from the source's binary log occurs independently on each replica that is connected to the source. In addition, because each replica receives a copy of the binary log only by requesting it from the source, the replica is able to read and update the copy of the database at its own pace and can start and stop the replication process at will without affecting the ability to update to the latest database status on either the source or replica side.
+Como cada *replica* é independente, a repetição das alterações do binary log da *source* ocorre de forma independente em cada *replica* que está conectada à *source*. Além disso, como cada *replica* recebe uma cópia do binary log somente solicitando-o à *source*, a *replica* é capaz de ler e atualizar a cópia do Database em seu próprio ritmo e pode iniciar e parar o processo de replicação à vontade sem afetar a capacidade de atualização para o status mais recente do Database, seja no lado da *source* ou da *replica*.
 
-For more information on the specifics of the replication implementation, see [Section 16.2.3, “Replication Threads”](replication-threads.html "16.2.3 Replication Threads").
+Para mais informações sobre os detalhes da implementação da replicação, consulte [Seção 16.2.3, “Threads de Replicação”](replication-threads.html "16.2.3 Replication Threads").
 
-Sources and replicas report their status in respect of the replication process regularly so that you can monitor them. See [Section 8.14, “Examining Server Thread (Process) Information”](thread-information.html "8.14 Examining Server Thread (Process) Information"), for descriptions of all replicated-related states.
+*Sources* e *replicas* reportam regularmente seus status em relação ao processo de replicação para que você possa monitorá-los. Consulte [Seção 8.14, “Examinando Informações de Thread (Processo) do Servidor”](thread-information.html "8.14 Examining Server Thread (Process Information)"), para descrições de todos os *states* relacionados à replicação.
 
-The source's binary log is written to a local relay log on the replica before it is processed. The replica also records information about the current position with the source's binary log and the replica's relay log. See [Section 16.2.4, “Relay Log and Replication Metadata Repositories”](replica-logs.html "16.2.4 Relay Log and Replication Metadata Repositories").
+O binary log da *source* é escrito em um *relay log* local na *replica* antes de ser processado. A *replica* também registra informações sobre a posição atual no binary log da *source* e no *relay log* da *replica*. Consulte [Seção 16.2.4, “Relay Log e Repositórios de Metadados de Replicação”](replica-logs.html "16.2.4 Relay Log and Replication Metadata Repositories").
 
-Database changes are filtered on the replica according to a set of rules that are applied according to the various configuration options and variables that control event evaluation. For details on how these rules are applied, see [Section 16.2.5, “How Servers Evaluate Replication Filtering Rules”](replication-rules.html "16.2.5 How Servers Evaluate Replication Filtering Rules").
+As alterações no Database são filtradas na *replica* de acordo com um conjunto de regras que são aplicadas conforme as várias opções de configuração e variáveis que controlam a avaliação de eventos. Para detalhes sobre como essas regras são aplicadas, consulte [Seção 16.2.5, “Como Servidores Avaliam Regras de Filtragem de Replicação”](replication-rules.html "16.2.5 How Servers Evaluate Replication Filtering Rules").

@@ -1,19 +1,19 @@
-#### 26.4.3.32 The schema_unused_indexes View
+#### 26.4.3.32 A View schema_unused_indexes
 
-These views display indexes for which there are no events, which indicates that they are not being used. By default, rows are sorted by schema and table.
+Estas Views exibem Indexes para os quais não há eventos, o que indica que eles não estão sendo usados. Por padrão, as linhas são ordenadas por Schema e Table.
 
-This view is most useful when the server has been up and processing long enough that its workload is representative. Otherwise, presence of an index in this view may not be meaningful.
+Esta View é mais útil quando o server está ativo e processando por tempo suficiente para que sua carga de trabalho seja representativa. Caso contrário, a presença de um Index nesta View pode não ser significativa.
 
-The `schema_unused_indexes` view has these columns:
+A View `schema_unused_indexes` possui as seguintes colunas:
 
 * `object_schema`
 
-  The schema name.
+  O nome do Schema.
 
 * `object_name`
 
-  The table name.
+  O nome da Table.
 
 * `index_name`
 
-  The unused index name.
+  O nome do Index não utilizado.

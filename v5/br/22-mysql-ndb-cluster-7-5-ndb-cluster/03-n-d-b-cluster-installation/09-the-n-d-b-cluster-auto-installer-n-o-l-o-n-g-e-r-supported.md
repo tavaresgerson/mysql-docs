@@ -1,7 +1,7 @@
-### 21.3.9 The NDB Cluster Auto-Installer (NO LONGER SUPPORTED)
+### 21.3.9 O Auto-Installer do NDB Cluster (NÃO MAIS SUPORTADO)
 
-Note
+Nota
 
-This feature has been removed from NDB Cluster, and is no longer supported. See [Section 21.2.4, “What is New in MySQL NDB Cluster”](mysql-cluster-what-is-new.html "21.2.4 What is New in MySQL NDB Cluster"), for more information.
+Este recurso foi removido do NDB Cluster e não é mais suportado. Consulte [Seção 21.2.4, “O que é Novo no MySQL NDB Cluster”](mysql-cluster-what-is-new.html "21.2.4 What is New in MySQL NDB Cluster"), para mais informações.
 
-The web-based graphical configuration installer (Auto-Installer) was removed in NDB 7.6.17, and is no longer included as part of the NDB Cluster distribution.
+O instalador gráfico de configuração baseado na web (Auto-Installer) foi removido na versão NDB 7.6.17 e não está mais incluído como parte da distribuição do NDB Cluster.

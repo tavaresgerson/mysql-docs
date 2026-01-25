@@ -1,145 +1,145 @@
-### 24.3.21 The INFORMATION_SCHEMA ROUTINES Table
+### 24.3.21 A Tabela ROUTINES do INFORMATION_SCHEMA
 
-The [`ROUTINES`](information-schema-routines-table.html "24.3.21 The INFORMATION_SCHEMA ROUTINES Table") table provides information about stored routines (stored procedures and stored functions). The [`ROUTINES`](information-schema-routines-table.html "24.3.21 The INFORMATION_SCHEMA ROUTINES Table") table does not include built-in (native) functions or loadable functions.
+A tabela [`ROUTINES`](information-schema-routines-table.html "24.3.21 A Tabela ROUTINES do INFORMATION_SCHEMA") fornece informações sobre stored routines (stored procedures e stored functions). A tabela [`ROUTINES`](information-schema-routines-table.html "24.3.21 A Tabela ROUTINES do INFORMATION_SCHEMA") não inclui funções nativas (built-in) ou funções carregáveis (loadable functions).
 
-The column named “`mysql.proc` Name” indicates the `mysql.proc` table column that corresponds to the `INFORMATION_SCHEMA` [`ROUTINES`](information-schema-routines-table.html "24.3.21 The INFORMATION_SCHEMA ROUTINES Table") table column, if any.
+A coluna chamada “Nome `mysql.proc`” indica a coluna da tabela `mysql.proc` que corresponde à coluna da tabela [`ROUTINES`](information-schema-routines-table.html "24.3.21 A Tabela ROUTINES do INFORMATION_SCHEMA") do `INFORMATION_SCHEMA`, se houver.
 
-The [`ROUTINES`](information-schema-routines-table.html "24.3.21 The INFORMATION_SCHEMA ROUTINES Table") table has these columns:
+A tabela [`ROUTINES`](information-schema-routines-table.html "24.3.21 A Tabela ROUTINES do INFORMATION_SCHEMA") possui as seguintes colunas:
 
 * `SPECIFIC_NAME`
 
-  The name of the routine.
+  O nome da routine.
 
 * `ROUTINE_CATALOG`
 
-  The name of the catalog to which the routine belongs. This value is always `def`.
+  O nome do catalog ao qual a routine pertence. Este valor é sempre `def`.
 
 * `ROUTINE_SCHEMA`
 
-  The name of the schema (database) to which the routine belongs.
+  O nome do schema (Database) ao qual a routine pertence.
 
 * `ROUTINE_NAME`
 
-  The name of the routine.
+  O nome da routine.
 
 * `ROUTINE_TYPE`
 
-  `PROCEDURE` for stored procedures, `FUNCTION` for stored functions.
+  `PROCEDURE` para stored procedures, `FUNCTION` para stored functions.
 
 * `DATA_TYPE`
 
-  If the routine is a stored function, the return value data type. If the routine is a stored procedure, this value is empty.
+  Se a routine for uma stored function, o data type do valor de retorno. Se a routine for uma stored procedure, este valor estará vazio.
 
-  The `DATA_TYPE` value is the type name only with no other information. The `DTD_IDENTIFIER` value contains the type name and possibly other information such as the precision or length.
+  O valor `DATA_TYPE` é apenas o nome do tipo, sem outras informações. O valor `DTD_IDENTIFIER` contém o nome do tipo e possivelmente outras informações, como a precisão ou o comprimento.
 
 * `CHARACTER_MAXIMUM_LENGTH`
 
-  For stored function string return values, the maximum length in characters. If the routine is a stored procedure, this value is `NULL`.
+  Para valores de retorno de string de stored function, o comprimento máximo em caracteres. Se a routine for uma stored procedure, este valor é `NULL`.
 
 * `CHARACTER_OCTET_LENGTH`
 
-  For stored function string return values, the maximum length in bytes. If the routine is a stored procedure, this value is `NULL`.
+  Para valores de retorno de string de stored function, o comprimento máximo em bytes. Se a routine for uma stored procedure, este valor é `NULL`.
 
 * `NUMERIC_PRECISION`
 
-  For stored function numeric return values, the numeric precision. If the routine is a stored procedure, this value is `NULL`.
+  Para valores de retorno numéricos de stored function, a precisão numérica. Se a routine for uma stored procedure, este valor é `NULL`.
 
 * `NUMERIC_SCALE`
 
-  For stored function numeric return values, the numeric scale. If the routine is a stored procedure, this value is `NULL`.
+  Para valores de retorno numéricos de stored function, a escala numérica. Se a routine for uma stored procedure, este valor é `NULL`.
 
 * `DATETIME_PRECISION`
 
-  For stored function temporal return values, the fractional seconds precision. If the routine is a stored procedure, this value is `NULL`.
+  Para valores de retorno temporais de stored function, a precisão de segundos fracionários. Se a routine for uma stored procedure, este valor é `NULL`.
 
 * `CHARACTER_SET_NAME`
 
-  For stored function character string return values, the character set name. If the routine is a stored procedure, this value is `NULL`.
+  Para valores de retorno de string de stored function, o nome do conjunto de caracteres (character set). Se a routine for uma stored procedure, este valor é `NULL`.
 
 * `COLLATION_NAME`
 
-  For stored function character string return values, the collation name. If the routine is a stored procedure, this value is `NULL`.
+  Para valores de retorno de string de stored function, o nome da collation. Se a routine for uma stored procedure, este valor é `NULL`.
 
 * `DTD_IDENTIFIER`
 
-  If the routine is a stored function, the return value data type. If the routine is a stored procedure, this value is empty.
+  Se a routine for uma stored function, o data type do valor de retorno. Se a routine for uma stored procedure, este valor estará vazio.
 
-  The `DATA_TYPE` value is the type name only with no other information. The `DTD_IDENTIFIER` value contains the type name and possibly other information such as the precision or length.
+  O valor `DATA_TYPE` é apenas o nome do tipo, sem outras informações. O valor `DTD_IDENTIFIER` contém o nome do tipo e possivelmente outras informações, como a precisão ou o comprimento.
 
 * `ROUTINE_BODY`
 
-  The language used for the routine definition. This value is always `SQL`.
+  A linguagem utilizada para a definição da routine. Este valor é sempre `SQL`.
 
 * `ROUTINE_DEFINITION`
 
-  The text of the SQL statement executed by the routine.
+  O texto da instrução SQL executada pela routine.
 
 * `EXTERNAL_NAME`
 
-  This value is always `NULL`.
+  Este valor é sempre `NULL`.
 
 * `EXTERNAL_LANGUAGE`
 
-  The language of the stored routine. MySQL calculates `EXTERNAL_LANGUAGE` thus:
+  A linguagem da stored routine. O MySQL calcula `EXTERNAL_LANGUAGE` da seguinte forma:
 
-  + If `mysql.proc.language='SQL'`, `EXTERNAL_LANGUAGE` is `NULL`
+  + Se `mysql.proc.language='SQL'`, `EXTERNAL_LANGUAGE` é `NULL`
 
-  + Otherwise, `EXTERNAL_LANGUAGE` is what is in `mysql.proc.language`. However, we do not have external languages yet, so it is always `NULL`.
+  + Caso contrário, `EXTERNAL_LANGUAGE` é o que está em `mysql.proc.language`. No entanto, ainda não temos linguagens externas, então é sempre `NULL`.
 
 * `PARAMETER_STYLE`
 
-  This value is always `SQL`.
+  Este valor é sempre `SQL`.
 
 * `IS_DETERMINISTIC`
 
-  `YES` or `NO`, depending on whether the routine is defined with the `DETERMINISTIC` characteristic.
+  `YES` ou `NO`, dependendo se a routine está definida com a característica `DETERMINISTIC`.
 
 * `SQL_DATA_ACCESS`
 
-  The data access characteristic for the routine. The value is one of `CONTAINS SQL`, `NO SQL`, `READS SQL DATA`, or `MODIFIES SQL DATA`.
+  A característica de acesso a dados para a routine. O valor é um de `CONTAINS SQL`, `NO SQL`, `READS SQL DATA` ou `MODIFIES SQL DATA`.
 
 * `SQL_PATH`
 
-  This value is always `NULL`.
+  Este valor é sempre `NULL`.
 
 * `SECURITY_TYPE`
 
-  The routine `SQL SECURITY` characteristic. The value is one of `DEFINER` or `INVOKER`.
+  A característica `SQL SECURITY` da routine. O valor é um de `DEFINER` ou `INVOKER`.
 
 * `CREATED`
 
-  The date and time when the routine was created. This is a [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") value.
+  A data e hora em que a routine foi criada. Este é um valor [`TIMESTAMP`](datetime.html "11.2.2 Os Tipos DATE, DATETIME e TIMESTAMP").
 
 * `LAST_ALTERED`
 
-  The date and time when the routine was last modified. This is a [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") value. If the routine has not been modified since its creation, this value is the same as the `CREATED` value.
+  A data e hora em que a routine foi modificada pela última vez. Este é um valor [`TIMESTAMP`](datetime.html "11.2.2 Os Tipos DATE, DATETIME e TIMESTAMP"). Se a routine não foi modificada desde sua criação, este valor é o mesmo que o valor `CREATED`.
 
 * `SQL_MODE`
 
-  The SQL mode in effect when the routine was created or altered, and under which the routine executes. For the permitted values, see [Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes").
+  O SQL mode em vigor quando a routine foi criada ou alterada, e sob o qual a routine é executada. Para os valores permitidos, consulte [Seção 5.1.10, “Modos SQL do Servidor”](sql-mode.html "5.1.10 Server SQL Modes").
 
 * `ROUTINE_COMMENT`
 
-  The text of the comment, if the routine has one. If not, this value is empty.
+  O texto do comment, se a routine tiver um. Caso contrário, este valor está vazio.
 
 * `DEFINER`
 
-  The account named in the `DEFINER` clause (often the user who created the routine), in `'user_name'@'host_name'` format.
+  A conta nomeada na cláusula `DEFINER` (frequentemente o usuário que criou a routine), no formato `'user_name'@'host_name'`.
 
 * `CHARACTER_SET_CLIENT`
 
-  The session value of the [`character_set_client`](server-system-variables.html#sysvar_character_set_client) system variable when the routine was created.
+  O valor de sessão da variável de sistema [`character_set_client`](server-system-variables.html#sysvar_character_set_client) quando a routine foi criada.
 
 * `COLLATION_CONNECTION`
 
-  The session value of the [`collation_connection`](server-system-variables.html#sysvar_collation_connection) system variable when the routine was created.
+  O valor de sessão da variável de sistema [`collation_connection`](server-system-variables.html#sysvar_collation_connection) quando a routine foi criada.
 
 * `DATABASE_COLLATION`
 
-  The collation of the database with which the routine is associated.
+  A collation do Database ao qual a routine está associada.
 
 #### Notes
 
-* To see information about a routine, you must be the user named in the routine `DEFINER` clause or have [`SELECT`](select.html "13.2.9 SELECT Statement") access to the `mysql.proc` table. If you do not have privileges for the routine itself, the value displayed for the `ROUTINE_DEFINITION` column is `NULL`.
+* Para visualizar informações sobre uma routine, você deve ser o usuário nomeado na cláusula `DEFINER` da routine ou ter acesso [`SELECT`](select.html "13.2.9 SELECT Statement") à tabela `mysql.proc`. Se você não tiver privilégios para a routine em si, o valor exibido para a coluna `ROUTINE_DEFINITION` será `NULL`.
 
-* Information about stored function return values is also available in the [`PARAMETERS`](information-schema-parameters-table.html "24.3.15 The INFORMATION_SCHEMA PARAMETERS Table") table. The return value row for a stored function can be identified as the row that has an `ORDINAL_POSITION` value of 0.
+* Informações sobre valores de retorno de stored function também estão disponíveis na tabela [`PARAMETERS`](information-schema-parameters-table.html "24.3.15 A Tabela PARAMETERS do INFORMATION_SCHEMA"). A linha de valor de retorno para uma stored function pode ser identificada como a linha que possui um valor `ORDINAL_POSITION` igual a 0.

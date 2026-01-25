@@ -1,76 +1,76 @@
-### 24.5.2 The INFORMATION_SCHEMA TP_THREAD_GROUP_STATE Table
+### 24.5.2 A Tabela TP_THREAD_GROUP_STATE do INFORMATION_SCHEMA
 
-The [`TP_THREAD_GROUP_STATE`](information-schema-tp-thread-group-state-table.html "24.5.2 The INFORMATION_SCHEMA TP_THREAD_GROUP_STATE Table") table has one row per thread group in the thread pool. Each row provides information about the current state of a group.
+A tabela [\`TP_THREAD_GROUP_STATE\`](information-schema-tp-thread-group-state-table.html "24.5.2 The INFORMATION_SCHEMA TP_THREAD_GROUP_STATE Table") possui uma linha por Thread Group no Thread Pool. Cada linha fornece informações sobre o estado atual de um grupo.
 
-The [`TP_THREAD_GROUP_STATE`](information-schema-tp-thread-group-state-table.html "24.5.2 The INFORMATION_SCHEMA TP_THREAD_GROUP_STATE Table") table has these columns:
+A tabela [\`TP_THREAD_GROUP_STATE\`](information-schema-tp-thread-group-state-table.html "24.5.2 The INFORMATION_SCHEMA TP_THREAD_GROUP_STATE Table") possui as seguintes colunas:
 
 * `TP_GROUP_ID`
 
-  The thread group ID. This is a unique key within the table.
+  O ID do Thread Group. Esta é uma chave única dentro da tabela.
 
 * `CONSUMER THREADS`
 
-  The number of consumer threads. There is at most one thread ready to start executing if the active threads become stalled or blocked.
+  O número de *Consumer Threads* (Threads Consumidoras). Há no máximo uma Thread pronta para iniciar a execução caso as Threads ativas fiquem *stalled* (travadas) ou *blocked* (bloqueadas).
 
 * `RESERVE_THREADS`
 
-  The number of threads in the reserved state. This means that they are not started until there is a need to wake a new thread and there is no consumer thread. This is where most threads end up when the thread group has created more threads than needed for normal operation. Often a thread group needs additional threads for a short while and then does not need them again for a while. In this case, they go into the reserved state and remain until needed again. They take up some extra memory resources, but no extra computing resources.
+  O número de Threads no estado *reserved* (reservado). Isso significa que elas não são iniciadas até que haja a necessidade de despertar uma nova Thread e não haja uma *Consumer Thread*. É aqui que a maioria das Threads fica quando o Thread Group cria mais Threads do que o necessário para a operação normal. Frequentemente, um Thread Group precisa de Threads adicionais por um curto período e depois não precisa mais delas por um tempo. Nesses casos, elas entram no estado reservado e permanecem até serem necessárias novamente. Elas consomem alguns recursos extras de memória, mas nenhum recurso extra de computação.
 
 * `CONNECT_THREAD_COUNT`
 
-  The number of threads that are processing or waiting to process connection initialization and authentication. There can be a maximum of four connection threads per thread group; these threads expire after a period of inactivity.
+  O número de Threads que estão processando ou aguardando para processar a inicialização da conexão e a autenticação. Pode haver um máximo de quatro *Connection Threads* por Thread Group; essas Threads expiram após um período de inatividade.
 
-  This column was added in MySQL 5.7.18.
+  Esta coluna foi adicionada no MySQL 5.7.18.
 
 * `CONNECTION_COUNT`
 
-  The number of connections using this thread group.
+  O número de conexões usando este Thread Group.
 
 * `QUEUED_QUERIES`
 
-  The number of statements waiting in the high-priority queue.
+  O número de *statements* (instruções) aguardando na fila de alta prioridade.
 
 * `QUEUED_TRANSACTIONS`
 
-  The number of statements waiting in the low-priority queue. These are the initial statements for transactions that have not started, so they also represent queued transactions.
+  O número de *statements* aguardando na fila de baixa prioridade. Estes são os *statements* iniciais para Transactions que não foram iniciadas, portanto, também representam Transactions em fila (*queued transactions*).
 
 * `STALL_LIMIT`
 
-  The value of the [`thread_pool_stall_limit`](server-system-variables.html#sysvar_thread_pool_stall_limit) system variable for the thread group. This is the same value for all thread groups.
+  O valor da variável de sistema [`thread_pool_stall_limit`](server-system-variables.html#sysvar_thread_pool_stall_limit) para o Thread Group. Este valor é o mesmo para todos os Thread Groups.
 
 * `PRIO_KICKUP_TIMER`
 
-  The value of the [`thread_pool_prio_kickup_timer`](server-system-variables.html#sysvar_thread_pool_prio_kickup_timer) system variable for the thread group. This is the same value for all thread groups.
+  O valor da variável de sistema [`thread_pool_prio_kickup_timer`](server-system-variables.html#sysvar_thread_pool_prio_kickup_timer) para o Thread Group. Este valor é o mesmo para todos os Thread Groups.
 
 * `ALGORITHM`
 
-  The value of the [`thread_pool_algorithm`](server-system-variables.html#sysvar_thread_pool_algorithm) system variable for the thread group. This is the same value for all thread groups.
+  O valor da variável de sistema [`thread_pool_algorithm`](server-system-variables.html#sysvar_thread_pool_algorithm) para o Thread Group. Este valor é o mesmo para todos os Thread Groups.
 
 * `THREAD_COUNT`
 
-  The number of threads started in the thread pool as part of this thread group.
+  O número de Threads iniciadas no Thread Pool como parte deste Thread Group.
 
 * `ACTIVE_THREAD_COUNT`
 
-  The number of threads active in executing statements.
+  O número de Threads ativas na execução de *statements*.
 
 * `STALLED_THREAD_COUNT`
 
-  The number of stalled statements in the thread group. A stalled statement could be executing, but from a thread pool perspective it is stalled and making no progress. A long-running statement quickly ends up in this category.
+  O número de *statements stalled* (paralisados/travados) no Thread Group. Um *statement stalled* pode estar em execução, mas da perspectiva do Thread Pool, ele está paralisado e sem fazer progresso. Um *statement* de longa execução rapidamente se enquadra nesta categoria.
 
 * `WAITING_THREAD_NUMBER`
 
-  If there is a thread handling the polling of statements in the thread group, this specifies the thread number within this thread group. It is possible that this thread could be executing a statement.
+  Se houver uma Thread responsável pela sondagem (*polling*) de *statements* no Thread Group, este campo especifica o número da Thread dentro deste Thread Group. É possível que esta Thread esteja executando um *statement*.
 
 * `OLDEST_QUEUED`
 
-  How long in milliseconds the oldest queued statement has been waiting for execution.
+  Por quanto tempo em milissegundos o *statement* mais antigo na fila (*queued*) está esperando pela execução.
 
 * `MAX_THREAD_IDS_IN_GROUP`
 
-  The maximum thread ID of the threads in the group. This is the same as [`MAX(TP_THREAD_NUMBER)`](aggregate-functions.html#function_max) for the threads when selected from the [`TP_THREAD_STATE`](information-schema-tp-thread-state-table.html "24.5.4 The INFORMATION_SCHEMA TP_THREAD_STATE Table") table. That is, these two queries are equivalent:
+  O ID máximo de Thread das Threads no grupo. Este é o mesmo que [`MAX(TP_THREAD_NUMBER)`](aggregate-functions.html#function_max) para as Threads quando selecionadas da tabela [`TP_THREAD_STATE`](information-schema-tp-thread-state-table.html "24.5.4 The INFORMATION_SCHEMA TP_THREAD_STATE Table"). Ou seja, estas duas Queries são equivalentes:
 
-  ```sql
+```sql
   SELECT TP_GROUP_ID, MAX_THREAD_IDS_IN_GROUP
   FROM TP_THREAD_GROUP_STATE;
 

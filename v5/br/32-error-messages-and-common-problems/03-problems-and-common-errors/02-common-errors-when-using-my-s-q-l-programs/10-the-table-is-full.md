@@ -1,3 +1,3 @@
-#### B.3.2.10 The table is full
+#### B.3.2.10 A table está cheia
 
-If a table-full error occurs, it may be that the disk is full or that the table has reached its maximum size. The effective maximum table size for MySQL databases is usually determined by operating system constraints on file sizes, not by MySQL internal limits. See [Section 8.4.6, “Limits on Table Size”](table-size-limit.html "8.4.6 Limits on Table Size").
+Se ocorrer um error de table-full, pode ser que o disk esteja cheio ou que a table tenha atingido seu tamanho máximo. O tamanho máximo efetivo da table para Databases MySQL é geralmente determinado por restrições do sistema operacional sobre os tamanhos de arquivo, e não por limites internos do MySQL. Consulte [Seção 8.4.6, “Limites no Tamanho da Table”](table-size-limit.html "8.4.6 Limites no Tamanho da Table").

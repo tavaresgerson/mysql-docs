@@ -1,11 +1,11 @@
-### 13.1.23 DROP EVENT Statement
+### 13.1.23 Instrução DROP EVENT
 
 ```sql
 DROP EVENT [IF EXISTS] event_name
 ```
 
-This statement drops the event named *`event_name`*. The event immediately ceases being active, and is deleted completely from the server.
+Esta instrução remove o Event nomeado *`event_name`*. O Event imediatamente deixa de estar ativo e é excluído completamente do server.
 
-If the event does not exist, the error ERROR 1517 (HY000): Unknown event '*`event_name`*' results. You can override this and cause the statement to generate a warning for nonexistent events instead using `IF EXISTS`.
+Se o Event não existir, o erro ERROR 1517 (HY000): Unknown event '*`event_name`*' é retornado. Você pode sobrescrever isso e fazer com que a instrução gere um warning para Events inexistentes usando `IF EXISTS`.
 
-This statement requires the [`EVENT`](privileges-provided.html#priv_event) privilege for the schema to which the event to be dropped belongs.
+Esta instrução requer o privilégio [`EVENT`](privileges-provided.html#priv_event) para o schema ao qual o Event a ser removido pertence.

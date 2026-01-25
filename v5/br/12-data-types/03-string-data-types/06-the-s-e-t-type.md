@@ -1,8 +1,8 @@
-### 11.3.6 The SET Type
+### 11.3.6 O Tipo SET
 
-A `SET` is a string object that can have zero or more values, each of which must be chosen from a list of permitted values specified when the table is created. `SET` column values that consist of multiple set members are specified with members separated by commas (`,`). A consequence of this is that `SET` member values should not themselves contain commas.
+Um `SET` é um objeto string que pode ter zero ou mais valores, cada um dos quais deve ser escolhido de uma lista de valores permitidos especificada quando a table é criada. Valores de `SET` column que consistem em múltiplos membros do set são especificados com membros separados por vírgulas (`,`). Uma consequência disso é que os valores dos membros do `SET` não devem, eles próprios, conter vírgulas.
 
-For example, a column specified as `SET('one', 'two') NOT NULL` can have any of these values:
+Por exemplo, uma column especificada como `SET('one', 'two') NOT NULL` pode ter qualquer um destes valores:
 
 ```sql
 ''
@@ -11,37 +11,37 @@ For example, a column specified as `SET('one', 'two') NOT NULL` can have any of 
 'one,two'
 ```
 
-A `SET` column can have a maximum of 64 distinct members. A table can have no more than 255 unique element list definitions among its `ENUM` and `SET` columns considered as a group. For more information on this limit, see Limits Imposed by .frm File Structure.
+Uma `SET` column pode ter um máximo de 64 membros distintos. Uma table pode ter no máximo 255 definições de lista de elementos únicos entre suas columns `ENUM` e `SET` consideradas em grupo. Para mais informações sobre este limite, consulte Limites Impostos pela Estrutura de Arquivo .frm.
 
-Duplicate values in the definition cause a warning, or an error if strict SQL mode is enabled.
+Valores duplicados na definição causam um *warning*, ou um *error* se o modo SQL estrito estiver habilitado.
 
-Trailing spaces are automatically deleted from `SET` member values in the table definition when a table is created.
+Espaços à direita (*trailing spaces*) são automaticamente excluídos dos valores de membro `SET` na definição da table quando uma table é criada.
 
-See String Type Storage Requirements for storage requirements for the `SET` type.
+Consulte Requisitos de Armazenamento de Tipos String para os requisitos de armazenamento para o tipo `SET`.
 
-See Section 11.3.1, “String Data Type Syntax” for `SET` type syntax and length limits.
+Consulte a Seção 11.3.1, “Sintaxe de Tipos de Dados String” para a sintaxe e limites de comprimento do tipo `SET`.
 
-When retrieved, values stored in a `SET` column are displayed using the lettercase that was used in the column definition. Note that `SET` columns can be assigned a character set and collation. For binary or case-sensitive collations, lettercase is taken into account when assigning values to the column.
+Quando recuperados, os valores armazenados em uma `SET` column são exibidos usando o case de letras (*lettercase*) que foi usado na definição da column. Note que `SET` columns podem ter um *character set* e *collation* atribuídos. Para *collations* binárias ou *case-sensitive* (sensíveis a maiúsculas/minúsculas), o *lettercase* é levado em consideração ao atribuir valores à column.
 
-MySQL stores `SET` values numerically, with the low-order bit of the stored value corresponding to the first set member. If you retrieve a `SET` value in a numeric context, the value retrieved has bits set corresponding to the set members that make up the column value. For example, you can retrieve numeric values from a `SET` column like this:
+O MySQL armazena valores `SET` numericamente, com o *low-order bit* do valor armazenado correspondendo ao primeiro membro do *set*. Se você recuperar um valor `SET` em um contexto numérico, o valor recuperado terá *bits set* correspondentes aos membros do *set* que compõem o valor da column. Por exemplo, você pode recuperar valores numéricos de uma `SET` column assim:
 
 ```sql
 mysql> SELECT set_col+0 FROM tbl_name;
 ```
 
-If a number is stored into a `SET` column, the bits that are set in the binary representation of the number determine the set members in the column value. For a column specified as `SET('a','b','c','d')`, the members have the following decimal and binary values.
+Se um número for armazenado em uma `SET` column, os *bits* definidos na representação binária do número determinam os membros do *set* no valor da column. Para uma column especificada como `SET('a','b','c','d')`, os membros têm os seguintes valores decimais e binários.
 
-<table summary="Decimal and binary values for members of a column specified as SET('a','b','c','d')."><col style="width: 15%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th><code>SET</code> Member</th> <th>Decimal Value</th> <th>Binary Value</th> </tr></thead><tbody><tr> <th><code>'a'</code></th> <td><code>1</code></td> <td><code>0001</code></td> </tr><tr> <th><code>'b'</code></th> <td><code>2</code></td> <td><code>0010</code></td> </tr><tr> <th><code>'c'</code></th> <td><code>4</code></td> <td><code>0100</code></td> </tr><tr> <th><code>'d'</code></th> <td><code>8</code></td> <td><code>1000</code></td> </tr></tbody></table>
+<table summary="Valores decimais e binários para membros de uma coluna especificada como SET('a','b','c','d')."><col style="width: 15%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th>Membro `SET`</th> <th>Valor Decimal</th> <th>Valor Binário</th> </tr></thead><tbody><tr> <th>`'a'`</th> <td>`1`</td> <td>`0001`</td> </tr><tr> <th>`'b'`</th> <td>`2`</td> <td>`0010`</td> </tr><tr> <th>`'c'`</th> <td>`4`</td> <td>`0100`</td> </tr><tr> <th>`'d'`</th> <td>`8`</td> <td>`1000`</td> </tr></tbody></table>
 
-If you assign a value of `9` to this column, that is `1001` in binary, so the first and fourth `SET` value members `'a'` and `'d'` are selected and the resulting value is `'a,d'`.
+Se você atribuir um valor de `9` a esta column, que é `1001` em binário, o primeiro e o quarto membros do valor `SET`, `'a'` e `'d'`, são selecionados e o valor resultante é `'a,d'`.
 
-For a value containing more than one `SET` element, it does not matter what order the elements are listed in when you insert the value. It also does not matter how many times a given element is listed in the value. When the value is retrieved later, each element in the value appears once, with elements listed according to the order in which they were specified at table creation time. Suppose that a column is specified as `SET('a','b','c','d')`:
+Para um valor contendo mais de um elemento `SET`, não importa em qual ordem os elementos são listados quando você insere o valor. Também não importa quantas vezes um determinado elemento é listado no valor. Quando o valor é recuperado posteriormente, cada elemento no valor aparece uma vez, com os elementos listados de acordo com a ordem em que foram especificados no momento da criação da table. Suponha que uma column seja especificada como `SET('a','b','c','d')`:
 
 ```sql
 mysql> CREATE TABLE myset (col SET('a', 'b', 'c', 'd'));
 ```
 
-If you insert the values `'a,d'`, `'d,a'`, `'a,d,d'`, `'a,d,a'`, and `'d,a,d'`:
+Se você inserir os valores `'a,d'`, `'d,a'`, `'a,d,d'`, `'a,d,a'` e `'d,a,d'`:
 
 ```sql
 mysql> INSERT INTO myset (col) VALUES
@@ -50,7 +50,7 @@ Query OK, 5 rows affected (0.01 sec)
 Records: 5  Duplicates: 0  Warnings: 0
 ```
 
-Then all these values appear as `'a,d'` when retrieved:
+Então, todos esses valores aparecem como `'a,d'` quando recuperados:
 
 ```sql
 mysql> SELECT col FROM myset;
@@ -66,7 +66,7 @@ mysql> SELECT col FROM myset;
 5 rows in set (0.04 sec)
 ```
 
-If you set a `SET` column to an unsupported value, the value is ignored and a warning is issued:
+Se você definir uma `SET` column para um valor não suportado, o valor é ignorado e um *warning* é emitido:
 
 ```sql
 mysql> INSERT INTO myset (col) VALUES ('a,d,d,s');
@@ -94,30 +94,30 @@ mysql> SELECT col FROM myset;
 6 rows in set (0.01 sec)
 ```
 
-If strict SQL mode is enabled, attempts to insert invalid `SET` values result in an error.
+Se o modo SQL estrito estiver habilitado, tentativas de inserir valores `SET` inválidos resultam em um *error*.
 
-`SET` values are sorted numerically. `NULL` values sort before non-`NULL` `SET` values.
+Valores `SET` são ordenados numericamente. Valores `NULL` são ordenados antes dos valores `SET` não-`NULL`.
 
-Functions such as `SUM()` or `AVG()` that expect a numeric argument cast the argument to a number if necessary. For `SET` values, the cast operation causes the numeric value to be used.
+Functions como `SUM()` ou `AVG()` que esperam um argumento numérico convertem o argumento para um número, se necessário. Para valores `SET`, a operação de conversão faz com que o valor numérico seja usado.
 
-Normally, you search for `SET` values using the `FIND_IN_SET()` function or the `LIKE` operator:
+Normalmente, você procura por valores `SET` usando a função `FIND_IN_SET()` ou o operador `LIKE`:
 
 ```sql
 mysql> SELECT * FROM tbl_name WHERE FIND_IN_SET('value',set_col)>0;
 mysql> SELECT * FROM tbl_name WHERE set_col LIKE '%value%';
 ```
 
-The first statement finds rows where *`set_col`* contains the *`value`* set member. The second is similar, but not the same: It finds rows where *`set_col`* contains *`value`* anywhere, even as a substring of another set member.
+A primeira instrução encontra as linhas onde *`set_col`* contém o membro *`value`* do *set*. A segunda é similar, mas não a mesma: Ela encontra linhas onde *`set_col`* contém *`value`* em qualquer lugar, mesmo como uma *substring* de outro membro do *set*.
 
-The following statements also are permitted:
+As seguintes instruções também são permitidas:
 
 ```sql
 mysql> SELECT * FROM tbl_name WHERE set_col & 1;
 mysql> SELECT * FROM tbl_name WHERE set_col = 'val1,val2';
 ```
 
-The first of these statements looks for values containing the first set member. The second looks for an exact match. Be careful with comparisons of the second type. Comparing set values to `'val1,val2'` returns different results than comparing values to `'val2,val1'`. You should specify the values in the same order they are listed in the column definition.
+A primeira dessas instruções procura por valores que contenham o primeiro membro do *set*. A segunda procura por uma correspondência exata. Tenha cuidado com comparações do segundo tipo. Comparar valores de *set* com `'val1,val2'` retorna resultados diferentes do que comparar valores com `'val2,val1'`. Você deve especificar os valores na mesma ordem em que estão listados na definição da column.
 
-To determine all possible values for a `SET` column, use `SHOW COLUMNS FROM tbl_name LIKE set_col` and parse the `SET` definition in the `Type` column of the output.
+Para determinar todos os valores possíveis para uma `SET` column, use `SHOW COLUMNS FROM tbl_name LIKE set_col` e faça o parse da definição `SET` na column `Type` da saída.
 
-In the C API, `SET` values are returned as strings. For information about using result set metadata to distinguish them from other strings, see C API Basic Data Structures.
+Na API C, os valores `SET` são retornados como *strings*. Para obter informações sobre como usar metadados de *result set* para distingui-los de outras *strings*, consulte Estruturas de Dados Básicas da API C.

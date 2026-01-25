@@ -1,23 +1,23 @@
-## 24.1 Introduction
+## 24.1 Introdução
 
-`INFORMATION_SCHEMA` provides access to database metadata, information about the MySQL server such as the name of a database or table, the data type of a column, or access privileges. Other terms that are sometimes used for this information are data dictionary and system catalog.
+`INFORMATION_SCHEMA` fornece acesso a metadados de Database, informações sobre o servidor MySQL como o nome de um Database ou Table, o tipo de dados de uma Column, ou privilégios de acesso. Outros termos que são por vezes utilizados para esta informação são dicionário de dados e catálogo de sistema.
 
-* [INFORMATION_SCHEMA Usage Notes](information-schema-introduction.html#information-schema-usage-notes "INFORMATION_SCHEMA Usage Notes")
-* [Character Set Considerations](information-schema-introduction.html#information-schema-character-set-considerations "Character Set Considerations")
-* [INFORMATION_SCHEMA as Alternative to SHOW Statements](information-schema-introduction.html#information-schema-as-show-alternative "INFORMATION_SCHEMA as Alternative to SHOW Statements")
-* [INFORMATION_SCHEMA and Privileges](information-schema-introduction.html#information-schema-privileges "INFORMATION_SCHEMA and Privileges")
-* [Performance Considerations](information-schema-introduction.html#information-schema-performance-considerations "Performance Considerations")
-* [Standards Considerations](information-schema-introduction.html#information-schema-standards-considerations "Standards Considerations")
-* [Conventions in the INFORMATION_SCHEMA Reference Sections](information-schema-introduction.html#information-schema-conventions "Conventions in the INFORMATION_SCHEMA Reference Sections")
-* [Related Information](information-schema-introduction.html#information-schema-related-information "Related Information")
+* [Notas de Uso do INFORMATION_SCHEMA](information-schema-introduction.html#information-schema-usage-notes "INFORMATION_SCHEMA Usage Notes")
+* [Considerações sobre Character Set](information-schema-introduction.html#information-schema-character-set-considerations "Character Set Considerations")
+* [INFORMATION_SCHEMA como Alternativa para Instruções SHOW](information-schema-introduction.html#information-schema-as-show-alternative "INFORMATION_SCHEMA as Alternative to SHOW Statements")
+* [INFORMATION_SCHEMA e Privilégios](information-schema-introduction.html#information-schema-privileges "INFORMATION_SCHEMA and Privileges")
+* [Considerações sobre Performance](information-schema-introduction.html#information-schema-performance-considerations "Performance Considerations")
+* [Considerações sobre Padrões](information-schema-introduction.html#information-schema-standards-considerations "Standards Considerations")
+* [Convenções nas Seções de Referência do INFORMATION_SCHEMA](information-schema-introduction.html#information-schema-conventions "Conventions in the INFORMATION_SCHEMA Reference Sections")
+* [Informações Relacionadas](information-schema-introduction.html#information-schema-related-information "Related Information")
 
-### INFORMATION_SCHEMA Usage Notes
+### Notas de Uso do INFORMATION_SCHEMA
 
-`INFORMATION_SCHEMA` is a database within each MySQL instance, the place that stores information about all the other databases that the MySQL server maintains. The `INFORMATION_SCHEMA` database contains several read-only tables. They are actually views, not base tables, so there are no files associated with them, and you cannot set triggers on them. Also, there is no database directory with that name.
+`INFORMATION_SCHEMA` é um Database dentro de cada instância MySQL, o local que armazena informações sobre todos os outros Databases que o servidor MySQL mantém. O Database `INFORMATION_SCHEMA` contém várias Tables somente leitura. Na verdade, são views, e não base tables, portanto, não há arquivos associados a elas, e você não pode definir triggers nelas. Além disso, não há um diretório de Database com esse nome.
 
-Although you can select `INFORMATION_SCHEMA` as the default database with a [`USE`](use.html "13.8.4 USE Statement") statement, you can only read the contents of tables, not perform [`INSERT`](insert.html "13.2.5 INSERT Statement"), [`UPDATE`](update.html "13.2.11 UPDATE Statement"), or [`DELETE`](delete.html "13.2.2 DELETE Statement") operations on them.
+Embora você possa selecionar `INFORMATION_SCHEMA` como o Database padrão com uma instrução [`USE`](use.html "13.8.4 USE Statement"), você pode apenas ler o conteúdo das Tables, e não realizar operações [`INSERT`](insert.html "13.2.5 INSERT Statement"), [`UPDATE`](update.html "13.2.11 UPDATE Statement") ou [`DELETE`](delete.html "13.2.2 DELETE Statement") nelas.
 
-Here is an example of a statement that retrieves information from `INFORMATION_SCHEMA`:
+Aqui está um exemplo de uma instrução que recupera informações do `INFORMATION_SCHEMA`:
 
 ```sql
 mysql> SELECT table_name, table_type, engine
@@ -48,75 +48,73 @@ mysql> SELECT table_name, table_type, engine
 17 rows in set (0.01 sec)
 ```
 
-Explanation: The statement requests a list of all the tables in database `db5`, showing just three pieces of information: the name of the table, its type, and its storage engine.
+Explicação: A instrução solicita uma lista de todas as Tables no Database `db5`, mostrando apenas três informações: o nome da Table, seu tipo e seu storage engine.
 
-### Character Set Considerations
+### Considerações sobre Character Set
 
-The definition for character columns (for example, `TABLES.TABLE_NAME`) is generally `VARCHAR(N) CHARACTER SET utf8` where *`N`* is at least
+A definição para character columns (por exemplo, `TABLES.TABLE_NAME`) é geralmente `VARCHAR(N) CHARACTER SET utf8`, onde *`N`* é pelo menos 64. O MySQL usa o collation padrão para este character set (`utf8_general_ci`) para todas as buscas, ordenações (sorts), comparações e outras operações de string nessas columns.
 
-64. MySQL uses the default collation for this character set (`utf8_general_ci`) for all searches, sorts, comparisons, and other string operations on such columns.
+Como alguns objetos MySQL são representados como arquivos, as buscas em string columns do `INFORMATION_SCHEMA` podem ser afetadas pela sensibilidade a maiúsculas e minúsculas do sistema de arquivos (file system case sensitivity). Para mais informações, consulte [Section 10.8.7, “Using Collation in INFORMATION_SCHEMA Searches”](charset-collation-information-schema.html "10.8.7 Using Collation in INFORMATION_SCHEMA Searches").
 
-Because some MySQL objects are represented as files, searches in `INFORMATION_SCHEMA` string columns can be affected by file system case sensitivity. For more information, see [Section 10.8.7, “Using Collation in INFORMATION_SCHEMA Searches”](charset-collation-information-schema.html "10.8.7 Using Collation in INFORMATION_SCHEMA Searches").
+### INFORMATION_SCHEMA como Alternativa para Instruções SHOW
 
-### INFORMATION_SCHEMA as Alternative to SHOW Statements
+A instrução `SELECT ... FROM INFORMATION_SCHEMA` destina-se a ser uma forma mais consistente de fornecer acesso às informações fornecidas pelas várias instruções [`SHOW`](show.html "13.7.5 SHOW Statements") que o MySQL suporta ([`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement"), [`SHOW TABLES`](show-tables.html "13.7.5.37 SHOW TABLES Statement"), e assim por diante). O uso de [`SELECT`](select.html "13.2.9 SELECT Statement") tem estas vantagens, em comparação com [`SHOW`](show.html "13.7.5 SHOW Statements"):
 
-The `SELECT ... FROM INFORMATION_SCHEMA` statement is intended as a more consistent way to provide access to the information provided by the various [`SHOW`](show.html "13.7.5 SHOW Statements") statements that MySQL supports ([`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement"), [`SHOW TABLES`](show-tables.html "13.7.5.37 SHOW TABLES Statement"), and so forth). Using [`SELECT`](select.html "13.2.9 SELECT Statement") has these advantages, compared to [`SHOW`](show.html "13.7.5 SHOW Statements"):
+* Está em conformidade com as regras de Codd, pois todo o acesso é feito em Tables.
 
-* It conforms to Codd's rules, because all access is done on tables.
+* Você pode usar a sintaxe familiar da instrução [`SELECT`](select.html "13.2.9 SELECT Statement") e precisa apenas aprender alguns nomes de Table e Column.
 
-* You can use the familiar syntax of the [`SELECT`](select.html "13.2.9 SELECT Statement") statement, and only need to learn some table and column names.
+* O implementador não precisa se preocupar em adicionar palavras-chave (keywords).
+* Você pode filtrar, ordenar (sort), concatenar e transformar os resultados de Queries do `INFORMATION_SCHEMA` para o formato que sua aplicação precisar, como uma estrutura de dados ou uma representação de texto para parsear.
 
-* The implementor need not worry about adding keywords.
-* You can filter, sort, concatenate, and transform the results from `INFORMATION_SCHEMA` queries into whatever format your application needs, such as a data structure or a text representation to parse.
+* Essa técnica é mais interoperável com outros sistemas de Database. Por exemplo, usuários do Oracle Database estão familiarizados com o Query em Tables no dicionário de dados Oracle.
 
-* This technique is more interoperable with other database systems. For example, Oracle Database users are familiar with querying tables in the Oracle data dictionary.
+Como [`SHOW`](show.html "13.7.5 SHOW Statements") é familiar e amplamente usado, as instruções [`SHOW`](show.html "13.7.5 SHOW Statements") permanecem como uma alternativa. De fato, juntamente com a implementação do `INFORMATION_SCHEMA`, existem aprimoramentos no [`SHOW`](show.html "13.7.5 SHOW Statements"), conforme descrito em [Section 24.8, “Extensions to SHOW Statements”](extended-show.html "24.8 Extensions to SHOW Statements").
 
-Because [`SHOW`](show.html "13.7.5 SHOW Statements") is familiar and widely used, the [`SHOW`](show.html "13.7.5 SHOW Statements") statements remain as an alternative. In fact, along with the implementation of `INFORMATION_SCHEMA`, there are enhancements to [`SHOW`](show.html "13.7.5 SHOW Statements") as described in [Section 24.8, “Extensions to SHOW Statements”](extended-show.html "24.8 Extensions to SHOW Statements").
+### INFORMATION_SCHEMA e Privilégios
 
-### INFORMATION_SCHEMA and Privileges
+Para a maioria das Tables do `INFORMATION_SCHEMA`, cada usuário MySQL tem o direito de acessá-las, mas só pode ver as linhas nas Tables que correspondem a objetos para os quais o usuário tem os privilégios de acesso apropriados. Em alguns casos (por exemplo, a Column `ROUTINE_DEFINITION` na Table [`ROUTINES`](information-schema-routines-table.html "24.3.21 The INFORMATION_SCHEMA ROUTINES Table") do `INFORMATION_SCHEMA`), usuários que têm privilégios insuficientes veem `NULL`. Algumas Tables têm requisitos de privilégio diferentes; para estas, os requisitos são mencionados nas descrições de Table aplicáveis. Por exemplo, Tables [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") (Tables com nomes que começam com `INNODB_`) exigem o privilégio [`PROCESS`](privileges-provided.html#priv_process).
 
-For most `INFORMATION_SCHEMA` tables, each MySQL user has the right to access them, but can see only the rows in the tables that correspond to objects for which the user has the proper access privileges. In some cases (for example, the `ROUTINE_DEFINITION` column in the `INFORMATION_SCHEMA` [`ROUTINES`](information-schema-routines-table.html "24.3.21 The INFORMATION_SCHEMA ROUTINES Table") table), users who have insufficient privileges see `NULL`. Some tables have different privilege requirements; for these, the requirements are mentioned in the applicable table descriptions. For example, [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") tables (tables with names that begin with `INNODB_`) require the [`PROCESS`](privileges-provided.html#priv_process) privilege.
+Os mesmos privilégios se aplicam ao selecionar informações do `INFORMATION_SCHEMA` e ao visualizar as mesmas informações através de instruções [`SHOW`](show.html "13.7.5 SHOW Statements"). Em ambos os casos, você deve ter algum privilégio em um objeto para ver informações sobre ele.
 
-The same privileges apply to selecting information from `INFORMATION_SCHEMA` and viewing the same information through [`SHOW`](show.html "13.7.5 SHOW Statements") statements. In either case, you must have some privilege on an object to see information about it.
+### Considerações sobre Performance
 
-### Performance Considerations
+Queries do `INFORMATION_SCHEMA` que buscam informações de mais de um Database podem levar muito tempo e impactar a performance. Para verificar a eficiência de uma Query, você pode usar [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement"). Para obter informações sobre o uso da saída do [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") para otimizar Queries do `INFORMATION_SCHEMA`, consulte [Section 8.2.3, “Optimizing INFORMATION_SCHEMA Queries”](information-schema-optimization.html "8.2.3 Optimizing INFORMATION_SCHEMA Queries").
 
-`INFORMATION_SCHEMA` queries that search for information from more than one database might take a long time and impact performance. To check the efficiency of a query, you can use [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement"). For information about using [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") output to tune `INFORMATION_SCHEMA` queries, see [Section 8.2.3, “Optimizing INFORMATION_SCHEMA Queries”](information-schema-optimization.html "8.2.3 Optimizing INFORMATION_SCHEMA Queries").
+### Considerações sobre Padrões
 
-### Standards Considerations
+A implementação para as estruturas de Table do `INFORMATION_SCHEMA` no MySQL segue o padrão ANSI/ISO SQL:2003 Parte 11 *Schemata*. Nossa intenção é a conformidade aproximada com o recurso central F021 *Basic information schema* do SQL:2003.
 
-The implementation for the `INFORMATION_SCHEMA` table structures in MySQL follows the ANSI/ISO SQL:2003 standard Part 11 *Schemata*. Our intent is approximate compliance with SQL:2003 core feature F021 *Basic information schema*.
+Usuários do SQL Server 2000 (que também segue o padrão) podem notar uma forte similaridade. No entanto, o MySQL omitiu muitas Columns que não são relevantes para nossa implementação e adicionou Columns que são específicas do MySQL. Uma dessas Columns adicionadas é a Column `ENGINE` na Table [`TABLES`](information-schema-tables-table.html "24.3.25 The INFORMATION_SCHEMA TABLES Table") do `INFORMATION_SCHEMA`.
 
-Users of SQL Server 2000 (which also follows the standard) may notice a strong similarity. However, MySQL has omitted many columns that are not relevant for our implementation, and added columns that are MySQL-specific. One such added column is the `ENGINE` column in the `INFORMATION_SCHEMA` [`TABLES`](information-schema-tables-table.html "24.3.25 The INFORMATION_SCHEMA TABLES Table") table.
+Embora outros DBMSs usem uma variedade de nomes, como `syscat` ou `system`, o nome padrão é `INFORMATION_SCHEMA`.
 
-Although other DBMSs use a variety of names, like `syscat` or `system`, the standard name is `INFORMATION_SCHEMA`.
+Para evitar o uso de qualquer nome reservado no padrão ou no DB2, SQL Server ou Oracle, alteramos os nomes de algumas Columns marcadas como “MySQL extension”. (Por exemplo, alteramos `COLLATION` para `TABLE_COLLATION` na Table [`TABLES`](information-schema-tables-table.html "24.3.25 The INFORMATION_SCHEMA TABLES Table").) Veja a lista de palavras reservadas perto do final deste artigo: <https://web.archive.org/web/20070428032454/http://www.dbazine.com/db2/db2-disarticles/gulutzan5>.
 
-To avoid using any name that is reserved in the standard or in DB2, SQL Server, or Oracle, we changed the names of some columns marked “MySQL extension”. (For example, we changed `COLLATION` to `TABLE_COLLATION` in the [`TABLES`](information-schema-tables-table.html "24.3.25 The INFORMATION_SCHEMA TABLES Table") table.) See the list of reserved words near the end of this article: <https://web.archive.org/web/20070428032454/http://www.dbazine.com/db2/db2-disarticles/gulutzan5>.
+### Convenções nas Seções de Referência do INFORMATION_SCHEMA
 
-### Conventions in the INFORMATION_SCHEMA Reference Sections
+As seções a seguir descrevem cada uma das Tables e Columns no `INFORMATION_SCHEMA`. Para cada Column, há três informações:
 
-The following sections describe each of the tables and columns in `INFORMATION_SCHEMA`. For each column, there are three pieces of information:
+* “Nome do `INFORMATION_SCHEMA`” indica o nome para a Column na Table do `INFORMATION_SCHEMA`. Isso corresponde ao nome SQL padrão, a menos que o campo “Observações” diga “MySQL extension.”
 
-* “`INFORMATION_SCHEMA` Name” indicates the name for the column in the `INFORMATION_SCHEMA` table. This corresponds to the standard SQL name unless the “Remarks” field says “MySQL extension.”
+* “Nome do [`SHOW`](show.html "13.7.5 SHOW Statements")” indica o nome de campo equivalente na instrução [`SHOW`](show.html "13.7.5 SHOW Statements") mais próxima, se houver.
 
-* “[`SHOW`](show.html "13.7.5 SHOW Statements") Name” indicates the equivalent field name in the closest [`SHOW`](show.html "13.7.5 SHOW Statements") statement, if there is one.
+* “Observações” fornece informações adicionais onde aplicável. Se este campo for `NULL`, significa que o valor da Column é sempre `NULL`. Se este campo disser “MySQL extension”, a Column é uma extensão MySQL para o SQL padrão.
 
-* “Remarks” provides additional information where applicable. If this field is `NULL`, it means that the value of the column is always `NULL`. If this field says “MySQL extension,” the column is a MySQL extension to standard SQL.
+Muitas seções indicam qual instrução [`SHOW`](show.html "13.7.5 SHOW Statements") é equivalente a um [`SELECT`](select.html "13.2.9 SELECT Statement") que recupera informações do `INFORMATION_SCHEMA`. Para instruções [`SHOW`](show.html "13.7.5 SHOW Statements") que exibem informações para o Database padrão se você omitir uma cláusula `FROM db_name`, muitas vezes você pode selecionar informações para o Database padrão adicionando uma condição `AND TABLE_SCHEMA = SCHEMA()` à cláusula `WHERE` de uma Query que recupera informações de uma Table do `INFORMATION_SCHEMA`.
 
-Many sections indicate what [`SHOW`](show.html "13.7.5 SHOW Statements") statement is equivalent to a [`SELECT`](select.html "13.2.9 SELECT Statement") that retrieves information from `INFORMATION_SCHEMA`. For [`SHOW`](show.html "13.7.5 SHOW Statements") statements that display information for the default database if you omit a `FROM db_name` clause, you can often select information for the default database by adding an `AND TABLE_SCHEMA = SCHEMA()` condition to the `WHERE` clause of a query that retrieves information from an `INFORMATION_SCHEMA` table.
+### Informações Relacionadas
 
-### Related Information
+Estas seções discutem tópicos adicionais relacionados ao `INFORMATION_SCHEMA`:
 
-These sections discuss additional `INFORMATION_SCHEMA`-related topics:
+* informações sobre Tables do `INFORMATION_SCHEMA` específicas do storage engine [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"): [Section 24.4, “INFORMATION_SCHEMA InnoDB Tables”](innodb-information-schema-tables.html "24.4 INFORMATION_SCHEMA InnoDB Tables")
 
-* information about `INFORMATION_SCHEMA` tables specific to the [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") storage engine: [Section 24.4, “INFORMATION_SCHEMA InnoDB Tables”](innodb-information-schema-tables.html "24.4 INFORMATION_SCHEMA InnoDB Tables")
+* informações sobre Tables do `INFORMATION_SCHEMA` específicas do plugin Thread Pool: [Section 24.5, “INFORMATION_SCHEMA Thread Pool Tables”](thread-pool-information-schema-tables.html "24.5 INFORMATION_SCHEMA Thread Pool Tables")
 
-* information about `INFORMATION_SCHEMA` tables specific to the thread pool plugin: [Section 24.5, “INFORMATION_SCHEMA Thread Pool Tables”](thread-pool-information-schema-tables.html "24.5 INFORMATION_SCHEMA Thread Pool Tables")
+* informações sobre Tables do `INFORMATION_SCHEMA` específicas do plugin `CONNECTION_CONTROL`: [Section 24.6, “INFORMATION_SCHEMA Connection Control Tables”](connection-control-information-schema-tables.html "24.6 INFORMATION_SCHEMA Connection Control Tables")
 
-* information about `INFORMATION_SCHEMA` tables specific to the `CONNECTION_CONTROL` plugin: [Section 24.6, “INFORMATION_SCHEMA Connection Control Tables”](connection-control-information-schema-tables.html "24.6 INFORMATION_SCHEMA Connection Control Tables")
+* Respostas para perguntas frequentemente feitas sobre o Database `INFORMATION_SCHEMA`: [Section A.7, “MySQL 5.7 FAQ: INFORMATION_SCHEMA”](faqs-information-schema.html "A.7 MySQL 5.7 FAQ: INFORMATION_SCHEMA")
 
-* Answers to questions that are often asked concerning the `INFORMATION_SCHEMA` database: [Section A.7, “MySQL 5.7 FAQ: INFORMATION_SCHEMA”](faqs-information-schema.html "A.7 MySQL 5.7 FAQ: INFORMATION_SCHEMA")
+* Queries do `INFORMATION_SCHEMA` e o optimizer: [Section 8.2.3, “Optimizing INFORMATION_SCHEMA Queries”](information-schema-optimization.html "8.2.3 Optimizing INFORMATION_SCHEMA Queries")
 
-* `INFORMATION_SCHEMA` queries and the optimizer: [Section 8.2.3, “Optimizing INFORMATION_SCHEMA Queries”](information-schema-optimization.html "8.2.3 Optimizing INFORMATION_SCHEMA Queries")
-
-* The effect of collation on `INFORMATION_SCHEMA` comparisons: [Section 10.8.7, “Using Collation in INFORMATION_SCHEMA Searches”](charset-collation-information-schema.html "10.8.7 Using Collation in INFORMATION_SCHEMA Searches")
+* O efeito do collation nas comparações do `INFORMATION_SCHEMA`: [Section 10.8.7, “Using Collation in INFORMATION_SCHEMA Searches”](charset-collation-information-schema.html "10.8.7 Using Collation in INFORMATION_SCHEMA Searches")

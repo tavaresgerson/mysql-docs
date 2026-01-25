@@ -1,4 +1,4 @@
-#### 13.7.5.22 SHOW INDEX Statement
+#### 13.7.5.22 Instrução SHOW INDEX
 
 ```sql
 SHOW {INDEX | INDEXES | KEYS}
@@ -7,7 +7,7 @@ SHOW {INDEX | INDEXES | KEYS}
     [WHERE expr]
 ```
 
-[`SHOW INDEX`](show-index.html "13.7.5.22 SHOW INDEX Statement") returns table index information. The format resembles that of the `SQLStatistics` call in ODBC. This statement requires some privilege for any column in the table.
+[`SHOW INDEX`](show-index.html "13.7.5.22 SHOW INDEX Statement") retorna informações sobre Index de tabelas. O formato se assemelha ao da chamada `SQLStatistics` no ODBC. Esta instrução requer algum privilégio para qualquer coluna na tabela.
 
 ```sql
 mysql> SHOW INDEX FROM City\G
@@ -41,77 +41,77 @@ Index_comment:
 Index_comment:
 ```
 
-An alternative to `tbl_name FROM db_name` syntax is *`db_name`*.*`tbl_name`*. These two statements are equivalent:
+Uma alternativa à sintaxe `tbl_name FROM db_name` é *`db_name`*.*`tbl_name`*. Estas duas instruções são equivalentes:
 
 ```sql
 SHOW INDEX FROM mytable FROM mydb;
 SHOW INDEX FROM mydb.mytable;
 ```
 
-The `WHERE` clause can be given to select rows using more general conditions, as discussed in [Section 24.8, “Extensions to SHOW Statements”](extended-show.html "24.8 Extensions to SHOW Statements").
+A cláusula `WHERE` pode ser fornecida para selecionar linhas usando condições mais gerais, conforme discutido na [Seção 24.8, “Extensions to SHOW Statements”](extended-show.html "24.8 Extensions to SHOW Statements").
 
-[`SHOW INDEX`](show-index.html "13.7.5.22 SHOW INDEX Statement") returns the following fields:
+[`SHOW INDEX`](show-index.html "13.7.5.22 SHOW INDEX Statement") retorna os seguintes campos:
 
 * `Table`
 
-  The name of the table.
+  O nome da tabela.
 
 * `Non_unique`
 
-  0 if the index cannot contain duplicates, 1 if it can.
+  0 se o Index não puder conter duplicatas, 1 se puder.
 
 * `Key_name`
 
-  The name of the index. If the index is the primary key, the name is always `PRIMARY`.
+  O nome do Index. Se o Index for a Primary Key, o nome é sempre `PRIMARY`.
 
 * `Seq_in_index`
 
-  The column sequence number in the index, starting with 1.
+  O número de sequência da coluna no Index, começando com 1.
 
 * `Column_name`
 
-  The name of the column.
+  O nome da coluna.
 
 * `Collation`
 
-  How the column is sorted in the index. This can have values `A` (ascending) or `NULL` (not sorted).
+  Como a coluna é classificada no Index. Pode ter valores `A` (ascendente) ou `NULL` (não classificado).
 
 * `Cardinality`
 
-  An estimate of the number of unique values in the index. To update this number, run [`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement") or (for `MyISAM` tables) [**myisamchk -a**](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility").
+  Uma estimativa do número de valores exclusivos no Index. Para atualizar este número, execute [`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement") ou (para tabelas `MyISAM`) [**myisamchk -a**](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility").
 
-  `Cardinality` is counted based on statistics stored as integers, so the value is not necessarily exact even for small tables. The higher the cardinality, the greater the chance that MySQL uses the index when doing joins.
+  `Cardinality` é contado com base em estatísticas armazenadas como inteiros, então o valor não é necessariamente exato, mesmo para tabelas pequenas. Quanto maior a cardinality, maior a chance de o MySQL usar o Index ao realizar JOINs.
 
 * `Sub_part`
 
-  The index prefix. That is, the number of indexed characters if the column is only partly indexed, `NULL` if the entire column is indexed.
+  O prefixo do Index. Ou seja, o número de caracteres indexados se a coluna estiver apenas parcialmente indexada, `NULL` se a coluna inteira estiver indexada.
 
-  Note
+  Nota
 
-  Prefix *limits* are measured in bytes. However, prefix *lengths* for index specifications in [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement"), [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"), and [`CREATE INDEX`](create-index.html "13.1.14 CREATE INDEX Statement") statements are interpreted as number of characters for nonbinary string types ([`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types")) and number of bytes for binary string types ([`BINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"), [`VARBINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"), [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types")). Take this into account when specifying a prefix length for a nonbinary string column that uses a multibyte character set.
+  Os *limites* de prefixo são medidos em bytes. No entanto, os *comprimentos* de prefixo para especificações de Index nas instruções [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement"), [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") e [`CREATE INDEX`](create-index.html "13.1.14 CREATE INDEX Statement") são interpretados como número de caracteres para tipos de string não binários ([`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types")) e número de bytes para tipos de string binários ([`BINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"), [`VARBINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"), [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types")). Leve isso em consideração ao especificar um comprimento de prefixo para uma coluna de string não binária que usa um conjunto de caracteres multibyte.
 
-  For additional information about index prefixes, see [Section 8.3.4, “Column Indexes”](column-indexes.html "8.3.4 Column Indexes"), and [Section 13.1.14, “CREATE INDEX Statement”](create-index.html "13.1.14 CREATE INDEX Statement").
+  Para informações adicionais sobre prefixos de Index, consulte a [Seção 8.3.4, “Column Indexes”](column-indexes.html "8.3.4 Column Indexes"), e a [Seção 13.1.14, “CREATE INDEX Statement”](create-index.html "13.1.14 CREATE INDEX Statement").
 
 * `Packed`
 
-  Indicates how the key is packed. `NULL` if it is not.
+  Indica como a Key é empacotada. `NULL` se não for.
 
 * `Null`
 
-  Contains `YES` if the column may contain `NULL` values and `''` if not.
+  Contém `YES` se a coluna puder conter valores `NULL` e `''` se não puder.
 
 * `Index_type`
 
-  The index method used (`BTREE`, `FULLTEXT`, `HASH`, `RTREE`).
+  O método de Index usado (`BTREE`, `FULLTEXT`, `HASH`, `RTREE`).
 
 * `Comment`
 
-  Information about the index not described in its own column, such as `disabled` if the index is disabled.
+  Informações sobre o Index não descritas em sua própria coluna, como `disabled` se o Index estiver desabilitado.
 
 * `Index_comment`
 
-  Any comment provided for the index with a `COMMENT` attribute when the index was created.
+  Qualquer comentário fornecido para o Index com um atributo `COMMENT` quando o Index foi criado.
 
-Information about table indexes is also available from the `INFORMATION_SCHEMA` [`STATISTICS`](information-schema-statistics-table.html "24.3.24 The INFORMATION_SCHEMA STATISTICS Table") table. See [Section 24.3.24, “The INFORMATION_SCHEMA STATISTICS Table”](information-schema-statistics-table.html "24.3.24 The INFORMATION_SCHEMA STATISTICS Table").
+Informações sobre Index de tabelas também estão disponíveis na tabela [`STATISTICS`](information-schema-statistics-table.html "24.3.24 The INFORMATION_SCHEMA STATISTICS Table") do `INFORMATION_SCHEMA`. Consulte a [Seção 24.3.24, “The INFORMATION_SCHEMA STATISTICS Table”](information-schema-statistics-table.html "24.3.24 The INFORMATION_SCHEMA STATISTICS Table").
 
-You can list a table's indexes with the [**mysqlshow -k *`db_name`* *`tbl_name`***](mysqlshow.html "4.5.7 mysqlshow — Display Database, Table, and Column Information") command.
+Você pode listar os Index de uma tabela com o comando [**mysqlshow -k *`db_name`* *`tbl_name`***](mysqlshow.html "4.5.7 mysqlshow — Display Database, Table, and Column Information").

@@ -1,17 +1,17 @@
-#### 21.6.15.3 The ndbinfo blocks Table
+#### 21.6.15.3 A Tabela ndbinfo blocks
 
-The `blocks` table is a static table which simply contains the names and internal IDs of all NDB kernel blocks (see [NDB Kernel Blocks](/doc/ndb-internals/en/ndb-internals-kernel-blocks.html)). It is for use by the other [`ndbinfo`](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database") tables (most of which are actually views) in mapping block numbers to block names for producing human-readable output.
+A tabela `blocks` é uma tabela estática que simplesmente contém os nomes e IDs internos de todos os NDB kernel blocks (consulte [NDB Kernel Blocks](/doc/ndb-internals/en/ndb-internals-kernel-blocks.html)). Ela é usada pelas outras tabelas ([`ndbinfo`](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database")) (a maioria das quais são, na verdade, views) para mapear números de block para nomes de block, a fim de produzir output legível por humanos.
 
-The `blocks` table contains the following columns:
+A tabela `blocks` contém as seguintes colunas:
 
 * `block_number`
 
-  Block number
+  Número do Block
 
 * `block_name`
 
-  Block name
+  Nome do Block
 
-##### Notes
+##### Notas
 
-To obtain a list of all block names, simply execute `SELECT block_name FROM ndbinfo.blocks`. Although this is a static table, its content can vary between different NDB Cluster releases.
+Para obter uma lista de todos os nomes de block, basta executar `SELECT block_name FROM ndbinfo.blocks`. Embora esta seja uma tabela estática, seu conteúdo pode variar entre diferentes releases do NDB Cluster.

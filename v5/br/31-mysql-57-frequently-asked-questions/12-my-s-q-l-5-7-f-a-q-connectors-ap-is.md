@@ -1,8 +1,8 @@
-## A.12 MySQL 5.7 FAQ: Connectors & APIs
+## A.12 FAQ do MySQL 5.7: Connectors & APIs
 
-For common questions, issues, and answers relating to the MySQL Connectors and other APIs, see the following areas of the Manual:
+Para perguntas comuns, problemas e respostas relacionados aos Connectors do MySQL e outras APIs, consulte as seguintes áreas do Manual:
 
-* [Using C API Features](/doc/c-api/5.7/en/c-api-features.html)
-* [Connector/ODBC Notes and Tips](/doc/connector-odbc/en/connector-odbc-usagenotes.html)
-* [Connector/NET Programming](/doc/connector-net/en/connector-net-programming.html)
-* [MySQL Connector/J Developer Guide](/doc/connector-j/en/)
+* [Utilizando Recursos da C API](/doc/c-api/5.7/en/c-api-features.html)
+* [Notas e Dicas do Connector/ODBC](/doc/connector-odbc/en/connector-odbc-usagenotes.html)
+* [Programação com Connector/NET](/doc/connector-net/en/connector-net-programming.html)
+* [Guia do Desenvolvedor do MySQL Connector/J](/doc/connector-j/en/)

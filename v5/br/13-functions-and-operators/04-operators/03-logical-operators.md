@@ -1,12 +1,12 @@
-### 12.4.3 Logical Operators
+### 12.4.3 Operadores Lógicos
 
-**Table 12.5 Logical Operators**
+**Tabela 12.5 Operadores Lógicos**
 
-<table frame="box" rules="all" summary="A reference that lists logical operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>AND</code>, <code>&amp;&amp;</code></td> <td> Logical AND </td> </tr><tr><td><code>NOT</code>, <code>!</code></td> <td> Negates value </td> </tr><tr><td><code>OR</code>, <code>||</code></td> <td> Logical OR </td> </tr><tr><td><code>XOR</code></td> <td> Logical XOR </td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista operadores lógicos."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>AND</code>, <code>&amp;&amp;</code></td> <td> AND Lógico </td> </tr><tr><td><code>NOT</code>, <code>!</code></td> <td> Nega o valor </td> </tr><tr><td><code>OR</code>, <code>||</code></td> <td> OR Lógico </td> </tr><tr><td><code>XOR</code></td> <td> XOR Lógico </td> </tr> </tbody></table>
 
-In SQL, all logical operators evaluate to `TRUE`, `FALSE`, or `NULL` (`UNKNOWN`). In MySQL, these are implemented as 1 (`TRUE`), 0 (`FALSE`), and `NULL`. Most of this is common to different SQL database servers, although some servers may return any nonzero value for `TRUE`.
+Em SQL, todos os operadores lógicos avaliam para `TRUE`, `FALSE` ou `NULL` (`UNKNOWN`). No MySQL, eles são implementados como 1 (`TRUE`), 0 (`FALSE`) e `NULL`. A maior parte disso é comum a diferentes Database Servers SQL, embora alguns servidores possam retornar qualquer valor não zero para `TRUE`.
 
-MySQL evaluates any nonzero, non-`NULL` value to `TRUE`. For example, the following statements all assess to `TRUE`:
+O MySQL avalia qualquer valor não zero e não `NULL` como `TRUE`. Por exemplo, as seguintes instruções são todas avaliadas como `TRUE`:
 
 ```sql
 mysql> SELECT 10 IS TRUE;
@@ -19,7 +19,7 @@ mysql> SELECT 'string' IS NOT NULL;
 
 * `NOT`, `!`
 
-  Logical NOT. Evaluates to `1` if the operand is `0`, to `0` if the operand is nonzero, and `NOT NULL` returns `NULL`.
+  NOT Lógico. Avalia para `1` se o operando for `0`, para `0` se o operando for não zero, e `NOT NULL` retorna `NULL`.
 
   ```sql
   mysql> SELECT NOT 10;
@@ -34,11 +34,11 @@ mysql> SELECT 'string' IS NOT NULL;
           -> 1
   ```
 
-  The last example produces `1` because the expression evaluates the same way as `(!1)+1`.
+  O último exemplo produz `1` porque a expressão é avaliada da mesma forma que `(!1)+1`.
 
 * `AND`, `&&`
 
-  Logical AND. Evaluates to `1` if all operands are nonzero and not `NULL`, to `0` if one or more operands are `0`, otherwise `NULL` is returned.
+  AND Lógico. Avalia para `1` se todos os operandos forem não zero e não `NULL`, para `0` se um ou mais operandos forem `0`, caso contrário, `NULL` é retornado.
 
   ```sql
   mysql> SELECT 1 AND 1;
@@ -55,7 +55,7 @@ mysql> SELECT 'string' IS NOT NULL;
 
 * `OR`, `||`
 
-  Logical OR. When both operands are non-`NULL`, the result is `1` if any operand is nonzero, and `0` otherwise. With a `NULL` operand, the result is `1` if the other operand is nonzero, and `NULL` otherwise. If both operands are `NULL`, the result is `NULL`.
+  OR Lógico. Quando ambos os operandos são não `NULL`, o resultado é `1` se qualquer operando for não zero, e `0` caso contrário. Com um operando `NULL`, o resultado é `1` se o outro operando for não zero, e `NULL` caso contrário. Se ambos os operandos forem `NULL`, o resultado é `NULL`.
 
   ```sql
   mysql> SELECT 1 OR 1;
@@ -72,11 +72,11 @@ mysql> SELECT 'string' IS NOT NULL;
 
   Note
 
-  If the `PIPES_AS_CONCAT` SQL mode is enabled, `||` signifies the SQL-standard string concatenation operator (like `CONCAT()`).
+  Se o `SQL mode PIPES_AS_CONCAT` estiver ativado, `||` significa o operador de concatenação de strings padrão SQL (como `CONCAT()`).
 
 * `XOR`
 
-  Logical XOR. Returns `NULL` if either operand is `NULL`. For non-`NULL` operands, evaluates to `1` if an odd number of operands is nonzero, otherwise `0` is returned.
+  XOR Lógico. Retorna `NULL` se qualquer um dos operandos for `NULL`. Para operandos não `NULL`, avalia para `1` se um número ímpar de operandos for não zero, caso contrário, `0` é retornado.
 
   ```sql
   mysql> SELECT 1 XOR 1;
@@ -89,4 +89,4 @@ mysql> SELECT 'string' IS NOT NULL;
           -> 1
   ```
 
-  `a XOR b` is mathematically equal to `(a AND (NOT b)) OR ((NOT a) and b)`.
+  `a XOR b` é matematicamente igual a `(a AND (NOT b)) OR ((NOT a) and b)`.

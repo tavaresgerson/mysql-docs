@@ -1,10 +1,10 @@
-### 14.16.3 InnoDB INFORMATION_SCHEMA System Tables
+### 14.16.3 Tabelas de Sistema INFORMATION_SCHEMA do InnoDB
 
-You can extract metadata about schema objects managed by `InnoDB` using `InnoDB` `INFORMATION_SCHEMA` system tables. This information comes from the `InnoDB` internal system tables (also referred to as the `InnoDB` data dictionary), which cannot be queried directly like regular `InnoDB` tables. Traditionally, you would get this type of information using the techniques from Section 14.18, “InnoDB Monitors”, setting up `InnoDB` monitors and parsing the output from the `SHOW ENGINE INNODB STATUS` statement. The `InnoDB` `INFORMATION_SCHEMA` table interface allows you to query this data using SQL.
+Você pode extrair metadados sobre objetos de schema gerenciados pelo `InnoDB` usando as tabelas de sistema `INFORMATION_SCHEMA` do `InnoDB`. Esta informação provém das tabelas de sistema internas do `InnoDB` (também referidas como o dicionário de dados do `InnoDB`), que não podem ser consultadas diretamente como tabelas `InnoDB` regulares. Tradicionalmente, você obteria esse tipo de informação usando as técnicas da Seção 14.18, “Monitores InnoDB”, configurando monitores `InnoDB` e analisando a saída da instrução `SHOW ENGINE INNODB STATUS`. A interface das tabelas `INFORMATION_SCHEMA` do `InnoDB` permite que você consulte esses dados usando SQL.
 
-With the exception of `INNODB_SYS_TABLESTATS`, for which there is no corresponding internal system table, `InnoDB` `INFORMATION_SCHEMA` system tables are populated with data read directly from internal `InnoDB` system tables rather than from metadata that is cached in memory.
+Com exceção de `INNODB_SYS_TABLESTATS`, para a qual não há tabela de sistema interna correspondente, as tabelas de sistema `INFORMATION_SCHEMA` do `InnoDB` são preenchidas com dados lidos diretamente das tabelas de sistema internas do `InnoDB`, em vez de metadados que estão em cache na memória.
 
-`InnoDB` `INFORMATION_SCHEMA` system tables include the tables listed below.
+As tabelas de sistema `INFORMATION_SCHEMA` do `InnoDB` incluem as tabelas listadas abaixo.
 
 ```sql
 mysql> SHOW TABLES FROM INFORMATION_SCHEMA LIKE 'INNODB_SYS%';
@@ -23,35 +23,35 @@ mysql> SHOW TABLES FROM INFORMATION_SCHEMA LIKE 'INNODB_SYS%';
 +--------------------------------------------+
 ```
 
-The table names are indicative of the type of data provided:
+Os nomes das tabelas indicam o tipo de dado fornecido:
 
-* `INNODB_SYS_TABLES` provides metadata about `InnoDB` tables, equivalent to the information in the `SYS_TABLES` table in the `InnoDB` data dictionary.
+* `INNODB_SYS_TABLES` fornece metadados sobre tabelas `InnoDB`, equivalente à informação na tabela `SYS_TABLES` no dicionário de dados do `InnoDB`.
 
-* `INNODB_SYS_COLUMNS` provides metadata about `InnoDB` table columns, equivalent to the information in the `SYS_COLUMNS` table in the `InnoDB` data dictionary.
+* `INNODB_SYS_COLUMNS` fornece metadados sobre colunas de tabelas `InnoDB`, equivalente à informação na tabela `SYS_COLUMNS` no dicionário de dados do `InnoDB`.
 
-* `INNODB_SYS_INDEXES` provides metadata about `InnoDB` indexes, equivalent to the information in the `SYS_INDEXES` table in the `InnoDB` data dictionary.
+* `INNODB_SYS_INDEXES` fornece metadados sobre Indexes `InnoDB`, equivalente à informação na tabela `SYS_INDEXES` no dicionário de dados do `InnoDB`.
 
-* `INNODB_SYS_FIELDS` provides metadata about the key columns (fields) of `InnoDB` indexes, equivalent to the information in the `SYS_FIELDS` table in the `InnoDB` data dictionary.
+* `INNODB_SYS_FIELDS` fornece metadados sobre as colunas chave (fields) de Indexes `InnoDB`, equivalente à informação na tabela `SYS_FIELDS` no dicionário de dados do `InnoDB`.
 
-* `INNODB_SYS_TABLESTATS` provides a view of low-level status information about `InnoDB` tables that is derived from in-memory data structures. There is no corresponding internal `InnoDB` system table.
+* `INNODB_SYS_TABLESTATS` fornece uma visão de informações de status de baixo nível sobre tabelas `InnoDB` que são derivadas de estruturas de dados na memória. Não há tabela de sistema `InnoDB` interna correspondente.
 
-* `INNODB_SYS_DATAFILES` provides data file path information for `InnoDB` file-per-table and general tablespaces, equivalent to information in the `SYS_DATAFILES` table in the `InnoDB` data dictionary.
+* `INNODB_SYS_DATAFILES` fornece informações de path de arquivo de dados para tablespaces file-per-table e gerais do `InnoDB`, equivalente a informações na tabela `SYS_DATAFILES` no dicionário de dados do `InnoDB`.
 
-* `INNODB_SYS_TABLESPACES` provides metadata about `InnoDB` file-per-table and general tablespaces, equivalent to the information in the `SYS_TABLESPACES` table in the `InnoDB` data dictionary.
+* `INNODB_SYS_TABLESPACES` fornece metadados sobre tablespaces file-per-table e gerais do `InnoDB`, equivalente à informação na tabela `SYS_TABLESPACES` no dicionário de dados do `InnoDB`.
 
-* `INNODB_SYS_FOREIGN` provides metadata about foreign keys defined on `InnoDB` tables, equivalent to the information in the `SYS_FOREIGN` table in the `InnoDB` data dictionary.
+* `INNODB_SYS_FOREIGN` fornece metadados sobre chaves estrangeiras (`Foreign Keys`) definidas em tabelas `InnoDB`, equivalente à informação na tabela `SYS_FOREIGN` no dicionário de dados do `InnoDB`.
 
-* `INNODB_SYS_FOREIGN_COLS` provides metadata about the columns of foreign keys that are defined on `InnoDB` tables, equivalent to the information in the `SYS_FOREIGN_COLS` table in the `InnoDB` data dictionary.
+* `INNODB_SYS_FOREIGN_COLS` fornece metadados sobre as colunas de chaves estrangeiras que são definidas em tabelas `InnoDB`, equivalente à informação na tabela `SYS_FOREIGN_COLS` no dicionário de dados do `InnoDB`.
 
-`InnoDB` `INFORMATION_SCHEMA` system tables can be joined together through fields such as `TABLE_ID`, `INDEX_ID`, and `SPACE`, allowing you to easily retrieve all available data for an object you want to study or monitor.
+As tabelas de sistema `INFORMATION_SCHEMA` do `InnoDB` podem ser unidas (JOIN) através de campos como `TABLE_ID`, `INDEX_ID` e `SPACE`, permitindo que você recupere facilmente todos os dados disponíveis para um objeto que você deseja estudar ou monitorar.
 
-Refer to the `InnoDB` INFORMATION_SCHEMA documentation for information about the columns of each table.
+Consulte a documentação do `INFORMATION_SCHEMA` do `InnoDB` para obter informações sobre as colunas de cada tabela.
 
-**Example 14.2 InnoDB INFORMATION_SCHEMA System Tables**
+**Exemplo 14.2 Tabelas de Sistema INFORMATION_SCHEMA do InnoDB**
 
-This example uses a simple table (`t1`) with a single index (`i1`) to demonstrate the type of metadata found in the `InnoDB` `INFORMATION_SCHEMA` system tables.
+Este exemplo utiliza uma tabela simples (`t1`) com um único Index (`i1`) para demonstrar o tipo de metadados encontrados nas tabelas de sistema `INFORMATION_SCHEMA` do `InnoDB`.
 
-1. Create a test database and table `t1`:
+1. Crie um Database de teste e a tabela `t1`:
 
    ```sql
    mysql> CREATE DATABASE test;
@@ -67,7 +67,7 @@ This example uses a simple table (`t1`) with a single index (`i1`) to demonstrat
    mysql> CREATE INDEX i1 ON t1(col1);
    ```
 
-2. After creating the table `t1`, query `INNODB_SYS_TABLES` to locate the metadata for `test/t1`:
+2. Após criar a tabela `t1`, consulte `INNODB_SYS_TABLES` para localizar os metadados para `test/t1`:
 
    ```sql
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_SYS_TABLES WHERE NAME='test/t1' \G
@@ -83,9 +83,9 @@ This example uses a simple table (`t1`) with a single index (`i1`) to demonstrat
    ...
    ```
 
-   Table `t1` has a `TABLE_ID` of 71. The `FLAG` field provides bit level information about table format and storage characteristics. There are six columns, three of which are hidden columns created by `InnoDB` (`DB_ROW_ID`, `DB_TRX_ID`, and `DB_ROLL_PTR`). The ID of the table's `SPACE` is 57 (a value of 0 would indicate that the table resides in the system tablespace). The `FILE_FORMAT` is Antelope, and the `ROW_FORMAT` is Compact. `ZIP_PAGE_SIZE` only applies to tables with a `Compressed` row format.
+   A tabela `t1` tem um `TABLE_ID` de 71. O campo `FLAG` fornece informações em nível de bit sobre o formato da tabela e as características de armazenamento. Existem seis colunas, três das quais são colunas ocultas criadas pelo `InnoDB` (`DB_ROW_ID`, `DB_TRX_ID` e `DB_ROLL_PTR`). O ID do `SPACE` da tabela é 57 (um valor de 0 indicaria que a tabela reside no system tablespace). O `FILE_FORMAT` é Antelope, e o `ROW_FORMAT` é Compact. `ZIP_PAGE_SIZE` se aplica apenas a tabelas com um `row format` Compactado (`Compressed`).
 
-3. Using the `TABLE_ID` information from `INNODB_SYS_TABLES`, query the `INNODB_SYS_COLUMNS` table for information about the table's columns.
+3. Usando a informação de `TABLE_ID` de `INNODB_SYS_TABLES`, consulte a tabela `INNODB_SYS_COLUMNS` para obter informações sobre as colunas da tabela.
 
    ```sql
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_SYS_COLUMNS where TABLE_ID = 71 \G
@@ -112,9 +112,9 @@ This example uses a simple table (`t1`) with a single index (`i1`) to demonstrat
         LEN: 10
    ```
 
-   In addition to the `TABLE_ID` and column `NAME`, `INNODB_SYS_COLUMNS` provides the ordinal position (`POS`) of each column (starting from 0 and incrementing sequentially), the column `MTYPE` or “main type” (6 = INT, 2 = CHAR, 1 = VARCHAR), the `PRTYPE` or “precise type” (a binary value with bits that represent the MySQL data type, character set code, and nullability), and the column length (`LEN`).
+   Além do `TABLE_ID` e do `NAME` da coluna, `INNODB_SYS_COLUMNS` fornece a posição ordinal (`POS`) de cada coluna (começando em 0 e incrementando sequencialmente), o `MTYPE` da coluna ou "tipo principal" (6 = INT, 2 = CHAR, 1 = VARCHAR), o `PRTYPE` ou "tipo preciso" (um valor binário com bits que representam o tipo de dados MySQL, código de conjunto de caracteres e nulidade), e o comprimento da coluna (`LEN`).
 
-4. Using the `TABLE_ID` information from `INNODB_SYS_TABLES` once again, query `INNODB_SYS_INDEXES` for information about the indexes associated with table `t1`.
+4. Usando a informação de `TABLE_ID` de `INNODB_SYS_TABLES` mais uma vez, consulte `INNODB_SYS_INDEXES` para obter informações sobre os Indexes associados à tabela `t1`.
 
    ```sql
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_SYS_INDEXES WHERE TABLE_ID = 71 \G
@@ -138,11 +138,11 @@ This example uses a simple table (`t1`) with a single index (`i1`) to demonstrat
    MERGE_THRESHOLD: 50
    ```
 
-   `INNODB_SYS_INDEXES` returns data for two indexes. The first index is `GEN_CLUST_INDEX`, which is a clustered index created by `InnoDB` if the table does not have a user-defined clustered index. The second index (`i1`) is the user-defined secondary index.
+   `INNODB_SYS_INDEXES` retorna dados para dois Indexes. O primeiro Index é `GEN_CLUST_INDEX`, que é um Clustered Index criado pelo `InnoDB` se a tabela não tiver um Clustered Index definido pelo usuário. O segundo Index (`i1`) é o Secondary Index definido pelo usuário.
 
-   The `INDEX_ID` is an identifier for the index that is unique across all databases in an instance. The `TABLE_ID` identifies the table that the index is associated with. The index `TYPE` value indicates the type of index (1 = Clustered Index, 0 = Secondary index). The `N_FILEDS` value is the number of fields that comprise the index. `PAGE_NO` is the root page number of the index B-tree, and `SPACE` is the ID of the tablespace where the index resides. A nonzero value indicates that the index does not reside in the system tablespace. `MERGE_THRESHOLD` defines a percentage threshold value for the amount of data in an index page. If the amount of data in an index page falls below the this value (the default is 50%) when a row is deleted or when a row is shortened by an update operation, `InnoDB` attempts to merge the index page with a neighboring index page.
+   O `INDEX_ID` é um identificador para o Index que é único em todos os Databases em uma instância. O `TABLE_ID` identifica a tabela à qual o Index está associado. O valor `TYPE` do Index indica o tipo de Index (1 = Clustered Index, 0 = Secondary Index). O valor `N_FILEDS` é o número de fields que compõem o Index. `PAGE_NO` é o número da página root da B-tree do Index, e `SPACE` é o ID do tablespace onde o Index reside. Um valor diferente de zero indica que o Index não reside no system tablespace. `MERGE_THRESHOLD` define um valor de limite percentual para a quantidade de dados em uma página de Index. Se a quantidade de dados em uma página de Index cair abaixo desse valor (o padrão é 50%) quando uma linha é deletada ou quando uma linha é encurtada por uma operação de update, o `InnoDB` tenta fazer o merge da página de Index com uma página de Index vizinha.
 
-5. Using the `INDEX_ID` information from `INNODB_SYS_INDEXES`, query `INNODB_SYS_FIELDS` for information about the fields of index `i1`.
+5. Usando a informação de `INDEX_ID` de `INNODB_SYS_INDEXES`, consulte `INNODB_SYS_FIELDS` para obter informações sobre os fields do Index `i1`.
 
    ```sql
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_SYS_FIELDS where INDEX_ID = 112 \G
@@ -152,9 +152,9 @@ This example uses a simple table (`t1`) with a single index (`i1`) to demonstrat
         POS: 0
    ```
 
-   `INNODB_SYS_FIELDS` provides the `NAME` of the indexed field and its ordinal position within the index. If the index (i1) had been defined on multiple fields, `INNODB_SYS_FIELDS` would provide metadata for each of the indexed fields.
+   `INNODB_SYS_FIELDS` fornece o `NAME` do field indexado e sua posição ordinal dentro do Index. Se o Index (i1) tivesse sido definido em vários fields, `INNODB_SYS_FIELDS` forneceria metadados para cada um dos fields indexados.
 
-6. Using the `SPACE` information from `INNODB_SYS_TABLES`, query `INNODB_SYS_TABLESPACES` table for information about the table's tablespace.
+6. Usando a informação de `SPACE` de `INNODB_SYS_TABLES`, consulte a tabela `INNODB_SYS_TABLESPACES` para obter informações sobre o tablespace da tabela.
 
    ```sql
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_SYS_TABLESPACES WHERE SPACE = 57 \G
@@ -168,9 +168,9 @@ This example uses a simple table (`t1`) with a single index (`i1`) to demonstrat
    ZIP_PAGE_SIZE: 0
    ```
 
-   In addition to the `SPACE` ID of the tablespace and the `NAME` of the associated table, `INNODB_SYS_TABLESPACES` provides tablespace `FLAG` data, which is bit level information about tablespace format and storage characteristics. Also provided are tablespace `FILE_FORMAT`, `ROW_FORMAT`, `PAGE_SIZE`, and several other tablespace metadata items.
+   Além do ID `SPACE` do tablespace e do `NAME` da tabela associada, `INNODB_SYS_TABLESPACES` fornece dados `FLAG` do tablespace, que são informações em nível de bit sobre o formato do tablespace e características de armazenamento. Também são fornecidos o `FILE_FORMAT`, `ROW_FORMAT`, `PAGE_SIZE` do tablespace e vários outros itens de metadados do tablespace.
 
-7. Using the `SPACE` information from `INNODB_SYS_TABLES` once again, query `INNODB_SYS_DATAFILES` for the location of the tablespace data file.
+7. Usando a informação de `SPACE` de `INNODB_SYS_TABLES` mais uma vez, consulte `INNODB_SYS_DATAFILES` para a localização do arquivo de dados do tablespace.
 
    ```sql
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_SYS_DATAFILES WHERE SPACE = 57 \G
@@ -179,9 +179,9 @@ This example uses a simple table (`t1`) with a single index (`i1`) to demonstrat
     PATH: ./test/t1.ibd
    ```
 
-   The datafile is located in the `test` directory under MySQL's `data` directory. If a file-per-table tablespace were created in a location outside the MySQL data directory using the `DATA DIRECTORY` clause of the `CREATE TABLE` statement, the tablespace `PATH` would be a fully qualified directory path.
+   O datafile está localizado no diretório `test` sob o diretório `data` do MySQL. Se um tablespace file-per-table fosse criado em um local fora do diretório de dados do MySQL usando a cláusula `DATA DIRECTORY` da instrução `CREATE TABLE`, o `PATH` do tablespace seria um caminho de diretório totalmente qualificado.
 
-8. As a final step, insert a row into table `t1` (`TABLE_ID = 71`) and view the data in the `INNODB_SYS_TABLESTATS` table. The data in this table is used by the MySQL optimizer to calculate which index to use when querying an `InnoDB` table. This information is derived from in-memory data structures. There is no corresponding internal `InnoDB` system table.
+8. Como etapa final, insira uma linha na tabela `t1` (`TABLE_ID = 71`) e visualize os dados na tabela `INNODB_SYS_TABLESTATS`. Os dados nesta tabela são usados pelo Optimizer do MySQL para calcular qual Index usar ao consultar uma tabela `InnoDB`. Esta informação é derivada de estruturas de dados na memória. Não há tabela de sistema `InnoDB` interna correspondente.
 
    ```sql
    mysql> INSERT INTO t1 VALUES(5, 'abc', 'def');
@@ -200,13 +200,13 @@ This example uses a simple table (`t1`) with a single index (`i1`) to demonstrat
            REF_COUNT: 1
    ```
 
-   The `STATS_INITIALIZED` field indicates whether or not statistics have been collected for the table. `NUM_ROWS` is the current estimated number of rows in the table. The `CLUST_INDEX_SIZE` and `OTHER_INDEX_SIZE` fields report the number of pages on disk that store clustered and secondary indexes for the table, respectively. The `MODIFIED_COUNTER` value shows the number of rows modified by DML operations and cascade operations from foreign keys. The `AUTOINC` value is the next number to be issued for any autoincrement-based operation. There are no autoincrement columns defined on table `t1`, so the value is 0. The `REF_COUNT` value is a counter. When the counter reaches 0, it signifies that the table metadata can be evicted from the table cache.
+   O campo `STATS_INITIALIZED` indica se as estatísticas foram coletadas para a tabela. `NUM_ROWS` é o número estimado atual de linhas na tabela. Os campos `CLUST_INDEX_SIZE` e `OTHER_INDEX_SIZE` relatam o número de páginas em disco que armazenam Indexes clusterizados e secundários para a tabela, respectivamente. O valor `MODIFIED_COUNTER` mostra o número de linhas modificadas por operações DML e operações cascade de chaves estrangeiras. O valor `AUTOINC` é o próximo número a ser emitido para qualquer operação baseada em autoincremento. Não há colunas de autoincremento definidas na tabela `t1`, portanto, o valor é 0. O valor `REF_COUNT` é um contador. Quando o contador atinge 0, significa que os metadados da tabela podem ser despejados do table cache.
 
-**Example 14.3 Foreign Key INFORMATION_SCHEMA System Tables**
+**Exemplo 14.3 Tabelas de Sistema INFORMATION_SCHEMA de Chave Estrangeira**
 
-The `INNODB_SYS_FOREIGN` and `INNODB_SYS_FOREIGN_COLS` tables provide data about foreign key relationships. This example uses a parent table and child table with a foreign key relationship to demonstrate the data found in the `INNODB_SYS_FOREIGN` and `INNODB_SYS_FOREIGN_COLS` tables.
+As tabelas `INNODB_SYS_FOREIGN` e `INNODB_SYS_FOREIGN_COLS` fornecem dados sobre relacionamentos de chave estrangeira (`Foreign Key`). Este exemplo usa uma tabela pai (`parent`) e uma tabela filha (`child`) com um relacionamento de chave estrangeira para demonstrar os dados encontrados nas tabelas `INNODB_SYS_FOREIGN` e `INNODB_SYS_FOREIGN_COLS`.
 
-1. Create the test database with parent and child tables:
+1. Crie o Database de teste com tabelas pai e filha:
 
    ```sql
    mysql> CREATE DATABASE test;
@@ -223,7 +223,7 @@ The `INNODB_SYS_FOREIGN` and `INNODB_SYS_FOREIGN_COLS` tables provide data about
           ON DELETE CASCADE) ENGINE=INNODB;
    ```
 
-2. After the parent and child tables are created, query `INNODB_SYS_FOREIGN` and locate the foreign key data for the `test/child` and `test/parent` foreign key relationship:
+2. Após a criação das tabelas pai e filha, consulte `INNODB_SYS_FOREIGN` e localize os dados da chave estrangeira para o relacionamento de chave estrangeira `test/child` e `test/parent`:
 
    ```sql
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_SYS_FOREIGN \G
@@ -235,9 +235,9 @@ The `INNODB_SYS_FOREIGN` and `INNODB_SYS_FOREIGN_COLS` tables provide data about
        TYPE: 1
    ```
 
-   Metadata includes the foreign key `ID` (`fk1`), which is named for the `CONSTRAINT` that was defined on the child table. The `FOR_NAME` is the name of the child table where the foreign key is defined. `REF_NAME` is the name of the parent table (the “referenced” table). `N_COLS` is the number of columns in the foreign key index. `TYPE` is a numerical value representing bit flags that provide additional information about the foreign key column. In this case, the `TYPE` value is 1, which indicates that the `ON DELETE CASCADE` option was specified for the foreign key. See the `INNODB_SYS_FOREIGN` table definition for more information about `TYPE` values.
+   Os metadados incluem o `ID` da chave estrangeira (`fk1`), que é o nome do `CONSTRAINT` que foi definido na tabela filha. O `FOR_NAME` é o nome da tabela filha onde a chave estrangeira está definida. `REF_NAME` é o nome da tabela pai (a tabela "referenciada"). `N_COLS` é o número de colunas no Index da chave estrangeira. `TYPE` é um valor numérico que representa bit flags que fornecem informações adicionais sobre a coluna da chave estrangeira. Neste caso, o valor `TYPE` é 1, o que indica que a opção `ON DELETE CASCADE` foi especificada para a chave estrangeira. Consulte a definição da tabela `INNODB_SYS_FOREIGN` para obter mais informações sobre os valores `TYPE`.
 
-3. Using the foreign key `ID`, query `INNODB_SYS_FOREIGN_COLS` to view data about the columns of the foreign key.
+3. Usando o `ID` da chave estrangeira, consulte `INNODB_SYS_FOREIGN_COLS` para visualizar dados sobre as colunas da chave estrangeira.
 
    ```sql
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_SYS_FOREIGN_COLS WHERE ID = 'test/fk1' \G
@@ -248,13 +248,13 @@ The `INNODB_SYS_FOREIGN` and `INNODB_SYS_FOREIGN_COLS` tables provide data about
             POS: 0
    ```
 
-   `FOR_COL_NAME` is the name of the foreign key column in the child table, and `REF_COL_NAME` is the name of the referenced column in the parent table. The `POS` value is the ordinal position of the key field within the foreign key index, starting at zero.
+   `FOR_COL_NAME` é o nome da coluna de chave estrangeira na tabela filha, e `REF_COL_NAME` é o nome da coluna referenciada na tabela pai. O valor `POS` é a posição ordinal do key field dentro do Index da chave estrangeira, começando em zero.
 
-**Example 14.4 Joining InnoDB INFORMATION_SCHEMA System Tables**
+**Exemplo 14.4 Realizando JOIN em Tabelas de Sistema INFORMATION_SCHEMA do InnoDB**
 
-This example demonstrates joining three `InnoDB` `INFORMATION_SCHEMA` system tables (`INNODB_SYS_TABLES`, `INNODB_SYS_TABLESPACES`, and `INNODB_SYS_TABLESTATS`) to gather file format, row format, page size, and index size information about tables in the employees sample database.
+Este exemplo demonstra como realizar JOIN em três tabelas de sistema `INFORMATION_SCHEMA` do `InnoDB` (`INNODB_SYS_TABLES`, `INNODB_SYS_TABLESPACES` e `INNODB_SYS_TABLESTATS`) para coletar informações sobre file format, row format, page size e index size sobre tabelas no Database de exemplo employees.
 
-The following table name aliases are used to shorten the query string:
+Os seguintes aliases de nome de tabela são usados para encurtar a string da Query:
 
 * `INFORMATION_SCHEMA.INNODB_SYS_TABLES`: a
 
@@ -262,7 +262,7 @@ The following table name aliases are used to shorten the query string:
 
 * `INFORMATION_SCHEMA.INNODB_SYS_TABLESTATS`: c
 
-An `IF()` control flow function is used to account for compressed tables. If a table is compressed, the index size is calculated using `ZIP_PAGE_SIZE` rather than `PAGE_SIZE`. `CLUST_INDEX_SIZE` and `OTHER_INDEX_SIZE`, which are reported in bytes, are divided by `1024*1024` to provide index sizes in megabytes (MBs). MB values are rounded to zero decimal spaces using the `ROUND()` function.
+Uma função de fluxo de controle `IF()` é usada para contabilizar tabelas compactadas. Se uma tabela estiver compactada, o index size é calculado usando `ZIP_PAGE_SIZE` em vez de `PAGE_SIZE`. `CLUST_INDEX_SIZE` e `OTHER_INDEX_SIZE`, que são relatados em bytes, são divididos por `1024*1024` para fornecer os index sizes em megabytes (MBs). Os valores de MB são arredondados para zero casas decimais usando a função `ROUND()`.
 
 ```sql
 mysql> SELECT a.NAME, a.FILE_FORMAT, a.ROW_FORMAT,

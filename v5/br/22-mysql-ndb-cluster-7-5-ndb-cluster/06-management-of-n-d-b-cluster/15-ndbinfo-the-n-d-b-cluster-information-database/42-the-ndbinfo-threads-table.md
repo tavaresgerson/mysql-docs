@@ -1,28 +1,28 @@
-#### 21.6.15.42 The ndbinfo threads Table
+#### 21.6.15.42 A Tabela ndbinfo threads
 
-The `threads` table provides information about threads running in the `NDB` kernel.
+A tabela `threads` fornece informações sobre os Threads em execução no kernel NDB.
 
-The `threads` table contains the following columns:
+A tabela `threads` contém as seguintes colunas:
 
 * `node_id`
 
-  ID of the node where the thread is running
+  ID do Node onde o Thread está sendo executado
 
 * `thr_no`
 
-  Thread ID (specific to this node)
+  ID do Thread (específico para este Node)
 
 * `thread_name`
 
-  Thread name (type of thread)
+  Nome do Thread (tipo de Thread)
 
 * `thread_description`
 
-  Thread (type) description
+  Descrição do Thread (tipo)
 
-##### Notes
+##### Notas
 
-Sample output from a 2-node example cluster, including thread descriptions, is shown here:
+Uma saída de exemplo de um cluster de 2 Nodes, incluindo as descrições dos Threads, é mostrada aqui:
 
 ```sql
 mysql> SELECT * FROM threads;
@@ -41,4 +41,4 @@ mysql> SELECT * FROM threads;
 8 rows in set (0.01 sec)
 ```
 
-This table was added in NDB 7.5.2.
+Esta tabela foi adicionada no NDB 7.5.2.

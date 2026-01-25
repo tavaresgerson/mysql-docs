@@ -1,6 +1,6 @@
-## 25.7 Performance Schema Status Monitoring
+## 25.7 Monitoramento de Status do Performance Schema
 
-There are several status variables associated with the Performance Schema:
+Existem diversas variáveis de status associadas ao Performance Schema:
 
 ```sql
 mysql> SHOW STATUS LIKE 'perf%';
@@ -37,52 +37,52 @@ mysql> SHOW STATUS LIKE 'perf%';
 +-----------------------------------------------+-------+
 ```
 
-The Performance Schema status variables provide information about instrumentation that could not be loaded or created due to memory constraints. Names for these variables have several forms:
+As variáveis de status do Performance Schema fornecem informações sobre a instrumentação que não pôde ser carregada ou criada devido a restrições de memória. Os nomes dessas variáveis têm diversas formas:
 
-* `Performance_schema_xxx_classes_lost` indicates how many instruments of type *`xxx`* could not be loaded.
+* `Performance_schema_xxx_classes_lost` indica quantos instrumentos do tipo *`xxx`* não puderam ser carregados.
 
-* `Performance_schema_xxx_instances_lost` indicates how many instances of object type *`xxx`* could not be created.
+* `Performance_schema_xxx_instances_lost` indica quantas instâncias (Instances) do tipo de objeto *`xxx`* não puderam ser criadas.
 
-* `Performance_schema_xxx_handles_lost` indicates how many instances of object type *`xxx`* could not be opened.
+* `Performance_schema_xxx_handles_lost` indica quantos Handles do tipo de objeto *`xxx`* não puderam ser abertos.
 
-* `Performance_schema_locker_lost` indicates how many events are “lost” or not recorded.
+* `Performance_schema_locker_lost` indica quantos eventos foram “perdidos” (lost) ou não registrados.
 
-For example, if a mutex is instrumented in the server source but the server cannot allocate memory for the instrumentation at runtime, it increments [`Performance_schema_mutex_classes_lost`](performance-schema-status-variables.html#statvar_Performance_schema_mutex_classes_lost). The mutex still functions as a synchronization object (that is, the server continues to function normally), but performance data for it is not collected. If the instrument can be allocated, it can be used for initializing instrumented mutex instances. For a singleton mutex such as a global mutex, there is only one instance. Other mutexes have an instance per connection, or per page in various caches and data buffers, so the number of instances varies over time. Increasing the maximum number of connections or the maximum size of some buffers increases the maximum number of instances that might be allocated at once. If the server cannot create a given instrumented mutex instance, it increments [`Performance_schema_mutex_instances_lost`](performance-schema-status-variables.html#statvar_Performance_schema_mutex_instances_lost).
+Por exemplo, se um Mutex é instrumentado no código fonte do servidor, mas o servidor não consegue alocar memória para a instrumentação em tempo de execução (runtime), ele incrementa [`Performance_schema_mutex_classes_lost`](performance-schema-status-variables.html#statvar_Performance_schema_mutex_classes_lost). O Mutex ainda funciona como um objeto de sincronização (ou seja, o servidor continua a funcionar normalmente), mas os dados de performance para ele não são coletados. Se o instrumento puder ser alocado, ele pode ser usado para inicializar instâncias de Mutex instrumentadas. Para um Mutex singleton, como um Mutex global, há apenas uma instância. Outros Mutexes têm uma instância por conexão, ou por página em vários Caches e Data Buffers, portanto, o número de instâncias varia ao longo do tempo. Aumentar o número máximo de conexões ou o tamanho máximo de alguns Buffers aumenta o número máximo de instâncias que podem ser alocadas de uma vez. Se o servidor não puder criar uma determinada instância de Mutex instrumentada, ele incrementa [`Performance_schema_mutex_instances_lost`](performance-schema-status-variables.html#statvar_Performance_schema_mutex_instances_lost).
 
-Suppose that the following conditions hold:
+Suponha que as seguintes condições se apliquem:
 
-* The server was started with the [`--performance_schema_max_mutex_classes=200`](performance-schema-system-variables.html#sysvar_performance_schema_max_mutex_classes) option and thus has room for 200 mutex instruments.
+* O servidor foi iniciado com a opção [`--performance_schema_max_mutex_classes=200`](performance-schema-system-variables.html#sysvar_performance_schema_max_mutex_classes) e, portanto, tem espaço para 200 instrumentos Mutex.
 
-* 150 mutex instruments have been loaded already.
-* The plugin named `plugin_a` contains 40 mutex instruments.
+* 150 instrumentos Mutex já foram carregados.
+* O Plugin chamado `plugin_a` contém 40 instrumentos Mutex.
 
-* The plugin named `plugin_b` contains 20 mutex instruments.
+* O Plugin chamado `plugin_b` contém 20 instrumentos Mutex.
 
-The server allocates mutex instruments for the plugins depending on how many they need and how many are available, as illustrated by the following sequence of statements:
+O servidor aloca instrumentos Mutex para os Plugins dependendo de quantos eles precisam e quantos estão disponíveis, conforme ilustrado pela seguinte sequência de comandos:
 
 ```sql
 INSTALL PLUGIN plugin_a
 ```
 
-The server now has 150+40 = 190 mutex instruments.
+O servidor agora tem 150+40 = 190 instrumentos Mutex.
 
 ```sql
 UNINSTALL PLUGIN plugin_a;
 ```
 
-The server still has 190 instruments. All the historical data generated by the plugin code is still available, but new events for the instruments are not collected.
+O servidor ainda tem 190 instrumentos. Todos os dados históricos gerados pelo código do Plugin ainda estão disponíveis, mas novos eventos para os instrumentos não são coletados.
 
 ```sql
 INSTALL PLUGIN plugin_a;
 ```
 
-The server detects that the 40 instruments are already defined, so no new instruments are created, and previously assigned internal memory buffers are reused. The server still has 190 instruments.
+O servidor detecta que os 40 instrumentos já estão definidos, portanto, nenhum novo instrumento é criado, e os Buffers de memória internos previamente atribuídos são reutilizados. O servidor ainda tem 190 instrumentos.
 
 ```sql
 INSTALL PLUGIN plugin_b;
 ```
 
-The server has room for 200-190 = 10 instruments (in this case, mutex classes), and sees that the plugin contains 20 new instruments. 10 instruments are loaded, and 10 are discarded or “lost.” The [`Performance_schema_mutex_classes_lost`](performance-schema-status-variables.html#statvar_Performance_schema_mutex_classes_lost) indicates the number of instruments (mutex classes) lost:
+O servidor tem espaço para 200-190 = 10 instrumentos (neste caso, Mutex Classes), e vê que o Plugin contém 20 novos instrumentos. 10 instrumentos são carregados e 10 são descartados ou “perdidos” (lost). A variável [`Performance_schema_mutex_classes_lost`](performance-schema-status-variables.html#statvar_Performance_schema_mutex_classes_lost) indica o número de instrumentos (Mutex Classes) perdidos:
 
 ```sql
 mysql> SHOW STATUS LIKE "perf%mutex_classes_lost";
@@ -94,39 +94,37 @@ mysql> SHOW STATUS LIKE "perf%mutex_classes_lost";
 1 row in set (0.10 sec)
 ```
 
-The instrumentation still works and collects (partial) data for `plugin_b`.
+A instrumentação ainda funciona e coleta dados (parciais) para o `plugin_b`.
 
-When the server cannot create a mutex instrument, these results occur:
+Quando o servidor não consegue criar um instrumento Mutex, ocorrem os seguintes resultados:
 
-* No row for the instrument is inserted into the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table.
+* Nenhuma linha para o instrumento é inserida na tabela [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table").
 
-* [`Performance_schema_mutex_classes_lost`](performance-schema-status-variables.html#statvar_Performance_schema_mutex_classes_lost) increases by 1.
+* [`Performance_schema_mutex_classes_lost`](performance-schema-status-variables.html#statvar_Performance_schema_mutex_classes_lost) aumenta em 1.
 
-* [`Performance_schema_mutex_instances_lost`](performance-schema-status-variables.html#statvar_Performance_schema_mutex_instances_lost) does not change. (When the mutex instrument is not created, it cannot be used to create instrumented mutex instances later.)
+* [`Performance_schema_mutex_instances_lost`](performance-schema-status-variables.html#statvar_Performance_schema_mutex_instances_lost) não muda. (Quando o instrumento Mutex não é criado, ele não pode ser usado para criar instâncias de Mutex instrumentadas posteriormente.)
 
-The pattern just described applies to all types of instruments, not just mutexes.
+O padrão que acabamos de descrever se aplica a todos os tipos de instrumentos, não apenas aos Mutexes.
 
-A value of [`Performance_schema_mutex_classes_lost`](performance-schema-status-variables.html#statvar_Performance_schema_mutex_classes_lost) greater than 0 can happen in two cases:
+Um valor para [`Performance_schema_mutex_classes_lost`](performance-schema-status-variables.html#statvar_Performance_schema_mutex_classes_lost) maior que 0 pode ocorrer em dois casos:
 
-* To save a few bytes of memory, you start the server with [`--performance_schema_max_mutex_classes=N`](performance-schema-system-variables.html#sysvar_performance_schema_max_mutex_classes), where *`N`* is less than the default value. The default value is chosen to be sufficient to load all the plugins provided in the MySQL distribution, but this can be reduced if some plugins are never loaded. For example, you might choose not to load some of the storage engines in the distribution.
+* Para economizar alguns bytes de memória, você inicia o servidor com [`--performance_schema_max_mutex_classes=N`](performance-schema-system-variables.html#sysvar_performance_schema_max_mutex_classes), onde *`N`* é menor que o valor padrão. O valor padrão é escolhido para ser suficiente para carregar todos os Plugins fornecidos na distribuição do MySQL, mas isso pode ser reduzido se alguns Plugins nunca forem carregados. Por exemplo, você pode optar por não carregar alguns dos Storage Engines (Mecanismos de Armazenamento) na distribuição.
 
-* You load a third-party plugin that is instrumented for the Performance Schema but do not allow for the plugin's instrumentation memory requirements when you start the server. Because it comes from a third party, the instrument memory consumption of this engine is not accounted for in the default value chosen for [`performance_schema_max_mutex_classes`](performance-schema-system-variables.html#sysvar_performance_schema_max_mutex_classes).
+* Você carrega um Plugin de terceiros que é instrumentado para o Performance Schema, mas não considera os requisitos de memória de instrumentação do Plugin ao iniciar o servidor. Como ele vem de terceiros, o consumo de memória de instrumento deste Engine não é contabilizado no valor padrão escolhido para [`performance_schema_max_mutex_classes`](performance-schema-system-variables.html#sysvar_performance_schema_max_mutex_classes). Se o servidor tiver recursos insuficientes para os instrumentos do Plugin e você não alocar explicitamente mais usando [`--performance_schema_max_mutex_classes=N`](performance-schema-system-variables.html#sysvar_performance_schema_max_mutex_classes), o carregamento do Plugin leva à exaustão (starvation) de instrumentos.
 
-  If the server has insufficient resources for the plugin's instruments and you do not explicitly allocate more using [`--performance_schema_max_mutex_classes=N`](performance-schema-system-variables.html#sysvar_performance_schema_max_mutex_classes), loading the plugin leads to starvation of instruments.
+Se o valor escolhido para [`performance_schema_max_mutex_classes`](performance-schema-system-variables.html#sysvar_performance_schema_max_mutex_classes) for muito pequeno, nenhum erro é relatado no Error Log e não há falha em tempo de execução (runtime). No entanto, o conteúdo das tabelas no Database `performance_schema` perde eventos. A variável de status [`Performance_schema_mutex_classes_lost`](performance-schema-status-variables.html#statvar_Performance_schema_mutex_classes_lost) é o único sinal visível para indicar que alguns eventos foram descartados internamente devido à falha na criação de instrumentos.
 
-If the value chosen for [`performance_schema_max_mutex_classes`](performance-schema-system-variables.html#sysvar_performance_schema_max_mutex_classes) is too small, no error is reported in the error log and there is no failure at runtime. However, the content of the tables in the `performance_schema` database misses events. The [`Performance_schema_mutex_classes_lost`](performance-schema-status-variables.html#statvar_Performance_schema_mutex_classes_lost) status variable is the only visible sign to indicate that some events were dropped internally due to failure to create instruments.
+Se um instrumento não for perdido, ele é conhecido pelo Performance Schema e é usado ao instrumentar instâncias. Por exemplo, `wait/synch/mutex/sql/LOCK_delete` é o nome de um instrumento Mutex na tabela [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table"). Este único instrumento é usado ao criar um Mutex no código (em `THD::LOCK_delete`), independentemente de quantas instâncias do Mutex sejam necessárias enquanto o servidor é executado. Neste caso, `LOCK_delete` é um Mutex que é por conexão (`THD`), então se um servidor tem 1000 conexões, há 1000 Threads e 1000 instâncias de Mutex `LOCK_delete` instrumentadas (`THD::LOCK_delete`).
 
-If an instrument is not lost, it is known to the Performance Schema, and is used when instrumenting instances. For example, `wait/synch/mutex/sql/LOCK_delete` is the name of a mutex instrument in the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table. This single instrument is used when creating a mutex in the code (in `THD::LOCK_delete`) however many instances of the mutex are needed as the server runs. In this case, `LOCK_delete` is a mutex that is per connection (`THD`), so if a server has 1000 connections, there are 1000 threads, and 1000 instrumented `LOCK_delete` mutex instances (`THD::LOCK_delete`).
+Se o servidor não tiver espaço para todos esses 1000 Mutexes instrumentados (instâncias), alguns Mutexes são criados com instrumentação, e alguns são criados sem instrumentação. Se o servidor puder criar apenas 800 instâncias, 200 instâncias são perdidas. O servidor continua a ser executado, mas incrementa [`Performance_schema_mutex_instances_lost`](performance-schema-status-variables.html#statvar_Performance_schema_mutex_instances_lost) em 200 para indicar que as instâncias não puderam ser criadas.
 
-If the server does not have room for all these 1000 instrumented mutexes (instances), some mutexes are created with instrumentation, and some are created without instrumentation. If the server can create only 800 instances, 200 instances are lost. The server continues to run, but increments [`Performance_schema_mutex_instances_lost`](performance-schema-status-variables.html#statvar_Performance_schema_mutex_instances_lost) by 200 to indicate that instances could not be created.
+Um valor para [`Performance_schema_mutex_instances_lost`](performance-schema-status-variables.html#statvar_Performance_schema_mutex_instances_lost) maior que 0 pode ocorrer quando o código inicializa mais Mutexes em tempo de execução (runtime) do que foi alocado para [`--performance_schema_max_mutex_instances=N`](performance-schema-system-variables.html#sysvar_performance_schema_max_mutex_instances).
 
-A value of [`Performance_schema_mutex_instances_lost`](performance-schema-status-variables.html#statvar_Performance_schema_mutex_instances_lost) greater than 0 can happen when the code initializes more mutexes at runtime than were allocated for [`--performance_schema_max_mutex_instances=N`](performance-schema-system-variables.html#sysvar_performance_schema_max_mutex_instances).
+A conclusão é que, se [`SHOW STATUS LIKE 'perf%'`](show-status.html "13.7.5.35 SHOW STATUS Statement") indicar que nada foi perdido (todos os valores são zero), os dados do Performance Schema são precisos e confiáveis. Se algo foi perdido, os dados estão incompletos, e o Performance Schema não pôde registrar tudo devido à quantidade insuficiente de memória que lhe foi designada para uso. Neste caso, a variável específica `Performance_schema_xxx_lost` indica a área do problema.
 
-The bottom line is that if [`SHOW STATUS LIKE 'perf%'`](show-status.html "13.7.5.35 SHOW STATUS Statement") says that nothing was lost (all values are zero), the Performance Schema data is accurate and can be relied upon. If something was lost, the data is incomplete, and the Performance Schema could not record everything given the insufficient amount of memory it was given to use. In this case, the specific `Performance_schema_xxx_lost` variable indicates the problem area.
+Em alguns casos, pode ser apropriado causar uma exaustão deliberada (starvation) de instrumentos. Por exemplo, se você não se importa com os dados de performance para I/O de arquivos, você pode iniciar o servidor com todos os parâmetros do Performance Schema relacionados ao I/O de arquivos definidos como 0. Nenhuma memória é alocada para Classes, instâncias ou Handles relacionados a arquivos, e todos os eventos de arquivo são perdidos.
 
-It might be appropriate in some cases to cause deliberate instrument starvation. For example, if you do not care about performance data for file I/O, you can start the server with all Performance Schema parameters related to file I/O set to 0. No memory is allocated for file-related classes, instances, or handles, and all file events are lost.
-
-Use [`SHOW ENGINE PERFORMANCE_SCHEMA STATUS`](show-engine.html "13.7.5.15 SHOW ENGINE Statement") to inspect the internal operation of the Performance Schema code:
+Use [`SHOW ENGINE PERFORMANCE_SCHEMA STATUS`](show-engine.html "13.7.5.15 SHOW ENGINE Statement") para inspecionar a operação interna do código do Performance Schema:
 
 ```sql
 mysql> SHOW ENGINE PERFORMANCE_SCHEMA STATUS\G
@@ -151,4 +149,4 @@ Status: 26459600
 ...
 ```
 
-This statement is intended to help the DBA understand the effects that different Performance Schema options have on memory requirements. For a description of the field meanings, see [Section 13.7.5.15, “SHOW ENGINE Statement”](show-engine.html "13.7.5.15 SHOW ENGINE Statement").
+Este comando tem como objetivo ajudar o DBA a entender os efeitos que diferentes opções do Performance Schema têm nos requisitos de memória. Para uma descrição dos significados dos campos, consulte [Seção 13.7.5.15, “SHOW ENGINE Statement”](show-engine.html "13.7.5.15 SHOW ENGINE Statement").

@@ -1,4 +1,4 @@
-### 13.1.10 ALTER VIEW Statement
+### 13.1.10 Instrução ALTER VIEW
 
 ```sql
 ALTER
@@ -10,4 +10,4 @@ ALTER
     [WITH [CASCADED | LOCAL] CHECK OPTION]
 ```
 
-This statement changes the definition of a view, which must exist. The syntax is similar to that for [`CREATE VIEW`](create-view.html "13.1.21 CREATE VIEW Statement") see [Section 13.1.21, “CREATE VIEW Statement”](create-view.html "13.1.21 CREATE VIEW Statement")). This statement requires the [`CREATE VIEW`](privileges-provided.html#priv_create-view) and [`DROP`](privileges-provided.html#priv_drop) privileges for the view, and some privilege for each column referred to in the [`SELECT`](select.html "13.2.9 SELECT Statement") statement. [`ALTER VIEW`](alter-view.html "13.1.10 ALTER VIEW Statement") is permitted only to the definer or users with the [`SUPER`](privileges-provided.html#priv_super) privilege.
+Esta instrução altera a definição de uma VIEW, que deve existir. A sintaxe é semelhante à da instrução [`CREATE VIEW`](create-view.html "13.1.21 CREATE VIEW Statement") (veja [Seção 13.1.21, “CREATE VIEW Statement”](create-view.html "13.1.21 CREATE VIEW Statement")). Esta instrução requer os privilégios [`CREATE VIEW`](privileges-provided.html#priv_create-view) e [`DROP`](privileges-provided.html#priv_drop) para a VIEW, e algum privilégio para cada coluna referenciada na instrução [`SELECT`](select.html "13.2.9 SELECT Statement"). [`ALTER VIEW`](alter-view.html "13.1.10 ALTER VIEW Statement") é permitida apenas ao definidor ou usuários com o privilégio [`SUPER`](privileges-provided.html#priv_super).

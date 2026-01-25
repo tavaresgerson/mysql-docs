@@ -1,41 +1,41 @@
-#### 26.4.3.5 The host_summary_by_statement_latency and x$host_summary_by_statement_latency Views
+#### 26.4.3.5 As Views host_summary_by_statement_latency e x$host_summary_by_statement_latency
 
-These views summarize overall statement statistics, grouped by host. By default, rows are sorted by descending total latency.
+Estas Views sumarizam as estatísticas gerais de Statement, agrupadas por host. Por padrão, as linhas são ordenadas pela total_latency de forma decrescente.
 
-The `host_summary_by_statement_latency` and `x$host_summary_by_statement_latency` views have these columns:
+As Views `host_summary_by_statement_latency` e `x$host_summary_by_statement_latency` possuem estas colunas:
 
 * `host`
 
-  The host from which the client connected. Rows for which the `HOST` column in the underlying Performance Schema table is `NULL` are assumed to be for background threads and are reported with a host name of `background`.
+  O host a partir do qual o cliente se conectou. Linhas para as quais a coluna `HOST` na tabela subjacente do Performance Schema é `NULL` são consideradas como pertencentes a background threads e são relatadas com um nome de host de `background`.
 
 * `total`
 
-  The total number of statements for the host.
+  O número total de Statements para o host.
 
 * `total_latency`
 
-  The total wait time of timed statements for the host.
+  O tempo de espera total de Statements cronometrados (timed statements) para o host.
 
 * `max_latency`
 
-  The maximum single wait time of timed statements for the host.
+  O tempo máximo de espera individual de Statements cronometrados (timed statements) para o host.
 
 * `lock_latency`
 
-  The total time waiting for locks by timed statements for the host.
+  O tempo total de espera por Locks por Statements cronometrados (timed statements) para o host.
 
 * `rows_sent`
 
-  The total number of rows returned by statements for the host.
+  O número total de linhas retornadas por Statements para o host.
 
 * `rows_examined`
 
-  The total number of rows read from storage engines by statements for the host.
+  O número total de linhas lidas dos storage engines por Statements para o host.
 
 * `rows_affected`
 
-  The total number of rows affected by statements for the host.
+  O número total de linhas afetadas por Statements para o host.
 
 * `full_scans`
 
-  The total number of full table scans by statements for the host.
+  O número total de Full Table Scans por Statements para o host.

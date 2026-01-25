@@ -1,41 +1,41 @@
-#### 26.4.3.11 The io_global_by_file_by_bytes and x$io_global_by_file_by_bytes Views
+#### 26.4.3.11 As Views io_global_by_file_by_bytes e x$io_global_by_file_by_bytes
 
-These views summarize global I/O consumers to display amount of I/O, grouped by file. By default, rows are sorted by descending total I/O (bytes read and written).
+Essas Views resumem os consumidores globais de I/O para exibir a quantidade de I/O, agrupada por arquivo. Por padrão, as linhas são ordenadas pelo total de I/O decrescente (bytes lidos e escritos).
 
-The `io_global_by_file_by_bytes` and `x$io_global_by_file_by_bytes` views have these columns:
+As Views `io_global_by_file_by_bytes` e `x$io_global_by_file_by_bytes` possuem estas colunas:
 
 * `file`
 
-  The file path name.
+  O nome do caminho do arquivo (file path name).
 
 * `count_read`
 
-  The total number of read events for the file.
+  O número total de eventos de Read para o arquivo.
 
 * `total_read`
 
-  The total number of bytes read from the file.
+  O número total de bytes lidos do arquivo.
 
 * `avg_read`
 
-  The average number of bytes per read from the file.
+  O número médio de bytes por operação de Read do arquivo.
 
 * `count_write`
 
-  The total number of write events for the file.
+  O número total de eventos de Write para o arquivo.
 
 * `total_written`
 
-  The total number of bytes written to the file.
+  O número total de bytes escritos no arquivo.
 
 * `avg_write`
 
-  The average number of bytes per write to the file.
+  O número médio de bytes por operação de Write no arquivo.
 
 * `total`
 
-  The total number of bytes read and written for the file.
+  O número total de bytes Read e Written para o arquivo.
 
 * `write_pct`
 
-  The percentage of total bytes of I/O that were writes.
+  A porcentagem do total de bytes de I/O que foram operações de Write.

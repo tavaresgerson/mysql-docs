@@ -1,37 +1,37 @@
-#### 26.4.3.10 The io_by_thread_by_latency and x$io_by_thread_by_latency Views
+#### 26.4.3.10 As Views io_by_thread_by_latency e x$io_by_thread_by_latency
 
-These views summarize I/O consumers to display time waiting for I/O, grouped by thread. By default, rows are sorted by descending total I/O latency.
+Estas Views resumem os consumidores de I/O para exibir o tempo de espera por I/O, agrupados por Thread. Por padrão, as linhas são ordenadas pela Latency total de I/O em ordem decrescente.
 
-The `io_by_thread_by_latency` and `x$io_by_thread_by_latency` views have these columns:
+As Views `io_by_thread_by_latency` e `x$io_by_thread_by_latency` possuem as seguintes colunas:
 
 * `user`
 
-  For foreground threads, the account associated with the thread. For background threads, the thread name.
+  Para Threads de primeiro plano (foreground), a conta associada à Thread. Para Threads de segundo plano (background), o nome da Thread.
 
 * `total`
 
-  The total number of I/O events for the thread.
+  O número total de eventos de I/O para a Thread.
 
 * `total_latency`
 
-  The total wait time of timed I/O events for the thread.
+  O tempo de espera total de eventos de I/O cronometrados para a Thread.
 
 * `min_latency`
 
-  The minimum single wait time of timed I/O events for the thread.
+  O tempo de espera mínimo único de eventos de I/O cronometrados para a Thread.
 
 * `avg_latency`
 
-  The average wait time per timed I/O event for the thread.
+  O tempo de espera médio por evento de I/O cronometrado para a Thread.
 
 * `max_latency`
 
-  The maximum single wait time of timed I/O events for the thread.
+  O tempo de espera máximo único de eventos de I/O cronometrados para a Thread.
 
 * `thread_id`
 
-  The thread ID.
+  O ID da Thread.
 
 * `processlist_id`
 
-  For foreground threads, the processlist ID of the thread. For background threads, `NULL`.
+  Para Threads de primeiro plano (foreground), o ID do processlist da Thread. Para Threads de segundo plano (background), `NULL`.

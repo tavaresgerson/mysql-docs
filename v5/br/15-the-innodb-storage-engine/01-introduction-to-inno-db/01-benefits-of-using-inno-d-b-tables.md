@@ -1,39 +1,39 @@
-### 14.1.1 Benefits of Using InnoDB Tables
+### 14.1.1 Benefícios do Uso de Tabelas InnoDB
 
-`InnoDB` tables have the following benefits:
+As tabelas `InnoDB` oferecem os seguintes benefícios:
 
-* If the server unexpectedly exits because of a hardware or software issue, regardless of what was happening in the database at the time, you don't need to do anything special after restarting the database. `InnoDB` crash recovery automatically finalizes changes that were committed before the time of the crash, and undoes changes that were in process but not committed, permitting you to restart and continue from where you left off. See Section 14.19.2, “InnoDB Recovery”.
+* Se o *server* for encerrado inesperadamente devido a um problema de hardware ou software, independentemente do que estava acontecendo no *Database* no momento, você não precisa fazer nada especial após reiniciar o *Database*. A *crash recovery* do `InnoDB` finaliza automaticamente as alterações que foram *committed* antes do momento da falha e desfaz as alterações que estavam em andamento, mas não foram *committed*, permitindo que você reinicie e continue de onde parou. Consulte a Seção 14.19.2, “Recuperação InnoDB”.
 
-* The `InnoDB` storage engine maintains its own buffer pool that caches table and index data in main memory as data is accessed. Frequently used data is processed directly from memory. This cache applies to many types of information and speeds up processing. On dedicated database servers, up to 80% of physical memory is often assigned to the buffer pool. See Section 14.5.1, “Buffer Pool”.
+* O *storage engine* `InnoDB` mantém seu próprio *buffer pool* que armazena em *cache* dados de tabelas e *Index* na memória principal conforme os dados são acessados. Dados frequentemente usados são processados diretamente da memória. Este *cache* se aplica a muitos tipos de informação e acelera o processamento. Em *servers* de *Database* dedicados, frequentemente até 80% da memória física é atribuída ao *buffer pool*. Consulte a Seção 14.5.1, “Buffer Pool”.
 
-* If you split up related data into different tables, you can set up foreign keys that enforce referential integrity. See Section 13.1.18.5, “FOREIGN KEY Constraints”.
+* Se você dividir dados relacionados em tabelas diferentes, pode configurar *Foreign Keys* que impõem a integridade referencial. Consulte a Seção 13.1.18.5, “Restrições FOREIGN KEY”.
 
-* If data becomes corrupted on disk or in memory, a checksum mechanism alerts you to the bogus data before you use it. The `innodb_checksum_algorithm` variable defines the checksum algorithm used by `InnoDB`.
+* Se os *data* se tornarem corrompidos no disco ou na memória, um mecanismo de *checksum* alerta você sobre os dados inválidos antes que você os use. A variável `innodb_checksum_algorithm` define o algoritmo de *checksum* usado pelo `InnoDB`.
 
-* When you design a database with appropriate primary key columns for each table, operations involving those columns are automatically optimized. It is very fast to reference the primary key columns in `WHERE` clauses, `ORDER BY` clauses, `GROUP BY` clauses, and join operations. See Section 14.6.2.1, “Clustered and Secondary Indexes”.
+* Ao projetar um *Database* com colunas *Primary Key* apropriadas para cada tabela, as operações que envolvem essas colunas são otimizadas automaticamente. É muito rápido referenciar as colunas *Primary Key* em cláusulas `WHERE`, cláusulas `ORDER BY`, cláusulas `GROUP BY` e operações de *JOIN*. Consulte a Seção 14.6.2.1, “Índices Clustered e Secundários”.
 
-* Inserts, updates, and deletes are optimized by an automatic mechanism called change buffering. `InnoDB` not only allows concurrent read and write access to the same table, it caches changed data to streamline disk I/O. See Section 14.5.2, “Change Buffer”.
+* *Inserts*, *updates* e *deletes* são otimizados por um mecanismo automático chamado *change buffering*. O `InnoDB` não apenas permite acesso concorrente de leitura e escrita à mesma tabela, mas também armazena em *cache* os *data* alterados para otimizar o *I/O* de disco. Consulte a Seção 14.5.2, “Change Buffer”.
 
-* Performance benefits are not limited to large tables with long-running queries. When the same rows are accessed over and over from a table, the Adaptive Hash Index takes over to make these lookups even faster, as if they came out of a hash table. See Section 14.5.3, “Adaptive Hash Index”.
+* Os benefícios de desempenho não se limitam a tabelas grandes com *Queries* de longa duração. Quando as mesmas linhas são acessadas repetidamente a partir de uma tabela, o *Adaptive Hash Index* assume o controle para tornar essas buscas ainda mais rápidas, como se viessem de uma *hash table*. Consulte a Seção 14.5.3, “Adaptive Hash Index”.
 
-* You can compress tables and associated indexes. See Section 14.9, “InnoDB Table and Page Compression”.
+* Você pode compactar tabelas e os *Index* associados. Consulte a Seção 14.9, “Compressão de Tabela e Página InnoDB”.
 
-* You can encrypt your data. See Section 14.14, “InnoDB Data-at-Rest Encryption”.
+* Você pode criptografar seus dados. Consulte a Seção 14.14, “Criptografia de Dados em Repouso do InnoDB”.
 
-* You can create and drop indexes and perform other DDL operations with much less impact on performance and availability. See Section 14.13.1, “Online DDL Operations”.
+* Você pode criar e descartar *Index* e realizar outras operações *DDL* com muito menos impacto no desempenho e na disponibilidade. Consulte a Seção 14.13.1, “Operações DDL Online”.
 
-* Truncating a file-per-table tablespace is very fast and can free up disk space for the operating system to reuse rather than only `InnoDB`. See Section 14.6.3.2, “File-Per-Table Tablespaces”.
+* Truncar um *tablespace* *file-per-table* é muito rápido e pode liberar espaço em disco para o sistema operacional reutilizar, em vez de apenas o `InnoDB`. Consulte a Seção 14.6.3.2, “Tablespaces File-Per-Table”.
 
-* The storage layout for table data is more efficient for `BLOB` and long text fields, with the `DYNAMIC` row format. See Section 14.11, “InnoDB Row Formats”.
+* O layout de armazenamento para *data* de tabela é mais eficiente para campos `BLOB` e de texto longo, com o *row format* `DYNAMIC`. Consulte a Seção 14.11, “Formatos de Linha (Row Formats) do InnoDB”.
 
-* You can monitor the internal workings of the storage engine by querying `INFORMATION_SCHEMA` tables. See Section 14.16, “InnoDB INFORMATION_SCHEMA Tables”.
+* Você pode monitorar o funcionamento interno do *storage engine* executando *Queries* nas tabelas `INFORMATION_SCHEMA`. Consulte a Seção 14.16, “Tabelas INFORMATION_SCHEMA do InnoDB”.
 
-* You can monitor the performance details of the storage engine by querying Performance Schema tables. See Section 14.17, “InnoDB Integration with MySQL Performance Schema”.
+* Você pode monitorar os detalhes de desempenho do *storage engine* executando *Queries* nas tabelas do *Performance Schema*. Consulte a Seção 14.17, “Integração do InnoDB com o Performance Schema do MySQL”.
 
-* You can mix `InnoDB` tables with tables from other MySQL storage engines, even within the same statement. For example, you can use a join operation to combine data from `InnoDB` and `MEMORY` tables in a single query.
+* Você pode misturar tabelas `InnoDB` com tabelas de outros *storage engines* do MySQL, mesmo dentro da mesma instrução. Por exemplo, você pode usar uma operação de *JOIN* para combinar *data* de tabelas `InnoDB` e `MEMORY` em uma única *Query*.
 
-* `InnoDB` has been designed for CPU efficiency and maximum performance when processing large data volumes.
+* O `InnoDB` foi projetado para eficiência de *CPU* e desempenho máximo ao processar grandes volumes de dados.
 
-* `InnoDB` tables can handle large quantities of data, even on operating systems where file size is limited to 2GB.
+* Tabelas `InnoDB` podem lidar com grandes quantidades de dados, mesmo em sistemas operacionais onde o tamanho do arquivo é limitado a 2GB.
 
-For `InnoDB`-specific tuning techniques you can apply to your MySQL server and application code, see Section 8.5, “Optimizing for InnoDB Tables”.
+Para técnicas de *tuning* específicas do `InnoDB` que você pode aplicar ao seu *MySQL server* e código de aplicação, consulte a Seção 8.5, “Otimizando para Tabelas InnoDB”.

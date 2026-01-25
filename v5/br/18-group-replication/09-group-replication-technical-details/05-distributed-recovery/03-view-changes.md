@@ -1,49 +1,49 @@
-#### 17.9.5.3 View Changes
+#### 17.9.5.3 Alterações de View
 
-This section explains the process which controls how the view change identifier is incorporated into a binary log event and written to the log, The following steps are taken:
+Esta seção explica o processo que controla como o identificador de alteração de View (view change identifier) é incorporado em um evento de binary log e escrito no log. As seguintes etapas são seguidas:
 
-##### Begin: Stable Group
+##### Início: Grupo Estável
 
-All servers are online and processing incoming transactions from the group. Some servers may be a little behind in terms of transactions replicated, but eventually they converge. The group acts as one distributed and replicated database.
+Todos os Servers estão online e processando transações recebidas do grupo. Alguns Servers podem estar ligeiramente atrasados em termos de transações replicadas, mas eventualmente eles convergem. O grupo atua como um Database distribuído e replicado.
 
-**Figure 17.10 Stable Group**
+**Figura 17.10 Grupo Estável**
 
-![Servers S1, S2, and S3 are members of the group. The most recent item in all of their binary logs is transaction T20.](images/gr-recovery-1.png)
+Os Servers S1, S2 e S3 são membros do grupo. O item mais recente em todos os seus binary logs é a transação T20.
 
-##### View Change: a Member Joins
+##### Alteração de View: Um Membro Entra
 
-Whenever a new member joins the group and therefore a view change is performed, every online server queues a view change log event for execution. This is queued because before the view change, several transactions can be queued on the server to be applied and as such, these belong to the old view. Queuing the view change event after them guarantees a correct marking of when this happened.
+Sempre que um novo membro se junta ao grupo e, portanto, uma alteração de View (view change) é realizada, cada Server online enfileira um evento de log de alteração de View para execução. Isso é enfileirado porque, antes da alteração de View, várias transações podem estar enfileiradas no Server para serem aplicadas e, como tal, pertencem à View antiga. Enfileirar o evento de alteração de View após elas garante uma marcação correta de quando isso ocorreu.
 
-Meanwhile, the server joining the group selects the donor from the list of online servers as stated by the membership service through the view abstraction. A member joins on view 4 and the online members write a View change event to the binary log.
+Enquanto isso, o Server que está entrando no grupo seleciona o *donor* (doador) da lista de Servers online, conforme estabelecido pelo serviço de *membership* através da abstração de View. Um membro entra na View 4 e os membros online escrevem um evento de View change no binary log.
 
-**Figure 17.11 A Member Joins**
+**Figura 17.11 Um Membro Entra**
 
-![Server S4 joins the group and looks for a donor. Servers S1, S2, and S3 each queue the view change entry VC4 for their binary logs. Meanwhile, server S1 is receiving new transaction T21.](images/gr-recovery-2.png)
+O Server S4 se junta ao grupo e procura por um *donor*. Os Servers S1, S2 e S3 enfileiram o registro de alteração de View VC4 em seus binary logs. Enquanto isso, o Server S1 está recebendo a nova transação T21.
 
-##### State Transfer: Catching Up
+##### State Transfer: Alcançando o Estado Atual
 
-Once the server joining the group has chosen which server in the group is to be the donor, a new asynchronous replication connection is established between the two and the state transfer begins (phase 1). This interaction with the donor continues until the server joining the group's applier thread processes the view change log event that corresponds to the view change triggered when the server joining the group came into the group. In other words, the server joining the group replicates from the donor, until it gets to the marker with the view identifier which matches the view marker it is already in.
+Assim que o Server que está entrando no grupo escolhe qual Server do grupo será o *donor*, uma nova conexão de replicação assíncrona é estabelecida entre os dois e o *state transfer* começa (fase 1). Esta interação com o *donor* continua até que o *applier thread* do Server que está entrando no grupo processe o evento de log de alteração de View que corresponde à alteração de View acionada quando o Server que está entrando no grupo se juntou ao grupo. Em outras palavras, o Server que está entrando no grupo replica do *donor* até atingir o marcador com o identificador de View que corresponde ao marcador de View em que ele já se encontra.
 
-**Figure 17.12 State Transfer: Catching Up**
+**Figura 17.12 State Transfer: Alcançando o Estado Atual**
 
-![Server S4 has chosen server S2 as the donor. State transfer is executed from server S2 to server S4 until the view change entry VC4 is reached (view_id = VC4). Server S4 uses a temporary applier buffer for state transfer, and its binary log is currently empty.](images/gr-recovery-3.png)
+O Server S4 escolheu o Server S2 como o *donor*. O *state transfer* é executado do Server S2 para o Server S4 até que o registro de alteração de View VC4 seja alcançado (view_id = VC4). O Server S4 usa um *applier buffer* temporário para o *state transfer*, e seu binary log está atualmente vazio.
 
-As view identifiers are transmitted to all members in the group at the same logical time, the server joining the group knows at which view identifier it should stop replicating. This avoids complex GTID set calculations because the view id clearly marks which data belongs to each group view.
+Como os identificadores de View são transmitidos a todos os membros do grupo no mesmo tempo lógico, o Server que está entrando no grupo sabe em qual identificador de View deve parar de replicar. Isso evita cálculos complexos de GTID set, pois o view id marca claramente quais dados pertencem a cada View do grupo.
 
-While the server joining the group is replicating from the donor, it is also caching incoming transactions from the group. Eventually, it stops replicating from the donor and switches to applying those that are cached.
+Enquanto o Server que está entrando no grupo está replicando a partir do *donor*, ele também está fazendo *caching* das transações recebidas do grupo. Eventualmente, ele para de replicar do *donor* e começa a aplicar aquelas que estão em *cache*.
 
-**Figure 17.13 Queued Transactions**
+**Figura 17.13 Transações Enfileiradas**
 
-![State transfer is complete. Server S4 has applied the transactions up to T20 and written them to its binary log. Server S4 has cached transaction T21, which arrived after the view change, in a temporary applier buffer while recovering.](images/gr-recovery-4.png)
+O *state transfer* está completo. O Server S4 aplicou as transações até T20 e as escreveu em seu binary log. O Server S4 armazenou em *cache* a transação T21, que chegou após a alteração de View, em um *applier buffer* temporário durante a recuperação.
 
-##### Finish: Caught Up
+##### Fim: Estado Alcançado
 
-When the server joining the group recognizes a view change log event with the expected view identifier, the connection to the donor is terminated and it starts applying the cached transactions. An important point to understand is the final recovery procedure. Although it acts as a marker in the binary log, delimiting view changes, the view change log event also plays another role. It conveys the certification information as perceived by all servers when the server joining the group entered the group, in other words the last view change. Without it, the server joining the group would not have the necessary information to be able to certify (detect conflicts) subsequent transactions.
+Quando o Server que está entrando no grupo reconhece um evento de log de alteração de View com o identificador de View esperado, a conexão com o *donor* é encerrada e ele começa a aplicar as transações em *cache*. Um ponto importante a entender é o procedimento final de recuperação. Embora atue como um marcador no binary log, delimitando as alterações de View, o evento de log de alteração de View também desempenha outro papel. Ele transmite as informações de certificação percebidas por todos os Servers quando o Server que está entrando no grupo ingressou no grupo, ou seja, a última alteração de View. Sem ele, o Server que está entrando no grupo não teria as informações necessárias para poder certificar (detectar conflitos) transações subsequentes.
 
-The duration of the catch up (phase 2) is not deterministic, because it depends on the workload and the rate of incoming transactions to the group. This process is completely online and the server joining the group does not block any other server in the group while it is catching up. Therefore the number of transactions the server joining the group is behind when it moves to phase 2 can, for this reason, vary and thus increase or decrease according to the workload.
+A duração da sincronização (*catch up*, fase 2) não é determinística, pois depende da *workload* (carga de trabalho) e da taxa de transações de entrada para o grupo. Este processo é totalmente online e o Server que está entrando no grupo não bloqueia nenhum outro Server no grupo enquanto está alcançando o estado atual. Portanto, o número de transações em que o Server que está entrando no grupo está atrasado ao passar para a fase 2 pode, por este motivo, variar e, assim, aumentar ou diminuir de acordo com a *workload*.
 
-When the server joining the group reaches zero queued transactions and its stored data is equal to the other members, its public state changes to online.
+Quando o Server que está entrando no grupo atinge zero transações enfileiradas e seus dados armazenados são iguais aos dos outros membros, seu estado público muda para *online*.
 
-**Figure 17.14 Instance Online**
+**Figura 17.14 Instância Online**
 
-![Server S4 is now an online member of the group. It has applied cached transaction T21, so its binary log shows the same items as the binary logs of the other group members, and it no longer needs the temporary applier buffer. New incoming transaction T22 is now received and applied by all group members.](images/gr-recovery-5.png)
+O Server S4 agora é um membro online do grupo. Ele aplicou a transação T21 em *cache*, de modo que seu binary log mostra os mesmos itens que os binary logs dos outros membros do grupo, e ele não precisa mais do *applier buffer* temporário. A nova transação T22 recebida agora é recebida e aplicada por todos os membros do grupo.

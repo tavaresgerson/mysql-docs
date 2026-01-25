@@ -1,17 +1,17 @@
-### 11.2.10 2-Digit Years in Dates
+### 11.2.10 Anos de 2 Dígitos em Datas
 
-Date values with 2-digit years are ambiguous because the century is unknown. Such values must be interpreted into 4-digit form because MySQL stores years internally using 4 digits.
+Valores de data com anos de 2 dígitos são ambíguos porque o século é desconhecido. Tais valores devem ser interpretados na forma de 4 dígitos, pois o MySQL armazena anos internamente usando 4 dígitos.
 
-For `DATETIME`, `DATE`, and `TIMESTAMP` types, MySQL interprets dates specified with ambiguous year values using these rules:
+Para os tipos `DATETIME`, `DATE` e `TIMESTAMP`, o MySQL interpreta datas especificadas com valores de ano ambíguos usando estas regras:
 
-* Year values in the range `00-69` become `2000-2069`.
+* Valores de ano no intervalo de `00-69` tornam-se `2000-2069`.
 
-* Year values in the range `70-99` become `1970-1999`.
+* Valores de ano no intervalo de `70-99` tornam-se `1970-1999`.
 
-For `YEAR`, the rules are the same, with this exception: A numeric `00` inserted into `YEAR` results in `0000` rather than `2000`. To specify zero for `YEAR` and have it be interpreted as `2000`, specify it as a string `'0'` or `'00'`.
+Para o tipo `YEAR`, as regras são as mesmas, com esta exceção: Um `00` numérico inserido em `YEAR` resulta em `0000` em vez de `2000`. Para especificar zero para `YEAR` e fazer com que seja interpretado como `2000`, especifique-o como uma string `'0'` ou `'00'`.
 
-Remember that these rules are only heuristics that provide reasonable guesses as to what your data values mean. If the rules used by MySQL do not produce the values you require, you must provide unambiguous input containing 4-digit year values.
+Lembre-se de que estas regras são apenas heurísticas que fornecem estimativas razoáveis sobre o significado dos seus valores de dados. Se as regras usadas pelo MySQL não produzirem os valores que você precisa, você deve fornecer uma entrada não ambígua contendo valores de ano de 4 dígitos.
 
-`ORDER BY` properly sorts `YEAR` values that have 2-digit years.
+O `ORDER BY` classifica corretamente os valores `YEAR` que possuem anos de 2 dígitos.
 
-Some functions like `MIN()` and `MAX()` convert a `YEAR` to a number. This means that a value with a 2-digit year does not work properly with these functions. The fix in this case is to convert the `YEAR` to 4-digit year format.
+Algumas funções como `MIN()` e `MAX()` convertem um `YEAR` para um número. Isso significa que um valor com ano de 2 dígitos não funciona corretamente com estas funções. A solução neste caso é converter o `YEAR` para o formato de ano de 4 dígitos.

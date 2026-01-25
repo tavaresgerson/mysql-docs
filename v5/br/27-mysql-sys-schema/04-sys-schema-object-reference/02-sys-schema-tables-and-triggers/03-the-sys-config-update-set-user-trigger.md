@@ -1,3 +1,3 @@
-#### 26.4.2.3 The sys_config_update_set_user Trigger
+#### 26.4.2.3 O Trigger sys_config_update_set_user
 
-The `sys_config_update_set_user` trigger for the `sys_config` table is similar to the `sys_config_insert_set_user` trigger, but for `UPDATE` statements.
+O Trigger `sys_config_update_set_user` para a tabela `sys_config` é similar ao Trigger `sys_config_insert_set_user`, mas é destinado a comandos `UPDATE`.

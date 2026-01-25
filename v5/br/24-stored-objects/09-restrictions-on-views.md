@@ -1,17 +1,17 @@
-## 23.9 Restrictions on Views
+## 23.9 Restrições em Views
 
-The maximum number of tables that can be referenced in the definition of a view is 61.
+O número máximo de tabelas que podem ser referenciadas na definição de uma view é 61.
 
-View processing is not optimized:
+O processamento de View não é otimizado:
 
-* It is not possible to create an index on a view.
-* Indexes can be used for views processed using the merge algorithm. However, a view that is processed with the temptable algorithm is unable to take advantage of indexes on its underlying tables (although indexes can be used during generation of the temporary tables).
+* Não é possível criar um Index em uma view.
+* Indexes podem ser usados para views processadas usando o merge algorithm. No entanto, uma view que é processada com o temptable algorithm não consegue aproveitar os Indexes em suas tabelas subjacentes (embora os Indexes possam ser usados durante a geração das tabelas temporárias).
 
-Before MySQL 5.7.7, subqueries cannot be used in the `FROM` clause of a view.
+Antes do MySQL 5.7.7, subqueries não podem ser usadas na cláusula `FROM` de uma view.
 
-There is a general principle that you cannot modify a table and select from the same table in a subquery. See Section 13.2.10.12, “Restrictions on Subqueries”.
+Existe um princípio geral de que você não pode modificar uma table e selecionar dados da mesma table em uma subquery. Consulte a Seção 13.2.10.12, “Restrições em Subqueries”.
 
-The same principle also applies if you select from a view that selects from the table, if the view selects from the table in a subquery and the view is evaluated using the merge algorithm. Example:
+O mesmo princípio também se aplica se você selecionar dados de uma view que seleciona dados da table, caso a view selecione dados da table em uma subquery e a view seja avaliada usando o merge algorithm. Exemplo:
 
 ```sql
 CREATE VIEW v1 AS
@@ -20,26 +20,26 @@ SELECT * FROM t2 WHERE EXISTS (SELECT 1 FROM t1 WHERE t1.a = t2.a);
 UPDATE t1, v2 SET t1.a = 1 WHERE t1.b = v2.b;
 ```
 
-If the view is evaluated using a temporary table, you *can* select from the table in the view subquery and still modify that table in the outer query. In this case the view is stored in a temporary table and thus you are not really selecting from the table in a subquery and modifying it “at the same time.” (This is another reason you might wish to force MySQL to use the temptable algorithm by specifying `ALGORITHM = TEMPTABLE` in the view definition.)
+Se a view for avaliada usando uma temporary table, você *pode* selecionar dados da table na subquery da view e ainda modificar essa table na Query externa. Neste caso, a view é armazenada em uma temporary table e, portanto, você não está realmente selecionando dados da table em uma subquery e modificando-a “ao mesmo tempo”. (Este é outro motivo pelo qual você pode querer forçar o MySQL a usar o temptable algorithm, especificando `ALGORITHM = TEMPTABLE` na definição da view.)
 
-You can use `DROP TABLE` or `ALTER TABLE` to drop or alter a table that is used in a view definition. No warning results from the `DROP` or `ALTER` operation, even though this invalidates the view. Instead, an error occurs later, when the view is used. `CHECK TABLE` can be used to check for views that have been invalidated by `DROP` or `ALTER` operations.
+Você pode usar `DROP TABLE` ou `ALTER TABLE` para remover ou alterar uma table que é usada na definição de uma view. Nenhuma advertência é emitida pela operação `DROP` ou `ALTER`, mesmo que isso invalide a view. Em vez disso, um erro ocorre posteriormente, quando a view é utilizada. `CHECK TABLE` pode ser usado para verificar views que foram invalidadas por operações `DROP` ou `ALTER`.
 
-With regard to view updatability, the overall goal for views is that if any view is theoretically updatable, it should be updatable in practice. Many theoretically updatable views can be updated now, but limitations still exist. For details, see Section 23.5.3, “Updatable and Insertable Views”.
+Em relação à atualizabilidade da view, o objetivo geral para as views é que, se uma view for teoricamente atualizável, ela deve ser atualizável na prática. Muitas views teoricamente atualizáveis podem ser atualizadas agora, mas as limitações ainda existem. Para detalhes, consulte a Seção 23.5.3, “Updatable and Insertable Views”.
 
-There exists a shortcoming with the current implementation of views. If a user is granted the basic privileges necessary to create a view (the `CREATE VIEW` and `SELECT` privileges), that user cannot call `SHOW CREATE VIEW` on that object unless the user is also granted the `SHOW VIEW` privilege.
+Existe uma deficiência na implementação atual de views. Se um usuário receber os privileges básicos necessários para criar uma view (os privileges `CREATE VIEW` e `SELECT`), esse usuário não pode chamar `SHOW CREATE VIEW` nesse objeto a menos que o privilege `SHOW VIEW` também seja concedido a ele.
 
-That shortcoming can lead to problems backing up a database with **mysqldump**, which may fail due to insufficient privileges. This problem is described in Bug #22062.
+Essa deficiência pode levar a problemas ao fazer backup de um Database com o **mysqldump**, que pode falhar devido a privileges insuficientes. Este problema está descrito no Bug #22062.
 
-The workaround to the problem is for the administrator to manually grant the `SHOW VIEW` privilege to users who are granted `CREATE VIEW`, since MySQL does not grant it implicitly when views are created.
+A solução alternativa para o problema é o administrador conceder manualmente o privilege `SHOW VIEW` aos usuários que receberam `CREATE VIEW`, já que o MySQL não o concede implicitamente quando as views são criadas.
 
-Views do not have indexes, so index hints do not apply. Use of index hints when selecting from a view is not permitted.
+Views não possuem Indexes, portanto, Index hints não se aplicam. O uso de Index hints ao selecionar dados de uma view não é permitido.
 
-`SHOW CREATE VIEW` displays view definitions using an `AS alias_name` clause for each column. If a column is created from an expression, the default alias is the expression text, which can be quite long. Aliases for column names in `CREATE VIEW` statements are checked against the maximum column length of 64 characters (not the maximum alias length of 256 characters). As a result, views created from the output of `SHOW CREATE VIEW` fail if any column alias exceeds 64 characters. This can cause problems in the following circumstances for views with too-long aliases:
+`SHOW CREATE VIEW` exibe definições de view usando uma cláusula `AS alias_name` para cada column. Se uma column for criada a partir de uma expressão, o alias padrão é o texto da expressão, que pode ser bastante longo. Os Aliases para nomes de column nas instruções `CREATE VIEW` são verificados em relação ao comprimento máximo de column de 64 caracteres (não o comprimento máximo de alias de 256 caracteres). Como resultado, views criadas a partir da saída de `SHOW CREATE VIEW` falham se qualquer alias de column exceder 64 caracteres. Isso pode causar problemas nas seguintes circunstâncias para views com aliases muito longos:
 
-* View definitions fail to replicate to newer replicas that enforce the column-length restriction.
+* Definições de View falham ao replicar para réplicas mais novas que impõem a restrição de comprimento de column.
 
-* Dump files created with **mysqldump** cannot be loaded into servers that enforce the column-length restriction.
+* Arquivos de Dump criados com **mysqldump** não podem ser carregados em servidores que impõem a restrição de comprimento de column.
 
-A workaround for either problem is to modify each problematic view definition to use aliases that provide shorter column names. Then the view replicates properly, and can be dumped and reloaded without causing an error. To modify the definition, drop and create the view again with `DROP VIEW` and `CREATE VIEW`, or replace the definition with `CREATE OR REPLACE VIEW`.
+Uma solução alternativa para qualquer um dos problemas é modificar cada definição de view problemática para usar aliases que forneçam nomes de column mais curtos. Assim, a view replica corretamente e pode ser despejada ('dumped') e recarregada sem causar um erro. Para modificar a definição, remova e crie a view novamente com `DROP VIEW` e `CREATE VIEW`, ou substitua a definição com `CREATE OR REPLACE VIEW`.
 
-For problems that occur when reloading view definitions in dump files, another workaround is to edit the dump file to modify its `CREATE VIEW` statements. However, this does not change the original view definitions, which may cause problems for subsequent dump operations.
+Para problemas que ocorrem ao recarregar definições de view em arquivos de dump, outra solução alternativa é editar o arquivo de dump para modificar suas instruções `CREATE VIEW`. No entanto, isso não altera as definições de view originais, o que pode causar problemas em operações de dump subsequentes.

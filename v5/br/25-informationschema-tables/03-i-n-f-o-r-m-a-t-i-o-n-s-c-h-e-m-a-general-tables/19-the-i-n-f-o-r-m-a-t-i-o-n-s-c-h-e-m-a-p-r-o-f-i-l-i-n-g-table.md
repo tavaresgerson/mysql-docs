@@ -1,62 +1,62 @@
-### 24.3.19 The INFORMATION_SCHEMA PROFILING Table
+### 24.3.19 A Tabela PROFILING do INFORMATION_SCHEMA
 
-The [`PROFILING`](information-schema-profiling-table.html "24.3.19 The INFORMATION_SCHEMA PROFILING Table") table provides statement profiling information. Its contents correspond to the information produced by the [`SHOW PROFILE`](show-profile.html "13.7.5.30 SHOW PROFILE Statement") and [`SHOW PROFILES`](show-profiles.html "13.7.5.31 SHOW PROFILES Statement") statements (see [Section 13.7.5.30, “SHOW PROFILE Statement”](show-profile.html "13.7.5.30 SHOW PROFILE Statement")). The table is empty unless the [`profiling`](server-system-variables.html#sysvar_profiling) session variable is set to 1.
+A tabela [`PROFILING`](information-schema-profiling-table.html "24.3.19 A Tabela PROFILING do INFORMATION_SCHEMA") fornece informações de profiling de instrução (statement). Seu conteúdo corresponde à informação produzida pelas instruções [`SHOW PROFILE`](show-profile.html "13.7.5.30 SHOW PROFILE Statement") e [`SHOW PROFILES`](show-profiles.html "13.7.5.31 SHOW PROFILES Statement") (consulte [Section 13.7.5.30, “SHOW PROFILE Statement”](show-profile.html "13.7.5.30 SHOW PROFILE Statement")). A tabela estará vazia a menos que a variável de sessão [`profiling`](server-system-variables.html#sysvar_profiling) esteja definida como 1.
 
-Note
+Nota
 
-This table is deprecated; expect it to be removed in a future release of MySQL. Use the [Performance Schema](performance-schema.html "Chapter 25 MySQL Performance Schema") instead; see [Section 25.19.1, “Query Profiling Using Performance Schema”](performance-schema-query-profiling.html "25.19.1 Query Profiling Using Performance Schema").
+Esta tabela está descontinuada (deprecated); espere que ela seja removida em uma futura versão do MySQL. Use o [Performance Schema](performance-schema.html "Chapter 25 MySQL Performance Schema") em vez disso; consulte [Section 25.19.1, “Query Profiling Using Performance Schema”](performance-schema-query-profiling.html "25.19.1 Query Profiling Using Performance Schema").
 
-The [`PROFILING`](information-schema-profiling-table.html "24.3.19 The INFORMATION_SCHEMA PROFILING Table") table has these columns:
+A tabela [`PROFILING`](information-schema-profiling-table.html "24.3.19 A Tabela PROFILING do INFORMATION_SCHEMA") possui estas colunas:
 
 * `QUERY_ID`
 
-  A numeric statement identifier.
+  Um identificador numérico da instrução (statement).
 
 * `SEQ`
 
-  A sequence number indicating the display order for rows with the same `QUERY_ID` value.
+  Um número de sequência que indica a ordem de exibição para linhas com o mesmo valor de `QUERY_ID`.
 
 * `STATE`
 
-  The profiling state to which the row measurements apply.
+  O estado de profiling ao qual as medições da linha se aplicam.
 
 * `DURATION`
 
-  How long statement execution remained in the given state, in seconds.
+  Por quanto tempo a execução da instrução permaneceu no estado fornecido, em segundos.
 
 * `CPU_USER`, `CPU_SYSTEM`
 
-  User and system CPU use, in seconds.
+  Uso da CPU do usuário e do sistema, em segundos.
 
 * `CONTEXT_VOLUNTARY`, `CONTEXT_INVOLUNTARY`
 
-  How many voluntary and involuntary context switches occurred.
+  Quantos *context switches* (trocas de contexto) voluntárias e involuntárias ocorreram.
 
 * `BLOCK_OPS_IN`, `BLOCK_OPS_OUT`
 
-  The number of block input and output operations.
+  O número de operações de input e output de bloco.
 
 * `MESSAGES_SENT`, `MESSAGES_RECEIVED`
 
-  The number of communication messages sent and received.
+  O número de mensagens de comunicação enviadas e recebidas.
 
 * `PAGE_FAULTS_MAJOR`, `PAGE_FAULTS_MINOR`
 
-  The number of major and minor page faults.
+  O número de *page faults* (falhas de página) maiores e menores.
 
 * `SWAPS`
 
-  How many swaps occurred.
+  Quantas trocas (*swaps*) ocorreram.
 
-* `SOURCE_FUNCTION`, `SOURCE_FILE`, and `SOURCE_LINE`
+* `SOURCE_FUNCTION`, `SOURCE_FILE`, e `SOURCE_LINE`
 
-  Information indicating where in the source code the profiled state executes.
+  Informações que indicam onde no código-fonte o estado com profiling é executado.
 
-#### Notes
+#### Notas
 
-* [`PROFILING`](information-schema-profiling-table.html "24.3.19 The INFORMATION_SCHEMA PROFILING Table") is a nonstandard `INFORMATION_SCHEMA` table.
+* [`PROFILING`](information-schema-profiling-table.html "24.3.19 A Tabela PROFILING do INFORMATION_SCHEMA") é uma tabela `INFORMATION_SCHEMA` não padrão.
 
-Profiling information is also available from the [`SHOW PROFILE`](show-profile.html "13.7.5.30 SHOW PROFILE Statement") and [`SHOW PROFILES`](show-profiles.html "13.7.5.31 SHOW PROFILES Statement") statements. See [Section 13.7.5.30, “SHOW PROFILE Statement”](show-profile.html "13.7.5.30 SHOW PROFILE Statement"). For example, the following queries are equivalent:
+As informações de profiling também estão disponíveis nas instruções [`SHOW PROFILE`](show-profile.html "13.7.5.30 SHOW PROFILE Statement") e [`SHOW PROFILES`](show-profiles.html "13.7.5.31 SHOW PROFILES Statement"). Consulte [Section 13.7.5.30, “SHOW PROFILE Statement”](show-profile.html "13.7.5.30 SHOW PROFILE Statement"). Por exemplo, as seguintes Queries são equivalentes:
 
 ```sql
 SHOW PROFILE FOR QUERY 2;

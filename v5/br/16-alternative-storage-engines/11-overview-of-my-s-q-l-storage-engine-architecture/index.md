@@ -1,13 +1,13 @@
-## 15.11 Overview of MySQL Storage Engine Architecture
+## 15.11 Visão Geral da Arquitetura do Storage Engine do MySQL
 
-15.11.1 Pluggable Storage Engine Architecture
+15.11.1 Arquitetura Pluggable de Storage Engine
 
-15.11.2 The Common Database Server Layer
+15.11.2 A Camada Comum do Servidor de Database
 
-The MySQL pluggable storage engine architecture enables a database professional to select a specialized storage engine for a particular application need while being completely shielded from the need to manage any specific application coding requirements. The MySQL server architecture isolates the application programmer and DBA from all of the low-level implementation details at the storage level, providing a consistent and easy application model and API. Thus, although there are different capabilities across different storage engines, the application is shielded from these differences.
+A arquitetura pluggable de storage engine do MySQL permite que um profissional de database selecione um storage engine especializado para uma necessidade de aplicação específica, estando completamente isento da necessidade de gerenciar quaisquer requisitos específicos de codificação da aplicação. A arquitetura do servidor MySQL isola o application programmer e o DBA de todos os detalhes de implementação de baixo nível na camada de storage, fornecendo um modelo de aplicação e uma API consistentes e fáceis. Assim, embora existam diferentes capacidades entre os diversos storage engines, a aplicação é protegida dessas diferenças.
 
-The pluggable storage engine architecture provides a standard set of management and support services that are common among all underlying storage engines. The storage engines themselves are the components of the database server that actually perform actions on the underlying data that is maintained at the physical server level.
+A arquitetura pluggable de storage engine fornece um conjunto padrão de serviços de gerenciamento e suporte que são comuns a todos os storage engines subjacentes. Os próprios storage engines são os componentes do database server que realmente executam ações nos dados subjacentes mantidos no nível do physical server.
 
-This efficient and modular architecture provides huge benefits for those wishing to specifically target a particular application need—such as data warehousing, transaction processing, or high availability situations—while enjoying the advantage of utilizing a set of interfaces and services that are independent of any one storage engine.
+Essa arquitetura eficiente e modular oferece grandes benefícios para aqueles que desejam focar especificamente em uma necessidade particular de aplicação — como data warehousing, transaction processing ou situações de high availability — enquanto desfrutam da vantagem de utilizar um conjunto de interfaces e serviços que são independentes de qualquer storage engine específico.
 
-The application programmer and DBA interact with the MySQL database through Connector APIs and service layers that are above the storage engines. If application changes bring about requirements that demand the underlying storage engine change, or that one or more storage engines be added to support new needs, no significant coding or process changes are required to make things work. The MySQL server architecture shields the application from the underlying complexity of the storage engine by presenting a consistent and easy-to-use API that applies across storage engines.
+O application programmer e o DBA interagem com o database MySQL através de Connector APIs e camadas de serviço que estão acima dos storage engines. Se mudanças na aplicação geram requisitos que exigem a alteração do storage engine subjacente, ou que um ou mais storage engines sejam adicionados para suportar novas necessidades, nenhuma alteração significativa de codificação (coding) ou processo é necessária para fazer as coisas funcionarem. A arquitetura do servidor MySQL protege a aplicação da complexidade subjacente do storage engine, apresentando uma API consistente e fácil de usar que se aplica a todos os storage engines.

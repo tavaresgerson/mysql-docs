@@ -1,36 +1,36 @@
-#### 21.3.7.1 Upgrading and Downgrading NDB 7.5
+#### 21.3.7.1 Atualizando e Rebaixando NDB 7.5
 
-This section provides information about compatibility between different NDB Cluster 7.5 releases with regard to performing upgrades and downgrades as well as compatibility matrices and notes. Additional information can also be found here regarding downgrades from NDB 7.5 to previous NDB release series. You should already be familiar with installing and configuring NDB Cluster prior to attempting an upgrade or downgrade. See [Section 21.4, “Configuration of NDB Cluster”](mysql-cluster-configuration.html "21.4 Configuration of NDB Cluster").
+Esta seção fornece informações sobre a compatibilidade entre diferentes releases do NDB Cluster 7.5 em relação à execução de upgrades e downgrades, bem como matrizes de compatibilidade e notas. Informações adicionais também podem ser encontradas aqui sobre downgrades do NDB 7.5 para séries de releases NDB anteriores. Você já deve estar familiarizado com a instalação e configuração do NDB Cluster antes de tentar um upgrade ou downgrade. Consulte [Section 21.4, “Configuration of NDB Cluster”](mysql-cluster-configuration.html "21.4 Configuration of NDB Cluster").
 
-The table shown here provides information on NDB Cluster upgrade and downgrade compatibility among different releases of NDB 7.5. Additional notes about upgrades and downgrades to, from, or within the NDB Cluster 7.5 release series can be found following the table.
+A tabela mostrada aqui fornece informações sobre a compatibilidade de upgrade e downgrade do NDB Cluster entre diferentes releases do NDB 7.5. Notas adicionais sobre upgrades e downgrades para, de, ou dentro da série de releases NDB Cluster 7.5 podem ser encontradas após a tabela.
 
-**Figure 21.5 NDB Cluster Upgrade and Downgrade Compatibility, MySQL NDB Cluster 7.5**
+**Figura 21.5 Compatibilidade de Upgrade e Downgrade do NDB Cluster, MySQL NDB Cluster 7.5**
 
-![Graphical representation of the upgrade/downgrade matrix contained in the file storage/ndb/src/common/util/version.cpp from the NDB 7.5 source tree.](images/mysql-cluster-upgrade-downgrade-7-5.png)
+![Representação gráfica da matriz de upgrade/downgrade contida no arquivo storage/ndb/src/common/util/version.cpp da árvore de código-fonte do NDB 7.5.](images/mysql-cluster-upgrade-downgrade-7-5.png)
 
-**Version support.** The following versions of NDB Cluster are supported for upgrades to GA releases of NDB Cluster 7.5 (7.5.4 and later):
+**Suporte a Versionamento.** As seguintes versões do NDB Cluster são suportadas para upgrades para releases GA (General Availability) do NDB Cluster 7.5 (7.5.4 e posterior):
 
-* NDB Cluster 7.4 GA releases (7.4.4 and later)
-* NDB Cluster 7.3 GA releases (7.3.2 and later)
+* Releases GA do NDB Cluster 7.4 (7.4.4 e posterior)
+* Releases GA do NDB Cluster 7.3 (7.3.2 e posterior)
 
-**Known Issues When Upgrading or Downgrading NDB Cluster 7.5.** The following issues are known to occur when upgrading to or between NDB 7.5 releases:
+**Problemas Conhecidos ao Fazer Upgrade ou Downgrade do NDB Cluster 7.5.** Os seguintes problemas são conhecidos por ocorrerem ao fazer upgrade para ou entre releases do NDB 7.5:
 
-* When run with `--initialize`, the server does not require [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") support; having `NDB` enabled at this time can cause problems with [`ndbinfo`](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database") tables. To keep this from happening, the `--initialize` option now causes [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") to ignore the `--ndbcluster` option if the latter is also specified.
+* Quando executado com `--initialize`, o server não requer suporte [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"); ter o `NDB` habilitado neste momento pode causar problemas com as tabelas [`ndbinfo`](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database"). Para evitar que isso aconteça, a opção `--initialize` agora faz com que o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") ignore a opção `--ndbcluster` se esta também for especificada.
 
-  A workaround for an upgrade that has failed for these reasons can be accomplished as follows:
+  Um workaround para um upgrade que falhou por esses motivos pode ser realizado da seguinte forma:
 
-  1. Perform a rolling restart of the entire cluster
-  2. Delete all `.frm` files in the `data/ndbinfo` directory
+  1. Realize um *rolling restart* de todo o cluster
+  2. Exclua todos os arquivos `.frm` no diretório `data/ndbinfo`
 
-  3. Run [**mysql_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables").
+  3. Execute [**mysql_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables").
 
   (Bug #81689, Bug #82724, Bug #24521927, Bug #23518923)
 
-* During an online upgrade from an NDB Cluster 7.3 release to an NDB 7.4 (or later) release, the failures of several data nodes running the lower version during local checkpoints (LCPs), and just prior to upgrading these nodes, led to additional node failures following the upgrade. This was due to lingering elements of the `EMPTY_LCP` protocol initiated by the older nodes as part of an LCP-plus-restart sequence, and which is no longer used in NDB 7.4 and later due to LCP optimizations implemented in those versions. This issue was fixed in NDB 7.5.4. (Bug
+* Durante um online upgrade de um release NDB Cluster 7.3 para um release NDB 7.4 (ou posterior), as falhas de vários data nodes executando a versão anterior durante local checkpoints (LCPs), e pouco antes de fazer o upgrade desses nodes, levaram a falhas adicionais de node após o upgrade. Isso ocorreu devido a elementos persistentes do protocolo `EMPTY_LCP` iniciado pelos nodes mais antigos como parte de uma sequência LCP-plus-restart, e que não é mais usado no NDB 7.4 e posterior devido a otimizações de LCP implementadas nessas versões. Este problema foi corrigido no NDB 7.5.4. (Bug
   #23129433)
 
-* In NDB 7.5 (and later), the `ndb_binlog_index` table uses the [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") storage engine. Use of the [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") storage engine for this table continues to be supported for backward compatibility.
+* No NDB 7.5 (e posterior), a tabela `ndb_binlog_index` usa o storage engine [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"). O uso do storage engine [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") para esta tabela continua a ser suportado para compatibilidade retroativa.
 
-  When upgrading a previous release to NDB 7.5 (or later), you can use the [`--force`](mysql-upgrade.html#option_mysql_upgrade_force) [`--upgrade-system-tables`](mysql-upgrade.html#option_mysql_upgrade_upgrade-system-tables) options with [**mysql_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables") so that it performs [`ALTER TABLE ... ENGINE=INNODB`](alter-table.html "13.1.8 ALTER TABLE Statement") on the `ndb_binlog_index` table.
+  Ao fazer upgrade de um release anterior para o NDB 7.5 (ou posterior), você pode usar as opções [`--force`](mysql-upgrade.html#option_mysql_upgrade_force) e [`--upgrade-system-tables`](mysql-upgrade.html#option_mysql_upgrade_upgrade-system-tables) com o [**mysql_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables") para que ele execute [`ALTER TABLE ... ENGINE=INNODB`](alter-table.html "13.1.8 ALTER TABLE Statement") na tabela `ndb_binlog_index`.
 
-  For more information, see [Section 21.7.4, “NDB Cluster Replication Schema and Tables”](mysql-cluster-replication-schema.html "21.7.4 NDB Cluster Replication Schema and Tables").
+  Para mais informações, consulte [Section 21.7.4, “NDB Cluster Replication Schema and Tables”](mysql-cluster-replication-schema.html "21.7.4 NDB Cluster Replication Schema and Tables").

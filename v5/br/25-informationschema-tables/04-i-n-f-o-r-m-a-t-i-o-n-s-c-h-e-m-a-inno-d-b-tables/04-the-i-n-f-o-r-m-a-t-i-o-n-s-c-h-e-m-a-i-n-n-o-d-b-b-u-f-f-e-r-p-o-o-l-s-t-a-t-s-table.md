@@ -1,142 +1,142 @@
-### 24.4.4 The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table
+### 24.4.4 A Tabela INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS
 
-The [`INNODB_BUFFER_POOL_STATS`](information-schema-innodb-buffer-pool-stats-table.html "24.4.4 The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table") table provides much of the same buffer pool information provided in [`SHOW ENGINE INNODB STATUS`](show-engine.html "13.7.5.15 SHOW ENGINE Statement") output. Much of the same information may also be obtained using `InnoDB` buffer pool [server status variables](server-status-variables.html "5.1.9 Server Status Variables").
+A tabela [`INNODB_BUFFER_POOL_STATS`](information-schema-innodb-buffer-pool-stats-table.html "24.4.4 The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table") fornece grande parte das mesmas informações do Buffer Pool que são fornecidas na saída de [`SHOW ENGINE INNODB STATUS`](show-engine.html "13.7.5.15 SHOW ENGINE Statement"). Grande parte das mesmas informações também pode ser obtida usando as [Server Status Variables](server-status-variables.html "5.1.9 Server Status Variables") do Buffer Pool do `InnoDB`.
 
-The idea of making pages in the buffer pool “young” or “not young” refers to transferring them between the [sublists](glossary.html#glos_sublist "sublist") at the head and tail of the buffer pool data structure. Pages made “young” take longer to age out of the buffer pool, while pages made “not young” are moved much closer to the point of [eviction](glossary.html#glos_eviction "eviction").
+A ideia de tornar as pages no Buffer Pool “young” (jovens) ou “not young” (não jovens) refere-se à transferência delas entre as [sublists](glossary.html#glos_sublist "sublist") na cabeça e na cauda da estrutura de dados do Buffer Pool. As pages tornadas “young” demoram mais para serem envelhecidas e saírem do Buffer Pool, enquanto as pages tornadas “not young” são movidas muito mais perto do ponto de [eviction](glossary.html#glos_eviction "eviction") (evicção/descarte).
 
-For related usage information and examples, see [Section 14.16.5, “InnoDB INFORMATION_SCHEMA Buffer Pool Tables”](innodb-information-schema-buffer-pool-tables.html "14.16.5 InnoDB INFORMATION_SCHEMA Buffer Pool Tables").
+Para informações de uso e exemplos relacionados, veja [Section 14.16.5, “Tabelas INFORMATION_SCHEMA do Buffer Pool do InnoDB”](innodb-information-schema-buffer-pool-tables.html "14.16.5 InnoDB INFORMATION_SCHEMA Buffer Pool Tables").
 
-The [`INNODB_BUFFER_POOL_STATS`](information-schema-innodb-buffer-pool-stats-table.html "24.4.4 The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table") table has these columns:
+A tabela [`INNODB_BUFFER_POOL_STATS`](information-schema-innodb-buffer-pool-stats-table.html "24.4.4 The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table") possui as seguintes colunas:
 
 * `POOL_ID`
 
-  The buffer pool ID. This is an identifier to distinguish between multiple buffer pool instances.
+  O ID do Buffer Pool. Este é um identificador para distinguir entre múltiplas instâncias do Buffer Pool.
 
 * `POOL_SIZE`
 
-  The `InnoDB` buffer pool size in pages.
+  O tamanho do Buffer Pool do `InnoDB` em pages.
 
 * `FREE_BUFFERS`
 
-  The number of free pages in the `InnoDB` buffer pool.
+  O número de pages livres no Buffer Pool do `InnoDB`.
 
 * `DATABASE_PAGES`
 
-  The number of pages in the `InnoDB` buffer pool containing data. This number includes both dirty and clean pages.
+  O número de pages no Buffer Pool do `InnoDB` contendo dados. Este número inclui tanto pages dirty quanto clean.
 
 * `OLD_DATABASE_PAGES`
 
-  The number of pages in the `old` buffer pool sublist.
+  O número de pages na sublist `old` do Buffer Pool.
 
 * `MODIFIED_DATABASE_PAGES`
 
-  The number of modified (dirty) database pages.
+  O número de pages de Database modificadas (dirty).
 
 * `PENDING_DECOMPRESS`
 
-  The number of pages pending decompression.
+  O número de pages pendentes de descompressão.
 
 * `PENDING_READS`
 
-  The number of pending reads.
+  O número de reads pendentes.
 
 * `PENDING_FLUSH_LRU`
 
-  The number of pages pending flush in the LRU.
+  O número de pages pendentes de flush na LRU.
 
 * `PENDING_FLUSH_LIST`
 
-  The number of pages pending flush in the flush list.
+  O número de pages pendentes de flush na flush list.
 
 * `PAGES_MADE_YOUNG`
 
-  The number of pages made young.
+  O número de pages tornadas young.
 
 * `PAGES_NOT_MADE_YOUNG`
 
-  The number of pages not made young.
+  O número de pages não tornadas young.
 
 * `PAGES_MADE_YOUNG_RATE`
 
-  The number of pages made young per second (pages made young since the last printout / time elapsed).
+  A taxa de pages tornadas young por segundo (pages tornadas young desde o último printout / tempo decorrido).
 
 * `PAGES_MADE_NOT_YOUNG_RATE`
 
-  The number of pages not made per second (pages not made young since the last printout / time elapsed).
+  O número de pages não tornadas young por segundo (pages não tornadas young desde o último printout / tempo decorrido).
 
 * `NUMBER_PAGES_READ`
 
-  The number of pages read.
+  O número de pages lidas.
 
 * `NUMBER_PAGES_CREATED`
 
-  The number of pages created.
+  O número de pages criadas.
 
 * `NUMBER_PAGES_WRITTEN`
 
-  The number of pages written.
+  O número de pages escritas.
 
 * `PAGES_READ_RATE`
 
-  The number of pages read per second (pages read since the last printout / time elapsed).
+  A taxa de pages lidas por segundo (pages lidas desde o último printout / tempo decorrido).
 
 * `PAGES_CREATE_RATE`
 
-  The number of pages created per second (pages created since the last printout / time elapsed).
+  A taxa de pages criadas por segundo (pages criadas desde o último printout / tempo decorrido).
 
 * `PAGES_WRITTEN_RATE`
 
-  The number of pages written per second (pages written since the last printout / time elapsed).
+  A taxa de pages escritas por segundo (pages escritas desde o último printout / tempo decorrido).
 
 * `NUMBER_PAGES_GET`
 
-  The number of logical read requests.
+  O número de requisições de get lógicos.
 
 * `HIT_RATE`
 
-  The buffer pool hit rate.
+  A taxa de acerto (Hit Rate) do Buffer Pool.
 
 * `YOUNG_MAKE_PER_THOUSAND_GETS`
 
-  The number of pages made young per thousand gets.
+  O número de pages tornadas young por mil gets.
 
 * `NOT_YOUNG_MAKE_PER_THOUSAND_GETS`
 
-  The number of pages not made young per thousand gets.
+  O número de pages não tornadas young por mil gets.
 
 * `NUMBER_PAGES_READ_AHEAD`
 
-  The number of pages read ahead.
+  O número de pages de read-ahead.
 
 * `NUMBER_READ_AHEAD_EVICTED`
 
-  The number of pages read into the `InnoDB` buffer pool by the read-ahead background thread that were subsequently evicted without having been accessed by queries.
+  O número de pages lidas no Buffer Pool do `InnoDB` pelo Thread de background de read-ahead que foram subsequentemente descartadas (evicted) sem terem sido acessadas por Queries.
 
 * `READ_AHEAD_RATE`
 
-  The read-ahead rate per second (pages read ahead since the last printout / time elapsed).
+  A taxa de read-ahead por segundo (pages de read-ahead desde o último printout / tempo decorrido).
 
 * `READ_AHEAD_EVICTED_RATE`
 
-  The number of read-ahead pages evicted without access per second (read-ahead pages not accessed since the last printout / time elapsed).
+  O número de pages de read-ahead descartadas sem acesso por segundo (pages de read-ahead não acessadas desde o último printout / tempo decorrido).
 
 * `LRU_IO_TOTAL`
 
-  Total LRU I/O.
+  I/O total da LRU.
 
 * `LRU_IO_CURRENT`
 
-  LRU I/O for the current interval.
+  I/O da LRU para o intervalo atual.
 
 * `UNCOMPRESS_TOTAL`
 
-  The total number of pages decompressed.
+  O número total de pages descompactadas.
 
 * `UNCOMPRESS_CURRENT`
 
-  The number of pages decompressed in the current interval.
+  O número de pages descompactadas no intervalo atual.
 
-#### Example
+#### Exemplo
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_BUFFER_POOL_STATS\G
@@ -175,10 +175,10 @@ NOT_YOUNG_MAKE_PER_THOUSAND_GETS: 0
               UNCOMPRESS_CURRENT: 0
 ```
 
-#### Notes
+#### Notas
 
-* This table is useful primarily for expert-level performance monitoring, or when developing performance-related extensions for MySQL.
+* Esta tabela é útil principalmente para monitoramento de performance em nível de especialista, ou ao desenvolver extensões relacionadas à performance para o MySQL.
 
-* You must have the [`PROCESS`](privileges-provided.html#priv_process) privilege to query this table.
+* Você deve ter o privilégio [`PROCESS`](privileges-provided.html#priv_process) para fazer Query nesta tabela.
 
-* Use the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table or the [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") statement to view additional information about the columns of this table, including data types and default values.
+* Use a tabela `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") ou a instrução [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") para visualizar informações adicionais sobre as colunas desta tabela, incluindo data types e valores Default.

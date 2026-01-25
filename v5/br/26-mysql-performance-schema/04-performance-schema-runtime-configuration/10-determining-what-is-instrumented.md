@@ -1,6 +1,6 @@
-### 25.4.10 Determining What Is Instrumented
+### 25.4.10 Determinando O Que É Instrumentado
 
-It is always possible to determine what instruments the Performance Schema includes by checking the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table. For example, to see what file-related events are instrumented for the `InnoDB` storage engine, use this query:
+É sempre possível determinar quais *instruments* o *Performance Schema* inclui verificando a *table* [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table"). Por exemplo, para ver quais *events* relacionados a arquivos são *instrumented* para o *storage engine* `InnoDB`, use esta *query*:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_instruments
@@ -14,10 +14,10 @@ mysql> SELECT * FROM performance_schema.setup_instruments
 +--------------------------------------+---------+-------+
 ```
 
-An exhaustive description of precisely what is instrumented is not given in this documentation, for several reasons:
+Uma descrição exaustiva do que exatamente é *instrumented* não é fornecida nesta documentação, por várias razões:
 
-* What is instrumented is the server code. Changes to this code occur often, which also affects the set of instruments.
+* O que é *instrumented* é o código do *server*. Mudanças neste código ocorrem frequentemente, o que também afeta o conjunto de *instruments*.
 
-* It is not practical to list all the instruments because there are hundreds of them.
+* Não é prático listar todos os *instruments* porque existem centenas deles.
 
-* As described earlier, it is possible to find out by querying the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table. This information is always up to date for your version of MySQL, also includes instrumentation for instrumented plugins you might have installed that are not part of the core server, and can be used by automated tools.
+* Conforme descrito anteriormente, é possível descobrir realizando uma *query* na *table* [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table"). Esta informação está sempre atualizada para a sua versão do MySQL, inclui também a instrumentação para *plugins* *instrumented* que você possa ter instalado e que não fazem parte do *core server*, e pode ser usada por ferramentas automatizadas.

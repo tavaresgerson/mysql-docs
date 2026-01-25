@@ -1,17 +1,17 @@
-#### 21.4.3.2 Recommended Starting Configuration for NDB Cluster
+#### 21.4.3.2 Configuração Inicial Recomendada para NDB Cluster
 
-Achieving the best performance from an NDB Cluster depends on a number of factors including the following:
+Alcançar o melhor desempenho de um NDB Cluster depende de uma série de fatores, incluindo o seguinte:
 
-* NDB Cluster software version
-* Numbers of data nodes and SQL nodes
+* Versão do software NDB Cluster
+* Número de data nodes e SQL nodes
 * Hardware
-* Operating system
-* Amount of data to be stored
-* Size and type of load under which the cluster is to operate
+* Sistema operacional
+* Quantidade de dados a serem armazenados
+* Tamanho e tipo da carga sob a qual o cluster deve operar
 
-Therefore, obtaining an optimum configuration is likely to be an iterative process, the outcome of which can vary widely with the specifics of each NDB Cluster deployment. Changes in configuration are also likely to be indicated when changes are made in the platform on which the cluster is run, or in applications that use the NDB Cluster 's data. For these reasons, it is not possible to offer a single configuration that is ideal for all usage scenarios. However, in this section, we provide a recommended base configuration.
+Portanto, obter uma configuração ideal provavelmente será um processo iterativo, cujo resultado pode variar amplamente com as especificidades de cada deployment (implantação) de NDB Cluster. Mudanças na configuração também provavelmente serão indicadas quando forem feitas alterações na plataforma em que o cluster é executado, ou em aplicações que utilizam os dados do NDB Cluster. Por estas razões, não é possível oferecer uma configuração única que seja ideal para todos os cenários de uso. Contudo, nesta seção, fornecemos uma configuração base recomendada.
 
-**Starting config.ini file.** The following `config.ini` file is a recommended starting point for configuring a cluster running NDB Cluster 7.5:
+**Arquivo config.ini inicial.** O seguinte arquivo `config.ini` é um ponto de partida recomendado para configurar um cluster executando o NDB Cluster 7.5:
 
 ```sql
 # TCP PARAMETERS
@@ -167,4 +167,4 @@ LockMaintThreadsToCPU=0
 # for cluster nodes.
 ```
 
-**Required my.cnf options for SQL nodes.** MySQL servers acting as NDB Cluster SQL nodes must always be started with the [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster) and [`--ndb-connectstring`](mysql-cluster-options-variables.html#option_mysqld_ndb-connectstring) options, either on the command line or in `my.cnf`.
+**Opções my.cnf obrigatórias para SQL nodes.** Servidores MySQL atuando como SQL nodes do NDB Cluster devem ser sempre iniciados com as opções [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster) e [`--ndb-connectstring`](mysql-cluster-options-variables.html#option_mysqld_ndb-connectstring), seja na linha de comando ou em `my.cnf`.

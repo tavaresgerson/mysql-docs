@@ -1,27 +1,27 @@
-### 25.12.2 Performance Schema Setup Tables
+### 25.12.2 Tabelas de Configuração do Performance Schema
 
-[25.12.2.1 The setup_actors Table](performance-schema-setup-actors-table.html)
+[25.12.2.1 A Tabela setup_actors](performance-schema-setup-actors-table.html)
 
-[25.12.2.2 The setup_consumers Table](performance-schema-setup-consumers-table.html)
+[25.12.2.2 A Tabela setup_consumers](performance-schema-setup-consumers-table.html)
 
-[25.12.2.3 The setup_instruments Table](performance-schema-setup-instruments-table.html)
+[25.12.2.3 A Tabela setup_instruments](performance-schema-setup-instruments-table.html)
 
-[25.12.2.4 The setup_objects Table](performance-schema-setup-objects-table.html)
+[25.12.2.4 A Tabela setup_objects](performance-schema-setup-objects-table.html)
 
-[25.12.2.5 The setup_timers Table](performance-schema-setup-timers-table.html)
+[25.12.2.5 A Tabela setup_timers](performance-schema-setup-timers-table.html)
 
-The setup tables provide information about the current instrumentation and enable the monitoring configuration to be changed. For this reason, some columns in these tables can be changed if you have the [`UPDATE`](privileges-provided.html#priv_update) privilege.
+As tabelas de configuração (setup tables) fornecem informações sobre a instrumentação atual e permitem que a configuração de monitoramento seja alterada. Por essa razão, algumas colunas nessas tabelas podem ser modificadas se você tiver o privilégio [`UPDATE`](privileges-provided.html#priv_update).
 
-The use of tables rather than individual variables for setup information provides a high degree of flexibility in modifying Performance Schema configuration. For example, you can use a single statement with standard SQL syntax to make multiple simultaneous configuration changes.
+O uso de tabelas em vez de variáveis individuais para informações de configuração oferece um alto grau de flexibilidade na modificação da configuração do Performance Schema. Por exemplo, você pode usar uma única instrução com sintaxe SQL padrão para realizar múltiplas alterações de configuração simultâneas.
 
-These setup tables are available:
+Estas tabelas de configuração estão disponíveis:
 
-* [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table"): How to initialize monitoring for new foreground threads
+* [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 A Tabela setup_actors"): Como inicializar o monitoramento para novos *foreground threads*
 
-* [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table"): The destinations to which event information can be sent and stored
+* [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 A Tabela setup_consumers"): Os destinos para os quais as informações de evento podem ser enviadas e armazenadas
 
-* [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table"): The classes of instrumented objects for which events can be collected
+* [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 A Tabela setup_instruments"): As classes de objetos instrumentados para as quais os eventos podem ser coletados
 
-* [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table"): Which objects should be monitored
+* [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 A Tabela setup_objects"): Quais objetos devem ser monitorados
 
-* [`setup_timers`](performance-schema-setup-timers-table.html "25.12.2.5 The setup_timers Table"): The current event timer
+* [`setup_timers`](performance-schema-setup-timers-table.html "25.12.2.5 A Tabela setup_timers"): O *timer* de evento atual

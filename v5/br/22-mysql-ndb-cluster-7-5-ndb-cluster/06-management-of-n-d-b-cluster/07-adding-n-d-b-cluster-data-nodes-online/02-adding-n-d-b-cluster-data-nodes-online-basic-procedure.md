@@ -1,41 +1,41 @@
-#### 21.6.7.2 Adding NDB Cluster Data Nodes Online: Basic procedure
+#### 21.6.7.2 Adicionando Data Nodes NDB Cluster Online: Procedimento Básico
 
-In this section, we list the basic steps required to add new data nodes to an NDB Cluster. This procedure applies whether you are using [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") or [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") binaries for the data node processes. For a more detailed example, see [Section 21.6.7.3, “Adding NDB Cluster Data Nodes Online: Detailed Example”](mysql-cluster-online-add-node-example.html "21.6.7.3 Adding NDB Cluster Data Nodes Online: Detailed Example").
+Nesta seção, listamos os passos básicos necessários para adicionar novos data nodes a um NDB Cluster. Este procedimento se aplica independentemente de você estar usando os binários [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") ou [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") para os processos de data node. Para um exemplo mais detalhado, consulte [Seção 21.6.7.3, “Adicionando Data Nodes NDB Cluster Online: Exemplo Detalhado”](mysql-cluster-online-add-node-example.html "21.6.7.3 Adicionando NDB Cluster Data Nodes Online: Exemplo Detalhado").
 
-Assuming that you already have a running NDB Cluster, adding data nodes online requires the following steps:
+Assumindo que você já tenha um NDB Cluster em execução, adicionar data nodes online exige os seguintes passos:
 
-1. Edit the cluster configuration `config.ini` file, adding new `[ndbd]` sections corresponding to the nodes to be added. In the case where the cluster uses multiple management servers, these changes need to be made to all `config.ini` files used by the management servers.
+1. Edite o arquivo de configuração do cluster `config.ini`, adicionando novas seções `[ndbd]` correspondentes aos nodes a serem adicionados. No caso em que o cluster utiliza múltiplos management servers, essas alterações precisam ser feitas em todos os arquivos `config.ini` usados pelos management servers.
 
-   You must be careful that node IDs for any new data nodes added in the `config.ini` file do not overlap node IDs used by existing nodes. In the event that you have API nodes using dynamically allocated node IDs and these IDs match node IDs that you want to use for new data nodes, it is possible to force any such API nodes to “migrate”, as described later in this procedure.
+   Você deve ter cuidado para que os Node IDs de quaisquer novos data nodes adicionados no arquivo `config.ini` não se sobreponham aos Node IDs usados pelos nodes existentes. Caso você tenha API nodes usando Node IDs alocados dinamicamente e esses IDs correspondam aos Node IDs que você deseja usar para novos data nodes, é possível forçar qualquer API node a “migrar”, conforme descrito posteriormente neste procedimento.
 
-2. Perform a rolling restart of all NDB Cluster management servers.
+2. Realize um *rolling restart* (reinicialização gradual) de todos os management servers do NDB Cluster.
 
    Important
 
-   All management servers must be restarted with the [`--reload`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_reload) or [`--initial`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_initial) option to force the reading of the new configuration.
+   Todos os management servers devem ser reiniciados com a opção [`--reload`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_reload) ou [`--initial`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_initial) para forçar a leitura da nova configuração.
 
-3. Perform a rolling restart of all existing NDB Cluster data nodes. It is not necessary (or usually even desirable) to use [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial) when restarting the existing data nodes.
+3. Realize um *rolling restart* de todos os data nodes NDB Cluster existentes. Não é necessário (e geralmente nem mesmo desejável) usar [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial) ao reiniciar os data nodes existentes.
 
-   If you are using API nodes with dynamically allocated IDs matching any node IDs that you wish to assign to new data nodes, you must restart all API nodes (including SQL nodes) before restarting any of the data nodes processes in this step. This causes any API nodes with node IDs that were previously not explicitly assigned to relinquish those node IDs and acquire new ones.
+   Se você estiver usando API nodes com IDs alocados dinamicamente que correspondam a quaisquer Node IDs que você deseja atribuir a novos data nodes, você deve reiniciar todos os API nodes (incluindo SQL nodes) antes de reiniciar quaisquer processos de data nodes nesta etapa. Isso faz com que quaisquer API nodes com Node IDs que não foram explicitamente atribuídos anteriormente liberem esses Node IDs e adquiram novos.
 
-4. Perform a rolling restart of any SQL or API nodes connected to the NDB Cluster.
+4. Realize um *rolling restart* de quaisquer SQL nodes ou API nodes conectados ao NDB Cluster.
 
-5. Start the new data nodes.
+5. Inicie os novos data nodes.
 
-   The new data nodes may be started in any order. They can also be started concurrently, as long as they are started after the rolling restarts of all existing data nodes have been completed, and before proceeding to the next step.
+   Os novos data nodes podem ser iniciados em qualquer ordem. Eles também podem ser iniciados concorrentemente, desde que sejam iniciados após a conclusão dos *rolling restarts* de todos os data nodes existentes e antes de prosseguir para a próxima etapa.
 
-6. Execute one or more [`CREATE NODEGROUP`](mysql-cluster-mgm-client-commands.html#ndbclient-create-nodegroup) commands in the NDB Cluster management client to create the new node group or node groups to which the new data nodes belong.
+6. Execute um ou mais comandos [`CREATE NODEGROUP`](mysql-cluster-mgm-client-commands.html#ndbclient-create-nodegroup) no management client do NDB Cluster para criar o(s) novo(s) node group(s) ao(s) qual(is) os novos data nodes pertencem.
 
-7. Redistribute the cluster's data among all data nodes, including the new ones. Normally this is done by issuing an [`ALTER TABLE ... ALGORITHM=INPLACE, REORGANIZE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement") statement in the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client for each [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table.
+7. Redistribua os dados do cluster entre todos os data nodes, incluindo os novos. Normalmente, isso é feito emitindo uma instrução [`ALTER TABLE ... ALGORITHM=INPLACE, REORGANIZE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement") no client [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") para cada tabela [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6").
 
-   *Exception*: For tables created using the `MAX_ROWS` option, this statement does not work; instead, use `ALTER TABLE ... ALGORITHM=INPLACE MAX_ROWS=...` to reorganize such tables. You should also bear in mind that using `MAX_ROWS` to set the number of partitions in this fashion is deprecated in NDB 7.5.4 and later, where you should use `PARTITION_BALANCE` instead; see [Section 13.1.18.9, “Setting NDB Comment Options”](create-table-ndb-comment-options.html "13.1.18.9 Setting NDB Comment Options"), for more information.
+   *Exceção*: Para tabelas criadas usando a opção `MAX_ROWS`, esta instrução não funciona; em vez disso, use `ALTER TABLE ... ALGORITHM=INPLACE MAX_ROWS=...` para reorganizar essas tabelas. Você também deve ter em mente que o uso de `MAX_ROWS` para definir o número de Partitions dessa forma está depreciado no NDB 7.5.4 e posterior, onde você deve usar `PARTITION_BALANCE` em seu lugar; consulte [Seção 13.1.18.9, “Setting NDB Comment Options”](create-table-ndb-comment-options.html "13.1.18.9 Setting NDB Comment Options"), para mais informações.
 
    Note
 
-   This needs to be done only for tables already existing at the time the new node group is added. Data in tables created after the new node group is added is distributed automatically; however, data added to any given table `tbl` that existed before the new nodes were added is not distributed using the new nodes until that table has been reorganized.
+   Isso precisa ser feito apenas para tabelas que já existiam no momento em que o novo node group foi adicionado. Os dados em tabelas criadas após a adição do novo node group são distribuídos automaticamente; no entanto, os dados adicionados a qualquer tabela específica `tbl` que existia antes da adição dos novos nodes não são distribuídos usando os novos nodes até que essa tabela tenha sido reorganizada.
 
-8. `ALTER TABLE ... REORGANIZE PARTITION ALGORITHM=INPLACE` reorganizes partitions but does not reclaim the space freed on the “old” nodes. You can do this by issuing, for each [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table, an [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") statement in the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client.
+8. `ALTER TABLE ... REORGANIZE PARTITION ALGORITHM=INPLACE` reorganiza as Partitions, mas não recupera o espaço liberado nos nodes "antigos". Você pode fazer isso emitindo, para cada tabela [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"), uma instrução [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") no client [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client").
 
-   This works for space used by variable-width columns of in-memory `NDB` tables. `OPTIMIZE TABLE` is not supported for fixed-width columns of in-memory tables; it is also not supported for Disk Data tables.
+   Isso funciona para o espaço usado por colunas de largura variável de tabelas `NDB` in-memory. `OPTIMIZE TABLE` não é suportado para colunas de largura fixa de tabelas in-memory; também não é suportado para Disk Data tables.
 
-You can add all the nodes desired, then issue several [`CREATE NODEGROUP`](mysql-cluster-mgm-client-commands.html#ndbclient-create-nodegroup) commands in succession to add the new node groups to the cluster.
+Você pode adicionar todos os nodes desejados e, em seguida, emitir vários comandos [`CREATE NODEGROUP`](mysql-cluster-mgm-client-commands.html#ndbclient-create-nodegroup) em sucessão para adicionar os novos node groups ao cluster.

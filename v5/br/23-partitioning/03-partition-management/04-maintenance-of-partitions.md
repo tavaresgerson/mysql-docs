@@ -1,67 +1,67 @@
-### 22.3.4 Maintenance of Partitions
+### 22.3.4 Manutenção de Partitions
 
-A number of table and partition maintenance tasks can be carried out using SQL statements intended for such purposes on partitioned tables in MySQL 5.7.
+Várias tarefas de manutenção de Table e Partition podem ser realizadas usando comandos SQL destinados a esses propósitos em Tables particionadas no MySQL 5.7.
 
-Table maintenance of partitioned tables can be accomplished using the statements [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement"), [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement"), [`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement"), and [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement"), which are supported for partitioned tables.
+A manutenção de Tables particionadas pode ser realizada usando os comandos [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement"), [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement"), [`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement") e [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement"), que são suportados para Tables particionadas.
 
-You can use a number of extensions to [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") for performing operations of this type on one or more partitions directly, as described in the following list:
+Você pode usar várias extensões para [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") para executar operações desse tipo diretamente em uma ou mais Partitions, conforme descrito na lista a seguir:
 
-* **Rebuilding partitions.** Rebuilds the partition; this has the same effect as dropping all records stored in the partition, then reinserting them. This can be useful for purposes of defragmentation.
+* **Rebuilding partitions (Reconstruindo Partitions).** Reconstrói a Partition; isso tem o mesmo efeito que descartar todos os registros armazenados na Partition e, em seguida, reinseri-los. Isso pode ser útil para fins de desfragmentação.
 
-  Example:
+  Exemplo:
 
   ```sql
   ALTER TABLE t1 REBUILD PARTITION p0, p1;
   ```
 
-* **Optimizing partitions.** If you have deleted a large number of rows from a partition or if you have made many changes to a partitioned table with variable-length rows (that is, having [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types"), or [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") columns), you can use [`ALTER TABLE ... OPTIMIZE PARTITION`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") to reclaim any unused space and to defragment the partition data file.
+* **Optimizing partitions (Otimizando Partitions).** Se você excluiu um grande número de linhas de uma Partition ou se fez muitas alterações em uma Table particionada com linhas de comprimento variável (ou seja, tendo colunas [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") ou [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types")), você pode usar [`ALTER TABLE ... OPTIMIZE PARTITION`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") para recuperar qualquer espaço não utilizado e desfragmentar o arquivo de dados da Partition.
 
-  Example:
+  Exemplo:
 
   ```sql
   ALTER TABLE t1 OPTIMIZE PARTITION p0, p1;
   ```
 
-  Using `OPTIMIZE PARTITION` on a given partition is equivalent to running `CHECK PARTITION`, `ANALYZE PARTITION`, and `REPAIR PARTITION` on that partition.
+  Usar `OPTIMIZE PARTITION` em uma determinada Partition é equivalente a executar `CHECK PARTITION`, `ANALYZE PARTITION` e `REPAIR PARTITION` nessa Partition.
 
-  Some MySQL storage engines, including [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"), do not support per-partition optimization; in these cases, [`ALTER TABLE ... OPTIMIZE PARTITION`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") analyzes and rebuilds the entire table, and causes an appropriate warning to be issued. (Bug #11751825, Bug #42822) Use `ALTER TABLE ... REBUILD PARTITION` and `ALTER TABLE ... ANALYZE PARTITION` instead, to avoid this issue.
+  Alguns Storage Engines do MySQL, incluindo o [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"), não suportam otimização por Partition; nesses casos, [`ALTER TABLE ... OPTIMIZE PARTITION`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") analisa e reconstrói a Table inteira e faz com que um Warning apropriado seja emitido. (Bug #11751825, Bug #42822) Use `ALTER TABLE ... REBUILD PARTITION` e `ALTER TABLE ... ANALYZE PARTITION` em vez disso, para evitar esse problema.
 
-* **Analyzing partitions.** This reads and stores the key distributions for partitions.
+* **Analyzing partitions (Analisando Partitions).** Isso lê e armazena as distribuições de Key para as Partitions.
 
-  Example:
+  Exemplo:
 
   ```sql
   ALTER TABLE t1 ANALYZE PARTITION p3;
   ```
 
-* **Repairing partitions.** This repairs corrupted partitions.
+* **Repairing partitions (Reparando Partitions).** Isso repara Partitions corrompidas.
 
-  Example:
+  Exemplo:
 
   ```sql
   ALTER TABLE t1 REPAIR PARTITION p0,p1;
   ```
 
-  Normally, `REPAIR PARTITION` fails when the partition contains duplicate key errors. In MySQL 5.7.2 and later, you can use [`ALTER IGNORE TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") with this option, in which case all rows that cannot be moved due to the presence of duplicate keys are removed from the partition (Bug #16900947).
+  Normalmente, `REPAIR PARTITION` falha quando a Partition contém erros de Duplicate Key. No MySQL 5.7.2 e posterior, você pode usar [`ALTER IGNORE TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") com esta opção, caso em que todas as linhas que não puderem ser movidas devido à presença de Duplicate Keys são removidas da Partition (Bug #16900947).
 
-* **Checking partitions.** You can check partitions for errors in much the same way that you can use `CHECK TABLE` with nonpartitioned tables.
+* **Checking partitions (Verificando Partitions).** Você pode verificar se há erros nas Partitions da mesma forma que pode usar `CHECK TABLE` com Tables não particionadas.
 
-  Example:
+  Exemplo:
 
   ```sql
   ALTER TABLE trb3 CHECK PARTITION p1;
   ```
 
-  This command tells you if the data or indexes in partition `p1` of table `t1` are corrupted. If this is the case, use [`ALTER TABLE ... REPAIR PARTITION`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") to repair the partition.
+  Este comando informa se os dados ou Indexes na Partition `p1` da Table `t1` estão corrompidos. Se for o caso, use [`ALTER TABLE ... REPAIR PARTITION`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") para reparar a Partition.
 
-  Normally, `CHECK PARTITION` fails when the partition contains duplicate key errors. In MySQL 5.7.2 and later, you can use [`ALTER IGNORE TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") with this option, in which case the statement returns the contents of each row in the partition where a duplicate key violation is found. Only the values for the columns in the partitioning expression for the table are reported. (Bug #16900947)
+  Normalmente, `CHECK PARTITION` falha quando a Partition contém erros de Duplicate Key. No MySQL 5.7.2 e posterior, você pode usar [`ALTER IGNORE TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") com esta opção, caso em que o comando retorna o conteúdo de cada linha na Partition onde uma violação de Duplicate Key é encontrada. Apenas os valores para as colunas na expressão de Partitioning para a Table são reportados. (Bug #16900947)
 
-Each of the statements in the list just shown also supports the keyword `ALL` in place of the list of partition names. Using `ALL` causes the statement to act on all partitions in the table.
+Cada um dos comandos listados acima também suporta a palavra-chave `ALL` no lugar da lista de nomes de Partitions. O uso de `ALL` faz com que o comando atue em todas as Partitions da Table.
 
-The use of [**mysqlcheck**](mysqlcheck.html "4.5.3 mysqlcheck — A Table Maintenance Program") and [**myisamchk**](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility") is not supported with partitioned tables.
+O uso de [**mysqlcheck**](mysqlcheck.html "4.5.3 mysqlcheck — A Table Maintenance Program") e [**myisamchk**](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility") não é suportado com Tables particionadas.
 
-In MySQL 5.7, you can also truncate partitions using [`ALTER TABLE ... TRUNCATE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement"). This statement can be used to delete all rows from one or more partitions in much the same way that [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") deletes all rows from a table.
+No MySQL 5.7, você também pode truncar Partitions usando [`ALTER TABLE ... TRUNCATE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement"). Este comando pode ser usado para excluir todas as linhas de uma ou mais Partitions, da mesma forma que [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") exclui todas as linhas de uma Table.
 
-[`ALTER TABLE ... TRUNCATE PARTITION ALL`](alter-table.html "13.1.8 ALTER TABLE Statement") truncates all partitions in the table.
+[`ALTER TABLE ... TRUNCATE PARTITION ALL`](alter-table.html "13.1.8 ALTER TABLE Statement") trunca todas as Partitions na Table.
 
-Prior to MySQL 5.7.2, `ANALYZE`, `CHECK`, `OPTIMIZE`, `REBUILD`, `REPAIR`, and `TRUNCATE` operations were not permitted on subpartitions (Bug #14028340, Bug #65184).
+Antes do MySQL 5.7.2, as operações `ANALYZE`, `CHECK`, `OPTIMIZE`, `REBUILD`, `REPAIR` e `TRUNCATE` não eram permitidas em Subpartitions (Bug #14028340, Bug #65184).

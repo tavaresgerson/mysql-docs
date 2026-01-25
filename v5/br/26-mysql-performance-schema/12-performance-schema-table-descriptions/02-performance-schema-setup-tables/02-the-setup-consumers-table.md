@@ -1,6 +1,6 @@
-#### 25.12.2.2 The setup_consumers Table
+#### 25.12.2.2 A Tabela setup_consumers
 
-The [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table lists the types of consumers for which event information can be stored and which are enabled:
+A tabela [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 A Tabela setup_consumers") lista os tipos de consumers para os quais a informação de event pode ser armazenada e quais estão habilitados:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_consumers;
@@ -25,18 +25,18 @@ mysql> SELECT * FROM performance_schema.setup_consumers;
 +----------------------------------+---------+
 ```
 
-The consumer settings in the [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table form a hierarchy from higher levels to lower. For detailed information about the effect of enabling different consumers, see [Section 25.4.7, “Pre-Filtering by Consumer”](performance-schema-consumer-filtering.html "25.4.7 Pre-Filtering by Consumer").
+As configurações de consumer na tabela [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 A Tabela setup_consumers") formam uma hierarquia de níveis mais altos para mais baixos. Para informações detalhadas sobre o efeito de habilitar diferentes consumers, consulte [Seção 25.4.7, “Pré-Filtragem por Consumer”](performance-schema-consumer-filtering.html "25.4.7 Pré-Filtragem por Consumer").
 
-Modifications to the [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table affect monitoring immediately.
+Modificações na tabela [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 A Tabela setup_consumers") afetam o monitoramento imediatamente.
 
-The [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table has these columns:
+A tabela [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 A Tabela setup_consumers") possui estas colunas:
 
 * `NAME`
 
-  The consumer name.
+  O nome do consumer.
 
 * `ENABLED`
 
-  Whether the consumer is enabled. The value is `YES` or `NO`. This column can be modified. If you disable a consumer, the server does not spend time adding event information to it.
+  Indica se o consumer está habilitado. O valor é `YES` ou `NO`. Esta coluna pode ser modificada. Se você desabilitar um consumer, o server não gasta tempo adicionando informação de event a ele.
 
-[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not permitted for the [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") não é permitido para a tabela [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 A Tabela setup_consumers").

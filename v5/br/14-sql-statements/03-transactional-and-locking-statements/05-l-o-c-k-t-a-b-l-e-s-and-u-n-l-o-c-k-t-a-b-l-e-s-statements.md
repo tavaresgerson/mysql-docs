@@ -1,4 +1,4 @@
-### 13.3.5 LOCK TABLES and UNLOCK TABLES Statements
+### 13.3.5 Instruções LOCK TABLES e UNLOCK TABLES
 
 ```sql
 LOCK {TABLE | TABLES}
@@ -13,63 +13,63 @@ lock_type: {
 UNLOCK {TABLE | TABLES}
 ```
 
-MySQL enables client sessions to acquire table locks explicitly for the purpose of cooperating with other sessions for access to tables, or to prevent other sessions from modifying tables during periods when a session requires exclusive access to them. A session can acquire or release locks only for itself. One session cannot acquire locks for another session or release locks held by another session.
+O MySQL permite que sessões de cliente adquiram Table Locks explicitamente com o propósito de cooperar com outras sessões para o acesso a tabelas, ou para impedir que outras sessões modifiquem tabelas durante períodos em que uma sessão requer acesso exclusivo a elas. Uma sessão pode adquirir ou liberar Locks apenas para si mesma. Uma sessão não pode adquirir Locks para outra sessão ou liberar Locks mantidos por outra sessão.
 
-Locks may be used to emulate transactions or to get more speed when updating tables. This is explained in more detail in [Table-Locking Restrictions and Conditions](lock-tables.html#lock-tables-restrictions "Table-Locking Restrictions and Conditions").
+Os Locks podem ser usados para emular Transactions ou para obter mais velocidade ao atualizar tabelas. Isso é explicado em mais detalhes em [Restrições e Condições de Table-Locking](lock-tables.html#lock-tables-restrictions "Table-Locking Restrictions and Conditions").
 
-[`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") explicitly acquires table locks for the current client session. Table locks can be acquired for base tables or views. You must have the [`LOCK TABLES`](privileges-provided.html#priv_lock-tables) privilege, and the [`SELECT`](privileges-provided.html#priv_select) privilege for each object to be locked.
+[`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") adquire Table Locks explicitamente para a sessão de cliente atual. Os Table Locks podem ser adquiridos para base tables ou views. Você deve ter o privilégio [`LOCK TABLES`](privileges-provided.html#priv_lock-tables) e o privilégio [`SELECT`](privileges-provided.html#priv_select) para cada objeto a ser travado (locked).
 
-For view locking, [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") adds all base tables used in the view to the set of tables to be locked and locks them automatically. As of MySQL 5.7.32, [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") checks that the view definer has the proper privileges on the tables underlying the view.
+Para travamento de View, [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") adiciona todas as base tables usadas na View ao conjunto de tabelas a serem travadas e as trava automaticamente. A partir do MySQL 5.7.32, [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") verifica se o definer da View possui os privilégios apropriados nas tabelas subjacentes à View.
 
-If you lock a table explicitly with [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements"), any tables used in triggers are also locked implicitly, as described in [LOCK TABLES and Triggers](lock-tables.html#lock-tables-and-triggers "LOCK TABLES and Triggers").
+Se você travar uma tabela explicitamente com [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements"), quaisquer tabelas usadas em Triggers também são travadas implicitamente, conforme descrito em [LOCK TABLES e Triggers](lock-tables.html#lock-tables-and-triggers "LOCK TABLES and Triggers").
 
-[`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") explicitly releases any table locks held by the current session. [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") implicitly releases any table locks held by the current session before acquiring new locks.
+[`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") libera explicitamente quaisquer Table Locks mantidos pela sessão atual. [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") libera implicitamente quaisquer Table Locks mantidos pela sessão atual antes de adquirir novos Locks.
 
-Another use for [`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") is to release the global read lock acquired with the [`FLUSH TABLES WITH READ LOCK`](flush.html#flush-tables-with-read-lock) statement, which enables you to lock all tables in all databases. See [Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement"). (This is a very convenient way to get backups if you have a file system such as Veritas that can take snapshots in time.)
+Outro uso para [`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") é liberar o Global Read Lock (Lock de leitura global) adquirido com a instrução [`FLUSH TABLES WITH READ LOCK`](flush.html#flush-tables-with-read-lock), que permite travar todas as tabelas em todas as Databases. Consulte [Seção 13.7.6.3, “Instrução FLUSH”](flush.html "13.7.6.3 FLUSH Statement"). (Esta é uma maneira muito conveniente de obter Backups se você tiver um sistema de arquivos como o Veritas que possa tirar Snapshots no tempo.)
 
-`LOCK TABLE` is a synonym for `LOCK TABLES`; `UNLOCK TABLE` is a synonym for `UNLOCK TABLES`.
+`LOCK TABLE` é um sinônimo para `LOCK TABLES`; `UNLOCK TABLE` é um sinônimo para `UNLOCK TABLES`.
 
-A table lock protects only against inappropriate reads or writes by other sessions. A session holding a `WRITE` lock can perform table-level operations such as [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") or [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement"). For sessions holding a `READ` lock, [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") and [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") operations are not permitted.
+Um Table Lock protege apenas contra leituras ou gravações inadequadas por outras sessões. Uma sessão que mantém um Lock `WRITE` pode realizar operações no nível da tabela, como [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") ou [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement"). Para sessões que mantêm um Lock `READ`, as operações [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") e [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") não são permitidas.
 
-The following discussion applies only to non-`TEMPORARY` tables. [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") is permitted (but ignored) for a `TEMPORARY` table. The table can be accessed freely by the session within which it was created, regardless of what other locking may be in effect. No lock is necessary because no other session can see the table.
+A discussão a seguir se aplica apenas a tabelas não-`TEMPORARY`. [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") é permitido (mas ignorado) para uma tabela `TEMPORARY`. A tabela pode ser acessada livremente pela sessão na qual foi criada, independentemente de qualquer outro travamento que possa estar em vigor. Nenhum Lock é necessário porque nenhuma outra sessão pode ver a tabela.
 
-* [Table Lock Acquisition](lock-tables.html#table-lock-acquisition "Table Lock Acquisition")
-* [Table Lock Release](lock-tables.html#table-lock-release "Table Lock Release")
-* [Interaction of Table Locking and Transactions](lock-tables.html#lock-tables-and-transactions "Interaction of Table Locking and Transactions")
-* [LOCK TABLES and Triggers](lock-tables.html#lock-tables-and-triggers "LOCK TABLES and Triggers")
-* [Table-Locking Restrictions and Conditions](lock-tables.html#lock-tables-restrictions "Table-Locking Restrictions and Conditions")
+* [Aquisição de Table Lock](lock-tables.html#table-lock-acquisition "Table Lock Acquisition")
+* [Liberação de Table Lock](lock-tables.html#table-lock-release "Table Lock Release")
+* [Interação de Table Locking e Transactions](lock-tables.html#lock-tables-and-transactions "Interaction of Table Locking and Transactions")
+* [LOCK TABLES e Triggers](lock-tables.html#lock-tables-and-triggers "LOCK TABLES and Triggers")
+* [Restrições e Condições de Table-Locking](lock-tables.html#lock-tables-restrictions "Table-Locking Restrictions and Conditions")
 
-#### Table Lock Acquisition
+#### Aquisição de Table Lock
 
-To acquire table locks within the current session, use the [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") statement, which acquires metadata locks (see [Section 8.11.4, “Metadata Locking”](metadata-locking.html "8.11.4 Metadata Locking")).
+Para adquirir Table Locks dentro da sessão atual, use a instrução [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements"), que adquire Metadata Locks (consulte [Seção 8.11.4, “Metadata Locking”](metadata-locking.html "8.11.4 Metadata Locking")).
 
-The following lock types are available:
+Os seguintes tipos de Lock estão disponíveis:
 
-`READ [LOCAL]` lock:
+Lock `READ [LOCAL]`:
 
-* The session that holds the lock can read the table (but not write it).
+* A sessão que mantém o Lock pode ler a tabela (mas não pode escrevê-la).
 
-* Multiple sessions can acquire a `READ` lock for the table at the same time.
+* Múltiplas sessões podem adquirir um Lock `READ` para a tabela ao mesmo tempo.
 
-* Other sessions can read the table without explicitly acquiring a `READ` lock.
+* Outras sessões podem ler a tabela sem adquirir explicitamente um Lock `READ`.
 
-* The `LOCAL` modifier enables nonconflicting [`INSERT`](insert.html "13.2.5 INSERT Statement") statements (concurrent inserts) by other sessions to execute while the lock is held. (See [Section 8.11.3, “Concurrent Inserts”](concurrent-inserts.html "8.11.3 Concurrent Inserts").) However, `READ LOCAL` cannot be used if you are going to manipulate the database using processes external to the server while you hold the lock. For `InnoDB` tables, `READ LOCAL` is the same as `READ`.
+* O modificador `LOCAL` permite que instruções [`INSERT`](insert.html "13.2.5 INSERT Statement") não conflitantes (concurrent inserts) por outras sessões sejam executadas enquanto o Lock é mantido. (Consulte [Seção 8.11.3, “Concurrent Inserts”](concurrent-inserts.html "8.11.3 Concurrent Inserts").) No entanto, `READ LOCAL` não pode ser usado se você for manipular o Database usando processos externos ao Server enquanto mantém o Lock. Para tabelas `InnoDB`, `READ LOCAL` é o mesmo que `READ`.
 
-`[LOW_PRIORITY] WRITE` lock:
+Lock `[LOW_PRIORITY] WRITE`:
 
-* The session that holds the lock can read and write the table.
+* A sessão que mantém o Lock pode ler e escrever na tabela.
 
-* Only the session that holds the lock can access the table. No other session can access it until the lock is released.
+* Apenas a sessão que mantém o Lock pode acessar a tabela. Nenhuma outra sessão pode acessá-la até que o Lock seja liberado.
 
-* Lock requests for the table by other sessions block while the `WRITE` lock is held.
+* Solicitações de Lock para a tabela por outras sessões bloqueiam enquanto o Lock `WRITE` é mantido.
 
-* The `LOW_PRIORITY` modifier has no effect. In previous versions of MySQL, it affected locking behavior, but this is no longer true. It is now deprecated and its use produces a warning. Use `WRITE` without `LOW_PRIORITY` instead.
+* O modificador `LOW_PRIORITY` não tem efeito. Em versões anteriores do MySQL, ele afetava o comportamento de Locking, mas isso não é mais verdade. Agora ele está deprecated e seu uso gera um Warning. Use `WRITE` sem `LOW_PRIORITY` em vez disso.
 
-`WRITE` locks normally have higher priority than `READ` locks to ensure that updates are processed as soon as possible. This means that if one session obtains a `READ` lock and then another session requests a `WRITE` lock, subsequent `READ` lock requests wait until the session that requested the `WRITE` lock has obtained the lock and released it. (An exception to this policy can occur for small values of the [`max_write_lock_count`](server-system-variables.html#sysvar_max_write_lock_count) system variable; see [Section 8.11.4, “Metadata Locking”](metadata-locking.html "8.11.4 Metadata Locking").)
+Locks `WRITE` normalmente têm prioridade mais alta do que Locks `READ` para garantir que as atualizações sejam processadas o mais rápido possível. Isso significa que se uma sessão obtém um Lock `READ` e, em seguida, outra sessão solicita um Lock `WRITE`, as solicitações subsequentes de Lock `READ` esperam até que a sessão que solicitou o Lock `WRITE` o tenha obtido e liberado. (Uma exceção a esta política pode ocorrer para valores pequenos da variável de sistema [`max_write_lock_count`](server-system-variables.html#sysvar_max_write_lock_count); consulte [Seção 8.11.4, “Metadata Locking”](metadata-locking.html "8.11.4 Metadata Locking").)
 
-If the [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") statement must wait due to locks held by other sessions on any of the tables, it blocks until all locks can be acquired.
+Se a instrução [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") tiver que esperar devido a Locks mantidos por outras sessões em qualquer uma das tabelas, ela bloqueará até que todos os Locks possam ser adquiridos.
 
-A session that requires locks must acquire all the locks that it needs in a single [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") statement. While the locks thus obtained are held, the session can access only the locked tables. For example, in the following sequence of statements, an error occurs for the attempt to access `t2` because it was not locked in the [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") statement:
+Uma sessão que requer Locks deve adquirir todos os Locks de que precisa em uma única instrução [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements"). Enquanto os Locks assim obtidos forem mantidos, a sessão pode acessar apenas as tabelas travadas. Por exemplo, na seguinte sequência de instruções, ocorre um erro na tentativa de acesso a `t2` porque ela não foi travada na instrução [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements"):
 
 ```sql
 mysql> LOCK TABLES t1 READ;
@@ -83,9 +83,9 @@ mysql> SELECT COUNT(*) FROM t2;
 ERROR 1100 (HY000): Table 't2' was not locked with LOCK TABLES
 ```
 
-Tables in the `INFORMATION_SCHEMA` database are an exception. They can be accessed without being locked explicitly even while a session holds table locks obtained with [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements").
+Tabelas no Database `INFORMATION_SCHEMA` são uma exceção. Elas podem ser acessadas sem serem travadas explicitamente, mesmo enquanto uma sessão mantém Table Locks obtidos com [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements").
 
-You cannot refer to a locked table multiple times in a single query using the same name. Use aliases instead, and obtain a separate lock for the table and each alias:
+Você não pode se referir a uma tabela travada múltiplas vezes em uma única Query usando o mesmo nome. Use Aliases em vez disso, e obtenha um Lock separado para a tabela e cada Alias:
 
 ```sql
 mysql> LOCK TABLE t WRITE, t AS t1 READ;
@@ -94,9 +94,9 @@ ERROR 1100: Table 't' was not locked with LOCK TABLES
 mysql> INSERT INTO t SELECT * FROM t AS t1;
 ```
 
-The error occurs for the first [`INSERT`](insert.html "13.2.5 INSERT Statement") because there are two references to the same name for a locked table. The second [`INSERT`](insert.html "13.2.5 INSERT Statement") succeeds because the references to the table use different names.
+O erro ocorre para o primeiro [`INSERT`](insert.html "13.2.5 INSERT Statement") porque existem duas referências ao mesmo nome para uma tabela travada. O segundo [`INSERT`](insert.html "13.2.5 INSERT Statement") é bem-sucedido porque as referências à tabela usam nomes diferentes.
 
-If your statements refer to a table by means of an alias, you must lock the table using that same alias. It does not work to lock the table without specifying the alias:
+Se suas instruções se referem a uma tabela por meio de um Alias, você deve travar a tabela usando o mesmo Alias. Não funciona travar a tabela sem especificar o Alias:
 
 ```sql
 mysql> LOCK TABLE t READ;
@@ -104,7 +104,7 @@ mysql> SELECT * FROM t AS myalias;
 ERROR 1100: Table 'myalias' was not locked with LOCK TABLES
 ```
 
-Conversely, if you lock a table using an alias, you must refer to it in your statements using that alias:
+Por outro lado, se você trava uma tabela usando um Alias, você deve se referir a ela em suas instruções usando esse Alias:
 
 ```sql
 mysql> LOCK TABLE t AS myalias READ;
@@ -113,33 +113,33 @@ ERROR 1100: Table 't' was not locked with LOCK TABLES
 mysql> SELECT * FROM t AS myalias;
 ```
 
-Note
+Nota
 
-`LOCK TABLES` or `UNLOCK TABLES`, when applied to a partitioned table, always locks or unlocks the entire table; these statements do not support partition lock pruning. See [Section 22.6.4, “Partitioning and Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking").
+`LOCK TABLES` ou `UNLOCK TABLES`, quando aplicados a uma partitioned table, sempre travam ou destravam a tabela inteira; estas instruções não suportam Partition Lock Pruning. Consulte [Seção 22.6.4, “Partitioning e Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking").
 
-#### Table Lock Release
+#### Liberação de Table Lock
 
-When the table locks held by a session are released, they are all released at the same time. A session can release its locks explicitly, or locks may be released implicitly under certain conditions.
+Quando os Table Locks mantidos por uma sessão são liberados, todos são liberados ao mesmo tempo. Uma sessão pode liberar seus Locks explicitamente, ou os Locks podem ser liberados implicitamente sob certas condições.
 
-* A session can release its locks explicitly with [`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements").
+* Uma sessão pode liberar seus Locks explicitamente com [`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements").
 
-* If a session issues a [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") statement to acquire a lock while already holding locks, its existing locks are released implicitly before the new locks are granted.
+* Se uma sessão emite uma instrução [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") para adquirir um Lock enquanto já mantém Locks, seus Locks existentes são liberados implicitamente antes que os novos Locks sejam concedidos.
 
-* If a session begins a transaction (for example, with [`START TRANSACTION`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")), an implicit [`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") is performed, which causes existing locks to be released. (For additional information about the interaction between table locking and transactions, see [Interaction of Table Locking and Transactions](lock-tables.html#lock-tables-and-transactions "Interaction of Table Locking and Transactions").)
+* Se uma sessão inicia uma Transaction (por exemplo, com [`START TRANSACTION`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")), um [`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") implícito é realizado, o que faz com que os Locks existentes sejam liberados. (Para informações adicionais sobre a interação entre Table Locking e Transactions, consulte [Interação de Table Locking e Transactions](lock-tables.html#lock-tables-and-transactions "Interaction of Table Locking and Transactions").)
 
-If the connection for a client session terminates, whether normally or abnormally, the server implicitly releases all table locks held by the session (transactional and nontransactional). If the client reconnects, the locks are longer in effect. In addition, if the client had an active transaction, the server rolls back the transaction upon disconnect, and if reconnect occurs, the new session begins with autocommit enabled. For this reason, clients may wish to disable auto-reconnect. With auto-reconnect in effect, the client is not notified if reconnect occurs but any table locks or current transactions are lost. With auto-reconnect disabled, if the connection drops, an error occurs for the next statement issued. The client can detect the error and take appropriate action such as reacquiring the locks or redoing the transaction. See [Automatic Reconnection Control](/doc/c-api/5.7/en/c-api-auto-reconnect.html).
+Se a conexão para uma sessão de cliente terminar, seja normal ou anormalmente, o Server libera implicitamente todos os Table Locks mantidos pela sessão (transacionais e não transacionais). Se o cliente se reconectar, os Locks não estarão mais em vigor. Além disso, se o cliente tinha uma Transaction ativa, o Server faz o Rollback da Transaction após a desconexão e, se a reconexão ocorrer, a nova sessão começa com o autocommit habilitado. Por esta razão, os clientes podem desejar desabilitar o Auto-Reconnect. Com o Auto-Reconnect em vigor, o cliente não é notificado se a reconexão ocorrer, mas quaisquer Table Locks ou Transactions atuais são perdidos. Com o Auto-Reconnect desabilitado, se a conexão cair, um erro ocorre para a próxima instrução emitida. O cliente pode detectar o erro e tomar a ação apropriada, como readquirir os Locks ou refazer a Transaction. Consulte [Controle de Reconexão Automática](/doc/c-api/5.7/en/c-api-auto-reconnect.html).
 
-Note
+Nota
 
-If you use [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") on a locked table, it may become unlocked. For example, if you attempt a second [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") operation, the result may be an error `Table 'tbl_name' was not locked with LOCK TABLES`. To handle this, lock the table again prior to the second alteration. See also [Section B.3.6.1, “Problems with ALTER TABLE”](alter-table-problems.html "B.3.6.1 Problems with ALTER TABLE").
+Se você usar [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") em uma tabela travada, ela pode ser destravada. Por exemplo, se você tentar uma segunda operação [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"), o resultado pode ser um erro `Table 'tbl_name' was not locked with LOCK TABLES`. Para lidar com isso, trave a tabela novamente antes da segunda alteração. Consulte também [Seção B.3.6.1, “Problemas com ALTER TABLE”](alter-table-problems.html "B.3.6.1 Problems with ALTER TABLE").
 
-#### Interaction of Table Locking and Transactions
+#### Interação de Table Locking e Transactions
 
-[`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") and [`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") interact with the use of transactions as follows:
+[`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") e [`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") interagem com o uso de Transactions da seguinte forma:
 
-* [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") is not transaction-safe and implicitly commits any active transaction before attempting to lock the tables.
+* [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") não é Transaction-safe e implicitamente faz o Commit de qualquer Transaction ativa antes de tentar travar as tabelas.
 
-* [`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") implicitly commits any active transaction, but only if [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") has been used to acquire table locks. For example, in the following set of statements, [`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") releases the global read lock but does not commit the transaction because no table locks are in effect:
+* [`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") implicitamente faz o Commit de qualquer Transaction ativa, mas somente se [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") tiver sido usado para adquirir Table Locks. Por exemplo, no seguinte conjunto de instruções, [`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") libera o Global Read Lock, mas não faz o Commit da Transaction porque nenhum Table Lock está em vigor:
 
   ```sql
   FLUSH TABLES WITH READ LOCK;
@@ -148,13 +148,13 @@ If you use [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") on 
   UNLOCK TABLES;
   ```
 
-* Beginning a transaction (for example, with [`START TRANSACTION`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")) implicitly commits any current transaction and releases existing table locks.
+* Iniciar uma Transaction (por exemplo, com [`START TRANSACTION`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")) implicitamente faz o Commit de qualquer Transaction atual e libera os Table Locks existentes.
 
-* [`FLUSH TABLES WITH READ LOCK`](flush.html#flush-tables-with-read-lock) acquires a global read lock and not table locks, so it is not subject to the same behavior as [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") and [`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") with respect to table locking and implicit commits. For example, [`START TRANSACTION`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") does not release the global read lock. See [Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement").
+* [`FLUSH TABLES WITH READ LOCK`](flush.html#flush-tables-with-read-lock) adquire um Global Read Lock e não Table Locks, portanto, não está sujeito ao mesmo comportamento que [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") e [`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") no que diz respeito ao Table Locking e Implicit Commits. Por exemplo, [`START TRANSACTION`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") não libera o Global Read Lock. Consulte [Seção 13.7.6.3, “Instrução FLUSH”](flush.html "13.7.6.3 FLUSH Statement").
 
-* Other statements that implicitly cause transactions to be committed do not release existing table locks. For a list of such statements, see [Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit").
+* Outras instruções que implicitamente causam o Commit de Transactions não liberam os Table Locks existentes. Para uma lista dessas instruções, consulte [Seção 13.3.3, “Instruções Que Causam um Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit").
 
-* The correct way to use [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") and [`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") with transactional tables, such as `InnoDB` tables, is to begin a transaction with `SET autocommit = 0` (not [`START TRANSACTION`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")) followed by [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements"), and to not call [`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") until you commit the transaction explicitly. For example, if you need to write to table `t1` and read from table `t2`, you can do this:
+* A maneira correta de usar [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") e [`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") com transactional tables, como tabelas `InnoDB`, é iniciar uma Transaction com `SET autocommit = 0` (não [`START TRANSACTION`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")) seguido por [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements"), e a não chamar [`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") até que você faça o Commit da Transaction explicitamente. Por exemplo, se você precisa gravar na tabela `t1` e ler da tabela `t2`, você pode fazer isso:
 
   ```sql
   SET autocommit=0;
@@ -164,27 +164,27 @@ If you use [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") on 
   UNLOCK TABLES;
   ```
 
-  When you call [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements"), `InnoDB` internally takes its own table lock, and MySQL takes its own table lock. `InnoDB` releases its internal table lock at the next commit, but for MySQL to release its table lock, you have to call [`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements"). You should not have [`autocommit = 1`](server-system-variables.html#sysvar_autocommit), because then `InnoDB` releases its internal table lock immediately after the call of [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements"), and deadlocks can very easily happen. `InnoDB` does not acquire the internal table lock at all if [`autocommit = 1`](server-system-variables.html#sysvar_autocommit), to help old applications avoid unnecessary deadlocks.
+  Quando você chama [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements"), o `InnoDB` internamente adquire seu próprio Table Lock, e o MySQL adquire seu próprio Table Lock. O `InnoDB` libera seu Internal Table Lock no próximo Commit, mas para que o MySQL libere seu Table Lock, você deve chamar [`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements"). Você não deve ter [`autocommit = 1`](server-system-variables.html#sysvar_autocommit), pois então o `InnoDB` libera seu Internal Table Lock imediatamente após a chamada de [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements"), e Deadlocks podem acontecer muito facilmente. O `InnoDB` não adquire o Internal Table Lock se [`autocommit = 1`](server-system-variables.html#sysvar_autocommit), para ajudar aplicações antigas a evitar Deadlocks desnecessários.
 
-* [`ROLLBACK`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") does not release table locks.
+* [`ROLLBACK`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") não libera Table Locks.
 
-#### LOCK TABLES and Triggers
+#### LOCK TABLES e Triggers
 
-If you lock a table explicitly with [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements"), any tables used in triggers are also locked implicitly:
+Se você travar uma tabela explicitamente com [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements"), quaisquer tabelas usadas em Triggers também são travadas implicitamente:
 
-* The locks are taken as the same time as those acquired explicitly with the [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") statement.
+* Os Locks são adquiridos ao mesmo tempo que aqueles adquiridos explicitamente com a instrução [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements").
 
-* The lock on a table used in a trigger depends on whether the table is used only for reading. If so, a read lock suffices. Otherwise, a write lock is used.
+* O Lock em uma tabela usada em um Trigger depende se a tabela é usada apenas para leitura. Se for, um Read Lock é suficiente. Caso contrário, um Write Lock é usado.
 
-* If a table is locked explicitly for reading with [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements"), but needs to be locked for writing because it might be modified within a trigger, a write lock is taken rather than a read lock. (That is, an implicit write lock needed due to the table's appearance within a trigger causes an explicit read lock request for the table to be converted to a write lock request.)
+* Se uma tabela for travada explicitamente para leitura com [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements"), mas precisar ser travada para escrita porque pode ser modificada dentro de um Trigger, um Write Lock é adquirido em vez de um Read Lock. (Ou seja, um Write Lock implícito necessário devido à aparição da tabela dentro de um Trigger faz com que uma solicitação de Read Lock explícito para a tabela seja convertida em uma solicitação de Write Lock.)
 
-Suppose that you lock two tables, `t1` and `t2`, using this statement:
+Suponha que você trave duas tabelas, `t1` e `t2`, usando esta instrução:
 
 ```sql
 LOCK TABLES t1 WRITE, t2 READ;
 ```
 
-If `t1` or `t2` have any triggers, tables used within the triggers are also locked. Suppose that `t1` has a trigger defined like this:
+Se `t1` ou `t2` tiverem algum Trigger, as tabelas usadas dentro dos Triggers também são travadas. Suponha que `t1` tenha um Trigger definido assim:
 
 ```sql
 CREATE TRIGGER t1_a_ins AFTER INSERT ON t1 FOR EACH ROW
@@ -195,29 +195,29 @@ BEGIN
 END;
 ```
 
-The result of the [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") statement is that `t1` and `t2` are locked because they appear in the statement, and `t3` and `t4` are locked because they are used within the trigger:
+O resultado da instrução [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") é que `t1` e `t2` são travadas porque aparecem na instrução, e `t3` e `t4` são travadas porque são usadas dentro do Trigger:
 
-* `t1` is locked for writing per the `WRITE` lock request.
+* `t1` é travada para escrita conforme a solicitação de Lock `WRITE`.
 
-* `t2` is locked for writing, even though the request is for a `READ` lock. This occurs because `t2` is inserted into within the trigger, so the `READ` request is converted to a `WRITE` request.
+* `t2` é travada para escrita, mesmo que a solicitação seja de um Lock `READ`. Isso ocorre porque `t2` recebe uma inserção dentro do Trigger, então a solicitação `READ` é convertida em uma solicitação `WRITE`.
 
-* `t3` is locked for reading because it is only read from within the trigger.
+* `t3` é travada para leitura porque é apenas lida dentro do Trigger.
 
-* `t4` is locked for writing because it might be updated within the trigger.
+* `t4` é travada para escrita porque pode ser atualizada dentro do Trigger.
 
-#### Table-Locking Restrictions and Conditions
+#### Restrições e Condições de Table-Locking
 
-You can safely use [`KILL`](kill.html "13.7.6.4 KILL Statement") to terminate a session that is waiting for a table lock. See [Section 13.7.6.4, “KILL Statement”](kill.html "13.7.6.4 KILL Statement").
+Você pode usar [`KILL`](kill.html "13.7.6.4 KILL Statement") com segurança para terminar uma sessão que está esperando por um Table Lock. Consulte [Seção 13.7.6.4, “Instrução KILL”](kill.html "13.7.6.4 KILL Statement").
 
-[`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") and [`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") cannot be used within stored programs.
+[`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") e [`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") não podem ser usados dentro de stored programs.
 
-Tables in the `performance_schema` database cannot be locked with [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements"), except the `setup_xxx` tables.
+Tabelas no Database `performance_schema` não podem ser travadas com [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements"), exceto as tabelas `setup_xxx`.
 
-The scope of a lock generated by `LOCK TABLES` is a single MySQL server. It is not compatible with NDB Cluster, which has no way of enforcing an SQL-level lock across multiple instances of [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"). You can enforce locking in an API application instead. See [Section 21.2.7.10, “Limitations Relating to Multiple NDB Cluster Nodes”](mysql-cluster-limitations-multiple-nodes.html "21.2.7.10 Limitations Relating to Multiple NDB Cluster Nodes"), for more information.
+O escopo de um Lock gerado por `LOCK TABLES` é um único MySQL Server. Não é compatível com NDB Cluster, que não tem como aplicar um Lock de nível SQL em múltiplas instâncias do [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"). Você pode aplicar o Locking em uma aplicação API. Consulte [Seção 21.2.7.10, “Limitações Relacionadas a Múltiplos NDB Cluster Nodes”](mysql-cluster-limitations-multiple-nodes.html "21.2.7.10 Limitations Relating to Multiple NDB Cluster Nodes"), para mais informações.
 
-The following statements are prohibited while a [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") statement is in effect: [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement"), [`CREATE TABLE ... LIKE`](create-table.html "13.1.18 CREATE TABLE Statement"), [`CREATE VIEW`](create-view.html "13.1.21 CREATE VIEW Statement"), [`DROP VIEW`](drop-view.html "13.1.32 DROP VIEW Statement"), and DDL statements on stored functions and procedures and events.
+As seguintes instruções são proibidas enquanto uma instrução [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") estiver em vigor: [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement"), [`CREATE TABLE ... LIKE`](create-table.html "13.1.18 CREATE TABLE Statement"), [`CREATE VIEW`](create-view.html "13.1.21 CREATE VIEW Statement"), [`DROP VIEW`](drop-view.html "13.1.32 DROP VIEW Statement"), e instruções DDL em stored functions, procedures e events.
 
-For some operations, system tables in the `mysql` database must be accessed. For example, the [`HELP`](help.html "13.8.3 HELP Statement") statement requires the contents of the server-side help tables, and [`CONVERT_TZ()`](date-and-time-functions.html#function_convert-tz) might need to read the time zone tables. The server implicitly locks the system tables for reading as necessary so that you need not lock them explicitly. These tables are treated as just described:
+Para algumas operações, as System Tables no Database `mysql` devem ser acessadas. Por exemplo, a instrução [`HELP`](help.html "13.8.3 HELP Statement") requer o conteúdo das help tables do lado do Server, e [`CONVERT_TZ()`](date-and-time-functions.html#function_convert-tz) pode precisar ler as time zone tables. O Server trava implicitamente as System Tables para leitura conforme necessário, de modo que você não precisa travá-las explicitamente. Estas tabelas são tratadas como acabamos de descrever:
 
 ```sql
 mysql.help_category
@@ -232,15 +232,15 @@ mysql.time_zone_transition
 mysql.time_zone_transition_type
 ```
 
-If you want to explicitly place a `WRITE` lock on any of those tables with a [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") statement, the table must be the only one locked; no other table can be locked with the same statement.
+Se você quiser colocar explicitamente um Lock `WRITE` em qualquer uma dessas tabelas com uma instrução [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements"), a tabela deve ser a única travada; nenhuma outra tabela pode ser travada com a mesma instrução.
 
-Normally, you do not need to lock tables, because all single [`UPDATE`](update.html "13.2.11 UPDATE Statement") statements are atomic; no other session can interfere with any other currently executing SQL statement. However, there are a few cases when locking tables may provide an advantage:
+Normalmente, você não precisa travar tabelas, porque todas as instruções [`UPDATE`](update.html "13.2.11 UPDATE Statement") individuais são atômicas; nenhuma outra sessão pode interferir com qualquer outra instrução SQL atualmente em execução. No entanto, há alguns casos em que o Locking de tabelas pode fornecer uma vantagem:
 
-* If you are going to run many operations on a set of `MyISAM` tables, it is much faster to lock the tables you are going to use. Locking `MyISAM` tables speeds up inserting, updating, or deleting on them because MySQL does not flush the key cache for the locked tables until [`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") is called. Normally, the key cache is flushed after each SQL statement.
+* Se você for executar muitas operações em um conjunto de tabelas `MyISAM`, é muito mais rápido travar as tabelas que você usará. O Locking de tabelas `MyISAM` acelera as operações de Insert, Update ou Delete nelas porque o MySQL não faz o Flush do Key Cache para as tabelas travadas até que [`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") seja chamado. Normalmente, o Key Cache é liberado após cada instrução SQL.
 
-  The downside to locking the tables is that no session can update a `READ`-locked table (including the one holding the lock) and no session can access a `WRITE`-locked table other than the one holding the lock.
+  O lado negativo do Locking de tabelas é que nenhuma sessão pode atualizar uma tabela travada com `READ` (incluindo aquela que mantém o Lock) e nenhuma sessão pode acessar uma tabela travada com `WRITE` além daquela que mantém o Lock.
 
-* If you are using tables for a nontransactional storage engine, you must use [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") if you want to ensure that no other session modifies the tables between a [`SELECT`](select.html "13.2.9 SELECT Statement") and an [`UPDATE`](update.html "13.2.11 UPDATE Statement"). The example shown here requires [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") to execute safely:
+* Se você estiver usando tabelas para um Storage Engine não-transacional, você deve usar [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") se quiser garantir que nenhuma outra sessão modifique as tabelas entre um [`SELECT`](select.html "13.2.9 SELECT Statement") e um [`UPDATE`](update.html "13.2.11 UPDATE Statement"). O exemplo mostrado aqui requer [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") para ser executado com segurança:
 
   ```sql
   LOCK TABLES trans READ, customer WRITE;
@@ -251,10 +251,10 @@ Normally, you do not need to lock tables, because all single [`UPDATE`](update.h
   UNLOCK TABLES;
   ```
 
-  Without [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements"), it is possible that another session might insert a new row in the `trans` table between execution of the [`SELECT`](select.html "13.2.9 SELECT Statement") and [`UPDATE`](update.html "13.2.11 UPDATE Statement") statements.
+  Sem [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements"), é possível que outra sessão insira uma nova Row na tabela `trans` entre a execução das instruções [`SELECT`](select.html "13.2.9 SELECT Statement") e [`UPDATE`](update.html "13.2.11 UPDATE Statement").
 
-You can avoid using [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") in many cases by using relative updates (`UPDATE customer SET value=value+new_value`) or the [`LAST_INSERT_ID()`](information-functions.html#function_last-insert-id) function.
+Você pode evitar o uso de [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") em muitos casos usando Updates relativos (`UPDATE customer SET value=value+new_value`) ou a função [`LAST_INSERT_ID()`](information-functions.html#function_last-insert-id).
 
-You can also avoid locking tables in some cases by using the user-level advisory lock functions [`GET_LOCK()`](locking-functions.html#function_get-lock) and [`RELEASE_LOCK()`](locking-functions.html#function_release-lock). These locks are saved in a hash table in the server and implemented with `pthread_mutex_lock()` and `pthread_mutex_unlock()` for high speed. See [Section 12.14, “Locking Functions”](locking-functions.html "12.14 Locking Functions").
+Você também pode evitar o Locking de tabelas em alguns casos usando as funções de Lock Advisory de nível de usuário [`GET_LOCK()`](locking-functions.html#function_get-lock) e [`RELEASE_LOCK()`](locking-functions.html#function_release-lock). Esses Locks são salvos em uma Hash Table no Server e implementados com `pthread_mutex_lock()` e `pthread_mutex_unlock()` para alta velocidade. Consulte [Seção 12.14, “Funções de Locking”](locking-functions.html "12.14 Locking Functions").
 
-See [Section 8.11.1, “Internal Locking Methods”](internal-locking.html "8.11.1 Internal Locking Methods"), for more information on locking policy.
+Consulte [Seção 8.11.1, “Internal Locking Methods”](internal-locking.html "8.11.1 Internal Locking Methods"), para mais informações sobre a política de Locking.

@@ -1,395 +1,395 @@
-## SQL Modes Index
+## Índice de SQL Modes
 
 [A](dynindex-sqlmode.html#sqlmode-index-A "A") | [D](dynindex-sqlmode.html#sqlmode-index-D "D") | [E](dynindex-sqlmode.html#sqlmode-index-E "E") | [H](dynindex-sqlmode.html#sqlmode-index-H "H") | [I](dynindex-sqlmode.html#sqlmode-index-I "I") | [M](dynindex-sqlmode.html#sqlmode-index-M "M") | [N](dynindex-sqlmode.html#sqlmode-index-N "N") | [O](dynindex-sqlmode.html#sqlmode-index-O "O") | [P](dynindex-sqlmode.html#sqlmode-index-P "P") | [R](dynindex-sqlmode.html#sqlmode-index-R "R") | [S](dynindex-sqlmode.html#sqlmode-index-S "S") | [T](dynindex-sqlmode.html#sqlmode-index-T "T")
 
 ### A
 
-index top](dynindex-sqlmode.html#sqlmode-index-top)]
+[início do índice](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### ALLOW_INVALID_DATES
 
-[Section 11.2, “Date and Time Data Types”](date-and-time-types.html "11.2 Date and Time Data Types")
+[Seção 11.2, “Tipos de Dados de Data e Hora”](date-and-time-types.html "11.2 Tipos de Dados de Data e Hora")
 
-[Section 12.7, “Date and Time Functions”](date-and-time-functions.html "12.7 Date and Time Functions")
+[Seção 12.7, “Funções de Data e Hora”](date-and-time-functions.html "12.7 Funções de Data e Hora")
 
-[Section B.3.4.2, “Problems Using DATE Columns”](using-date.html "B.3.4.2 Problems Using DATE Columns")
+[Seção B.3.4.2, “Problemas ao Usar Colunas DATE”](using-date.html "B.3.4.2 Problemas ao Usar Colunas DATE")
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Section 11.2.2, “The DATE, DATETIME, and TIMESTAMP Types”](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types")
+[Seção 11.2.2, “Os Tipos DATE, DATETIME e TIMESTAMP”](datetime.html "11.2.2 Os Tipos DATE, DATETIME e TIMESTAMP")
 
 ### ANSI
 
-[Section 2.10.3, “Changes in MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Changes in MySQL 5.7")
+[Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Alterações no MySQL 5.7")
 
-[Section 9.2.5, “Function Name Parsing and Resolution”](function-resolution.html "9.2.5 Function Name Parsing and Resolution")
+[Seção 9.2.5, “Parsing e Resolução de Nomes de Funções”](function-resolution.html "9.2.5 Parsing e Resolução de Nomes de Funções")
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Section 13.7.5.13, “SHOW CREATE VIEW Statement”](show-create-view.html "13.7.5.13 SHOW CREATE VIEW Statement")
+[Seção 13.7.5.13, “Instrução SHOW CREATE VIEW”](show-create-view.html "13.7.5.13 Instrução SHOW CREATE VIEW")
 
-[Section 24.3.31, “The INFORMATION_SCHEMA VIEWS Table”](information-schema-views-table.html "24.3.31 The INFORMATION_SCHEMA VIEWS Table")
+[Seção 24.3.31, “A Tabela VIEWS do INFORMATION_SCHEMA”](information-schema-views-table.html "24.3.31 A Tabela VIEWS do INFORMATION_SCHEMA")
 
 ### ANSI_QUOTES
 
-[Section 13.1.18.5, “FOREIGN KEY Constraints”](create-table-foreign-keys.html "13.1.18.5 FOREIGN KEY Constraints")
+[Seção 13.1.18.5, “Constraints FOREIGN KEY”](create-table-foreign-keys.html "13.1.18.5 Constraints FOREIGN KEY")
 
-[Section 4.5.1.6, “mysql Client Tips”](mysql-tips.html "4.5.1.6 mysql Client Tips")
+[Seção 4.5.1.6, “Dicas para o Cliente mysql”](mysql-tips.html "4.5.1.6 Dicas para o Cliente mysql")
 
-[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
+[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html "1.6.1 Extensões MySQL para SQL Padrão")
 
-[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
+[Seção 4.5.4, “mysqldump — Um Programa de Backup de Database”](mysqldump.html "4.5.4 mysqldump — Um Programa de Backup de Database")
 
-[Section 8.9.3, “Optimizer Hints”](optimizer-hints.html "8.9.3 Optimizer Hints")
+[Seção 8.9.3, “Optimizer Hints”](optimizer-hints.html "8.9.3 Optimizer Hints")
 
-[Section 9.2, “Schema Object Names”](identifiers.html "9.2 Schema Object Names")
+[Seção 9.2, “Nomes de Objetos de Schema”](identifiers.html "9.2 Nomes de Objetos de Schema")
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Section 9.1.1, “String Literals”](string-literals.html "9.1.1 String Literals")
+[Seção 9.1.1, “Literais de String”](string-literals.html "9.1.1 Literais de String")
 
 ### D
 
-index top](dynindex-sqlmode.html#sqlmode-index-top)]
+[início do índice](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### DB2
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
+[Seção 1.3, “Novidades no MySQL 5.7”](mysql-nutshell.html "1.3 Novidades no MySQL 5.7")
 
 ### E
 
-index top](dynindex-sqlmode.html#sqlmode-index-top)]
+[início do índice](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### ERROR_FOR_DIVISION_BY_ZERO
 
-[Section 12.21.3, “Expression Handling”](precision-math-expressions.html "12.21.3 Expression Handling")
+[Seção 12.21.3, “Manipulação de Expressões”](precision-math-expressions.html "12.21.3 Manipulação de Expressões")
 
-[Section A.3, “MySQL 5.7 FAQ: Server SQL Mode”](faqs-sql-modes.html "A.3 MySQL 5.7 FAQ: Server SQL Mode")
+[Seção A.3, “FAQ do MySQL 5.7: Server SQL Mode”](faqs-sql-modes.html "A.3 MySQL 5.7 FAQ: Server SQL Mode")
 
-[Section 12.21.5, “Precision Math Examples”](precision-math-examples.html "12.21.5 Precision Math Examples")
+[Seção 12.21.5, “Exemplos de Matemática de Precisão”](precision-math-examples.html "12.21.5 Exemplos de Matemática de Precisão")
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
+[Seção 1.3, “Novidades no MySQL 5.7”](mysql-nutshell.html "1.3 Novidades no MySQL 5.7")
 
 ### H
 
-index top](dynindex-sqlmode.html#sqlmode-index-top)]
+[início do índice](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### HIGH_NOT_PRECEDENCE
 
-[Section 9.5, “Expressions”](expressions.html "9.5 Expressions")
+[Seção 9.5, “Expressões”](expressions.html "9.5 Expressões")
 
-[Section 12.4.1, “Operator Precedence”](operator-precedence.html "12.4.1 Operator Precedence")
+[Seção 12.4.1, “Precedência de Operadores”](operator-precedence.html "12.4.1 Precedência de Operadores")
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
 ### I
 
-index top](dynindex-sqlmode.html#sqlmode-index-top)]
+[início do índice](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### IGNORE_SPACE
 
-[Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements")
+[Seção 13.1.16, “Instruções CREATE PROCEDURE e CREATE FUNCTION”](create-procedure.html "13.1.16 Instruções CREATE PROCEDURE e CREATE FUNCTION")
 
-[Section 9.2.5, “Function Name Parsing and Resolution”](function-resolution.html "9.2.5 Function Name Parsing and Resolution")
+[Seção 9.2.5, “Parsing e Resolução de Nomes de Funções”](function-resolution.html "9.2.5 Parsing e Resolução de Nomes de Funções")
 
-[Section 4.5.1.1, “mysql Client Options”](mysql-command-options.html "4.5.1.1 mysql Client Options")
+[Seção 4.5.1.1, “Opções do Cliente mysql”](mysql-command-options.html "4.5.1.1 Opções do Cliente mysql")
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
 ### M
 
-index top](dynindex-sqlmode.html#sqlmode-index-top)]
+[início do índice](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### MAXDB
 
-[Section 11.2.1, “Date and Time Data Type Syntax”](date-and-time-type-syntax.html "11.2.1 Date and Time Data Type Syntax")
+[Seção 11.2.1, “Sintaxe de Tipo de Dados de Data e Hora”](date-and-time-type-syntax.html "11.2.1 Sintaxe de Tipo de Dados de Data e Hora")
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Section 11.2.2, “The DATE, DATETIME, and TIMESTAMP Types”](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types")
+[Seção 11.2.2, “Os Tipos DATE, DATETIME e TIMESTAMP”](datetime.html "11.2.2 Os Tipos DATE, DATETIME e TIMESTAMP")
 
-[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
+[Seção 1.3, “Novidades no MySQL 5.7”](mysql-nutshell.html "1.3 Novidades no MySQL 5.7")
 
 ### MSSQL
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
+[Seção 1.3, “Novidades no MySQL 5.7”](mysql-nutshell.html "1.3 Novidades no MySQL 5.7")
 
 ### MYSQL323
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
+[Seção 1.3, “Novidades no MySQL 5.7”](mysql-nutshell.html "1.3 Novidades no MySQL 5.7")
 
 ### MYSQL40
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
+[Seção 1.3, “Novidades no MySQL 5.7”](mysql-nutshell.html "1.3 Novidades no MySQL 5.7")
 
 ### N
 
-index top](dynindex-sqlmode.html#sqlmode-index-top)]
+[início do índice](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### NO_AUTO_CREATE_USER
 
-[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
+[Seção 13.7.1.4, “Instrução GRANT”](grant.html "13.7.1.4 Instrução GRANT")
 
-[Section A.3, “MySQL 5.7 FAQ: Server SQL Mode”](faqs-sql-modes.html "A.3 MySQL 5.7 FAQ: Server SQL Mode")
+[Seção A.3, “FAQ do MySQL 5.7: Server SQL Mode”](faqs-sql-modes.html "A.3 MySQL 5.7 FAQ: Server SQL Mode")
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
+[Seção 1.3, “Novidades no MySQL 5.7”](mysql-nutshell.html "1.3 Novidades no MySQL 5.7")
 
 ### NO_AUTO_VALUE_ON_ZERO
 
-[Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")
+[Seção 13.1.18, “Instrução CREATE TABLE”](create-table.html "13.1.18 Instrução CREATE TABLE")
 
-[Section 11.1.6, “Numeric Type Attributes”](numeric-type-attributes.html "11.1.6 Numeric Type Attributes")
+[Seção 11.1.6, “Atributos de Tipo Numérico”](numeric-type-attributes.html "11.1.6 Atributos de Tipo Numérico")
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Section 3.6.9, “Using AUTO_INCREMENT”](example-auto-increment.html "3.6.9 Using AUTO_INCREMENT")
+[Seção 3.6.9, “Usando AUTO_INCREMENT”](example-auto-increment.html "3.6.9 Usando AUTO_INCREMENT")
 
 ### NO_BACKSLASH_ESCAPES
 
-[Section 12.17.4, “Functions That Modify JSON Values”](json-modification-functions.html "12.17.4 Functions That Modify JSON Values")
+[Seção 12.17.4, “Funções Que Modificam Valores JSON”](json-modification-functions.html "12.17.4 Funções Que Modificam Valores JSON")
 
-[Section 12.8.2, “Regular Expressions”](regexp.html "12.8.2 Regular Expressions")
+[Seção 12.8.2, “Expressões Regulares”](regexp.html "12.8.2 Expressões Regulares")
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Section 12.8.1, “String Comparison Functions and Operators”](string-comparison-functions.html "12.8.1 String Comparison Functions and Operators")
+[Seção 12.8.1, “Funções e Operadores de Comparação de String”](string-comparison-functions.html "12.8.1 Funções e Operadores de Comparação de String")
 
-[Section 9.1.1, “String Literals”](string-literals.html "9.1.1 String Literals")
+[Seção 9.1.1, “Literais de String”](string-literals.html "9.1.1 Literais de String")
 
-[Section 11.5, “The JSON Data Type”](json.html "11.5 The JSON Data Type")
+[Seção 11.5, “O Tipo de Dados JSON”](json.html "11.5 O Tipo de Dados JSON")
 
 ### NO_DIR_IN_CREATE
 
-[Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")
+[Seção 13.1.18, “Instrução CREATE TABLE”](create-table.html "13.1.18 Instrução CREATE TABLE")
 
-[Section 16.4.1.11, “Replication and DIRECTORY Table Options”](replication-features-directory.html "16.4.1.11 Replication and DIRECTORY Table Options")
+[Seção 16.4.1.11, “Replicação e Opções de Tabela DIRECTORY”](replication-features-directory.html "16.4.1.11 Replicação e Opções de Tabela DIRECTORY")
 
-[Section 16.4.1.37, “Replication and Variables”](replication-features-variables.html "16.4.1.37 Replication and Variables")
+[Seção 16.4.1.37, “Replicação e Variáveis”](replication-features-variables.html "16.4.1.37 Replicação e Variáveis")
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Section 22.2.6, “Subpartitioning”](partitioning-subpartitions.html "22.2.6 Subpartitioning")
+[Seção 22.2.6, “Subpartitioning”](partitioning-subpartitions.html "22.2.6 Subpartitioning")
 
-[Section 5.4.4, “The Binary Log”](binary-log.html "5.4.4 The Binary Log")
+[Seção 5.4.4, “O Binary Log”](binary-log.html "5.4.4 O Binary Log")
 
 ### NO_ENGINE_SUBSTITUTION
 
-[Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement")
+[Seção 13.1.8, “Instrução ALTER TABLE”](alter-table.html "13.1.8 Instrução ALTER TABLE")
 
-[Section 2.10.3, “Changes in MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Changes in MySQL 5.7")
+[Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Alterações no MySQL 5.7")
 
-[Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")
+[Seção 13.1.18, “Instrução CREATE TABLE”](create-table.html "13.1.18 Instrução CREATE TABLE")
 
-[Section 5.5.1, “Installing and Uninstalling Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins")
+[Seção 5.5.1, “Instalando e Desinstalando Plugins”](plugin-loading.html "5.5.1 Instalando e Desinstalando Plugins")
 
-[Section A.3, “MySQL 5.7 FAQ: Server SQL Mode”](faqs-sql-modes.html "A.3 MySQL 5.7 FAQ: Server SQL Mode")
+[Seção A.3, “FAQ do MySQL 5.7: Server SQL Mode”](faqs-sql-modes.html "A.3 MySQL 5.7 FAQ: Server SQL Mode")
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Section 15.1, “Setting the Storage Engine”](storage-engine-setting.html "15.1 Setting the Storage Engine")
+[Seção 15.1, “Configurando a Storage Engine”](storage-engine-setting.html "15.1 Configurando a Storage Engine")
 
-[Section 16.3.3, “Using Replication with Different Source and Replica Storage Engines”](replication-solutions-diffengines.html "16.3.3 Using Replication with Different Source and Replica Storage Engines")
+[Seção 16.3.3, “Usando Replicação com Diferentes Storage Engines de Fonte e Réplica”](replication-solutions-diffengines.html "16.3.3 Usando Replicação com Diferentes Storage Engines de Fonte e Réplica")
 
-[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
+[Seção 1.3, “Novidades no MySQL 5.7”](mysql-nutshell.html "1.3 Novidades no MySQL 5.7")
 
 ### NO_FIELD_OPTIONS
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
+[Seção 1.3, “Novidades no MySQL 5.7”](mysql-nutshell.html "1.3 Novidades no MySQL 5.7")
 
 ### NO_KEY_OPTIONS
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
+[Seção 1.3, “Novidades no MySQL 5.7”](mysql-nutshell.html "1.3 Novidades no MySQL 5.7")
 
 ### NO_TABLE_OPTIONS
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
+[Seção 1.3, “Novidades no MySQL 5.7”](mysql-nutshell.html "1.3 Novidades no MySQL 5.7")
 
 ### NO_UNSIGNED_SUBTRACTION
 
-[Section 12.6.1, “Arithmetic Operators”](arithmetic-functions.html "12.6.1 Arithmetic Operators")
+[Seção 12.6.1, “Operadores Aritméticos”](arithmetic-functions.html "12.6.1 Operadores Aritméticos")
 
-[Section 12.10, “Cast Functions and Operators”](cast-functions.html "12.10 Cast Functions and Operators")
+[Seção 12.10, “Funções e Operadores CAST”](cast-functions.html "12.10 Funções e Operadores CAST")
 
-[Section 11.1.1, “Numeric Data Type Syntax”](numeric-type-syntax.html "11.1.1 Numeric Data Type Syntax")
+[Seção 11.1.1, “Sintaxe de Tipo de Dados Numéricos”](numeric-type-syntax.html "11.1.1 Sintaxe de Tipo de Dados Numéricos")
 
-[Section 11.1.7, “Out-of-Range and Overflow Handling”](out-of-range-and-overflow.html "11.1.7 Out-of-Range and Overflow Handling")
+[Seção 11.1.7, “Manipulação de Fora-do-Range e Overflow”](out-of-range-and-overflow.html "11.1.7 Manipulação de Fora-do-Range e Overflow")
 
-[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
+[Seção 22.6, “Restrições e Limitações em Partitioning”](partitioning-limitations.html "22.6 Restrições e Limitações em Partitioning")
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
 ### NO_ZERO_DATE
 
-[Section 11.2.6, “Automatic Initialization and Updating for TIMESTAMP and DATETIME”](timestamp-initialization.html "11.2.6 Automatic Initialization and Updating for TIMESTAMP and DATETIME")
+[Seção 11.2.6, “Inicialização e Atualização Automática para TIMESTAMP e DATETIME”](timestamp-initialization.html "11.2.6 Inicialização e Atualização Automática para TIMESTAMP e DATETIME")
 
-[Section 12.10, “Cast Functions and Operators”](cast-functions.html "12.10 Cast Functions and Operators")
+[Seção 12.10, “Funções e Operadores CAST”](cast-functions.html "12.10 Funções e Operadores CAST")
 
-[Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")
+[Seção 13.1.18, “Instrução CREATE TABLE”](create-table.html "13.1.18 Instrução CREATE TABLE")
 
-[Section 11.2, “Date and Time Data Types”](date-and-time-types.html "11.2 Date and Time Data Types")
+[Seção 11.2, “Tipos de Dados de Data e Hora”](date-and-time-types.html "11.2 Tipos de Dados de Data e Hora")
 
-[Section 12.7, “Date and Time Functions”](date-and-time-functions.html "12.7 Date and Time Functions")
+[Seção 12.7, “Funções de Data e Hora”](date-and-time-functions.html "12.7 Funções de Data e Hora")
 
-[Section 13.2.6, “LOAD DATA Statement”](load-data.html "13.2.6 LOAD DATA Statement")
+[Seção 13.2.6, “Instrução LOAD DATA”](load-data.html "13.2.6 Instrução LOAD DATA")
 
-[Section A.3, “MySQL 5.7 FAQ: Server SQL Mode”](faqs-sql-modes.html "A.3 MySQL 5.7 FAQ: Server SQL Mode")
+[Seção A.3, “FAQ do MySQL 5.7: Server SQL Mode”](faqs-sql-modes.html "A.3 MySQL 5.7 FAQ: Server SQL Mode")
 
-[Section B.3.4.2, “Problems Using DATE Columns”](using-date.html "B.3.4.2 Problems Using DATE Columns")
+[Seção B.3.4.2, “Problemas ao Usar Colunas DATE”](using-date.html "B.3.4.2 Problemas ao Usar Colunas DATE")
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
+[Seção 5.1.7, “Variáveis de Sistema do Servidor”](server-system-variables.html "5.1.7 Variáveis de Sistema do Servidor")
 
-[Section 11.2.2, “The DATE, DATETIME, and TIMESTAMP Types”](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types")
+[Seção 11.2.2, “Os Tipos DATE, DATETIME e TIMESTAMP”](datetime.html "11.2.2 Os Tipos DATE, DATETIME e TIMESTAMP")
 
-[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
+[Seção 1.3, “Novidades no MySQL 5.7”](mysql-nutshell.html "1.3 Novidades no MySQL 5.7")
 
 ### NO_ZERO_IN_DATE
 
-[Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")
+[Seção 13.1.18, “Instrução CREATE TABLE”](create-table.html "13.1.18 Instrução CREATE TABLE")
 
-[Section 11.2, “Date and Time Data Types”](date-and-time-types.html "11.2 Date and Time Data Types")
+[Seção 11.2, “Tipos de Dados de Data e Hora”](date-and-time-types.html "11.2 Tipos de Dados de Data e Hora")
 
-[Section 13.2.6, “LOAD DATA Statement”](load-data.html "13.2.6 LOAD DATA Statement")
+[Seção 13.2.6, “Instrução LOAD DATA”](load-data.html "13.2.6 Instrução LOAD DATA")
 
-[Section A.3, “MySQL 5.7 FAQ: Server SQL Mode”](faqs-sql-modes.html "A.3 MySQL 5.7 FAQ: Server SQL Mode")
+[Seção A.3, “FAQ do MySQL 5.7: Server SQL Mode”](faqs-sql-modes.html "A.3 MySQL 5.7 FAQ: Server SQL Mode")
 
-[Section B.3.4.2, “Problems Using DATE Columns”](using-date.html "B.3.4.2 Problems Using DATE Columns")
+[Seção B.3.4.2, “Problemas ao Usar Colunas DATE”](using-date.html "B.3.4.2 Problemas ao Usar Colunas DATE")
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
+[Seção 1.3, “Novidades no MySQL 5.7”](mysql-nutshell.html "1.3 Novidades no MySQL 5.7")
 
 ### O
 
-index top](dynindex-sqlmode.html#sqlmode-index-top)]
+[início do índice](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### ONLY_FULL_GROUP_BY
 
-[Section 2.10.3, “Changes in MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Changes in MySQL 5.7")
+[Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Alterações no MySQL 5.7")
 
-[Section 3.3.4.8, “Counting Rows”](counting-rows.html "3.3.4.8 Counting Rows")
+[Seção 3.3.4.8, “Contagem de Linhas”](counting-rows.html "3.3.4.8 Contagem de Linhas")
 
-[Section 12.19.2, “GROUP BY Modifiers”](group-by-modifiers.html "12.19.2 GROUP BY Modifiers")
+[Seção 12.19.2, “Modificadores GROUP BY”](group-by-modifiers.html "12.19.2 Modificadores GROUP BY")
 
-[Section 12.20, “Miscellaneous Functions”](miscellaneous-functions.html "12.20 Miscellaneous Functions")
+[Seção 12.20, “Funções Diversas”](miscellaneous-functions.html "12.20 Funções Diversas")
 
-[Section A.3, “MySQL 5.7 FAQ: Server SQL Mode”](faqs-sql-modes.html "A.3 MySQL 5.7 FAQ: Server SQL Mode")
+[Seção A.3, “FAQ do MySQL 5.7: Server SQL Mode”](faqs-sql-modes.html "A.3 MySQL 5.7 FAQ: Server SQL Mode")
 
-[Section 12.19.3, “MySQL Handling of GROUP BY”](group-by-handling.html "12.19.3 MySQL Handling of GROUP BY")
+[Seção 12.19.3, “Manipulação de GROUP BY pelo MySQL”](group-by-handling.html "12.19.3 Manipulação de GROUP BY pelo MySQL")
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
+[Seção 1.3, “Novidades no MySQL 5.7”](mysql-nutshell.html "1.3 Novidades no MySQL 5.7")
 
 ### ORACLE
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
+[Seção 1.3, “Novidades no MySQL 5.7”](mysql-nutshell.html "1.3 Novidades no MySQL 5.7")
 
 ### P
 
-index top](dynindex-sqlmode.html#sqlmode-index-top)]
+[início do índice](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### PAD_CHAR_TO_FULL_LENGTH
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Section 11.3.1, “String Data Type Syntax”](string-type-syntax.html "11.3.1 String Data Type Syntax")
+[Seção 11.3.1, “Sintaxe de Tipo de Dados String”](string-type-syntax.html "11.3.1 Sintaxe de Tipo de Dados String")
 
-[Section 11.3.2, “The CHAR and VARCHAR Types”](char.html "11.3.2 The CHAR and VARCHAR Types")
+[Seção 11.3.2, “Os Tipos CHAR e VARCHAR”](char.html "11.3.2 Os Tipos CHAR e VARCHAR")
 
 ### PIPES_AS_CONCAT
 
-[Section 9.5, “Expressions”](expressions.html "9.5 Expressions")
+[Seção 9.5, “Expressões”](expressions.html "9.5 Expressões")
 
-[Section 12.4.3, “Logical Operators”](logical-operators.html "12.4.3 Logical Operators")
+[Seção 12.4.3, “Operadores Lógicos”](logical-operators.html "12.4.3 Operadores Lógicos")
 
-[Section 12.4.1, “Operator Precedence”](operator-precedence.html "12.4.1 Operator Precedence")
+[Seção 12.4.1, “Precedência de Operadores”](operator-precedence.html "12.4.1 Precedência de Operadores")
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
 ### POSTGRESQL
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
+[Seção 1.3, “Novidades no MySQL 5.7”](mysql-nutshell.html "1.3 Novidades no MySQL 5.7")
 
 ### R
 
-index top](dynindex-sqlmode.html#sqlmode-index-top)]
+[início do índice](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### REAL_AS_FLOAT
 
-[Section 11.1.1, “Numeric Data Type Syntax”](numeric-type-syntax.html "11.1.1 Numeric Data Type Syntax")
+[Seção 11.1.1, “Sintaxe de Tipo de Dados Numéricos”](numeric-type-syntax.html "11.1.1 Sintaxe de Tipo de Dados Numéricos")
 
-[Section 11.1, “Numeric Data Types”](numeric-types.html "11.1 Numeric Data Types")
+[Seção 11.1, “Tipos de Dados Numéricos”](numeric-types.html "11.1 Tipos de Dados Numéricos")
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
 ### S
 
-index top](dynindex-sqlmode.html#sqlmode-index-top)]
+[início do índice](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### STRICT_ALL_TABLES
 
-[Section 1.6.3.3, “Constraints on Invalid Data”](constraint-invalid-data.html "1.6.3.3 Constraints on Invalid Data")
+[Seção 1.6.3.3, “Constraints em Dados Inválidos”](constraint-invalid-data.html "1.6.3.3 Constraints em Dados Inválidos")
 
-[Section 12.21.3, “Expression Handling”](precision-math-expressions.html "12.21.3 Expression Handling")
+[Seção 12.21.3, “Manipulação de Expressões”](precision-math-expressions.html "12.21.3 Manipulação de Expressões")
 
-[Section A.3, “MySQL 5.7 FAQ: Server SQL Mode”](faqs-sql-modes.html "A.3 MySQL 5.7 FAQ: Server SQL Mode")
+[Seção A.3, “FAQ do MySQL 5.7: Server SQL Mode”](faqs-sql-modes.html "A.3 MySQL 5.7 FAQ: Server SQL Mode")
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Section 16.4.3, “Upgrading a Replication Topology”](replication-upgrade.html "16.4.3 Upgrading a Replication Topology")
+[Seção 16.4.3, “Atualizando uma Topologia de Replicação”](replication-upgrade.html "16.4.3 Atualizando uma Topologia de Replicação")
 
 ### STRICT_TRANS_TABLES
 
-[Section 2.10.3, “Changes in MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Changes in MySQL 5.7")
+[Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Alterações no MySQL 5.7")
 
-[Section 1.6.3.3, “Constraints on Invalid Data”](constraint-invalid-data.html "1.6.3.3 Constraints on Invalid Data")
+[Seção 1.6.3.3, “Constraints em Dados Inválidos”](constraint-invalid-data.html "1.6.3.3 Constraints em Dados Inválidos")
 
-[Section 12.21.3, “Expression Handling”](precision-math-expressions.html "12.21.3 Expression Handling")
+[Seção 12.21.3, “Manipulação de Expressões”](precision-math-expressions.html "12.21.3 Manipulação de Expressões")
 
-[Section A.3, “MySQL 5.7 FAQ: Server SQL Mode”](faqs-sql-modes.html "A.3 MySQL 5.7 FAQ: Server SQL Mode")
+[Seção A.3, “FAQ do MySQL 5.7: Server SQL Mode”](faqs-sql-modes.html "A.3 MySQL 5.7 FAQ: Server SQL Mode")
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Section 16.4.3, “Upgrading a Replication Topology”](replication-upgrade.html "16.4.3 Upgrading a Replication Topology")
+[Seção 16.4.3, “Atualizando uma Topologia de Replicação”](replication-upgrade.html "16.4.3 Atualizando uma Topologia de Replicação")
 
-[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
+[Seção 1.3, “Novidades no MySQL 5.7”](mysql-nutshell.html "1.3 Novidades no MySQL 5.7")
 
 ### T
 
-index top](dynindex-sqlmode.html#sqlmode-index-top)]
+[início do índice](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### TRADITIONAL
 
-[Section 11.2.6, “Automatic Initialization and Updating for TIMESTAMP and DATETIME”](timestamp-initialization.html "11.2.6 Automatic Initialization and Updating for TIMESTAMP and DATETIME")
+[Seção 11.2.6, “Inicialização e Atualização Automática para TIMESTAMP e DATETIME”](timestamp-initialization.html "11.2.6 Inicialização e Atualização Automática para TIMESTAMP e DATETIME")
 
-[Section 12.21.3, “Expression Handling”](precision-math-expressions.html "12.21.3 Expression Handling")
+[Seção 12.21.3, “Manipulação de Expressões”](precision-math-expressions.html "12.21.3 Manipulação de Expressões")
 
-[Section A.3, “MySQL 5.7 FAQ: Server SQL Mode”](faqs-sql-modes.html "A.3 MySQL 5.7 FAQ: Server SQL Mode")
+[Seção A.3, “FAQ do MySQL 5.7: Server SQL Mode”](faqs-sql-modes.html "A.3 MySQL 5.7 FAQ: Server SQL Mode")
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
+[Seção 5.1.7, “Variáveis de Sistema do Servidor”](server-system-variables.html "5.1.7 Variáveis de Sistema do Servidor")

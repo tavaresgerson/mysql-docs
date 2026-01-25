@@ -1,45 +1,45 @@
-#### 26.4.3.6 The host_summary_by_statement_type and x$host_summary_by_statement_type Views
+#### 26.4.3.6 As Views host_summary_by_statement_type e x$host_summary_by_statement_type
 
-These views summarize informaion about statements executed, grouped by host and statement type. By default, rows are sorted by host and descending total latency.
+Essas views resumem informações sobre Statements executados, agrupados por Host e Statement Type. Por padrão, as linhas são ordenadas por Host e pela latência total (total latency) decrescente.
 
-The `host_summary_by_statement_type` and `x$host_summary_by_statement_type` views have these columns:
+As views `host_summary_by_statement_type` e `x$host_summary_by_statement_type` possuem as seguintes colunas:
 
 * `host`
 
-  The host from which the client connected. Rows for which the `HOST` column in the underlying Performance Schema table is `NULL` are assumed to be for background threads and are reported with a host name of `background`.
+  O Host a partir do qual o cliente se conectou. Linhas para as quais a coluna `HOST` na tabela subjacente do Performance Schema é `NULL` são consideradas para Background Threads e são reportadas com o nome de Host `background`.
 
 * `statement`
 
-  The final component of the statement event name.
+  O componente final do nome do Statement event.
 
 * `total`
 
-  The total number of occurrences of the statement event for the host.
+  O número total de ocorrências do Statement event para o Host.
 
 * `total_latency`
 
-  The total wait time of timed occurrences of the statement event for the host.
+  O tempo de espera total das ocorrências cronometradas (timed occurrences) do Statement event para o Host.
 
 * `max_latency`
 
-  The maximum single wait time of timed occurrences of the statement event for the host.
+  O tempo máximo de espera individual das ocorrências cronometradas do Statement event para o Host.
 
 * `lock_latency`
 
-  The total time waiting for locks by timed occurrences of the statement event for the host.
+  O tempo total de espera por Locks por ocorrências cronometradas do Statement event para o Host.
 
 * `rows_sent`
 
-  The total number of rows returned by occurrences of the statement event for the host.
+  O número total de linhas retornadas (rows returned) pelas ocorrências do Statement event para o Host.
 
 * `rows_examined`
 
-  The total number of rows read from storage engines by occurrences of the statement event for the host.
+  O número total de linhas lidas (rows examined) pelos Storage Engines nas ocorrências do Statement event para o Host.
 
 * `rows_affected`
 
-  The total number of rows affected by occurrences of the statement event for the host.
+  O número total de linhas afetadas (rows affected) pelas ocorrências do Statement event para o Host.
 
 * `full_scans`
 
-  The total number of full table scans by occurrences of the statement event for the host.
+  O número total de Full Table Scans pelas ocorrências do Statement event para o Host.

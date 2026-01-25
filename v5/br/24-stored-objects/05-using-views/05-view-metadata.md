@@ -1,7 +1,7 @@
-### 23.5.5 View Metadata
+### 23.5.5 Metadados de View
 
-To obtain metadata about views:
+Para obter metadados sobre views:
 
-* Query the `VIEWS` table of the `INFORMATION_SCHEMA` database. See Section 24.3.31, “The INFORMATION_SCHEMA VIEWS Table”.
+* Consulte a tabela `VIEWS` do database `INFORMATION_SCHEMA`. Consulte a Seção 24.3.31, “A Tabela `INFORMATION_SCHEMA VIEWS`”.
 
-* Use the `SHOW CREATE VIEW` statement. See Section 13.7.5.13, “SHOW CREATE VIEW Statement”.
+* Use a instrução `SHOW CREATE VIEW`. Consulte a Seção 13.7.5.13, “Instrução SHOW CREATE VIEW”.

@@ -1,30 +1,30 @@
-### 12.6.1 Arithmetic Operators
+### 12.6.1 Operadores Aritméticos
 
-**Table 12.9 Arithmetic Operators**
+**Tabela 12.9 Operadores Aritméticos**
 
-<table frame="box" rules="all" summary="A reference that lists arithmetic operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>%</code>, <code>MOD</code></td> <td> Modulo operator </td> </tr><tr><td><code>*</code></td> <td> Multiplication operator </td> </tr><tr><td><code>+</code></td> <td> Addition operator </td> </tr><tr><td><code>-</code></td> <td> Minus operator </td> </tr><tr><td><code>-</code></td> <td> Change the sign of the argument </td> </tr><tr><td><code>/</code></td> <td> Division operator </td> </tr><tr><td><code>DIV</code></td> <td> Integer division </td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista operadores aritméticos."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>%</code>, <code>MOD</code></td> <td> Operador de módulo </td> </tr><tr><td><code>*</code></td> <td> Operador de multiplicação </td> </tr><tr><td><code>+</code></td> <td> Operador de adição </td> </tr><tr><td><code>-</code></td> <td> Operador de subtração </td> </tr><tr><td><code>-</code></td> <td> Muda o sinal do argumento </td> </tr><tr><td><code>/</code></td> <td> Operador de divisão </td> </tr><tr><td><code>DIV</code></td> <td> Divisão inteira </td> </tr> </tbody></table>
 
-The usual arithmetic operators are available. The result is determined according to the following rules:
+Os operadores aritméticos usuais estão disponíveis. O resultado é determinado de acordo com as seguintes regras:
 
-* In the case of `-`, `+`, and `*`, the result is calculated with `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") (64-bit) precision if both operands are integers.
+* No caso de `-`, `+` e `*`, o resultado é calculado com precisão `BIGINT` (64-bit) se ambos os operandos forem integers.
 
-* If both operands are integers and any of them are unsigned, the result is an unsigned integer. For subtraction, if the `NO_UNSIGNED_SUBTRACTION` SQL mode is enabled, the result is signed even if any operand is unsigned.
+* Se ambos os operandos forem integers e qualquer um deles for unsigned, o resultado é um integer unsigned. Para a subtração, se o modo SQL `NO_UNSIGNED_SUBTRACTION` estiver habilitado, o resultado é signed mesmo que qualquer operando seja unsigned.
 
-* If any of the operands of a `+`, `-`, `/`, `*`, `%` is a real or string value, the precision of the result is the precision of the operand with the maximum precision.
+* Se qualquer um dos operandos de `+`, `-`, `/`, `*`, `%` for um valor real ou string, a precisão do resultado é a precisão do operando com a precisão máxima.
 
-* In division performed with `/`, the scale of the result when using two exact-value operands is the scale of the first operand plus the value of the `div_precision_increment` system variable (which is 4 by default). For example, the result of the expression `5.05 / 0.014` has a scale of six decimal places (`360.714286`).
+* Na divisão realizada com `/`, a scale do resultado ao usar dois operandos de valor exato é a scale do primeiro operando mais o valor da variável de sistema `div_precision_increment` (que é 4 por padrão). Por exemplo, o resultado da expressão `5.05 / 0.014` tem uma scale de seis casas decimais (`360.714286`).
 
-These rules are applied for each operation, such that nested calculations imply the precision of each component. Hence, `(14620 / 9432456) / (24250 / 9432456)`, resolves first to `(0.0014) / (0.0026)`, with the final result having 8 decimal places (`0.60288653`).
+Essas regras são aplicadas para cada operação, de modo que cálculos aninhados implicam a precisão de cada componente. Assim, `(14620 / 9432456) / (24250 / 9432456)` se resolve primeiro para `(0.0014) / (0.0026)`, com o resultado final tendo 8 casas decimais (`0.60288653`).
 
-Because of these rules and the way they are applied, care should be taken to ensure that components and subcomponents of a calculation use the appropriate level of precision. See Section 12.10, “Cast Functions and Operators”.
+Devido a essas regras e à maneira como são aplicadas, deve-se ter cuidado para garantir que os componentes e subcomponentes de um cálculo usem o nível de precisão apropriado. Consulte a Seção 12.10, “Funções e Operadores Cast”.
 
-For information about handling of overflow in numeric expression evaluation, see Section 11.1.7, “Out-of-Range and Overflow Handling”.
+Para obter informações sobre o tratamento de overflow na avaliação de expressões numéricas, consulte a Seção 11.1.7, “Tratamento de Valores Fora do Range e Overflow”.
 
-Arithmetic operators apply to numbers. For other types of values, alternative operations may be available. For example, to add date values, use `DATE_ADD()`; see Section 12.7, “Date and Time Functions”.
+Os operadores aritméticos se aplicam a números. Para outros tipos de valores, operações alternativas podem estar disponíveis. Por exemplo, para adicionar valores de date, use `DATE_ADD()`; consulte a Seção 12.7, “Funções de Data e Hora”.
 
 * `+`
 
-  Addition:
+  Adição:
 
   ```sql
   mysql> SELECT 3+5;
@@ -33,7 +33,7 @@ Arithmetic operators apply to numbers. For other types of values, alternative op
 
 * `-`
 
-  Subtraction:
+  Subtração:
 
   ```sql
   mysql> SELECT 3-5;
@@ -42,20 +42,20 @@ Arithmetic operators apply to numbers. For other types of values, alternative op
 
 * `-`
 
-  Unary minus. This operator changes the sign of the operand.
+  Menos unário. Este operador muda o sinal do operando.
 
   ```sql
   mysql> SELECT - 2;
           -> -2
   ```
 
-  Note
+  Nota
 
-  If this operator is used with a `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), the return value is also a `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"). This means that you should avoid using `-` on integers that may have the value of −263.
+  Se este operador for usado com um `BIGINT`, o valor de retorno também é um `BIGINT`. Isso significa que você deve evitar usar `-` em integers que possam ter o valor de −263.
 
 * `*`
 
-  Multiplication:
+  Multiplicação:
 
   ```sql
   mysql> SELECT 3*5;
@@ -66,31 +66,31 @@ Arithmetic operators apply to numbers. For other types of values, alternative op
           -> out-of-range error
   ```
 
-  The last expression produces an error because the result of the integer multiplication exceeds the 64-bit range of `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") calculations. (See Section 11.1, “Numeric Data Types”.)
+  A última expressão produz um erro porque o resultado da multiplicação de integers excede o range de 64 bits de cálculos `BIGINT`. (Consulte a Seção 11.1, “Tipos de Dados Numéricos”.)
 
 * `/`
 
-  Division:
+  Divisão:
 
   ```sql
   mysql> SELECT 3/5;
           -> 0.60
   ```
 
-  Division by zero produces a `NULL` result:
+  A divisão por zero produz um resultado `NULL`:
 
   ```sql
   mysql> SELECT 102/(1-1);
           -> NULL
   ```
 
-  A division is calculated with `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") arithmetic only if performed in a context where its result is converted to an integer.
+  Uma divisão é calculada com aritmética `BIGINT` apenas se for realizada em um contexto onde seu resultado é convertido para um integer.
 
 * `DIV`
 
-  Integer division. Discards from the division result any fractional part to the right of the decimal point.
+  Divisão inteira. Descarta do resultado da divisão qualquer parte fracionária à direita do ponto decimal.
 
-  If either operand has a noninteger type, the operands are converted to `DECIMAL` - DECIMAL, NUMERIC") and divided using `DECIMAL` - DECIMAL, NUMERIC") arithmetic before converting the result to `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"). If the result exceeds `BIGINT` range, an error occurs.
+  Se qualquer operando tiver um tipo não integer, os operandos são convertidos para `DECIMAL` e divididos usando aritmética `DECIMAL` antes de converter o resultado para `BIGINT`. Se o resultado exceder o range `BIGINT`, ocorre um erro.
 
   ```sql
   mysql> SELECT 5 DIV 2, -5 DIV 2, 5 DIV -2, -5 DIV -2;
@@ -99,4 +99,4 @@ Arithmetic operators apply to numbers. For other types of values, alternative op
 
 * `N % M`, `N MOD M`
 
-  Modulo operation. Returns the remainder of *`N`* divided by *`M`*. For more information, see the description for the `MOD()` function in Section 12.6.2, “Mathematical Functions”.
+  Operação de módulo. Retorna o resto de *`N`* dividido por *`M`*. Para obter mais informações, consulte a descrição da função `MOD()` na Seção 12.6.2, “Funções Matemáticas”.

@@ -1,6 +1,6 @@
-### 25.4.9 Naming Instruments or Consumers for Filtering Operations
+### 25.4.9 Nomeando Instruments ou Consumers para Operações de Filtragem
 
-Names given for filtering operations can be as specific or general as required. To indicate a single instrument or consumer, specify its name in full:
+Nomes fornecidos para operações de filtragem podem ser tão específicos ou gerais quanto necessário. Para indicar um único instrument ou consumer, especifique seu nome por completo:
 
 ```sql
 UPDATE performance_schema.setup_instruments
@@ -12,7 +12,7 @@ SET ENABLED = 'NO'
 WHERE NAME = 'events_waits_current';
 ```
 
-To specify a group of instruments or consumers, use a pattern that matches the group members:
+Para especificar um grupo de instruments ou consumers, use um pattern que corresponda aos membros do grupo:
 
 ```sql
 UPDATE performance_schema.setup_instruments
@@ -24,15 +24,15 @@ SET ENABLED = 'NO'
 WHERE NAME LIKE '%history%';
 ```
 
-If you use a pattern, it should be chosen so that it matches all the items of interest and no others. For example, to select all file I/O instruments, it is better to use a pattern that includes the entire instrument name prefix:
+Se você usar um pattern, ele deve ser escolhido de forma que corresponda a todos os itens de interesse e a nenhum outro. Por exemplo, para selecionar todos os instruments de I/O de arquivo (file I/O), é melhor usar um pattern que inclua todo o prefixo do nome do instrument:
 
 ```sql
 ... WHERE NAME LIKE 'wait/io/file/%';
 ```
 
-The pattern `'%/file/%'` matches other instruments that have an element of `'/file/'` anywhere in the name. Even less suitable is the pattern `'%file%'` because it matches instruments with `'file'` anywhere in the name, such as `wait/synch/mutex/innodb/file_open_mutex`.
+O pattern `'%/file/%'` corresponde a outros instruments que têm um elemento de `'/file/'` em qualquer lugar do nome. O pattern `'%file%'` é ainda menos adequado, pois corresponde a instruments com `'file'` em qualquer lugar do nome, como `wait/synch/mutex/innodb/file_open_mutex`.
 
-To check which instrument or consumer names a pattern matches, perform a simple test:
+Para verificar a quais nomes de instrument ou consumer um pattern corresponde, realize um teste simples:
 
 ```sql
 SELECT NAME FROM performance_schema.setup_instruments
@@ -42,4 +42,4 @@ SELECT NAME FROM performance_schema.setup_consumers
 WHERE NAME LIKE 'pattern';
 ```
 
-For information about the types of names that are supported, see [Section 25.6, “Performance Schema Instrument Naming Conventions”](performance-schema-instrument-naming.html "25.6 Performance Schema Instrument Naming Conventions").
+Para obter informações sobre os tipos de nomes suportados, consulte [Seção 25.6, “Convenções de Nomenclatura de Instruments do Performance Schema”](performance-schema-instrument-naming.html "25.6 Performance Schema Instrument Naming Conventions").

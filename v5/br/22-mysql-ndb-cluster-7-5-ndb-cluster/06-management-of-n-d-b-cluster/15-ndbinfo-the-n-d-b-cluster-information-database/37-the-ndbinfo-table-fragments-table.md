@@ -1,69 +1,69 @@
-#### 21.6.15.37 The ndbinfo table_fragments Table
+#### 21.6.15.37 A Tabela ndbinfo table_fragments
 
-The `table_fragments` table provides information about the fragmentation, partitioning, distribution, and (internal) replication of `NDB` tables.
+A tabela `table_fragments` fornece informações sobre a fragmentação, o partitioning, a distribuição e a replication (interna) de tabelas `NDB`.
 
-The `table_fragments` table contains the following columns:
+A tabela `table_fragments` contém as seguintes colunas:
 
 * `node_id`
 
-  Node ID ([`DIH`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbdih.html) master)
+  ID do Node (master [`DIH`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbdih.html))
 
 * `table_id`
 
-  Table ID
+  ID da Tabela
 
 * `partition_id`
 
-  Partition ID
+  ID da Partition
 
 * `fragment_id`
 
-  Fragment ID (same as partition ID unless table is fully replicated)
+  ID do Fragment (o mesmo que o ID da Partition, a menos que a tabela esteja totalmente replicada)
 
 * `partition_order`
 
-  Order of fragment in partition
+  Ordem do fragment na partition
 
 * `log_part_id`
 
-  Log part ID of fragment
+  ID da parte do Log do fragment
 
 * `no_of_replicas`
 
-  Number of fragment replicas
+  Número de réplicas do fragment
 
 * `current_primary`
 
-  Current primary node ID
+  ID do Node primary atual
 
 * `preferred_primary`
 
-  Preferred primary node ID
+  ID do Node primary preferencial
 
 * `current_first_backup`
 
-  Current first backup node ID
+  ID do Node de primeiro backup atual
 
 * `current_second_backup`
 
-  Current second backup node ID
+  ID do Node de segundo backup atual
 
 * `current_third_backup`
 
-  Current third backup node ID
+  ID do Node de terceiro backup atual
 
 * `num_alive_replicas`
 
-  Current number of live fragment replicas
+  Número atual de réplicas de fragment ativas (`live`)
 
 * `num_dead_replicas`
 
-  Current number of dead fragment replicas
+  Número atual de réplicas de fragment inativas (`dead`)
 
 * `num_lcp_replicas`
 
-  Number of fragment replicas remaining to be checkpointed
+  Número de réplicas de fragment restantes para serem submetidas a Checkpoint
 
-##### Notes
+##### Notas
 
-The `table_fragments` table was added in NDB 7.5.4.
+A tabela `table_fragments` foi adicionada no NDB 7.5.4.

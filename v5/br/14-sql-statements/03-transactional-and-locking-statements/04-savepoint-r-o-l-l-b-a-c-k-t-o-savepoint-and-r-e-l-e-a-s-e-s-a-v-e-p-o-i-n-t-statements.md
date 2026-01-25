@@ -1,4 +1,4 @@
-### 13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements
+### 13.3.4 Instruções SAVEPOINT, ROLLBACK TO SAVEPOINT e RELEASE SAVEPOINT
 
 ```sql
 SAVEPOINT identifier
@@ -6,20 +6,20 @@ ROLLBACK [WORK] TO [SAVEPOINT] identifier
 RELEASE SAVEPOINT identifier
 ```
 
-`InnoDB` supports the SQL statements [`SAVEPOINT`](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements"), [`ROLLBACK TO SAVEPOINT`](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements"), [`RELEASE SAVEPOINT`](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements") and the optional `WORK` keyword for [`ROLLBACK`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements").
+O `InnoDB` suporta as instruções SQL [`SAVEPOINT`](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements"), [`ROLLBACK TO SAVEPOINT`](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements"), [`RELEASE SAVEPOINT`](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements") e a palavra-chave opcional `WORK` para [`ROLLBACK`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements").
 
-The [`SAVEPOINT`](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements") statement sets a named transaction savepoint with a name of *`identifier`*. If the current transaction has a savepoint with the same name, the old savepoint is deleted and a new one is set.
+A instrução [`SAVEPOINT`](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements") define um SAVEPOINT de TRANSACTION nomeado com o nome *`identifier`*. Se a TRANSACTION atual tiver um SAVEPOINT com o mesmo nome, o SAVEPOINT antigo é excluído e um novo é definido.
 
-The [`ROLLBACK TO SAVEPOINT`](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements") statement rolls back a transaction to the named savepoint without terminating the transaction. Modifications that the current transaction made to rows after the savepoint was set are undone in the rollback, but `InnoDB` does *not* release the row locks that were stored in memory after the savepoint. (For a new inserted row, the lock information is carried by the transaction ID stored in the row; the lock is not separately stored in memory. In this case, the row lock is released in the undo.) Savepoints that were set at a later time than the named savepoint are deleted.
+A instrução [`ROLLBACK TO SAVEPOINT`](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements") reverte (ROLLBACK) uma TRANSACTION para o SAVEPOINT nomeado sem encerrar a TRANSACTION. As modificações que a TRANSACTION atual fez nas linhas após o SAVEPOINT ter sido definido são desfeitas no ROLLBACK, mas o `InnoDB` *não* libera os row Locks que foram armazenados na memória após o SAVEPOINT. (Para uma nova linha inserida, a informação do Lock é carregada pelo ID da TRANSACTION armazenado na linha; o Lock não é armazenado separadamente na memória. Neste caso, o row Lock é liberado no undo.) SAVEPOINTs que foram definidos posteriormente ao SAVEPOINT nomeado são excluídos.
 
-If the [`ROLLBACK TO SAVEPOINT`](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements") statement returns the following error, it means that no savepoint with the specified name exists:
+Se a instrução [`ROLLBACK TO SAVEPOINT`](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements") retornar o seguinte erro, isso significa que não existe SAVEPOINT com o nome especificado:
 
 ```sql
 ERROR 1305 (42000): SAVEPOINT identifier does not exist
 ```
 
-The [`RELEASE SAVEPOINT`](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements") statement removes the named savepoint from the set of savepoints of the current transaction. No commit or rollback occurs. It is an error if the savepoint does not exist.
+A instrução [`RELEASE SAVEPOINT`](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements") remove o SAVEPOINT nomeado do conjunto de SAVEPOINTs da TRANSACTION atual. Nenhum COMMIT ou ROLLBACK ocorre. É um erro se o SAVEPOINT não existir.
 
-All savepoints of the current transaction are deleted if you execute a [`COMMIT`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements"), or a [`ROLLBACK`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") that does not name a savepoint.
+Todos os SAVEPOINTs da TRANSACTION atual são excluídos se você executar um [`COMMIT`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements"), ou um [`ROLLBACK`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") que não nomeie um SAVEPOINT.
 
-A new savepoint level is created when a stored function is invoked or a trigger is activated. The savepoints on previous levels become unavailable and thus do not conflict with savepoints on the new level. When the function or trigger terminates, any savepoints it created are released and the previous savepoint level is restored.
+Um novo nível de SAVEPOINT é criado quando uma stored function é invocada ou um trigger é ativado. Os SAVEPOINTs nos níveis anteriores tornam-se indisponíveis e, portanto, não entram em conflito com os SAVEPOINTs no novo nível. Quando a function ou o trigger é encerrado, quaisquer SAVEPOINTs que ele tenha criado são liberados e o nível de SAVEPOINT anterior é restaurado.

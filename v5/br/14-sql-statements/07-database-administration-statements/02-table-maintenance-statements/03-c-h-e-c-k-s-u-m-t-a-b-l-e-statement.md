@@ -1,27 +1,27 @@
-#### 13.7.2.3 CHECKSUM TABLE Statement
+#### 13.7.2.3 Instrução CHECKSUM TABLE
 
 ```sql
 CHECKSUM TABLE tbl_name [, tbl_name] ... [QUICK | EXTENDED]
 ```
 
-[`CHECKSUM TABLE`](checksum-table.html "13.7.2.3 CHECKSUM TABLE Statement") reports a [checksum](glossary.html#glos_checksum "checksum") for the contents of a table. You can use this statement to verify that the contents are the same before and after a backup, rollback, or other operation that is intended to put the data back to a known state.
+A instrução [`CHECKSUM TABLE`](checksum-table.html "13.7.2.3 CHECKSUM TABLE Statement") reporta um [checksum](glossary.html#glos_checksum "checksum") para o conteúdo de uma table. Você pode usar esta instrução para verificar se os conteúdos são os mesmos antes e depois de um backup, rollback, ou outra operação que visa retornar os dados a um estado conhecido.
 
-This statement requires the [`SELECT`](privileges-provided.html#priv_select) privilege for the table.
+Esta instrução requer o privilégio [`SELECT`](privileges-provided.html#priv_select) para a table.
 
-This statement is not supported for views. If you run [`CHECKSUM TABLE`](checksum-table.html "13.7.2.3 CHECKSUM TABLE Statement") against a view, the `Checksum` value is always `NULL`, and a warning is returned.
+Esta instrução não é suportada para views. Se você executar [`CHECKSUM TABLE`](checksum-table.html "13.7.2.3 CHECKSUM TABLE Statement") contra uma view, o valor de `Checksum` é sempre `NULL`, e um warning é retornado.
 
-For a nonexistent table, [`CHECKSUM TABLE`](checksum-table.html "13.7.2.3 CHECKSUM TABLE Statement") returns `NULL` and generates a warning.
+Para uma table inexistente, [`CHECKSUM TABLE`](checksum-table.html "13.7.2.3 CHECKSUM TABLE Statement") retorna `NULL` e gera um warning.
 
-During the checksum operation, the table is locked with a read lock for `InnoDB` and `MyISAM`.
+Durante a operação de checksum, a table é travada com um read lock para `InnoDB` e `MyISAM`.
 
-##### Performance Considerations
+##### Considerações de Performance
 
-By default, the entire table is read row by row and the checksum is calculated. For large tables, this could take a long time, thus you would only perform this operation occasionally. This row-by-row calculation is what you get with the `EXTENDED` clause, with `InnoDB` and all other storage engines other than `MyISAM`, and with `MyISAM` tables not created with the `CHECKSUM=1` clause.
+Por padrão, a table inteira é lida linha por linha e o checksum é calculado. Para tables grandes, isso pode levar muito tempo, portanto, você deve realizar esta operação apenas ocasionalmente. Este cálculo linha por linha é o que você obtém com a cláusula `EXTENDED`, com `InnoDB` e todos os outros storage engines, exceto `MyISAM`, e com tables `MyISAM` que não foram criadas com a cláusula `CHECKSUM=1`.
 
-For `MyISAM` tables created with the `CHECKSUM=1` clause, [`CHECKSUM TABLE`](checksum-table.html "13.7.2.3 CHECKSUM TABLE Statement") or [`CHECKSUM TABLE ... QUICK`](checksum-table.html "13.7.2.3 CHECKSUM TABLE Statement") returns the “live” table checksum that can be returned very fast. If the table does not meet all these conditions, the `QUICK` method returns `NULL`. The `QUICK` method is not supported with `InnoDB` tables. See [Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement") for the syntax of the `CHECKSUM` clause.
+Para tables `MyISAM` criadas com a cláusula `CHECKSUM=1`, a instrução [`CHECKSUM TABLE`](checksum-table.html "13.7.2.3 CHECKSUM TABLE Statement") ou [`CHECKSUM TABLE ... QUICK`](checksum-table.html "13.7.2.3 CHECKSUM TABLE Statement") retorna o checksum da table "live" (ao vivo), que pode ser retornado muito rapidamente. Se a table não atender a todas essas condições, o método `QUICK` retorna `NULL`. O método `QUICK` não é suportado com tables `InnoDB`. Consulte [Seção 13.1.18, “Instrução CREATE TABLE”](create-table.html "13.1.18 CREATE TABLE Statement") para a sintaxe da cláusula `CHECKSUM`.
 
-The checksum value depends on the table row format. If the row format changes, the checksum also changes. For example, the storage format for temporal types such as [`TIME`](time.html "11.2.3 The TIME Type"), [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"), and [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") changed in MySQL 5.6 prior to MySQL 5.6.5, so if a 5.5 table is upgraded to MySQL 5.6, the checksum value may change.
+O valor do checksum depende do row format da table. Se o row format mudar, o checksum também muda. Por exemplo, o formato de armazenamento para tipos temporais como [`TIME`](time.html "11.2.3 The TIME Type"), [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") e [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") mudou no MySQL 5.6 antes do MySQL 5.6.5, portanto, se uma table 5.5 for atualizada para o MySQL 5.6, o valor do checksum pode mudar.
 
-Important
+Importante
 
-If the checksums for two tables are different, then it is almost certain that the tables are different in some way. However, because the hashing function used by [`CHECKSUM TABLE`](checksum-table.html "13.7.2.3 CHECKSUM TABLE Statement") is not guaranteed to be collision-free, there is a slight chance that two tables which are not identical can produce the same checksum.
+Se os checksums para duas tables forem diferentes, é quase certo que as tables são diferentes de alguma forma. No entanto, como a função de hashing usada por [`CHECKSUM TABLE`](checksum-table.html "13.7.2.3 CHECKSUM TABLE Statement") não tem garantia de ser livre de colisões (collision-free), há uma pequena chance de que duas tables não idênticas possam produzir o mesmo checksum.

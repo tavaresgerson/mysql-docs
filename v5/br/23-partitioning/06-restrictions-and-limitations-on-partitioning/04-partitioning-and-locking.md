@@ -1,41 +1,41 @@
-### 22.6.4 Partitioning and Locking
+### 22.6.4 Particionamento e Locking
 
-For storage engines such as [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") that actually execute table-level locks when executing DML or DDL statements, such a statement in older versions of MySQL (5.6.5 and earlier) that affected a partitioned table imposed a lock on the table as a whole; that is, all partitions were locked until the statement was finished. In MySQL 5.7, partition lock pruning eliminates unneeded locks in many cases, and most statements reading from or updating a partitioned `MyISAM` table cause only the effected partitions to be locked. For example, a [`SELECT`](select.html "13.2.9 SELECT Statement") from a partitioned `MyISAM` table locks only those partitions actually containing rows that satisfy the `SELECT` statement's `WHERE` condition are locked.
+Para storage engines como o [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") que de fato executam Locks em nível de tabela ao executar comandos DML ou DDL, tal comando em versões mais antigas do MySQL (5.6.5 e anteriores) que afetava uma tabela particionada impunha um Lock na tabela como um todo; ou seja, todas as partições eram bloqueadas até que o comando fosse concluído. No MySQL 5.7, a poda de Locks de partição (*partition lock pruning*) elimina Locks desnecessários em muitos casos, e a maioria dos comandos de leitura ou atualização de uma tabela `MyISAM` particionada faz com que apenas as partições afetadas sejam bloqueadas. Por exemplo, um [`SELECT`](select.html "13.2.9 SELECT Statement") de uma tabela `MyISAM` particionada aplica o Lock apenas naquelas partições que de fato contêm linhas que satisfazem a condição `WHERE` do comando `SELECT`.
 
-For statements affecting partitioned tables using storage engines such as [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"), that employ row-level locking and do not actually perform (or need to perform) the locks prior to partition pruning, this is not an issue.
+Para comandos que afetam tabelas particionadas usando storage engines como o [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"), que empregam row-level locking (Lock em nível de linha) e não executam (ou precisam executar) os Locks antes da poda de partição (*partition pruning*), isso não é um problema.
 
-The next few paragraphs discuss the effects of partition lock pruning for various MySQL statements on tables using storage engines that employ table-level locks.
+Os próximos parágrafos discutem os efeitos da poda de Locks de partição (*partition lock pruning*) para vários comandos MySQL em tabelas que utilizam storage engines que empregam Locks em nível de tabela.
 
-#### Effects on DML statements
+#### Efeitos em comandos DML
 
-[`SELECT`](select.html "13.2.9 SELECT Statement") statements (including those containing unions or joins) lock only those partitions that actually need to be read. This also applies to `SELECT ... PARTITION`.
+Comandos [`SELECT`](select.html "13.2.9 SELECT Statement") (incluindo aqueles que contêm unions ou joins) aplicam o Lock apenas nas partições que precisam ser lidas. Isso também se aplica a `SELECT ... PARTITION`.
 
-An [`UPDATE`](update.html "13.2.11 UPDATE Statement") prunes locks only for tables on which no partitioning columns are updated.
+Um [`UPDATE`](update.html "13.2.11 UPDATE Statement") poda Locks apenas para tabelas nas quais nenhuma coluna de particionamento é atualizada.
 
-[`REPLACE`](replace.html "13.2.8 REPLACE Statement") and [`INSERT`](insert.html "13.2.5 INSERT Statement") lock only those partitions having rows to be inserted or replaced. However, if an `AUTO_INCREMENT` value is generated for any partitioning column then all partitions are locked.
+[`REPLACE`](replace.html "13.2.8 REPLACE Statement") e [`INSERT`](insert.html "13.2.5 INSERT Statement") aplicam o Lock apenas nas partições que possuem linhas a serem inseridas ou substituídas. No entanto, se um valor `AUTO_INCREMENT` for gerado para qualquer coluna de particionamento, todas as partições serão bloqueadas.
 
-[`INSERT ... ON DUPLICATE KEY UPDATE`](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement") is pruned as long as no partitioning column is updated.
+O [`INSERT ... ON DUPLICATE KEY UPDATE`](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement") tem Locks podados, desde que nenhuma coluna de particionamento seja atualizada.
 
-[`INSERT ... SELECT`](insert-select.html "13.2.5.1 INSERT ... SELECT Statement") locks only those partitions in the source table that need to be read, although all partitions in the target table are locked.
+O [`INSERT ... SELECT`](insert-select.html "13.2.5.1 INSERT ... SELECT Statement") aplica Lock apenas nas partições da tabela de origem que precisam ser lidas, embora todas as partições na tabela de destino sejam bloqueadas.
 
-Locks imposed by [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") statements on partitioned tables cannot be pruned.
+Os Locks impostos por comandos [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") em tabelas particionadas não podem ser podados.
 
-The presence of `BEFORE INSERT` or `BEFORE UPDATE` triggers using any partitioning column of a partitioned table means that locks on `INSERT` and `UPDATE` statements updating this table cannot be pruned, since the trigger can alter its values: A `BEFORE INSERT` trigger on any of the table's partitioning columns means that locks set by `INSERT` or `REPLACE` cannot be pruned, since the `BEFORE INSERT` trigger may change a row's partitioning columns before the row is inserted, forcing the row into a different partition than it would be otherwise. A `BEFORE UPDATE` trigger on a partitioning column means that locks imposed by `UPDATE` or `INSERT ... ON DUPLICATE KEY UPDATE` cannot be pruned.
+A presença de triggers `BEFORE INSERT` ou `BEFORE UPDATE` que utilizam qualquer coluna de particionamento de uma tabela particionada significa que os Locks em comandos `INSERT` e `UPDATE` que atualizam esta tabela não podem ser podados, uma vez que o trigger pode alterar seus valores: Um trigger `BEFORE INSERT` em qualquer uma das colunas de particionamento da tabela significa que os Locks definidos por `INSERT` ou `REPLACE` não podem ser podados, pois o trigger `BEFORE INSERT` pode alterar as colunas de particionamento de uma linha antes que ela seja inserida, forçando a linha a ir para uma partição diferente da original. Um trigger `BEFORE UPDATE` em uma coluna de particionamento significa que os Locks impostos por `UPDATE` ou `INSERT ... ON DUPLICATE KEY UPDATE` não podem ser podados.
 
-#### Affected DDL statements
+#### Comandos DDL afetados
 
-[`CREATE VIEW`](create-view.html "13.1.21 CREATE VIEW Statement") does not cause any locks.
+[`CREATE VIEW`](create-view.html "13.1.21 CREATE VIEW Statement") não causa nenhum Lock.
 
-[`ALTER TABLE ... EXCHANGE PARTITION`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") prunes locks; only the exchanged table and the exchanged partition are locked.
+O [`ALTER TABLE ... EXCHANGE PARTITION`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") poda Locks; apenas a tabela trocada e a partição trocada são bloqueadas.
 
-[`ALTER TABLE ... TRUNCATE PARTITION`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") prunes locks; only the partitions to be emptied are locked.
+O [`ALTER TABLE ... TRUNCATE PARTITION`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") poda Locks; apenas as partições a serem esvaziadas são bloqueadas.
 
-In addition, [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statements take metadata locks on the table level.
+Além disso, comandos [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") aplicam metadata locks (Locks de metadados) no nível da tabela.
 
-#### Other statements
+#### Outros comandos
 
-[`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") cannot prune partition locks.
+O [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") não pode podar Locks de partição.
 
-[`CALL stored_procedure(expr)`](call.html "13.2.1 CALL Statement") supports lock pruning, but evaluating *`expr`* does not.
+O [`CALL stored_procedure(expr)`](call.html "13.2.1 CALL Statement") suporta a poda de Locks, mas a avaliação de *`expr`* não.
 
-[`DO`](do.html "13.2.3 DO Statement") and [`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") statements do not support partitioning lock pruning.
+Os comandos [`DO`](do.html "13.2.3 DO Statement") e [`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") não suportam a poda de Locks de particionamento.

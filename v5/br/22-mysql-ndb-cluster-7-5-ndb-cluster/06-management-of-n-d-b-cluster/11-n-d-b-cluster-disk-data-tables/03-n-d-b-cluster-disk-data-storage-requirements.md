@@ -1,23 +1,23 @@
-#### 21.6.11.3 NDB Cluster Disk Data Storage Requirements
+#### 21.6.11.3 Requisitos de Armazenamento de Dados em Disco do NDB Cluster (Disk Data)
 
-The following items apply to Disk Data storage requirements:
+Os seguintes itens se aplicam aos requisitos de armazenamento Disk Data:
 
-* Variable-length columns of Disk Data tables take up a fixed amount of space. For each row, this is equal to the space required to store the largest possible value for that column.
+* Colunas de comprimento variável em tabelas Disk Data ocupam uma quantidade fixa de espaço. Para cada linha, isso é igual ao espaço necessário para armazenar o maior valor possível para aquela coluna.
 
-  For general information about calculating these values, see [Section 11.7, “Data Type Storage Requirements”](storage-requirements.html "11.7 Data Type Storage Requirements").
+  Para informações gerais sobre como calcular esses valores, consulte [Seção 11.7, “Requisitos de Armazenamento de Tipos de Dados”](storage-requirements.html "11.7 Data Type Storage Requirements").
 
-  You can obtain an estimate the amount of space available in data files and undo log files by querying the Information Schema [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") table. For more information and examples, see [Section 24.3.9, “The INFORMATION_SCHEMA FILES Table”](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table").
+  Você pode obter uma estimativa da quantidade de espaço disponível em arquivos de dados (data files) e arquivos de undo log (undo log files) consultando a tabela [\`FILES\`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") do Information Schema. Para mais informações e exemplos, consulte [Seção 24.3.9, “A Tabela INFORMATION_SCHEMA FILES”](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table").
 
   Note
 
-  The [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") statement does not have any effect on Disk Data tables.
+  O Statement [\`OPTIMIZE TABLE\`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") não tem qualquer efeito sobre tabelas Disk Data.
 
-* In a Disk Data table, the first 256 bytes of a [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") or [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") column are stored in memory; only the remainder is stored on disk.
+* Em uma tabela Disk Data, os primeiros 256 bytes de uma coluna [\`TEXT\`](blob.html "11.3.4 The BLOB and TEXT Types") ou [\`BLOB\`](blob.html "11.3.4 The BLOB and TEXT Types") são armazenados em memória; apenas o restante é armazenado em disco.
 
-* Each row in a Disk Data table uses 8 bytes in memory to point to the data stored on disk. This means that, in some cases, converting an in-memory column to the disk-based format can actually result in greater memory usage. For example, converting a `CHAR(4)` column from memory-based to disk-based format increases the amount of [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) used per row from 4 to 8 bytes.
+* Cada linha em uma tabela Disk Data usa 8 bytes na memória para apontar para os dados armazenados em disco. Isso significa que, em alguns casos, converter uma coluna armazenada em memória (in-memory) para o formato baseado em disco pode, na verdade, resultar em um uso maior de memória. Por exemplo, converter uma coluna `CHAR(4)` do formato baseado em memória para o formato baseado em disco aumenta a quantidade de [\`DataMemory\`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) usada por linha de 4 para 8 bytes.
 
 Important
 
-Starting the cluster with the `--initial` option does *not* remove Disk Data files. You must remove these manually prior to performing an initial restart of the cluster.
+Iniciar o cluster com a opção `--initial` *não* remove arquivos Disk Data. Você deve removê-los manualmente antes de realizar um reinício inicial do cluster.
 
-Performance of Disk Data tables can be improved by minimizing the number of disk seeks by making sure that [`DiskPageBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskpagebuffermemory) is of sufficient size. You can query the [`diskpagebuffer`](mysql-cluster-ndbinfo-diskpagebuffer.html "21.6.15.20 The ndbinfo diskpagebuffer Table") table to help determine whether the value for this parameter needs to be increased.
+O desempenho das tabelas Disk Data pode ser melhorado minimizando o número de buscas em disco (disk seeks), garantindo que o [\`DiskPageBufferMemory\`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskpagebuffermemory) tenha um tamanho suficiente. Você pode consultar a tabela [\`diskpagebuffer\`](mysql-cluster-ndbinfo-diskpagebuffer.html "21.6.15.20 The ndbinfo diskpagebuffer Table") para ajudar a determinar se o valor deste parâmetro precisa ser aumentado.

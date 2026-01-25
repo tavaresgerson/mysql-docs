@@ -1,9 +1,9 @@
-## 13.8 Utility Statements
+## 13.8 Instruções de Utilitário
 
-[13.8.1 DESCRIBE Statement](describe.html)
+[13.8.1 Instrução DESCRIBE](describe.html)
 
-[13.8.2 EXPLAIN Statement](explain.html)
+[13.8.2 Instrução EXPLAIN](explain.html)
 
-[13.8.3 HELP Statement](help.html)
+[13.8.3 Instrução HELP](help.html)
 
-[13.8.4 USE Statement](use.html)
+[13.8.4 Instrução USE](use.html)

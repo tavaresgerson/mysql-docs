@@ -1,19 +1,19 @@
-## 13.6 Compound Statements
+## 13.6 Instruções Compostas
 
-[13.6.1 BEGIN ... END Compound Statement](begin-end.html)
+[13.6.1 Instrução Composta BEGIN ... END](begin-end.html)
 
-[13.6.2 Statement Labels](statement-labels.html)
+[13.6.2 Rótulos de Instrução](statement-labels.html)
 
-[13.6.3 DECLARE Statement](declare.html)
+[13.6.3 Instrução DECLARE](declare.html)
 
-[13.6.4 Variables in Stored Programs](stored-program-variables.html)
+[13.6.4 Variáveis em Programas Armazenados](stored-program-variables.html)
 
-[13.6.5 Flow Control Statements](flow-control-statements.html)
+[13.6.5 Instruções de Controle de Fluxo](flow-control-statements.html)
 
 [13.6.6 Cursors](cursors.html)
 
-[13.6.7 Condition Handling](condition-handling.html)
+[13.6.7 Tratamento de Condição](condition-handling.html)
 
-This section describes the syntax for the [`BEGIN ... END`](begin-end.html "13.6.1 BEGIN ... END Compound Statement") compound statement and other statements that can be used in the body of stored programs: Stored procedures and functions, triggers, and events. These objects are defined in terms of SQL code that is stored on the server for later invocation (see [Chapter 23, *Stored Objects*](stored-objects.html "Chapter 23 Stored Objects")).
+Esta seção descreve a sintaxe para a instrução composta [`BEGIN ... END`](begin-end.html "13.6.1 Instrução Composta BEGIN ... END") e outras instruções que podem ser usadas no corpo de programas armazenados (*stored programs*): Stored procedures, funções, triggers e events. Esses objetos são definidos em termos de código SQL que é armazenado no servidor para posterior invocação (consulte [Capítulo 23, *Objetos Armazenados*](stored-objects.html "Chapter 23 Stored Objects")).
 
-A compound statement is a block that can contain other blocks; declarations for variables, condition handlers, and cursors; and flow control constructs such as loops and conditional tests.
+Uma instrução composta é um bloco que pode conter outros blocos; declarações para variáveis, manipuladores de condição (*condition handlers*) e Cursors; e construções de controle de fluxo (*flow control*), como *loops* e testes condicionais.

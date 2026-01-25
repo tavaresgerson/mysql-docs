@@ -1,41 +1,41 @@
-#### 26.4.3.12 The io_global_by_file_by_latency and x$io_global_by_file_by_latency Views
+#### 26.4.3.12 As Views io_global_by_file_by_latency e x$io_global_by_file_by_latency
 
-These views summarize global I/O consumers to display time waiting for I/O, grouped by file. By default, rows are sorted by descending total latency.
+Essas views resumem os consumidores globais de I/O para exibir o tempo de espera por I/O, agrupado por arquivo. Por padrão, as linhas são ordenadas pela total latency decrescente.
 
-The `io_global_by_file_by_latency` and `x$io_global_by_file_by_latency` views have these columns:
+As views `io_global_by_file_by_latency` e `x$io_global_by_file_by_latency` possuem estas colunas:
 
 * `file`
 
-  The file path name.
+  O nome do caminho do arquivo (file path name).
 
 * `total`
 
-  The total number of I/O events for the file.
+  O número total de eventos de I/O para o arquivo.
 
 * `total_latency`
 
-  The total wait time of timed I/O events for the file.
+  O tempo total de espera de eventos de I/O cronometrados para o arquivo.
 
 * `count_read`
 
-  The total number of read I/O events for the file.
+  O número total de eventos de I/O de leitura (read) para o arquivo.
 
 * `read_latency`
 
-  The total wait time of timed read I/O events for the file.
+  O tempo total de espera de eventos de I/O de leitura cronometrados para o arquivo.
 
 * `count_write`
 
-  The total number of write I/O events for the file.
+  O número total de eventos de I/O de escrita (write) para o arquivo.
 
 * `write_latency`
 
-  The total wait time of timed write I/O events for the file.
+  O tempo total de espera de eventos de I/O de escrita cronometrados para o arquivo.
 
 * `count_misc`
 
-  The total number of other I/O events for the file.
+  O número total de outros eventos de I/O para o arquivo.
 
 * `misc_latency`
 
-  The total wait time of timed other I/O events for the file.
+  O tempo total de espera de outros eventos de I/O cronometrados para o arquivo.

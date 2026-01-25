@@ -1,8 +1,8 @@
-#### 25.12.15.4 Transaction Summary Tables
+#### 25.12.15.4 Tabelas de Resumo de Transações
 
-The Performance Schema maintains tables for collecting current and recent transaction events, and aggregates that information in summary tables. [Section 25.12.7, “Performance Schema Transaction Tables”](performance-schema-transaction-tables.html "25.12.7 Performance Schema Transaction Tables") describes the events on which transaction summaries are based. See that discussion for information about the content of transaction events, the current and historical transaction event tables, and how to control transaction event collection, which is disabled by default.
+O Performance Schema mantém tabelas para coletar eventos de transação atuais e recentes, e agrega essas informações em tabelas de resumo. [Seção 25.12.7, “Tabelas de Transações do Performance Schema”](performance-schema-transaction-tables.html "25.12.7 Performance Schema Transaction Tables") descreve os eventos nos quais os resumos de transações são baseados. Consulte essa discussão para obter informações sobre o conteúdo dos eventos de transação, as tabelas de eventos de transação atuais e históricas, e como controlar a coleta de eventos de transação, que é desabilitada por padrão.
 
-Example transaction event summary information:
+Exemplo de informações de resumo de eventos de transação:
 
 ```sql
 mysql> SELECT *
@@ -27,46 +27,46 @@ MAX_TIMER_READ_WRITE: 5486275000
  MAX_TIMER_READ_ONLY: 0
 ```
 
-Each transaction summary table has one or more grouping columns to indicate how the table aggregates events. Event names refer to names of event instruments in the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table:
+Cada tabela de resumo de transações possui uma ou mais colunas de agrupamento para indicar como a tabela agrega eventos. Os nomes dos eventos se referem aos nomes dos instrumentos de evento na tabela [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table"):
 
-* [`events_transactions_summary_by_account_by_event_name`](performance-schema-transaction-summary-tables.html "25.12.15.4 Transaction Summary Tables") has `USER`, `HOST`, and `EVENT_NAME` columns. Each row summarizes events for a given account (user and host combination) and event name.
+* [`events_transactions_summary_by_account_by_event_name`](performance-schema-transaction-summary-tables.html "25.12.15.4 Transaction Summary Tables") possui as colunas `USER`, `HOST` e `EVENT_NAME`. Cada linha resume eventos para uma determinada conta (combinação de user e host) e nome de evento.
 
-* [`events_transactions_summary_by_host_by_event_name`](performance-schema-transaction-summary-tables.html "25.12.15.4 Transaction Summary Tables") has `HOST` and `EVENT_NAME` columns. Each row summarizes events for a given host and event name.
+* [`events_transactions_summary_by_host_by_event_name`](performance-schema-transaction-summary-tables.html "25.12.15.4 Transaction Summary Tables") possui as colunas `HOST` e `EVENT_NAME`. Cada linha resume eventos para um determinado host e nome de evento.
 
-* [`events_transactions_summary_by_thread_by_event_name`](performance-schema-transaction-summary-tables.html "25.12.15.4 Transaction Summary Tables") has `THREAD_ID` and `EVENT_NAME` columns. Each row summarizes events for a given thread and event name.
+* [`events_transactions_summary_by_thread_by_event_name`](performance-schema-transaction-summary-tables.html "25.12.15.4 Transaction Summary Tables") possui as colunas `THREAD_ID` e `EVENT_NAME`. Cada linha resume eventos para um determinado Thread e nome de evento.
 
-* [`events_transactions_summary_by_user_by_event_name`](performance-schema-transaction-summary-tables.html "25.12.15.4 Transaction Summary Tables") has `USER` and `EVENT_NAME` columns. Each row summarizes events for a given user and event name.
+* [`events_transactions_summary_by_user_by_event_name`](performance-schema-transaction-summary-tables.html "25.12.15.4 Transaction Summary Tables") possui as colunas `USER` e `EVENT_NAME`. Cada linha resume eventos para um determinado user e nome de evento.
 
-* [`events_transactions_summary_global_by_event_name`](performance-schema-transaction-summary-tables.html "25.12.15.4 Transaction Summary Tables") has an `EVENT_NAME` column. Each row summarizes events for a given event name.
+* [`events_transactions_summary_global_by_event_name`](performance-schema-transaction-summary-tables.html "25.12.15.4 Transaction Summary Tables") possui uma coluna `EVENT_NAME`. Cada linha resume eventos para um determinado nome de evento.
 
-Each transaction summary table has these summary columns containing aggregated values:
+Cada tabela de resumo de transações possui estas colunas de resumo contendo valores agregados:
 
 * `COUNT_STAR`, `SUM_TIMER_WAIT`, `MIN_TIMER_WAIT`, `AVG_TIMER_WAIT`, `MAX_TIMER_WAIT`
 
-  These columns are analogous to the columns of the same names in the wait event summary tables (see [Section 25.12.15.1, “Wait Event Summary Tables”](performance-schema-wait-summary-tables.html "25.12.15.1 Wait Event Summary Tables")), except that the transaction summary tables aggregate events from [`events_transactions_current`](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table") rather than [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table"). These columns summarize read-write and read-only transactions.
+  Essas colunas são análogas às colunas de mesmos nomes nas tabelas de resumo de eventos de espera (consulte [Seção 25.12.15.1, “Tabelas de Resumo de Eventos de Espera”](performance-schema-wait-summary-tables.html "25.12.15.1 Wait Event Summary Tables")), exceto que as tabelas de resumo de transações agregam eventos de [`events_transactions_current`](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table") em vez de [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table"). Essas colunas resumem transações read-write e read-only.
 
 * `COUNT_READ_WRITE`, `SUM_TIMER_READ_WRITE`, `MIN_TIMER_READ_WRITE`, `AVG_TIMER_READ_WRITE`, `MAX_TIMER_READ_WRITE`
 
-  These are similar to the `COUNT_STAR` and `xxx_TIMER_WAIT` columns, but summarize read-write transactions only. The transaction access mode specifies whether transactions operate in read/write or read-only mode.
+  Estas são semelhantes às colunas `COUNT_STAR` e `xxx_TIMER_WAIT`, mas resumem apenas transações read-write. O Access Mode da transação especifica se as transações operam em modo read/write ou read-only.
 
 * `COUNT_READ_ONLY`, `SUM_TIMER_READ_ONLY`, `MIN_TIMER_READ_ONLY`, `AVG_TIMER_READ_ONLY`, `MAX_TIMER_READ_ONLY`
 
-  These are similar to the `COUNT_STAR` and `xxx_TIMER_WAIT` columns, but summarize read-only transactions only. The transaction access mode specifies whether transactions operate in read/write or read-only mode.
+  Estas são semelhantes às colunas `COUNT_STAR` e `xxx_TIMER_WAIT`, mas resumem apenas transações read-only. O Access Mode da transação especifica se as transações operam em modo read/write ou read-only.
 
-[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is permitted for transaction summary tables. It has these effects:
+O [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") é permitido para tabelas de resumo de transações. Ele tem os seguintes efeitos:
 
-* For summary tables not aggregated by account, host, or user, truncation resets the summary columns to zero rather than removing rows.
+* Para tabelas de resumo que não são agregadas por conta, host ou user, o TRUNCATE redefine as colunas de resumo para zero, em vez de remover as linhas.
 
-* For summary tables aggregated by account, host, or user, truncation removes rows for accounts, hosts, or users with no connections, and resets the summary columns to zero for the remaining rows.
+* Para tabelas de resumo agregadas por conta, host ou user, o TRUNCATE remove as linhas para contas, hosts ou users sem conexões, e redefine as colunas de resumo para zero para as linhas restantes.
 
-In addition, each transaction summary table that is aggregated by account, host, user, or thread is implicitly truncated by truncation of the connection table on which it depends, or truncation of [`events_transactions_summary_global_by_event_name`](performance-schema-transaction-summary-tables.html "25.12.15.4 Transaction Summary Tables"). For details, see [Section 25.12.8, “Performance Schema Connection Tables”](performance-schema-connection-tables.html "25.12.8 Performance Schema Connection Tables").
+Além disso, cada tabela de resumo de transações que é agregada por conta, host, user ou Thread é implicitamente truncada pelo TRUNCATE da tabela de conexão da qual ela depende, ou pelo TRUNCATE de [`events_transactions_summary_global_by_event_name`](performance-schema-transaction-summary-tables.html "25.12.15.4 Transaction Summary Tables"). Para detalhes, consulte [Seção 25.12.8, “Tabelas de Conexão do Performance Schema”](performance-schema-connection-tables.html "25.12.8 Performance Schema Connection Tables").
 
-##### Transaction Aggregation Rules
+##### Regras de Agregação de Transações
 
-Transaction event collection occurs without regard to isolation level, access mode, or autocommit mode.
+A coleta de eventos de transação ocorre independentemente do nível de isolation, Access Mode ou modo autocommit.
 
-Transaction event collection occurs for all non-aborted transactions initiated by the server, including empty transactions.
+A coleta de eventos de transação ocorre para todas as transações não abortadas iniciadas pelo servidor, incluindo transações vazias.
 
-Read-write transactions are generally more resource intensive than read-only transactions, therefore transaction summary tables include separate aggregate columns for read-write and read-only transactions.
+Transações read-write são geralmente mais intensivas em recursos do que transações read-only; portanto, as tabelas de resumo de transações incluem colunas agregadas separadas para transações read-write e read-only.
 
-Resource requirements may also vary with transaction isolation level. However, presuming that only one isolation level would be used per server, aggregation by isolation level is not provided.
+Os requisitos de recursos também podem variar com o nível de isolation da transação. No entanto, presumindo que apenas um nível de isolation seria usado por servidor, a agregação por nível de isolation não é fornecida.

@@ -1,59 +1,59 @@
-#### 25.12.11.6 The replication_applier_status_by_worker Table
+#### 25.12.11.6 A Tabela replication_applier_status_by_worker
 
-If the replica is not multithreaded, this table shows the status of the applier thread. Otherwise, the replica uses multiple worker threads and a coordinator thread to manage them, and this table shows the status of the worker threads. For a multithreaded replica, the [`replication_applier_status_by_coordinator`](performance-schema-replication-applier-status-by-coordinator-table.html "25.12.11.5 The replication_applier_status_by_coordinator Table") table shows the status of the coordinator thread.
+Se a réplica não for multithreaded, esta tabela mostra o status do `applier thread`. Caso contrário, a réplica usa múltiplos `worker threads` e um `coordinator thread` para gerenciá-los, e esta tabela mostra o status dos `worker threads`. Para uma réplica multithreaded, a tabela [`replication_applier_status_by_coordinator`](performance-schema-replication-applier-status-by-coordinator-table.html "25.12.11.5 A Tabela replication_applier_status_by_coordinator") mostra o status do `coordinator thread`.
 
-The `replication_applier_status_by_worker` table has these columns:
+A tabela `replication_applier_status_by_worker` possui as seguintes colunas:
 
 * `CHANNEL_NAME`
 
-  The replication channel which this row is displaying. There is always a default replication channel, and more replication channels can be added. See [Section 16.2.2, “Replication Channels”](replication-channels.html "16.2.2 Replication Channels") for more information.
+  O `replication channel` que esta linha está exibindo. Sempre há um `replication channel` padrão, e mais `replication channels` podem ser adicionados. Consulte [Seção 16.2.2, “Replication Channels”](replication-channels.html "16.2.2 Replication Channels") para mais informações.
 
 * `WORKER_ID`
 
-  The worker identifier (same value as the `id` column in the `mysql.slave_worker_info` table). After [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement"), the `THREAD_ID` column becomes `NULL`, but the `WORKER_ID` value is preserved.
+  O identificador do `worker` (o mesmo valor da coluna `id` na tabela `mysql.slave_worker_info`). Após [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement"), a coluna `THREAD_ID` se torna `NULL`, mas o valor de `WORKER_ID` é preservado.
 
 * `THREAD_ID`
 
-  The worker thread identifier.
+  O identificador do `worker thread`.
 
 * `SERVICE_STATE`
 
-  `ON` (thread exists and is active or idle) or `OFF` (thread no longer exists).
+  `ON` (`thread` existe e está ativo ou ocioso) ou `OFF` (`thread` não existe mais).
 
 * `LAST_SEEN_TRANSACTION`
 
-  The transaction that the worker has last seen. The worker has not necessarily applied this transaction because it could still be in the process of doing so.
+  A transação que o `worker` viu pela última vez. O `worker` não a aplicou necessariamente, pois ainda pode estar em processo de fazê-lo.
 
-  If the [`gtid_mode`](replication-options-gtids.html#sysvar_gtid_mode) system variable value is `OFF`, this column is `ANONYMOUS`, indicating that transactions do not have global transaction identifiers (GTIDs) and are identified by file and position only.
+  Se o valor da variável de sistema [`gtid_mode`](replication-options-gtids.html#sysvar_gtid_mode) for `OFF`, esta coluna é `ANONYMOUS`, indicando que as transações não possuem `global transaction identifiers` (GTIDs) e são identificadas apenas por arquivo e posição.
 
-  If [`gtid_mode`](replication-options-gtids.html#sysvar_gtid_mode) is `ON`, the column value is defined as follows:
+  Se [`gtid_mode`](replication-options-gtids.html#sysvar_gtid_mode) for `ON`, o valor da coluna é definido da seguinte forma:
 
-  + If no transaction has executed, the column is empty.
-  + When a transaction has executed, the column is set from [`gtid_next`](replication-options-gtids.html#sysvar_gtid_next) as soon as [`gtid_next`](replication-options-gtids.html#sysvar_gtid_next) is set. From this moment, the column always shows a GTID.
+  + Se nenhuma transação foi executada, a coluna está vazia.
+  + Quando uma transação é executada, a coluna é definida a partir de [`gtid_next`](replication-options-gtids.html#sysvar_gtid_next) assim que [`gtid_next`](replication-options-gtids.html#sysvar_gtid_next) é definido. A partir deste momento, a coluna sempre exibe um GTID.
 
-  + The GTID is preserved until the next transaction is executed. If an error occurs, the column value is the GTID of the transaction being executed by the worker when the error occurred. The following statement shows whether or not that transaction has been committed:
+  + O GTID é preservado até que a próxima transação seja executada. Se ocorrer um erro, o valor da coluna é o GTID da transação que estava sendo executada pelo `worker` quando o erro ocorreu. A seguinte instrução mostra se essa transação foi ou não commitada:
 
     ```sql
     SELECT GTID_SUBSET(LAST_SEEN_TRANSACTION, @@GLOBAL.GTID_EXECUTED)
     FROM performance_schema.replication_applier_status_by_worker;
     ```
 
-    If the statement returns zero, the transaction has not yet been committed, either because it is still being processed, or because the worker thread was stopped while it was being processed. If the statement returns nonzero, the transaction has been committed.
+    Se a instrução retornar zero, a transação ainda não foi commitada, seja porque ainda está sendo processada, ou porque o `worker thread` foi parado enquanto estava sendo processada. Se a instrução retornar um valor diferente de zero, a transação foi commitada.
 
 * `LAST_ERROR_NUMBER`, `LAST_ERROR_MESSAGE`
 
-  The error number and error message of the most recent error that caused the worker thread to stop. An error number of 0 and message of the empty string mean “no error”. If the `LAST_ERROR_MESSAGE` value is not empty, the error values also appear in the replica's error log.
+  O número do erro e a mensagem de erro do erro mais recente que fez com que o `worker thread` parasse. Um número de erro 0 e uma mensagem de string vazia significam "nenhum erro". Se o valor de `LAST_ERROR_MESSAGE` não estiver vazio, os valores de erro também aparecem no `error log` da réplica.
 
-  Issuing [`RESET MASTER`](reset-master.html "13.4.1.2 RESET MASTER Statement") or [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") resets the values shown in these columns.
+  A emissão de [`RESET MASTER`](reset-master.html "13.4.1.2 RESET MASTER Statement") ou [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") redefine os valores exibidos nestas colunas.
 
-  All error codes and messages displayed in the `LAST_ERROR_NUMBER` and `LAST_ERROR_MESSAGE` columns correspond to error values listed in [Server Error Message Reference](/doc/mysql-errors/5.7/en/server-error-reference.html).
+  Todos os códigos de erro e mensagens exibidos nas colunas `LAST_ERROR_NUMBER` e `LAST_ERROR_MESSAGE` correspondem aos valores de erro listados na [Server Error Message Reference](/doc/mysql-errors/5.7/en/server-error-reference.html).
 
 * `LAST_ERROR_TIMESTAMP`
 
-  A timestamp in *`YYMMDD hh:mm:ss`* format that shows when the most recent worker error occurred.
+  Um `timestamp` no formato *`YYMMDD hh:mm:ss`* que mostra quando o erro do `worker` mais recente ocorreu.
 
-[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not permitted for the [`replication_applier_status_by_worker`](performance-schema-replication-applier-status-by-worker-table.html "25.12.11.6 The replication_applier_status_by_worker Table") table.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") não é permitido para a tabela [`replication_applier_status_by_worker`](performance-schema-replication-applier-status-by-worker-table.html "25.12.11.6 A Tabela replication_applier_status_by_worker").
 
-The following table shows the correspondence between `replication_applier_status_by_worker` columns and [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") columns.
+A tabela a seguir mostra a correspondência entre as colunas de `replication_applier_status_by_worker` e as colunas de [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement").
 
-<table summary="Correspondence between replication_applier_status_by_worker columns and SHOW SLAVE STATUS columns"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th><code>replication_applier_status_by_worker</code> Column</th> <th><code>SHOW SLAVE STATUS</code> Column</th> </tr></thead><tbody><tr> <td><code>WORKER_ID</code></td> <td>None</td> </tr><tr> <td><code>THREAD_ID</code></td> <td>None</td> </tr><tr> <td><code>SERVICE_STATE</code></td> <td>None</td> </tr><tr> <td><code>LAST_SEEN_TRANSACTION</code></td> <td>None</td> </tr><tr> <td><code>LAST_ERROR_NUMBER</code></td> <td><code>Last_SQL_Errno</code></td> </tr><tr> <td><code>LAST_ERROR_MESSAGE</code></td> <td><code>Last_SQL_Error</code></td> </tr><tr> <td><code>LAST_ERROR_TIMESTAMP</code></td> <td><code>Last_SQL_Error_Timestamp</code></td> </tr></tbody></table>
+<table summary="Correspondência entre as colunas de replication_applier_status_by_worker e as colunas de SHOW SLAVE STATUS"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th>Coluna <code>replication_applier_status_by_worker</code></th> <th>Coluna <code>SHOW SLAVE STATUS</code></th> </tr></thead><tbody><tr> <td><code>WORKER_ID</code></td> <td>None</td> </tr><tr> <td><code>THREAD_ID</code></td> <td>None</td> </tr><tr> <td><code>SERVICE_STATE</code></td> <td>None</td> </tr><tr> <td><code>LAST_SEEN_TRANSACTION</code></td> <td>None</td> </tr><tr> <td><code>LAST_ERROR_NUMBER</code></td> <td><code>Last_SQL_Errno</code></td> </tr><tr> <td><code>LAST_ERROR_MESSAGE</code></td> <td><code>Last_SQL_Error</code></td> </tr><tr> <td><code>LAST_ERROR_TIMESTAMP</code></td> <td><code>Last_SQL_Error_Timestamp</code></td> </tr></tbody></table>

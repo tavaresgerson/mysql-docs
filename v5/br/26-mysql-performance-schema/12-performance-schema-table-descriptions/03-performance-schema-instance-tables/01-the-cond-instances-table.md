@@ -1,17 +1,17 @@
-#### 25.12.3.1 The cond_instances Table
+#### 25.12.3.1 A Tabela cond_instances
 
-The [`cond_instances`](performance-schema-cond-instances-table.html "25.12.3.1 The cond_instances Table") table lists all the conditions seen by the Performance Schema while the server executes. A condition is a synchronization mechanism used in the code to signal that a specific event has happened, so that a thread waiting for this condition can resume work.
+A tabela [`cond_instances`](performance-schema-cond-instances-table.html "25.12.3.1 The cond_instances Table") lista todas as *conditions* vistas pelo Performance Schema enquanto o servidor está em execução. Uma *condition* é um mecanismo de sincronização usado no código para sinalizar que um evento específico ocorreu, de modo que um *thread* esperando por esta *condition* possa retomar o trabalho.
 
-When a thread is waiting for something to happen, the condition name is an indication of what the thread is waiting for, but there is no immediate way to tell which other threads cause the condition to happen.
+Quando um *thread* está esperando que algo aconteça, o nome da *condition* é uma indicação do que o *thread* está esperando, mas não há uma maneira imediata de saber quais outros *threads* causam a ocorrência da *condition*.
 
-The [`cond_instances`](performance-schema-cond-instances-table.html "25.12.3.1 The cond_instances Table") table has these columns:
+A tabela [`cond_instances`](performance-schema-cond-instances-table.html "25.12.3.1 The cond_instances Table") possui as seguintes colunas:
 
 * `NAME`
 
-  The instrument name associated with the condition.
+  O nome do instrumento associado à *condition*.
 
 * `OBJECT_INSTANCE_BEGIN`
 
-  The address in memory of the instrumented condition.
+  O endereço na memória da *condition* instrumentada.
 
-[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not permitted for the [`cond_instances`](performance-schema-cond-instances-table.html "25.12.3.1 The cond_instances Table") table.
+O [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") não é permitido para a tabela [`cond_instances`](performance-schema-cond-instances-table.html "25.12.3.1 The cond_instances Table").

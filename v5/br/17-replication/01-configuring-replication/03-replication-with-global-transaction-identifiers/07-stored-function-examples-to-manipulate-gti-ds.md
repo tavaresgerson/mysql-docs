@@ -1,24 +1,24 @@
-#### 16.1.3.7 Stored Function Examples to Manipulate GTIDs
+#### 16.1.3.7 Exemplos de Stored Functions para Manipular GTIDs
 
-This section provides examples of stored functions (see [Chapter 23, *Stored Objects*](stored-objects.html "Chapter 23 Stored Objects")) which you can create using some of the built-in functions provided by MySQL for use with GTID-based replication, listed here:
+Esta seção fornece exemplos de Stored Functions (consulte [Capítulo 23, *Stored Objects*](stored-objects.html "Chapter 23 Stored Objects")) que você pode criar usando algumas das funções embutidas fornecidas pelo MySQL para uso com a Replication baseada em GTID, listadas aqui:
 
-* [`GTID_SUBSET()`](gtid-functions.html#function_gtid-subset): Shows whether one GTID set is a subset of another.
+* [`GTID_SUBSET()`](gtid-functions.html#function_gtid-subset): Mostra se um GTID set é um subset de outro.
 
-* [`GTID_SUBTRACT()`](gtid-functions.html#function_gtid-subtract): Returns the GTIDs from one GTID set that are not in another.
+* [`GTID_SUBTRACT()`](gtid-functions.html#function_gtid-subtract): Retorna os GTIDs de um GTID set que não estão em outro.
 
-* `WAIT_FOR_EXECUTED_GTID_SET()`: Waits until all transactions in a given GTID set have been executed.
+* `WAIT_FOR_EXECUTED_GTID_SET()`: Aguarda até que todas as Transactions em um GTID set fornecido tenham sido executadas.
 
-See [Section 12.18, “Functions Used with Global Transaction Identifiers (GTIDs)”](gtid-functions.html "12.18 Functions Used with Global Transaction Identifiers (GTIDs)"), more more information about the functions just listed.
+Consulte [Seção 12.18, “Functions Used with Global Transaction Identifiers (GTIDs)”](gtid-functions.html "12.18 Functions Used with Global Transaction Identifiers (GTIDs)"), para mais informações sobre as funções listadas.
 
-Note that in these stored functions, the delimiter command has been used to change the MySQL statement delimiter to a vertical bar, like this:
+Observe que, nestas Stored Functions, o comando `delimiter` foi usado para alterar o delimitador de instrução MySQL para uma barra vertical, assim:
 
 ```sql
 mysql> delimiter |
 ```
 
-All of the stored functions shown in this section take string representations of GTID sets as arguments, so GTID sets must always be quoted when used with them.
+Todas as Stored Functions mostradas nesta seção aceitam representações de string de GTID sets como argumentos, portanto, os GTID sets devem sempre ser colocados entre aspas quando usados com elas.
 
-This function returns nonzero (true) if two GTID sets are the same set, even if they are not formatted in the same way:
+Esta função retorna um valor diferente de zero (true) se dois GTID sets forem o mesmo set, mesmo que não estejam formatados da mesma maneira:
 
 ```sql
 CREATE FUNCTION GTID_IS_EQUAL(gs1 LONGTEXT, gs2 LONGTEXT)
@@ -27,7 +27,7 @@ CREATE FUNCTION GTID_IS_EQUAL(gs1 LONGTEXT, gs2 LONGTEXT)
 |
 ```
 
-This function returns nonzero (true) if two GTID sets are disjoint:
+Esta função retorna um valor diferente de zero (true) se dois GTID sets forem disjoint (disjuntos):
 
 ```sql
 CREATE FUNCTION GTID_IS_DISJOINT(gs1 LONGTEXT, gs2 LONGTEXT)
@@ -36,7 +36,7 @@ RETURNS INT
 |
 ```
 
-This function returns nonzero (true) if two GTID sets are disjoint and `sum` is their union:
+Esta função retorna um valor diferente de zero (true) se dois GTID sets forem disjoint (disjuntos) e `sum` for a união deles:
 
 ```sql
 CREATE FUNCTION GTID_IS_DISJOINT_UNION(gs1 LONGTEXT, gs2 LONGTEXT, sum LONGTEXT)
@@ -46,7 +46,7 @@ RETURNS INT
 |
 ```
 
-This function returns a normalized form of the GTID set, in all uppercase, with no whitespace and no duplicates, with UUIDs in alphabetic order and intervals in numeric order:
+Esta função retorna uma forma normalizada do GTID set, em maiúsculas, sem whitespace e sem duplicatas, com UUIDs em ordem alfabética e intervalos em ordem numérica:
 
 ```sql
 CREATE FUNCTION GTID_NORMALIZE(gs LONGTEXT)
@@ -55,7 +55,7 @@ RETURNS LONGTEXT
 |
 ```
 
-This function returns the union of two GTID sets:
+Esta função retorna a união de dois GTID sets:
 
 ```sql
 CREATE FUNCTION GTID_UNION(gs1 LONGTEXT, gs2 LONGTEXT)
@@ -64,7 +64,7 @@ RETURNS LONGTEXT
 |
 ```
 
-This function returns the intersection of two GTID sets.
+Esta função retorna a intersection de dois GTID sets.
 
 ```sql
 CREATE FUNCTION GTID_INTERSECTION(gs1 LONGTEXT, gs2 LONGTEXT)
@@ -73,7 +73,7 @@ RETURNS LONGTEXT
 |
 ```
 
-This function returns the symmetric difference between two GTID sets, that is, the GTIDs that exist in `gs1` but not in `gs2`, as well as the GTIDs that exist in `gs2` but not in `gs1`.
+Esta função retorna a diferença simétrica entre dois GTID sets, ou seja, os GTIDs que existem em `gs1` mas não em `gs2`, bem como os GTIDs que existem em `gs2` mas não em `gs1`.
 
 ```sql
 CREATE FUNCTION GTID_SYMMETRIC_DIFFERENCE(gs1 LONGTEXT, gs2 LONGTEXT)
@@ -82,7 +82,7 @@ RETURNS LONGTEXT
 |
 ```
 
-This function removes from a GTID set all the GTIDs with the specified origin, and returns the remaining GTIDs, if any. The UUID is the identifier used by the server where the transaction originated, which is normally the value of [`server_uuid`](replication-options.html#sysvar_server_uuid).
+Esta função remove de um GTID set todos os GTIDs com a origem especificada e retorna os GTIDs restantes, se houver. O UUID é o identificador usado pelo Server onde a Transaction se originou, que normalmente é o valor de [`server_uuid`](replication-options.html#sysvar_server_uuid).
 
 ```sql
 CREATE FUNCTION GTID_SUBTRACT_UUID(gs LONGTEXT, uuid TEXT)
@@ -91,7 +91,7 @@ RETURNS LONGTEXT
 |
 ```
 
-This function acts as the reverse of the previous one; it returns only those GTIDs from the GTID set that originate from the server with the specified identifier (UUID).
+Esta função atua como o inverso da anterior; ela retorna apenas os GTIDs do GTID set que se originam do Server com o identificador (UUID) especificado.
 
 ```sql
 CREATE FUNCTION GTID_INTERSECTION_WITH_UUID(gs LONGTEXT, uuid TEXT)
@@ -100,57 +100,57 @@ RETURNS LONGTEXT
 |
 ```
 
-**Example 16.1 Verifying that a replica is up to date**
+**Exemplo 16.1 Verificando se uma Replica está atualizada**
 
-The built-in functions [`GTID_SUBSET()`](gtid-functions.html#function_gtid-subset) and [`GTID_SUBTRACT()`](gtid-functions.html#function_gtid-subtract) can be used to check that a replica has applied at least every transaction that a source has applied.
+As funções embutidas [`GTID_SUBSET()`](gtid-functions.html#function_gtid-subset) e [`GTID_SUBTRACT()`](gtid-functions.html#function_gtid-subtract) podem ser usadas para verificar se uma Replica aplicou pelo menos todas as Transactions que um Source aplicou.
 
-To perform this check with `GTID_SUBSET()`, execute the following statement on the replica:
+Para realizar esta verificação com `GTID_SUBSET()`, execute a seguinte instrução na Replica:
 
 ```sql
 SELECT GTID_SUBSET(source_gtid_executed, replica_gtid_executed);
 ```
 
-If the returns value is `0` (false), this means that some GTIDs in *`source_gtid_executed`* are not present in *`replica_gtid_executed`*, and that the replica has not yet applied transactions that were applied on the source, which means that the replica is not up to date.
+Se o valor retornado for `0` (false), isso significa que alguns GTIDs em *`source_gtid_executed`* não estão presentes em *`replica_gtid_executed`*, e que a Replica ainda não aplicou Transactions que foram aplicadas no Source, o que significa que a Replica não está atualizada.
 
-To perform the same check with `GTID_SUBTRACT()`, execute the following statement on the replica:
+Para realizar a mesma verificação com `GTID_SUBTRACT()`, execute a seguinte instrução na Replica:
 
 ```sql
 SELECT GTID_SUBTRACT(source_gtid_executed, replica_gtid_executed);
 ```
 
-This statement returns any GTIDs that are in *`source_gtid_executed`* but not in *`replica_gtid_executed`*. If any GTIDs are returned, the source has applied some transactions that the replica has not applied, and the replica is therefore not up to date.
+Esta instrução retorna quaisquer GTIDs que estejam em *`source_gtid_executed`* mas não em *`replica_gtid_executed`*. Se algum GTID for retornado, o Source aplicou algumas Transactions que a Replica não aplicou e, portanto, a Replica não está atualizada.
 
-**Example 16.2 Backup and restore scenario**
+**Exemplo 16.2 Cenário de Backup e Restore**
 
-The stored functions `GTID_IS_EQUAL()`, `GTID_IS_DISJOINT()`, and `GTID_IS_DISJOINT_UNION()` can be used to verify backup and restore operations involving multiple databases and servers. In this example scenario, `server1` contains database `db1`, and `server2` contains database `db2`. The goal is to copy database `db2` to `server1`, and the result on `server1` should be the union of the two databases. The procedure used is to back up `server2` using [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program"), then to restore this backup on `server1`.
+As Stored Functions `GTID_IS_EQUAL()`, `GTID_IS_DISJOINT()` e `GTID_IS_DISJOINT_UNION()` podem ser usadas para verificar operações de Backup e Restore que envolvem múltiplos Databases e Servers. Neste cenário de exemplo, o `server1` contém o Database `db1`, e o `server2` contém o Database `db2`. O objetivo é copiar o Database `db2` para o `server1`, e o resultado no `server1` deve ser a união dos dois Databases. O procedimento utilizado é fazer o Backup do `server2` usando [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") e, em seguida, fazer o Restore desse Backup no `server1`.
 
-Provided that [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") was run with [`--set-gtid-purged`](mysqldump.html#option_mysqldump_set-gtid-purged) set to `ON` or `AUTO` (the default), the output contains a `SET @@GLOBAL.gtid_purged` statement which adds the [`gtid_executed`](replication-options-gtids.html#sysvar_gtid_executed) set from `server2` to the [`gtid_purged`](replication-options-gtids.html#sysvar_gtid_purged) set on `server1`. `gtid_purged` contains the GTIDs of all the transactions that have been committed on a given server but which do not exist in any binary log file on the server. When database `db2` is copied to `server1`, the GTIDs of the transactions committed on `server2`, which are not in the binary log files on `server1`, must be added to `gtid_purged` for `server1` to make the set complete.
+Desde que [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") tenha sido executado com [`--set-gtid-purged`](mysqldump.html#option_mysqldump_set-gtid-purged) definido como `ON` ou `AUTO` (o padrão), a saída contém uma instrução `SET @@GLOBAL.gtid_purged` que adiciona o GTID set [`gtid_executed`](replication-options-gtids.html#sysvar_gtid_executed) do `server2` ao GTID set [`gtid_purged`](replication-options-gtids.html#sysvar_gtid_purged) no `server1`. `gtid_purged` contém os GTIDs de todas as Transactions que foram commited em um determinado Server, mas que não existem em nenhum arquivo de Binary Log no Server. Quando o Database `db2` é copiado para o `server1`, os GTIDs das Transactions commited no `server2`, que não estão nos arquivos de Binary Log no `server1`, devem ser adicionados a `gtid_purged` para que o `server1` complete o set.
 
-The stored functions can be used to assist with the following steps in this scenario:
+As Stored Functions podem ser usadas para auxiliar nas seguintes etapas neste cenário:
 
-* Use `GTID_IS_EQUAL()` to verify that the backup operation computed the correct GTID set for the `SET @@GLOBAL.gtid_purged` statement. On `server2`, extract that statement from the [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") output, and store the GTID set into a local variable, such as `$gtid_purged_set`. Then execute the following statement:
+* Use `GTID_IS_EQUAL()` para verificar se a operação de Backup calculou o GTID set correto para a instrução `SET @@GLOBAL.gtid_purged`. No `server2`, extraia essa instrução da saída do [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") e armazene o GTID set em uma variável local, como `$gtid_purged_set`. Em seguida, execute a seguinte instrução:
 
   ```sql
   server2> SELECT GTID_IS_EQUAL($gtid_purged_set, @@GLOBAL.gtid_executed);
   ```
 
-  If the result is 1, the two GTID sets are equal, and the set has been computed correctly.
+  Se o resultado for 1, os dois GTID sets são iguais e o set foi calculado corretamente.
 
-* Use `GTID_IS_DISJOINT()` to verify that the GTID set in the [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") output does not overlap with the `gtid_executed` set on `server1`. Having identical GTIDs present on both servers causes errors when copying database `db2` to `server1`. To check, on `server1`, extract and store `gtid_purged` from the output into a local variable as done previously, then execute the following statement:
+* Use `GTID_IS_DISJOINT()` para verificar se o GTID set na saída do [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") não se sobrepõe ao set `gtid_executed` no `server1`. Ter GTIDs idênticos presentes em ambos os Servers causa erros ao copiar o Database `db2` para o `server1`. Para verificar, no `server1`, extraia e armazene `gtid_purged` da saída em uma variável local conforme feito anteriormente e, em seguida, execute a seguinte instrução:
 
   ```sql
   server1> SELECT GTID_IS_DISJOINT($gtid_purged_set, @@GLOBAL.gtid_executed);
   ```
 
-  If the result is 1, there is no overlap between the two GTID sets, so no duplicate GTIDs are present.
+  Se o resultado for 1, não há sobreposição entre os dois GTID sets, portanto, nenhuma duplicata de GTIDs está presente.
 
-* Use `GTID_IS_DISJOINT_UNION()` to verify that the restore operation resulted in the correct GTID state on `server1`. Before restoring the backup, on `server1`, obtain the existing `gtid_executed` set by executing the following statement:
+* Use `GTID_IS_DISJOINT_UNION()` para verificar se a operação de Restore resultou no estado GTID correto no `server1`. Antes de restaurar o Backup, no `server1`, obtenha o set `gtid_executed` existente executando a seguinte instrução:
 
   ```sql
   server1> SELECT @@GLOBAL.gtid_executed;
   ```
 
-  Store the result in a local variable `$original_gtid_executed`, as well as the set from `gtid_purged` in another local variable as described previously. When the backup from `server2` has been restored onto `server1`, execute the following statement to verify the GTID state:
+  Armazene o resultado em uma variável local `$original_gtid_executed`, bem como o set de `gtid_purged` em outra variável local, conforme descrito anteriormente. Quando o Backup do `server2` tiver sido restaurado no `server1`, execute a seguinte instrução para verificar o estado do GTID:
 
   ```sql
   server1> SELECT
@@ -159,13 +159,13 @@ The stored functions can be used to assist with the following steps in this scen
         ->                          @@GLOBAL.gtid_executed);
   ```
 
-  If the result is `1`, the stored function has verified that the original `gtid_executed` set from `server1` (`$original_gtid_executed`) and the `gtid_purged` set that was added from `server2` (`$gtid_purged_set`) have no overlap, and that the updated `gtid_executed` set on `server1` now consists of the previous `gtid_executed` set from `server1` plus the `gtid_purged` set from `server2`, which is the desired result. Ensure that this check is carried out before any further transactions take place on `server1`, otherwise the new transactions in `gtid_executed` cause it to fail.
+  Se o resultado for `1`, a Stored Function verificou que o set `gtid_executed` original do `server1` (`$original_gtid_executed`) e o set `gtid_purged` que foi adicionado do `server2` (`$gtid_purged_set`) não têm sobreposição, e que o set `gtid_executed` atualizado no `server1` agora consiste no set `gtid_executed` anterior do `server1` mais o set `gtid_purged` do `server2`, que é o resultado desejado. Certifique-se de que esta verificação seja realizada antes que quaisquer Transactions adicionais ocorram no `server1`, caso contrário, as novas Transactions em `gtid_executed` farão com que ela falhe.
 
-**Example 16.3 Selecting the most up-to-date replica for manual failover**
+**Exemplo 16.3 Selecionando a Replica mais atualizada para Failover manual**
 
-The stored function `GTID_UNION()` can be used to identify the most up-to-date replica from a set of replicas, in order to perform a manual failover operation after a source server has stopped unexpectedly. If some of the replicas are experiencing replication lag, this stored function can be used to compute the most up-to-date replica without waiting for all the replicas to apply their existing relay logs, and therefore to minimize the failover time. The function can return the union of [`gtid_executed`](replication-options-gtids.html#sysvar_gtid_executed) on each replica with the set of transactions received by the replica, which is recorded in the Performance Schema [`replication_connection_status`](performance-schema-replication-connection-status-table.html "25.12.11.2 The replication_connection_status Table") table. You can compare these results to find which replica's record of transactions is the most up to date, even if not all of the transactions have been committed yet.
+A Stored Function `GTID_UNION()` pode ser usada para identificar a Replica mais atualizada de um conjunto de Replicas, a fim de realizar uma operação de Failover manual depois que um Source Server para inesperadamente. Se algumas das Replicas estiverem experimentando Replication lag, esta Stored Function pode ser usada para calcular a Replica mais atualizada sem esperar que todas as Replicas apliquem seus Relay Logs existentes e, portanto, para minimizar o tempo de Failover. A função pode retornar a união de [`gtid_executed`](replication-options-gtids.html#sysvar_gtid_executed) em cada Replica com o set de Transactions recebidas pela Replica, que é registrado na tabela [`replication_connection_status`](performance-schema-replication-connection-status-table.html "25.12.11.2 The replication_connection_status Table") do Performance Schema. Você pode comparar esses resultados para descobrir qual registro de Transactions da Replica está mais atualizado, mesmo que nem todas as Transactions tenham sido commited ainda.
 
-On each replica, compute the complete record of transactions by issuing the following statement:
+Em cada Replica, compute o registro completo de Transactions emitindo a seguinte instrução:
 
 ```sql
 SELECT GTID_UNION(RECEIVED_TRANSACTION_SET, @@GLOBAL.gtid_executed)
@@ -173,21 +173,21 @@ SELECT GTID_UNION(RECEIVED_TRANSACTION_SET, @@GLOBAL.gtid_executed)
     WHERE channel_name = 'name';
 ```
 
-You can then compare the results from each replica to see which one has the most up-to-date record of transactions, and use this replica as the new source.
+Você pode então comparar os resultados de cada Replica para ver qual tem o registro de Transactions mais atualizado e usar essa Replica como o novo Source.
 
-**Example 16.4 Checking for extraneous transactions on a replica**
+**Exemplo 16.4 Verificando Transactions estranhas em uma Replica**
 
-The stored function `GTID_SUBTRACT_UUID()` can be used to check whether a replica has received transactions that did not originate from its designated source or sources. If it has, there might be an issue with your replication setup, or with a proxy, router, or load balancer. This function works by removing from a GTID set all the GTIDs from a specified originating server, and returning the remaining GTIDs, if any.
+A Stored Function `GTID_SUBTRACT_UUID()` pode ser usada para verificar se uma Replica recebeu Transactions que não se originaram de seu Source ou Sources designados. Se isso ocorreu, pode haver um problema com sua configuração de Replication, ou com um Proxy, Router ou Load Balancer. Esta função funciona removendo de um GTID set todos os GTIDs de um Server de origem especificado e retornando os GTIDs restantes, se houver.
 
-For a replica with a single source, issue the following statement, giving the identifier of the originating source, which is normally the same as [`server_uuid`](replication-options.html#sysvar_server_uuid):
+Para uma Replica com um único Source, emita a seguinte instrução, fornecendo o identificador do Source de origem, que normalmente é o mesmo que [`server_uuid`](replication-options.html#sysvar_server_uuid):
 
 ```sql
 SELECT GTID_SUBTRACT_UUID(@@GLOBAL.gtid_executed, server_uuid_of_source);
 ```
 
-If the result is not empty, the transactions returned are extra transactions that did not originate from the designated source.
+Se o resultado não estiver vazio, as Transactions retornadas são Transactions extras que não se originaram do Source designado.
 
-For a replica in a multisource topology, include the server UUID of each source in the function call, like this:
+Para uma Replica em uma Topology Multisource, inclua o Server UUID de cada Source na chamada da função, assim:
 
 ```sql
 SELECT
@@ -196,21 +196,21 @@ SELECT
                                         server_uuid_of_source_2);
 ```
 
-If the result is not empty, the transactions returned are extra transactions that did not originate from any of the designated sources.
+Se o resultado não estiver vazio, as Transactions retornadas são Transactions extras que não se originaram de nenhum dos Sources designados.
 
-**Example 16.5 Verifying that a server in a replication topology is read-only**
+**Exemplo 16.5 Verificando se um Server em uma Topology de Replication é Read-Only**
 
-The stored function `GTID_INTERSECTION_WITH_UUID()` can be used to verify that a server has not originated any GTIDs and is in a read-only state. The function returns only those GTIDs from the GTID set that originate from the server with the specified identifier. If any of the transactions listed in [`gtid_executed`](replication-options-gtids.html#sysvar_gtid_executed) from this server use the server's own identifier, the server itself originated those transactions. You can issue the following statement on the server to check:
+A Stored Function `GTID_INTERSECTION_WITH_UUID()` pode ser usada para verificar se um Server não originou nenhum GTID e está em um estado Read-Only. A função retorna apenas os GTIDs do GTID set que se originam do Server com o identificador especificado. Se alguma das Transactions listadas em [`gtid_executed`](replication-options-gtids.html#sysvar_gtid_executed) deste Server usar o próprio identificador do Server, o próprio Server originou essas Transactions. Você pode emitir a seguinte instrução no Server para verificar:
 
 ```sql
 SELECT GTID_INTERSECTION_WITH_UUID(@@GLOBAL.gtid_executed, my_server_uuid);
 ```
 
-**Example 16.6 Validating an additional replica in multisource replication**
+**Exemplo 16.6 Validando uma Replica adicional na Replication Multisource**
 
-The stored function `GTID_INTERSECTION_WITH_UUID()` can be used to find out if a replica attached to a multisource replication setup has applied all the transactions originating from one particular source. In this scenario, `source1` and `source2` are both sources and replicas and replicate to each other. `source2` also has its own replica. The replica also receives and applies transactions from `source1` if `source2` is configured with [`log_replica_updates=ON`](/doc/refman/8.0/en/replication-options-binary-log.html#sysvar_log_replica_updates), but it does not do so if `source2` uses `log_replica_updates=OFF`. Whichever the case, we currently want only to find out if the replica is up to date with `source2`. In this situation, `GTID_INTERSECTION_WITH_UUID()` can be used to identify the transactions that `source2` originated, discarding the transactions that `source2` has replicated from `source1`. The built-in function [`GTID_SUBSET()`](gtid-functions.html#function_gtid-subset) can then be used to compare the result with the [`gtid_executed`](replication-options-gtids.html#sysvar_gtid_executed) set on the replica. If the replica is up to date with `source2`, the `gtid_executed` set on the replica contains all the transactions in the intersection set (the transactions that originated from `source2`).
+A Stored Function `GTID_INTERSECTION_WITH_UUID()` pode ser usada para descobrir se uma Replica anexada a uma configuração de Replication Multisource aplicou todas as Transactions originadas de um Source específico. Neste cenário, `source1` e `source2` são Source e Replica e replicam um para o outro. `source2` também tem sua própria Replica. A Replica também recebe e aplica Transactions de `source1` se `source2` estiver configurado com [`log_replica_updates=ON`](/doc/refman/8.0/en/replication-options-binary-log.html#sysvar_log_replica_updates), mas não o faz se `source2` usar `log_replica_updates=OFF`. Seja qual for o caso, atualmente queremos apenas descobrir se a Replica está atualizada com `source2`. Nesta situação, `GTID_INTERSECTION_WITH_UUID()` pode ser usada para identificar as Transactions que `source2` originou, descartando as Transactions que `source2` replicou de `source1`. A função embutida [`GTID_SUBSET()`](gtid-functions.html#function_gtid-subset) pode então ser usada para comparar o resultado com o set [`gtid_executed`](replication-options-gtids.html#sysvar_gtid_executed) na Replica. Se a Replica estiver atualizada com `source2`, o set `gtid_executed` na Replica contém todas as Transactions no set de Intersection (as Transactions que se originaram de `source2`).
 
-To carry out this check, store the values of `gtid_executed` and the server UUID from `source2` and the value of [`gtid_executed`](replication-options-gtids.html#sysvar_gtid_executed) from the replica into user variables as follows:
+Para realizar esta verificação, armazene os valores de `gtid_executed` e o Server UUID de `source2` e o valor de [`gtid_executed`](replication-options-gtids.html#sysvar_gtid_executed) da Replica em variáveis de usuário, conforme segue:
 
 ```sql
 source2> SELECT @@GLOBAL.gtid_executed INTO @source2_gtid_executed;
@@ -220,7 +220,7 @@ source2> SELECT @@GLOBAL.server_uuid INTO @source2_server_uuid;
 replica> SELECT @@GLOBAL.gtid_executed INTO @replica_gtid_executed;
 ```
 
-Then use `GTID_INTERSECTION_WITH_UUID()` and `GTID_SUBSET()` with these variables as input, as follows:
+Em seguida, use `GTID_INTERSECTION_WITH_UUID()` e `GTID_SUBSET()` com estas variáveis como input, da seguinte forma:
 
 ```sql
 SELECT
@@ -230,4 +230,4 @@ SELECT
                                 @replica_gtid_executed);
 ```
 
-The server identifier from `source2` (`@source2_server_uuid`) is used with `GTID_INTERSECTION_WITH_UUID()` to identify and return only those GTIDs from the set of GTIDs that originated on `source2`, omitting those that originated on `source1`. The resulting GTID set is then compared with the set of all executed GTIDs on the replica, using `GTID_SUBSET()`. If this statement returns nonzero (true), all the identified GTIDs from `source2` (the first set input) are also found in [`gtid_executed`](replication-options-gtids.html#sysvar_gtid_executed) from the replica, meaning that the replica has received and executed all the transactions that originated from `source2`.
+O identificador do Server de `source2` (`@source2_server_uuid`) é usado com `GTID_INTERSECTION_WITH_UUID()` para identificar e retornar apenas aqueles GTIDs do set de GTIDs que se originaram em `source2`, omitindo aqueles que se originaram em `source1`. O GTID set resultante é então comparado com o set de todos os GTIDs executados na Replica, usando `GTID_SUBSET()`. Se esta instrução retornar um valor diferente de zero (true), todos os GTIDs identificados de `source2` (o primeiro input do set) também são encontrados em [`gtid_executed`](replication-options-gtids.html#sysvar_gtid_executed) da Replica, o que significa que a Replica recebeu e executou todas as Transactions que se originaram de `source2`.

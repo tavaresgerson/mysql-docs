@@ -1,12 +1,12 @@
-## 15.9 The EXAMPLE Storage Engine
+## 15.9 O Mecanismo de Armazenamento EXAMPLE
 
-The `EXAMPLE` storage engine is a stub engine that does nothing. Its purpose is to serve as an example in the MySQL source code that illustrates how to begin writing new storage engines. As such, it is primarily of interest to developers.
+O mecanismo de armazenamento `EXAMPLE` (Exemplo) é um mecanismo *stub* (de rascunho) que não faz nada. Seu propósito é servir como um exemplo no código-fonte do MySQL, ilustrando como começar a escrever novos mecanismos de armazenamento (*Storage Engines*). Como tal, é de interesse primário para desenvolvedores.
 
-To enable the `EXAMPLE` storage engine if you build MySQL from source, invoke **CMake** with the `-DWITH_EXAMPLE_STORAGE_ENGINE` option.
+Para habilitar o mecanismo de armazenamento `EXAMPLE`, caso você compile o MySQL a partir do código-fonte, invoque o **CMake** com a opção `-DWITH_EXAMPLE_STORAGE_ENGINE`.
 
-To examine the source for the `EXAMPLE` engine, look in the `storage/example` directory of a MySQL source distribution.
+Para examinar o código-fonte do mecanismo `EXAMPLE`, procure no diretório `storage/example` de uma distribuição do código-fonte do MySQL.
 
-When you create an `EXAMPLE` table, the server creates a table format file in the database directory. The file begins with the table name and has an `.frm` extension. No other files are created. No data can be stored into the table. Retrievals return an empty result.
+Quando você cria uma tabela `EXAMPLE`, o server cria um arquivo de formato de tabela no diretório do Database. O arquivo começa com o nome da tabela e possui a extensão `.frm`. Nenhum outro arquivo é criado. Nenhum dado pode ser armazenado na tabela. Os *Retrievals* (Recuperações) retornam um resultado vazio.
 
 ```sql
 mysql> CREATE TABLE test (i INT) ENGINE = EXAMPLE;
@@ -20,4 +20,4 @@ mysql> SELECT * FROM test;
 Empty set (0.31 sec)
 ```
 
-The `EXAMPLE` storage engine does not support indexing.
+O mecanismo de armazenamento `EXAMPLE` não suporta *indexing*.

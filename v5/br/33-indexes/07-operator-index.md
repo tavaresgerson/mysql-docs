@@ -1,745 +1,745 @@
-## Operator Index
+## Índice de Operadores
 
-[Symbols](dynindex-operator.html#op-index-Symbols "Symbols") | [A](dynindex-operator.html#op-index-A "A") | [B](dynindex-operator.html#op-index-B "B") | [C](dynindex-operator.html#op-index-C "C") | [D](dynindex-operator.html#op-index-D "D") | [E](dynindex-operator.html#op-index-E "E") | [I](dynindex-operator.html#op-index-I "I") | [L](dynindex-operator.html#op-index-L "L") | [N](dynindex-operator.html#op-index-N "N") | [O](dynindex-operator.html#op-index-O "O") | [R](dynindex-operator.html#op-index-R "R") | [X](dynindex-operator.html#op-index-X "X")
+[Símbolos](dynindex-operator.html#op-index-Symbols "Símbolos") | [A](dynindex-operator.html#op-index-A "A") | [B](dynindex-operator.html#op-index-B "B") | [C](dynindex-operator.html#op-index-C "C") | [D](dynindex-operator.html#op-index-D "D") | [E](dynindex-operator.html#op-index-E "E") | [I](dynindex-operator.html#op-index-I "I") | [L](dynindex-operator.html#op-index-L "L") | [N](dynindex-operator.html#op-index-N "N") | [O](dynindex-operator.html#op-index-O "O") | [R](dynindex-operator.html#op-index-R "R") | [X](dynindex-operator.html#op-index-X "X")
 
-### Symbols
+### Símbolos
 
-index top](dynindex-operator.html#op-index-top)]
+[início do índice](dynindex-operator.html#op-index-top)]
 
 ### -
 
-[Section 12.6.1, “Arithmetic Operators”](arithmetic-functions.html "12.6.1 Arithmetic Operators")
+[Seção 12.6.1, “Operadores Aritméticos”](arithmetic-functions.html "12.6.1 Operadores Aritméticos")
 
-[Section 12.10, “Cast Functions and Operators”](cast-functions.html "12.10 Cast Functions and Operators")
+[Seção 12.10, “Funções e Operadores de Cast (Conversão)”](cast-functions.html "12.10 Funções e Operadores de Cast (Conversão)")
 
-[Section 9.5, “Expressions”](expressions.html "9.5 Expressions")
+[Seção 9.5, “Expressões”](expressions.html "9.5 Expressões")
 
-[Section 11.1.1, “Numeric Data Type Syntax”](numeric-type-syntax.html "11.1.1 Numeric Data Type Syntax")
+[Seção 11.1.1, “Sintaxe de Tipos de Dados Numéricos”](numeric-type-syntax.html "11.1.1 Sintaxe de Tipos de Dados Numéricos")
 
-[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
+[Seção 22.6, “Restrições e Limitações em Partitioning”](partitioning-limitations.html "22.6 Restrições e Limitações em Partitioning")
 
 ### !
 
-[Section 9.5, “Expressions”](expressions.html "9.5 Expressions")
+[Seção 9.5, “Expressões”](expressions.html "9.5 Expressões")
 
-[Section 12.4.3, “Logical Operators”](logical-operators.html "12.4.3 Logical Operators")
+[Seção 12.4.3, “Operadores Lógicos”](logical-operators.html "12.4.3 Operadores Lógicos")
 
-[Section 12.4.1, “Operator Precedence”](operator-precedence.html "12.4.1 Operator Precedence")
+[Seção 12.4.1, “Precedência de Operadores”](operator-precedence.html "12.4.1 Precedência de Operadores")
 
 ### !=
 
-[Section 12.4.2, “Comparison Functions and Operators”](comparison-operators.html "12.4.2 Comparison Functions and Operators")
+[Seção 12.4.2, “Funções e Operadores de Comparação”](comparison-operators.html "12.4.2 Funções e Operadores de Comparação")
 
-[Section 12.4.1, “Operator Precedence”](operator-precedence.html "12.4.1 Operator Precedence")
+[Seção 12.4.1, “Precedência de Operadores”](operator-precedence.html "12.4.1 Precedência de Operadores")
 
-[Section 8.2.1.2, “Range Optimization”](range-optimization.html "8.2.1.2 Range Optimization")
+[Seção 8.2.1.2, “Otimização de Range”](range-optimization.html "8.2.1.2 Otimização de Range")
 
-[Section 11.5, “The JSON Data Type”](json.html "11.5 The JSON Data Type")
+[Seção 11.5, “O Tipo de Dado JSON”](json.html "11.5 O Tipo de Dado JSON")
 
 ### %
 
-[Section 12.6.1, “Arithmetic Operators”](arithmetic-functions.html "12.6.1 Arithmetic Operators")
+[Seção 12.6.1, “Operadores Aritméticos”](arithmetic-functions.html "12.6.1 Operadores Aritméticos")
 
 ### &
 
-[Section 12.12, “Bit Functions and Operators”](bit-functions.html "12.12 Bit Functions and Operators")
+[Seção 12.12, “Funções e Operadores de Bit”](bit-functions.html "12.12 Funções e Operadores de Bit")
 
-[Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")
+[Seção 13.1.18, “Instrução CREATE TABLE”](create-table.html "13.1.18 Instrução CREATE TABLE")
 
-[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
+[Seção 22.6, “Restrições e Limitações em Partitioning”](partitioning-limitations.html "22.6 Restrições e Limitações em Partitioning")
 
 ### &&
 
-[Section 12.4.3, “Logical Operators”](logical-operators.html "12.4.3 Logical Operators")
+[Seção 12.4.3, “Operadores Lógicos”](logical-operators.html "12.4.3 Operadores Lógicos")
 
-[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
+[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html "1.6.1 Extensões MySQL para SQL Padrão")
 
 ### >
 
-[Section 12.4.2, “Comparison Functions and Operators”](comparison-operators.html "12.4.2 Comparison Functions and Operators")
+[Seção 12.4.2, “Funções e Operadores de Comparação”](comparison-operators.html "12.4.2 Funções e Operadores de Comparação")
 
-[Section 8.3.8, “Comparison of B-Tree and Hash Indexes”](index-btree-hash.html "8.3.8 Comparison of B-Tree and Hash Indexes")
+[Seção 8.3.8, “Comparação de B-Tree e Hash Indexes”](index-btree-hash.html "8.3.8 Comparação de B-Tree e Hash Indexes")
 
-[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
+[Seção 8.8.2, “Formato de Saída do EXPLAIN”](explain-output.html "8.8.2 Formato de Saída do EXPLAIN")
 
-[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
+[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html "1.6.1 Extensões MySQL para SQL Padrão")
 
-[Section 12.4.1, “Operator Precedence”](operator-precedence.html "12.4.1 Operator Precedence")
+[Seção 12.4.1, “Precedência de Operadores”](operator-precedence.html "12.4.1 Precedência de Operadores")
 
-[Section 8.3.10, “Optimizer Use of Generated Column Indexes”](generated-column-index-optimizations.html "8.3.10 Optimizer Use of Generated Column Indexes")
+[Seção 8.3.10, “Uso de Indexes de Colunas Geradas pelo Optimizer”](generated-column-index-optimizations.html "8.3.10 Uso de Indexes de Colunas Geradas pelo Optimizer")
 
-[Section 8.2.1.2, “Range Optimization”](range-optimization.html "8.2.1.2 Range Optimization")
+[Seção 8.2.1.2, “Otimização de Range”](range-optimization.html "8.2.1.2 Otimização de Range")
 
-[Section 11.5, “The JSON Data Type”](json.html "11.5 The JSON Data Type")
+[Seção 11.5, “O Tipo de Dado JSON”](json.html "11.5 O Tipo de Dado JSON")
 
 ### ->
 
-[Section 12.17.3, “Functions That Search JSON Values”](json-search-functions.html "12.17.3 Functions That Search JSON Values")
+[Seção 12.17.3, “Funções Que Pesquisam Valores JSON”](json-search-functions.html "12.17.3 Funções Que Pesquisam Valores JSON")
 
-[Section 13.1.18.8, “Secondary Indexes and Generated Columns”](create-table-secondary-indexes.html "13.1.18.8 Secondary Indexes and Generated Columns")
+[Seção 13.1.18.8, “Secondary Indexes e Colunas Geradas”](create-table-secondary-indexes.html "13.1.18.8 Secondary Indexes e Colunas Geradas")
 
-[Section 11.5, “The JSON Data Type”](json.html "11.5 The JSON Data Type")
+[Seção 11.5, “O Tipo de Dado JSON”](json.html "11.5 O Tipo de Dado JSON")
 
 ### >>
 
-[Section 12.12, “Bit Functions and Operators”](bit-functions.html "12.12 Bit Functions and Operators")
+[Seção 12.12, “Funções e Operadores de Bit”](bit-functions.html "12.12 Funções e Operadores de Bit")
 
-[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
+[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html "1.6.1 Extensões MySQL para SQL Padrão")
 
-[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
+[Seção 22.6, “Restrições e Limitações em Partitioning”](partitioning-limitations.html "22.6 Restrições e Limitações em Partitioning")
 
 ### ->>
 
-[Section 13.1.18.8, “Secondary Indexes and Generated Columns”](create-table-secondary-indexes.html "13.1.18.8 Secondary Indexes and Generated Columns")
+[Seção 13.1.18.8, “Secondary Indexes e Colunas Geradas”](create-table-secondary-indexes.html "13.1.18.8 Secondary Indexes e Colunas Geradas")
 
-[Section 11.5, “The JSON Data Type”](json.html "11.5 The JSON Data Type")
+[Seção 11.5, “O Tipo de Dado JSON”](json.html "11.5 O Tipo de Dado JSON")
 
 ### >=
 
-[Section 12.4.2, “Comparison Functions and Operators”](comparison-operators.html "12.4.2 Comparison Functions and Operators")
+[Seção 12.4.2, “Funções e Operadores de Comparação”](comparison-operators.html "12.4.2 Funções e Operadores de Comparação")
 
-[Section 8.3.8, “Comparison of B-Tree and Hash Indexes”](index-btree-hash.html "8.3.8 Comparison of B-Tree and Hash Indexes")
+[Seção 8.3.8, “Comparação de B-Tree e Hash Indexes”](index-btree-hash.html "8.3.8 Comparação de B-Tree e Hash Indexes")
 
-[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
+[Seção 8.8.2, “Formato de Saída do EXPLAIN”](explain-output.html "8.8.2 Formato de Saída do EXPLAIN")
 
-[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
+[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html "1.6.1 Extensões MySQL para SQL Padrão")
 
-[Section 12.4.1, “Operator Precedence”](operator-precedence.html "12.4.1 Operator Precedence")
+[Seção 12.4.1, “Precedência de Operadores”](operator-precedence.html "12.4.1 Precedência de Operadores")
 
-[Section 8.3.10, “Optimizer Use of Generated Column Indexes”](generated-column-index-optimizations.html "8.3.10 Optimizer Use of Generated Column Indexes")
+[Seção 8.3.10, “Uso de Indexes de Colunas Geradas pelo Optimizer”](generated-column-index-optimizations.html "8.3.10 Uso de Indexes de Colunas Geradas pelo Optimizer")
 
-[Section 8.2.1.2, “Range Optimization”](range-optimization.html "8.2.1.2 Range Optimization")
+[Seção 8.2.1.2, “Otimização de Range”](range-optimization.html "8.2.1.2 Otimização de Range")
 
-[Section 11.5, “The JSON Data Type”](json.html "11.5 The JSON Data Type")
+[Seção 11.5, “O Tipo de Dado JSON”](json.html "11.5 O Tipo de Dado JSON")
 
 ### <
 
-[Section 12.4.2, “Comparison Functions and Operators”](comparison-operators.html "12.4.2 Comparison Functions and Operators")
+[Seção 12.4.2, “Funções e Operadores de Comparação”](comparison-operators.html "12.4.2 Funções e Operadores de Comparação")
 
-[Section 8.3.8, “Comparison of B-Tree and Hash Indexes”](index-btree-hash.html "8.3.8 Comparison of B-Tree and Hash Indexes")
+[Seção 8.3.8, “Comparação de B-Tree e Hash Indexes”](index-btree-hash.html "8.3.8 Comparação de B-Tree e Hash Indexes")
 
-[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
+[Seção 8.8.2, “Formato de Saída do EXPLAIN”](explain-output.html "8.8.2 Formato de Saída do EXPLAIN")
 
-[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
+[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html "1.6.1 Extensões MySQL para SQL Padrão")
 
-[Section 12.4.1, “Operator Precedence”](operator-precedence.html "12.4.1 Operator Precedence")
+[Seção 12.4.1, “Precedência de Operadores”](operator-precedence.html "12.4.1 Precedência de Operadores")
 
-[Section 8.3.10, “Optimizer Use of Generated Column Indexes”](generated-column-index-optimizations.html "8.3.10 Optimizer Use of Generated Column Indexes")
+[Seção 8.3.10, “Uso de Indexes de Colunas Geradas pelo Optimizer”](generated-column-index-optimizations.html "8.3.10 Uso de Indexes de Colunas Geradas pelo Optimizer")
 
-[Section 8.2.1.2, “Range Optimization”](range-optimization.html "8.2.1.2 Range Optimization")
+[Seção 8.2.1.2, “Otimização de Range”](range-optimization.html "8.2.1.2 Otimização de Range")
 
-[Section 11.5, “The JSON Data Type”](json.html "11.5 The JSON Data Type")
+[Seção 11.5, “O Tipo de Dado JSON”](json.html "11.5 O Tipo de Dado JSON")
 
-[Section 3.3.4.6, “Working with NULL Values”](working-with-null.html "3.3.4.6 Working with NULL Values")
+[Seção 3.3.4.6, “Trabalhando com Valores NULL”](working-with-null.html "3.3.4.6 Trabalhando com Valores NULL")
 
 ### <>
 
-[Section 12.4.2, “Comparison Functions and Operators”](comparison-operators.html "12.4.2 Comparison Functions and Operators")
+[Seção 12.4.2, “Funções e Operadores de Comparação”](comparison-operators.html "12.4.2 Funções e Operadores de Comparação")
 
-[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
+[Seção 8.8.2, “Formato de Saída do EXPLAIN”](explain-output.html "8.8.2 Formato de Saída do EXPLAIN")
 
-[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
+[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html "1.6.1 Extensões MySQL para SQL Padrão")
 
-[Section 12.4.1, “Operator Precedence”](operator-precedence.html "12.4.1 Operator Precedence")
+[Seção 12.4.1, “Precedência de Operadores”](operator-precedence.html "12.4.1 Precedência de Operadores")
 
-[Section 8.2.1.2, “Range Optimization”](range-optimization.html "8.2.1.2 Range Optimization")
+[Seção 8.2.1.2, “Otimização de Range”](range-optimization.html "8.2.1.2 Otimização de Range")
 
-[Section 11.5, “The JSON Data Type”](json.html "11.5 The JSON Data Type")
+[Seção 11.5, “O Tipo de Dado JSON”](json.html "11.5 O Tipo de Dado JSON")
 
-[Section 3.3.4.6, “Working with NULL Values”](working-with-null.html "3.3.4.6 Working with NULL Values")
+[Seção 3.3.4.6, “Trabalhando com Valores NULL”](working-with-null.html "3.3.4.6 Trabalhando com Valores NULL")
 
 ### <<
 
-[Section 12.12, “Bit Functions and Operators”](bit-functions.html "12.12 Bit Functions and Operators")
+[Seção 12.12, “Funções e Operadores de Bit”](bit-functions.html "12.12 Funções e Operadores de Bit")
 
-[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
+[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html "1.6.1 Extensões MySQL para SQL Padrão")
 
-[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
+[Seção 22.6, “Restrições e Limitações em Partitioning”](partitioning-limitations.html "22.6 Restrições e Limitações em Partitioning")
 
 ### <=
 
-[Section 12.4.2, “Comparison Functions and Operators”](comparison-operators.html "12.4.2 Comparison Functions and Operators")
+[Seção 12.4.2, “Funções e Operadores de Comparação”](comparison-operators.html "12.4.2 Funções e Operadores de Comparação")
 
-[Section 8.3.8, “Comparison of B-Tree and Hash Indexes”](index-btree-hash.html "8.3.8 Comparison of B-Tree and Hash Indexes")
+[Seção 8.3.8, “Comparação de B-Tree e Hash Indexes”](index-btree-hash.html "8.3.8 Comparação de B-Tree e Hash Indexes")
 
-[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
+[Seção 8.8.2, “Formato de Saída do EXPLAIN”](explain-output.html "8.8.2 Formato de Saída do EXPLAIN")
 
-[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
+[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html "1.6.1 Extensões MySQL para SQL Padrão")
 
-[Section 12.4.1, “Operator Precedence”](operator-precedence.html "12.4.1 Operator Precedence")
+[Seção 12.4.1, “Precedência de Operadores”](operator-precedence.html "12.4.1 Precedência de Operadores")
 
-[Section 8.3.10, “Optimizer Use of Generated Column Indexes”](generated-column-index-optimizations.html "8.3.10 Optimizer Use of Generated Column Indexes")
+[Seção 8.3.10, “Uso de Indexes de Colunas Geradas pelo Optimizer”](generated-column-index-optimizations.html "8.3.10 Uso de Indexes de Colunas Geradas pelo Optimizer")
 
-[Section 8.2.1.2, “Range Optimization”](range-optimization.html "8.2.1.2 Range Optimization")
+[Seção 8.2.1.2, “Otimização de Range”](range-optimization.html "8.2.1.2 Otimização de Range")
 
-[Section 11.5, “The JSON Data Type”](json.html "11.5 The JSON Data Type")
+[Seção 11.5, “O Tipo de Dado JSON”](json.html "11.5 O Tipo de Dado JSON")
 
 ### <=>
 
-[Section 12.4.2, “Comparison Functions and Operators”](comparison-operators.html "12.4.2 Comparison Functions and Operators")
+[Seção 12.4.2, “Funções e Operadores de Comparação”](comparison-operators.html "12.4.2 Funções e Operadores de Comparação")
 
-[Section 8.15.12, “Example”](tracing-example.html "8.15.12 Example")
+[Seção 8.15.12, “Exemplo”](tracing-example.html "8.15.12 Exemplo")
 
-[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
+[Seção 8.8.2, “Formato de Saída do EXPLAIN”](explain-output.html "8.8.2 Formato de Saída do EXPLAIN")
 
-[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
+[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html "1.6.1 Extensões MySQL para SQL Padrão")
 
-[Section 12.4.1, “Operator Precedence”](operator-precedence.html "12.4.1 Operator Precedence")
+[Seção 12.4.1, “Precedência de Operadores”](operator-precedence.html "12.4.1 Precedência de Operadores")
 
-[Section 8.2.1.2, “Range Optimization”](range-optimization.html "8.2.1.2 Range Optimization")
+[Seção 8.2.1.2, “Otimização de Range”](range-optimization.html "8.2.1.2 Otimização de Range")
 
-[Section 11.5, “The JSON Data Type”](json.html "11.5 The JSON Data Type")
+[Seção 11.5, “O Tipo de Dado JSON”](json.html "11.5 O Tipo de Dado JSON")
 
-[Section 12.3, “Type Conversion in Expression Evaluation”](type-conversion.html "12.3 Type Conversion in Expression Evaluation")
+[Seção 12.3, “Conversão de Tipo na Avaliação de Expressões”](type-conversion.html "12.3 Conversão de Tipo na Avaliação de Expressões")
 
 ### \*
 
-[Section 12.6.1, “Arithmetic Operators”](arithmetic-functions.html "12.6.1 Arithmetic Operators")
+[Seção 12.6.1, “Operadores Aritméticos”](arithmetic-functions.html "12.6.1 Operadores Aritméticos")
 
-[Section 11.1.1, “Numeric Data Type Syntax”](numeric-type-syntax.html "11.1.1 Numeric Data Type Syntax")
+[Seção 11.1.1, “Sintaxe de Tipos de Dados Numéricos”](numeric-type-syntax.html "11.1.1 Sintaxe de Tipos de Dados Numéricos")
 
-[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
+[Seção 22.6, “Restrições e Limitações em Partitioning”](partitioning-limitations.html "22.6 Restrições e Limitações em Partitioning")
 
 ### +
 
-[Section 12.6.1, “Arithmetic Operators”](arithmetic-functions.html "12.6.1 Arithmetic Operators")
+[Seção 12.6.1, “Operadores Aritméticos”](arithmetic-functions.html "12.6.1 Operadores Aritméticos")
 
-[Section 12.10, “Cast Functions and Operators”](cast-functions.html "12.10 Cast Functions and Operators")
+[Seção 12.10, “Funções e Operadores de Cast (Conversão)”](cast-functions.html "12.10 Funções e Operadores de Cast (Conversão)")
 
-[Section 9.5, “Expressions”](expressions.html "9.5 Expressions")
+[Seção 9.5, “Expressões”](expressions.html "9.5 Expressões")
 
-[Section 11.1.1, “Numeric Data Type Syntax”](numeric-type-syntax.html "11.1.1 Numeric Data Type Syntax")
+[Seção 11.1.1, “Sintaxe de Tipos de Dados Numéricos”](numeric-type-syntax.html "11.1.1 Sintaxe de Tipos de Dados Numéricos")
 
-[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
+[Seção 22.6, “Restrições e Limitações em Partitioning”](partitioning-limitations.html "22.6 Restrições e Limitações em Partitioning")
 
 ### /
 
-[Section 12.6.1, “Arithmetic Operators”](arithmetic-functions.html "12.6.1 Arithmetic Operators")
+[Seção 12.6.1, “Operadores Aritméticos”](arithmetic-functions.html "12.6.1 Operadores Aritméticos")
 
-[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
+[Seção 22.6, “Restrições e Limitações em Partitioning”](partitioning-limitations.html "22.6 Restrições e Limitações em Partitioning")
 
-[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
+[Seção 5.1.7, “Variáveis de Sistema do Servidor”](server-system-variables.html "5.1.7 Variáveis de Sistema do Servidor")
 
 ### :=
 
-[Section 12.4.4, “Assignment Operators”](assignment-operators.html "12.4.4 Assignment Operators")
+[Seção 12.4.4, “Operadores de Atribuição”](assignment-operators.html "12.4.4 Operadores de Atribuição")
 
-[Section 12.4.1, “Operator Precedence”](operator-precedence.html "12.4.1 Operator Precedence")
+[Seção 12.4.1, “Precedência de Operadores”](operator-precedence.html "12.4.1 Precedência de Operadores")
 
-[Section 13.7.4.1, “SET Syntax for Variable Assignment”](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment")
+[Seção 13.7.4.1, “Sintaxe SET para Atribuição de Variáveis”](set-variable.html "13.7.4.1 Sintaxe SET para Atribuição de Variáveis")
 
-[Section 9.4, “User-Defined Variables”](user-variables.html "9.4 User-Defined Variables")
+[Seção 9.4, “Variáveis Definidas pelo Usuário”](user-variables.html "9.4 Variáveis Definidas pelo Usuário")
 
 ### =
 
-[Section 12.4.4, “Assignment Operators”](assignment-operators.html "12.4.4 Assignment Operators")
+[Seção 12.4.4, “Operadores de Atribuição”](assignment-operators.html "12.4.4 Operadores de Atribuição")
 
-[Section 12.4.2, “Comparison Functions and Operators”](comparison-operators.html "12.4.2 Comparison Functions and Operators")
+[Seção 12.4.2, “Funções e Operadores de Comparação”](comparison-operators.html "12.4.2 Funções e Operadores de Comparação")
 
-[Section 8.3.8, “Comparison of B-Tree and Hash Indexes”](index-btree-hash.html "8.3.8 Comparison of B-Tree and Hash Indexes")
+[Seção 8.3.8, “Comparação de B-Tree e Hash Indexes”](index-btree-hash.html "8.3.8 Comparação de B-Tree e Hash Indexes")
 
-[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
+[Seção 8.8.2, “Formato de Saída do EXPLAIN”](explain-output.html "8.8.2 Formato de Saída do EXPLAIN")
 
-[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
+[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html "1.6.1 Extensões MySQL para SQL Padrão")
 
-[Section 12.4.1, “Operator Precedence”](operator-precedence.html "12.4.1 Operator Precedence")
+[Seção 12.4.1, “Precedência de Operadores”](operator-precedence.html "12.4.1 Precedência de Operadores")
 
-[Section 8.3.10, “Optimizer Use of Generated Column Indexes”](generated-column-index-optimizations.html "8.3.10 Optimizer Use of Generated Column Indexes")
+[Seção 8.3.10, “Uso de Indexes de Colunas Geradas pelo Optimizer”](generated-column-index-optimizations.html "8.3.10 Uso de Indexes de Colunas Geradas pelo Optimizer")
 
-[Section 8.2.1.2, “Range Optimization”](range-optimization.html "8.2.1.2 Range Optimization")
+[Seção 8.2.1.2, “Otimização de Range”](range-optimization.html "8.2.1.2 Otimização de Range")
 
-[Section 13.2.10.12, “Restrictions on Subqueries”](subquery-restrictions.html "13.2.10.12 Restrictions on Subqueries")
+[Seção 13.2.10.12, “Restrições em Subqueries”](subquery-restrictions.html "13.2.10.12 Restrições em Subqueries")
 
-[Section 13.7.4.1, “SET Syntax for Variable Assignment”](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment")
+[Seção 13.7.4.1, “Sintaxe SET para Atribuição de Variáveis”](set-variable.html "13.7.4.1 Sintaxe SET para Atribuição de Variáveis")
 
-[Section 12.8.1, “String Comparison Functions and Operators”](string-comparison-functions.html "12.8.1 String Comparison Functions and Operators")
+[Seção 12.8.1, “Funções e Operadores de Comparação de String”](string-comparison-functions.html "12.8.1 Funções e Operadores de Comparação de String")
 
-[Section 11.5, “The JSON Data Type”](json.html "11.5 The JSON Data Type")
+[Seção 11.5, “O Tipo de Dado JSON”](json.html "11.5 O Tipo de Dado JSON")
 
-[Section 9.4, “User-Defined Variables”](user-variables.html "9.4 User-Defined Variables")
+[Seção 9.4, “Variáveis Definidas pelo Usuário”](user-variables.html "9.4 Variáveis Definidas pelo Usuário")
 
-[Section 3.3.4.6, “Working with NULL Values”](working-with-null.html "3.3.4.6 Working with NULL Values")
+[Seção 3.3.4.6, “Trabalhando com Valores NULL”](working-with-null.html "3.3.4.6 Trabalhando com Valores NULL")
 
 ### ^
 
-[Section 12.12, “Bit Functions and Operators”](bit-functions.html "12.12 Bit Functions and Operators")
+[Seção 12.12, “Funções e Operadores de Bit”](bit-functions.html "12.12 Funções e Operadores de Bit")
 
-[Section 9.5, “Expressions”](expressions.html "9.5 Expressions")
+[Seção 9.5, “Expressões”](expressions.html "9.5 Expressões")
 
-[Section 12.4.1, “Operator Precedence”](operator-precedence.html "12.4.1 Operator Precedence")
+[Seção 12.4.1, “Precedência de Operadores”](operator-precedence.html "12.4.1 Precedência de Operadores")
 
-[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
+[Seção 22.6, “Restrições e Limitações em Partitioning”](partitioning-limitations.html "22.6 Restrições e Limitações em Partitioning")
 
 ### |
 
-[Section 12.12, “Bit Functions and Operators”](bit-functions.html "12.12 Bit Functions and Operators")
+[Seção 12.12, “Funções e Operadores de Bit”](bit-functions.html "12.12 Funções e Operadores de Bit")
 
-[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
+[Seção 22.6, “Restrições e Limitações em Partitioning”](partitioning-limitations.html "22.6 Restrições e Limitações em Partitioning")
 
 ### ||
 
-[Section 12.8.3, “Character Set and Collation of Function Results”](string-functions-charset.html "12.8.3 Character Set and Collation of Function Results")
+[Seção 12.8.3, “Character Set e Collation de Resultados de Funções”](string-functions-charset.html "12.8.3 Character Set e Collation de Resultados de Funções")
 
-[Section 10.8.2, “COLLATE Clause Precedence”](charset-collate-precedence.html "10.8.2 COLLATE Clause Precedence")
+[Seção 10.8.2, “Precedência da Cláusula COLLATE”](charset-collate-precedence.html "10.8.2 Precedência da Cláusula COLLATE")
 
-[Section 9.5, “Expressions”](expressions.html "9.5 Expressions")
+[Seção 9.5, “Expressões”](expressions.html "9.5 Expressões")
 
-[Section 12.4.3, “Logical Operators”](logical-operators.html "12.4.3 Logical Operators")
+[Seção 12.4.3, “Operadores Lógicos”](logical-operators.html "12.4.3 Operadores Lógicos")
 
-[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
+[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html "1.6.1 Extensões MySQL para SQL Padrão")
 
-[Section 12.4.1, “Operator Precedence”](operator-precedence.html "12.4.1 Operator Precedence")
+[Seção 12.4.1, “Precedência de Operadores”](operator-precedence.html "12.4.1 Precedência de Operadores")
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “Modos SQL do Servidor”](sql-mode.html "5.1.10 Modos SQL do Servidor")
 
 ### ~
 
-[Section 12.12, “Bit Functions and Operators”](bit-functions.html "12.12 Bit Functions and Operators")
+[Seção 12.12, “Funções e Operadores de Bit”](bit-functions.html "12.12 Funções e Operadores de Bit")
 
-[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
+[Seção 22.6, “Restrições e Limitações em Partitioning”](partitioning-limitations.html "22.6 Restrições e Limitações em Partitioning")
 
 ### A
 
-index top](dynindex-operator.html#op-index-top)]
+[início do índice](dynindex-operator.html#op-index-top)]
 
 ### AND
 
-[Section 8.3.8, “Comparison of B-Tree and Hash Indexes”](index-btree-hash.html "8.3.8 Comparison of B-Tree and Hash Indexes")
+[Seção 8.3.8, “Comparação de B-Tree e Hash Indexes”](index-btree-hash.html "8.3.8 Comparação de B-Tree e Hash Indexes")
 
-[Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")
+[Seção 13.1.18, “Instrução CREATE TABLE”](create-table.html "13.1.18 Instrução CREATE TABLE")
 
-[Section 8.2.1.3, “Index Merge Optimization”](index-merge-optimization.html "8.2.1.3 Index Merge Optimization")
+[Seção 8.2.1.3, “Otimização de Index Merge”](index-merge-optimization.html "8.2.1.3 Otimização de Index Merge")
 
-[Section 12.4.3, “Logical Operators”](logical-operators.html "12.4.3 Logical Operators")
+[Seção 12.4.3, “Operadores Lógicos”](logical-operators.html "12.4.3 Operadores Lógicos")
 
-[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
+[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html "1.6.1 Extensões MySQL para SQL Padrão")
 
-[Section 8.2.2.3, “Optimizing Subqueries with the EXISTS Strategy”](subquery-optimization-with-exists.html "8.2.2.3 Optimizing Subqueries with the EXISTS Strategy")
+[Seção 8.2.2.3, “Otimizando Subqueries com a Estratégia EXISTS”](subquery-optimization-with-exists.html "8.2.2.3 Otimizando Subqueries com a Estratégia EXISTS")
 
-[Section 8.2.2.1, “Optimizing Subqueries, Derived Tables, and View References with Semijoin Transformations”](semijoins.html "8.2.2.1 Optimizing Subqueries, Derived Tables, and View References with Semijoin Transformations")
+[Seção 8.2.2.1, “Otimizando Subqueries, Derived Tables e Referências de View com Transformações Semijoin”](semijoins.html "8.2.2.1 Otimizando Subqueries, Derived Tables e Referências de View com Transformações Semijoin")
 
-[Section 8.2.1.2, “Range Optimization”](range-optimization.html "8.2.1.2 Range Optimization")
+[Seção 8.2.1.2, “Otimização de Range”](range-optimization.html "8.2.1.2 Otimização de Range")
 
-[Section 13.2.10.12, “Restrictions on Subqueries”](subquery-restrictions.html "13.2.10.12 Restrictions on Subqueries")
+[Seção 13.2.10.12, “Restrições em Subqueries”](subquery-restrictions.html "13.2.10.12 Restrições em Subqueries")
 
-[Section 8.2.1.19, “Row Constructor Expression Optimization”](row-constructor-optimization.html "8.2.1.19 Row Constructor Expression Optimization")
+[Seção 8.2.1.19, “Otimização de Expressões de Construtor de Linha”](row-constructor-optimization.html "8.2.1.19 Otimização de Expressões de Construtor de Linha")
 
-[Section 3.6.7, “Searching on Two Keys”](searching-on-two-keys.html "3.6.7 Searching on Two Keys")
+[Seção 3.6.7, “Pesquisando em Duas Chaves”](searching-on-two-keys.html "3.6.7 Pesquisando em Duas Chaves")
 
-[Section 3.3.4.2, “Selecting Particular Rows”](selecting-rows.html "3.3.4.2 Selecting Particular Rows")
+[Seção 3.3.4.2, “Selecionando Linhas Particulares”](selecting-rows.html "3.3.4.2 Selecionando Linhas Particulares")
 
-[Section 12.8.1, “String Comparison Functions and Operators”](string-comparison-functions.html "12.8.1 String Comparison Functions and Operators")
+[Seção 12.8.1, “Funções e Operadores de Comparação de String”](string-comparison-functions.html "12.8.1 Funções e Operadores de Comparação de String")
 
-[Section 23.5.2, “View Processing Algorithms”](view-algorithms.html "23.5.2 View Processing Algorithms")
+[Seção 23.5.2, “Algoritmos de Processamento de View”](view-algorithms.html "23.5.2 Algoritmos de Processamento de View")
 
 ### B
 
-index top](dynindex-operator.html#op-index-top)]
+[início do índice](dynindex-operator.html#op-index-top)]
 
 ### BETWEEN
 
-[Section 12.4.2, “Comparison Functions and Operators”](comparison-operators.html "12.4.2 Comparison Functions and Operators")
+[Seção 12.4.2, “Funções e Operadores de Comparação”](comparison-operators.html "12.4.2 Funções e Operadores de Comparação")
 
-[Section 8.3.8, “Comparison of B-Tree and Hash Indexes”](index-btree-hash.html "8.3.8 Comparison of B-Tree and Hash Indexes")
+[Seção 8.3.8, “Comparação de B-Tree e Hash Indexes”](index-btree-hash.html "8.3.8 Comparação de B-Tree e Hash Indexes")
 
-[Section 8.2.1.12, “Condition Filtering”](condition-filtering.html "8.2.1.12 Condition Filtering")
+[Seção 8.2.1.12, “Filtragem de Condição”](condition-filtering.html "8.2.1.12 Filtragem de Condição")
 
-[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
+[Seção 8.8.2, “Formato de Saída do EXPLAIN”](explain-output.html "8.8.2 Formato de Saída do EXPLAIN")
 
-[Section 8.3.10, “Optimizer Use of Generated Column Indexes”](generated-column-index-optimizations.html "8.3.10 Optimizer Use of Generated Column Indexes")
+[Seção 8.3.10, “Uso de Indexes de Colunas Geradas pelo Optimizer”](generated-column-index-optimizations.html "8.3.10 Uso de Indexes de Colunas Geradas pelo Optimizer")
 
-[Section 8.2.1.2, “Range Optimization”](range-optimization.html "8.2.1.2 Range Optimization")
+[Seção 8.2.1.2, “Otimização de Range”](range-optimization.html "8.2.1.2 Otimização de Range")
 
-[Section 11.5, “The JSON Data Type”](json.html "11.5 The JSON Data Type")
+[Seção 11.5, “O Tipo de Dado JSON”](json.html "11.5 O Tipo de Dado JSON")
 
-[Section 12.3, “Type Conversion in Expression Evaluation”](type-conversion.html "12.3 Type Conversion in Expression Evaluation")
+[Seção 12.3, “Conversão de Tipo na Avaliação de Expressões”](type-conversion.html "12.3 Conversão de Tipo na Avaliação de Expressões")
 
 ### BINARY
 
-[Section 12.10, “Cast Functions and Operators”](cast-functions.html "12.10 Cast Functions and Operators")
+[Seção 12.10, “Funções e Operadores de Cast (Conversão)”](cast-functions.html "12.10 Funções e Operadores de Cast (Conversão)")
 
-[Section 8.4.2.2, “Optimizing for Character and String Types”](optimize-character.html "8.4.2.2 Optimizing for Character and String Types")
+[Seção 8.4.2.2, “Otimizando para Tipos de Caractere e String”](optimize-character.html "8.4.2.2 Otimizando para Tipos de Caractere e String")
 
-[Section 3.3.4.7, “Pattern Matching”](pattern-matching.html "3.3.4.7 Pattern Matching")
+[Seção 3.3.4.7, “Correspondência de Padrão (Pattern Matching)”](pattern-matching.html "3.3.4.7 Correspondência de Padrão (Pattern Matching)")
 
-[Section 3.3.4.4, “Sorting Rows”](sorting-rows.html "3.3.4.4 Sorting Rows")
+[Seção 3.3.4.4, “Ordenando Linhas”](sorting-rows.html "3.3.4.4 Ordenando Linhas")
 
 ### C
 
-index top](dynindex-operator.html#op-index-top)]
+[início do índice](dynindex-operator.html#op-index-top)]
 
 ### CASE
 
-[Section 13.6.5.1, “CASE Statement”](case.html "13.6.5.1 CASE Statement")
+[Seção 13.6.5.1, “Instrução CASE”](case.html "13.6.5.1 Instrução CASE")
 
-[Section 9.5, “Expressions”](expressions.html "9.5 Expressions")
+[Seção 9.5, “Expressões”](expressions.html "9.5 Expressões")
 
-[Section 12.5, “Flow Control Functions”](flow-control-functions.html "12.5 Flow Control Functions")
+[Seção 12.5, “Funções de Controle de Fluxo”](flow-control-functions.html "12.5 Funções de Controle de Fluxo")
 
-[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
+[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html "1.6.1 Extensões MySQL para SQL Padrão")
 
 ### CASE value WHEN compare_value THEN result END
 
-[Section 12.5, “Flow Control Functions”](flow-control-functions.html "12.5 Flow Control Functions")
+[Seção 12.5, “Funções de Controle de Fluxo”](flow-control-functions.html "12.5 Funções de Controle de Fluxo")
 
 ### CASE WHEN condition THEN result END
 
-[Section 12.5, “Flow Control Functions”](flow-control-functions.html "12.5 Flow Control Functions")
+[Seção 12.5, “Funções de Controle de Fluxo”](flow-control-functions.html "12.5 Funções de Controle de Fluxo")
 
 ### CASE WHEN expr1 = expr2 THEN NULL ELSE expr1 END
 
-[Section 12.5, “Flow Control Functions”](flow-control-functions.html "12.5 Flow Control Functions")
+[Seção 12.5, “Funções de Controle de Fluxo”](flow-control-functions.html "12.5 Funções de Controle de Fluxo")
 
 ### column->>path
 
-[Section 12.17.3, “Functions That Search JSON Values”](json-search-functions.html "12.17.3 Functions That Search JSON Values")
+[Seção 12.17.3, “Funções Que Pesquisam Valores JSON”](json-search-functions.html "12.17.3 Funções Que Pesquisam Valores JSON")
 
 ### column->path
 
-[Section 12.17.3, “Functions That Search JSON Values”](json-search-functions.html "12.17.3 Functions That Search JSON Values")
+[Seção 12.17.3, “Funções Que Pesquisam Valores JSON”](json-search-functions.html "12.17.3 Funções Que Pesquisam Valores JSON")
 
-[Section 11.5, “The JSON Data Type”](json.html "11.5 The JSON Data Type")
+[Seção 11.5, “O Tipo de Dado JSON”](json.html "11.5 O Tipo de Dado JSON")
 
-[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
+[Seção 1.3, “O Que Há de Novo no MySQL 5.7”](mysql-nutshell.html "1.3 O Que Há de Novo no MySQL 5.7")
 
 ### D
 
-index top](dynindex-operator.html#op-index-top)]
+[início do índice](dynindex-operator.html#op-index-top)]
 
 ### DIV
 
-[Section 12.6.1, “Arithmetic Operators”](arithmetic-functions.html "12.6.1 Arithmetic Operators")
+[Seção 12.6.1, “Operadores Aritméticos”](arithmetic-functions.html "12.6.1 Operadores Aritméticos")
 
-[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
+[Seção 22.6, “Restrições e Limitações em Partitioning”](partitioning-limitations.html "22.6 Restrições e Limitações em Partitioning")
 
 ### E
 
-index top](dynindex-operator.html#op-index-top)]
+[início do índice](dynindex-operator.html#op-index-top)]
 
 ### EXISTS()
 
-[Section 12.4.2, “Comparison Functions and Operators”](comparison-operators.html "12.4.2 Comparison Functions and Operators")
+[Seção 12.4.2, “Funções e Operadores de Comparação”](comparison-operators.html "12.4.2 Funções e Operadores de Comparação")
 
 ### expr BETWEEN min AND max
 
-[Section 12.4.2, “Comparison Functions and Operators”](comparison-operators.html "12.4.2 Comparison Functions and Operators")
+[Seção 12.4.2, “Funções e Operadores de Comparação”](comparison-operators.html "12.4.2 Funções e Operadores de Comparação")
 
 ### expr IN ()
 
-[Section 12.4.2, “Comparison Functions and Operators”](comparison-operators.html "12.4.2 Comparison Functions and Operators")
+[Seção 12.4.2, “Funções e Operadores de Comparação”](comparison-operators.html "12.4.2 Funções e Operadores de Comparação")
 
 ### expr LIKE pat
 
-[Section 12.8.1, “String Comparison Functions and Operators”](string-comparison-functions.html "12.8.1 String Comparison Functions and Operators")
+[Seção 12.8.1, “Funções e Operadores de Comparação de String”](string-comparison-functions.html "12.8.1 Funções e Operadores de Comparação de String")
 
 ### expr NOT BETWEEN min AND max
 
-[Section 12.4.2, “Comparison Functions and Operators”](comparison-operators.html "12.4.2 Comparison Functions and Operators")
+[Seção 12.4.2, “Funções e Operadores de Comparação”](comparison-operators.html "12.4.2 Funções e Operadores de Comparação")
 
 ### expr NOT IN ()
 
-[Section 12.4.2, “Comparison Functions and Operators”](comparison-operators.html "12.4.2 Comparison Functions and Operators")
+[Seção 12.4.2, “Funções e Operadores de Comparação”](comparison-operators.html "12.4.2 Funções e Operadores de Comparação")
 
 ### expr NOT LIKE pat
 
-[Section 12.8.1, “String Comparison Functions and Operators”](string-comparison-functions.html "12.8.1 String Comparison Functions and Operators")
+[Seção 12.8.1, “Funções e Operadores de Comparação de String”](string-comparison-functions.html "12.8.1 Funções e Operadores de Comparação de String")
 
 ### expr NOT REGEXP pat
 
-[Section 12.8.2, “Regular Expressions”](regexp.html "12.8.2 Regular Expressions")
+[Seção 12.8.2, “Expressões Regulares”](regexp.html "12.8.2 Expressões Regulares")
 
 ### expr NOT RLIKE pat
 
-[Section 12.8.2, “Regular Expressions”](regexp.html "12.8.2 Regular Expressions")
+[Seção 12.8.2, “Expressões Regulares”](regexp.html "12.8.2 Expressões Regulares")
 
 ### expr REGEXP pat
 
-[Section 12.8.2, “Regular Expressions”](regexp.html "12.8.2 Regular Expressions")
+[Seção 12.8.2, “Expressões Regulares”](regexp.html "12.8.2 Expressões Regulares")
 
 ### expr RLIKE pat
 
-[Section 12.8.2, “Regular Expressions”](regexp.html "12.8.2 Regular Expressions")
+[Seção 12.8.2, “Expressões Regulares”](regexp.html "12.8.2 Expressões Regulares")
 
 ### expr1 SOUNDS LIKE expr2
 
-[Section 12.8, “String Functions and Operators”](string-functions.html "12.8 String Functions and Operators")
+[Seção 12.8, “Funções e Operadores de String”](string-functions.html "12.8 Funções e Operadores de String")
 
 ### I
 
-index top](dynindex-operator.html#op-index-top)]
+[início do índice](dynindex-operator.html#op-index-top)]
 
 ### IN()
 
-[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
+[Seção 8.8.2, “Formato de Saída do EXPLAIN”](explain-output.html "8.8.2 Formato de Saída do EXPLAIN")
 
-[Section 12.4.1, “Operator Precedence”](operator-precedence.html "12.4.1 Operator Precedence")
+[Seção 12.4.1, “Precedência de Operadores”](operator-precedence.html "12.4.1 Precedência de Operadores")
 
-[Section 8.3.10, “Optimizer Use of Generated Column Indexes”](generated-column-index-optimizations.html "8.3.10 Optimizer Use of Generated Column Indexes")
+[Seção 8.3.10, “Uso de Indexes de Colunas Geradas pelo Optimizer”](generated-column-index-optimizations.html "8.3.10 Uso de Indexes de Colunas Geradas pelo Optimizer")
 
-[Section 8.2.1.2, “Range Optimization”](range-optimization.html "8.2.1.2 Range Optimization")
+[Seção 8.2.1.2, “Otimização de Range”](range-optimization.html "8.2.1.2 Otimização de Range")
 
-[Section 8.2.1.19, “Row Constructor Expression Optimization”](row-constructor-optimization.html "8.2.1.19 Row Constructor Expression Optimization")
+[Seção 8.2.1.19, “Otimização de Expressões de Construtor de Linha”](row-constructor-optimization.html "8.2.1.19 Otimização de Expressões de Construtor de Linha")
 
-[Section 11.5, “The JSON Data Type”](json.html "11.5 The JSON Data Type")
+[Seção 11.5, “O Tipo de Dado JSON”](json.html "11.5 O Tipo de Dado JSON")
 
-[Section 12.3, “Type Conversion in Expression Evaluation”](type-conversion.html "12.3 Type Conversion in Expression Evaluation")
+[Seção 12.3, “Conversão de Tipo na Avaliação de Expressões”](type-conversion.html "12.3 Conversão de Tipo na Avaliação de Expressões")
 
 ### IS
 
-[Section 12.4.1, “Operator Precedence”](operator-precedence.html "12.4.1 Operator Precedence")
+[Seção 12.4.1, “Precedência de Operadores”](operator-precedence.html "12.4.1 Precedência de Operadores")
 
 ### IS boolean_value
 
-[Section 12.4.2, “Comparison Functions and Operators”](comparison-operators.html "12.4.2 Comparison Functions and Operators")
+[Seção 12.4.2, “Funções e Operadores de Comparação”](comparison-operators.html "12.4.2 Funções e Operadores de Comparação")
 
 ### IS NOT boolean_value
 
-[Section 12.4.2, “Comparison Functions and Operators”](comparison-operators.html "12.4.2 Comparison Functions and Operators")
+[Seção 12.4.2, “Funções e Operadores de Comparação”](comparison-operators.html "12.4.2 Funções e Operadores de Comparação")
 
 ### IS NOT NULL
 
-[Section 12.4.2, “Comparison Functions and Operators”](comparison-operators.html "12.4.2 Comparison Functions and Operators")
+[Seção 12.4.2, “Funções e Operadores de Comparação”](comparison-operators.html "12.4.2 Funções e Operadores de Comparação")
 
-[Section B.3.4.3, “Problems with NULL Values”](problems-with-null.html "B.3.4.3 Problems with NULL Values")
+[Seção B.3.4.3, “Problemas com Valores NULL”](problems-with-null.html "B.3.4.3 Problemas com Valores NULL")
 
-[Section 8.2.1.2, “Range Optimization”](range-optimization.html "8.2.1.2 Range Optimization")
+[Seção 8.2.1.2, “Otimização de Range”](range-optimization.html "8.2.1.2 Otimização de Range")
 
-[Section 3.3.4.6, “Working with NULL Values”](working-with-null.html "3.3.4.6 Working with NULL Values")
+[Seção 3.3.4.6, “Trabalhando com Valores NULL”](working-with-null.html "3.3.4.6 Trabalhando com Valores NULL")
 
 ### IS NULL
 
-[Section 12.4.2, “Comparison Functions and Operators”](comparison-operators.html "12.4.2 Comparison Functions and Operators")
+[Seção 12.4.2, “Funções e Operadores de Comparação”](comparison-operators.html "12.4.2 Funções e Operadores de Comparação")
 
-[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
+[Seção 8.8.2, “Formato de Saída do EXPLAIN”](explain-output.html "8.8.2 Formato de Saída do EXPLAIN")
 
-[Section 8.2.1.13, “IS NULL Optimization”](is-null-optimization.html "8.2.1.13 IS NULL Optimization")
+[Seção 8.2.1.13, “Otimização IS NULL”](is-null-optimization.html "8.2.1.13 Otimização IS NULL")
 
-[Section 8.2.2.3, “Optimizing Subqueries with the EXISTS Strategy”](subquery-optimization-with-exists.html "8.2.2.3 Optimizing Subqueries with the EXISTS Strategy")
+[Seção 8.2.2.3, “Otimizando Subqueries com a Estratégia EXISTS”](subquery-optimization-with-exists.html "8.2.2.3 Otimizando Subqueries com a Estratégia EXISTS")
 
-[Section B.3.4.3, “Problems with NULL Values”](problems-with-null.html "B.3.4.3 Problems with NULL Values")
+[Seção B.3.4.3, “Problemas com Valores NULL”](problems-with-null.html "B.3.4.3 Problemas com Valores NULL")
 
-[Section 8.2.1.2, “Range Optimization”](range-optimization.html "8.2.1.2 Range Optimization")
+[Seção 8.2.1.2, “Otimização de Range”](range-optimization.html "8.2.1.2 Otimização de Range")
 
-[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
+[Seção 5.1.7, “Variáveis de Sistema do Servidor”](server-system-variables.html "5.1.7 Variáveis de Sistema do Servidor")
 
-[Section 3.3.4.6, “Working with NULL Values”](working-with-null.html "3.3.4.6 Working with NULL Values")
+[Seção 3.3.4.6, “Trabalhando com Valores NULL”](working-with-null.html "3.3.4.6 Trabalhando com Valores NULL")
 
 ### L
 
-index top](dynindex-operator.html#op-index-top)]
+[início do índice](dynindex-operator.html#op-index-top)]
 
 ### LIKE
 
-[Section 6.2.6, “Access Control, Stage 2: Request Verification”](request-access.html "6.2.6 Access Control, Stage 2: Request Verification")
+[Seção 6.2.6, “Controle de Acesso, Estágio 2: Verificação de Solicitação”](request-access.html "6.2.6 Controle de Acesso, Estágio 2: Verificação de Solicitação")
 
-[Section 12.10, “Cast Functions and Operators”](cast-functions.html "12.10 Cast Functions and Operators")
+[Seção 12.10, “Funções e Operadores de Cast (Conversão)”](cast-functions.html "12.10 Funções e Operadores de Cast (Conversão)")
 
-[Section 10.2, “Character Sets and Collations in MySQL”](charset-mysql.html "10.2 Character Sets and Collations in MySQL")
+[Seção 10.2, “Character Sets e Collations no MySQL”](charset-mysql.html "10.2 Character Sets e Collations no MySQL")
 
-[Section 8.3.8, “Comparison of B-Tree and Hash Indexes”](index-btree-hash.html "8.3.8 Comparison of B-Tree and Hash Indexes")
+[Seção 8.3.8, “Comparação de B-Tree e Hash Indexes”](index-btree-hash.html "8.3.8 Comparação de B-Tree e Hash Indexes")
 
-[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
+[Seção 8.8.2, “Formato de Saída do EXPLAIN”](explain-output.html "8.8.2 Formato de Saída do EXPLAIN")
 
-[Section 24.8, “Extensions to SHOW Statements”](extended-show.html "24.8 Extensions to SHOW Statements")
+[Seção 24.8, “Extensões para Instruções SHOW”](extended-show.html "24.8 Extensões para Instruções SHOW")
 
-[Section 12.17.3, “Functions That Search JSON Values”](json-search-functions.html "12.17.3 Functions That Search JSON Values")
+[Seção 12.17.3, “Funções Que Pesquisam Valores JSON”](json-search-functions.html "12.17.3 Funções Que Pesquisam Valores JSON")
 
-[Section 13.8.3, “HELP Statement”](help.html "13.8.3 HELP Statement")
+[Seção 13.8.3, “Instrução HELP”](help.html "13.8.3 Instrução HELP")
 
-[Section A.11, “MySQL 5.7 FAQ: MySQL Chinese, Japanese, and Korean Character Sets”](faqs-cjk.html "A.11 MySQL 5.7 FAQ: MySQL Chinese, Japanese, and Korean Character Sets")
+[Seção A.11, “FAQ do MySQL 5.7: Character Sets Chinês, Japonês e Coreano do MySQL”](faqs-cjk.html "A.11 FAQ do MySQL 5.7: Character Sets Chinês, Japonês e Coreano do MySQL")
 
-[Section 4.5.1.4, “mysql Client Server-Side Help”](mysql-server-side-help.html "4.5.1.4 mysql Client Server-Side Help")
+[Seção 4.5.1.4, “Ajuda do Lado do Servidor no Cliente mysql”](mysql-server-side-help.html "4.5.1.4 mysql Client Server-Side Help")
 
-[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
+[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html "1.6.1 Extensões MySQL para SQL Padrão")
 
-[Section 21.7.4, “NDB Cluster Replication Schema and Tables”](mysql-cluster-replication-schema.html "21.7.4 NDB Cluster Replication Schema and Tables")
+[Seção 21.7.4, “Schema e Tabelas de Replicação do NDB Cluster”](mysql-cluster-replication-schema.html "21.7.4 NDB Cluster Replication Schema and Tables")
 
-[Section 12.4.1, “Operator Precedence”](operator-precedence.html "12.4.1 Operator Precedence")
+[Seção 12.4.1, “Precedência de Operadores”](operator-precedence.html "12.4.1 Precedência de Operadores")
 
-[Section 3.3.4.7, “Pattern Matching”](pattern-matching.html "3.3.4.7 Pattern Matching")
+[Seção 3.3.4.7, “Correspondência de Padrão (Pattern Matching)”](pattern-matching.html "3.3.4.7 Correspondência de Padrão (Pattern Matching)")
 
-[Section 25.4.4, “Pre-Filtering by Instrument”](performance-schema-instrument-filtering.html "25.4.4 Pre-Filtering by Instrument")
+[Seção 25.4.4, “Pré-Filtragem por Instrument”](performance-schema-instrument-filtering.html "25.4.4 Pre-Filtering by Instrument")
 
-[Section 21.6.17, “Quick Reference: NDB Cluster SQL Statements”](mysql-cluster-sql-statements.html "21.6.17 Quick Reference: NDB Cluster SQL Statements")
+[Seção 21.6.17, “Referência Rápida: Instruções SQL do NDB Cluster”](mysql-cluster-sql-statements.html "21.6.17 Quick Reference: NDB Cluster SQL Statements")
 
-[Section 8.2.1.2, “Range Optimization”](range-optimization.html "8.2.1.2 Range Optimization")
+[Seção 8.2.1.2, “Otimização de Range”](range-optimization.html "8.2.1.2 Otimização de Range")
 
-[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
+[Seção 16.1.6.3, “Opções e Variáveis do Replica Server”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “Modos SQL do Servidor”](sql-mode.html "5.1.10 Modos SQL do Servidor")
 
-[Section 13.7.5.3, “SHOW CHARACTER SET Statement”](show-character-set.html "13.7.5.3 SHOW CHARACTER SET Statement")
+[Seção 13.7.5.3, “Instrução SHOW CHARACTER SET”](show-character-set.html "13.7.5.3 SHOW CHARACTER SET Statement")
 
-[Section 13.7.5.4, “SHOW COLLATION Statement”](show-collation.html "13.7.5.4 SHOW COLLATION Statement")
+[Seção 13.7.5.4, “Instrução SHOW COLLATION”](show-collation.html "13.7.5.4 SHOW COLLATION Statement")
 
-[Section 13.7.5.5, “SHOW COLUMNS Statement”](show-columns.html "13.7.5.5 SHOW COLUMNS Statement")
+[Seção 13.7.5.5, “Instrução SHOW COLUMNS”](show-columns.html "13.7.5.5 SHOW COLUMNS Statement")
 
-[Section 13.7.5.14, “SHOW DATABASES Statement”](show-databases.html "13.7.5.14 SHOW DATABASES Statement")
+[Seção 13.7.5.14, “Instrução SHOW DATABASES”](show-databases.html "13.7.5.14 SHOW DATABASES Statement")
 
-[Section 13.7.5.18, “SHOW EVENTS Statement”](show-events.html "13.7.5.18 SHOW EVENTS Statement")
+[Seção 13.7.5.18, “Instrução SHOW EVENTS”](show-events.html "13.7.5.18 SHOW EVENTS Statement")
 
-[Section 13.7.5.24, “SHOW OPEN TABLES Statement”](show-open-tables.html "13.7.5.24 SHOW OPEN TABLES Statement")
+[Seção 13.7.5.24, “Instrução SHOW OPEN TABLES”](show-open-tables.html "13.7.5.24 SHOW OPEN TABLES Statement")
 
-[Section 13.7.5.28, “SHOW PROCEDURE STATUS Statement”](show-procedure-status.html "13.7.5.28 SHOW PROCEDURE STATUS Statement")
+[Seção 13.7.5.28, “Instrução SHOW PROCEDURE STATUS”](show-procedure-status.html "13.7.5.28 SHOW PROCEDURE STATUS Statement")
 
-[Section 13.7.5.35, “SHOW STATUS Statement”](show-status.html "13.7.5.35 SHOW STATUS Statement")
+[Seção 13.7.5.35, “Instrução SHOW STATUS”](show-status.html "13.7.5.35 SHOW STATUS Statement")
 
-[Section 13.7.5.36, “SHOW TABLE STATUS Statement”](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement")
+[Seção 13.7.5.36, “Instrução SHOW TABLE STATUS”](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement")
 
-[Section 13.7.5.37, “SHOW TABLES Statement”](show-tables.html "13.7.5.37 SHOW TABLES Statement")
+[Seção 13.7.5.37, “Instrução SHOW TABLES”](show-tables.html "13.7.5.37 SHOW TABLES Statement")
 
-[Section 13.7.5.38, “SHOW TRIGGERS Statement”](show-triggers.html "13.7.5.38 SHOW TRIGGERS Statement")
+[Seção 13.7.5.38, “Instrução SHOW TRIGGERS”](show-triggers.html "13.7.5.38 SHOW TRIGGERS Statement")
 
-[Section 13.7.5.39, “SHOW VARIABLES Statement”](show-variables.html "13.7.5.39 SHOW VARIABLES Statement")
+[Seção 13.7.5.39, “Instrução SHOW VARIABLES”](show-variables.html "13.7.5.39 SHOW VARIABLES Statement")
 
-[Section 6.2.4, “Specifying Account Names”](account-names.html "6.2.4 Specifying Account Names")
+[Seção 6.2.4, “Especificando Nomes de Conta”](account-names.html "6.2.4 Specifying Account Names")
 
-[Section 12.8.1, “String Comparison Functions and Operators”](string-comparison-functions.html "12.8.1 String Comparison Functions and Operators")
+[Seção 12.8.1, “Funções e Operadores de Comparação de String”](string-comparison-functions.html "12.8.1 Funções e Operadores de Comparação de String")
 
-[Section 9.1.1, “String Literals”](string-literals.html "9.1.1 String Literals")
+[Seção 9.1.1, “Literais de String”](string-literals.html "9.1.1 String Literals")
 
-[Section 5.1.8.3, “Structured System Variables”](structured-system-variables.html "5.1.8.3 Structured System Variables")
+[Seção 5.1.8.3, “Variáveis de Sistema Estruturadas”](structured-system-variables.html "5.1.8.3 Structured System Variables")
 
-[Section 11.3.2, “The CHAR and VARCHAR Types”](char.html "11.3.2 The CHAR and VARCHAR Types")
+[Seção 11.3.2, “Os Tipos CHAR e VARCHAR”](char.html "11.3.2 The CHAR and VARCHAR Types")
 
-[Section 26.4.4.5, “The ps_setup_disable_consumer() Procedure”](sys-ps-setup-disable-consumer.html "26.4.4.5 The ps_setup_disable_consumer() Procedure")
+[Seção 26.4.4.5, “O Procedimento ps_setup_disable_consumer()”](sys-ps-setup-disable-consumer.html "26.4.4.5 The ps_setup_disable_consumer() Procedure")
 
-[Section 26.4.4.6, “The ps_setup_disable_instrument() Procedure”](sys-ps-setup-disable-instrument.html "26.4.4.6 The ps_setup_disable_instrument() Procedure")
+[Seção 26.4.4.6, “O Procedimento ps_setup_disable_instrument()”](sys-ps-setup-disable-instrument.html "26.4.4.6 The ps_setup_disable_instrument() Procedure")
 
-[Section 26.4.4.9, “The ps_setup_enable_consumer() Procedure”](sys-ps-setup-enable-consumer.html "26.4.4.9 The ps_setup_enable_consumer() Procedure")
+[Seção 26.4.4.9, “O Procedimento ps_setup_enable_consumer()”](sys-ps-setup-enable-consumer.html "26.4.4.9 The ps_setup_enable_consumer() Procedure")
 
-[Section 26.4.4.10, “The ps_setup_enable_instrument() Procedure”](sys-ps-setup-enable-instrument.html "26.4.4.10 The ps_setup_enable_instrument() Procedure")
+[Seção 26.4.4.10, “O Procedimento ps_setup_enable_instrument()”](sys-ps-setup-enable-instrument.html "26.4.4.10 The ps_setup_enable_instrument() Procedure")
 
-[Section 11.3.6, “The SET Type”](set.html "11.3.6 The SET Type")
+[Seção 11.3.6, “O Tipo SET”](set.html "11.3.6 The SET Type")
 
-[Section 5.1.8, “Using System Variables”](using-system-variables.html "5.1.8 Using System Variables")
+[Seção 5.1.8, “Usando Variáveis de Sistema”](using-system-variables.html "5.1.8 Using System Variables")
 
 ### LIKE '_A%'
 
-[Section A.11, “MySQL 5.7 FAQ: MySQL Chinese, Japanese, and Korean Character Sets”](faqs-cjk.html "A.11 MySQL 5.7 FAQ: MySQL Chinese, Japanese, and Korean Character Sets")
+[Seção A.11, “FAQ do MySQL 5.7: Character Sets Chinês, Japonês e Coreano do MySQL”](faqs-cjk.html "A.11 MySQL 5.7 FAQ: MySQL Chinese, Japanese, and Korean Character Sets")
 
 ### LIKE 'pattern'
 
-[Section 8.2.1.2, “Range Optimization”](range-optimization.html "8.2.1.2 Range Optimization")
+[Seção 8.2.1.2, “Otimização de Range”](range-optimization.html "8.2.1.2 Otimização de Range")
 
-[Section 13.7.5, “SHOW Statements”](show.html "13.7.5 SHOW Statements")
+[Seção 13.7.5, “Instruções SHOW”](show.html "13.7.5 SHOW Statements")
 
 ### LIKE ... ESCAPE
 
-[Section B.3.7, “Known Issues in MySQL”](known-issues.html "B.3.7 Known Issues in MySQL")
+[Seção B.3.7, “Problemas Conhecidos no MySQL”](known-issues.html "B.3.7 Problemas Conhecidos no MySQL")
 
 ### N
 
-index top](dynindex-operator.html#op-index-top)]
+[início do índice](dynindex-operator.html#op-index-top)]
 
 ### N % M
 
-[Section 12.6.1, “Arithmetic Operators”](arithmetic-functions.html "12.6.1 Arithmetic Operators")
+[Seção 12.6.1, “Operadores Aritméticos”](arithmetic-functions.html "12.6.1 Operadores Aritméticos")
 
-[Section 12.6.2, “Mathematical Functions”](mathematical-functions.html "12.6.2 Mathematical Functions")
+[Seção 12.6.2, “Funções Matemáticas”](mathematical-functions.html "12.6.2 Funções Matemáticas")
 
 ### N MOD M
 
-[Section 12.6.1, “Arithmetic Operators”](arithmetic-functions.html "12.6.1 Arithmetic Operators")
+[Seção 12.6.1, “Operadores Aritméticos”](arithmetic-functions.html "12.6.1 Operadores Aritméticos")
 
-[Section 12.6.2, “Mathematical Functions”](mathematical-functions.html "12.6.2 Mathematical Functions")
+[Seção 12.6.2, “Funções Matemáticas”](mathematical-functions.html "12.6.2 Funções Matemáticas")
 
 ### NOT
 
-[Section 12.4.3, “Logical Operators”](logical-operators.html "12.4.3 Logical Operators")
+[Seção 12.4.3, “Operadores Lógicos”](logical-operators.html "12.4.3 Operadores Lógicos")
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “Modos SQL do Servidor”](sql-mode.html "5.1.10 Modos SQL do Servidor")
 
 ### NOT EXISTS()
 
-[Section 12.4.2, “Comparison Functions and Operators”](comparison-operators.html "12.4.2 Comparison Functions and Operators")
+[Seção 12.4.2, “Funções e Operadores de Comparação”](comparison-operators.html "12.4.2 Funções e Operadores de Comparação")
 
 ### NOT IN()
 
-[Section 8.2.1.2, “Range Optimization”](range-optimization.html "8.2.1.2 Range Optimization")
+[Seção 8.2.1.2, “Otimização de Range”](range-optimization.html "8.2.1.2 Otimização de Range")
 
 ### NOT LIKE
 
-[Section 3.3.4.7, “Pattern Matching”](pattern-matching.html "3.3.4.7 Pattern Matching")
+[Seção 3.3.4.7, “Correspondência de Padrão (Pattern Matching)”](pattern-matching.html "3.3.4.7 Correspondência de Padrão (Pattern Matching)")
 
-[Section 12.8.1, “String Comparison Functions and Operators”](string-comparison-functions.html "12.8.1 String Comparison Functions and Operators")
+[Seção 12.8.1, “Funções e Operadores de Comparação de String”](string-comparison-functions.html "12.8.1 Funções e Operadores de Comparação de String")
 
 ### NOT REGEXP
 
-[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
+[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html "1.6.1 Extensões MySQL para SQL Padrão")
 
-[Section 3.3.4.7, “Pattern Matching”](pattern-matching.html "3.3.4.7 Pattern Matching")
+[Seção 3.3.4.7, “Correspondência de Padrão (Pattern Matching)”](pattern-matching.html "3.3.4.7 Correspondência de Padrão (Pattern Matching)")
 
-[Section 12.8.1, “String Comparison Functions and Operators”](string-comparison-functions.html "12.8.1 String Comparison Functions and Operators")
+[Seção 12.8.1, “Funções e Operadores de Comparação de String”](string-comparison-functions.html "12.8.1 Funções e Operadores de Comparação de String")
 
 ### NOT RLIKE
 
-[Section 3.3.4.7, “Pattern Matching”](pattern-matching.html "3.3.4.7 Pattern Matching")
+[Seção 3.3.4.7, “Correspondência de Padrão (Pattern Matching)”](pattern-matching.html "3.3.4.7 Correspondência de Padrão (Pattern Matching)")
 
-[Section 12.8.1, “String Comparison Functions and Operators”](string-comparison-functions.html "12.8.1 String Comparison Functions and Operators")
+[Seção 12.8.1, “Funções e Operadores de Comparação de String”](string-comparison-functions.html "12.8.1 Funções e Operadores de Comparação de String")
 
 ### O
 
-index top](dynindex-operator.html#op-index-top)]
+[início do índice](dynindex-operator.html#op-index-top)]
 
 ### OR
 
-[Section 9.5, “Expressions”](expressions.html "9.5 Expressions")
+[Seção 9.5, “Expressões”](expressions.html "9.5 Expressões")
 
-[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
+[Seção 13.7.1.4, “Instrução GRANT”](grant.html "13.7.1.4 Instrução GRANT")
 
-[Section 8.2.1.3, “Index Merge Optimization”](index-merge-optimization.html "8.2.1.3 Index Merge Optimization")
+[Seção 8.2.1.3, “Otimização de Index Merge”](index-merge-optimization.html "8.2.1.3 Otimização de Index Merge")
 
-[Section 12.4.3, “Logical Operators”](logical-operators.html "12.4.3 Logical Operators")
+[Seção 12.4.3, “Operadores Lógicos”](logical-operators.html "12.4.3 Operadores Lógicos")
 
-[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
+[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html "1.6.1 Extensões MySQL para SQL Padrão")
 
-[Section 12.4.1, “Operator Precedence”](operator-precedence.html "12.4.1 Operator Precedence")
+[Seção 12.4.1, “Precedência de Operadores”](operator-precedence.html "12.4.1 Precedência de Operadores")
 
-[Section 8.2.2.3, “Optimizing Subqueries with the EXISTS Strategy”](subquery-optimization-with-exists.html "8.2.2.3 Optimizing Subqueries with the EXISTS Strategy")
+[Seção 8.2.2.3, “Otimizando Subqueries com a Estratégia EXISTS”](subquery-optimization-with-exists.html "8.2.2.3 Otimizando Subqueries com a Estratégia EXISTS")
 
-[Section 8.2.1.2, “Range Optimization”](range-optimization.html "8.2.1.2 Range Optimization")
+[Seção 8.2.1.2, “Otimização de Range”](range-optimization.html "8.2.1.2 Otimização de Range")
 
-[Section 8.2.1.19, “Row Constructor Expression Optimization”](row-constructor-optimization.html "8.2.1.19 Row Constructor Expression Optimization")
+[Seção 8.2.1.19, “Otimização de Expressões de Construtor de Linha”](row-constructor-optimization.html "8.2.1.19 Otimização de Expressões de Construtor de Linha")
 
-[Section 3.6.7, “Searching on Two Keys”](searching-on-two-keys.html "3.6.7 Searching on Two Keys")
+[Seção 3.6.7, “Pesquisando em Duas Chaves”](searching-on-two-keys.html "3.6.7 Pesquisando em Duas Chaves")
 
-[Section 3.3.4.2, “Selecting Particular Rows”](selecting-rows.html "3.3.4.2 Selecting Particular Rows")
+[Seção 3.3.4.2, “Selecionando Linhas Particulares”](selecting-rows.html "3.3.4.2 Selecionando Linhas Particulares")
 
-[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
+[Seção 5.1.10, “Modos SQL do Servidor”](sql-mode.html "5.1.10 Modos SQL do Servidor")
 
-[Section 12.8.1, “String Comparison Functions and Operators”](string-comparison-functions.html "12.8.1 String Comparison Functions and Operators")
+[Seção 12.8.1, “Funções e Operadores de Comparação de String”](string-comparison-functions.html "12.8.1 Funções e Operadores de Comparação de String")
 
 ### R
 
-index top](dynindex-operator.html#op-index-top)]
+[início do índice](dynindex-operator.html#op-index-top)]
 
 ### REGEXP
 
-[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
+[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html "1.6.1 Extensões MySQL para SQL Padrão")
 
-[Section 12.4.1, “Operator Precedence”](operator-precedence.html "12.4.1 Operator Precedence")
+[Seção 12.4.1, “Precedência de Operadores”](operator-precedence.html "12.4.1 Precedência de Operadores")
 
-[Section 3.3.4.7, “Pattern Matching”](pattern-matching.html "3.3.4.7 Pattern Matching")
+[Seção 3.3.4.7, “Correspondência de Padrão (Pattern Matching)”](pattern-matching.html "3.3.4.7 Correspondência de Padrão (Pattern Matching)")
 
-[Section 12.8.2, “Regular Expressions”](regexp.html "12.8.2 Regular Expressions")
+[Seção 12.8.2, “Expressões Regulares”](regexp.html "12.8.2 Expressões Regulares")
 
-[Section 10.11, “Restrictions on Character Sets”](charset-restrictions.html "10.11 Restrictions on Character Sets")
+[Seção 10.11, “Restrições em Character Sets”](charset-restrictions.html "10.11 Restrições em Character Sets")
 
 ### RLIKE
 
-[Section 3.3.4.7, “Pattern Matching”](pattern-matching.html "3.3.4.7 Pattern Matching")
+[Seção 3.3.4.7, “Correspondência de Padrão (Pattern Matching)”](pattern-matching.html "3.3.4.7 Correspondência de Padrão (Pattern Matching)")
 
-[Section 12.8.2, “Regular Expressions”](regexp.html "12.8.2 Regular Expressions")
+[Seção 12.8.2, “Expressões Regulares”](regexp.html "12.8.2 Expressões Regulares")
 
-[Section 10.11, “Restrictions on Character Sets”](charset-restrictions.html "10.11 Restrictions on Character Sets")
+[Seção 10.11, “Restrições em Character Sets”](charset-restrictions.html "10.11 Restrições em Character Sets")
 
 ### X
 
-index top](dynindex-operator.html#op-index-top)]
+[início do índice](dynindex-operator.html#op-index-top)]
 
 ### XOR
 
-[Section 12.19.1, “Aggregate Function Descriptions”](aggregate-functions.html "12.19.1 Aggregate Function Descriptions")
+[Seção 12.19.1, “Descrições de Funções de Agregação”](aggregate-functions.html "12.19.1 Aggregate Function Descriptions")
 
-[Section 12.4.3, “Logical Operators”](logical-operators.html "12.4.3 Logical Operators")
+[Seção 12.4.3, “Operadores Lógicos”](logical-operators.html "12.4.3 Operadores Lógicos")

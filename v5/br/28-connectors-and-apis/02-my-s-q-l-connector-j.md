@@ -1,7 +1,7 @@
-## 27.2 MySQL Connector/J
+## 27.2 MySQL Connector/J
 
-The MySQL Connector/J manual is published in standalone form, not as part of the MySQL Reference Manual. For information, see these documents:
+O manual do MySQL Connector/J é publicado de forma separada, e não como parte do MySQL Reference Manual. Para obter informações, consulte estes documentos:
 
-* Main manual: [MySQL Connector/J Developer Guide](/doc/connector-j/en/)
+* Manual Principal: [Guia do Desenvolvedor do MySQL Connector/J](/doc/connector-j/en/)
 
-* Release notes: [MySQL Connector/J Release Notes](/doc/relnotes/connector-j/en/)
+* Notas de Lançamento: [Notas de Lançamento do MySQL Connector/J](/doc/relnotes/connector-j/en/)

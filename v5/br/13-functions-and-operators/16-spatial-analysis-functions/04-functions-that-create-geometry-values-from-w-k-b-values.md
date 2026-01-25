@@ -1,125 +1,125 @@
-### 12.16.4 Functions That Create Geometry Values from WKB Values
+### 12.16.4 Funções Que Criam Valores Geometry a partir de Valores WKB
 
-These functions take as arguments a `BLOB` containing a Well-Known Binary (WKB) representation and, optionally, a spatial reference system identifier (SRID). They return the corresponding geometry.
+Estas funções aceitam como argumentos um `BLOB` contendo uma representação Well-Known Binary (WKB) e, opcionalmente, um identificador de sistema de referência espacial (SRID). Elas retornam a Geometry correspondente.
 
-`ST_GeomFromWKB()` accepts a WKB value of any geometry type as its first argument. Other functions provide type-specific construction functions for construction of geometry values of each geometry type.
+`ST_GeomFromWKB()` aceita um valor WKB de qualquer tipo de Geometry como seu primeiro argumento. Outras funções fornecem funções de construção específicas de tipo para a construção de valores Geometry de cada tipo de Geometry.
 
-These functions also accept geometry objects as returned by the functions in Section 12.16.5, “MySQL-Specific Functions That Create Geometry Values”. Thus, those functions may be used to provide the first argument to the functions in this section. However, as of MySQL 5.7.19, use of geometry arguments is deprecated and generates a warning. Geometry arguments are not accepted in MySQL 8.0. To migrate calls from using geometry arguments to using WKB arguments, follow these guidelines:
+Estas funções também aceitam objetos Geometry conforme retornados pelas funções na Seção 12.16.5, “Funções Específicas do MySQL Que Criam Valores Geometry”. Assim, essas funções podem ser usadas para fornecer o primeiro argumento para as funções nesta seção. No entanto, a partir do MySQL 5.7.19, o uso de argumentos Geometry está deprecated e gera um warning. Argumentos Geometry não são aceitos no MySQL 8.0. Para migrar chamadas do uso de argumentos Geometry para o uso de argumentos WKB, siga estas diretrizes:
 
-For a description of WKB format, see Well-Known Binary (WKB) Format Format").
+Para uma descrição do formato WKB, consulte Well-Known Binary (WKB) Format Format").
 
-* Rewrite constructs such as `ST_GeomFromWKB(Point(0, 0))` as `Point(0, 0)`.
+* Reescreva construções como `ST_GeomFromWKB(Point(0, 0))` como `Point(0, 0)`.
 
-* Rewrite constructs such as `ST_GeomFromWKB(Point(0, 0), 4326)` as `ST_GeomFromWKB(ST_AsWKB(Point(0, 0)), 4326)`. (Alternatively, in MySQL 8.0, you can use `ST_SRID(Point(0, 0), 4326)`.)
+* Reescreva construções como `ST_GeomFromWKB(Point(0, 0), 4326)` como `ST_GeomFromWKB(ST_AsWKB(Point(0, 0)), 4326)`. (Alternativamente, no MySQL 8.0, você pode usar `ST_SRID(Point(0, 0), 4326)`.)
 
 * `GeomCollFromWKB(wkb [, srid])`, `GeometryCollectionFromWKB(wkb [, srid])`
 
-  `ST_GeomCollFromWKB()`, `ST_GeometryCollectionFromWKB()`, `GeomCollFromWKB()`, and `GeometryCollectionFromWKB()` are synonyms. For more information, see the description of `ST_GeomCollFromWKB()`.
+  `ST_GeomCollFromWKB()`, `ST_GeometryCollectionFromWKB()`, `GeomCollFromWKB()` e `GeometryCollectionFromWKB()` são sinônimos. Para mais informações, consulte a descrição de `ST_GeomCollFromWKB()`.
 
-  `GeomCollFromWKB()` and `GeometryCollectionFromWKB()` are deprecated; expect them to be removed in a future MySQL release. Use `ST_GeomCollFromWKB()` and `ST_GeometryCollectionFromWKB()` instead.
+  `GeomCollFromWKB()` e `GeometryCollectionFromWKB()` estão deprecated; espere que sejam removidas em um futuro lançamento do MySQL. Use `ST_GeomCollFromWKB()` e `ST_GeometryCollectionFromWKB()` em seu lugar.
 
 * `GeomFromWKB(wkb [, srid])`, `GeometryFromWKB(wkb [, srid])`
 
-  `ST_GeomFromWKB()`, `ST_GeometryFromWKB()`, `GeomFromWKB()`, and `GeometryFromWKB()` are synonyms. For more information, see the description of `ST_GeomFromWKB()`.
+  `ST_GeomFromWKB()`, `ST_GeometryFromWKB()`, `GeomFromWKB()` e `GeometryFromWKB()` são sinônimos. Para mais informações, consulte a descrição de `ST_GeomFromWKB()`.
 
-  `GeomFromWKB()` and `GeometryFromWKB()` are deprecated; expect them to be removed in a future MySQL release. Use `ST_GeomFromWKB()` and `ST_GeometryFromWKB()` instead.
+  `GeomFromWKB()` e `GeometryFromWKB()` estão deprecated; espere que sejam removidas em um futuro lançamento do MySQL. Use `ST_GeomFromWKB()` e `ST_GeometryFromWKB()` em seu lugar.
 
 * `LineFromWKB(wkb [, srid])`, `LineStringFromWKB(wkb [, srid])`
 
-  `ST_LineFromWKB()`, `ST_LineStringFromWKB()`, `LineFromWKB()`, and `LineStringFromWKB()` are synonyms. For more information, see the description of `ST_LineFromWKB()`.
+  `ST_LineFromWKB()`, `ST_LineStringFromWKB()`, `LineFromWKB()` e `LineStringFromWKB()` são sinônimos. Para mais informações, consulte a descrição de `ST_LineFromWKB()`.
 
-  `LineFromWKB()` and `LineStringFromWKB()` are deprecated; expect them to be removed in a future MySQL release. Use `ST_LineFromWKB()` and `ST_LineStringFromWKB()` instead.
+  `LineFromWKB()` e `LineStringFromWKB()` estão deprecated; espere que sejam removidas em um futuro lançamento do MySQL. Use `ST_LineFromWKB()` e `ST_LineStringFromWKB()` em seu lugar.
 
 * `MLineFromWKB(wkb [, srid])`, `MultiLineStringFromWKB(wkb [, srid])`
 
-  `ST_MLineFromWKB()`, `ST_MultiLineStringFromWKB()`, `MLineFromWKB()`, and `MultiLineStringFromWKB()` are synonyms. For more information, see the description of `ST_MLineFromWKB()`.
+  `ST_MLineFromWKB()`, `ST_MultiLineStringFromWKB()`, `MLineFromWKB()` e `MultiLineStringFromWKB()` são sinônimos. Para mais informações, consulte a descrição de `ST_MLineFromWKB()`.
 
-  `MLineFromWKB()` and `MultiLineStringFromWKB()` are deprecated; expect them to be removed in a future MySQL release. Use `ST_MLineFromWKB()` and `ST_MultiLineStringFromWKB()` instead.
+  `MLineFromWKB()` e `MultiLineStringFromWKB()` estão deprecated; espere que sejam removidas em um futuro lançamento do MySQL. Use `ST_MLineFromWKB()` e `ST_MultiLineStringFromWKB()` em seu lugar.
 
 * `MPointFromWKB(wkb [, srid])`, `MultiPointFromWKB(wkb [, srid])`
 
-  `ST_MPointFromWKB()`, `ST_MultiPointFromWKB()`, `MPointFromWKB()`, and `MultiPointFromWKB()` are synonyms. For more information, see the description of `ST_MPointFromWKB()`.
+  `ST_MPointFromWKB()`, `ST_MultiPointFromWKB()`, `MPointFromWKB()` e `MultiPointFromWKB()` são sinônimos. Para mais informações, consulte a descrição de `ST_MPointFromWKB()`.
 
-  `MPointFromWKB()` and `MultiPointFromWKB()` are deprecated; expect them to be removed in a future MySQL release. Use `ST_MPointFromWKB()` and `ST_MultiPointFromWKB()` instead.
+  `MPointFromWKB()` e `MultiPointFromWKB()` estão deprecated; espere que sejam removidas em um futuro lançamento do MySQL. Use `ST_MPointFromWKB()` e `ST_MultiPointFromWKB()` em seu lugar.
 
 * `MPolyFromWKB(wkb [, srid])`, `MultiPolygonFromWKB(wkb [, srid])`
 
-  `ST_MPolyFromWKB()`, `ST_MultiPolygonFromWKB()`, `MPolyFromWKB()`, and `MultiPolygonFromWKB()` are synonyms. For more information, see the description of `ST_MPolyFromWKB()`.
+  `ST_MPolyFromWKB()`, `ST_MultiPolygonFromWKB()`, `MPolyFromWKB()` e `MultiPolygonFromWKB()` são sinônimos. Para mais informações, consulte a descrição de `ST_MPolyFromWKB()`.
 
-  `MPolyFromWKB()` and `MultiPolygonFromWKB()` are deprecated; expect them to be removed in a future MySQL release. Use `ST_MPolyFromWKB()` and `ST_MultiPolygonFromWKB()` instead.
+  `MPolyFromWKB()` e `MultiPolygonFromWKB()` estão deprecated; espere que sejam removidas em um futuro lançamento do MySQL. Use `ST_MPolyFromWKB()` e `ST_MultiPolygonFromWKB()` em seu lugar.
 
 * `PointFromWKB(wkb [, srid])`
 
-  `ST_PointFromWKB()` and `PointFromWKB()` are synonyms. For more information, see the description of `ST_PointFromWKB()`.
+  `ST_PointFromWKB()` e `PointFromWKB()` são sinônimos. Para mais informações, consulte a descrição de `ST_PointFromWKB()`.
 
-  `PointFromWKB()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_PointFromWKB()` instead.
+  `PointFromWKB()` está deprecated; espere que seja removida em um futuro lançamento do MySQL. Use `ST_PointFromWKB()` em seu lugar.
 
 * `PolyFromWKB(wkb [, srid])`, `PolygonFromWKB(wkb [, srid])`
 
-  `ST_PolyFromWKB()`, `ST_PolygonFromWKB()`, `PolyFromWKB()`, and `PolygonFromWKB()` are synonyms. For more information, see the description of `ST_PolyFromWKB()`.
+  `ST_PolyFromWKB()`, `ST_PolygonFromWKB()`, `PolyFromWKB()` e `PolygonFromWKB()` são sinônimos. Para mais informações, consulte a descrição de `ST_PolyFromWKB()`.
 
-  `PolyFromWKB()` and `PolygonFromWKB()` are deprecated; expect them to be removed in a future MySQL release. Use `ST_PolyFromWKB()` and `ST_PolygonFromWKB()` instead.
+  `PolyFromWKB()` e `PolygonFromWKB()` estão deprecated; espere que sejam removidas em um futuro lançamento do MySQL. Use `ST_PolyFromWKB()` e `ST_PolygonFromWKB()` em seu lugar.
 
 * `ST_GeomCollFromWKB(wkb [, srid])`, `ST_GeometryCollectionFromWKB(wkb [, srid])`
 
-  Constructs a `GeometryCollection` value using its WKB representation and SRID.
+  Constrói um valor `GeometryCollection` usando sua representação WKB e SRID.
 
-  The result is `NULL` if the WKB or SRID argument is `NULL`.
+  O resultado é `NULL` se o argumento WKB ou SRID for `NULL`.
 
-  `ST_GeomCollFromWKB()`, `ST_GeometryCollectionFromWKB()`, `GeomCollFromWKB()`, and `GeometryCollectionFromWKB()` are synonyms.
+  `ST_GeomCollFromWKB()`, `ST_GeometryCollectionFromWKB()`, `GeomCollFromWKB()` e `GeometryCollectionFromWKB()` são sinônimos.
 
 * `ST_GeomFromWKB(wkb [, srid])`, `ST_GeometryFromWKB(wkb [, srid])`
 
-  Constructs a geometry value of any type using its WKB representation and SRID.
+  Constrói um valor Geometry de qualquer tipo usando sua representação WKB e SRID.
 
-  The result is `NULL` if the WKB or SRID argument is `NULL`.
+  O resultado é `NULL` se o argumento WKB ou SRID for `NULL`.
 
-  `ST_GeomFromWKB()`, `ST_GeometryFromWKB()`, `GeomFromWKB()`, and `GeometryFromWKB()` are synonyms.
+  `ST_GeomFromWKB()`, `ST_GeometryFromWKB()`, `GeomFromWKB()` e `GeometryFromWKB()` são sinônimos.
 
 * `ST_LineFromWKB(wkb [, srid])`, `ST_LineStringFromWKB(wkb [, srid])`
 
-  Constructs a `LineString` value using its WKB representation and SRID.
+  Constrói um valor `LineString` usando sua representação WKB e SRID.
 
-  The result is `NULL` if the WKB or SRID argument is `NULL`.
+  O resultado é `NULL` se o argumento WKB ou SRID for `NULL`.
 
-  `ST_LineFromWKB()`, `ST_LineStringFromWKB()`, `LineFromWKB()`, and `LineStringFromWKB()` are synonyms.
+  `ST_LineFromWKB()`, `ST_LineStringFromWKB()`, `LineFromWKB()` e `LineStringFromWKB()` são sinônimos.
 
 * `ST_MLineFromWKB(wkb [, srid])`, `ST_MultiLineStringFromWKB(wkb [, srid])`
 
-  Constructs a `MultiLineString` value using its WKB representation and SRID.
+  Constrói um valor `MultiLineString` usando sua representação WKB e SRID.
 
-  The result is `NULL` if the WKB or SRID argument is `NULL`.
+  O resultado é `NULL` se o argumento WKB ou SRID for `NULL`.
 
-  `ST_MLineFromWKB()`, `ST_MultiLineStringFromWKB()`, `MLineFromWKB()`, and `MultiLineStringFromWKB()` are synonyms.
+  `ST_MLineFromWKB()`, `ST_MultiLineStringFromWKB()`, `MLineFromWKB()` e `MultiLineStringFromWKB()` são sinônimos.
 
 * `ST_MPointFromWKB(wkb [, srid])`, `ST_MultiPointFromWKB(wkb [, srid])`
 
-  Constructs a `MultiPoint` value using its WKB representation and SRID.
+  Constrói um valor `MultiPoint` usando sua representação WKB e SRID.
 
-  The result is `NULL` if the WKB or SRID argument is `NULL`.
+  O resultado é `NULL` se o argumento WKB ou SRID for `NULL`.
 
-  `ST_MPointFromWKB()`, `ST_MultiPointFromWKB()`, `MPointFromWKB()`, and `MultiPointFromWKB()` are synonyms.
+  `ST_MPointFromWKB()`, `ST_MultiPointFromWKB()`, `MPointFromWKB()` e `MultiPointFromWKB()` são sinônimos.
 
 * `ST_MPolyFromWKB(wkb [, srid])`, `ST_MultiPolygonFromWKB(wkb [, srid])`
 
-  Constructs a `MultiPolygon` value using its WKB representation and SRID.
+  Constrói um valor `MultiPolygon` usando sua representação WKB e SRID.
 
-  The result is `NULL` if the WKB or SRID argument is `NULL`.
+  O resultado é `NULL` se o argumento WKB ou SRID for `NULL`.
 
-  `ST_MPolyFromWKB()`, `ST_MultiPolygonFromWKB()`, `MPolyFromWKB()`, and `MultiPolygonFromWKB()` are synonyms.
+  `ST_MPolyFromWKB()`, `ST_MultiPolygonFromWKB()`, `MPolyFromWKB()` e `MultiPolygonFromWKB()` são sinônimos.
 
 * `ST_PointFromWKB(wkb [, srid])`
 
-  Constructs a `Point` value using its WKB representation and SRID.
+  Constrói um valor `Point` usando sua representação WKB e SRID.
 
-  The result is `NULL` if the WKB or SRID argument is `NULL`.
+  O resultado é `NULL` se o argumento WKB ou SRID for `NULL`.
 
-  `ST_PointFromWKB()` and `PointFromWKB()` are synonyms.
+  `ST_PointFromWKB()` e `PointFromWKB()` são sinônimos.
 
 * `ST_PolyFromWKB(wkb [, srid])`, `ST_PolygonFromWKB(wkb [, srid])`
 
-  Constructs a `Polygon` value using its WKB representation and SRID.
+  Constrói um valor `Polygon` usando sua representação WKB e SRID.
 
-  The result is `NULL` if the WKB or SRID argument is `NULL`.
+  O resultado é `NULL` se o argumento WKB ou SRID for `NULL`.
 
-  `ST_PolyFromWKB()`, `ST_PolygonFromWKB()`, `PolyFromWKB()`, and `PolygonFromWKB()` are synonyms.
+  `ST_PolyFromWKB()`, `ST_PolygonFromWKB()`, `PolyFromWKB()` e `PolygonFromWKB()` são sinônimos.

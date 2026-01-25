@@ -1,4 +1,4 @@
-### 13.1.12 CREATE EVENT Statement
+### 13.1.12 Instrução CREATE EVENT
 
 ```sql
 CREATE
@@ -25,19 +25,19 @@ interval:
               DAY_SECOND | HOUR_MINUTE | HOUR_SECOND | MINUTE_SECOND}
 ```
 
-This statement creates and schedules a new event. The event does not run unless the Event Scheduler is enabled. For information about checking Event Scheduler status and enabling it if necessary, see [Section 23.4.2, “Event Scheduler Configuration”](events-configuration.html "23.4.2 Event Scheduler Configuration").
+Esta instrução cria e agenda um novo *event*. O *event* não é executado a menos que o Event Scheduler esteja habilitado. Para obter informações sobre como verificar o status do Event Scheduler e habilitá-lo, se necessário, consulte [Section 23.4.2, “Event Scheduler Configuration”](events-configuration.html "23.4.2 Event Scheduler Configuration").
 
-[`CREATE EVENT`](create-event.html "13.1.12 CREATE EVENT Statement") requires the [`EVENT`](privileges-provided.html#priv_event) privilege for the schema in which the event is to be created. If the `DEFINER` clause is present, the privileges required depend on the *`user`* value, as discussed in [Section 23.6, “Stored Object Access Control”](stored-objects-security.html "23.6 Stored Object Access Control").
+[`CREATE EVENT`] requer o privilégio [`EVENT`] para o *schema* no qual o *event* deve ser criado. Se a cláusula `DEFINER` estiver presente, os privilégios necessários dependem do valor *`user`*, conforme discutido em [Section 23.6, “Stored Object Access Control”](stored-objects-security.html "23.6 Stored Object Access Control").
 
-The minimum requirements for a valid [`CREATE EVENT`](create-event.html "13.1.12 CREATE EVENT Statement") statement are as follows:
+Os requisitos mínimos para uma instrução [`CREATE EVENT`] válida são os seguintes:
 
-* The keywords [`CREATE EVENT`](create-event.html "13.1.12 CREATE EVENT Statement") plus an event name, which uniquely identifies the event in a database schema.
+* As palavras-chave [`CREATE EVENT`] mais um nome de *event*, que identifica o *event* de forma exclusiva em um *schema* de Database.
 
-* An `ON SCHEDULE` clause, which determines when and how often the event executes.
+* Uma cláusula `ON SCHEDULE`, que determina quando e com que frequência o *event* é executado.
 
-* A [`DO`](do.html "13.2.3 DO Statement") clause, which contains the SQL statement to be executed by an event.
+* Uma cláusula [`DO`], que contém a instrução SQL a ser executada por um *event*.
 
-This is an example of a minimal [`CREATE EVENT`](create-event.html "13.1.12 CREATE EVENT Statement") statement:
+Este é um exemplo de uma instrução [`CREATE EVENT`] mínima:
 
 ```sql
 CREATE EVENT myevent
@@ -46,23 +46,23 @@ CREATE EVENT myevent
       UPDATE myschema.mytable SET mycol = mycol + 1;
 ```
 
-The previous statement creates an event named `myevent`. This event executes once—one hour following its creation—by running an SQL statement that increments the value of the `myschema.mytable` table's `mycol` column by 1.
+A instrução anterior cria um *event* chamado `myevent`. Este *event* é executado uma única vez — uma hora após a sua criação — ao executar uma instrução SQL que incrementa o valor da coluna `mycol` da tabela `myschema.mytable` em 1.
 
-The *`event_name`* must be a valid MySQL identifier with a maximum length of 64 characters. Event names are not case-sensitive, so you cannot have two events named `myevent` and `MyEvent` in the same schema. In general, the rules governing event names are the same as those for names of stored routines. See [Section 9.2, “Schema Object Names”](identifiers.html "9.2 Schema Object Names").
+O *`event_name`* deve ser um identificador MySQL válido com um comprimento máximo de 64 caracteres. Os nomes de *events* não diferenciam maiúsculas de minúsculas (*case-sensitive*), então você não pode ter dois *events* chamados `myevent` e `MyEvent` no mesmo *schema*. Em geral, as regras que regem os nomes de *events* são as mesmas que as para nomes de stored routines. Consulte [Section 9.2, “Schema Object Names”](identifiers.html "9.2 Schema Object Names").
 
-An event is associated with a schema. If no schema is indicated as part of *`event_name`*, the default (current) schema is assumed. To create an event in a specific schema, qualify the event name with a schema using `schema_name.event_name` syntax.
+Um *event* é associado a um *schema*. Se nenhum *schema* for indicado como parte do *`event_name`*, o *schema* padrão (atual) é assumido. Para criar um *event* em um *schema* específico, qualifique o nome do *event* com um *schema* usando a sintaxe `schema_name.event_name`.
 
-The `DEFINER` clause specifies the MySQL account to be used when checking access privileges at event execution time. If the `DEFINER` clause is present, the *`user`* value should be a MySQL account specified as `'user_name'@'host_name'`, [`CURRENT_USER`](information-functions.html#function_current-user), or [`CURRENT_USER()`](information-functions.html#function_current-user). The permitted *`user`* values depend on the privileges you hold, as discussed in [Section 23.6, “Stored Object Access Control”](stored-objects-security.html "23.6 Stored Object Access Control"). Also see that section for additional information about event security.
+A cláusula `DEFINER` especifica a conta MySQL a ser usada ao verificar os privilégios de acesso no momento da execução do *event*. Se a cláusula `DEFINER` estiver presente, o valor *`user`* deve ser uma conta MySQL especificada como `'user_name'@'host_name'`, [`CURRENT_USER`], ou [`CURRENT_USER()`]. Os valores *`user`* permitidos dependem dos privilégios que você possui, conforme discutido em [Section 23.6, “Stored Object Access Control”](stored-objects-security.html "23.6 Stored Object Access Control"). Consulte também essa seção para obter informações adicionais sobre segurança de *event*.
 
-If the `DEFINER` clause is omitted, the default definer is the user who executes the [`CREATE EVENT`](create-event.html "13.1.12 CREATE EVENT Statement") statement. This is the same as specifying `DEFINER = CURRENT_USER` explicitly.
+Se a cláusula `DEFINER` for omitida, o *definer* padrão é o usuário que executa a instrução [`CREATE EVENT`]. Isso é o mesmo que especificar `DEFINER = CURRENT_USER` explicitamente.
 
-Within an event body, the [`CURRENT_USER`](information-functions.html#function_current-user) function returns the account used to check privileges at event execution time, which is the `DEFINER` user. For information about user auditing within events, see [Section 6.2.18, “SQL-Based Account Activity Auditing”](account-activity-auditing.html "6.2.18 SQL-Based Account Activity Auditing").
+Dentro do corpo de um *event*, a função [`CURRENT_USER`] retorna a conta usada para verificar privilégios no momento da execução do *event*, que é o usuário `DEFINER`. Para obter informações sobre auditoria de usuários em *events*, consulte [Section 6.2.18, “SQL-Based Account Activity Auditing”](account-activity-auditing.html "6.2.18 SQL-Based Account Activity Auditing").
 
-`IF NOT EXISTS` has the same meaning for [`CREATE EVENT`](create-event.html "13.1.12 CREATE EVENT Statement") as for [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement"): If an event named *`event_name`* already exists in the same schema, no action is taken, and no error results. (However, a warning is generated in such cases.)
+`IF NOT EXISTS` tem o mesmo significado para [`CREATE EVENT`] que para [`CREATE TABLE`]: Se um *event* chamado *`event_name`* já existir no mesmo *schema*, nenhuma ação é tomada e nenhum *error* resulta. (No entanto, um *warning* é gerado nesses casos.)
 
-The `ON SCHEDULE` clause determines when, how often, and for how long the *`event_body`* defined for the event repeats. This clause takes one of two forms:
+A cláusula `ON SCHEDULE` determina quando, com que frequência e por quanto tempo o *`event_body`* definido para o *event* se repete. Esta cláusula assume uma de duas formas:
 
-* `AT timestamp` is used for a one-time event. It specifies that the event executes one time only at the date and time given by *`timestamp`*, which must include both the date and time, or must be an expression that resolves to a datetime value. You may use a value of either the [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") or [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") type for this purpose. If the date is in the past, a warning occurs, as shown here:
+* `AT timestamp` é usado para um *event* de execução única. Ele especifica que o *event* é executado apenas uma vez na data e hora fornecidas por *`timestamp`*, que deve incluir tanto a data quanto a hora, ou deve ser uma expressão que resolva para um valor *datetime*. Você pode usar um valor do tipo [`DATETIME`] ou [`TIMESTAMP`] para essa finalidade. Se a data estiver no passado, ocorre um *warning*, conforme mostrado aqui:
 
   ```sql
   mysql> SELECT NOW();
@@ -87,44 +87,41 @@ The `ON SCHEDULE` clause determines when, how often, and for how long the *`even
            creation.
   ```
 
-  [`CREATE EVENT`](create-event.html "13.1.12 CREATE EVENT Statement") statements which are themselves invalid—for whatever reason—fail with an error.
+  Instruções [`CREATE EVENT`] que são inválidas por si mesmas — por qualquer motivo — falham com um *error*.
 
-  You may use [`CURRENT_TIMESTAMP`](date-and-time-functions.html#function_current-timestamp) to specify the current date and time. In such a case, the event acts as soon as it is created.
+  Você pode usar [`CURRENT_TIMESTAMP`] para especificar a data e hora atuais. Nesse caso, o *event* age assim que é criado.
 
-  To create an event which occurs at some point in the future relative to the current date and time—such as that expressed by the phrase “three weeks from now”—you can use the optional clause `+ INTERVAL interval`. The *`interval`* portion consists of two parts, a quantity and a unit of time, and follows the syntax rules described in [Temporal Intervals](expressions.html#temporal-intervals "Temporal Intervals"), except that you cannot use any units keywords that involving microseconds when defining an event. With some interval types, complex time units may be used. For example, “two minutes and ten seconds” can be expressed as `+ INTERVAL '2:10' MINUTE_SECOND`.
+  Para criar um *event* que ocorra em algum momento no futuro em relação à data e hora atuais — como o expresso pela frase “três semanas a partir de agora” — você pode usar a cláusula opcional `+ INTERVAL interval`. A porção *`interval`* consiste em duas partes, uma quantidade e uma unidade de tempo, e segue as regras de sintaxe descritas em [Temporal Intervals](expressions.html#temporal-intervals "Temporal Intervals"), exceto que você não pode usar nenhuma palavra-chave de unidade que envolva microssegundos ao definir um *event*. Com alguns tipos de *interval*, unidades de tempo complexas podem ser usadas. Por exemplo, “dois minutos e dez segundos” pode ser expresso como `+ INTERVAL '2:10' MINUTE_SECOND`.
 
-  You can also combine intervals. For example, `AT CURRENT_TIMESTAMP + INTERVAL 3 WEEK + INTERVAL 2 DAY` is equivalent to “three weeks and two days from now”. Each portion of such a clause must begin with `+ INTERVAL`.
+  Você também pode combinar *intervals*. Por exemplo, `AT CURRENT_TIMESTAMP + INTERVAL 3 WEEK + INTERVAL 2 DAY` é equivalente a “três semanas e dois dias a partir de agora”. Cada porção de tal cláusula deve começar com `+ INTERVAL`.
 
-* To repeat actions at a regular interval, use an `EVERY` clause. The `EVERY` keyword is followed by an *`interval`* as described in the previous discussion of the `AT` keyword. (`+ INTERVAL` is *not* used with `EVERY`.) For example, `EVERY 6 WEEK` means “every six weeks”.
+* Para repetir ações em um *interval* regular, use uma cláusula `EVERY`. A palavra-chave `EVERY` é seguida por um *`interval`* conforme descrito na discussão anterior sobre a palavra-chave `AT`. (`+ INTERVAL` *não* é usado com `EVERY`.) Por exemplo, `EVERY 6 WEEK` significa “a cada seis semanas”.
 
-  Although `+ INTERVAL` clauses are not permitted in an `EVERY` clause, you can use the same complex time units permitted in a `+ INTERVAL`.
+  Embora as cláusulas `+ INTERVAL` não sejam permitidas em uma cláusula `EVERY`, você pode usar as mesmas unidades de tempo complexas permitidas em um `+ INTERVAL`.
 
-  An `EVERY` clause may contain an optional `STARTS` clause. `STARTS` is followed by a *`timestamp`* value that indicates when the action should begin repeating, and may also use `+ INTERVAL interval` to specify an amount of time “from now”. For example, `EVERY 3 MONTH STARTS CURRENT_TIMESTAMP + INTERVAL 1 WEEK` means “every three months, beginning one week from now”. Similarly, you can express “every two weeks, beginning six hours and fifteen minutes from now” as `EVERY 2 WEEK STARTS CURRENT_TIMESTAMP
+  Uma cláusula `EVERY` pode conter uma cláusula `STARTS` opcional. `STARTS` é seguido por um valor *`timestamp`* que indica quando a ação deve começar a se repetir, e também pode usar `+ INTERVAL interval` para especificar uma quantidade de tempo “a partir de agora”. Por exemplo, `EVERY 3 MONTH STARTS CURRENT_TIMESTAMP + INTERVAL 1 WEEK` significa “a cada três meses, começando daqui a uma semana”. Da mesma forma, você pode expressar “a cada duas semanas, começando daqui a seis horas e quinze minutos” como `EVERY 2 WEEK STARTS CURRENT_TIMESTAMP + INTERVAL '6:15' HOUR_MINUTE`. Não especificar `STARTS` é o mesmo que usar `STARTS CURRENT_TIMESTAMP` — ou seja, a ação especificada para o *event* começa a se repetir imediatamente após a criação do *event*.
 
-  + INTERVAL '6:15' HOUR_MINUTE`. Not specifying `STARTS` is the same as using `STARTS CURRENT_TIMESTAMP`—that is, the action specified for the event begins repeating immediately upon creation of the event.
+  Uma cláusula `EVERY` pode conter uma cláusula `ENDS` opcional. A palavra-chave `ENDS` é seguida por um valor *`timestamp`* que informa ao MySQL quando o *event* deve parar de se repetir. Você também pode usar `+ INTERVAL interval` com `ENDS`; por exemplo, `EVERY 12 HOUR STARTS CURRENT_TIMESTAMP + INTERVAL 30 MINUTE ENDS CURRENT_TIMESTAMP + INTERVAL 4 WEEK` é equivalente a “a cada doze horas, começando trinta minutos a partir de agora, e terminando daqui a quatro semanas”. Não usar `ENDS` significa que o *event* continua executando indefinidamente.
 
-  An `EVERY` clause may contain an optional `ENDS` clause. The `ENDS` keyword is followed by a *`timestamp`* value that tells MySQL when the event should stop repeating. You may also use `+ INTERVAL interval` with `ENDS`; for instance, `EVERY 12 HOUR STARTS CURRENT_TIMESTAMP + INTERVAL 30 MINUTE ENDS CURRENT_TIMESTAMP + INTERVAL 4 WEEK` is equivalent to “every twelve hours, beginning thirty minutes from now, and ending four weeks from now”. Not using `ENDS` means that the event continues executing indefinitely.
+  `ENDS` suporta a mesma sintaxe para unidades de tempo complexas que `STARTS`.
 
-  `ENDS` supports the same syntax for complex time units as `STARTS` does.
+  Você pode usar `STARTS`, `ENDS`, ambos, ou nenhum em uma cláusula `EVERY`.
 
-  You may use `STARTS`, `ENDS`, both, or neither in an `EVERY` clause.
+  Se um *event* repetitivo não terminar dentro do seu *interval* de agendamento, o resultado pode ser múltiplas instâncias do *event* executando simultaneamente. Se isso for indesejável, você deve instituir um mecanismo para prevenir instâncias simultâneas. Por exemplo, você poderia usar a função [`GET_LOCK()`], ou *locking* de linha ou de tabela.
 
-  If a repeating event does not terminate within its scheduling interval, the result may be multiple instances of the event executing simultaneously. If this is undesirable, you should institute a mechanism to prevent simultaneous instances. For example, you could use the [`GET_LOCK()`](locking-functions.html#function_get-lock) function, or row or table locking.
+A cláusula `ON SCHEDULE` pode usar expressões envolvendo funções MySQL built-in e variáveis de usuário para obter qualquer um dos valores *`timestamp`* ou *`interval`* que ela contém. Você não pode usar *stored functions* ou *loadable functions* em tais expressões, nem pode usar referências a tabelas; no entanto, você pode usar `SELECT FROM DUAL`. Isso é verdadeiro tanto para as instruções [`CREATE EVENT`] quanto para [`ALTER EVENT`]. Referências a *stored functions*, *loadable functions* e tabelas em tais casos são especificamente não permitidas e falham com um *error* (veja Bug #22830).
 
-The `ON SCHEDULE` clause may use expressions involving built-in MySQL functions and user variables to obtain any of the *`timestamp`* or *`interval`* values which it contains. You may not use stored functions or loadable functions in such expressions, nor may you use any table references; however, you may use `SELECT FROM DUAL`. This is true for both [`CREATE EVENT`](create-event.html "13.1.12 CREATE EVENT Statement") and [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") statements. References to stored functions, loadable functions, and tables in such cases are specifically not permitted, and fail with an error (see Bug
-#22830).
+Os tempos na cláusula `ON SCHEDULE` são interpretados usando o valor [`time_zone`] da sessão atual. Isso se torna o *event time zone*; ou seja, o *time zone* que é usado para o agendamento do *event* e que está em vigor dentro do *event* enquanto ele executa. Esses tempos são convertidos para UTC e armazenados junto com o *event time zone* na tabela `mysql.event`. Isso permite que a execução do *event* prossiga conforme definido, independentemente de quaisquer mudanças subsequentes no *time zone* do server ou efeitos de horário de verão (*daylight saving time*). Para informações adicionais sobre a representação dos tempos de *event*, consulte [Section 23.4.4, “Event Metadata”](events-metadata.html "23.4.4 Event Metadata"). Consulte também [Section 13.7.5.18, “SHOW EVENTS Statement”](show-events.html "13.7.5.18 SHOW EVENTS Statement") e [Section 24.3.8, “The INFORMATION_SCHEMA EVENTS Table”](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table").
 
-Times in the `ON SCHEDULE` clause are interpreted using the current session [`time_zone`](server-system-variables.html#sysvar_time_zone) value. This becomes the event time zone; that is, the time zone that is used for event scheduling and is in effect within the event as it executes. These times are converted to UTC and stored along with the event time zone in the `mysql.event` table. This enables event execution to proceed as defined regardless of any subsequent changes to the server time zone or daylight saving time effects. For additional information about representation of event times, see [Section 23.4.4, “Event Metadata”](events-metadata.html "23.4.4 Event Metadata"). See also [Section 13.7.5.18, “SHOW EVENTS Statement”](show-events.html "13.7.5.18 SHOW EVENTS Statement"), and [Section 24.3.8, “The INFORMATION_SCHEMA EVENTS Table”](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table").
+Normalmente, uma vez que um *event* expira, ele é imediatamente *dropped* (removido). Você pode substituir esse comportamento especificando `ON COMPLETION PRESERVE`. Usar `ON COMPLETION NOT PRESERVE` apenas torna explícito o comportamento padrão não persistente.
 
-Normally, once an event has expired, it is immediately dropped. You can override this behavior by specifying `ON COMPLETION PRESERVE`. Using `ON COMPLETION NOT PRESERVE` merely makes the default nonpersistent behavior explicit.
+Você pode criar um *event* mas impedir que ele esteja ativo usando a palavra-chave `DISABLE`. Alternativamente, você pode usar `ENABLE` para tornar explícito o status padrão, que é ativo. Isso é mais útil em conjunto com [`ALTER EVENT`] (consulte [Section 13.1.2, “ALTER EVENT Statement”](alter-event.html "13.1.2 ALTER EVENT Statement")).
 
-You can create an event but prevent it from being active using the `DISABLE` keyword. Alternatively, you can use `ENABLE` to make explicit the default status, which is active. This is most useful in conjunction with [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") (see [Section 13.1.2, “ALTER EVENT Statement”](alter-event.html "13.1.2 ALTER EVENT Statement")).
+Um terceiro valor também pode aparecer no lugar de `ENABLE` ou `DISABLE`; `DISABLE ON SLAVE` é definido para o status de um *event* em uma réplica para indicar que o *event* foi criado na origem (*source*) e replicado para a réplica, mas não é executado na réplica. Consulte [Section 16.4.1.16, “Replication of Invoked Features”](replication-features-invoked.html "16.4.1.16 Replication of Invoked Features").
 
-A third value may also appear in place of `ENABLE` or `DISABLE`; `DISABLE ON SLAVE` is set for the status of an event on a replica to indicate that the event was created on the source and replicated to the replica, but is not executed on the replica. See [Section 16.4.1.16, “Replication of Invoked Features”](replication-features-invoked.html "16.4.1.16 Replication of Invoked Features").
+Você pode fornecer um *comment* para um *event* usando uma cláusula `COMMENT`. *`comment`* pode ser qualquer *string* de até 64 caracteres que você deseja usar para descrever o *event*. O texto do *comment*, sendo um literal de *string*, deve ser cercado por aspas.
 
-You may supply a comment for an event using a `COMMENT` clause. *`comment`* may be any string of up to 64 characters that you wish to use for describing the event. The comment text, being a string literal, must be surrounded by quotation marks.
-
-The [`DO`](do.html "13.2.3 DO Statement") clause specifies an action carried by the event, and consists of an SQL statement. Nearly any valid MySQL statement that can be used in a stored routine can also be used as the action statement for a scheduled event. (See [Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs").) For example, the following event `e_hourly` deletes all rows from the `sessions` table once per hour, where this table is part of the `site_activity` schema:
+A cláusula [`DO`] especifica uma ação realizada pelo *event* e consiste em uma instrução SQL. Quase qualquer instrução MySQL válida que possa ser usada em uma *stored routine* também pode ser usada como a instrução de ação para um *event* agendado. (Consulte [Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs").) Por exemplo, o seguinte *event* `e_hourly` exclui todas as linhas da tabela `sessions` uma vez por hora, onde esta tabela faz parte do *schema* `site_activity`:
 
 ```sql
 CREATE EVENT e_hourly
@@ -135,17 +132,17 @@ CREATE EVENT e_hourly
       DELETE FROM site_activity.sessions;
 ```
 
-MySQL stores the [`sql_mode`](server-system-variables.html#sysvar_sql_mode) system variable setting in effect when an event is created or altered, and always executes the event with this setting in force, *regardless of the current server SQL mode when the event begins executing*.
+O MySQL armazena a configuração da variável de sistema [`sql_mode`] em vigor quando um *event* é criado ou alterado e sempre executa o *event* com essa configuração em vigor, *independentemente do SQL mode atual do server quando o event começa a ser executado*.
 
-A [`CREATE EVENT`](create-event.html "13.1.12 CREATE EVENT Statement") statement that contains an [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") statement in its [`DO`](do.html "13.2.3 DO Statement") clause appears to succeed; however, when the server attempts to execute the resulting scheduled event, the execution fails with an error.
+Uma instrução [`CREATE EVENT`] que contém uma instrução [`ALTER EVENT`] em sua cláusula [`DO`] parece ser bem-sucedida; no entanto, quando o *server* tenta executar o *event* agendado resultante, a execução falha com um *error*.
 
 Note
 
-Statements such as [`SELECT`](select.html "13.2.9 SELECT Statement") or [`SHOW`](show.html "13.7.5 SHOW Statements") that merely return a result set have no effect when used in an event; the output from these is not sent to the MySQL Monitor, nor is it stored anywhere. However, you can use statements such as [`SELECT ... INTO`](select.html "13.2.9 SELECT Statement") and [`INSERT INTO ... SELECT`](insert-select.html "13.2.5.1 INSERT ... SELECT Statement") that store a result. (See the next example in this section for an instance of the latter.)
+Instruções como [`SELECT`] ou [`SHOW`] que apenas retornam um *result set* não têm efeito quando usadas em um *event*; a saída delas não é enviada para o MySQL Monitor, nem é armazenada em lugar nenhum. No entanto, você pode usar instruções como [`SELECT ... INTO`] e [`INSERT INTO ... SELECT`] que armazenam um resultado. (Veja o próximo exemplo nesta seção para uma instância deste último.)
 
-The schema to which an event belongs is the default schema for table references in the [`DO`](do.html "13.2.3 DO Statement") clause. Any references to tables in other schemas must be qualified with the proper schema name.
+O *schema* ao qual um *event* pertence é o *schema* padrão para referências de tabela na cláusula [`DO`]. Quaisquer referências a tabelas em outros *schemas* devem ser qualificadas com o nome do *schema* apropriado.
 
-As with stored routines, you can use compound-statement syntax in the [`DO`](do.html "13.2.3 DO Statement") clause by using the `BEGIN` and `END` keywords, as shown here:
+Assim como em *stored routines*, você pode usar a sintaxe de *compound-statement* na cláusula [`DO`] usando as palavras-chave `BEGIN` e `END`, conforme mostrado aqui:
 
 ```sql
 delimiter |
@@ -165,9 +162,9 @@ CREATE EVENT e_daily
 delimiter ;
 ```
 
-This example uses the `delimiter` command to change the statement delimiter. See [Section 23.1, “Defining Stored Programs”](stored-programs-defining.html "23.1 Defining Stored Programs").
+Este exemplo usa o comando `delimiter` para alterar o delimitador de instrução. Consulte [Section 23.1, “Defining Stored Programs”](stored-programs-defining.html "23.1 Defining Stored Programs").
 
-More complex compound statements, such as those used in stored routines, are possible in an event. This example uses local variables, an error handler, and a flow control construct:
+*Compound statements* mais complexas, como as usadas em *stored routines*, são possíveis em um *event*. Este exemplo usa variáveis locais, um *error handler* e uma construção de controle de fluxo:
 
 ```sql
 delimiter |
@@ -192,7 +189,7 @@ CREATE EVENT e
 delimiter ;
 ```
 
-There is no way to pass parameters directly to or from events; however, it is possible to invoke a stored routine with parameters within an event:
+Não há como passar *parameters* diretamente para ou de *events*; no entanto, é possível invocar uma *stored routine* com *parameters* dentro de um *event*:
 
 ```sql
 CREATE EVENT e_call_myproc
@@ -201,6 +198,6 @@ CREATE EVENT e_call_myproc
     DO CALL myproc(5, 27);
 ```
 
-If an event's definer has privileges sufficient to set global system variables (see [Section 5.1.8.1, “System Variable Privileges”](system-variable-privileges.html "5.1.8.1 System Variable Privileges")), the event can read and write global variables. As granting such privileges entails a potential for abuse, extreme care must be taken in doing so.
+Se o *definer* de um *event* tiver privilégios suficientes para definir variáveis de sistema globais (consulte [Section 5.1.8.1, “System Variable Privileges”](system-variable-privileges.html "5.1.8.1 System Variable Privileges")), o *event* pode ler e escrever variáveis globais. Como a concessão de tais privilégios implica um potencial de abuso, deve-se tomar extremo cuidado ao fazê-lo.
 
-Generally, any statements that are valid in stored routines may be used for action statements executed by events. For more information about statements permissible within stored routines, see [Section 23.2.1, “Stored Routine Syntax”](stored-routines-syntax.html "23.2.1 Stored Routine Syntax"). You can create an event as part of a stored routine, but an event cannot be created by another event.
+Geralmente, quaisquer instruções válidas em *stored routines* podem ser usadas como instruções de ação executadas por *events*. Para obter mais informações sobre instruções permitidas em *stored routines*, consulte [Section 23.2.1, “Stored Routine Syntax”](stored-routines-syntax.html "23.2.1 Stored Routine Syntax"). Você pode criar um *event* como parte de uma *stored routine*, mas um *event* não pode ser criado por outro *event*.

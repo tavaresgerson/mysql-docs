@@ -1,40 +1,40 @@
-### 21.6.6 NDB Cluster Single User Mode
+### 21.6.6 Modo de Usuário Único do NDB Cluster
 
-Single user mode enables the database administrator to restrict access to the database system to a single API node, such as a MySQL server (SQL node) or an instance of [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"). When entering single user mode, connections to all other API nodes are closed gracefully and all running transactions are aborted. No new transactions are permitted to start.
+O Single User Mode permite que o administrador do Database restrinja o acesso ao sistema de Database a um único API node, como um servidor MySQL (SQL node) ou uma instância de [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster"). Ao entrar no Single User Mode, as conexões para todos os outros API nodes são fechadas de forma controlada (gracefully) e todas as Transactions em execução são abortadas. Nenhuma nova Transaction é permitida iniciar.
 
-Once the cluster has entered single user mode, only the designated API node is granted access to the database.
+Uma vez que o Cluster tenha entrado no Single User Mode, apenas o API node designado recebe acesso ao Database.
 
-You can use the `ALL STATUS` command in the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client to see when the cluster has entered single user mode. You can also check the `status` column of the [`ndbinfo.nodes`](mysql-cluster-ndbinfo-nodes.html "21.6.15.28 The ndbinfo nodes Table") table (see [Section 21.6.15.28, “The ndbinfo nodes Table”](mysql-cluster-ndbinfo-nodes.html "21.6.15.28 The ndbinfo nodes Table"), for more information).
+Você pode usar o comando `ALL STATUS` no cliente [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — O Cliente de Gerenciamento do NDB Cluster") para ver quando o Cluster entrou no Single User Mode. Você também pode verificar a coluna `status` da tabela [`ndbinfo.nodes`](mysql-cluster-ndbinfo-nodes.html "21.6.15.28 A Tabela ndbinfo nodes") (consulte [Seção 21.6.15.28, “A Tabela ndbinfo nodes”](mysql-cluster-ndbinfo-nodes.html "21.6.15.28 A Tabela ndbinfo nodes"), para mais informações).
 
-Example:
+Exemplo:
 
 ```sql
 ndb_mgm> ENTER SINGLE USER MODE 5
 ```
 
-After this command has executed and the cluster has entered single user mode, the API node whose node ID is `5` becomes the cluster's only permitted user.
+Após a execução deste comando e a entrada do Cluster no Single User Mode, o API node cujo ID de node é `5` se torna o único usuário permitido do Cluster.
 
-The node specified in the preceding command must be an API node; attempting to specify any other type of node is rejected.
+O node especificado no comando anterior deve ser um API node; a tentativa de especificar qualquer outro tipo de node é rejeitada.
 
-Note
+Nota
 
-When the preceding command is invoked, all transactions running on the designated node are aborted, the connection is closed, and the server must be restarted.
+Quando o comando anterior é invocado, todas as Transactions em execução no node designado são abortadas, a conexão é fechada e o servidor deve ser reiniciado.
 
-The command `EXIT SINGLE USER MODE` changes the state of the cluster's data nodes from single user mode to normal mode. API nodes—such as MySQL Servers—waiting for a connection (that is, waiting for the cluster to become ready and available), are again permitted to connect. The API node denoted as the single-user node continues to run (if still connected) during and after the state change.
+O comando `EXIT SINGLE USER MODE` altera o estado dos data nodes do Cluster de Single User Mode para modo normal. Os API nodes—como Servidores MySQL—que estão esperando por uma conexão (ou seja, esperando que o Cluster se torne pronto e disponível), são novamente permitidos a conectar. O API node designado como o node de usuário único continua em execução (se ainda estiver conectado) durante e após a mudança de estado.
 
-Example:
+Exemplo:
 
 ```sql
 ndb_mgm> EXIT SINGLE USER MODE
 ```
 
-There are two recommended ways to handle a node failure when running in single user mode:
+Existem duas formas recomendadas de lidar com uma falha de node ao executar no Single User Mode:
 
-* Method 1:
+*   Método 1:
 
-  1. Finish all single user mode transactions
-  2. Issue the `EXIT SINGLE USER MODE` command
-  3. Restart the cluster's data nodes
-* Method 2:
+    1.  Finalizar todas as Transactions do Single User Mode
+    2.  Emitir o comando `EXIT SINGLE USER MODE`
+    3.  Reiniciar os data nodes do Cluster
+*   Método 2:
 
-  Restart storage nodes prior to entering single user mode.
+    Reiniciar os storage nodes antes de entrar no Single User Mode.

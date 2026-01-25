@@ -1,30 +1,30 @@
-### 24.3.22 The INFORMATION_SCHEMA SCHEMATA Table
+### 24.3.22 A Tabela SCHEMATA do INFORMATION_SCHEMA
 
-A schema is a database, so the [`SCHEMATA`](information-schema-schemata-table.html "24.3.22 The INFORMATION_SCHEMA SCHEMATA Table") table provides information about databases.
+Um schema é um Database, portanto, a tabela [`SCHEMATA`](information-schema-schemata-table.html "24.3.22 A Tabela SCHEMATA do INFORMATION_SCHEMA") fornece informações sobre Databases.
 
-The [`SCHEMATA`](information-schema-schemata-table.html "24.3.22 The INFORMATION_SCHEMA SCHEMATA Table") table has these columns:
+A tabela [`SCHEMATA`](information-schema-schemata-table.html "24.3.22 A Tabela SCHEMATA do INFORMATION_SCHEMA") possui as seguintes colunas:
 
 * `CATALOG_NAME`
 
-  The name of the catalog to which the schema belongs. This value is always `def`.
+  O nome do catalog ao qual o schema pertence. Este valor é sempre `def`.
 
 * `SCHEMA_NAME`
 
-  The name of the schema.
+  O nome do schema.
 
 * `DEFAULT_CHARACTER_SET_NAME`
 
-  The schema default character set.
+  O character set default do schema.
 
 * `DEFAULT_COLLATION_NAME`
 
-  The schema default collation.
+  O collation default do schema.
 
 * `SQL_PATH`
 
-  This value is always `NULL`.
+  Este valor é sempre `NULL`.
 
-Schema names are also available from the [`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement") statement. See [Section 13.7.5.14, “SHOW DATABASES Statement”](show-databases.html "13.7.5.14 SHOW DATABASES Statement"). The following statements are equivalent:
+Os nomes dos Schemas também estão disponíveis através da instrução [`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement"). Veja [Seção 13.7.5.14, “SHOW DATABASES Statement”](show-databases.html "13.7.5.14 SHOW DATABASES Statement"). As seguintes instruções são equivalentes:
 
 ```sql
 SELECT SCHEMA_NAME AS `Database`
@@ -35,8 +35,8 @@ SHOW DATABASES
   [LIKE 'wild']
 ```
 
-You see only those databases for which you have some kind of privilege, unless you have the global [`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement") privilege.
+Você vê apenas os Databases para os quais possui algum tipo de Privilege, a menos que possua o Privilege global [`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement").
 
-Caution
+Atenção
 
-Because a global privilege is considered a privilege for all databases, *any* global privilege enables a user to see all database names with [`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement") or by examining the `INFORMATION_SCHEMA` [`SCHEMATA`](information-schema-schemata-table.html "24.3.22 The INFORMATION_SCHEMA SCHEMATA Table") table.
+Como um Privilege global é considerado um Privilege para todos os Databases, *qualquer* Privilege global permite que um usuário veja todos os nomes de Databases com [`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement") ou examinando a tabela [`SCHEMATA`](information-schema-schemata-table.html "24.3.22 A Tabela SCHEMATA do INFORMATION_SCHEMA") do `INFORMATION_SCHEMA`.

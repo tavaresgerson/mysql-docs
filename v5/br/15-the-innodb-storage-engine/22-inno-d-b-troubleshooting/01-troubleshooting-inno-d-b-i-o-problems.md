@@ -1,23 +1,23 @@
-### 14.22.1 Troubleshooting InnoDB I/O Problems
+### 14.22.1 Solução de Problemas de I/O do InnoDB
 
-The troubleshooting steps for `InnoDB` I/O problems depend on when the problem occurs: during startup of the MySQL server, or during normal operations when a DML or DDL statement fails due to problems at the file system level.
+As etapas de solução de problemas de I/O do `InnoDB` dependem de quando o problema ocorre: durante a inicialização do MySQL server, ou durante operações normais quando uma instrução DML ou DDL falha devido a problemas no nível do file system.
 
-#### Initialization Problems
+#### Problemas de Inicialização
 
-If something goes wrong when `InnoDB` attempts to initialize its tablespace or its log files, delete all files created by `InnoDB`: all `ibdata` files and all `ib_logfile` files. If you already created some `InnoDB` tables, also delete the corresponding `.frm` files for these tables, and any `.ibd` files if you are using multiple tablespaces, from the MySQL database directories. Then try the `InnoDB` database creation again. For easiest troubleshooting, start the MySQL server from a command prompt so that you see what is happening.
+Se algo der errado quando o `InnoDB` tentar inicializar seu tablespace ou seus log files, exclua todos os arquivos criados pelo `InnoDB`: todos os arquivos `ibdata` e todos os arquivos `ib_logfile`. Se você já criou algumas tables `InnoDB`, exclua também os arquivos `.frm` correspondentes a essas tables, e quaisquer arquivos `.ibd` se você estiver usando múltiplos tablespaces, dos diretórios do MySQL database. Em seguida, tente a criação do `InnoDB` database novamente. Para facilitar a solução de problemas, inicie o MySQL server a partir de um prompt de comando para que você possa ver o que está acontecendo.
 
-#### Runtime Problems
+#### Problemas de Runtime
 
-If `InnoDB` prints an operating system error during a file operation, usually the problem has one of the following solutions:
+Se o `InnoDB` imprimir um erro do sistema operacional durante uma file operation (operação de arquivo), geralmente o problema tem uma das seguintes soluções:
 
-* Make sure the `InnoDB` data file directory and the `InnoDB` log directory exist.
+*   Certifique-se de que o diretório do data file do `InnoDB` e o diretório de log do `InnoDB` existam.
 
-* Make sure **mysqld** has access rights to create files in those directories.
+*   Certifique-se de que o **mysqld** tenha direitos de acesso para criar arquivos nesses diretórios.
 
-* Make sure **mysqld** can read the proper `my.cnf` or `my.ini` option file, so that it starts with the options that you specified.
+*   Certifique-se de que o **mysqld** possa ler o arquivo de opções `my.cnf` ou `my.ini` apropriado, para que ele inicie com as opções que você especificou.
 
-* Make sure the disk is not full and you are not exceeding any disk quota.
+*   Certifique-se de que o disco não esteja cheio e que você não esteja excedendo nenhuma quota de disco (disk quota).
 
-* Make sure that the names you specify for subdirectories and data files do not clash.
+*   Certifique-se de que os nomes especificados para subdiretórios e data files não entrem em conflito.
 
-* Doublecheck the syntax of the `innodb_data_home_dir` and `innodb_data_file_path` values. In particular, any `MAX` value in the `innodb_data_file_path` option is a hard limit, and exceeding that limit causes a fatal error.
+*   Verifique novamente a sintaxe dos valores `innodb_data_home_dir` e `innodb_data_file_path`. Em particular, qualquer valor `MAX` na opção `innodb_data_file_path` é um limite rígido (hard limit), e exceder esse limite causa um erro fatal.

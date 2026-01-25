@@ -1,164 +1,164 @@
-#### 25.12.6.1 The events_statements_current Table
+#### 25.12.6.1 A Tabela events_statements_current
 
-The [`events_statements_current`](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table") table contains current statement events. The table stores one row per thread showing the current status of the thread's most recent monitored statement event, so there is no system variable for configuring the table size.
+A tabela [`events_statements_current`](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table") contém eventos de statement atuais. A tabela armazena uma linha por Thread, mostrando o status atual do evento de statement monitorado mais recente do Thread, portanto, não há uma system variable para configurar o tamanho da tabela.
 
-Of the tables that contain statement event rows, [`events_statements_current`](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table") is the most fundamental. Other tables that contain statement event rows are logically derived from the current events. For example, the [`events_statements_history`](performance-schema-events-statements-history-table.html "25.12.6.2 The events_statements_history Table") and [`events_statements_history_long`](performance-schema-events-statements-history-long-table.html "25.12.6.3 The events_statements_history_long Table") tables are collections of the most recent statement events that have ended, up to a maximum number of rows per thread and globally across all threads, respectively.
+Das tabelas que contêm linhas de eventos de statement, a [`events_statements_current`](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table") é a mais fundamental. Outras tabelas que contêm linhas de eventos de statement são derivadas logicamente dos eventos atuais. Por exemplo, as tabelas [`events_statements_history`](performance-schema-events-statements-history-table.html "25.12.6.2 The events_statements_history Table") e [`events_statements_history_long`](performance-schema-events-statements-history-long-table.html "25.12.6.3 The events_statements_history_long Table") são coleções dos eventos de statement mais recentes que terminaram, até um número máximo de linhas por Thread e globalmente em todos os Threads, respectivamente.
 
-For more information about the relationship between the three `events_statements_xxx` event tables, see [Section 25.9, “Performance Schema Tables for Current and Historical Events”](performance-schema-event-tables.html "25.9 Performance Schema Tables for Current and Historical Events").
+Para mais informações sobre a relação entre as três tabelas de eventos `events_statements_xxx`, veja [Seção 25.9, “Tabelas do Performance Schema para Eventos Atuais e Históricos”](performance-schema-event-tables.html "25.9 Performance Schema Tables for Current and Historical Events").
 
-For information about configuring whether to collect statement events, see [Section 25.12.6, “Performance Schema Statement Event Tables”](performance-schema-statement-tables.html "25.12.6 Performance Schema Statement Event Tables").
+Para informações sobre como configurar a coleta de statement events, veja [Seção 25.12.6, “Tabelas de Statement Event do Performance Schema”](performance-schema-statement-tables.html "25.12.6 Performance Schema Statement Event Tables").
 
-The [`events_statements_current`](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table") table has these columns:
+A tabela [`events_statements_current`](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table") possui as seguintes colunas:
 
 * `THREAD_ID`, `EVENT_ID`
 
-  The thread associated with the event and the thread current event number when the event starts. The `THREAD_ID` and `EVENT_ID` values taken together uniquely identify the row. No two rows have the same pair of values.
+  O Thread associado ao evento e o número do evento atual do Thread quando o evento começa. Os valores de `THREAD_ID` e `EVENT_ID` juntos identificam a linha de forma exclusiva. Não há duas linhas com o mesmo par de valores.
 
 * `END_EVENT_ID`
 
-  This column is set to `NULL` when the event starts and updated to the thread current event number when the event ends.
+  Esta coluna é definida como `NULL` quando o evento começa e é atualizada para o número do evento atual do Thread quando o evento termina.
 
 * `EVENT_NAME`
 
-  The name of the instrument from which the event was collected. This is a `NAME` value from the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table. Instrument names may have multiple parts and form a hierarchy, as discussed in [Section 25.6, “Performance Schema Instrument Naming Conventions”](performance-schema-instrument-naming.html "25.6 Performance Schema Instrument Naming Conventions").
+  O nome do instrument a partir do qual o evento foi coletado. Este é um valor `NAME` da tabela [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table"). Os nomes dos instruments podem ter várias partes e formar uma hierarquia, conforme discutido em [Seção 25.6, “Convenções de Nomenclatura de Instruments do Performance Schema”](performance-schema-instrument-naming.html "25.6 Performance Schema Instrument Naming Conventions").
 
-  For SQL statements, the `EVENT_NAME` value initially is `statement/com/Query` until the statement is parsed, then changes to a more appropriate value, as described in [Section 25.12.6, “Performance Schema Statement Event Tables”](performance-schema-statement-tables.html "25.12.6 Performance Schema Statement Event Tables").
+  Para statements SQL, o valor `EVENT_NAME` inicialmente é `statement/com/Query` até que o statement seja analisado (parsed), então muda para um valor mais apropriado, conforme descrito em [Seção 25.12.6, “Tabelas de Statement Event do Performance Schema”](performance-schema-statement-tables.html "25.12.6 Performance Schema Statement Event Tables").
 
 * `SOURCE`
 
-  The name of the source file containing the instrumented code that produced the event and the line number in the file at which the instrumentation occurs. This enables you to check the source to determine exactly what code is involved.
+  O nome do arquivo fonte contendo o código instrumentado que produziu o evento e o número da linha no arquivo onde a instrumentação ocorre. Isso permite que você verifique o código-fonte para determinar exatamente qual código está envolvido.
 
 * `TIMER_START`, `TIMER_END`, `TIMER_WAIT`
 
-  Timing information for the event. The unit for these values is picoseconds (trillionths of a second). The `TIMER_START` and `TIMER_END` values indicate when event timing started and ended. `TIMER_WAIT` is the event elapsed time (duration).
+  Informações de tempo (Timing) para o evento. A unidade para esses valores é picosegundos (trilionésimos de segundo). Os valores `TIMER_START` e `TIMER_END` indicam quando o timing do evento começou e terminou. `TIMER_WAIT` é o tempo decorrido (duração) do evento.
 
-  If an event has not finished, `TIMER_END` is the current timer value and `TIMER_WAIT` is the time elapsed so far (`TIMER_END` − `TIMER_START`).
+  Se um evento não terminou, `TIMER_END` é o valor atual do timer e `TIMER_WAIT` é o tempo decorrido até agora (`TIMER_END` − `TIMER_START`).
 
-  If an event is produced from an instrument that has `TIMED = NO`, timing information is not collected, and `TIMER_START`, `TIMER_END`, and `TIMER_WAIT` are all `NULL`.
+  Se um evento é produzido a partir de um instrument que tem `TIMED = NO`, as informações de timing não são coletadas e `TIMER_START`, `TIMER_END` e `TIMER_WAIT` são todos `NULL`.
 
-  For discussion of picoseconds as the unit for event times and factors that affect time values, see [Section 25.4.1, “Performance Schema Event Timing”](performance-schema-timing.html "25.4.1 Performance Schema Event Timing").
+  Para discussão sobre picosegundos como unidade para tempos de evento e fatores que afetam os valores de tempo, veja [Seção 25.4.1, “Timing de Eventos do Performance Schema”](performance-schema-timing.html "25.4.1 Performance Schema Event Timing").
 
 * `LOCK_TIME`
 
-  The time spent waiting for table locks. This value is computed in microseconds but normalized to picoseconds for easier comparison with other Performance Schema timers.
+  O tempo gasto esperando por Lock de tabela. Este valor é calculado em microssegundos, mas normalizado para picosegundos para facilitar a comparação com outros timers do Performance Schema.
 
 * `SQL_TEXT`
 
-  The text of the SQL statement. For a command not associated with an SQL statement, the value is `NULL`.
+  O texto do statement SQL. Para um comando não associado a um statement SQL, o valor é `NULL`.
 
-  The maximum space available for statement display is 1024 bytes by default. To change this value, set the [`performance_schema_max_sql_text_length`](performance-schema-system-variables.html#sysvar_performance_schema_max_sql_text_length) system variable at server startup.
+  O espaço máximo disponível para exibição do statement é de 1024 bytes por padrão. Para alterar este valor, defina a system variable [`performance_schema_max_sql_text_length`](performance-schema-system-variables.html#sysvar_performance_schema_max_sql_text_length) na inicialização do server.
 
 * `DIGEST`
 
-  The statement digest MD5 value as a string of 32 hexadecimal characters, or `NULL` if the `statements_digest` consumer is `no`. For more information about statement digesting, see [Section 25.10, “Performance Schema Statement Digests”](performance-schema-statement-digests.html "25.10 Performance Schema Statement Digests").
+  O valor MD5 do statement digest como uma string de 32 caracteres hexadecimais, ou `NULL` se o consumer `statements_digest` for `no`. Para mais informações sobre statement digesting, veja [Seção 25.10, “Statement Digests do Performance Schema”](performance-schema-statement-digests.html "25.10 Performance Schema Statement Digests").
 
 * `DIGEST_TEXT`
 
-  The normalized statement digest text, or `NULL` if the `statements_digest` consumer is `no`. For more information about statement digesting, see [Section 25.10, “Performance Schema Statement Digests”](performance-schema-statement-digests.html "25.10 Performance Schema Statement Digests").
+  O texto normalizado do statement digest, ou `NULL` se o consumer `statements_digest` for `no`. Para mais informações sobre statement digesting, veja [Seção 25.10, “Statement Digests do Performance Schema”](performance-schema-statement-digests.html "25.10 Performance Schema Statement Digests").
 
-  The [`performance_schema_max_digest_length`](performance-schema-system-variables.html#sysvar_performance_schema_max_digest_length) system variable determines the maximum number of bytes available per session for digest value storage. However, the display length of statement digests may be longer than the available buffer size due to encoding of statement elements such as keywords and literal values in digest buffer. Consequently, values selected from the `DIGEST_TEXT` column of statement event tables may appear to exceed the [`performance_schema_max_digest_length`](performance-schema-system-variables.html#sysvar_performance_schema_max_digest_length) value.
+  A system variable [`performance_schema_max_digest_length`](performance-schema-system-variables.html#sysvar_performance_schema_max_digest_length) determina o número máximo de bytes disponíveis por session para armazenamento do valor do digest. No entanto, o comprimento de exibição dos statement digests pode ser maior do que o tamanho do Buffer disponível devido à codificação de elementos do statement, como palavras-chave e valores literais no digest Buffer. Consequentemente, os valores selecionados da coluna `DIGEST_TEXT` das tabelas de statement event podem parecer exceder o valor de [`performance_schema_max_digest_length`](performance-schema-system-variables.html#sysvar_performance_schema_max_digest_length).
 
 * `CURRENT_SCHEMA`
 
-  The default database for the statement, `NULL` if there is none.
+  O Database padrão para o statement, `NULL` se não houver nenhum.
 
 * `OBJECT_SCHEMA`, `OBJECT_NAME`, `OBJECT_TYPE`
 
-  For nested statements (stored programs), these columns contain information about the parent statement. Otherwise they are `NULL`.
+  Para statements aninhados (programas armazenados), estas colunas contêm informações sobre o statement pai. Caso contrário, são `NULL`.
 
 * `OBJECT_INSTANCE_BEGIN`
 
-  This column identifies the statement. The value is the address of an object in memory.
+  Esta coluna identifica o statement. O valor é o endereço de um objeto na memória.
 
 * `MYSQL_ERRNO`
 
-  The statement error number, from the statement diagnostics area.
+  O número de erro do statement, da área de diagnóstico do statement.
 
 * `RETURNED_SQLSTATE`
 
-  The statement SQLSTATE value, from the statement diagnostics area.
+  O valor SQLSTATE do statement, da área de diagnóstico do statement.
 
 * `MESSAGE_TEXT`
 
-  The statement error message, from the statement diagnostics area.
+  A mensagem de erro do statement, da área de diagnóstico do statement.
 
 * `ERRORS`
 
-  Whether an error occurred for the statement. The value is 0 if the SQLSTATE value begins with `00` (completion) or `01` (warning). The value is 1 is the SQLSTATE value is anything else.
+  Indica se ocorreu um erro para o statement. O valor é 0 se o valor SQLSTATE começar com `00` (conclusão) ou `01` (warning). O valor é 1 se o valor SQLSTATE for qualquer outro.
 
 * `WARNINGS`
 
-  The number of warnings, from the statement diagnostics area.
+  O número de warnings, da área de diagnóstico do statement.
 
 * `ROWS_AFFECTED`
 
-  The number of rows affected by the statement. For a description of the meaning of “affected,” see [mysql_affected_rows()](/doc/c-api/5.7/en/mysql-affected-rows.html).
+  O número de linhas afetadas pelo statement. Para uma descrição do significado de "affected", veja [mysql_affected_rows()](/doc/c-api/5.7/en/mysql-affected-rows.html).
 
 * `ROWS_SENT`
 
-  The number of rows returned by the statement.
+  O número de linhas retornadas pelo statement.
 
 * `ROWS_EXAMINED`
 
-  The number of rows examined by the server layer (not counting any processing internal to storage engines).
+  O número de linhas examinadas pela camada do server (sem contar qualquer processamento interno aos storage engines).
 
 * `CREATED_TMP_DISK_TABLES`
 
-  Like the [`Created_tmp_disk_tables`](server-status-variables.html#statvar_Created_tmp_disk_tables) status variable, but specific to the statement.
+  Semelhante à status variable [`Created_tmp_disk_tables`](server-status-variables.html#statvar_Created_tmp_disk_tables), mas específica para o statement.
 
 * `CREATED_TMP_TABLES`
 
-  Like the [`Created_tmp_tables`](server-status-variables.html#statvar_Created_tmp_tables) status variable, but specific to the statement.
+  Semelhante à status variable [`Created_tmp_tables`](server-status-variables.html#statvar_Created_tmp_tables), mas específica para o statement.
 
 * `SELECT_FULL_JOIN`
 
-  Like the [`Select_full_join`](server-status-variables.html#statvar_Select_full_join) status variable, but specific to the statement.
+  Semelhante à status variable [`Select_full_join`](server-status-variables.html#statvar_Select_full_join), mas específica para o statement.
 
 * `SELECT_FULL_RANGE_JOIN`
 
-  Like the [`Select_full_range_join`](server-status-variables.html#statvar_Select_full_range_join) status variable, but specific to the statement.
+  Semelhante à status variable [`Select_full_range_join`](server-status-variables.html#statvar_Select_full_range_join), mas específica para o statement.
 
 * `SELECT_RANGE`
 
-  Like the [`Select_range`](server-status-variables.html#statvar_Select_range) status variable, but specific to the statement.
+  Semelhante à status variable [`Select_range`](server-status-variables.html#statvar_Select_range), mas específica para o statement.
 
 * `SELECT_RANGE_CHECK`
 
-  Like the [`Select_range_check`](server-status-variables.html#statvar_Select_range_check) status variable, but specific to the statement.
+  Semelhante à status variable [`Select_range_check`](server-status-variables.html#statvar_Select_range_check), mas específica para o statement.
 
 * `SELECT_SCAN`
 
-  Like the [`Select_scan`](server-status-variables.html#statvar_Select_scan) status variable, but specific to the statement.
+  Semelhante à status variable [`Select_scan`](server-status-variables.html#statvar_Select_scan), mas específica para o statement.
 
 * `SORT_MERGE_PASSES`
 
-  Like the [`Sort_merge_passes`](server-status-variables.html#statvar_Sort_merge_passes) status variable, but specific to the statement.
+  Semelhante à status variable [`Sort_merge_passes`](server-status-variables.html#statvar_Sort_merge_passes), mas específica para o statement.
 
 * `SORT_RANGE`
 
-  Like the [`Sort_range`](server-status-variables.html#statvar_Sort_range) status variable, but specific to the statement.
+  Semelhante à status variable [`Sort_range`](server-status-variables.html#statvar_Sort_range), mas específica para o statement.
 
 * `SORT_ROWS`
 
-  Like the [`Sort_rows`](server-status-variables.html#statvar_Sort_rows) status variable, but specific to the statement.
+  Semelhante à status variable [`Sort_rows`](server-status-variables.html#statvar_Sort_rows), mas específica para o statement.
 
 * `SORT_SCAN`
 
-  Like the [`Sort_scan`](server-status-variables.html#statvar_Sort_scan) status variable, but specific to the statement.
+  Semelhante à status variable [`Sort_scan`](server-status-variables.html#statvar_Sort_scan), mas específica para o statement.
 
 * `NO_INDEX_USED`
 
-  1 if the statement performed a table scan without using an index, 0 otherwise.
+  1 se o statement executou um table scan sem usar um Index, 0 caso contrário.
 
 * `NO_GOOD_INDEX_USED`
 
-  1 if the server found no good index to use for the statement, 0 otherwise. For additional information, see the description of the `Extra` column from `EXPLAIN` output for the `Range checked for each record` value in [Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format").
+  1 se o server não encontrou um Index bom para usar no statement, 0 caso contrário. Para informações adicionais, veja a descrição da coluna `Extra` da saída de `EXPLAIN` para o valor `Range checked for each record` em [Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html "8.8.2 EXPLAIN Output Format").
 
 * `NESTING_EVENT_ID`, `NESTING_EVENT_TYPE`, `NESTING_EVENT_LEVEL`
 
-  These three columns are used with other columns to provide information as follows for top-level (unnested) statements and nested statements (executed within a stored program).
+  Estas três colunas são usadas com outras colunas para fornecer informações, como segue, para statements de nível superior (não aninhados) e statements aninhados (executados dentro de um stored program).
 
-  For top level statements:
+  Para statements de nível superior:
 
   ```sql
   OBJECT_TYPE = NULL
@@ -169,7 +169,7 @@ The [`events_statements_current`](performance-schema-events-statements-current-t
   NESTING_LEVEL = 0
   ```
 
-  For nested statements:
+  Para statements aninhados:
 
   ```sql
   OBJECT_TYPE = the parent statement object type
@@ -180,4 +180,4 @@ The [`events_statements_current`](performance-schema-events-statements-current-t
   NESTING_LEVEL = the parent statement NESTING_LEVEL plus one
   ```
 
-[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is permitted for the [`events_statements_current`](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table") table. It removes the rows.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") é permitido para a tabela [`events_statements_current`](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table"). Ele remove as linhas.

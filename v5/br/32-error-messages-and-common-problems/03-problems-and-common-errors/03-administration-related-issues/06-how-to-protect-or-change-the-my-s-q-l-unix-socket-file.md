@@ -1,20 +1,20 @@
-#### B.3.3.6 How to Protect or Change the MySQL Unix Socket File
+#### B.3.3.6 Como Proteger ou Alterar o Arquivo Unix Socket do MySQL
 
-The default location for the Unix socket file that the server uses for communication with local clients is `/tmp/mysql.sock`. (For some distribution formats, the directory might be different, such as `/var/lib/mysql` for RPMs.)
+A localização padrão para o arquivo Unix socket que o server usa para comunicação com clients locais é `/tmp/mysql.sock`. (Para alguns formatos de distribuição, o diretório pode ser diferente, como `/var/lib/mysql` para RPMs.)
 
-On some versions of Unix, anyone can delete files in the `/tmp` directory or other similar directories used for temporary files. If the socket file is located in such a directory on your system, this might cause problems.
+Em algumas versões do Unix, qualquer pessoa pode excluir arquivos no diretório `/tmp` ou em outros diretórios similares usados para arquivos temporários. Se o arquivo socket estiver localizado em tal diretório no seu sistema, isso pode causar problemas.
 
-On most versions of Unix, you can protect your `/tmp` directory so that files can be deleted only by their owners or the superuser (`root`). To do this, set the `sticky` bit on the `/tmp` directory by logging in as `root` and using the following command:
+Na maioria das versões do Unix, você pode proteger seu diretório `/tmp` para que os arquivos possam ser excluídos apenas por seus proprietários ou pelo superuser (`root`). Para fazer isso, defina o `sticky bit` no diretório `/tmp` efetuando login como `root` e usando o seguinte comando:
 
 ```sql
 $> chmod +t /tmp
 ```
 
-You can check whether the `sticky` bit is set by executing `ls -ld /tmp`. If the last permission character is `t`, the bit is set.
+Você pode verificar se o `sticky bit` está definido executando `ls -ld /tmp`. Se o último caractere de permissão for `t`, o bit está definido.
 
-Another approach is to change the place where the server creates the Unix socket file. If you do this, you should also let client programs know the new location of the file. You can specify the file location in several ways:
+Outra abordagem é alterar o local onde o server cria o arquivo Unix socket. Se você fizer isso, você também deve informar aos programas client a nova localização do arquivo. Você pode especificar a localização do arquivo de várias maneiras:
 
-* Specify the path in a global or local option file. For example, put the following lines in `/etc/my.cnf`:
+* Especifique o caminho em um arquivo de opção global ou local. Por exemplo, insira as seguintes linhas em `/etc/my.cnf`:
 
   ```sql
   [mysqld]
@@ -24,15 +24,15 @@ Another approach is to change the place where the server creates the Unix socket
   socket=/path/to/socket
   ```
 
-  See [Section 4.2.2.2, “Using Option Files”](option-files.html "4.2.2.2 Using Option Files").
+  Consulte [Seção 4.2.2.2, “Using Option Files”](option-files.html "4.2.2.2 Using Option Files").
 
-* Specify a [`--socket`](connection-options.html#option_general_socket) option on the command line to [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") and when you run client programs.
+* Especifique uma opção [`--socket`](connection-options.html#option_general_socket) na linha de comando para [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") e quando você executa programas client.
 
-* Set the `MYSQL_UNIX_PORT` environment variable to the path of the Unix socket file.
+* Defina a variável de ambiente `MYSQL_UNIX_PORT` para o caminho do arquivo Unix socket.
 
-* Recompile MySQL from source to use a different default Unix socket file location. Define the path to the file with the [`MYSQL_UNIX_ADDR`](source-configuration-options.html#option_cmake_mysql_unix_addr) option when you run **CMake**. See [Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options").
+* Recompile o MySQL a partir do código fonte para usar uma localização padrão diferente para o arquivo Unix socket. Defina o caminho para o arquivo com a opção [`MYSQL_UNIX_ADDR`](source-configuration-options.html#option_cmake_mysql_unix_addr) ao executar o **CMake**. Consulte [Seção 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options").
 
-You can test whether the new socket location works by attempting to connect to the server with this command:
+Você pode testar se a nova localização do socket funciona tentando se conectar ao server com este comando:
 
 ```sql
 $> mysqladmin --socket=/path/to/socket version

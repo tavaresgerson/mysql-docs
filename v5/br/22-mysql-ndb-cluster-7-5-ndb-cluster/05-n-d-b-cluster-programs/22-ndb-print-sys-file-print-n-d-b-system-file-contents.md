@@ -1,17 +1,17 @@
-### 21.5.22 ndb_print_sys_file — Print NDB System File Contents
+### 21.5.22 ndb_print_sys_file — Imprimir Conteúdo de Arquivo de Sistema NDB
 
-[**ndb_print_sys_file**](mysql-cluster-programs-ndb-print-sys-file.html "21.5.22 ndb_print_sys_file — Print NDB System File Contents") obtains diagnostic information from an NDB Cluster system file.
+[**ndb_print_sys_file**](mysql-cluster-programs-ndb-print-sys-file.html "21.5.22 ndb_print_sys_file — Imprimir Conteúdo de Arquivo de Sistema NDB") obtém informações de diagnóstico de um arquivo de sistema (system file) do NDB Cluster.
 
-#### Usage
+#### Uso
 
 ```sql
 ndb_print_sys_file file_name
 ```
 
-*`file_name`* is the name of a cluster system file (sysfile). Cluster system files are located in a data node's data directory ([`DataDir`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datadir)); the path under this directory to system files matches the pattern `ndb_#_fs/D#/DBDIH/P#.sysfile`. In each case, the *`#`* represents a number (not necessarily the same number). For more information, see [NDB Cluster Data Node File System Directory](/doc/ndb-internals/en/ndb-internals-ndbd-filesystemdir-files.html).
+*`file_name`* é o nome de um arquivo de sistema do Cluster (sysfile). Arquivos de sistema do Cluster estão localizados no diretório de dados de um data node ([`DataDir`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datadir)); o caminho sob este diretório para os arquivos de sistema segue o padrão `ndb_#_fs/D#/DBDIH/P#.sysfile`. Em cada caso, o *`#`* representa um número (não necessariamente o mesmo número). Para mais informações, consulte [NDB Cluster Data Node File System Directory](/doc/ndb-internals/en/ndb-internals-ndbd-filesystemdir-files.html).
 
-Like [**ndb_print_backup_file**](mysql-cluster-programs-ndb-print-backup-file.html "21.5.18 ndb_print_backup_file — Print NDB Backup File Contents") and [**ndb_print_schema_file**](mysql-cluster-programs-ndb-print-schema-file.html "21.5.21 ndb_print_schema_file — Print NDB Schema File Contents") (and unlike most of the other [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") utilities that are intended to be run on a management server host or to connect to a management server) [**ndb_print_backup_file**](mysql-cluster-programs-ndb-print-backup-file.html "21.5.18 ndb_print_backup_file — Print NDB Backup File Contents") must be run on a cluster data node, since it accesses the data node file system directly. Because it does not make use of the management server, this utility can be used when the management server is not running, and even when the cluster has been completely shut down.
+Assim como [**ndb_print_backup_file**](mysql-cluster-programs-ndb-print-backup-file.html "21.5.18 ndb_print_backup_file — Imprimir Conteúdo do Arquivo de Backup NDB") e [**ndb_print_schema_file**](mysql-cluster-programs-ndb-print-schema-file.html "21.5.21 ndb_print_schema_file — Imprimir Conteúdo do Arquivo de Schema NDB") (e diferentemente da maioria dos outros utilitários [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") que são destinados a serem executados em um host de management server ou para se conectar a um management server), [**ndb_print_backup_file**](mysql-cluster-programs-ndb-print-backup-file.html "21.5.18 ndb_print_backup_file — Imprimir Conteúdo do Arquivo de Backup NDB") deve ser executado em um data node do Cluster, uma vez que ele acessa o file system do data node diretamente. Por não utilizar o management server, este utilitário pode ser usado quando o management server não está em execução, e mesmo quando o Cluster foi completamente desligado (shut down).
 
-#### Additional Options
+#### Opções Adicionais
 
-None.
+Nenhuma.

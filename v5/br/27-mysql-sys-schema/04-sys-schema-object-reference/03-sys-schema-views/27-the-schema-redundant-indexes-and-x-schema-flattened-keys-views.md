@@ -1,73 +1,73 @@
-#### 26.4.3.27 The schema_redundant_indexes and x$schema_flattened_keys Views
+#### 26.4.3.27 As Views schema_redundant_indexes e x$schema_flattened_keys
 
-The `schema_redundant_indexes` view displays indexes that duplicate other indexes or are made redundant by them. The `x$schema_flattened_keys` view is a helper view for `schema_redundant_indexes`.
+A View `schema_redundant_indexes` exibe Indexes que duplicam outros Indexes ou que são tornados redundantes por eles. A View `x$schema_flattened_keys` é uma View auxiliar para `schema_redundant_indexes`.
 
-In the following column descriptions, the dominant index is the one that makes the redundant index redundant.
+Nas descrições de colunas a seguir, o *dominant index* é aquele que torna o *redundant index* redundante.
 
-The `schema_redundant_indexes` view has these columns:
+A View `schema_redundant_indexes` possui estas colunas:
 
 * `table_schema`
 
-  The schema that contains the table.
+  O Schema que contém a Table.
 
 * `table_name`
 
-  The table that contains the index.
+  A Table que contém o Index.
 
 * `redundant_index_name`
 
-  The name of the redundant index.
+  O nome do Index redundante.
 
 * `redundant_index_columns`
 
-  The names of the columns in the redundant index.
+  Os nomes das Columns no Index redundante.
 
 * `redundant_index_non_unique`
 
-  The number of nonunique columns in the redundant index.
+  O número de Columns não-únicas no Index redundante.
 
 * `dominant_index_name`
 
-  The name of the dominant index.
+  O nome do Index dominante.
 
 * `dominant_index_columns`
 
-  The names of the columns in the dominant index.
+  Os nomes das Columns no Index dominante.
 
 * `dominant_index_non_unique`
 
-  The number of nonunique columns in the dominant index.
+  O número de Columns não-únicas no Index dominante.
 
 * `subpart_exists`
 
-  Whether the index indexes only part of a column.
+  Se o Index indexa apenas parte de uma Column.
 
 * `sql_drop_index`
 
-  The statement to execute to drop the redundant index.
+  O Statement a ser executado para descartar (DROP) o Index redundante.
 
-The `x$schema_flattened_keys` view has these columns:
+A View `x$schema_flattened_keys` possui estas colunas:
 
 * `table_schema`
 
-  The schema that contains the table.
+  O Schema que contém a Table.
 
 * `table_name`
 
-  The table that contains the index.
+  A Table que contém o Index.
 
 * `index_name`
 
-  An index name.
+  Um nome de Index.
 
 * `non_unique`
 
-  The number of nonunique columns in the index.
+  O número de Columns não-únicas no Index.
 
 * `subpart_exists`
 
-  Whether the index indexes only part of a column.
+  Se o Index indexa apenas parte de uma Column.
 
 * `index_columns`
 
-  The name of the columns in the index.
+  O nome das Columns no Index.

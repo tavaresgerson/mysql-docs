@@ -1,24 +1,24 @@
-#### 15.2.3.3 Compressed Table Characteristics
+#### 15.2.3.3 Características de Tabelas Comprimidas
 
-Compressed storage format is a read-only format that is generated with the **myisampack** tool. Compressed tables can be uncompressed with **myisamchk**.
+O formato de armazenamento comprimido é um formato somente leitura (`read-only`) que é gerado com a ferramenta **myisampack**. Tabelas comprimidas podem ser descomprimidas com **myisamchk**.
 
-Compressed tables have the following characteristics:
+Tabelas comprimidas possuem as seguintes características:
 
-* Compressed tables take very little disk space. This minimizes disk usage, which is helpful when using slow disks (such as CD-ROMs).
+* Tabelas comprimidas ocupam muito pouco espaço em disco. Isso minimiza o uso de disco, o que é útil ao usar discos lentos (como CD-ROMs).
 
-* Each row is compressed separately, so there is very little access overhead. The header for a row takes up one to three bytes depending on the biggest row in the table. Each column is compressed differently. There is usually a different Huffman tree for each column. Some of the compression types are:
+* Cada linha é comprimida separadamente, então há muito pouco `overhead` de acesso. O cabeçalho para uma linha ocupa de um a três `bytes`, dependendo da maior linha da tabela. Cada coluna é comprimida de forma diferente. Geralmente, há uma `Huffman tree` diferente para cada coluna. Alguns dos tipos de compressão são:
 
-  + Suffix space compression.
-  + Prefix space compression.
-  + Numbers with a value of zero are stored using one bit.
-  + If values in an integer column have a small range, the column is stored using the smallest possible type. For example, a `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") column (eight bytes) can be stored as a `TINYINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") column (one byte) if all its values are in the range from `-128` to `127`.
+  + Compressão de espaço de sufixo.
+  + Compressão de espaço de prefixo.
+  + Números com valor zero são armazenados usando um `bit`.
+  + Se os valores em uma coluna `integer` tiverem um pequeno intervalo (`range`), a coluna é armazenada usando o menor tipo possível. Por exemplo, uma coluna `BIGINT` (oito `bytes`) pode ser armazenada como uma coluna `TINYINT` (um `byte`) se todos os seus valores estiverem no intervalo de `-128` a `127`.
 
-  + If a column has only a small set of possible values, the data type is converted to `ENUM`.
+  + Se uma coluna tiver apenas um pequeno conjunto de valores possíveis, o `data type` é convertido para `ENUM`.
 
-  + A column may use any combination of the preceding compression types.
+  + Uma coluna pode usar qualquer combinação dos tipos de compressão precedentes.
 
-* Can be used for fixed-length or dynamic-length rows.
+* Pode ser usada para linhas de comprimento fixo (`fixed-length`) ou comprimento dinâmico (`dynamic-length`).
 
 Note
 
-While a compressed table is read only, and you cannot therefore update or add rows in the table, DDL (Data Definition Language) operations are still valid. For example, you may still use `DROP` to drop the table, and `TRUNCATE TABLE` to empty the table.
+Enquanto uma tabela comprimida é somente leitura (`read only`), e, portanto, você não pode atualizar ou adicionar linhas na tabela, as operações DDL (`Data Definition Language`) ainda são válidas. Por exemplo, você ainda pode usar `DROP` para descartar a tabela, e `TRUNCATE TABLE` para esvaziar a tabela.

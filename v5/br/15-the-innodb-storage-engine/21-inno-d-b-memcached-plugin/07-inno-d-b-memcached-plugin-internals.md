@@ -1,18 +1,29 @@
-### 14.21.7 InnoDB memcached Plugin Internals
+### 14.21.7 Detalhes Internos do Plugin memcached do InnoDB
 
-#### InnoDB API for the InnoDB memcached Plugin
+#### API do InnoDB para o Plugin memcached do InnoDB
 
-The `InnoDB` **memcached** engine accesses `InnoDB` through `InnoDB` APIs, most of which are directly adopted from embedded `InnoDB`. `InnoDB` API functions are passed to the `InnoDB` **memcached** engine as callback functions. `InnoDB` API functions access the `InnoDB` tables directly, and are mostly DML operations with the exception of `TRUNCATE TABLE`.
+O mecanismo **memcached** do `InnoDB` acessa o `InnoDB` através de APIs do `InnoDB`, a maioria das quais é diretamente adotada do `InnoDB` embutido. As funções da API do `InnoDB` são passadas para o mecanismo **memcached** do `InnoDB` como funções de callback. As funções da API do `InnoDB` acessam as tabelas `InnoDB` diretamente e são, em sua maioria, operações DML, com exceção de `TRUNCATE TABLE`.
 
-**memcached** commands are implemented through the `InnoDB` **memcached** API. The following table outlines how **memcached** commands are mapped to DML or DDL operations.
+Os comandos **memcached** são implementados através da API **memcached** do `InnoDB`. A tabela a seguir descreve como os comandos **memcached** são mapeados para operações DML ou DDL.
 
-**Table 14.21 memcached Commands and Associated DML or DDL Operations**
+**Tabela 14.21 Comandos memcached e Operações DML ou DDL Associadas**
 
-<table frame="all" summary="memcached commands and associated DML or DDL operations."><thead><tr> <th>memcached Command</th> <th>DML or DDL Operations</th> </tr></thead><tbody><tr> <td><code>get</code></td> <td>a read/fetch command</td> </tr><tr> <td><code>set</code></td> <td>a search followed by an <code>INSERT</code> or <code>UPDATE</code> (depending on whether or not a key exists)</td> </tr><tr> <td><code>add</code></td> <td>a search followed by an <code>INSERT</code> or <code>UPDATE</code></td> </tr><tr> <td><code>replace</code></td> <td>a search followed by an <code>UPDATE</code></td> </tr><tr> <td><code>append</code></td> <td>a search followed by an <code>UPDATE</code> (appends data to the result before <code>UPDATE</code>)</td> </tr><tr> <td><code>prepend</code></td> <td>a search followed by an <code>UPDATE</code> (prepends data to the result before <code>UPDATE</code>)</td> </tr><tr> <td><code>incr</code></td> <td>a search followed by an <code>UPDATE</code></td> </tr><tr> <td><code>decr</code></td> <td>a search followed by an <code>UPDATE</code></td> </tr><tr> <td><code>delete</code></td> <td>a search followed by a <code>DELETE</code></td> </tr><tr> <td><code>flush_all</code></td> <td><code>TRUNCATE TABLE</code> (DDL)</td> </tr></tbody></table>
+| Comando memcached | Operações DML ou DDL |
+| :--- | :--- |
+| `get` | um comando de read/fetch |
+| `set` | uma busca seguida por um `INSERT` ou `UPDATE` (dependendo se uma key existe ou não) |
+| `add` | uma busca seguida por um `INSERT` ou `UPDATE` |
+| `replace` | uma busca seguida por um `UPDATE` |
+| `append` | uma busca seguida por um `UPDATE` (anexa dados ao resultado antes do `UPDATE`) |
+| `prepend` | uma busca seguida por um `UPDATE` (precede dados ao resultado antes do `UPDATE`) |
+| `incr` | uma busca seguida por um `UPDATE` |
+| `decr` | uma busca seguida por um `UPDATE` |
+| `delete` | uma busca seguida por um `DELETE` |
+| `flush_all` | `TRUNCATE TABLE` (DDL) |
 
-#### InnoDB memcached Plugin Configuration Tables
+#### Tabelas de Configuração do Plugin memcached do InnoDB
 
-This section describes configuration tables used by the `daemon_memcached` plugin. The `cache_policies` table, `config_options` table, and `containers` table are created by the `innodb_memcached_config.sql` configuration script in the `innodb_memcache` database.
+Esta seção descreve as tabelas de configuração usadas pelo plugin `daemon_memcached`. As tabelas `cache_policies`, `config_options` e `containers` são criadas pelo script de configuração `innodb_memcached_config.sql` no Database `innodb_memcache`.
 
 ```sql
 mysql> USE innodb_memcache;
@@ -27,71 +38,90 @@ mysql> SHOW TABLES;
 +---------------------------+
 ```
 
-#### cache_policies Table
+#### Tabela cache_policies
 
-The `cache_policies` table defines a cache policy for the `InnoDB` `memcached` installation. You can specify individual policies for `get`, `set`, `delete`, and `flush` operations, within a single cache policy. The default setting for all operations is `innodb_only`.
+A tabela `cache_policies` define uma política de cache para a instalação `memcached` do `InnoDB`. Você pode especificar políticas individuais para as operações `get`, `set`, `delete` e `flush`, dentro de uma única política de cache. A configuração padrão para todas as operações é `innodb_only`.
 
-* `innodb_only`: Use `InnoDB` as the data store.
+*   `innodb_only`: Usa o `InnoDB` como data store.
 
-* `cache_only`: Use the **memcached** engine as the data store.
+*   `cache_only`: Usa o mecanismo **memcached** como data store.
 
-* `caching`: Use both `InnoDB` and the **memcached** engine as data stores. In this case, if **memcached** cannot find a key in memory, it searches for the value in an `InnoDB` table.
+*   `caching`: Usa tanto o `InnoDB` quanto o mecanismo **memcached** como data stores. Neste caso, se o **memcached** não conseguir encontrar uma key na memória, ele busca o valor em uma tabela `InnoDB`.
 
-* `disable`: Disable caching.
+*   `disable`: Desabilita o cache.
 
-**Table 14.22 cache_policies Columns**
+**Tabela 14.22 Colunas da tabela cache_policies**
 
-<table frame="all" summary="Columns of the cache_policies table."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Column</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>policy_name</code></td> <td>Name of the cache policy. The default cache policy name is <code>cache_policy</code>.</td> </tr><tr> <td><code>get_policy</code></td> <td>The cache policy for get operations. Valid values are <code>innodb_only</code>, <code>cache_only</code>, <code>caching</code>, or <code>disabled</code>. The default setting is <code>innodb_only</code>.</td> </tr><tr> <td><code>set_policy</code></td> <td>The cache policy for set operations. Valid values are <code>innodb_only</code>, <code>cache_only</code>, <code>caching</code>, or <code>disabled</code>. The default setting is <code>innodb_only</code>.</td> </tr><tr> <td><code>delete_policy</code></td> <td>The cache policy for delete operations. Valid values are <code>innodb_only</code>, <code>cache_only</code>, <code>caching</code>, or <code>disabled</code>. The default setting is <code>innodb_only</code>.</td> </tr><tr> <td><code>flush_policy</code></td> <td>The cache policy for flush operations. Valid values are <code>innodb_only</code>, <code>cache_only</code>, <code>caching</code>, or <code>disabled</code>. The default setting is <code>innodb_only</code>.</td> </tr></tbody></table>
+| Coluna | Descrição |
+| :--- | :--- |
+| `policy_name` | Nome da política de cache. O nome da política de cache padrão é `cache_policy`. |
+| `get_policy` | A política de cache para operações get. Os valores válidos são `innodb_only`, `cache_only`, `caching` ou `disabled`. A configuração padrão é `innodb_only`. |
+| `set_policy` | A política de cache para operações set. Os valores válidos são `innodb_only`, `cache_only`, `caching` ou `disabled`. A configuração padrão é `innodb_only`. |
+| `delete_policy` | A política de cache para operações delete. Os valores válidos são `innodb_only`, `cache_only`, `caching` ou `disabled`. A configuração padrão é `innodb_only`. |
+| `flush_policy` | A política de cache para operações flush. Os valores válidos são `innodb_only`, `cache_only`, `caching` ou `disabled`. A configuração padrão é `innodb_only`. |
 
-#### config_options Table
+#### Tabela config_options
 
-The `config_options` table stores **memcached**-related settings that can be changed at runtime using SQL. Supported configuration options are `separator` and `table_map_delimiter`.
+A tabela `config_options` armazena configurações relacionadas ao **memcached** que podem ser alteradas em tempo de execução usando SQL. As opções de configuração suportadas são `separator` e `table_map_delimiter`.
 
-**Table 14.23 config_options Columns**
+**Tabela 14.23 Colunas da tabela config_options**
 
-<table frame="all" summary="Columns of the config_options table."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Column</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>Name</code></td> <td>Name of the <span><strong>memcached</strong></span>-related configuration option. The following configuration options are supported by the <code>config_options</code> table: <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>separator</code>: Used to separate values of a long string into separate values when there are multiple <code>value_columns</code> defined. By default, the <code>separator</code> is a <code>|</code> character. For example, if you define <code>col1, col2</code> as value columns, and you define <code>|</code> as the separator, you can issue the following <span><strong>memcached</strong></span> command to insert values into <code>col1</code> and <code>col2</code>, respectively: </p><pre class="programlisting copytoclipboard language-terminal"><code class="language-terminal">set keyx 10 0 19 valuecolx|valuecoly</code></pre><p> <code>valuecol1x</code> is stored in <code>col1</code> and <code>valuecoly</code> is stored in <code>col2</code>. </p></li><li class="listitem"><p> <code>table_map_delimiter</code>: The character separating the schema name and the table name when you use the <code>@@</code> notation in a key name to access a key in a specific table. For example, <code>@@t1.some_key</code> and <code>@@t2.some_key</code> have the same key value, but are stored in different tables. </p></li></ul> </div> </td> </tr><tr> <td><code>Value</code></td> <td>The value assigned to the <span><strong>memcached</strong></span>-related configuration option.</td> </tr></tbody></table>
+| Coluna | Descrição |
+| :--- | :--- |
+| `Name` | Nome da opção de configuração relacionada ao **memcached**. As seguintes opções de configuração são suportadas pela tabela `config_options`: <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> `separator`: Usado para separar valores de uma string longa em valores separados quando há múltiplas `value_columns` definidas. Por padrão, o `separator` é o caractere `|`. Por exemplo, se você definir `col1, col2` como value columns, e definir `|` como o separator, você pode emitir o seguinte comando **memcached** para inserir valores em `col1` e `col2`, respectivamente: </p><pre class="programlisting copytoclipboard language-terminal"><code class="language-terminal">set keyx 10 0 19 valuecolx|valuecoly</code></pre><p> `valuecol1x` é armazenado em `col1` e `valuecoly` é armazenado em `col2`. </p></li><li class="listitem"><p> `table_map_delimiter`: O caractere que separa o nome do schema e o nome da table quando você usa a notação `@@` em um nome de key para acessar uma key em uma table específica. Por exemplo, `@@t1.some_key` e `@@t2.some_key` têm o mesmo valor de key, mas são armazenados em tables diferentes. </p></li></ul> </div> |
+| `Value` | O valor atribuído à opção de configuração relacionada ao **memcached**. |
 
-#### containers Table
+#### Tabela containers
 
-The `containers` table is the most important of the three configuration tables. Each `InnoDB` table that is used to store **memcached** values must have an entry in the `containers` table. The entry provides a mapping between `InnoDB` table columns and container table columns, which is required for `memcached` to work with `InnoDB` tables.
+A tabela `containers` é a mais importante das três tabelas de configuração. Cada tabela `InnoDB` usada para armazenar valores **memcached** deve ter uma entrada na tabela `containers`. A entrada fornece um mapeamento entre as colunas da tabela `InnoDB` e as colunas da tabela container, o que é necessário para que o `memcached` funcione com tabelas `InnoDB`.
 
-The `containers` table contains a default entry for the `test.demo_test` table, which is created by the `innodb_memcached_config.sql` configuration script. To use the `daemon_memcached` plugin with your own `InnoDB` table, you must create an entry in the `containers` table.
+A tabela `containers` contém uma entrada padrão para a tabela `test.demo_test`, que é criada pelo script de configuração `innodb_memcached_config.sql`. Para usar o plugin `daemon_memcached` com sua própria tabela `InnoDB`, você deve criar uma entrada na tabela `containers`.
 
-**Table 14.24 containers Columns**
+**Tabela 14.24 Colunas da tabela containers**
 
-<table frame="all" summary="Columns of the containers table."><thead><tr> <th>Column</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>name</code></td> <td>The name given to the container. If an <code>InnoDB</code> table is not requested by name using <code>@@</code> notation, the <code>daemon_memcached</code> plugin uses the <code>InnoDB</code> table with a <code>containers.name</code> value of <code>default</code>. If there is no such entry, the first entry in the <code>containers</code> table, ordered alphabetically by <code>name</code> (ascending), determines the default <code>InnoDB</code> table.</td> </tr><tr> <td><code>db_schema</code></td> <td>The name of the database where the <code>InnoDB</code> table resides. This is a required value.</td> </tr><tr> <td><code>db_table</code></td> <td>The name of the <code>InnoDB</code> table that stores <span><strong>memcached</strong></span> values. This is a required value.</td> </tr><tr> <td><code>key_columns</code></td> <td>The column in the <code>InnoDB</code> table that contains lookup key values for <span><strong>memcached</strong></span> operations. This is a required value.</td> </tr><tr> <td><code>value_columns</code></td> <td>The <code>InnoDB</code> table columns (one or more) that store <code>memcached</code> data. Multiple columns can be specified using the separator character specified in the <code>innodb_memcached.config_options</code> table. By default, the separator is a pipe character (<span class="quote">“<span class="quote">|</span>”</span>). To specify multiple columns, separate them with the defined separator character. For example: <code>col1|col2|col3</code>. This is a required value.</td> </tr><tr> <td><code>flags</code></td> <td>The <code>InnoDB</code> table columns that are used as flags (a user-defined numeric value that is stored and retrieved along with the main value) for <span><strong>memcached</strong></span>. A flag value can be used as a column specifier for some operations (such as <code>incr</code>, <code>prepend</code>) if a <span><strong>memcached</strong></span> value is mapped to multiple columns, so that an operation is performed on a specified column. For example, if you have mapped a <code>value_columns</code> to three <code>InnoDB</code> table columns, and only want the increment operation performed on one columns, use the <code>flags</code> column to specify the column. If you do not use the <code>flags</code> column, set a value of <code>0</code> to indicate that it is unused.</td> </tr><tr> <td><code>cas_column</code></td> <td>The <code>InnoDB</code> table column that stores compare-and-swap (cas) values. The <code>cas_column</code> value is related to the way <span><strong>memcached</strong></span> hashes requests to different servers and caches data in memory. Because the <code>InnoDB</code> <span><strong>memcached</strong></span> plugin is tightly integrated with a single <span><strong>memcached</strong></span> daemon, and the in-memory caching mechanism is handled by MySQL and the InnoDB buffer pool, this column is rarely needed. If you do not use this column, set a value of <code>0</code> to indicate that it is unused.</td> </tr><tr> <td><code>expire_time_column</code></td> <td>The <code>InnoDB</code> table column that stores expiration values. The <code>expire_time_column</code> value is related to the way <span><strong>memcached</strong></span> hashes requests to different servers and caches data in memory. Because the <code>InnoDB</code> <span><strong>memcached</strong></span> plugin is tightly integrated with a single <span><strong>memcached</strong></span> daemon, and the in-memory caching mechanism is handled by MySQL and the InnoDB buffer pool, this column is rarely needed. If you do not use this column, set a value of <code>0</code> to indicate that the column is unused. The maximum expire time is defined as <code>INT_MAX32</code> or 2147483647 seconds (approximately 68 years).</td> </tr><tr> <td><code>unique_idx_name_on_key</code></td> <td>The name of the index on the key column. It must be a unique index. It can be the primary key or a secondary index. Preferably, use the primary key of the <code>InnoDB</code> table. Using the primary key avoids a lookup that is performed when using a secondary index. You cannot make a covering index for <span><strong>memcached</strong></span> lookups; <code>InnoDB</code> returns an error if you try to define a composite secondary index over both the key and value columns.</td> </tr></tbody></table>
+| Coluna | Descrição |
+| :--- | :--- |
+| `name` | O nome dado ao container. Se uma tabela `InnoDB` não for solicitada por nome usando a notação `@@`, o plugin `daemon_memcached` usa a tabela `InnoDB` com um valor `containers.name` de `default`. Se não houver tal entrada, a primeira entrada na tabela `containers`, ordenada alfabeticamente por `name` (ascendente), determina a tabela `InnoDB` padrão. |
+| `db_schema` | O nome do Database onde a tabela `InnoDB` reside. Este é um valor obrigatório. |
+| `db_table` | O nome da tabela `InnoDB` que armazena valores **memcached**. Este é um valor obrigatório. |
+| `key_columns` | A coluna na tabela `InnoDB` que contém valores de lookup key para operações **memcached**. Este é um valor obrigatório. |
+| `value_columns` | As colunas da tabela `InnoDB` (uma ou mais) que armazenam dados `memcached`. Múltiplas colunas podem ser especificadas usando o caractere separator definido na tabela `innodb_memcached.config_options`. Por padrão, o separator é um caractere pipe (“\|”). Para especificar múltiplas colunas, separe-as com o caractere separator definido. Por exemplo: `col1|col2|col3`. Este é um valor obrigatório. |
+| `flags` | As colunas da tabela `InnoDB` que são usadas como flags (um valor numérico definido pelo usuário que é armazenado e recuperado junto com o valor principal) para **memcached**. Um valor flag pode ser usado como um especificador de coluna para algumas operações (como `incr`, `prepend`) se um valor **memcached** for mapeado para múltiplas colunas, para que uma operação seja realizada em uma coluna especificada. Por exemplo, se você mapeou `value_columns` para três colunas da tabela `InnoDB` e deseja que a operação de increment seja executada apenas em uma coluna, use a coluna `flags` para especificar a coluna. Se você não usar a coluna `flags`, defina um valor de `0` para indicar que não está sendo usada. |
+| `cas_column` | A coluna da tabela `InnoDB` que armazena valores compare-and-swap (cas). O valor `cas_column` está relacionado à forma como o **memcached** faz hash de requests para diferentes servidores e armazena dados em cache na memória. Como o plugin **memcached** do `InnoDB` está totalmente integrado a um único daemon **memcached**, e o mecanismo de caching in-memory é tratado pelo MySQL e pelo Buffer Pool do InnoDB, esta coluna raramente é necessária. Se você não usar esta coluna, defina um valor de `0` para indicar que não está sendo usada. |
+| `expire_time_column` | A coluna da tabela `InnoDB` que armazena valores de expiração. O valor `expire_time_column` está relacionado à forma como o **memcached** faz hash de requests para diferentes servidores e armazena dados em cache na memória. Como o plugin **memcached** do `InnoDB` está totalmente integrado a um único daemon **memcached**, e o mecanismo de caching in-memory é tratado pelo MySQL e pelo Buffer Pool do InnoDB, esta coluna raramente é necessária. Se você não usar esta coluna, defina um valor de `0` para indicar que a coluna não está sendo usada. O tempo máximo de expiração é definido como `INT_MAX32` ou 2147483647 segundos (aproximadamente 68 anos). |
+| `unique_idx_name_on_key` | O nome do Index na coluna key. Deve ser um Unique Index. Pode ser a Primary Key ou um Secondary Index. Preferencialmente, use a Primary Key da tabela `InnoDB`. O uso da Primary Key evita um lookup que é realizado ao usar um Secondary Index. Você não pode criar um covering index para lookups **memcached**; o `InnoDB` retorna um erro se você tentar definir um Secondary Index composto sobre as colunas key e value. |
 
-##### containers Table Column Constraints
+##### Restrições de Coluna da Tabela containers
 
-* You must supply a value for `db_schema`, `db_name`, `key_columns`, `value_columns` and `unique_idx_name_on_key`. Specify `0` for `flags`, `cas_column`, and `expire_time_column` if they are unused. Failing to do so could cause your setup to fail.
+*   Você deve fornecer um valor para `db_schema`, `db_name`, `key_columns`, `value_columns` e `unique_idx_name_on_key`. Especifique `0` para `flags`, `cas_column` e `expire_time_column` se não estiverem sendo usados. Não fazer isso pode causar falha na sua configuração.
 
-* `key_columns`: The maximum limit for a **memcached** key is 250 characters, which is enforced by **memcached**. The mapped key must be a non-Null `CHAR` or `VARCHAR` type.
+*   `key_columns`: O limite máximo para uma key **memcached** é de 250 caracteres, que é imposto pelo **memcached**. A key mapeada deve ser do tipo `CHAR` ou `VARCHAR` não-NULL.
 
-* `value_columns`: Must be mapped to a `CHAR`, `VARCHAR`, or `BLOB` column. There is no length restriction and the value can be NULL.
+*   `value_columns`: Deve ser mapeada para uma coluna `CHAR`, `VARCHAR` ou `BLOB`. Não há restrição de comprimento e o valor pode ser NULL.
 
-* `cas_column`: The `cas` value is a 64 bit integer. It must be mapped to a `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") of at least 8 bytes. If you do not use this column, set a value of `0` to indicate that it is unused.
+*   `cas_column`: O valor `cas` é um integer de 64 bits. Deve ser mapeado para um `BIGINT` (INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT) de pelo menos 8 bytes. Se você não usar esta coluna, defina um valor de `0` para indicar que não está sendo usada.
 
-* `expiration_time_column`: Must mapped to an `INTEGER` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") of at least 4 bytes. Expiration time is defined as a 32-bit integer for Unix time (the number of seconds since January 1, 1970, as a 32-bit value), or the number of seconds starting from the current time. For the latter, the number of seconds may not exceed 60\*60\*24\*30 (the number of seconds in 30 days). If the number sent by a client is larger, the server considers it to be a real Unix time value rather than an offset from the current time. If you do not use this column, set a value of `0` to indicate that it is unused.
+*   `expiration_time_column`: Deve ser mapeada para um `INTEGER` (INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT) de pelo menos 4 bytes. O tempo de expiração é definido como um integer de 32 bits para o tempo Unix (o número de segundos desde 1º de janeiro de 1970, como um valor de 32 bits), ou o número de segundos a partir do tempo atual. Para este último, o número de segundos não pode exceder 60\*60\*24\*30 (o número de segundos em 30 dias). Se o número enviado por um cliente for maior, o servidor o considera um valor de tempo Unix real, e não um offset do tempo atual. Se você não usar esta coluna, defina um valor de `0` para indicar que não está sendo usada.
 
-* `flags`: Must be mapped to an `INTEGER` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") of at least 32-bits and can be NULL. If you do not use this column, set a value of `0` to indicate that it is unused.
+*   `flags`: Deve ser mapeada para um `INTEGER` (INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT) de pelo menos 32 bits e pode ser NULL. Se você não usar esta coluna, defina um valor de `0` para indicar que não está sendo usada.
 
-A pre-check is performed at plugin load time to enforce column constraints. If mismatches are found, the plugin is not loaded.
+Uma verificação prévia é realizada no momento do carregamento do plugin para aplicar as restrições de coluna. Se forem encontradas incompatibilidades, o plugin não é carregado.
 
-##### Multiple Value Column Mapping
+##### Mapeamento de Múltiplas Colunas de Valores
 
-* During plugin initialization, when `InnoDB` **memcached** is configured with information defined in the `containers` table, each mapped column defined in `containers.value_columns` is verified against the mapped `InnoDB` table. If multiple `InnoDB` table columns are mapped, there is a check to ensure that each column exists and is the right type.
+*   Durante a inicialização do plugin, quando o **memcached** do `InnoDB` é configurado com informações definidas na tabela `containers`, cada coluna mapeada definida em `containers.value_columns` é verificada em relação à tabela `InnoDB` mapeada. Se múltiplas colunas da tabela `InnoDB` forem mapeadas, há uma verificação para garantir que cada coluna exista e seja do tipo correto.
 
-* At run-time, for `memcached` insert operations, if there are more delimited values than the number of mapped columns, only the number of mapped values are taken. For example, if there are six mapped columns, and seven delimited values are provided, only the first six delimited values are taken. The seventh delimited value is ignored.
+*   Em tempo de execução, para operações `insert` do `memcached`, se houver mais valores delimitados do que o número de colunas mapeadas, apenas o número de valores mapeados será considerado. Por exemplo, se houver seis colunas mapeadas e sete valores delimitados forem fornecidos, apenas os seis primeiros valores delimitados serão considerados. O sétimo valor delimitado é ignorado.
 
-* If there are fewer delimited values than mapped columns, unfilled columns are set to NULL. If an unfilled column cannot be set to NULL, insert operations fail.
+*   Se houver menos valores delimitados do que colunas mapeadas, as colunas não preenchidas são definidas como NULL. Se uma coluna não preenchida não puder ser definida como NULL, as operações `insert` falham.
 
-* If a table has more columns than mapped values, the extra columns do not affect results.
+*   Se uma table tiver mais colunas do que valores mapeados, as colunas extras não afetam os resultados.
 
-#### The demo_test Example Table
+#### A Tabela de Exemplo demo_test
 
-The `innodb_memcached_config.sql` configuration script creates a `demo_test` table in the `test` database, which can be used to verify `InnoDB` **memcached** plugin installation immediately after setup.
+O script de configuração `innodb_memcached_config.sql` cria uma tabela `demo_test` no Database `test`, que pode ser usada para verificar a instalação do plugin **memcached** do `InnoDB` imediatamente após a configuração.
 
-The `innodb_memcached_config.sql` configuration script also creates an entry for the `demo_test` table in the `innodb_memcache.containers` table.
+O script de configuração `innodb_memcached_config.sql` também cria uma entrada para a tabela `demo_test` na tabela `innodb_memcache.containers`.
 
 ```sql
 mysql> SELECT * FROM innodb_memcache.containers\G

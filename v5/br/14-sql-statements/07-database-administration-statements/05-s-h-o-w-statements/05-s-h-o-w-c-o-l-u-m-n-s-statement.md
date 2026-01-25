@@ -1,4 +1,4 @@
-#### 13.7.5.5 SHOW COLUMNS Statement
+#### 13.7.5.5 Instrução SHOW COLUMNS
 
 ```sql
 SHOW [FULL] {COLUMNS | FIELDS}
@@ -7,7 +7,7 @@ SHOW [FULL] {COLUMNS | FIELDS}
     [LIKE 'pattern' | WHERE expr]
 ```
 
-[`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") displays information about the columns in a given table. It also works for views. [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") displays information only for those columns for which you have some privilege.
+A instrução [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") exibe informações sobre as colunas em uma determinada tabela. Também funciona para views. [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") exibe informações apenas para as colunas nas quais você possui algum privilégio.
 
 ```sql
 mysql> SHOW COLUMNS FROM City;
@@ -22,79 +22,79 @@ mysql> SHOW COLUMNS FROM City;
 +-------------+----------+------+-----+---------+----------------+
 ```
 
-An alternative to `tbl_name FROM db_name` syntax is *`db_name.tbl_name`*. These two statements are equivalent:
+Uma alternativa à sintaxe `tbl_name FROM db_name` é *`db_name.tbl_name`*. Estas duas instruções são equivalentes:
 
 ```sql
 SHOW COLUMNS FROM mytable FROM mydb;
 SHOW COLUMNS FROM mydb.mytable;
 ```
 
-The optional `FULL` keyword causes the output to include the column collation and comments, as well as the privileges you have for each column.
+A palavra-chave opcional `FULL` faz com que a saída inclua a Collation da coluna e comentários, bem como os privilégios que você tem para cada coluna.
 
-The [`LIKE`](string-comparison-functions.html#operator_like) clause, if present, indicates which column names to match. The `WHERE` clause can be given to select rows using more general conditions, as discussed in [Section 24.8, “Extensions to SHOW Statements”](extended-show.html "24.8 Extensions to SHOW Statements").
+A cláusula [`LIKE`](string-comparison-functions.html#operator_like), se presente, indica quais nomes de coluna devem ser correspondidos. A cláusula `WHERE` pode ser fornecida para selecionar linhas usando condições mais gerais, conforme discutido na [Seção 24.8, “Extensões para Instruções SHOW”](extended-show.html "24.8 Extensions to SHOW Statements").
 
-The data types may differ from what you expect them to be based on a [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement because MySQL sometimes changes data types when you create or alter a table. The conditions under which this occurs are described in [Section 13.1.18.6, “Silent Column Specification Changes”](silent-column-changes.html "13.1.18.6 Silent Column Specification Changes").
+Os tipos de dados podem diferir do que você espera com base em uma instrução [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") porque o MySQL às vezes altera os tipos de dados quando você cria ou altera uma tabela. As condições sob as quais isso ocorre são descritas na [Seção 13.1.18.6, “Alterações Silenciosas na Especificação de Coluna”](silent-column-changes.html "13.1.18.6 Silent Column Specification Changes").
 
-[`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") displays the following values for each table column:
+[`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") exibe os seguintes valores para cada coluna da tabela:
 
 * `Field`
 
-  The column name.
+  O nome da coluna.
 
 * `Type`
 
-  The column data type.
+  O tipo de dado da coluna.
 
 * `Collation`
 
-  The collation for nonbinary string columns, or `NULL` for other columns. This value is displayed only if you use the `FULL` keyword.
+  A Collation para colunas de string não binárias, ou `NULL` para outras colunas. Este valor é exibido apenas se você usar a palavra-chave `FULL`.
 
 * `Null`
 
-  The column nullability. The value is `YES` if `NULL` values can be stored in the column, `NO` if not.
+  A nulidade da coluna (nullability). O valor é `YES` se valores `NULL` puderem ser armazenados na coluna, `NO` caso contrário.
 
 * `Key`
 
-  Whether the column is indexed:
+  Indica se a coluna é indexada:
 
-  + If `Key` is empty, the column either is not indexed or is indexed only as a secondary column in a multiple-column, nonunique index.
+  + Se `Key` estiver vazio, a coluna não é indexada ou é indexada apenas como uma coluna secundária em um Index não exclusivo de múltiplas colunas.
 
-  + If `Key` is `PRI`, the column is a `PRIMARY KEY` or is one of the columns in a multiple-column `PRIMARY KEY`.
+  + Se `Key` for `PRI`, a coluna é uma `PRIMARY KEY` ou é uma das colunas em uma `PRIMARY KEY` de múltiplas colunas.
 
-  + If `Key` is `UNI`, the column is the first column of a `UNIQUE` index. (A `UNIQUE` index permits multiple `NULL` values, but you can tell whether the column permits `NULL` by checking the `Null` field.)
+  + Se `Key` for `UNI`, a coluna é a primeira coluna de um Index `UNIQUE`. (Um Index `UNIQUE` permite múltiplos valores `NULL`, mas você pode verificar se a coluna permite `NULL` checando o campo `Null`.)
 
-  + If `Key` is `MUL`, the column is the first column of a nonunique index in which multiple occurrences of a given value are permitted within the column.
+  + Se `Key` for `MUL`, a coluna é a primeira coluna de um Index não exclusivo no qual múltiplas ocorrências de um determinado valor são permitidas dentro da coluna.
 
-  If more than one of the `Key` values applies to a given column of a table, `Key` displays the one with the highest priority, in the order `PRI`, `UNI`, `MUL`.
+  Se mais de um dos valores de `Key` se aplicar a uma determinada coluna de uma tabela, `Key` exibe aquele com a prioridade mais alta, na ordem `PRI`, `UNI`, `MUL`.
 
-  A `UNIQUE` index may be displayed as `PRI` if it cannot contain `NULL` values and there is no `PRIMARY KEY` in the table. A `UNIQUE` index may display as `MUL` if several columns form a composite `UNIQUE` index; although the combination of the columns is unique, each column can still hold multiple occurrences of a given value.
+  Um Index `UNIQUE` pode ser exibido como `PRI` se não puder conter valores `NULL` e não houver uma `PRIMARY KEY` na tabela. Um Index `UNIQUE` pode ser exibido como `MUL` se várias colunas formarem um Index `UNIQUE` composto; embora a combinação das colunas seja única, cada coluna ainda pode manter múltiplas ocorrências de um determinado valor.
 
 * `Default`
 
-  The default value for the column. This is `NULL` if the column has an explicit default of `NULL`, or if the column definition includes no `DEFAULT` clause.
+  O valor Default para a coluna. Este será `NULL` se a coluna tiver um Default explícito de `NULL`, ou se a definição da coluna não incluir uma cláusula `DEFAULT`.
 
 * `Extra`
 
-  Any additional information that is available about a given column. The value is nonempty in these cases:
+  Qualquer informação adicional disponível sobre uma determinada coluna. O valor não está vazio nestes casos:
 
-  + `auto_increment` for columns that have the `AUTO_INCREMENT` attribute.
+  + `auto_increment` para colunas que possuem o atributo `AUTO_INCREMENT`.
 
-  + `on update CURRENT_TIMESTAMP` for [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") or [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") columns that have the `ON UPDATE CURRENT_TIMESTAMP` attribute.
+  + `on update CURRENT_TIMESTAMP` para colunas [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") ou [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") que possuem o atributo `ON UPDATE CURRENT_TIMESTAMP`.
 
-  + `VIRTUAL GENERATED` or `STORED GENERATED` for generated columns.
+  + `VIRTUAL GENERATED` ou `STORED GENERATED` para colunas geradas.
 
 * `Privileges`
 
-  The privileges you have for the column. This value is displayed only if you use the `FULL` keyword.
+  Os privilégios que você tem para a coluna. Este valor é exibido apenas se você usar a palavra-chave `FULL`.
 
 * `Comment`
 
-  Any comment included in the column definition. This value is displayed only if you use the `FULL` keyword.
+  Qualquer comentário incluído na definição da coluna. Este valor é exibido apenas se você usar a palavra-chave `FULL`.
 
-Table column information is also available from the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table. See [Section 24.3.5, “The INFORMATION_SCHEMA COLUMNS Table”](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table").
+Informações sobre as colunas da tabela também estão disponíveis na tabela [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") do `INFORMATION_SCHEMA`. Consulte [Seção 24.3.5, “A Tabela COLUMNS do INFORMATION_SCHEMA”](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table").
 
-You can list a table's columns with the [**mysqlshow *`db_name`* *`tbl_name`***](mysqlshow.html "4.5.7 mysqlshow — Display Database, Table, and Column Information") command.
+Você pode listar as colunas de uma tabela com o comando [**mysqlshow *`db_name`* *`tbl_name`***](mysqlshow.html "4.5.7 mysqlshow — Display Database, Table, and Column Information").
 
-The [`DESCRIBE`](describe.html "13.8.1 DESCRIBE Statement") statement provides information similar to [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement"). See [Section 13.8.1, “DESCRIBE Statement”](describe.html "13.8.1 DESCRIBE Statement").
+A instrução [`DESCRIBE`](describe.html "13.8.1 DESCRIBE Statement") fornece informações semelhantes a [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement"). Consulte [Seção 13.8.1, “Instrução DESCRIBE”](describe.html "13.8.1 DESCRIBE Statement").
 
-The [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement"), [`SHOW TABLE STATUS`](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement"), and [`SHOW INDEX`](show-index.html "13.7.5.22 SHOW INDEX Statement") statements also provide information about tables. See [Section 13.7.5, “SHOW Statements”](show.html "13.7.5 SHOW Statements").
+As instruções [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement"), [`SHOW TABLE STATUS`](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement") e [`SHOW INDEX`](show-index.html "13.7.5.22 SHOW INDEX Statement") também fornecem informações sobre tabelas. Consulte [Seção 13.7.5, “Instruções SHOW”](show.html "13.7.5 SHOW Statements").

@@ -1,21 +1,21 @@
-#### 26.4.3.26 The schema_object_overview View
+#### 26.4.3.26 A View schema_object_overview
 
-This view summarizes the types of objects within each schema. By default, rows are sorted by schema and object type.
+Esta view resume os tipos de objetos dentro de cada schema. Por padrão, as linhas são ordenadas por schema e tipo de objeto.
 
-Note
+Nota
 
-For MySQL instances with a large number of objects, this view might take a long time to execute.
+Para instâncias MySQL com um grande número de objetos, a execução desta view pode levar um tempo considerável.
 
-The `schema_object_overview` view has these columns:
+A view `schema_object_overview` possui as seguintes colunas:
 
 * `db`
 
-  The schema name.
+  O nome do schema.
 
 * `object_type`
 
-  The object type: `BASE TABLE`, `INDEX (index_type)`, `EVENT`, `FUNCTION`, `PROCEDURE`, `TRIGGER`, `VIEW`.
+  O tipo de objeto: `BASE TABLE`, `INDEX (index_type)`, `EVENT`, `FUNCTION`, `PROCEDURE`, `TRIGGER`, `VIEW`.
 
 * `count`
 
-  The number of objects in the schema of the given type.
+  O número de objetos no schema do tipo especificado.

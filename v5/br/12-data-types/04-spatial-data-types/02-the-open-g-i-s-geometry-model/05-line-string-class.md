@@ -1,17 +1,17 @@
-#### 11.4.2.5 LineString Class
+#### 11.4.2.5 Classe LineString
 
-A `LineString` is a `Curve` with linear interpolation between points.
+Uma `LineString` é uma `Curve` com interpolação linear entre pontos.
 
-**`LineString` Examples**
+**Exemplos de LineString**
 
-* On a world map, `LineString` objects could represent rivers.
+* Em um mapa mundial, objetos `LineString` podem representar rios.
 
-* In a city map, `LineString` objects could represent streets.
+* Em um mapa da cidade, objetos `LineString` podem representar ruas.
 
-**`LineString` Properties**
+**Propriedades de LineString**
 
-* A `LineString` has coordinates of segments, defined by each consecutive pair of points.
+* Uma `LineString` possui coordenadas de segmentos, definidas por cada par consecutivo de pontos.
 
-* A `LineString` is a `Line` if it consists of exactly two points.
+* Uma `LineString` é uma `Line` se consistir de exatamente dois pontos.
 
-* A `LineString` is a `LinearRing` if it is both closed and simple.
+* Uma `LineString` é um `LinearRing` se for simultaneamente fechada (`closed`) e simples (`simple`).

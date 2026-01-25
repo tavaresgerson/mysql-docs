@@ -1,60 +1,60 @@
-# Chapter 22 Partitioning
+# Capítulo 22 Particionamento
 
-**Table of Contents**
+**Índice**
 
-[22.1 Overview of Partitioning in MySQL](partitioning-overview.html)
+[22.1 Visão Geral do Partitioning no MySQL](partitioning-overview.html)
 
-[22.2 Partitioning Types](partitioning-types.html) :   [22.2.1 RANGE Partitioning](partitioning-range.html)
+[22.2 Tipos de Partitioning](partitioning-types.html) :   [22.2.1 Partitioning por RANGE (Intervalo)](partitioning-range.html)
 
-    [22.2.2 LIST Partitioning](partitioning-list.html)
+    [22.2.2 Partitioning por LISTA](partitioning-list.html)
 
-    [22.2.3 COLUMNS Partitioning](partitioning-columns.html)
+    [22.2.3 Partitioning por COLUMNS](partitioning-columns.html)
 
-    [22.2.4 HASH Partitioning](partitioning-hash.html)
+    [22.2.4 Partitioning por HASH](partitioning-hash.html)
 
-    [22.2.5 KEY Partitioning](partitioning-key.html)
+    [22.2.5 Partitioning por KEY (Chave)](partitioning-key.html)
 
     [22.2.6 Subpartitioning](partitioning-subpartitions.html)
 
-    [22.2.7 How MySQL Partitioning Handles NULL](partitioning-handling-nulls.html)
+    [22.2.7 Como o Partitioning do MySQL Lida com NULL](partitioning-handling-nulls.html)
 
-[22.3 Partition Management](partitioning-management.html) :   [22.3.1 Management of RANGE and LIST Partitions](partitioning-management-range-list.html)
+[22.3 Gerenciamento de Partition](partitioning-management.html) :   [22.3.1 Gerenciamento de Partitions RANGE e LIST](partitioning-management-range-list.html)
 
-    [22.3.2 Management of HASH and KEY Partitions](partitioning-management-hash-key.html)
+    [22.3.2 Gerenciamento de Partitions HASH e KEY](partitioning-management-hash-key.html)
 
-    [22.3.3 Exchanging Partitions and Subpartitions with Tables](partitioning-management-exchange.html)
+    [22.3.3 Trocando Partitions e Subpartitions com Tabelas](partitioning-management-exchange.html)
 
-    [22.3.4 Maintenance of Partitions](partitioning-maintenance.html)
+    [22.3.4 Manutenção de Partitions](partitioning-maintenance.html)
 
-    [22.3.5 Obtaining Information About Partitions](partitioning-info.html)
+    [22.3.5 Obtendo Informações sobre Partitions](partitioning-info.html)
 
-[22.4 Partition Pruning](partitioning-pruning.html)
+[22.4 Partition Pruning (Poda de Partition)](partitioning-pruning.html)
 
-[22.5 Partition Selection](partitioning-selection.html)
+[22.5 Seleção de Partition](partitioning-selection.html)
 
-[22.6 Restrictions and Limitations on Partitioning](partitioning-limitations.html) :   [22.6.1 Partitioning Keys, Primary Keys, and Unique Keys](partitioning-limitations-partitioning-keys-unique-keys.html)
+[22.6 Restrições e Limitações no Partitioning](partitioning-limitations.html) :   [22.6.1 Chaves de Partitioning, Primary Keys e Unique Keys](partitioning-limitations-partitioning-keys-unique-keys.html)
 
-    [22.6.2 Partitioning Limitations Relating to Storage Engines](partitioning-limitations-storage-engines.html)
+    [22.6.2 Limitações de Partitioning Relacionadas a Storage Engines](partitioning-limitations-storage-engines.html)
 
-    [22.6.3 Partitioning Limitations Relating to Functions](partitioning-limitations-functions.html)
+    [22.6.3 Limitações de Partitioning Relacionadas a Funções](partitioning-limitations-functions.html)
 
-    [22.6.4 Partitioning and Locking](partitioning-limitations-locking.html)
+    [22.6.4 Partitioning e Locking](partitioning-limitations-locking.html)
 
-This chapter discusses MySQL's implementation of user-defined partitioning.
+Este capítulo aborda a implementação do MySQL de partitioning definido pelo usuário.
 
-Note
+Nota
 
-As of MySQL 5.7.17, the generic partitioning handler in the MySQL server is deprecated, and is removed in MySQL 8.0, when the storage engine used for a given table is expected to provide its own (“native”) partitioning handler. Currently, only the [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") and [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engines do this.
+A partir do MySQL 5.7.17, o handler de partitioning genérico no MySQL Server está depreciado e será removido no MySQL 8.0, quando se espera que o storage engine usado para uma determinada tabela forneça seu próprio handler de partitioning ("nativo"). Atualmente, apenas os storage engines [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") e [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") fazem isso.
 
-Use of tables with nonnative partitioning results in an [`ER_WARN_DEPRECATED_SYNTAX`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_warn_deprecated_syntax) warning. In MySQL 5.7.17 through 5.7.20, the server automatically performs a check at startup to identify tables that use nonnative partitioning; for any that are found, the server writes a message to its error log. To disable this check, use the [`--disable-partition-engine-check`](server-options.html#option_mysqld_disable-partition-engine-check) option. In MySQL 5.7.21 and later, this check is *not* performed; in these versions, you must start the server with [`--disable-partition-engine-check=false`](server-options.html#option_mysqld_disable-partition-engine-check), if you wish for the server to check for tables using the generic partitioning handler (Bug #85830, Bug #25846957).
+O uso de tabelas com partitioning não nativo resulta em um aviso [`ER_WARN_DEPRECATED_SYNTAX`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_warn_deprecated_syntax). No MySQL 5.7.17 até 5.7.20, o Server executa automaticamente um check na inicialização para identificar tabelas que usam partitioning não nativo; para quaisquer que sejam encontradas, o Server escreve uma mensagem em seu error log. Para desabilitar este check, use a opção [`--disable-partition-engine-check`](server-options.html#option_mysqld_disable-partition-engine-check). No MySQL 5.7.21 e posteriores, este check *não* é executado; nessas versões, você deve iniciar o Server com [`--disable-partition-engine-check=false`](server-options.html#option_mysqld_disable-partition-engine-check), se desejar que o Server verifique se há tabelas usando o handler de partitioning genérico (Bug #85830, Bug #25846957).
 
-To prepare for migration to MySQL 8.0, any table with nonnative partitioning should be changed to use an engine that provides native partitioning, or be made nonpartitioned. For example, to change a table to `InnoDB`, execute this statement:
+Para se preparar para a migração para o MySQL 8.0, qualquer tabela com partitioning não nativo deve ser alterada para usar um engine que forneça partitioning nativo, ou deve ser tornada não-partitioned. Por exemplo, para alterar uma tabela para `InnoDB`, execute esta instrução:
 
 ```sql
 ALTER TABLE table_name ENGINE = INNODB;
 ```
 
-You can determine whether your MySQL Server supports partitioning by checking the output of the [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") statement, like this:
+Você pode determinar se o seu MySQL Server suporta partitioning verificando a saída da instrução [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement"), assim:
 
 ```sql
 mysql> SHOW PLUGINS;
@@ -76,7 +76,7 @@ mysql> SHOW PLUGINS;
 11 rows in set (0.00 sec)
 ```
 
-You can also check the Information Schema [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") table with a query similar to this one:
+Você também pode verificar a tabela Information Schema [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") com uma Query semelhante a esta:
 
 ```sql
 mysql> SELECT
@@ -102,38 +102,38 @@ mysql> SELECT
 10 rows in set (0.00 sec)
 ```
 
-In either case, if you do not see the `partition` plugin listed with the value `ACTIVE` for the `Status` column in the output (shown in bold text in each of the examples just given), then your version of MySQL was not built with partitioning support.
+Em ambos os casos, se você não vir o plugin `partition` listado com o valor `ACTIVE` para a coluna `Status` na saída (mostrado em negrito em cada um dos exemplos acima), então sua versão do MySQL não foi construída com suporte a partitioning.
 
-MySQL 5.7 Community binaries provided by Oracle include partitioning support. For information about partitioning support offered in MySQL Enterprise Edition binaries, see [Chapter 28, *MySQL Enterprise Edition*](mysql-enterprise.html "Chapter 28 MySQL Enterprise Edition").
+Os binários do MySQL 5.7 Community fornecidos pela Oracle incluem suporte a partitioning. Para obter informações sobre o suporte a partitioning oferecido nos binários do MySQL Enterprise Edition, consulte [Chapter 28, *MySQL Enterprise Edition*](mysql-enterprise.html "Chapter 28 MySQL Enterprise Edition").
 
-To enable partitioning if you are compiling MySQL 5.7 from source, the build must be configured with the [`-DWITH_PARTITION_STORAGE_ENGINE`](source-configuration-options.html#option_cmake_storage_engine_options "Storage Engine Options") option. For more information, see [Section 2.8, “Installing MySQL from Source”](source-installation.html "2.8 Installing MySQL from Source").
+Para habilitar o partitioning se você estiver compilando o MySQL 5.7 a partir do código-fonte, a build deve ser configurada com a opção [`-DWITH_PARTITION_STORAGE_ENGINE`](source-configuration-options.html#option_cmake_storage_engine_options "Storage Engine Options"). Para mais informações, consulte [Section 2.8, “Installing MySQL from Source”](source-installation.html "2.8 Installing MySQL from Source").
 
-If your MySQL binary is built with partitioning support, nothing further needs to be done to enable it (for example, no special entries are required in your `my.cnf` file).
+Se seu binário MySQL for construído com suporte a partitioning, nada mais precisa ser feito para habilitá-lo (por exemplo, nenhuma entrada especial é necessária no seu arquivo `my.cnf`).
 
-If you want to disable partitioning support, you can start the MySQL Server with the [`--skip-partition`](server-options.html#option_mysqld_skip-partition) option. When partitioning support is disabled, you can see any existing partitioned tables and drop them (although doing this is not advised), but you cannot otherwise manipulate them or access their data.
+Se você deseja desabilitar o suporte a partitioning, você pode iniciar o MySQL Server com a opção [`--skip-partition`](server-options.html#option_mysqld_skip-partition). Quando o suporte a partitioning é desabilitado, você pode ver quaisquer tabelas partitioned existentes e descartá-las (embora fazer isso não seja aconselhável), mas você não pode manipulá-las ou acessar seus dados de outra forma.
 
-See [Section 22.1, “Overview of Partitioning in MySQL”](partitioning-overview.html "22.1 Overview of Partitioning in MySQL"), for an introduction to partitioning and partitioning concepts.
+Consulte [Section 22.1, “Overview of Partitioning in MySQL”](partitioning-overview.html "22.1 Overview of Partitioning in MySQL"), para uma introdução aos conceitos de partitioning e partitioning.
 
-MySQL supports several types of partitioning as well as subpartitioning; see [Section 22.2, “Partitioning Types”](partitioning-types.html "22.2 Partitioning Types"), and [Section 22.2.6, “Subpartitioning”](partitioning-subpartitions.html "22.2.6 Subpartitioning").
+O MySQL suporta vários tipos de partitioning, bem como subpartitioning; consulte [Section 22.2, “Partitioning Types”](partitioning-types.html "22.2 Partitioning Types"), e [Section 22.2.6, “Subpartitioning”](partitioning-subpartitions.html "22.2.6 Subpartitioning").
 
-[Section 22.3, “Partition Management”](partitioning-management.html "22.3 Partition Management"), covers methods of adding, removing, and altering partitions in existing partitioned tables.
+[Section 22.3, “Partition Management”](partitioning-management.html "22.3 Partition Management"), cobre métodos para adicionar, remover e alterar partitions em tabelas partitioned existentes.
 
-[Section 22.3.4, “Maintenance of Partitions”](partitioning-maintenance.html "22.3.4 Maintenance of Partitions"), discusses table maintenance commands for use with partitioned tables.
+[Section 22.3.4, “Maintenance of Partitions”](partitioning-maintenance.html "22.3.4 Maintenance of Partitions"), discute comandos de manutenção de tabela para uso com tabelas partitioned.
 
-The [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") table in the `INFORMATION_SCHEMA` database provides information about partitions and partitioned tables. See [Section 24.3.16, “The INFORMATION_SCHEMA PARTITIONS Table”](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table"), for more information; for some examples of queries against this table, see [Section 22.2.7, “How MySQL Partitioning Handles NULL”](partitioning-handling-nulls.html "22.2.7 How MySQL Partitioning Handles NULL").
+A tabela [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") no Database `INFORMATION_SCHEMA` fornece informações sobre partitions e tabelas partitioned. Consulte [Section 24.3.16, “The INFORMATION_SCHEMA PARTITIONS Table”](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table"), para mais informações; para alguns exemplos de Queries contra esta tabela, consulte [Section 22.2.7, “How MySQL Partitioning Handles NULL”](partitioning-handling-nulls.html "22.2.7 How MySQL Partitioning Handles NULL").
 
-For known issues with partitioning in MySQL 5.7, see [Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning").
+Para problemas conhecidos com partitioning no MySQL 5.7, consulte [Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning").
 
-You may also find the following resources to be useful when working with partitioned tables.
+Você também pode achar os seguintes recursos úteis ao trabalhar com tabelas partitioned.
 
-**Additional Resources.** Other sources of information about user-defined partitioning in MySQL include the following:
+**Recursos Adicionais.** Outras fontes de informação sobre partitioning definido pelo usuário no MySQL incluem o seguinte:
 
-* [MySQL Partitioning Forum](https://forums.mysql.com/list.php?106)
+* [Fórum de Partitioning do MySQL](https://forums.mysql.com/list.php?106)
 
-  This is the official discussion forum for those interested in or experimenting with MySQL Partitioning technology. It features announcements and updates from MySQL developers and others. It is monitored by members of the Partitioning Development and Documentation Teams.
+  Este é o fórum de discussão oficial para aqueles interessados ou que estão experimentando a tecnologia MySQL Partitioning. Ele apresenta anúncios e atualizações de desenvolvedores MySQL e outros. É monitorado por membros das Equipes de Desenvolvimento e Documentação de Partitioning.
 
 * [PlanetMySQL](http://www.planetmysql.org/)
 
-  A MySQL news site featuring MySQL-related blogs, which should be of interest to anyone using my MySQL. We encourage you to check here for links to blogs kept by those working with MySQL Partitioning, or to have your own blog added to those covered.
+  Um site de notícias MySQL que apresenta blogs relacionados ao MySQL, que deve ser de interesse para qualquer pessoa que use o MySQL. Encorajamos você a verificar aqui links para blogs mantidos por aqueles que trabalham com MySQL Partitioning, ou para ter seu próprio blog adicionado àqueles cobertos.
 
-MySQL 5.7 binaries are available from <https://dev.mysql.com/downloads/mysql/5.7.html>. However, for the latest partitioning bugfixes and feature additions, you can obtain the source from our GitHub repository. To enable partitioning, the build must be configured with the [`-DWITH_PARTITION_STORAGE_ENGINE`](source-configuration-options.html#option_cmake_storage_engine_options "Storage Engine Options") option. For more information about building MySQL, see [Section 2.8, “Installing MySQL from Source”](source-installation.html "2.8 Installing MySQL from Source"). If you have problems compiling a partitioning-enabled MySQL 5.7 build, check the [MySQL Partitioning Forum](https://forums.mysql.com/list.php?106) and ask for assistance there if you do not find a solution to your problem already posted.
+Os binários do MySQL 5.7 estão disponíveis em <https://dev.mysql.com/downloads/mysql/5.7.html>. No entanto, para as correções de Bug e adições de recursos de partitioning mais recentes, você pode obter o código-fonte em nosso repositório GitHub. Para habilitar o partitioning, a build deve ser configurada com a opção [`-DWITH_PARTITION_STORAGE_ENGINE`](source-configuration-options.html#option_cmake_storage_engine_options "Storage Engine Options"). Para mais informações sobre como construir o MySQL, consulte [Section 2.8, “Installing MySQL from Source”](source-installation.html "2.8 Installing MySQL from Source"). Se você tiver problemas ao compilar uma build do MySQL 5.7 com partitioning habilitado, verifique o [Fórum de Partitioning do MySQL](https://forums.mysql.com/list.php?106) e peça assistência lá se não encontrar uma solução para o seu problema já publicada.

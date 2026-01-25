@@ -1,38 +1,38 @@
-### 21.6.12 Online Operations with ALTER TABLE in NDB Cluster
+### 21.6.12 Operações Online com ALTER TABLE no NDB Cluster
 
-MySQL NDB Cluster 7.5 and 7.6 support online table schema changes using [`ALTER TABLE ... ALGORITHM=DEFAULT|INPLACE|COPY`](alter-table.html#alter-table-performance "Performance and Space Requirements"). NDB Cluster handles `COPY` and `INPLACE` as described in the next few paragraphs.
+O MySQL NDB Cluster 7.5 e 7.6 suporta mudanças online de schema de tabela usando [`ALTER TABLE ... ALGORITHM=DEFAULT|INPLACE|COPY`](alter-table.html#alter-table-performance "Performance and Space Requirements"). O NDB Cluster lida com `COPY` e `INPLACE` conforme descrito nos próximos parágrafos.
 
-For `ALGORITHM=COPY`, the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") NDB Cluster handler performs the following actions:
+Para `ALGORITHM=COPY`, o handler [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") do NDB Cluster executa as seguintes ações:
 
-* Tells the data nodes to create an empty copy of the table, and to make the required schema changes to this copy.
+* Informa os data nodes para criar uma cópia vazia da tabela e para aplicar as alterações de schema necessárias a esta cópia.
 
-* Reads rows from the original table, and writes them to the copy.
+* Lê as rows da tabela original e as escreve na cópia.
 
-* Tells the data nodes to drop the original table and then to rename the copy.
+* Informa os data nodes para fazer o DROP da tabela original e, em seguida, renomear a cópia.
 
-We sometimes refer to this as a “copying” or “offline” `ALTER TABLE`.
+Às vezes, nos referimos a isso como um `ALTER TABLE` de "cópia" ou "offline".
 
-DML operations are not permitted concurrently with a copying `ALTER TABLE`.
+Operações DML não são permitidas concorrentemente com um `ALTER TABLE` de cópia.
 
-The [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") on which the copying `ALTER TABLE` statement is issued takes a metadata lock, but this is in effect only on that [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"). Other `NDB` clients can modify row data during a copying `ALTER TABLE`, resulting in inconsistency.
+O [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") no qual a instrução `ALTER TABLE` de cópia é emitida adquire um metadata lock, mas isso está em vigor apenas naquele [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"). Outros clientes `NDB` podem modificar os dados da row durante um `ALTER TABLE` de cópia, resultando em inconsistência.
 
-For `ALGORITHM=INPLACE`, the NDB Cluster handler tells the data nodes to make the required changes, and does not perform any copying of data.
+Para `ALGORITHM=INPLACE`, o handler do NDB Cluster informa os data nodes para fazer as alterações necessárias, e não executa nenhuma cópia de dados.
 
-We also refer to this as a “non-copying” or “online” `ALTER TABLE`.
+Também nos referimos a isso como um `ALTER TABLE` "sem cópia" ou "online".
 
-A non-copying `ALTER TABLE` allows concurrent DML operations.
+Um `ALTER TABLE` sem cópia permite operações DML concorrentes.
 
-Regardless of the algorithm used, the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") takes a Global Schema Lock (GSL) while executing **ALTER TABLE**; this prevents execution of any (other) DDL or backups concurrently on this or any other SQL node in the cluster. This is normally not problematic, unless the `ALTER TABLE` takes a very long time.
+Independentemente do algoritmo utilizado, o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") adquire um Global Schema Lock (GSL) durante a execução do **ALTER TABLE**; isso impede a execução de qualquer outra DDL ou backups concorrentemente neste ou em qualquer outro SQL node no cluster. Isso normalmente não é problemático, a menos que o `ALTER TABLE` demore muito tempo.
 
 Note
 
-Some older releases of NDB Cluster used a syntax specific to [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") for online `ALTER TABLE` operations. That syntax has since been removed.
+Algumas versões mais antigas do NDB Cluster usavam uma sintaxe específica para [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") para operações `ALTER TABLE` online. Essa sintaxe foi removida desde então.
 
-Operations that add and drop indexes on variable-width columns of [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables occur online. Online operations are noncopying; that is, they do not require that indexes be re-created. They do not lock the table being altered from access by other API nodes in an NDB Cluster (but see [Limitations of NDB online operations](mysql-cluster-online-operations.html#mysql-cluster-online-limitations "Limitations of NDB online operations"), later in this section). Such operations do not require single user mode for [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table alterations made in an NDB cluster with multiple API nodes; transactions can continue uninterrupted during online DDL operations.
+Operações que adicionam e removem Indexes em colunas de largura variável de tabelas [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") ocorrem online. Operações online não são de cópia (noncopying); ou seja, elas não exigem que os Indexes sejam recriados. Elas não bloqueiam a tabela que está sendo alterada do acesso por outros API nodes em um NDB Cluster (mas consulte [Limitations of NDB online operations](mysql-cluster-online-operations.html#mysql-cluster-online-limitations "Limitations of NDB online operations"), mais adiante nesta seção). Tais operações não exigem o modo de usuário único para alterações de tabelas [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") feitas em um NDB Cluster com múltiplos API nodes; as Transactions podem continuar ininterruptamente durante operações DDL online.
 
-`ALGORITHM=INPLACE` can be used to perform online `ADD COLUMN`, `ADD INDEX` (including `CREATE INDEX` statements), and `DROP INDEX` operations on [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables. Online renaming of [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables is also supported.
+`ALGORITHM=INPLACE` pode ser usado para realizar operações online de `ADD COLUMN`, `ADD INDEX` (incluindo instruções `CREATE INDEX`) e `DROP INDEX` em tabelas [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"). A renomeação online de tabelas [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") também é suportada.
 
-Disk-based columns cannot be added to [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables online. This means that, if you wish to add an in-memory column to an [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table that uses a table-level `STORAGE DISK` option, you must declare the new column as using memory-based storage explicitly. For example—assuming that you have already created tablespace `ts1`—suppose that you create table `t1` as follows:
+Colunas baseadas em disco (Disk-based columns) não podem ser adicionadas a tabelas [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") online. Isso significa que, se você deseja adicionar uma coluna in-memory a uma tabela [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") que usa a opção `STORAGE DISK` de nível de tabela, você deve declarar explicitamente que a nova coluna usa armazenamento baseado em memória. Por exemplo — assumindo que você já criou o tablespace `ts1` — suponha que você crie a tabela `t1` da seguinte forma:
 
 ```sql
 mysql> CREATE TABLE t1 (
@@ -45,7 +45,7 @@ Query OK, 0 rows affected (1.73 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 ```
 
-You can add a new in-memory column to this table online as shown here:
+Você pode adicionar uma nova coluna in-memory a esta tabela online conforme mostrado aqui:
 
 ```sql
 mysql> ALTER TABLE t1
@@ -55,7 +55,7 @@ Query OK, 0 rows affected (1.25 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 ```
 
-This statement fails if the `STORAGE MEMORY` option is omitted:
+Esta instrução falha se a opção `STORAGE MEMORY` for omitida:
 
 ```sql
 mysql> ALTER TABLE t1
@@ -66,7 +66,7 @@ Adding column(s) or add/reorganize partition not supported online. Try
 ALGORITHM=COPY.
 ```
 
-If you omit the `COLUMN_FORMAT DYNAMIC` option, the dynamic column format is employed automatically, but a warning is issued, as shown here:
+Se você omitir a opção `COLUMN_FORMAT DYNAMIC`, o formato de coluna dinâmico é empregado automaticamente, mas um warning é emitido, conforme mostrado aqui:
 
 ```sql
 mysql> ALTER ONLINE TABLE t1 ADD COLUMN c4 INT STORAGE MEMORY;
@@ -96,32 +96,32 @@ Create Table: CREATE TABLE `t1` (
 
 Note
 
-The `STORAGE` and `COLUMN_FORMAT` keywords are supported only in NDB Cluster; in any other version of MySQL, attempting to use either of these keywords in a [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") or [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement results in an error.
+As keywords `STORAGE` e `COLUMN_FORMAT` são suportadas apenas no NDB Cluster; em qualquer outra versão do MySQL, a tentativa de usar qualquer uma dessas keywords em uma instrução [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") ou [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") resulta em um error.
 
-It is also possible to use the statement `ALTER TABLE ... REORGANIZE PARTITION, ALGORITHM=INPLACE` with no `partition_names INTO (partition_definitions)` option on [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables. This can be used to redistribute NDB Cluster data among new data nodes that have been added to the cluster online. This does *not* perform any defragmentation, which requires an [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") or null [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement. For more information, see [Section 21.6.7, “Adding NDB Cluster Data Nodes Online”](mysql-cluster-online-add-node.html "21.6.7 Adding NDB Cluster Data Nodes Online").
+Também é possível usar a instrução `ALTER TABLE ... REORGANIZE PARTITION, ALGORITHM=INPLACE` sem a opção `partition_names INTO (partition_definitions)` em tabelas [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"). Isso pode ser usado para redistribuir dados do NDB Cluster entre novos data nodes que foram adicionados ao cluster online. Isso *não* realiza nenhuma defragmentação, o que requer uma instrução [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") ou uma instrução [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") nula. Para mais informações, consulte [Section 21.6.7, “Adding NDB Cluster Data Nodes Online”](mysql-cluster-online-add-node.html "21.6.7 Adding NDB Cluster Data Nodes Online").
 
-#### Limitations of NDB online operations
+#### Limitações das operações online do NDB
 
-Online `DROP COLUMN` operations are not supported.
+Operações online de `DROP COLUMN` não são suportadas.
 
-Online [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"), [`CREATE INDEX`](create-index.html "13.1.14 CREATE INDEX Statement"), or [`DROP INDEX`](drop-index.html "13.1.25 DROP INDEX Statement") statements that add columns or add or drop indexes are subject to the following limitations:
+Instruções online [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"), [`CREATE INDEX`](create-index.html "13.1.14 CREATE INDEX Statement"), ou [`DROP INDEX`](drop-index.html "13.1.25 DROP INDEX Statement") que adicionam colunas ou adicionam ou removem Indexes estão sujeitas às seguintes limitações:
 
-* A given online [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") can use only one of `ADD COLUMN`, `ADD INDEX`, or `DROP INDEX`. One or more columns can be added online in a single statement; only one index may be created or dropped online in a single statement.
+* Um [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") online específico pode usar apenas um dos seguintes: `ADD COLUMN`, `ADD INDEX`, ou `DROP INDEX`. Uma ou mais colunas podem ser adicionadas online em uma única instrução; apenas um Index pode ser criado ou removido online em uma única instrução.
 
-* The table being altered is not locked with respect to API nodes other than the one on which an online [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") `ADD COLUMN`, `ADD INDEX`, or `DROP INDEX` operation (or [`CREATE INDEX`](create-index.html "13.1.14 CREATE INDEX Statement") or [`DROP INDEX`](drop-index.html "13.1.25 DROP INDEX Statement") statement) is run. However, the table is locked against any other operations originating on the *same* API node while the online operation is being executed.
+* A tabela sendo alterada não é bloqueada em relação a outros API nodes além daquele no qual uma operação online [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") `ADD COLUMN`, `ADD INDEX` ou `DROP INDEX` (ou instrução [`CREATE INDEX`](create-index.html "13.1.14 CREATE INDEX Statement") ou [`DROP INDEX`](drop-index.html "13.1.25 DROP INDEX Statement") ) está sendo executada. No entanto, a tabela é bloqueada contra quaisquer outras operações originadas no *mesmo* API node enquanto a operação online está sendo executada.
 
-* The table to be altered must have an explicit primary key; the hidden primary key created by the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine is not sufficient for this purpose.
+* A tabela a ser alterada deve ter uma Primary Key explícita; a Primary Key oculta criada pelo storage engine [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 e NDB Cluster 7.6") não é suficiente para este propósito.
 
-* The storage engine used by the table cannot be changed online.
-* The tablespace used by the table cannot be changed online. (Bug #99269, Bug #31180526)
+* O storage engine usado pela tabela não pode ser alterado online.
+* O tablespace usado pela tabela não pode ser alterado online. (Bug #99269, Bug #31180526)
 
-* When used with NDB Cluster Disk Data tables, it is not possible to change the storage type (`DISK` or `MEMORY`) of a column online. This means, that when you add or drop an index in such a way that the operation would be performed online, and you want the storage type of the column or columns to be changed, you must use `ALGORITHM=COPY` in the statement that adds or drops the index.
+* Quando usadas com tabelas NDB Cluster Disk Data, não é possível alterar o tipo de storage (`DISK` ou `MEMORY`) de uma coluna online. Isso significa que, ao adicionar ou remover um Index de tal forma que a operação seria realizada online, e você deseja que o tipo de storage da coluna ou colunas seja alterado, você deve usar `ALGORITHM=COPY` na instrução que adiciona ou remove o Index.
 
-Columns to be added online cannot use the [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") or [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") type, and must meet the following criteria:
+Colunas a serem adicionadas online não podem usar os tipos [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") ou [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types"), e devem atender aos seguintes critérios:
 
-* The columns must be dynamic; that is, it must be possible to create them using `COLUMN_FORMAT DYNAMIC`. If you omit the `COLUMN_FORMAT DYNAMIC` option, the dynamic column format is employed automatically.
+* As colunas devem ser dinâmicas; ou seja, deve ser possível criá-las usando `COLUMN_FORMAT DYNAMIC`. Se você omitir a opção `COLUMN_FORMAT DYNAMIC`, o formato de coluna dinâmico será empregado automaticamente.
 
-* The columns must permit `NULL` values and not have any explicit default value other than `NULL`. Columns added online are automatically created as `DEFAULT NULL`, as can be seen here:
+* As colunas devem permitir valores `NULL` e não ter nenhum valor DEFAULT explícito além de `NULL`. Colunas adicionadas online são criadas automaticamente como `DEFAULT NULL`, como pode ser visto aqui:
 
   ```sql
   mysql> CREATE TABLE t2 (
@@ -147,11 +147,11 @@ Columns to be added online cannot use the [`BLOB`](blob.html "11.3.4 The BLOB a
   1 row in set (0.00 sec)
   ```
 
-* The columns must be added following any existing columns. If you attempt to add a column online before any existing columns or using the `FIRST` keyword, the statement fails with an error.
+* As colunas devem ser adicionadas após quaisquer colunas existentes. Se você tentar adicionar uma coluna online antes de quaisquer colunas existentes ou usando a keyword `FIRST`, a instrução falhará com um error.
 
-* Existing table columns cannot be reordered online.
+* Colunas de tabela existentes não podem ser reordenadas online.
 
-For online [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") operations on [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables, fixed-format columns are converted to dynamic when they are added online, or when indexes are created or dropped online, as shown here (repeating the `CREATE TABLE` and `ALTER TABLE` statements just shown for the sake of clarity):
+Para operações [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") online em tabelas [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"), colunas de formato fixo são convertidas para dinâmico quando são adicionadas online, ou quando Indexes são criados ou removidos online, conforme mostrado aqui (repetindo as instruções `CREATE TABLE` e `ALTER TABLE` mostradas anteriormente para fins de clareza):
 
 ```sql
 mysql> CREATE TABLE t2 (
@@ -177,7 +177,7 @@ Message: Converted FIXED field 'c3' to DYNAMIC to enable online ADD COLUMN
 2 rows in set (0.00 sec)
 ```
 
-Only the column or columns to be added online must be dynamic. Existing columns need not be; this includes the table's primary key, which may also be `FIXED`, as shown here:
+Apenas a coluna ou colunas a serem adicionadas online devem ser dinâmicas. As colunas existentes não precisam ser; isso inclui a Primary Key da tabela, que também pode ser `FIXED`, conforme mostrado aqui:
 
 ```sql
 mysql> CREATE TABLE t3 (
@@ -197,9 +197,8 @@ Message: Converted FIXED field 'c2' to DYNAMIC to enable online ADD COLUMN
 1 row in set (0.00 sec)
 ```
 
-Columns are not converted from `FIXED` to `DYNAMIC` column format by renaming operations. For more information about `COLUMN_FORMAT`, see [Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement").
+Colunas não são convertidas do formato de coluna `FIXED` para `DYNAMIC` por operações de renomeação. Para mais informações sobre `COLUMN_FORMAT`, consulte [Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement").
 
-The `KEY`, `CONSTRAINT`, and `IGNORE` keywords are supported in [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statements using `ALGORITHM=INPLACE`.
+As keywords `KEY`, `CONSTRAINT` e `IGNORE` são suportadas em instruções [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") usando `ALGORITHM=INPLACE`.
 
-Beginning with NDB Cluster 7.5.7, setting `MAX_ROWS` to 0 using an online `ALTER TABLE` statement is disallowed. You must use a copying `ALTER TABLE` to perform this operation. (Bug
-#21960004)
+A partir do NDB Cluster 7.5.7, não é permitido definir `MAX_ROWS` como 0 usando uma instrução `ALTER TABLE` online. Você deve usar um `ALTER TABLE` de cópia para realizar esta operação. (Bug #21960004)

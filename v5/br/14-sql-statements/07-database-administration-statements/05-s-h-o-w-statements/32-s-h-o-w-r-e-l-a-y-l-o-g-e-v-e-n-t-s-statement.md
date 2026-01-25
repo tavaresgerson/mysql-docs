@@ -1,4 +1,4 @@
-#### 13.7.5.32 SHOW RELAYLOG EVENTS Statement
+#### 13.7.5.32 Instrução SHOW RELAYLOG EVENTS
 
 ```sql
 SHOW RELAYLOG EVENTS
@@ -11,44 +11,44 @@ channel_option:
     FOR CHANNEL channel
 ```
 
-Shows the events in the relay log of a replica. If you do not specify `'log_name'`, the first relay log is displayed. This statement has no effect on the source. [`SHOW RELAYLOG EVENTS`](show-relaylog-events.html "13.7.5.32 SHOW RELAYLOG EVENTS Statement") requires the [`REPLICATION SLAVE`](privileges-provided.html#priv_replication-slave) privilege.
+Mostra os eventos no relay log de uma réplica. Se você não especificar `'log_name'`, o primeiro relay log será exibido. Esta instrução não tem efeito na source. O [`SHOW RELAYLOG EVENTS`](show-relaylog-events.html "13.7.5.32 SHOW RELAYLOG EVENTS Statement") requer o privilégio [`REPLICATION SLAVE`](privileges-provided.html#priv_replication-slave).
 
-The `LIMIT` clause has the same syntax as for the [`SELECT`](select.html "13.2.9 SELECT Statement") statement. See [Section 13.2.9, “SELECT Statement”](select.html "13.2.9 SELECT Statement").
+A cláusula `LIMIT` tem a mesma sintaxe da instrução [`SELECT`](select.html "13.2.9 SELECT Statement"). Consulte [Seção 13.2.9, “Instrução SELECT”](select.html "13.2.9 SELECT Statement").
 
-Note
+Nota
 
-Issuing a [`SHOW RELAYLOG EVENTS`](show-relaylog-events.html "13.7.5.32 SHOW RELAYLOG EVENTS Statement") with no `LIMIT` clause could start a very time- and resource-consuming process because the server returns to the client the complete contents of the relay log (including all statements modifying data that have been received by the replica).
+A emissão de um [`SHOW RELAYLOG EVENTS`](show-relaylog-events.html "13.7.5.32 SHOW RELAYLOG EVENTS Statement") sem uma cláusula `LIMIT` pode iniciar um processo que consome muito tempo e recursos, pois o servidor retorna ao cliente o conteúdo completo do relay log (incluindo todas as instruções de modificação de dados que foram recebidas pela réplica).
 
-The optional `FOR CHANNEL channel` clause enables you to name which replication channel the statement applies to. Providing a `FOR CHANNEL channel` clause applies the statement to a specific replication channel. If no channel is named and no extra channels exist, the statement applies to the default channel.
+A cláusula opcional `FOR CHANNEL channel` permite nomear a qual replication channel a instrução se aplica. Fornecer uma cláusula `FOR CHANNEL channel` aplica a instrução a um replication channel específico. Se nenhum channel for nomeado e não existirem channels extras, a instrução se aplica ao default channel.
 
-When using multiple replication channels, if a [`SHOW RELAYLOG EVENTS`](show-relaylog-events.html "13.7.5.32 SHOW RELAYLOG EVENTS Statement") statement does not have a channel defined using a `FOR CHANNEL channel` clause an error is generated. See [Section 16.2.2, “Replication Channels”](replication-channels.html "16.2.2 Replication Channels") for more information.
+Ao usar múltiplos replication channels, se uma instrução [`SHOW RELAYLOG EVENTS`](show-relaylog-events.html "13.7.5.32 SHOW RELAYLOG EVENTS Statement") não tiver um channel definido usando uma cláusula `FOR CHANNEL channel`, um erro é gerado. Consulte [Seção 16.2.2, “Replication Channels”](replication-channels.html "16.2.2 Replication Channels") para mais informações.
 
-[`SHOW RELAYLOG EVENTS`](show-relaylog-events.html "13.7.5.32 SHOW RELAYLOG EVENTS Statement") displays the following fields for each event in the relay log:
+O [`SHOW RELAYLOG EVENTS`](show-relaylog-events.html "13.7.5.32 SHOW RELAYLOG EVENTS Statement") exibe os seguintes campos para cada evento no relay log:
 
 * `Log_name`
 
-  The name of the file that is being listed.
+  O nome do arquivo que está sendo listado.
 
 * `Pos`
 
-  The position at which the event occurs.
+  A posição na qual o evento ocorre.
 
 * `Event_type`
 
-  An identifier that describes the event type.
+  Um identificador que descreve o tipo de evento.
 
 * `Server_id`
 
-  The server ID of the server on which the event originated.
+  O ID do servidor onde o evento se originou.
 
 * `End_log_pos`
 
-  The value of `End_log_pos` for this event in the source's binary log.
+  O valor de `End_log_pos` para este evento no binary log da source.
 
 * `Info`
 
-  More detailed information about the event type. The format of this information depends on the event type.
+  Informações mais detalhadas sobre o tipo de evento. O formato dessa informação depende do tipo de evento.
 
-Note
+Nota
 
-Some events relating to the setting of user and system variables are not included in the output from [`SHOW RELAYLOG EVENTS`](show-relaylog-events.html "13.7.5.32 SHOW RELAYLOG EVENTS Statement"). To get complete coverage of events within a relay log, use [**mysqlbinlog**](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files").
+Alguns eventos relacionados à configuração de variáveis de usuário e sistema não são incluídos na saída do [`SHOW RELAYLOG EVENTS`](show-relaylog-events.html "13.7.5.32 SHOW RELAYLOG EVENTS Statement"). Para obter uma cobertura completa de eventos dentro de um relay log, use o [**mysqlbinlog**](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files").

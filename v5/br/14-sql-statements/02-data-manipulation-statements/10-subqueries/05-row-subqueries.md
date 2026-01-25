@@ -1,12 +1,12 @@
-#### 13.2.10.5 Row Subqueries
+#### 13.2.10.5 Row Subqueries
 
-Scalar or column subqueries return a single value or a column of values. A *row subquery* is a subquery variant that returns a single row and can thus return more than one column value. Legal operators for row subquery comparisons are:
+Subqueries escalares ou de coluna retornam um único valor ou uma coluna de valores. Uma *row subquery* é uma variante de subquery que retorna uma única linha e pode, portanto, retornar mais de um valor de coluna. Os operadores válidos para comparações de row subquery são:
 
 ```sql
 =  >  <  >=  <=  <>  !=  <=>
 ```
 
-Here are two examples:
+Aqui estão dois exemplos:
 
 ```sql
 SELECT * FROM t1
@@ -15,26 +15,26 @@ SELECT * FROM t1
   WHERE ROW(col1,col2) = (SELECT col3, col4 FROM t2 WHERE id = 10);
 ```
 
-For both queries, if the table `t2` contains a single row with `id = 10`, the subquery returns a single row. If this row has `col3` and `col4` values equal to the `col1` and `col2` values of any rows in `t1`, the `WHERE` expression is `TRUE` and each query returns those `t1` rows. If the `t2` row `col3` and `col4` values are not equal the `col1` and `col2` values of any `t1` row, the expression is `FALSE` and the query returns an empty result set. The expression is *unknown* (that is, `NULL`) if the subquery produces no rows. An error occurs if the subquery produces multiple rows because a row subquery can return at most one row.
+Para ambas as Queries, se a tabela `t2` contiver uma única linha com `id = 10`, a subquery retorna uma única linha. Se esta linha tiver valores de `col3` e `col4` iguais aos valores de `col1` e `col2` de quaisquer linhas em `t1`, a expressão `WHERE` será `TRUE` e cada Query retornará essas linhas de `t1`. Se os valores de `col3` e `col4` da linha de `t2` não forem iguais aos valores de `col1` e `col2` de nenhuma linha de `t1`, a expressão será `FALSE` e a Query retornará um conjunto de resultados vazio. A expressão é *desconhecida* (isto é, `NULL`) se a subquery não produzir nenhuma linha. Ocorre um erro se a subquery produzir múltiplas linhas, pois uma row subquery pode retornar no máximo uma linha.
 
-For information about how each operator works for row comparisons, see [Section 12.4.2, “Comparison Functions and Operators”](comparison-operators.html "12.4.2 Comparison Functions and Operators").
+Para obter informações sobre como cada operador funciona para comparações de linha, consulte [Section 12.4.2, “Comparison Functions and Operators”](comparison-operators.html "12.4.2 Comparison Functions and Operators").
 
-The expressions `(1,2)` and `ROW(1,2)` are sometimes called row constructors. The two are equivalent. The row constructor and the row returned by the subquery must contain the same number of values.
+As expressões `(1,2)` e `ROW(1,2)` são algumas vezes chamadas de *row constructors*. As duas são equivalentes. O *row constructor* e a linha retornada pela subquery devem conter o mesmo número de valores.
 
-A row constructor is used for comparisons with subqueries that return two or more columns. When a subquery returns a single column, this is regarded as a scalar value and not as a row, so a row constructor cannot be used with a subquery that does not return at least two columns. Thus, the following query fails with a syntax error:
+Um *row constructor* é usado para comparações com subqueries que retornam duas ou mais colunas. Quando uma subquery retorna uma única coluna, isso é considerado um valor escalar e não como uma linha, de modo que um *row constructor* não pode ser usado com uma subquery que não retorne pelo menos duas colunas. Assim, a seguinte Query falha com um erro de sintaxe:
 
 ```sql
 SELECT * FROM t1 WHERE ROW(1) = (SELECT column1 FROM t2)
 ```
 
-Row constructors are legal in other contexts. For example, the following two statements are semantically equivalent (and are handled in the same way by the optimizer):
+Os *row constructors* são válidos em outros contextos. Por exemplo, as duas instruções a seguir são semanticamente equivalentes (e são tratadas da mesma forma pelo Optimizer):
 
 ```sql
 SELECT * FROM t1 WHERE (column1,column2) = (1,1);
 SELECT * FROM t1 WHERE column1 = 1 AND column2 = 1;
 ```
 
-The following query answers the request, “find all rows in table `t1` that also exist in table `t2`”:
+A seguinte Query responde à solicitação, "encontrar todas as linhas na tabela `t1` que também existem na tabela `t2`":
 
 ```sql
 SELECT column1,column2,column3
@@ -43,4 +43,4 @@ SELECT column1,column2,column3
          (SELECT column1,column2,column3 FROM t2);
 ```
 
-For more information about the optimizer and row constructors, see [Section 8.2.1.19, “Row Constructor Expression Optimization”](row-constructor-optimization.html "8.2.1.19 Row Constructor Expression Optimization")
+Para mais informações sobre o Optimizer e os *row constructors*, consulte [Section 8.2.1.19, “Row Constructor Expression Optimization”](row-constructor-optimization.html "8.2.1.19 Row Constructor Expression Optimization")

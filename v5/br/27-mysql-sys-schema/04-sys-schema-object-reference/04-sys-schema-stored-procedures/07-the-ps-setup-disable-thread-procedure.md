@@ -1,14 +1,14 @@
-#### 26.4.4.7 The ps_setup_disable_thread() Procedure
+#### 26.4.4.7 O Procedure ps_setup_disable_thread()
 
-Given a connection ID, disables Performance Schema instrumentation for the thread. Produces a result set indicating how many threads were disabled. Already disabled threads do not count.
+Dado um Connection ID, desabilita a instrumentação do Performance Schema para o Thread. Gera um conjunto de resultados (result set) que indica quantos Threads foram desabilitados. Threads que já estavam desabilitados não são contabilizados.
 
-##### Parameters
+##### Parâmetros
 
-* `in_connection_id BIGINT`: The connection ID. This is a value of the type given in the `PROCESSLIST_ID` column of the Performance Schema `threads` table or the `Id` column of `SHOW PROCESSLIST` output.
+* `in_connection_id BIGINT`: O Connection ID. Este é um valor do tipo fornecido na coluna `PROCESSLIST_ID` da tabela `threads` do Performance Schema ou na coluna `Id` da saída de `SHOW PROCESSLIST`.
 
-##### Example
+##### Exemplo
 
-Disable a specific connection by its connection ID:
+Desabilita uma Connection específica usando seu Connection ID:
 
 ```sql
 mysql> CALL sys.ps_setup_disable_thread(225);
@@ -19,7 +19,7 @@ mysql> CALL sys.ps_setup_disable_thread(225);
 +-------------------+
 ```
 
-Disable the current connection:
+Desabilita a Connection atual:
 
 ```sql
 mysql> CALL sys.ps_setup_disable_thread(CONNECTION_ID());

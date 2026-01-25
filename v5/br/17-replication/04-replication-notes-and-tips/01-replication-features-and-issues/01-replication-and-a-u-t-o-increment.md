@@ -1,16 +1,16 @@
-#### 16.4.1.1 Replication and AUTO_INCREMENT
+#### 16.4.1.1 Replication e AUTO_INCREMENT
 
-Statement-based replication of `AUTO_INCREMENT`, [`LAST_INSERT_ID()`](information-functions.html#function_last-insert-id), and [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") values is done correctly, subject to the following exceptions:
+A Replication baseada em Statement de valores `AUTO_INCREMENT`, [`LAST_INSERT_ID()`](information-functions.html#function_last-insert-id), e [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") é realizada corretamente, sujeita às seguintes exceções:
 
-* When using statement-based replication prior to MySQL 5.7.1, `AUTO_INCREMENT` columns in tables on the replica must match the same columns on the source; that is, `AUTO_INCREMENT` columns must be replicated to `AUTO_INCREMENT` columns.
+* Ao usar a Replication baseada em Statement antes do MySQL 5.7.1, as colunas `AUTO_INCREMENT` nas tabelas na replica devem corresponder às mesmas colunas na source; ou seja, colunas `AUTO_INCREMENT` devem ser replicadas para colunas `AUTO_INCREMENT`.
 
-* A statement invoking a trigger or function that causes an update to an `AUTO_INCREMENT` column is not replicated correctly using statement-based replication. These statements are marked as unsafe. (Bug #45677)
+* Um Statement que invoca um trigger ou função que causa uma atualização em uma coluna `AUTO_INCREMENT` não é replicado corretamente usando a Replication baseada em Statement. Esses Statements são marcados como unsafe. (Bug #45677)
 
-* An [`INSERT`](insert.html "13.2.5 INSERT Statement") into a table that has a composite primary key that includes an `AUTO_INCREMENT` column that is not the first column of this composite key is not safe for statement-based logging or replication. These statements are marked as unsafe. (Bug #11754117, Bug #45670)
+* Um [`INSERT`](insert.html "13.2.5 INSERT Statement") em uma tabela que possui uma Primary Key composta que inclui uma coluna `AUTO_INCREMENT` que não é a primeira coluna desta Primary Key composta não é seguro (safe) para logging ou Replication baseada em Statement. Esses Statements são marcados como unsafe. (Bug #11754117, Bug #45670)
 
-  This issue does not affect tables using the [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") storage engine, since an `InnoDB` table with an [AUTO_INCREMENT](glossary.html#glos_auto_increment "auto-increment") column requires at least one key where the auto-increment column is the only or leftmost column.
+  Este problema não afeta tabelas que usam o storage engine [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"), visto que uma tabela `InnoDB` com uma coluna [AUTO_INCREMENT](glossary.html#glos_auto_increment "auto-increment") exige pelo menos uma Key onde a coluna auto-increment é a única ou a coluna mais à esquerda (leftmost).
 
-* Adding an `AUTO_INCREMENT` column to a table with [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") might not produce the same ordering of the rows on the replica and the source. This occurs because the order in which the rows are numbered depends on the specific storage engine used for the table and the order in which the rows were inserted. If it is important to have the same order on the source and replica, the rows must be ordered before assigning an `AUTO_INCREMENT` number. Assuming that you want to add an `AUTO_INCREMENT` column to a table `t1` that has columns `col1` and `col2`, the following statements produce a new table `t2` identical to `t1` but with an `AUTO_INCREMENT` column:
+* Adicionar uma coluna `AUTO_INCREMENT` a uma tabela com [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") pode não produzir a mesma ordenação das rows na replica e na source. Isso ocorre porque a ordem em que as rows são numeradas depende do storage engine específico usado para a tabela e da ordem em que as rows foram inseridas. Se for importante ter a mesma ordem na source e na replica, as rows devem ser ordenadas antes de atribuir um número `AUTO_INCREMENT`. Assumindo que você deseja adicionar uma coluna `AUTO_INCREMENT` a uma tabela `t1` que possui as colunas `col1` e `col2`, os seguintes Statements produzem uma nova tabela `t2` idêntica a `t1`, mas com uma coluna `AUTO_INCREMENT`:
 
   ```sql
   CREATE TABLE t2 LIKE t1;
@@ -18,17 +18,17 @@ Statement-based replication of `AUTO_INCREMENT`, [`LAST_INSERT_ID()`](informatio
   INSERT INTO t2 SELECT * FROM t1 ORDER BY col1, col2;
   ```
 
-  Important
+  Importante
 
-  To guarantee the same ordering on both source and replica, the `ORDER BY` clause must name *all* columns of `t1`.
+  Para garantir a mesma ordenação tanto na source quanto na replica, a cláusula `ORDER BY` deve nomear *todas* as colunas de `t1`.
 
-  The instructions just given are subject to the limitations of [`CREATE TABLE ... LIKE`](create-table-like.html "13.1.18.3 CREATE TABLE ... LIKE Statement"): Foreign key definitions are ignored, as are the `DATA DIRECTORY` and `INDEX DIRECTORY` table options. If a table definition includes any of those characteristics, create `t2` using a [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement that is identical to the one used to create `t1`, but with the addition of the `AUTO_INCREMENT` column.
+  As instruções recém-fornecidas estão sujeitas às limitações de [`CREATE TABLE ... LIKE`](create-table-like.html "13.1.18.3 CREATE TABLE ... LIKE Statement"): Definições de Foreign Key são ignoradas, assim como as opções de tabela `DATA DIRECTORY` e `INDEX DIRECTORY`. Se uma definição de tabela incluir alguma dessas características, crie `t2` usando um Statement [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") que seja idêntico ao usado para criar `t1`, mas com a adição da coluna `AUTO_INCREMENT`.
 
-  Regardless of the method used to create and populate the copy having the `AUTO_INCREMENT` column, the final step is to drop the original table and then rename the copy:
+  Independentemente do método usado para criar e popular a cópia contendo a coluna `AUTO_INCREMENT`, o passo final é descartar (drop) a tabela original e depois renomear a cópia:
 
   ```sql
   DROP t1;
   ALTER TABLE t2 RENAME t1;
   ```
 
-  See also [Section B.3.6.1, “Problems with ALTER TABLE”](alter-table-problems.html "B.3.6.1 Problems with ALTER TABLE").
+  Veja também [Seção B.3.6.1, “Problemas com ALTER TABLE”](alter-table-problems.html "B.3.6.1 Problemas com ALTER TABLE").

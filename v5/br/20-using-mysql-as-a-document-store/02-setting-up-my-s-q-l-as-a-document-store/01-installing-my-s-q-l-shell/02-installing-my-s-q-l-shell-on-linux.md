@@ -1,80 +1,80 @@
-#### 19.2.1.2 Installing MySQL Shell on Linux
+#### 19.2.1.2 Instalando o MySQL Shell no Linux
 
-Note
+Nota
 
-Installation packages for MySQL Shell are available only for a limited number of Linux distributions, and only for 64-bit systems.
+Pacotes de instalação para o MySQL Shell estão disponíveis apenas para um número limitado de distribuições Linux e somente para sistemas de 64 bits.
 
-For supported Linux distributions, the easiest way to install MySQL Shell on Linux is to use the [MySQL APT repository](https://dev.mysql.com/downloads/repo/apt/) or [MySQL Yum repository](https://dev.mysql.com/downloads/repo/yum/). For systems not using the MySQL repositories, MySQL Shell can also be downloaded and installed directly.
+Para as distribuições Linux suportadas, a maneira mais fácil de instalar o MySQL Shell no Linux é usar o [MySQL APT repository](https://dev.mysql.com/downloads/repo/apt/) ou o [MySQL Yum repository](https://dev.mysql.com/downloads/repo/yum/). Para sistemas que não usam os MySQL repositories, o MySQL Shell também pode ser baixado e instalado diretamente.
 
-##### Installing MySQL Shell with the MySQL APT Repository
+##### Instalando o MySQL Shell com o MySQL APT Repository
 
-For Linux distributions supported by the [MySQL APT repository](https://dev.mysql.com/downloads/repo/apt/), follow one of the paths below:
+Para distribuições Linux suportadas pelo [MySQL APT repository](https://dev.mysql.com/downloads/repo/apt/), siga um dos caminhos abaixo:
 
-* If you do not yet have the [MySQL APT repository](https://dev.mysql.com/downloads/repo/apt/) as a software repository on your system, do the following:
+* Se você ainda não tem o [MySQL APT repository](https://dev.mysql.com/downloads/repo/apt/) como um software repository em seu sistema, faça o seguinte:
 
-  + Follow the steps given in Adding the MySQL APT Repository, paying special attention to the following:
+  + Siga os passos fornecidos em Adicionando o MySQL APT Repository, prestando atenção especial ao seguinte:
 
-    - During the installation of the configuration package, when asked in the dialogue box to configure the repository, make sure you choose MySQL 5.7 (which is the default option) as the release series you want, and enable the MySQL Preview Packages component.
+    - Durante a instalação do pacote de configuração, quando solicitado na caixa de diálogo para configurar o repository, certifique-se de escolher o MySQL 5.7 (que é a opção padrão) como a série de release desejada e habilite o componente MySQL Preview Packages.
 
-    - Make sure you do not skip the step for updating package information for the MySQL APT repository:
+    - Certifique-se de não pular a etapa de atualização das informações do pacote para o MySQL APT repository:
 
       ```sql
       sudo apt-get update
       ```
 
-  + Install MySQL Shell with this command:
+  + Instale o MySQL Shell com este comando:
 
     ```sql
     sudo apt-get install mysql-shell
     ```
 
-* If you already have the [MySQL APT repository](https://dev.mysql.com/downloads/repo/apt/) as a software repository on your system, do the following:
+* Se você já tem o [MySQL APT repository](https://dev.mysql.com/downloads/repo/apt/) como um software repository em seu sistema, faça o seguinte:
 
-  + Update package information for the MySQL APT repository:
+  + Atualize as informações do pacote para o MySQL APT repository:
 
     ```sql
     sudo apt-get update
     ```
 
-  + Update the MySQL APT repository configuration package with the following command:
+  + Atualize o pacote de configuração do MySQL APT repository com o seguinte comando:
 
     ```sql
     sudo apt-get install mysql-apt-config
     ```
 
-    When asked in the dialogue box to configure the repository, make sure you choose MySQL 5.7 (which is the default option) as the release series you want, and enable the MySQL Preview Packages component.
+    Quando solicitado na caixa de diálogo para configurar o repository, certifique-se de escolher o MySQL 5.7 (que é a opção padrão) como a série de release desejada e habilite o componente MySQL Preview Packages.
 
-  + Install MySQL Shell with this command:
+  + Instale o MySQL Shell com este comando:
 
     ```sql
     sudo apt-get install mysql-shell
     ```
 
-##### Installing MySQL Shell with the MySQL Yum Repository
+##### Instalando o MySQL Shell com o MySQL Yum Repository
 
-For Linux distributions supported by the [MySQL Yum repository](https://dev.mysql.com/downloads/repo/yum/), follow these steps to install MySQL Shell:
+Para distribuições Linux suportadas pelo [MySQL Yum repository](https://dev.mysql.com/downloads/repo/yum/), siga estes passos para instalar o MySQL Shell:
 
-* Do one of the following:
+* Faça um dos seguintes:
 
-  + If you already have the [MySQL Yum repository](https://dev.mysql.com/downloads/repo/yum/) as a software repository on your system and the repository was configured with the new release package `mysql57-community-release`, skip to the next step (“Enable the MySQL Tools Preview subrepository...”).
+  + Se você já tem o [MySQL Yum repository](https://dev.mysql.com/downloads/repo/yum/) como um software repository em seu sistema e o repository foi configurado com o novo pacote de release `mysql57-community-release`, pule para o próximo passo (“Habilite o subrepository MySQL Tools Preview...”).
 
-  + If you already have the [MySQL Yum repository](https://dev.mysql.com/downloads/repo/yum/) as a software repository on your system but have configured the repository with the old release package `mysql-community-release`, it is easiest to install MySQL Shell by first reconfiguring the MySQL Yum repository with the new `mysql57-community-release` package. To do so, you need to remove your old release package first, with the following command :
+  + Se você já tem o [MySQL Yum repository](https://dev.mysql.com/downloads/repo/yum/) como um software repository em seu sistema, mas o configurou com o pacote de release antigo `mysql-community-release`, é mais fácil instalar o MySQL Shell reconfigurando primeiro o MySQL Yum repository com o novo pacote `mysql57-community-release`. Para fazer isso, você precisa remover seu pacote de release antigo primeiro, com o seguinte comando:
 
     ```sql
     sudo yum remove mysql-community-release
     ```
 
-    For dnf-enabled systems, do this instead:
+    Para sistemas habilitados para dnf, faça o seguinte:
 
     ```sql
     sudo dnf erase mysql-community-release
     ```
 
-    Then, follow the steps given in Adding the MySQL Yum Repository to install the new release package, `mysql57-community-release`.
+    Em seguida, siga os passos fornecidos em Adicionando o MySQL Yum Repository para instalar o novo pacote de release, `mysql57-community-release`.
 
-  + If you do not yet have the [MySQL Yum repository](https://dev.mysql.com/downloads/repo/yum/) as a software repository on your system, follow the steps given in Adding the MySQL Yum Repository.
+  + Se você ainda não tem o [MySQL Yum repository](https://dev.mysql.com/downloads/repo/yum/) como um software repository em seu sistema, siga os passos fornecidos em Adicionando o MySQL Yum Repository.
 
-* Enable the MySQL Tools Preview subrepository. You can do that by editing manually the `/etc/yum.repos.d/mysql-community.repo` file. This is an example of the subrepository's default entry in the file (the `baseurl` entry in your file might look different, depending on your Linux distribution):
+* Habilite o subrepository MySQL Tools Preview. Você pode fazer isso editando manualmente o arquivo `/etc/yum.repos.d/mysql-community.repo`. Este é um exemplo da entrada padrão do subrepository no arquivo (a entrada `baseurl` em seu arquivo pode parecer diferente, dependendo da sua distribuição Linux):
 
   ```sql
   [mysql-tools-preview]
@@ -85,20 +85,20 @@ For Linux distributions supported by the [MySQL Yum repository](https://dev.mysq
   gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
   ```
 
-  Change the entry `enabled=0` to `enabled=1` to enable the subrepository.
+  Altere a entrada `enabled=0` para `enabled=1` para habilitar o subrepository.
 
-* Install MySQL Shell with this command:
+* Instale o MySQL Shell com este comando:
 
   ```sql
   sudo yum install mysql-shell
   ```
 
-  For dnf-enabled systems, do this instead:
+  Para sistemas habilitados para dnf, faça o seguinte:
 
   ```sql
   sudo dnf install mysql-shell
   ```
 
-##### Installing MySQL Shell from Direct Downloads from the MySQL Developer Zone
+##### Instalando o MySQL Shell a partir de Downloads Diretos da MySQL Developer Zone
 
-RPM, Debian, and source packages for installing MySQL Shell are also available for download at [Download MySQL Shell](https://dev.mysql.com/downloads/shell/).
+Pacotes RPM, Debian e source para instalação do MySQL Shell também estão disponíveis para download em [Download MySQL Shell](https://dev.mysql.com/downloads/shell/).

@@ -1,55 +1,55 @@
-### 21.3.6 Safe Shutdown and Restart of NDB Cluster
+### 21.3.6 Desligamento e Reinicialização Seguros do NDB Cluster
 
-To shut down the cluster, enter the following command in a shell on the machine hosting the management node:
+Para desligar o Cluster, insira o seguinte comando em um shell na máquina que hospeda o nó de gerenciamento (management node):
 
 ```sql
 $> ndb_mgm -e shutdown
 ```
 
-The `-e` option here is used to pass a command to the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client from the shell. The command causes the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client"), [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"), and any [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") or [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") processes to terminate gracefully. Any SQL nodes can be terminated using [**mysqladmin shutdown**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") and other means. On Windows platforms, assuming that you have installed the SQL node as a Windows service, you can use **SC STOP *`service_name`*** or **NET STOP *`service_name`***.
+A opção `-e` é usada aqui para passar um comando para o cliente [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") a partir do shell. O comando faz com que os processos [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client"), [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") e quaisquer processos [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") ou [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") sejam encerrados de forma segura (gracefully). Quaisquer SQL nodes podem ser encerrados usando [**mysqladmin shutdown**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") e outros meios. Em plataformas Windows, assumindo que você instalou o SQL node como um Windows service, você pode usar **SC STOP *`nome_do_service`*** ou **NET STOP *`nome_do_service`***.
 
-To restart the cluster on Unix platforms, run these commands:
+Para reiniciar o Cluster em plataformas Unix, execute estes comandos:
 
-* On the management host (`198.51.100.10` in our example setup):
+* No host de gerenciamento (management host) (`198.51.100.10` em nossa configuração de exemplo):
 
   ```sql
   $> ndb_mgmd -f /var/lib/mysql-cluster/config.ini
   ```
 
-* On each of the data node hosts (`198.51.100.30` and `198.51.100.40`):
+* Em cada um dos hosts dos data nodes (`198.51.100.30` e `198.51.100.40`):
 
   ```sql
   $> ndbd
   ```
 
-* Use the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client to verify that both data nodes have started successfully.
+* Use o cliente [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") para verificar se ambos os data nodes foram iniciados com sucesso.
 
-* On the SQL host (`198.51.100.20`):
+* No SQL host (`198.51.100.20`):
 
   ```sql
   $> mysqld_safe &
   ```
 
-On Windows platforms, assuming that you have installed all NDB Cluster processes as Windows services using the default service names (see [Section 21.3.2.4, “Installing NDB Cluster Processes as Windows Services”](mysql-cluster-install-windows-service.html "21.3.2.4 Installing NDB Cluster Processes as Windows Services")), you can restart the cluster as follows:
+Em plataformas Windows, assumindo que você instalou todos os processos do NDB Cluster como Windows services usando os nomes de service padrão (veja [Section 21.3.2.4, “Installing NDB Cluster Processes as Windows Services”](mysql-cluster-install-windows-service.html "21.3.2.4 Installing NDB Cluster Processes as Windows Services")), você pode reiniciar o Cluster da seguinte forma:
 
-* On the management host (`198.51.100.10` in our example setup), execute the following command:
+* No host de gerenciamento (management host) (`198.51.100.10` em nossa configuração de exemplo), execute o seguinte comando:
 
   ```sql
   C:\> SC START ndb_mgmd
   ```
 
-* On each of the data node hosts (`198.51.100.30` and `198.51.100.40`), execute the following command:
+* Em cada um dos hosts dos data nodes (`198.51.100.30` e `198.51.100.40`), execute o seguinte comando:
 
   ```sql
   C:\> SC START ndbd
   ```
 
-* On the management node host, use the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client to verify that the management node and both data nodes have started successfully (see [Section 21.3.2.3, “Initial Startup of NDB Cluster on Windows”](mysql-cluster-install-windows-initial-start.html "21.3.2.3 Initial Startup of NDB Cluster on Windows")).
+* No host do nó de gerenciamento, use o cliente [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") para verificar se o nó de gerenciamento (management node) e ambos os data nodes foram iniciados com sucesso (veja [Section 21.3.2.3, “Initial Startup of NDB Cluster on Windows”](mysql-cluster-install-windows-initial-start.html "21.3.2.3 Initial Startup of NDB Cluster on Windows")).
 
-* On the SQL node host (`198.51.100.20`), execute the following command:
+* No host do SQL node (`198.51.100.20`), execute o seguinte comando:
 
   ```sql
   C:\> SC START mysql
   ```
 
-In a production setting, it is usually not desirable to shut down the cluster completely. In many cases, even when making configuration changes, or performing upgrades to the cluster hardware or software (or both), which require shutting down individual host machines, it is possible to do so without shutting down the cluster as a whole by performing a rolling restart of the cluster. For more information about doing this, see [Section 21.6.5, “Performing a Rolling Restart of an NDB Cluster”](mysql-cluster-rolling-restart.html "21.6.5 Performing a Rolling Restart of an NDB Cluster").
+Em um ambiente de produção (production setting), geralmente não é desejável desligar o Cluster completamente. Em muitos casos, mesmo ao fazer alterações de configuração ou realizar upgrades de hardware ou software (ou ambos) do Cluster, que exigem o desligamento de máquinas host individuais, é possível fazer isso sem desligar o Cluster como um todo, realizando um rolling restart do Cluster. Para mais informações sobre como fazer isso, veja [Section 21.6.5, “Performing a Rolling Restart of an NDB Cluster”](mysql-cluster-rolling-restart.html "21.6.5 Performing a Rolling Restart of an NDB Cluster").

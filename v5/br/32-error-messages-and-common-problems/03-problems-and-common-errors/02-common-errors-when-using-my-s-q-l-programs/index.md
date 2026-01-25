@@ -1,37 +1,37 @@
-### B.3.2 Common Errors When Using MySQL Programs
+### B.3.2 Erros Comuns ao Usar Programas MySQL
 
-[B.3.2.1 Access denied](error-access-denied.html)
+[B.3.2.1 Acesso negado](error-access-denied.html)
 
-[B.3.2.2 Can't connect to [local] MySQL server](can-not-connect-to-server.html)
+[B.3.2.2 Não consigo conectar ao server MySQL [local]](can-not-connect-to-server.html)
 
-[B.3.2.3 Lost connection to MySQL server](error-lost-connection.html)
+[B.3.2.3 Conexão perdida com o server MySQL](error-lost-connection.html)
 
-[B.3.2.4 Password Fails When Entered Interactively](password-too-long.html)
+[B.3.2.4 Falha de Senha Quando Inserida Interativamente](password-too-long.html)
 
-[B.3.2.5 Too many connections](too-many-connections.html)
+[B.3.2.5 Muitas conexões](too-many-connections.html)
 
-[B.3.2.6 Out of memory](out-of-memory.html)
+[B.3.2.6 Sem memória (Out of memory)](out-of-memory.html)
 
-[B.3.2.7 MySQL server has gone away](gone-away.html)
+[B.3.2.7 O server MySQL se foi (has gone away)](gone-away.html)
 
-[B.3.2.8 Packet Too Large](packet-too-large.html)
+[B.3.2.8 Pacote Muito Grande (Packet Too Large)](packet-too-large.html)
 
-[B.3.2.9 Communication Errors and Aborted Connections](communication-errors.html)
+[B.3.2.9 Erros de Comunicação e Conexões Abortadas](communication-errors.html)
 
-[B.3.2.10 The table is full](full-table.html)
+[B.3.2.10 A tabela está cheia](full-table.html)
 
-[B.3.2.11 Can't create/write to file](cannot-create.html)
+[B.3.2.11 Não consigo criar/escrever no arquivo](cannot-create.html)
 
-[B.3.2.12 Commands out of sync](commands-out-of-sync.html)
+[B.3.2.12 Comandos fora de sincronia](commands-out-of-sync.html)
 
-[B.3.2.13 Ignoring user](ignoring-user.html)
+[B.3.2.13 Ignorando usuário](ignoring-user.html)
 
-[B.3.2.14 Table 'tbl_name' doesn't exist](cannot-find-table.html)
+[B.3.2.14 A Tabela 'tbl_name' não existe](cannot-find-table.html)
 
-[B.3.2.15 Can't initialize character set](cannot-initialize-character-set.html)
+[B.3.2.15 Não consigo inicializar o conjunto de caracteres](cannot-initialize-character-set.html)
 
-[B.3.2.16 File Not Found and Similar Errors](not-enough-file-handles.html)
+[B.3.2.16 Arquivo Não Encontrado e Erros Semelhantes](not-enough-file-handles.html)
 
-[B.3.2.17 Table-Corruption Issues](table-corruption.html)
+[B.3.2.17 Problemas de Corrupção de Tabela](table-corruption.html)
 
-This section lists some errors that users frequently encounter when running MySQL programs. Although the problems show up when you try to run client programs, the solutions to many of the problems involves changing the configuration of the MySQL server.
+Esta seção lista alguns erros que os usuários encontram frequentemente ao executar programas MySQL. Embora os problemas se manifestem ao tentar rodar programas cliente, as soluções para muitos deles envolvem a alteração da configuração do MySQL server.

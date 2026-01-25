@@ -1,44 +1,44 @@
-### 24.3.6 The INFORMATION_SCHEMA COLUMN_PRIVILEGES Table
+### 24.3.6 A Tabela COLUMN_PRIVILEGES do INFORMATION_SCHEMA
 
-The [`COLUMN_PRIVILEGES`](information-schema-column-privileges-table.html "24.3.6 The INFORMATION_SCHEMA COLUMN_PRIVILEGES Table") table provides information about column privileges. It takes its values from the `mysql.columns_priv` system table.
+A tabela [`COLUMN_PRIVILEGES`](information-schema-column-privileges-table.html "24.3.6 A Tabela COLUMN_PRIVILEGES do INFORMATION_SCHEMA") fornece informações sobre privilégios de coluna. Ela obtém seus valores da tabela de sistema `mysql.columns_priv`.
 
-The [`COLUMN_PRIVILEGES`](information-schema-column-privileges-table.html "24.3.6 The INFORMATION_SCHEMA COLUMN_PRIVILEGES Table") table has these columns:
+A tabela [`COLUMN_PRIVILEGES`](information-schema-column-privileges-table.html "24.3.6 A Tabela COLUMN_PRIVILEGES do INFORMATION_SCHEMA") possui as seguintes colunas:
 
 * `GRANTEE`
 
-  The name of the account to which the privilege is granted, in `'user_name'@'host_name'` format.
+  O nome da conta para a qual o privilégio é concedido, no formato `'user_name'@'host_name'`.
 
 * `TABLE_CATALOG`
 
-  The name of the catalog to which the table containing the column belongs. This value is always `def`.
+  O nome do catalog ao qual pertence a tabela que contém a coluna. Este valor é sempre `def`.
 
 * `TABLE_SCHEMA`
 
-  The name of the schema (database) to which the table containing the column belongs.
+  O nome do Schema (Database) ao qual pertence a tabela que contém a coluna.
 
 * `TABLE_NAME`
 
-  The name of the table containing the column.
+  O nome da tabela que contém a coluna.
 
 * `COLUMN_NAME`
 
-  The name of the column.
+  O nome da coluna.
 
 * `PRIVILEGE_TYPE`
 
-  The privilege granted. The value can be any privilege that can be granted at the column level; see [Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement"). Each row lists a single privilege, so there is one row per column privilege held by the grantee.
+  O privilégio concedido. O valor pode ser qualquer privilégio que possa ser concedido no nível da coluna; veja [Seção 13.7.1.4, “Instrução GRANT”](grant.html "13.7.1.4 Instrução GRANT"). Cada linha lista um único privilégio, portanto, há uma linha por privilégio de coluna detido pelo *grantee*.
 
-  In the output from [`SHOW FULL COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement"), the privileges are all in one column and in lowercase, for example, `select,insert,update,references`. In [`COLUMN_PRIVILEGES`](information-schema-column-privileges-table.html "24.3.6 The INFORMATION_SCHEMA COLUMN_PRIVILEGES Table"), there is one privilege per row, in uppercase.
+  Na saída de [`SHOW FULL COLUMNS`](show-columns.html "13.7.5.5 Instrução SHOW COLUMNS"), os privilégios estão todos em uma única coluna e em minúsculas, por exemplo, `select,insert,update,references`. Em [`COLUMN_PRIVILEGES`](information-schema-column-privileges-table.html "24.3.6 A Tabela COLUMN_PRIVILEGES do INFORMATION_SCHEMA"), há um privilégio por linha, em maiúsculas.
 
 * `IS_GRANTABLE`
 
-  `YES` if the user has the [`GRANT OPTION`](privileges-provided.html#priv_grant-option) privilege, `NO` otherwise. The output does not list [`GRANT OPTION`](privileges-provided.html#priv_grant-option) as a separate row with `PRIVILEGE_TYPE='GRANT OPTION'`.
+  `YES` se o usuário tiver o privilégio [`GRANT OPTION`](privileges-provided.html#priv_grant-option), `NO` caso contrário. A saída não lista [`GRANT OPTION`](privileges-provided.html#priv_grant-option) como uma linha separada com `PRIVILEGE_TYPE='GRANT OPTION'`.
 
-#### Notes
+#### Notas
 
-* [`COLUMN_PRIVILEGES`](information-schema-column-privileges-table.html "24.3.6 The INFORMATION_SCHEMA COLUMN_PRIVILEGES Table") is a nonstandard `INFORMATION_SCHEMA` table.
+* [`COLUMN_PRIVILEGES`](information-schema-column-privileges-table.html "24.3.6 A Tabela COLUMN_PRIVILEGES do INFORMATION_SCHEMA") é uma tabela `INFORMATION_SCHEMA` não padrão.
 
-The following statements are *not* equivalent:
+As seguintes instruções *não* são equivalentes:
 
 ```sql
 SELECT ... FROM INFORMATION_SCHEMA.COLUMN_PRIVILEGES

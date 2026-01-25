@@ -1,13 +1,13 @@
-#### 25.12.4.2 The events_waits_history Table
+#### 25.12.4.2 A Tabela events_waits_history
 
-The [`events_waits_history`](performance-schema-events-waits-history-table.html "25.12.4.2 The events_waits_history Table") table contains the *`N`* most recent wait events that have ended per thread. Wait events are not added to the table until they have ended. When the table contains the maximum number of rows for a given thread, the oldest thread row is discarded when a new row for that thread is added. When a thread ends, all its rows are discarded.
+A tabela [`events_waits_history`](performance-schema-events-waits-history-table.html "25.12.4.2 The events_waits_history Table") contém os *`N`* eventos de wait mais recentes que foram encerrados por Thread. Os eventos de wait não são adicionados à tabela até que tenham sido encerrados. Quando a tabela atinge o número máximo de linhas para uma determinada Thread, a linha mais antiga dessa Thread é descartada quando uma nova linha para essa Thread é adicionada. Quando uma Thread termina, todas as suas linhas são descartadas.
 
-The Performance Schema autosizes the value of *`N`* during server startup. To set the number of rows per thread explicitly, set the [`performance_schema_events_waits_history_size`](performance-schema-system-variables.html#sysvar_performance_schema_events_waits_history_size) system variable at server startup.
+O Performance Schema dimensiona automaticamente (autosizes) o valor de *`N`* durante a inicialização do server. Para definir o número de linhas por Thread explicitamente, configure a variável de sistema [`performance_schema_events_waits_history_size`](performance-schema-system-variables.html#sysvar_performance_schema_events_waits_history_size) na inicialização do server.
 
-The [`events_waits_history`](performance-schema-events-waits-history-table.html "25.12.4.2 The events_waits_history Table") table has the same columns as [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table"). See [Section 25.12.4.1, “The events_waits_current Table”](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table").
+A tabela [`events_waits_history`](performance-schema-events-waits-history-table.html "25.12.4.2 The events_waits_history Table") possui as mesmas colunas que [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table"). Consulte [Seção 25.12.4.1, “A Tabela events_waits_current”](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table").
 
-[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is permitted for the [`events_waits_history`](performance-schema-events-waits-history-table.html "25.12.4.2 The events_waits_history Table") table. It removes the rows.
+O [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") é permitido para a tabela [`events_waits_history`](performance-schema-events-waits-history-table.html "25.12.4.2 The events_waits_history Table"). Ele remove as linhas.
 
-For more information about the relationship between the three wait event tables, see [Section 25.9, “Performance Schema Tables for Current and Historical Events”](performance-schema-event-tables.html "25.9 Performance Schema Tables for Current and Historical Events").
+Para mais informações sobre a relação entre as três tabelas de wait event, consulte [Seção 25.9, “Tabelas do Performance Schema para Eventos Atuais e Históricos”](performance-schema-event-tables.html "25.9 Performance Schema Tables for Current and Historical Events").
 
-For information about configuring whether to collect wait events, see [Section 25.12.4, “Performance Schema Wait Event Tables”](performance-schema-wait-tables.html "25.12.4 Performance Schema Wait Event Tables").
+Para informações sobre como configurar a coleta de wait events, consulte [Seção 25.12.4, “Tabelas de Wait Event do Performance Schema”](performance-schema-wait-tables.html "25.12.4 Performance Schema Wait Event Tables").

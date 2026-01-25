@@ -1,29 +1,29 @@
-#### 26.4.3.50 The waits_by_host_by_latency and x$waits_by_host_by_latency Views
+#### 26.4.3.50 As Views waits_by_host_by_latency e x$waits_by_host_by_latency
 
-These views summarize wait events, grouped by host and event. By default, rows are sorted by host and descending total latency. Idle events are ignored.
+Essas Views sumarizam eventos de espera (wait events), agrupados por host e evento. Por padrão, as linhas são ordenadas por host e total latency descendente. Eventos inativos (Idle events) são ignorados.
 
-The `waits_by_host_by_latency` and `x$waits_by_host_by_latency` views have these columns:
+As Views `waits_by_host_by_latency` e `x$waits_by_host_by_latency` contêm as seguintes colunas:
 
 * `host`
 
-  The host from which the connection originated.
+  O host de onde a conexão se originou.
 
 * `event`
 
-  The event name.
+  O nome do evento.
 
 * `total`
 
-  The total number of occurrences of the event for the host.
+  O número total de ocorrências do evento para o host.
 
 * `total_latency`
 
-  The total wait time of timed occurrences of the event for the host.
+  O tempo total de espera (wait time) de ocorrências temporizadas do evento para o host.
 
 * `avg_latency`
 
-  The average wait time per timed occurrence of the event for the host.
+  O tempo médio de espera por ocorrência temporizada do evento para o host.
 
 * `max_latency`
 
-  The maximum single wait time of timed occurrences of the event for the host.
+  O tempo máximo de espera individual de ocorrências temporizadas do evento para o host.

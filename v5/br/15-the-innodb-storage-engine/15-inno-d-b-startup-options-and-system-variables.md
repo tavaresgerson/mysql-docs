@@ -1,805 +1,805 @@
-## 14.15 InnoDB Startup Options and System Variables
+## 14.15 Opções de Inicialização e Variáveis de Sistema do InnoDB
 
-* System variables that are true or false can be enabled at server startup by naming them, or disabled by using a `--skip-` prefix. For example, to enable or disable the `InnoDB` adaptive hash index, you can use `--innodb-adaptive-hash-index` or `--skip-innodb-adaptive-hash-index` on the command line, or `innodb_adaptive_hash_index` or `skip_innodb_adaptive_hash_index` in an option file.
+* Variáveis de sistema que são verdadeiras ou falsas podem ser habilitadas na inicialização do servidor nomeando-as, ou desabilitadas usando um prefixo `--skip-`. Por exemplo, para habilitar ou desabilitar o adaptive hash index do `InnoDB`, você pode usar `--innodb-adaptive-hash-index` ou `--skip-innodb-adaptive-hash-index` na linha de comando, ou `innodb_adaptive_hash_index` ou `skip_innodb_adaptive_hash_index` em um arquivo de opções.
 
-* System variables that take a numeric value can be specified as `--var_name=value` on the command line or as `var_name=value` in option files.
+* Variáveis de sistema que aceitam um valor numérico podem ser especificadas como `--var_name=value` na linha de comando ou como `var_name=value` em arquivos de opções.
 
-* Many system variables can be changed at runtime (see Section 5.1.8.2, “Dynamic System Variables”).
+* Muitas variáveis de sistema podem ser alteradas em tempo de execução (consulte Seção 5.1.8.2, “Variáveis de Sistema Dinâmicas”).
 
-* For information about `GLOBAL` and `SESSION` variable scope modifiers, refer to the `SET` statement documentation.
+* Para obter informações sobre os modificadores de escopo de variável `GLOBAL` e `SESSION`, consulte a documentação da instrução `SET`.
 
-* Certain options control the locations and layout of the `InnoDB` data files. Section 14.8.1, “InnoDB Startup Configuration” explains how to use these options.
+* Certas opções controlam a localização e o layout dos arquivos de dados do `InnoDB`. A Seção 14.8.1, “Configuração de Inicialização do InnoDB”, explica como usar essas opções.
 
-* Some options, which you might not use initially, help tune `InnoDB` performance characteristics based on machine capacity and your database workload.
+* Algumas opções, que você pode não usar inicialmente, ajudam a ajustar as características de performance do `InnoDB` com base na capacidade da máquina e na sua workload do Database.
 
-* For more information on specifying options and system variables, see Section 4.2.2, “Specifying Program Options”.
+* Para mais informações sobre como especificar opções e variáveis de sistema, consulte a Seção 4.2.2, “Especificando Opções de Programa”.
 
-**Table 14.18 InnoDB Option and Variable Reference**
+**Tabela 14.18 Referência de Opções e Variáveis do InnoDB**
 
-<table frame="box" rules="all" summary="Reference for InnoDB command-line options and system variables."><col style="width: 20%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><thead><tr><th>Name</th> <th>Cmd-Line</th> <th>Option File</th> <th>System Var</th> <th>Status Var</th> <th>Var Scope</th> <th>Dynamic</th> </tr></thead><tbody><tr><th>daemon_memcached_enable_binlog</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>daemon_memcached_engine_lib_name</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>daemon_memcached_engine_lib_path</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>daemon_memcached_option</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>daemon_memcached_r_batch_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>daemon_memcached_w_batch_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>foreign_key_checks</th> <td></td> <td></td> <td>Yes</td> <td></td> <td>Both</td> <td>Yes</td> </tr><tr><th>ignore_builtin_innodb</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb</th> <td>Yes</td> <td>Yes</td> <td></td> <td></td> <td></td> <td></td> </tr><tr><th>innodb_adaptive_flushing</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_adaptive_flushing_lwm</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_adaptive_hash_index</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_adaptive_hash_index_parts</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_adaptive_max_sleep_delay</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_api_bk_commit_interval</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_api_disable_rowlock</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_api_enable_binlog</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_api_enable_mdl</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_api_trx_level</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_autoextend_increment</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_autoinc_lock_mode</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_available_undo_logs</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_background_drop_list_empty</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>Innodb_buffer_pool_bytes_data</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_buffer_pool_bytes_dirty</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_buffer_pool_chunk_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_buffer_pool_dump_at_shutdown</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_buffer_pool_dump_now</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_buffer_pool_dump_pct</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>Innodb_buffer_pool_dump_status</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_buffer_pool_filename</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_buffer_pool_instances</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_buffer_pool_load_abort</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_buffer_pool_load_at_startup</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_buffer_pool_load_now</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>Innodb_buffer_pool_load_status</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_buffer_pool_pages_data</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_buffer_pool_pages_dirty</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_buffer_pool_pages_flushed</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_buffer_pool_pages_free</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_buffer_pool_pages_latched</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_buffer_pool_pages_misc</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_buffer_pool_pages_total</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_buffer_pool_read_ahead</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_buffer_pool_read_ahead_evicted</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_buffer_pool_read_ahead_rnd</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_buffer_pool_read_requests</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_buffer_pool_reads</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_buffer_pool_resize_status</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_buffer_pool_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Varies</td> </tr><tr><th>Innodb_buffer_pool_wait_free</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_buffer_pool_write_requests</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_change_buffer_max_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_change_buffering</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_change_buffering_debug</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_checksum_algorithm</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_checksums</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_cmp_per_index_enabled</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_commit_concurrency</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_compress_debug</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_compression_failure_threshold_pct</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_compression_level</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_compression_pad_pct_max</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_concurrency_tickets</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_data_file_path</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_data_fsyncs</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_data_home_dir</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_data_pending_fsyncs</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_data_pending_reads</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_data_pending_writes</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_data_read</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_data_reads</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_data_writes</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_data_written</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_dblwr_pages_written</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_dblwr_writes</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_deadlock_detect</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_default_row_format</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_disable_resize_buffer_pool_debug</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_disable_sort_file_cache</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_doublewrite</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_fast_shutdown</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_fil_make_page_dirty_debug</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_file_format</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_file_format_check</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_file_format_max</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_file_per_table</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_fill_factor</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_flush_log_at_timeout</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_flush_log_at_trx_commit</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_flush_method</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_flush_neighbors</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_flush_sync</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_flushing_avg_loops</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_force_load_corrupted</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_force_recovery</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_ft_aux_table</th> <td></td> <td></td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_ft_cache_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_ft_enable_diag_print</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_ft_enable_stopword</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Both</td> <td>Yes</td> </tr><tr><th>innodb_ft_max_token_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_ft_min_token_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_ft_num_word_optimize</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_ft_result_cache_limit</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_ft_server_stopword_table</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_ft_sort_pll_degree</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_ft_total_cache_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_ft_user_stopword_table</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Both</td> <td>Yes</td> </tr><tr><th>Innodb_have_atomic_builtins</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_io_capacity</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_io_capacity_max</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_large_prefix</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_limit_optimistic_insert_debug</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_lock_wait_timeout</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Both</td> <td>Yes</td> </tr><tr><th>innodb_locks_unsafe_for_binlog</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_log_buffer_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_log_checkpoint_now</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_log_checksums</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_log_compressed_pages</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_log_file_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_log_files_in_group</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_log_group_home_dir</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_log_waits</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_log_write_ahead_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>Innodb_log_write_requests</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_log_writes</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_lru_scan_depth</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_max_dirty_pages_pct</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_max_dirty_pages_pct_lwm</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_max_purge_lag</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_max_purge_lag_delay</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_max_undo_log_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_merge_threshold_set_all_debug</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_monitor_disable</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_monitor_enable</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_monitor_reset</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_monitor_reset_all</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>Innodb_num_open_files</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_numa_interleave</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_old_blocks_pct</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_old_blocks_time</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_online_alter_log_max_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_open_files</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_optimize_fulltext_only</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>Innodb_os_log_fsyncs</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_os_log_pending_fsyncs</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_os_log_pending_writes</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_os_log_written</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_page_cleaners</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_page_size</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_page_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_pages_created</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_pages_read</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_pages_written</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_print_all_deadlocks</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_purge_batch_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_purge_rseg_truncate_frequency</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_purge_threads</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_random_read_ahead</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_read_ahead_threshold</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_read_io_threads</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_read_only</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_replication_delay</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_rollback_on_timeout</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_rollback_segments</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>Innodb_row_lock_current_waits</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_row_lock_time</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_row_lock_time_avg</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_row_lock_time_max</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_row_lock_waits</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_rows_deleted</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_rows_inserted</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_rows_read</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Innodb_rows_updated</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_saved_page_number_debug</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_sort_buffer_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_spin_wait_delay</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_stats_auto_recalc</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_stats_include_delete_marked</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_stats_method</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_stats_on_metadata</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_stats_persistent</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_stats_persistent_sample_pages</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_stats_sample_pages</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_stats_transient_sample_pages</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb-status-file</th> <td>Yes</td> <td>Yes</td> <td></td> <td></td> <td></td> <td></td> </tr><tr><th>innodb_status_output</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_status_output_locks</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_strict_mode</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Both</td> <td>Yes</td> </tr><tr><th>innodb_support_xa</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Both</td> <td>Yes</td> </tr><tr><th>innodb_sync_array_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_sync_debug</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_sync_spin_loops</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_table_locks</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Both</td> <td>Yes</td> </tr><tr><th>innodb_temp_data_file_path</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_thread_concurrency</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_thread_sleep_delay</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_tmpdir</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Both</td> <td>Yes</td> </tr><tr><th>Innodb_truncated_status_writes</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_trx_purge_view_update_only_debug</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_trx_rseg_n_slots_debug</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_undo_directory</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_undo_log_truncate</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_undo_logs</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_undo_tablespaces</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_use_native_aio</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_version</th> <td></td> <td></td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_write_io_threads</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>unique_checks</th> <td></td> <td></td> <td>Yes</td> <td></td> <td>Both</td> <td>Yes</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Referência para opções de linha de comando e variáveis de sistema do InnoDB."><col style="width: 20%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><thead><tr><th>Nome</th> <th>Linha de Comando</th> <th>Arquivo de Opções</th> <th>Var. de Sistema</th> <th>Var. de Status</th> <th>Escopo da Var.</th> <th>Dinâmica</th> </tr></thead><tbody><tr><th>daemon_memcached_enable_binlog</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>daemon_memcached_engine_lib_name</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>daemon_memcached_engine_lib_path</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>daemon_memcached_option</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>daemon_memcached_r_batch_size</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>daemon_memcached_w_batch_size</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>foreign_key_checks</th> <td></td> <td></td> <td>Sim</td> <td></td> <td>Ambos</td> <td>Sim</td> </tr><tr><th>ignore_builtin_innodb</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb</th> <td>Sim</td> <td>Sim</td> <td></td> <td></td> <td></td> <td></td> </tr><tr><th>innodb_adaptive_flushing</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_adaptive_flushing_lwm</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_adaptive_hash_index</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_adaptive_hash_index_parts</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_adaptive_max_sleep_delay</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_api_bk_commit_interval</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_api_disable_rowlock</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_api_enable_binlog</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_api_enable_mdl</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_api_trx_level</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_autoextend_increment</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_autoinc_lock_mode</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_available_undo_logs</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_background_drop_list_empty</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>Innodb_buffer_pool_bytes_data</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_buffer_pool_bytes_dirty</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_buffer_pool_chunk_size</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_buffer_pool_dump_at_shutdown</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_buffer_pool_dump_now</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_buffer_pool_dump_pct</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>Innodb_buffer_pool_dump_status</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_buffer_pool_filename</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_buffer_pool_instances</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_buffer_pool_load_abort</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_buffer_pool_load_at_startup</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_buffer_pool_load_now</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>Innodb_buffer_pool_load_status</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_buffer_pool_pages_data</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_buffer_pool_pages_dirty</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_buffer_pool_pages_flushed</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_buffer_pool_pages_free</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_buffer_pool_pages_latched</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_buffer_pool_pages_misc</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_buffer_pool_pages_total</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_buffer_pool_read_ahead</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_buffer_pool_read_ahead_evicted</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_buffer_pool_read_ahead_rnd</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_buffer_pool_read_requests</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_buffer_pool_reads</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_buffer_pool_resize_status</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_buffer_pool_size</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Varia</td> </tr><tr><th>Innodb_buffer_pool_wait_free</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_buffer_pool_write_requests</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_change_buffer_max_size</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_change_buffering</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_change_buffering_debug</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_checksum_algorithm</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_checksums</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_cmp_per_index_enabled</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_commit_concurrency</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_compress_debug</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_compression_failure_threshold_pct</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_compression_level</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_compression_pad_pct_max</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_concurrency_tickets</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_data_file_path</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_data_fsyncs</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_data_home_dir</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_data_pending_fsyncs</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_data_pending_reads</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_data_pending_writes</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_data_read</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_data_reads</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_data_writes</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_data_written</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_dblwr_pages_written</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_dblwr_writes</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_deadlock_detect</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_default_row_format</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_disable_resize_buffer_pool_debug</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_disable_sort_file_cache</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_doublewrite</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_fast_shutdown</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_fil_make_page_dirty_debug</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_file_format</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_file_format_check</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_file_format_max</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_file_per_table</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_fill_factor</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_flush_log_at_timeout</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_flush_log_at_trx_commit</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_flush_method</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_flush_neighbors</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_flush_sync</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_flushing_avg_loops</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_force_load_corrupted</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_force_recovery</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_ft_aux_table</th> <td></td> <td></td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_ft_cache_size</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_ft_enable_diag_print</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_ft_enable_stopword</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Ambos</td> <td>Sim</td> </tr><tr><th>innodb_ft_max_token_size</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_ft_min_token_size</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_ft_num_word_optimize</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_ft_result_cache_limit</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_ft_server_stopword_table</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_ft_sort_pll_degree</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_ft_total_cache_size</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_ft_user_stopword_table</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Ambos</td> <td>Sim</td> </tr><tr><th>Innodb_have_atomic_builtins</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_io_capacity</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_io_capacity_max</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_large_prefix</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_limit_optimistic_insert_debug</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_lock_wait_timeout</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Ambos</td> <td>Sim</td> </tr><tr><th>innodb_locks_unsafe_for_binlog</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_log_buffer_size</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_log_checkpoint_now</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_log_checksums</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_log_compressed_pages</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_log_file_size</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_log_files_in_group</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_log_group_home_dir</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_log_waits</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_log_write_ahead_size</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>Innodb_log_write_requests</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_log_writes</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_lru_scan_depth</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_max_dirty_pages_pct</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_max_dirty_pages_pct_lwm</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_max_purge_lag</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_max_purge_lag_delay</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_max_undo_log_size</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_merge_threshold_set_all_debug</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_monitor_disable</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_monitor_enable</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_monitor_reset</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_monitor_reset_all</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>Innodb_num_open_files</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_numa_interleave</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_old_blocks_pct</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_old_blocks_time</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_online_alter_log_max_size</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_open_files</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_optimize_fulltext_only</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>Innodb_os_log_fsyncs</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_os_log_pending_fsyncs</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_os_log_pending_writes</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_os_log_written</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_page_cleaners</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_page_size</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_page_size</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_pages_created</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_pages_read</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_pages_written</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_print_all_deadlocks</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_purge_batch_size</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_purge_rseg_truncate_frequency</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_purge_threads</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_random_read_ahead</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_read_ahead_threshold</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_read_io_threads</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_read_only</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_replication_delay</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_rollback_on_timeout</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_rollback_segments</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>Innodb_row_lock_current_waits</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_row_lock_time</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_row_lock_time_avg</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_row_lock_time_max</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_row_lock_waits</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_rows_deleted</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_rows_inserted</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_rows_read</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>Innodb_rows_updated</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_saved_page_number_debug</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_sort_buffer_size</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_spin_wait_delay</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_stats_auto_recalc</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_stats_include_delete_marked</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_stats_method</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_stats_on_metadata</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_stats_persistent</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_stats_persistent_sample_pages</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_stats_sample_pages</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_stats_transient_sample_pages</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb-status-file</th> <td>Sim</td> <td>Sim</td> <td></td> <td></td> <td></td> <td></td> </tr><tr><th>innodb_status_output</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_status_output_locks</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_strict_mode</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Ambos</td> <td>Sim</td> </tr><tr><th>innodb_support_xa</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Ambos</td> <td>Sim</td> </tr><tr><th>innodb_sync_array_size</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_sync_debug</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_sync_spin_loops</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_table_locks</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Ambos</td> <td>Sim</td> </tr><tr><th>innodb_temp_data_file_path</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_thread_concurrency</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_thread_sleep_delay</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_tmpdir</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Ambos</td> <td>Sim</td> </tr><tr><th>Innodb_truncated_status_writes</th> <td></td> <td></td> <td></td> <td>Sim</td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_trx_purge_view_update_only_debug</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_trx_rseg_n_slots_debug</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_undo_directory</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_undo_log_truncate</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_undo_logs</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>innodb_undo_tablespaces</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_use_native_aio</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_version</th> <td></td> <td></td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>innodb_write_io_threads</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>unique_checks</th> <td></td> <td></td> <td>Sim</td> <td></td> <td>Ambos</td> <td>Sim</td> </tr></tbody></table>
 
-### InnoDB Command Options
+### Opções de Comando do InnoDB
 
 * `--innodb[=value]`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Controls loading of the `InnoDB` storage engine, if the server was compiled with `InnoDB` support. This option has a tristate format, with possible values of `OFF`, `ON`, or `FORCE`. See Section 5.5.1, “Installing and Uninstalling Plugins”.
+  Controla o carregamento do storage engine `InnoDB`, se o servidor foi compilado com suporte ao `InnoDB`. Esta opção tem um formato tri-estado, com valores possíveis de `OFF`, `ON` ou `FORCE`. Consulte a Seção 5.5.1, “Instalando e Desinstalando Plugins”.
 
-  To disable `InnoDB`, use `--innodb=OFF` or `--skip-innodb`. In this case, because the default storage engine is `InnoDB`, the server does not start unless you also use `--default-storage-engine` and `--default-tmp-storage-engine` to set the default to some other engine for both permanent and `TEMPORARY` tables.
+  Para desabilitar o `InnoDB`, use `--innodb=OFF` ou `--skip-innodb`. Neste caso, como o storage engine padrão é o `InnoDB`, o servidor não é iniciado a menos que você também use `--default-storage-engine` e `--default-tmp-storage-engine` para definir o padrão para algum outro engine tanto para tabelas permanentes quanto para tabelas `TEMPORARY`.
 
-  The `InnoDB` storage engine can no longer be disabled, and the `--innodb=OFF` and `--skip-innodb` options are deprecated and have no effect. Their use results in a warning. You should expect these options to be removed in a future MySQL release.
+  O storage engine `InnoDB` não pode mais ser desabilitado, e as opções `--innodb=OFF` e `--skip-innodb` estão descontinuadas e não têm efeito. O uso delas resulta em um aviso. Você deve esperar que essas opções sejam removidas em uma futura versão do MySQL.
 
 * `--innodb-status-file`
 
-  <table frame="box" rules="all" summary="Properties for innodb-status-file"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb-status-file[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb-status-file"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb-status-file[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  The `--innodb-status-file` startup option controls whether `InnoDB` creates a file named `innodb_status.pid` in the data directory and writes `SHOW ENGINE INNODB STATUS` output to it every 15 seconds, approximately.
+  A opção de inicialização `--innodb-status-file` controla se o `InnoDB` cria um arquivo chamado `innodb_status.pid` no data directory e escreve a saída de `SHOW ENGINE INNODB STATUS` nele a cada 15 segundos, aproximadamente.
 
-  The `innodb_status.pid` file is not created by default. To create it, start **mysqld** with the `--innodb-status-file` option. `InnoDB` removes the file when the server is shut down normally. If an abnormal shutdown occurs, the status file may have to be removed manually.
+  O arquivo `innodb_status.pid` não é criado por padrão. Para criá-lo, inicie o **mysqld** com a opção `--innodb-status-file`. O `InnoDB` remove o arquivo quando o servidor é desligado normalmente. Se ocorrer um desligamento anormal, o status file pode precisar ser removido manualmente.
 
-  The `--innodb-status-file` option is intended for temporary use, as `SHOW ENGINE INNODB STATUS` output generation can affect performance, and the `innodb_status.pid` file can become quite large over time.
+  A opção `--innodb-status-file` é destinada ao uso temporário, pois a geração da saída de `SHOW ENGINE INNODB STATUS` pode afetar a performance, e o arquivo `innodb_status.pid` pode se tornar muito grande ao longo do tempo.
 
-  For related information, see Section 14.18.2, “Enabling InnoDB Monitors”.
+  Para informações relacionadas, consulte a Seção 14.18.2, “Habilitando Monitores do InnoDB”.
 
 * `--skip-innodb`
 
-  Disable the `InnoDB` storage engine. See the description of `--innodb`.
+  Desabilita o storage engine `InnoDB`. Consulte a descrição de `--innodb`.
 
-### InnoDB System Variables
+### Variáveis de Sistema do InnoDB
 
 * `daemon_memcached_enable_binlog`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_enable_binlog"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-enable-binlog[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_enable_binlog</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-enable-binlog[={OFF|ON}]</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_enable_binlog</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Enable this option on the source server to use the `InnoDB` **memcached** plugin (`daemon_memcached`) with the MySQL binary log. This option can only be set at server startup. You must also enable the MySQL binary log on the source server using the `--log-bin` option.
+  Habilite esta opção no servidor de origem para usar o plugin **memcached** do `InnoDB` (`daemon_memcached`) com o binary log do MySQL. Esta opção só pode ser definida na inicialização do servidor. Você também deve habilitar o binary log do MySQL no servidor de origem usando a opção `--log-bin`.
 
-  For more information, see Section 14.21.6, “The InnoDB memcached Plugin and Replication”.
+  Para mais informações, consulte a Seção 14.21.6, “O Plugin memcached do InnoDB e Replicação”.
 
 * `daemon_memcached_engine_lib_name`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_engine_lib_name"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-engine-lib-name=file_name</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_engine_lib_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>innodb_engine.so</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-engine-lib-name=file_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_engine_lib_name</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>innodb_engine.so</code></td> </tr></tbody></table>
 
-  Specifies the shared library that implements the `InnoDB` **memcached** plugin.
+  Especifica a shared library que implementa o plugin **memcached** do `InnoDB`.
 
-  For more information, see Section 14.21.3, “Setting Up the InnoDB memcached Plugin”.
+  Para mais informações, consulte a Seção 14.21.3, “Configurando o Plugin memcached do InnoDB”.
 
 * `daemon_memcached_engine_lib_path`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_engine_lib_path"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-engine-lib-path=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_engine_lib_path</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-engine-lib-path=dir_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_engine_lib_path</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
-  The path of the directory containing the shared library that implements the `InnoDB` **memcached** plugin. The default value is NULL, representing the MySQL plugin directory. You should not need to modify this parameter unless specifying a `memcached` plugin for a different storage engine that is located outside of the MySQL plugin directory.
+  O path do diretório contendo a shared library que implementa o plugin **memcached** do `InnoDB`. O valor padrão é NULL, representando o diretório de plugins do MySQL. Você não deve precisar modificar este parâmetro a menos que esteja especificando um plugin `memcached` para um storage engine diferente que esteja localizado fora do diretório de plugins do MySQL.
 
-  For more information, see Section 14.21.3, “Setting Up the InnoDB memcached Plugin”.
+  Para mais informações, consulte a Seção 14.21.3, “Configurando o Plugin memcached do InnoDB”.
 
 * `daemon_memcached_option`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_option"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-option=options</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_option</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-option=options</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_option</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code></code></td> </tr></tbody></table>
 
-  Used to pass space-separated memcached options to the underlying **memcached** memory object caching daemon on startup. For example, you might change the port that **memcached** listens on, reduce the maximum number of simultaneous connections, change the maximum memory size for a key-value pair, or enable debugging messages for the error log.
+  Usado para passar opções do memcached separadas por espaço para o daemon subjacente de caching de objeto de memória **memcached** na inicialização. Por exemplo, você pode alterar a porta que o **memcached** escuta, reduzir o número máximo de conexões simultâneas, alterar o tamanho máximo da memória para um par chave-valor ou habilitar mensagens de Debug para o error log.
 
-  See Section 14.21.3, “Setting Up the InnoDB memcached Plugin” for usage details. For information about **memcached** options, refer to the **memcached** man page.
+  Consulte a Seção 14.21.3, “Configurando o Plugin memcached do InnoDB”, para detalhes de uso. Para informações sobre opções do **memcached**, consulte a página man do **memcached**.
 
 * `daemon_memcached_r_batch_size`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_r_batch_size"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-r-batch-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_r_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1073741824</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-r-batch-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_r_batch_size</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1073741824</code></td> </tr></tbody></table>
 
-  Specifies how many **memcached** read operations (`get` operations) to perform before doing a `COMMIT` to start a new transaction. Counterpart of `daemon_memcached_w_batch_size`.
+  Especifica quantas operações de leitura do **memcached** (operações `get`) devem ser realizadas antes de fazer um `COMMIT` para iniciar uma nova transaction. Contraparte de `daemon_memcached_w_batch_size`.
 
-  This value is set to 1 by default, so that any changes made to the table through SQL statements are immediately visible to **memcached** operations. You might increase it to reduce the overhead from frequent commits on a system where the underlying table is only being accessed through the **memcached** interface. If you set the value too large, the amount of undo or redo data could impose some storage overhead, as with any long-running transaction.
+  Este valor é definido como 1 por padrão, para que quaisquer alterações feitas na table através de instruções SQL sejam imediatamente visíveis para as operações do **memcached**. Você pode aumentá-lo para reduzir a sobrecarga de commits frequentes em um sistema onde a table subjacente está sendo acessada apenas através da interface **memcached**. Se você definir o valor muito alto, a quantidade de dados de undo ou redo pode impor alguma sobrecarga de armazenamento, como em qualquer transaction de longa duração.
 
-  For more information, see Section 14.21.3, “Setting Up the InnoDB memcached Plugin”.
+  Para mais informações, consulte a Seção 14.21.3, “Configurando o Plugin memcached do InnoDB”.
 
 * `daemon_memcached_w_batch_size`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_w_batch_size"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-w-batch-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_w_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1048576</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-w-batch-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_w_batch_size</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr></tbody></table>
 
-  Specifies how many **memcached** write operations, such as `add`, `set`, and `incr`, to perform before doing a `COMMIT` to start a new transaction. Counterpart of `daemon_memcached_r_batch_size`.
+  Especifica quantas operações de gravação do **memcached**, como `add`, `set` e `incr`, devem ser realizadas antes de fazer um `COMMIT` para iniciar uma nova transaction. Contraparte de `daemon_memcached_r_batch_size`.
 
-  This value is set to 1 by default, on the assumption that data being stored is important to preserve in case of an outage and should immediately be committed. When storing non-critical data, you might increase this value to reduce the overhead from frequent commits; but then the last *`N`*-1 uncommitted write operations could be lost if an unexpected exit occurs.
+  Este valor é definido como 1 por padrão, sob a suposição de que os dados armazenados são importantes para preservar em caso de falha e devem ser imediatamente submetidos a commit. Ao armazenar dados não críticos, você pode aumentar este valor para reduzir a sobrecarga de commits frequentes; mas então as últimas *`N`*-1 operações de gravação não submetidas a commit podem ser perdidas se ocorrer uma saída inesperada.
 
-  For more information, see Section 14.21.3, “Setting Up the InnoDB memcached Plugin”.
+  Para mais informações, consulte a Seção 14.21.3, “Configurando o Plugin memcached do InnoDB”.
 
 * `ignore_builtin_innodb`
 
-  <table frame="box" rules="all" summary="Properties for ignore_builtin_innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--ignore-builtin-innodb[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code>ignore_builtin_innodb</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--ignore-builtin-innodb[={OFF|ON}]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Variável de Sistema</th> <td><code>ignore_builtin_innodb</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr></tbody></table>
 
-  In earlier versions of MySQL, enabling this variable caused the server to behave as if the built-in `InnoDB` were not present, which enabled the `InnoDB Plugin` to be used instead. In MySQL 5.7, `InnoDB` is the default storage engine and `InnoDB Plugin` is not used, so this variable is ignored.
+  Em versões anteriores do MySQL, habilitar esta variável fazia com que o servidor se comportasse como se o `InnoDB` embutido não estivesse presente, o que permitia que o `InnoDB Plugin` fosse usado em seu lugar. No MySQL 5.7, o `InnoDB` é o storage engine padrão e o `InnoDB Plugin` não é usado, então esta variável é ignorada.
 
 * `innodb_adaptive_flushing`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Specifies whether to dynamically adjust the rate of flushing dirty pages in the `InnoDB` buffer pool based on the workload. Adjusting the flush rate dynamically is intended to avoid bursts of I/O activity. This setting is enabled by default. See Section 14.8.3.5, “Configuring Buffer Pool Flushing” for more information. For general I/O tuning advice, see Section 8.5.8, “Optimizing InnoDB Disk I/O”.
+  Especifica se a taxa de flushing de dirty pages no Buffer Pool do `InnoDB` deve ser ajustada dinamicamente com base na workload. O ajuste dinâmico da taxa de flush visa evitar picos de atividade de I/O. Esta configuração está habilitada por padrão. Consulte a Seção 14.8.3.5, “Configurando o Flushing do Buffer Pool”, para mais informações. Para conselhos gerais sobre ajuste de I/O, consulte a Seção 8.5.8, “Otimizando I/O de Disco do InnoDB”.
 
 * `innodb_adaptive_flushing_lwm`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Defines the low water mark representing percentage of redo log capacity at which adaptive flushing is enabled. For more information, see Section 14.8.3.5, “Configuring Buffer Pool Flushing”.
+  Define o limite inferior (low water mark - LWM) que representa a porcentagem da capacidade do redo log na qual o flushing adaptativo é habilitado. Para mais informações, consulte a Seção 14.8.3.5, “Configurando o Flushing do Buffer Pool”.
 
 * `innodb_adaptive_hash_index`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Whether the `InnoDB` adaptive hash index is enabled or disabled. It may be desirable, depending on your workload, to dynamically enable or disable adaptive hash indexing to improve query performance. Because the adaptive hash index may not be useful for all workloads, conduct benchmarks with it both enabled and disabled, using realistic workloads. See Section 14.5.3, “Adaptive Hash Index” for details.
+  Define se o adaptive hash index do `InnoDB` está habilitado ou desabilitado. Pode ser desejável, dependendo da sua workload, habilitar ou desabilitar dinamicamente o adaptive hash indexing para melhorar a performance da Query. Como o adaptive hash index pode não ser útil para todas as workloads, realize benchmarks com ele tanto habilitado quanto desabilitado, usando workloads realistas. Consulte a Seção 14.5.3, “Adaptive Hash Index”, para detalhes.
 
-  This variable is enabled by default. You can modify this parameter using the `SET GLOBAL` statement, without restarting the server. Changing the setting at runtime requires privileges sufficient to set global system variables. See Section 5.1.8.1, “System Variable Privileges”. You can also use `--skip-innodb-adaptive-hash-index` at server startup to disable it.
+  Esta variável está habilitada por padrão. Você pode modificar este parâmetro usando a instrução `SET GLOBAL`, sem reiniciar o servidor. Alterar a configuração em tempo de execução requer privilégios suficientes para definir variáveis de sistema globais. Consulte a Seção 5.1.8.1, “Privilégios de Variáveis de Sistema”. Você também pode usar `--skip-innodb-adaptive-hash-index` na inicialização do servidor para desabilitá-lo.
 
-  Disabling the adaptive hash index empties the hash table immediately. Normal operations can continue while the hash table is emptied, and executing queries that were using the hash table access the index B-trees directly instead. When the adaptive hash index is re-enabled, the hash table is populated again during normal operation.
+  Desabilitar o adaptive hash index esvazia a hash table imediatamente. As operações normais podem continuar enquanto a hash table é esvaziada, e as Queries em execução que estavam usando o acesso via hash table acessam as B-trees do Index diretamente. Quando o adaptive hash index é reabilitado, a hash table é populada novamente durante a operação normal.
 
 * `innodb_adaptive_hash_index_parts`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Partitions the adaptive hash index search system. Each index is bound to a specific partition, with each partition protected by a separate latch.
+  Particiona o sistema de busca do adaptive hash index. Cada Index é vinculado a uma partição específica, com cada partição protegida por um latch separado.
 
-  In earlier releases, the adaptive hash index search system was protected by a single latch (`btr_search_latch`) which could become a point of contention. With the introduction of the `innodb_adaptive_hash_index_parts` option, the search system is partitioned into 8 parts by default. The maximum setting is 512.
+  Em versões anteriores, o sistema de busca do adaptive hash index era protegido por um único latch (`btr_search_latch`), que poderia se tornar um ponto de contenção. Com a introdução da opção `innodb_adaptive_hash_index_parts`, o sistema de busca é particionado em 8 partes por padrão. A configuração máxima é 512.
 
-  For related information, see Section 14.5.3, “Adaptive Hash Index”.
+  Para informações relacionadas, consulte a Seção 14.5.3, “Adaptive Hash Index”.
 
 * `innodb_adaptive_max_sleep_delay`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Permits `InnoDB` to automatically adjust the value of `innodb_thread_sleep_delay` up or down according to the current workload. Any nonzero value enables automated, dynamic adjustment of the `innodb_thread_sleep_delay` value, up to the maximum value specified in the `innodb_adaptive_max_sleep_delay` option. The value represents the number of microseconds. This option can be useful in busy systems, with greater than 16 `InnoDB` threads. (In practice, it is most valuable for MySQL systems with hundreds or thousands of simultaneous connections.)
+  Permite que o `InnoDB` ajuste automaticamente o valor de `innodb_thread_sleep_delay` para cima ou para baixo de acordo com a workload atual. Qualquer valor não zero habilita o ajuste automatizado e dinâmico do valor `innodb_thread_sleep_delay`, até o valor máximo especificado na opção `innodb_adaptive_max_sleep_delay`. O valor representa o número de microssegundos. Esta opção pode ser útil em sistemas ocupados, com mais de 16 Threads `InnoDB`. (Na prática, é mais valiosa para sistemas MySQL com centenas ou milhares de conexões simultâneas.)
 
-  For more information, see Section 14.8.5, “Configuring Thread Concurrency for InnoDB”.
+  Para mais informações, consulte a Seção 14.8.5, “Configurando a Concorrência de Threads para o InnoDB”.
 
 * `innodb_api_bk_commit_interval`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  How often to auto-commit idle connections that use the `InnoDB` **memcached** interface, in seconds. For more information, see Section 14.21.5.4, “Controlling Transactional Behavior of the InnoDB memcached Plugin”.
+  Com que frequência as conexões ociosas que usam a interface **memcached** do `InnoDB` fazem auto-commit, em segundos. Para mais informações, consulte a Seção 14.21.5.4, “Controlando o Comportamento Transacional do Plugin memcached do InnoDB”.
 
 * `innodb_api_disable_rowlock`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Use this option to disable row locks when `InnoDB` **memcached** performs DML operations. By default, `innodb_api_disable_rowlock` is disabled, which means that **memcached** requests row locks for `get` and `set` operations. When `innodb_api_disable_rowlock` is enabled, **memcached** requests a table lock instead of row locks.
+  Use esta opção para desabilitar row locks quando o **memcached** do `InnoDB` realiza operações DML. Por padrão, `innodb_api_disable_rowlock` está desabilitado, o que significa que as requisições do **memcached** solicitam row locks para operações `get` e `set`. Quando `innodb_api_disable_rowlock` está habilitado, o **memcached** solicita um table Lock em vez de row locks.
 
-  `innodb_api_disable_rowlock` is not dynamic. It must be specified on the **mysqld** command line or entered in the MySQL configuration file. Configuration takes effect when the plugin is installed, which occurs when the MySQL server is started.
+  `innodb_api_disable_rowlock` não é dinâmico. Deve ser especificado na linha de comando do **mysqld** ou inserido no arquivo de configuração do MySQL. A configuração entra em vigor quando o plugin é instalado, o que ocorre quando o servidor MySQL é iniciado.
 
-  For more information, see Section 14.21.5.4, “Controlling Transactional Behavior of the InnoDB memcached Plugin”.
+  Para mais informações, consulte a Seção 14.21.5.4, “Controlando o Comportamento Transacional do Plugin memcached do InnoDB”.
 
 * `innodb_api_enable_binlog`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Lets you use the `InnoDB` **memcached** plugin with the MySQL binary log. For more information, see Enabling the InnoDB memcached Binary Log.
+  Permite que você use o plugin **memcached** do `InnoDB` com o binary log do MySQL. Para mais informações, consulte Habilitando o Binary Log do memcached do InnoDB.
 
 * `innodb_api_enable_mdl`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Locks the table used by the `InnoDB` **memcached** plugin, so that it cannot be dropped or altered by DDL through the SQL interface. For more information, see Section 14.21.5.4, “Controlling Transactional Behavior of the InnoDB memcached Plugin”.
+  Bloqueia a table usada pelo plugin **memcached** do `InnoDB`, para que ela não possa ser descartada ou alterada por DDL através da interface SQL. Para mais informações, consulte a Seção 14.21.5.4, “Controlando o Comportamento Transacional do Plugin memcached do InnoDB”.
 
 * `innodb_api_trx_level`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Controls the transaction isolation level on queries processed by the **memcached** interface. The constants corresponding to the familiar names are:
+  Controla o nível de isolamento de transaction em Queries processadas pela interface **memcached**. As constantes correspondentes aos nomes familiares são:
 
   + 0 = `READ UNCOMMITTED`
   + 1 = `READ COMMITTED`
   + 2 = `REPEATABLE READ`
   + 3 = `SERIALIZABLE`
 
-  For more information, see Section 14.21.5.4, “Controlling Transactional Behavior of the InnoDB memcached Plugin”.
+  Para mais informações, consulte a Seção 14.21.5.4, “Controlando o Comportamento Transacional do Plugin memcached do InnoDB”.
 
 * `innodb_autoextend_increment`
 
-  <table frame="box" rules="all" summary="Properties for innodb-status-file"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb-status-file[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb-status-file"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb-status-file[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  The increment size (in megabytes) for extending the size of an auto-extending `InnoDB` system tablespace file when it becomes full. The default value is 64. For related information, see System Tablespace Data File Configuration, and Resizing the System Tablespace.
+  O tamanho do incremento (em megabytes) para estender o tamanho de um arquivo de tablespace de sistema do `InnoDB` com auto-extensão quando ele fica cheio. O valor padrão é 64. Para informações relacionadas, consulte Configuração do Arquivo de Dados do Tablespace do Sistema e Redimensionando o Tablespace do Sistema.
 
-  The `innodb_autoextend_increment` setting does not affect file-per-table tablespace files or general tablespace files. These files are auto-extending regardless of the `innodb_autoextend_increment` setting. The initial extensions are by small amounts, after which extensions occur in increments of 4MB.
+  A configuração `innodb_autoextend_increment` não afeta os arquivos de tablespace por table (file-per-table tablespace files) ou arquivos de tablespace gerais. Estes arquivos têm auto-extensão, independentemente da configuração `innodb_autoextend_increment`. As extensões iniciais são por pequenas quantidades, após as quais as extensões ocorrem em incrementos de 4MB.
 
 * `innodb_autoinc_lock_mode`
 
-  <table frame="box" rules="all" summary="Properties for innodb-status-file"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb-status-file[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb-status-file"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb-status-file[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  The lock mode to use for generating auto-increment values. Permissible values are 0, 1, or 2, for traditional, consecutive, or interleaved, respectively. The default setting is 1 (consecutive). For the characteristics of each lock mode, see InnoDB AUTO_INCREMENT Lock Modes.
+  O Lock mode a ser usado para gerar valores de auto-incremento. Os valores permitidos são 0, 1 ou 2, para tradicional, consecutivo ou intercalado (interleaved), respectivamente. A configuração padrão é 1 (consecutivo). Para as características de cada Lock mode, consulte Modos de Lock AUTO_INCREMENT do InnoDB.
 
 * `innodb_background_drop_list_empty`
 
-  <table frame="box" rules="all" summary="Properties for innodb-status-file"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb-status-file[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb-status-file"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb-status-file[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Enabling the `innodb_background_drop_list_empty` debug option helps avoid test case failures by delaying table creation until the background drop list is empty. For example, if test case A places table `t1` on the background drop list, test case B waits until the background drop list is empty before creating table `t1`.
+  Habilitar a opção de Debug `innodb_background_drop_list_empty` ajuda a evitar falhas em casos de teste, atrasando a criação de tabelas até que a lista de drop em background esteja vazia. Por exemplo, se o caso de teste A colocar a table `t1` na lista de drop em background, o caso de teste B aguarda até que a lista de drop em background esteja vazia antes de criar a table `t1`.
 
 * `innodb_buffer_pool_chunk_size`
 
-  <table frame="box" rules="all" summary="Properties for innodb-status-file"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb-status-file[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb-status-file"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb-status-file[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  `innodb_buffer_pool_chunk_size` defines the chunk size for `InnoDB` buffer pool resizing operations.
+  `innodb_buffer_pool_chunk_size` define o tamanho do chunk para operações de redimensionamento do Buffer Pool do `InnoDB`.
 
-  To avoid copying all buffer pool pages during resizing operations, the operation is performed in “chunks”. By default, `innodb_buffer_pool_chunk_size` is 128MB (134217728 bytes). The number of pages contained in a chunk depends on the value of `innodb_page_size`. `innodb_buffer_pool_chunk_size` can be increased or decreased in units of 1MB (1048576 bytes).
+  Para evitar copiar todas as páginas do Buffer Pool durante operações de redimensionamento, a operação é realizada em “chunks”. Por padrão, `innodb_buffer_pool_chunk_size` é de 128MB (134217728 bytes). O número de páginas contidas em um chunk depende do valor de `innodb_page_size`. `innodb_buffer_pool_chunk_size` pode ser aumentado ou diminuído em unidades de 1MB (1048576 bytes).
 
-  The following conditions apply when altering the `innodb_buffer_pool_chunk_size` value:
+  As seguintes condições se aplicam ao alterar o valor de `innodb_buffer_pool_chunk_size`:
 
-  + If `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances` is larger than the current buffer pool size when the buffer pool is initialized, `innodb_buffer_pool_chunk_size` is truncated to `innodb_buffer_pool_size` / `innodb_buffer_pool_instances`.
+  + Se `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances` for maior do que o tamanho atual do Buffer Pool quando o Buffer Pool é inicializado, `innodb_buffer_pool_chunk_size` é truncado para `innodb_buffer_pool_size` / `innodb_buffer_pool_instances`.
 
-  + Buffer pool size must always be equal to or a multiple of `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`. If you alter `innodb_buffer_pool_chunk_size`, `innodb_buffer_pool_size` is automatically rounded to a value that is equal to or a multiple of `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`. The adjustment occurs when the buffer pool is initialized.
+  + O tamanho do Buffer Pool deve ser sempre igual ou um múltiplo de `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`. Se você alterar `innodb_buffer_pool_chunk_size`, `innodb_buffer_pool_size` é automaticamente arredondado para um valor que é igual ou um múltiplo de `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`. O ajuste ocorre quando o Buffer Pool é inicializado.
 
-  Important
+  Importante
 
-  Care should be taken when changing `innodb_buffer_pool_chunk_size`, as changing this value can automatically increase the size of the buffer pool. Before changing `innodb_buffer_pool_chunk_size`, calculate the effect it has on `innodb_buffer_pool_size` to ensure that the resulting buffer pool size is acceptable.
+  Deve-se ter cuidado ao alterar `innodb_buffer_pool_chunk_size`, pois alterar este valor pode aumentar automaticamente o tamanho do Buffer Pool. Antes de alterar `innodb_buffer_pool_chunk_size`, calcule o efeito que isso terá em `innodb_buffer_pool_size` para garantir que o tamanho resultante do Buffer Pool seja aceitável.
 
-  To avoid potential performance issues, the number of chunks (`innodb_buffer_pool_size` / `innodb_buffer_pool_chunk_size`) should not exceed 1000.
+  Para evitar potenciais problemas de performance, o número de chunks (`innodb_buffer_pool_size` / `innodb_buffer_pool_chunk_size`) não deve exceder 1000.
 
-  The `innodb_buffer_pool_size` variable is dynamic, which permits resizing the buffer pool while the server is online. However, the buffer pool size must be equal to or a multiple of `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`, and changing either of those variable settings requires restarting the server.
+  A variável `innodb_buffer_pool_size` é dinâmica, o que permite redimensionar o Buffer Pool enquanto o servidor está online. No entanto, o tamanho do Buffer Pool deve ser igual ou um múltiplo de `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`, e alterar qualquer uma dessas configurações de variável requer reiniciar o servidor.
 
-  See Section 14.8.3.1, “Configuring InnoDB Buffer Pool Size” for more information.
+  Consulte a Seção 14.8.3.1, “Configurando o Tamanho do Buffer Pool do InnoDB”, para mais informações.
 
 * `innodb_buffer_pool_dump_at_shutdown`
 
-  <table frame="box" rules="all" summary="Properties for innodb-status-file"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb-status-file[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb-status-file"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb-status-file[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Specifies whether to record the pages cached in the `InnoDB` buffer pool when the MySQL server is shut down, to shorten the warmup process at the next restart. Typically used in combination with `innodb_buffer_pool_load_at_startup`. The `innodb_buffer_pool_dump_pct` option defines the percentage of most recently used buffer pool pages to dump.
+  Especifica se as páginas armazenadas em cache no Buffer Pool do `InnoDB` devem ser registradas quando o servidor MySQL é desligado, para encurtar o processo de warmup na próxima reinicialização. Tipicamente usado em combinação com `innodb_buffer_pool_load_at_startup`. A opção `innodb_buffer_pool_dump_pct` define a porcentagem das páginas do Buffer Pool usadas mais recentemente a serem despejadas (dump).
 
-  Both `innodb_buffer_pool_dump_at_shutdown` and `innodb_buffer_pool_load_at_startup` are enabled by default.
+  Ambas as opções, `innodb_buffer_pool_dump_at_shutdown` e `innodb_buffer_pool_load_at_startup`, estão habilitadas por padrão.
 
-  For more information, see Section 14.8.3.6, “Saving and Restoring the Buffer Pool State”.
+  Para mais informações, consulte a Seção 14.8.3.6, “Salvando e Restaurando o Estado do Buffer Pool”.
 
 * `innodb_buffer_pool_dump_now`
 
-  <table frame="box" rules="all" summary="Properties for innodb-status-file"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb-status-file[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb-status-file"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb-status-file[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Immediately makes a record of pages cached in the `InnoDB` buffer pool. Typically used in combination with `innodb_buffer_pool_load_now`.
+  Cria imediatamente um registro das páginas armazenadas em cache no Buffer Pool do `InnoDB`. Tipicamente usado em combinação com `innodb_buffer_pool_load_now`.
 
-  Enabling `innodb_buffer_pool_dump_now` triggers the recording action but does not alter the variable setting, which always remains `OFF` or `0`. To view buffer pool dump status after triggering a dump, query the `Innodb_buffer_pool_dump_status` variable.
+  Habilitar `innodb_buffer_pool_dump_now` aciona a ação de registro, mas não altera a configuração da variável, que sempre permanece `OFF` ou `0`. Para visualizar o status do dump do Buffer Pool após acionar um dump, consulte a variável `Innodb_buffer_pool_dump_status`.
 
-  For more information, see Section 14.8.3.6, “Saving and Restoring the Buffer Pool State”.
+  Para mais informações, consulte a Seção 14.8.3.6, “Salvando e Restaurando o Estado do Buffer Pool”.
 
 * `innodb_buffer_pool_dump_pct`
 
-  <table frame="box" rules="all" summary="Properties for innodb-status-file"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb-status-file[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb-status-file"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb-status-file[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Specifies the percentage of the most recently used pages for each buffer pool to read out and dump. The range is 1 to 100. The default value is 25. For example, if there are 4 buffer pools with 100 pages each, and `innodb_buffer_pool_dump_pct` is set to 25, the 25 most recently used pages from each buffer pool are dumped.
+  Especifica a porcentagem das páginas usadas mais recentemente para cada Buffer Pool a serem lidas e despejadas. O intervalo é de 1 a 100. O valor padrão é 25. Por exemplo, se houver 4 Buffer Pools com 100 páginas cada, e `innodb_buffer_pool_dump_pct` for definido como 25, as 25 páginas usadas mais recentemente de cada Buffer Pool serão despejadas.
 
-  The change to the `innodb_buffer_pool_dump_pct` default value coincides with default value changes for `innodb_buffer_pool_dump_at_shutdown` and `innodb_buffer_pool_load_at_startup`, which are both enabled by default in MySQL 5.7.
+  A alteração no valor padrão de `innodb_buffer_pool_dump_pct` coincide com as alterações de valor padrão para `innodb_buffer_pool_dump_at_shutdown` e `innodb_buffer_pool_load_at_startup`, que estão ambos habilitados por padrão no MySQL 5.7.
 
 * `innodb_buffer_pool_filename`
 
-  <table frame="box" rules="all" summary="Properties for innodb-status-file"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb-status-file[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb-status-file"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb-status-file[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Specifies the name of the file that holds the list of tablespace IDs and page IDs produced by `innodb_buffer_pool_dump_at_shutdown` or `innodb_buffer_pool_dump_now`. Tablespace IDs and page IDs are saved in the following format: `space, page_id`. By default, the file is named `ib_buffer_pool` and is located in the `InnoDB` data directory. A non-default location must be specified relative to the data directory.
+  Especifica o nome do arquivo que contém a lista de IDs de tablespace e IDs de página produzida por `innodb_buffer_pool_dump_at_shutdown` ou `innodb_buffer_pool_dump_now`. IDs de tablespace e IDs de página são salvos no seguinte formato: `space, page_id`. Por padrão, o arquivo é chamado `ib_buffer_pool` e está localizado no data directory do `InnoDB`. Uma localização não padrão deve ser especificada em relação ao data directory.
 
-  A file name can be specified at runtime, using a `SET` statement:
+  Um nome de arquivo pode ser especificado em tempo de execução, usando uma instrução `SET`:
 
   ```sql
   SET GLOBAL innodb_buffer_pool_filename='file_name';
   ```
 
-  You can also specify a file name at startup, in a startup string or MySQL configuration file. When specifying a file name at startup, the file must exist or `InnoDB` returns a startup error indicating that there is no such file or directory.
+  Você também pode especificar um nome de arquivo na inicialização, em uma string de inicialização ou no arquivo de configuração do MySQL. Ao especificar um nome de arquivo na inicialização, o arquivo deve existir, caso contrário o `InnoDB` retorna um erro de inicialização indicando que não existe tal arquivo ou diretório.
 
-  For more information, see Section 14.8.3.6, “Saving and Restoring the Buffer Pool State”.
+  Para mais informações, consulte a Seção 14.8.3.6, “Salvando e Restaurando o Estado do Buffer Pool”.
 
 * `innodb_buffer_pool_instances`
 
-  <table frame="box" rules="all" summary="Properties for innodb-status-file"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb-status-file[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb-status-file"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb-status-file[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  The number of regions that the `InnoDB` buffer pool is divided into. For systems with buffer pools in the multi-gigabyte range, dividing the buffer pool into separate instances can improve concurrency, by reducing contention as different threads read and write to cached pages. Each page that is stored in or read from the buffer pool is assigned to one of the buffer pool instances randomly, using a hashing function. Each buffer pool instance manages its own free lists, flush lists, LRUs, and all other data structures connected to a buffer pool, and is protected by its own buffer pool mutex.
+  O número de regiões em que o Buffer Pool do `InnoDB` é dividido. Para sistemas com Buffer Pools na faixa de multi-gigabytes, dividir o Buffer Pool em instâncias separadas pode melhorar a concorrência, reduzindo a contenção à medida que diferentes Threads leem e escrevem em páginas em cache. Cada página que é armazenada ou lida do Buffer Pool é atribuída a uma das instâncias do Buffer Pool aleatoriamente, usando uma função de hashing. Cada instância do Buffer Pool gerencia suas próprias listas livres, listas de flush, LRUs e todas as outras estruturas de dados conectadas a um Buffer Pool, e é protegida por seu próprio mutex de Buffer Pool.
 
-  This option only takes effect when setting `innodb_buffer_pool_size` to 1GB or more. The total buffer pool size is divided among all the buffer pools. For best efficiency, specify a combination of `innodb_buffer_pool_instances` and `innodb_buffer_pool_size` so that each buffer pool instance is at least 1GB.
+  Esta opção só entra em vigor ao definir `innodb_buffer_pool_size` para 1GB ou mais. O tamanho total do Buffer Pool é dividido entre todas as instâncias do Buffer Pool. Para melhor eficiência, especifique uma combinação de `innodb_buffer_pool_instances` e `innodb_buffer_pool_size` para que cada instância do Buffer Pool tenha pelo menos 1GB.
 
-  The default value on 32-bit Windows systems depends on the value of `innodb_buffer_pool_size`, as described below:
+  O valor padrão em sistemas Windows de 32 bits depende do valor de `innodb_buffer_pool_size`, conforme descrito abaixo:
 
-  + If `innodb_buffer_pool_size` is greater than 1.3GB, the default for `innodb_buffer_pool_instances` is `innodb_buffer_pool_size`/128MB, with individual memory allocation requests for each chunk. 1.3GB was chosen as the boundary at which there is significant risk for 32-bit Windows to be unable to allocate the contiguous address space needed for a single buffer pool.
+  + Se `innodb_buffer_pool_size` for maior que 1.3GB, o padrão para `innodb_buffer_pool_instances` é `innodb_buffer_pool_size`/128MB, com solicitações individuais de alocação de memória para cada chunk. 1.3GB foi escolhido como o limite no qual existe um risco significativo para o Windows de 32 bits de ser incapaz de alocar o espaço de endereço contíguo necessário para um único Buffer Pool.
 
-  + Otherwise, the default is 1.
+  + Caso contrário, o padrão é 1.
 
-  On all other platforms, the default value is 8 when `innodb_buffer_pool_size` is greater than or equal to 1GB. Otherwise, the default is 1.
+  Em todas as outras plataformas, o valor padrão é 8 quando `innodb_buffer_pool_size` é maior ou igual a 1GB. Caso contrário, o padrão é 1.
 
-  For related information, see Section 14.8.3.1, “Configuring InnoDB Buffer Pool Size”.
+  Para informações relacionadas, consulte a Seção 14.8.3.1, “Configurando o Tamanho do Buffer Pool do InnoDB”.
 
 * `innodb_buffer_pool_load_abort`
 
-  <table frame="box" rules="all" summary="Properties for innodb-status-file"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb-status-file[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb-status-file"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb-status-file[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Interrupts the process of restoring `InnoDB` buffer pool contents triggered by `innodb_buffer_pool_load_at_startup` or `innodb_buffer_pool_load_now`.
+  Interrompe o processo de restauração do conteúdo do Buffer Pool do `InnoDB` acionado por `innodb_buffer_pool_load_at_startup` ou `innodb_buffer_pool_load_now`.
 
-  Enabling `innodb_buffer_pool_load_abort` triggers the abort action but does not alter the variable setting, which always remains `OFF` or `0`. To view buffer pool load status after triggering an abort action, query the `Innodb_buffer_pool_load_status` variable.
+  Habilitar `innodb_buffer_pool_load_abort` aciona a ação de aborto, mas não altera a configuração da variável, que sempre permanece `OFF` ou `0`. Para visualizar o status de carregamento do Buffer Pool após acionar uma ação de aborto, consulte a variável `Innodb_buffer_pool_load_status`.
 
-  For more information, see Section 14.8.3.6, “Saving and Restoring the Buffer Pool State”.
+  Para mais informações, consulte a Seção 14.8.3.6, “Salvando e Restaurando o Estado do Buffer Pool”.
 
 * `innodb_buffer_pool_load_at_startup`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_enable_binlog"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-enable-binlog[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_enable_binlog</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-enable-binlog[={OFF|ON}]</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_enable_binlog</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Specifies that, on MySQL server startup, the `InnoDB` buffer pool is automatically warmed up by loading the same pages it held at an earlier time. Typically used in combination with `innodb_buffer_pool_dump_at_shutdown`.
+  Especifica que, na inicialização do servidor MySQL, o Buffer Pool do `InnoDB` é automaticamente aquecido (warmed up) carregando as mesmas páginas que continha em um momento anterior. Tipicamente usado em combinação com `innodb_buffer_pool_dump_at_shutdown`.
 
-  Both `innodb_buffer_pool_dump_at_shutdown` and `innodb_buffer_pool_load_at_startup` are enabled by default.
+  Ambas as opções, `innodb_buffer_pool_dump_at_shutdown` e `innodb_buffer_pool_load_at_startup`, estão habilitadas por padrão.
 
-  For more information, see Section 14.8.3.6, “Saving and Restoring the Buffer Pool State”.
+  Para mais informações, consulte a Seção 14.8.3.6, “Salvando e Restaurando o Estado do Buffer Pool”.
 
 * `innodb_buffer_pool_load_now`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_enable_binlog"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-enable-binlog[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_enable_binlog</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-enable-binlog[={OFF|ON}]</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_enable_binlog</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Immediately warms up the `InnoDB` buffer pool by loading data pages without waiting for a server restart. Can be useful to bring cache memory back to a known state during benchmarking or to ready the MySQL server to resume its normal workload after running queries for reports or maintenance.
+  Aquece imediatamente o Buffer Pool do `InnoDB` carregando as páginas de dados sem esperar por uma reinicialização do servidor. Pode ser útil para trazer a memória cache de volta a um estado conhecido durante o benchmarking ou para preparar o servidor MySQL para retomar sua workload normal após executar Queries para relatórios ou manutenção.
 
-  Enabling `innodb_buffer_pool_load_now` triggers the load action but does not alter the variable setting, which always remains `OFF` or `0`. To view buffer pool load progress after triggering a load, query the `Innodb_buffer_pool_load_status` variable.
+  Habilitar `innodb_buffer_pool_load_now` aciona a ação de carregamento, mas não altera a configuração da variável, que sempre permanece `OFF` ou `0`. Para visualizar o progresso do carregamento do Buffer Pool após acionar um load, consulte a variável `Innodb_buffer_pool_load_status`.
 
-  For more information, see Section 14.8.3.6, “Saving and Restoring the Buffer Pool State”.
+  Para mais informações, consulte a Seção 14.8.3.6, “Salvando e Restaurando o Estado do Buffer Pool”.
 
 * `innodb_buffer_pool_size`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_enable_binlog"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-enable-binlog[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_enable_binlog</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-enable-binlog[={OFF|ON}]</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_enable_binlog</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  The size in bytes of the buffer pool, the memory area where `InnoDB` caches table and index data. The default value is 134217728 bytes (128MB). The maximum value depends on the CPU architecture; the maximum is 4294967295 (232-1) on 32-bit systems and 18446744073709551615 (264-1) on 64-bit systems. On 32-bit systems, the CPU architecture and operating system may impose a lower practical maximum size than the stated maximum. When the size of the buffer pool is greater than 1GB, setting `innodb_buffer_pool_instances` to a value greater than 1 can improve the scalability on a busy server.
+  O tamanho em bytes do Buffer Pool, a área de memória onde o `InnoDB` armazena dados de table e Index em cache. O valor padrão é 134217728 bytes (128MB). O valor máximo depende da arquitetura da CPU; o máximo é 4294967295 (2^32-1) em sistemas de 32 bits e 18446744073709551615 (2^64-1) em sistemas de 64 bits. Em sistemas de 32 bits, a arquitetura da CPU e o sistema operacional podem impor um tamanho máximo prático inferior ao máximo declarado. Quando o tamanho do Buffer Pool é maior que 1GB, definir `innodb_buffer_pool_instances` para um valor maior que 1 pode melhorar a escalabilidade em um servidor ocupado.
 
-  A larger buffer pool requires less disk I/O to access the same table data more than once. On a dedicated database server, you might set the buffer pool size to 80% of the machine's physical memory size. Be aware of the following potential issues when configuring buffer pool size, and be prepared to scale back the size of the buffer pool if necessary.
+  Um Buffer Pool maior requer menos I/O de disco para acessar os mesmos dados da table mais de uma vez. Em um servidor de Database dedicado, você pode definir o tamanho do Buffer Pool para 80% da memória física da máquina. Esteja ciente dos seguintes problemas potenciais ao configurar o tamanho do Buffer Pool e esteja preparado para reduzir o tamanho do Buffer Pool, se necessário.
 
-  + Competition for physical memory can cause paging in the operating system.
+  + A competição pela memória física pode causar paginação no sistema operacional.
 
-  + `InnoDB` reserves additional memory for buffers and control structures, so that the total allocated space is approximately 10% greater than the specified buffer pool size.
+  + O `InnoDB` reserva memória adicional para Buffers e estruturas de controle, de modo que o espaço total alocado é aproximadamente 10% maior do que o tamanho do Buffer Pool especificado.
 
-  + Address space for the buffer pool must be contiguous, which can be an issue on Windows systems with DLLs that load at specific addresses.
+  + O espaço de endereço para o Buffer Pool deve ser contíguo, o que pode ser um problema em sistemas Windows com DLLs que carregam em endereços específicos.
 
-  + The time to initialize the buffer pool is roughly proportional to its size. On instances with large buffer pools, initialization time might be significant. To reduce the initialization period, you can save the buffer pool state at server shutdown and restore it at server startup. See Section 14.8.3.6, “Saving and Restoring the Buffer Pool State”.
+  + O tempo para inicializar o Buffer Pool é aproximadamente proporcional ao seu tamanho. Em instâncias com Buffer Pools grandes, o tempo de inicialização pode ser significativo. Para reduzir o período de inicialização, você pode salvar o estado do Buffer Pool no desligamento do servidor e restaurá-lo na inicialização do servidor. Consulte a Seção 14.8.3.6, “Salvando e Restaurando o Estado do Buffer Pool”.
 
-  When you increase or decrease buffer pool size, the operation is performed in chunks. Chunk size is defined by the `innodb_buffer_pool_chunk_size` variable, which has a default of 128 MB.
+  Quando você aumenta ou diminui o tamanho do Buffer Pool, a operação é realizada em chunks. O tamanho do chunk é definido pela variável `innodb_buffer_pool_chunk_size`, que tem um padrão de 128 MB.
 
-  Buffer pool size must always be equal to or a multiple of `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`. If you alter the buffer pool size to a value that is not equal to or a multiple of `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`, buffer pool size is automatically adjusted to a value that is equal to or a multiple of `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`.
+  O tamanho do Buffer Pool deve ser sempre igual ou um múltiplo de `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`. Se você alterar o tamanho do Buffer Pool para um valor que não seja igual ou um múltiplo de `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`, o tamanho do Buffer Pool é ajustado automaticamente para um valor que seja igual ou um múltiplo de `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`.
 
-  `innodb_buffer_pool_size` can be set dynamically, which allows you to resize the buffer pool without restarting the server. The `Innodb_buffer_pool_resize_status` status variable reports the status of online buffer pool resizing operations. See Section 14.8.3.1, “Configuring InnoDB Buffer Pool Size” for more information.
+  `innodb_buffer_pool_size` pode ser definido dinamicamente, o que permite redimensionar o Buffer Pool sem reiniciar o servidor. A variável de status `Innodb_buffer_pool_resize_status` relata o status das operações de redimensionamento do Buffer Pool online. Consulte a Seção 14.8.3.1, “Configurando o Tamanho do Buffer Pool do InnoDB”, para mais informações.
 
 * `innodb_change_buffer_max_size`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_enable_binlog"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-enable-binlog[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_enable_binlog</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-enable-binlog[={OFF|ON}]</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_enable_binlog</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Maximum size for the `InnoDB` change buffer, as a percentage of the total size of the buffer pool. You might increase this value for a MySQL server with heavy insert, update, and delete activity, or decrease it for a MySQL server with unchanging data used for reporting. For more information, see Section 14.5.2, “Change Buffer”. For general I/O tuning advice, see Section 8.5.8, “Optimizing InnoDB Disk I/O”.
+  Tamanho máximo para o Change Buffer do `InnoDB`, como uma porcentagem do tamanho total do Buffer Pool. Você pode aumentar este valor para um servidor MySQL com alta atividade de insert, update e delete, ou diminuí-lo para um servidor MySQL com dados imutáveis usados para relatórios. Para mais informações, consulte a Seção 14.5.2, “Change Buffer”. Para conselhos gerais sobre ajuste de I/O, consulte a Seção 8.5.8, “Otimizando I/O de Disco do InnoDB”.
 
 * `innodb_change_buffering`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_enable_binlog"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-enable-binlog[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_enable_binlog</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-enable-binlog[={OFF|ON}]</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_enable_binlog</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Whether `InnoDB` performs change buffering, an optimization that delays write operations to secondary indexes so that the I/O operations can be performed sequentially. Permitted values are described in the following table.
+  Se o `InnoDB` realiza o change buffering, uma otimização que atrasa as operações de gravação em Indexes secundários para que as operações de I/O possam ser realizadas sequencialmente. Os valores permitidos são descritos na tabela a seguir.
 
-  **Table 14.19 Permitted Values for innodb_change_buffering**
+  **Tabela 14.19 Valores Permitidos para innodb_change_buffering**
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_enable_binlog"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-enable-binlog[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_enable_binlog</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-enable-binlog[={OFF|ON}]</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_enable_binlog</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  For more information, see Section 14.5.2, “Change Buffer”. For general I/O tuning advice, see Section 8.5.8, “Optimizing InnoDB Disk I/O”.
+  Para mais informações, consulte a Seção 14.5.2, “Change Buffer”. Para conselhos gerais sobre ajuste de I/O, consulte a Seção 8.5.8, “Otimizando I/O de Disco do InnoDB”.
 
 * `innodb_change_buffering_debug`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_enable_binlog"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-enable-binlog[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_enable_binlog</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-enable-binlog[={OFF|ON}]</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_enable_binlog</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Sets a debug flag for `InnoDB` change buffering. A value of 1 forces all changes to the change buffer. A value of 2 causes an unexpected exit at merge. A default value of 0 indicates that the change buffering debug flag is not set. This option is only available when debugging support is compiled in using the `WITH_DEBUG` **CMake** option.
+  Define um flag de Debug para o change buffering do `InnoDB`. Um valor de 1 força todas as alterações para o Change Buffer. Um valor de 2 causa uma saída inesperada no merge. Um valor padrão de 0 indica que o flag de Debug do change buffering não está definido. Esta opção só está disponível se o suporte a Debug for compilado usando a opção **CMake** `WITH_DEBUG`.
 
 * `innodb_checksum_algorithm`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_enable_binlog"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-enable-binlog[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_enable_binlog</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-enable-binlog[={OFF|ON}]</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_enable_binlog</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Specifies how to generate and verify the checksum stored in the disk blocks of `InnoDB` tablespaces. `crc32` is the default value as of MySQL 5.7.7.
+  Especifica como gerar e verificar o checksum armazenado nos blocos de disco dos tablespaces do `InnoDB`. `crc32` é o valor padrão a partir do MySQL 5.7.7.
 
-  `innodb_checksum_algorithm` replaces the `innodb_checksums` option. The following values were provided for compatibility, up to and including MySQL 5.7.6:
+  `innodb_checksum_algorithm` substitui a opção `innodb_checksums`. Os seguintes valores foram fornecidos para compatibilidade, até e incluindo o MySQL 5.7.6:
 
-  + `innodb_checksums=ON` is the same as `innodb_checksum_algorithm=innodb`.
+  + `innodb_checksums=ON` é o mesmo que `innodb_checksum_algorithm=innodb`.
 
-  + `innodb_checksums=OFF` is the same as `innodb_checksum_algorithm=none`.
+  + `innodb_checksums=OFF` é o mesmo que `innodb_checksum_algorithm=none`.
 
-  As of MySQL 5.7.7, with a default `innodb_checksum_algorithm` value of crc32, `innodb_checksums=ON` is now the same as `innodb_checksum_algorithm=crc32`. `innodb_checksums=OFF` is still the same as `innodb_checksum_algorithm=none`.
+  A partir do MySQL 5.7.7, com um valor padrão de `innodb_checksum_algorithm` igual a `crc32`, `innodb_checksums=ON` agora é o mesmo que `innodb_checksum_algorithm=crc32`. `innodb_checksums=OFF` ainda é o mesmo que `innodb_checksum_algorithm=none`.
 
-  To avoid conflicts, remove references to `innodb_checksums` from MySQL configuration files and startup scripts.
+  Para evitar conflitos, remova referências a `innodb_checksums` dos arquivos de configuração e scripts de inicialização do MySQL.
 
-  The value `innodb` is backward-compatible with earlier versions of MySQL. The value `crc32` uses an algorithm that is faster to compute the checksum for every modified block, and to check the checksums for each disk read. It scans blocks 64 bits at a time, which is faster than the `innodb` checksum algorithm, which scans blocks 8 bits at a time. The value `none` writes a constant value in the checksum field rather than computing a value based on the block data. The blocks in a tablespace can use a mix of old, new, and no checksum values, being updated gradually as the data is modified; once blocks in a tablespace are modified to use the `crc32` algorithm, the associated tables cannot be read by earlier versions of MySQL.
+  O valor `innodb` é backward-compatible com versões anteriores do MySQL. O valor `crc32` usa um algoritmo mais rápido para calcular o checksum para cada bloco modificado e para verificar os checksums para cada leitura de disco. Ele escaneia blocos de 64 bits por vez, o que é mais rápido do que o algoritmo de checksum `innodb`, que escaneia blocos de 8 bits por vez. O valor `none` escreve um valor constante no campo de checksum em vez de calcular um valor baseado nos dados do bloco. Os blocos em um tablespace podem usar uma mistura de valores de checksum antigos, novos e nulos, sendo atualizados gradualmente à medida que os dados são modificados; uma vez que os blocos em um tablespace são modificados para usar o algoritmo `crc32`, as tabelas associadas não podem ser lidas por versões anteriores do MySQL.
 
-  The strict form of a checksum algorithm reports an error if it encounters a valid but non-matching checksum value in a tablespace. It is recommended that you only use strict settings in a new instance, to set up tablespaces for the first time. Strict settings are somewhat faster, because they do not need to compute all checksum values during disk reads.
+  A forma estrita de um algoritmo de checksum reporta um erro se encontrar um valor de checksum válido, mas não correspondente, em um tablespace. Recomenda-se que você use configurações estritas apenas em uma nova instância, para configurar os tablespaces pela primeira vez. As configurações estritas são um pouco mais rápidas, porque não precisam calcular todos os valores de checksum durante as leituras de disco.
 
   Note
 
-  Prior to MySQL 5.7.8, a strict mode setting for `innodb_checksum_algorithm` caused `InnoDB` to halt when encountering a *valid* but non-matching checksum. In MySQL 5.7.8 and later, only an error message is printed, and the page is accepted as valid if it has a valid `innodb`, `crc32` or `none` checksum.
+  Antes do MySQL 5.7.8, uma configuração de modo estrito para `innodb_checksum_algorithm` fazia com que o `InnoDB` parasse ao encontrar um checksum *válido* mas não correspondente. No MySQL 5.7.8 e posterior, apenas uma mensagem de erro é impressa, e a página é aceita como válida se tiver um checksum `innodb`, `crc32` ou `none` válido.
 
-  The following table shows the difference between the `none`, `innodb`, and `crc32` option values, and their strict counterparts. `none`, `innodb`, and `crc32` write the specified type of checksum value into each data block, but for compatibility accept other checksum values when verifying a block during a read operation. Strict settings also accept valid checksum values but print an error message when a valid non-matching checksum value is encountered. Using the strict form can make verification faster if all `InnoDB` data files in an instance are created under an identical `innodb_checksum_algorithm` value.
+  A tabela a seguir mostra a diferença entre os valores de opção `none`, `innodb` e `crc32`, e suas contrapartes estritas. `none`, `innodb` e `crc32` escrevem o tipo especificado de valor de checksum em cada bloco de dados, mas para compatibilidade aceitam outros valores de checksum ao verificar um bloco durante uma operação de leitura. As configurações estritas também aceitam valores de checksum válidos, mas imprimem uma mensagem de erro quando um valor de checksum válido não correspondente é encontrado. Usar a forma estrita pode tornar a verificação mais rápida se todos os arquivos de dados do `InnoDB` em uma instância forem criados sob um valor `innodb_checksum_algorithm` idêntico.
 
-  **Table 14.20 Permitted innodb_checksum_algorithm Values**
+  **Tabela 14.20 Valores Permitidos para innodb_checksum_algorithm**
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_enable_binlog"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-enable-binlog[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_enable_binlog</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-enable-binlog[={OFF|ON}]</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_enable_binlog</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Versions of MySQL Enterprise Backup up to 3.8.0 do not support backing up tablespaces that use CRC32 checksums. MySQL Enterprise Backup adds CRC32 checksum support in 3.8.1, with some limitations. Refer to the MySQL Enterprise Backup 3.8.1 Change History for more information.
+  Versões do MySQL Enterprise Backup até 3.8.0 não suportam backup de tablespaces que usam checksums CRC32. O MySQL Enterprise Backup adiciona suporte a checksum CRC32 na versão 3.8.1, com algumas limitações. Consulte o Histórico de Alterações do MySQL Enterprise Backup 3.8.1 para mais informações.
 
 * `innodb_checksums`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_enable_binlog"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-enable-binlog[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_enable_binlog</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-enable-binlog[={OFF|ON}]</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_enable_binlog</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  `InnoDB` can use checksum validation on all tablespace pages read from disk to ensure extra fault tolerance against hardware faults or corrupted data files. This validation is enabled by default. Under specialized circumstances (such as when running benchmarks) this safety feature can be disabled with `--skip-innodb-checksums`. You can specify the method of calculating the checksum using the `innodb_checksum_algorithm` option.
+  O `InnoDB` pode usar a validação de checksum em todas as páginas de tablespace lidas do disco para garantir tolerância a falhas extra contra falhas de hardware ou arquivos de dados corrompidos. Esta validação é habilitada por padrão. Em circunstâncias especializadas (como ao executar benchmarks) este recurso de segurança pode ser desabilitado com `--skip-innodb-checksums`. Você pode especificar o método de cálculo do checksum usando a opção `innodb_checksum_algorithm`.
 
-  `innodb_checksums` is deprecated, replaced by `innodb_checksum_algorithm`.
+  `innodb_checksums` está descontinuada, substituída por `innodb_checksum_algorithm`.
 
-  Prior to MySQL 5.7.7, `innodb_checksums=ON` is the same as `innodb_checksum_algorithm=innodb`. As of MySQL 5.7.7, the `innodb_checksum_algorithm` default value is `crc32`, and `innodb_checksums=ON` is the same as `innodb_checksum_algorithm=crc32`. `innodb_checksums=OFF` is the same as `innodb_checksum_algorithm=none`.
+  Antes do MySQL 5.7.7, `innodb_checksums=ON` é o mesmo que `innodb_checksum_algorithm=innodb`. A partir do MySQL 5.7.7, o valor padrão de `innodb_checksum_algorithm` é `crc32`, e `innodb_checksums=ON` é o mesmo que `innodb_checksum_algorithm=crc32`. `innodb_checksums=OFF` é o mesmo que `innodb_checksum_algorithm=none`.
 
-  Remove any `innodb_checksums` options from your configuration files and startup scripts to avoid conflicts with `innodb_checksum_algorithm`. `innodb_checksums=OFF` automatically sets `innodb_checksum_algorithm=none`. `innodb_checksums=ON` is ignored and overridden by any other setting for `innodb_checksum_algorithm`.
+  Remova quaisquer opções `innodb_checksums` de seus arquivos de configuração e scripts de inicialização para evitar conflitos com `innodb_checksum_algorithm`. `innodb_checksums=OFF` define automaticamente `innodb_checksum_algorithm=none`. `innodb_checksums=ON` é ignorado e sobrescrito por qualquer outra configuração para `innodb_checksum_algorithm`.
 
 * `innodb_cmp_per_index_enabled`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_engine_lib_name"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-engine-lib-name=file_name</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_engine_lib_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>innodb_engine.so</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-engine-lib-name=file_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_engine_lib_name</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
-  Enables per-index compression-related statistics in the Information Schema `INNODB_CMP_PER_INDEX` table. Because these statistics can be expensive to gather, only enable this option on development, test, or replica instances during performance tuning related to `InnoDB` compressed tables.
+  Habilita estatísticas relacionadas à compressão por Index na tabela `INNODB_CMP_PER_INDEX` do Information Schema. Como essas estatísticas podem ser caras de coletar, habilite esta opção apenas em instâncias de desenvolvimento, teste ou replica durante o ajuste de performance relacionado a tabelas comprimidas do `InnoDB`.
 
-  For more information, see Section 24.4.7, “The INFORMATION_SCHEMA INNODB_CMP_PER_INDEX and INNODB_CMP_PER_INDEX_RESET Tables”, and Section 14.9.1.4, “Monitoring InnoDB Table Compression at Runtime”.
+  Para mais informações, consulte a Seção 24.4.7, “As Tabelas INFORMATION_SCHEMA INNODB_CMP_PER_INDEX e INNODB_CMP_PER_INDEX_RESET”, e a Seção 14.9.1.4, “Monitorando a Compressão de Tabela do InnoDB em Tempo de Execução”.
 
 * `innodb_commit_concurrency`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_engine_lib_name"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-engine-lib-name=file_name</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_engine_lib_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>innodb_engine.so</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-engine-lib-name=file_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_engine_lib_name</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
-  The number of threads that can commit at the same time. A value of 0 (the default) permits any number of transactions to commit simultaneously.
+  O número de Threads que podem fazer commit ao mesmo tempo. Um valor de 0 (o padrão) permite que qualquer número de transactions faça commit simultaneamente.
 
-  The value of `innodb_commit_concurrency` cannot be changed at runtime from zero to nonzero or vice versa. The value can be changed from one nonzero value to another.
+  O valor de `innodb_commit_concurrency` não pode ser alterado em tempo de execução de zero para não zero ou vice-versa. O valor pode ser alterado de um valor não zero para outro.
 
 * `innodb_compress_debug`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_engine_lib_name"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-engine-lib-name=file_name</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_engine_lib_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>innodb_engine.so</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-engine-lib-name=file_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_engine_lib_name</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
-  Compresses all tables using a specified compression algorithm without having to define a `COMPRESSION` attribute for each table. This option is only available if debugging support is compiled in using the `WITH_DEBUG` **CMake** option.
+  Comprime todas as tabelas usando um algoritmo de compressão especificado sem ter que definir um atributo `COMPRESSION` para cada table. Esta opção só está disponível se o suporte a Debug for compilado usando a opção **CMake** `WITH_DEBUG`.
 
-  For related information, see Section 14.9.2, “InnoDB Page Compression”.
+  Para informações relacionadas, consulte a Seção 14.9.2, “Compressão de Página do InnoDB”.
 
 * `innodb_compression_failure_threshold_pct`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_engine_lib_name"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-engine-lib-name=file_name</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_engine_lib_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>innodb_engine.so</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-engine-lib-name=file_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_engine_lib_name</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
-  Defines the compression failure rate threshold for a table, as a percentage, at which point MySQL begins adding padding within compressed pages to avoid expensive compression failures. When this threshold is passed, MySQL begins to leave additional free space within each new compressed page, dynamically adjusting the amount of free space up to the percentage of page size specified by `innodb_compression_pad_pct_max`. A value of zero disables the mechanism that monitors compression efficiency and dynamically adjusts the padding amount.
+  Define o limite percentual de taxa de falha de compressão para uma table, momento em que o MySQL começa a adicionar padding dentro das páginas comprimidas para evitar falhas de compressão caras. Quando este limite é ultrapassado, o MySQL começa a deixar espaço livre adicional dentro de cada nova página comprimida, ajustando dinamicamente a quantidade de espaço livre até a porcentagem do tamanho da página especificada por `innodb_compression_pad_pct_max`. Um valor de zero desabilita o mecanismo que monitora a eficiência da compressão e ajusta dinamicamente a quantidade de padding.
 
-  For more information, see Section 14.9.1.6, “Compression for OLTP Workloads”.
+  Para mais informações, consulte a Seção 14.9.1.6, “Compressão para Workloads OLTP”.
 
 * `innodb_compression_level`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_engine_lib_name"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-engine-lib-name=file_name</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_engine_lib_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>innodb_engine.so</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-engine-lib-name=file_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_engine_lib_name</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
-  Specifies the level of zlib compression to use for `InnoDB` compressed tables and indexes. A higher value lets you fit more data onto a storage device, at the expense of more CPU overhead during compression. A lower value lets you reduce CPU overhead when storage space is not critical, or you expect the data is not especially compressible.
+  Especifica o nível de compressão zlib a ser usado para tabelas e Indexes comprimidos do `InnoDB`. Um valor mais alto permite que você insira mais dados em um dispositivo de armazenamento, à custa de mais sobrecarga de CPU durante a compressão. Um valor mais baixo permite que você reduza a sobrecarga de CPU quando o espaço de armazenamento não é crítico, ou você espera que os dados não sejam especialmente compressíveis.
 
-  For more information, see Section 14.9.1.6, “Compression for OLTP Workloads”.
+  Para mais informações, consulte a Seção 14.9.1.6, “Compressão para Workloads OLTP”.
 
 * `innodb_compression_pad_pct_max`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_engine_lib_name"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-engine-lib-name=file_name</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_engine_lib_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>innodb_engine.so</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-engine-lib-name=file_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_engine_lib_name</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
-  Specifies the maximum percentage that can be reserved as free space within each compressed page, allowing room to reorganize the data and modification log within the page when a compressed table or index is updated and the data might be recompressed. Only applies when `innodb_compression_failure_threshold_pct` is set to a nonzero value, and the rate of compression failures passes the cutoff point.
+  Especifica a porcentagem máxima que pode ser reservada como espaço livre dentro de cada página comprimida, permitindo espaço para reorganizar os dados e o log de modificação dentro da página quando uma table ou Index comprimido é atualizado e os dados podem ser recomprimidos. Aplica-se apenas quando `innodb_compression_failure_threshold_pct` está definido para um valor não zero, e a taxa de falhas de compressão ultrapassa o ponto de corte.
 
-  For more information, see Section 14.9.1.6, “Compression for OLTP Workloads”.
+  Para mais informações, consulte a Seção 14.9.1.6, “Compressão para Workloads OLTP”.
 
 * `innodb_concurrency_tickets`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_engine_lib_name"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-engine-lib-name=file_name</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_engine_lib_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>innodb_engine.so</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-engine-lib-name=file_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_engine_lib_name</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
-  Determines the number of threads that can enter `InnoDB` concurrently. A thread is placed in a queue when it tries to enter `InnoDB` if the number of threads has already reached the concurrency limit. When a thread is permitted to enter `InnoDB`, it is given a number of “ tickets” equal to the value of `innodb_concurrency_tickets`, and the thread can enter and leave `InnoDB` freely until it has used up its tickets. After that point, the thread again becomes subject to the concurrency check (and possible queuing) the next time it tries to enter `InnoDB`. The default value is 5000.
+  Determina o número de Threads que podem entrar no `InnoDB` concorrentemente. Um Thread é colocado em uma fila quando tenta entrar no `InnoDB` se o número de Threads já atingiu o limite de concorrência. Quando um Thread é permitido entrar no `InnoDB`, ele recebe um número de “tickets” igual ao valor de `innodb_concurrency_tickets`, e o Thread pode entrar e sair do `InnoDB` livremente até que tenha esgotado seus tickets. Depois disso, o Thread novamente se torna sujeito à verificação de concorrência (e possível enfileiramento) na próxima vez que tentar entrar no `InnoDB`. O valor padrão é 5000.
 
-  With a small `innodb_concurrency_tickets` value, small transactions that only need to process a few rows compete fairly with larger transactions that process many rows. The disadvantage of a small `innodb_concurrency_tickets` value is that large transactions must loop through the queue many times before they can complete, which extends the amount of time required to complete their task.
+  Com um valor pequeno de `innodb_concurrency_tickets`, transactions pequenas que só precisam processar algumas rows competem de forma justa com transactions maiores que processam muitas rows. A desvantagem de um valor pequeno de `innodb_concurrency_tickets` é que transactions grandes devem passar pela fila muitas vezes antes de poderem ser concluídas, o que estende a quantidade de tempo necessária para completar sua tarefa.
 
-  With a large `innodb_concurrency_tickets` value, large transactions spend less time waiting for a position at the end of the queue (controlled by `innodb_thread_concurrency`) and more time retrieving rows. Large transactions also require fewer trips through the queue to complete their task. The disadvantage of a large `innodb_concurrency_tickets` value is that too many large transactions running at the same time can starve smaller transactions by making them wait a longer time before executing.
+  Com um valor grande de `innodb_concurrency_tickets`, transactions grandes gastam menos tempo esperando por uma posição no final da fila (controlada por `innodb_thread_concurrency`) e mais tempo recuperando rows. Transactions grandes também exigem menos viagens pela fila para completar sua tarefa. A desvantagem de um valor grande de `innodb_concurrency_tickets` é que muitas transactions grandes rodando ao mesmo tempo podem privar transactions menores, fazendo-as esperar mais tempo antes de executar.
 
-  With a nonzero `innodb_thread_concurrency` value, you may need to adjust the `innodb_concurrency_tickets` value up or down to find the optimal balance between larger and smaller transactions. The `SHOW ENGINE INNODB STATUS` report shows the number of tickets remaining for an executing transaction in its current pass through the queue. This data may also be obtained from the `TRX_CONCURRENCY_TICKETS` column of the Information Schema `INNODB_TRX` table.
+  Com um valor `innodb_thread_concurrency` não zero, você pode precisar ajustar o valor de `innodb_concurrency_tickets` para cima ou para baixo para encontrar o equilíbrio ideal entre transactions maiores e menores. O relatório `SHOW ENGINE INNODB STATUS` mostra o número de tickets restantes para uma transaction em execução em sua passagem atual pela fila. Esses dados também podem ser obtidos da coluna `TRX_CONCURRENCY_TICKETS` da tabela `INNODB_TRX` do Information Schema.
 
-  For more information, see Section 14.8.5, “Configuring Thread Concurrency for InnoDB”.
+  Para mais informações, consulte a Seção 14.8.5, “Configurando a Concorrência de Threads para o InnoDB”.
 
 * `innodb_data_file_path`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_engine_lib_name"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-engine-lib-name=file_name</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_engine_lib_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>innodb_engine.so</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-engine-lib-name=file_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_engine_lib_name</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
-  Defines the name, size, and attributes of `InnoDB` system tablespace data files.. If you do not specify a value for `innodb_data_file_path`, the default behavior is to create a single auto-extending data file, slightly larger than 12MB, named `ibdata1`.
+  Define o nome, tamanho e atributos dos arquivos de dados do tablespace de sistema do `InnoDB`. Se você não especificar um valor para `innodb_data_file_path`, o comportamento padrão é criar um único arquivo de dados com auto-extensão, um pouco maior que 12MB, chamado `ibdata1`.
 
-  The full syntax for a data file specification includes the file name, file size, `autoextend` attribute, and `max` attribute:
+  A sintaxe completa para uma especificação de arquivo de dados inclui o nome do arquivo, tamanho do arquivo, atributo `autoextend` e atributo `max`:
 
   ```sql
   file_name:file_size[:autoextend[:max:max_file_size
   ```
 
-  File sizes are specified in kilobytes, megabytes, or gigabytes by appending `K`, `M` or `G` to the size value. If specifying the data file size in kilobytes, do so in multiples of 1024. Otherwise, KB values are rounded to nearest megabyte (MB) boundary. The sum of file sizes must be, at a minimum, slightly larger than 12MB.
+  Os tamanhos de arquivo são especificados em kilobytes, megabytes ou gigabytes anexando `K`, `M` ou `G` ao valor do tamanho. Se estiver especificando o tamanho do arquivo de dados em kilobytes, faça-o em múltiplos de 1024. Caso contrário, os valores em KB são arredondados para o limite de megabytes (MB) mais próximo. A soma dos tamanhos dos arquivos deve ser, no mínimo, um pouco maior que 12MB.
 
-  For additional configuration information, see System Tablespace Data File Configuration. For resizing instructions, see Resizing the System Tablespace.
+  Para informações adicionais de configuração, consulte Configuração do Arquivo de Dados do Tablespace do Sistema. Para instruções de redimensionamento, consulte Redimensionando o Tablespace do Sistema.
 
 * `innodb_data_home_dir`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_engine_lib_name"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-engine-lib-name=file_name</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_engine_lib_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>innodb_engine.so</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-engine-lib-name=file_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_engine_lib_name</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
-  The common part of the directory path for `InnoDB` system tablespace data files. The default value is the MySQL `data` directory. The setting is concatenated with the `innodb_data_file_path` setting. If you specify the value as an empty string, you can specify an absolute path for `innodb_data_file_path`.
+  A parte comum do path do diretório para os arquivos de dados do tablespace de sistema do `InnoDB`. O valor padrão é o `data` directory do MySQL. A configuração é concatenada com a configuração `innodb_data_file_path`. Se você especificar o valor como uma string vazia, você pode especificar um path absoluto para `innodb_data_file_path`.
 
-  A trailing slash is required when specifying a value for `innodb_data_home_dir`. For example:
+  Uma barra final (trailing slash) é necessária ao especificar um valor para `innodb_data_home_dir`. Por exemplo:
 
   ```sql
   [mysqld]
   innodb_data_home_dir = /path/to/myibdata/
   ```
 
-  This setting does not affect the location of file-per-table tablespaces.
+  Esta configuração não afeta a localização dos tablespaces file-per-table.
 
-  For related information, see Section 14.8.1, “InnoDB Startup Configuration”.
+  Para informações relacionadas, consulte a Seção 14.8.1, “Configuração de Inicialização do InnoDB”.
 
 * `innodb_deadlock_detect`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_engine_lib_name"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-engine-lib-name=file_name</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_engine_lib_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>innodb_engine.so</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-engine-lib-name=file_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_engine_lib_name</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
-  This option is used to disable deadlock detection. On high concurrency systems, deadlock detection can cause a slowdown when numerous threads wait for the same lock. At times, it may be more efficient to disable deadlock detection and rely on the `innodb_lock_wait_timeout` setting for transaction rollback when a deadlock occurs.
+  Esta opção é usada para desabilitar a detecção de Deadlock. Em sistemas de alta concorrência, a detecção de Deadlock pode causar uma lentidão quando vários Threads esperam pelo mesmo Lock. Às vezes, pode ser mais eficiente desabilitar a detecção de Deadlock e confiar na configuração `innodb_lock_wait_timeout` para rollback de transactions quando um Deadlock ocorre.
 
-  For related information, see Section 14.7.5.2, “Deadlock Detection”.
+  Para informações relacionadas, consulte a Seção 14.7.5.2, “Detecção de Deadlock”.
 
 * `innodb_default_row_format`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_engine_lib_path"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-engine-lib-path=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_engine_lib_path</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-engine-lib-path=dir_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_engine_lib_path</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
-  The `innodb_default_row_format` option defines the default row format for `InnoDB` tables and user-created temporary tables. The default setting is `DYNAMIC`. Other permitted values are `COMPACT` and `REDUNDANT`. The `COMPRESSED` row format, which is not supported for use in the system tablespace, cannot be defined as the default.
+  A opção `innodb_default_row_format` define o formato de row padrão para tabelas `InnoDB` e tabelas temporárias criadas pelo usuário. A configuração padrão é `DYNAMIC`. Outros valores permitidos são `COMPACT` e `REDUNDANT`. O formato de row `COMPRESSED`, que não é suportado para uso no tablespace do sistema, não pode ser definido como padrão.
 
-  Newly created tables use the row format defined by `innodb_default_row_format` when a `ROW_FORMAT` option is not specified explicitly or when `ROW_FORMAT=DEFAULT` is used.
+  Tabelas recém-criadas usam o formato de row definido por `innodb_default_row_format` quando uma opção `ROW_FORMAT` não é especificada explicitamente ou quando `ROW_FORMAT=DEFAULT` é usado.
 
-  When a `ROW_FORMAT` option is not specified explicitly or when `ROW_FORMAT=DEFAULT` is used, any operation that rebuilds a table also silently changes the row format of the table to the format defined by `innodb_default_row_format`. For more information, see Defining the Row Format of a Table.
+  Quando uma opção `ROW_FORMAT` não é especificada explicitamente ou quando `ROW_FORMAT=DEFAULT` é usado, qualquer operação que reconstrua uma table também altera silenciosamente o formato de row da table para o formato definido por `innodb_default_row_format`. Para mais informações, consulte Definindo o Formato de Row de uma Tabela.
 
-  Internal `InnoDB` temporary tables created by the server to process queries use the `DYNAMIC` row format, regardless of the `innodb_default_row_format` setting.
+  As tabelas temporárias internas do `InnoDB` criadas pelo servidor para processar Queries usam o formato de row `DYNAMIC`, independentemente da configuração `innodb_default_row_format`.
 
 * `innodb_disable_sort_file_cache`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_engine_lib_path"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-engine-lib-path=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_engine_lib_path</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-engine-lib-path=dir_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_engine_lib_path</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
-  Disables the operating system file system cache for merge-sort temporary files. The effect is to open such files with the equivalent of `O_DIRECT`.
+  Desabilita o cache do sistema de arquivos do sistema operacional para arquivos temporários de merge-sort. O efeito é abrir tais arquivos com o equivalente de `O_DIRECT`.
 
 * `innodb_disable_resize_buffer_pool_debug`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_engine_lib_path"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-engine-lib-path=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_engine_lib_path</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-engine-lib-path=dir_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_engine_lib_path</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
-  Disables resizing of the `InnoDB` buffer pool. This option is only available if debugging support is compiled in using the `WITH_DEBUG` **CMake** option.
+  Desabilita o redimensionamento do Buffer Pool do `InnoDB`. Esta opção só está disponível se o suporte a Debug for compilado usando a opção **CMake** `WITH_DEBUG`.
 
 * `innodb_doublewrite`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_engine_lib_path"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-engine-lib-path=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_engine_lib_path</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-engine-lib-path=dir_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_engine_lib_path</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
-  When enabled (the default), `InnoDB` stores all data twice, first to the doublewrite buffer, then to the actual data files. This variable can be turned off with `--skip-innodb-doublewrite` for benchmarks or cases when top performance is needed rather than concern for data integrity or possible failures.
+  Quando habilitado (o padrão), o `InnoDB` armazena todos os dados duas vezes, primeiro no doublewrite buffer, e depois nos arquivos de dados reais. Esta variável pode ser desativada com `--skip-innodb-doublewrite` para benchmarks ou casos em que o desempenho máximo é necessário em vez da preocupação com a integridade dos dados ou possíveis falhas.
 
-  If system tablespace data files (`ibdata*` files) are located on Fusion-io devices that support atomic writes, doublewrite buffering is automatically disabled and Fusion-io atomic writes are used for all data files. Because the doublewrite buffer setting is global, doublewrite buffering is also disabled for data files residing on non-Fusion-io hardware. This feature is only supported on Fusion-io hardware and only enabled for Fusion-io NVMFS on Linux. To take full advantage of this feature, an `innodb_flush_method` setting of `O_DIRECT` is recommended.
+  Se os arquivos de dados do tablespace do sistema (arquivos `ibdata*`) estiverem localizados em dispositivos Fusion-io que suportam atomic writes, o doublewrite buffering é automaticamente desabilitado e atomic writes do Fusion-io são usados para todos os arquivos de dados. Como a configuração do doublewrite buffer é global, o doublewrite buffering também é desabilitado para arquivos de dados que residem em hardware não Fusion-io. Este recurso é suportado apenas em hardware Fusion-io e habilitado apenas para Fusion-io NVMFS no Linux. Para tirar o máximo proveito deste recurso, é recomendada uma configuração de `innodb_flush_method` de `O_DIRECT`.
 
-  For related information, see Section 14.6.5, “Doublewrite Buffer”.
+  Para informações relacionadas, consulte a Seção 14.6.5, “Doublewrite Buffer”.
 
 * `innodb_fast_shutdown`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_engine_lib_path"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-engine-lib-path=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_engine_lib_path</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-engine-lib-path=dir_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_engine_lib_path</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
-  The `InnoDB` shutdown mode. If the value is 0, `InnoDB` does a slow shutdown, a full purge and a change buffer merge before shutting down. If the value is 1 (the default), `InnoDB` skips these operations at shutdown, a process known as a fast shutdown. If the value is 2, `InnoDB` flushes its logs and shuts down cold, as if MySQL had crashed; no committed transactions are lost, but the crash recovery operation makes the next startup take longer.
+  O modo de desligamento do `InnoDB`. Se o valor for 0, o `InnoDB` realiza um desligamento lento (slow shutdown), um purge completo e um merge do Change Buffer antes de desligar. Se o valor for 1 (o padrão), o `InnoDB` ignora essas operações no desligamento, um processo conhecido como desligamento rápido (fast shutdown). Se o valor for 2, o `InnoDB` faz flush de seus logs e desliga "frio" (cold), como se o MySQL tivesse travado (crashed); nenhuma transaction com commit é perdida, mas a operação de crash recovery fará com que a próxima inicialização demore mais.
 
-  The slow shutdown can take minutes, or even hours in extreme cases where substantial amounts of data are still buffered. Use the slow shutdown technique before upgrading or downgrading between MySQL major releases, so that all data files are fully prepared in case the upgrade process updates the file format.
+  O desligamento lento pode levar minutos, ou até horas em casos extremos onde quantidades substanciais de dados ainda estão em Buffer. Use a técnica de desligamento lento antes de fazer upgrade ou downgrade entre major releases do MySQL, para que todos os arquivos de dados estejam totalmente preparados caso o processo de upgrade atualize o formato do arquivo.
 
-  Use `innodb_fast_shutdown=2` in emergency or troubleshooting situations, to get the absolute fastest shutdown if data is at risk of corruption.
+  Use `innodb_fast_shutdown=2` em situações de emergência ou solução de problemas, para obter o desligamento absolutamente mais rápido se os dados estiverem em risco de corrupção.
 
 * `innodb_fil_make_page_dirty_debug`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_engine_lib_path"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-engine-lib-path=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_engine_lib_path</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-engine-lib-path=dir_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_engine_lib_path</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
-  By default, setting `innodb_fil_make_page_dirty_debug` to the ID of a tablespace immediately dirties the first page of the tablespace. If `innodb_saved_page_number_debug` is set to a non-default value, setting `innodb_fil_make_page_dirty_debug` dirties the specified page. The `innodb_fil_make_page_dirty_debug` option is only available if debugging support is compiled in using the `WITH_DEBUG` **CMake** option.
+  Por padrão, definir `innodb_fil_make_page_dirty_debug` para o ID de um tablespace imediatamente torna suja (dirty) a primeira página do tablespace. Se `innodb_saved_page_number_debug` estiver definido para um valor não padrão, definir `innodb_fil_make_page_dirty_debug` torna suja a página especificada. A opção `innodb_fil_make_page_dirty_debug` só está disponível se o suporte a Debug for compilado usando a opção **CMake** `WITH_DEBUG`.
 
 * `innodb_file_format`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_engine_lib_path"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-engine-lib-path=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_engine_lib_path</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-engine-lib-path=dir_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_engine_lib_path</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
-  Enables an `InnoDB` file format for file-per-table tablespaces. Supported file formats are `Antelope` and `Barracuda`. `Antelope` is the original `InnoDB` file format, which supports `REDUNDANT` and `COMPACT` row formats. `Barracuda` is the newer file format, which supports `COMPRESSED` and `DYNAMIC` row formats.
+  Habilita um formato de arquivo `InnoDB` para tablespaces file-per-table. Os formatos de arquivo suportados são `Antelope` e `Barracuda`. `Antelope` é o formato de arquivo `InnoDB` original, que suporta os formatos de row `REDUNDANT` e `COMPACT`. `Barracuda` é o formato de arquivo mais recente, que suporta os formatos de row `COMPRESSED` e `DYNAMIC`.
 
-  `COMPRESSED` and `DYNAMIC` row formats enable important storage features for `InnoDB` tables. See Section 14.11, “InnoDB Row Formats”.
+  Os formatos de row `COMPRESSED` e `DYNAMIC` habilitam importantes recursos de armazenamento para tabelas `InnoDB`. Consulte a Seção 14.11, “Formatos de Row do InnoDB”.
 
-  Changing the `innodb_file_format` setting does not affect the file format of existing `InnoDB` tablespace files.
+  Alterar a configuração `innodb_file_format` não afeta o formato de arquivo dos arquivos de tablespace `InnoDB` existentes.
 
-  The `innodb_file_format` setting does not apply to general tablespaces, which support tables of all row formats. See Section 14.6.3.3, “General Tablespaces”.
+  A configuração `innodb_file_format` não se aplica a tablespaces gerais, que suportam tabelas de todos os formatos de row. Consulte a Seção 14.6.3.3, “Tablespaces Gerais”.
 
-  The `innodb_file_format` default value was changed to `Barracuda` in MySQL 5.7.
+  O valor padrão de `innodb_file_format` foi alterado para `Barracuda` no MySQL 5.7.
 
-  The `innodb_file_format` setting is ignored when creating tables that use the `DYNAMIC` row format. A table created using the `DYNAMIC` row format always uses the `Barracuda` file format, regardless of the `innodb_file_format` setting. To use the `COMPRESSED` row format, `innodb_file_format` must be set to `Barracuda`.
+  A configuração `innodb_file_format` é ignorada ao criar tabelas que usam o formato de row `DYNAMIC`. Uma table criada usando o formato de row `DYNAMIC` sempre usa o formato de arquivo `Barracuda`, independentemente da configuração `innodb_file_format`. Para usar o formato de row `COMPRESSED`, `innodb_file_format` deve ser definido como `Barracuda`.
 
-  The `innodb_file_format` option is deprecated; expect it to be removed in a future release. The purpose of the `innodb_file_format` option was to allow users to downgrade to the built-in version of `InnoDB` in earlier versions of MySQL. Now that those versions of MySQL have reached the end of their product lifecycles, downgrade support provided by this option is no longer necessary.
+  A opção `innodb_file_format` está descontinuada; espere que seja removida em uma futura versão. O propósito da opção `innodb_file_format` era permitir que os usuários fizessem downgrade para a versão embutida do `InnoDB` em versões anteriores do MySQL. Agora que essas versões do MySQL atingiram o fim de seus ciclos de vida de produto, o suporte a downgrade fornecido por esta opção não é mais necessário.
 
-  For more information, see Section 14.10, “InnoDB File-Format Management”.
+  Para mais informações, consulte a Seção 14.10, “Gerenciamento do Formato de Arquivo do InnoDB”.
 
 * `innodb_file_format_check`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_engine_lib_path"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-engine-lib-path=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_engine_lib_path</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-engine-lib-path=dir_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_engine_lib_path</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
-  This variable can be set to 1 or 0 at server startup to enable or disable whether `InnoDB` checks the file format tag in the system tablespace (for example, `Antelope` or `Barracuda`). If the tag is checked and is higher than that supported by the current version of `InnoDB`, an error occurs and `InnoDB` does not start. If the tag is not higher, `InnoDB` sets the value of `innodb_file_format_max` to the file format tag.
+  Esta variável pode ser definida como 1 ou 0 na inicialização do servidor para habilitar ou desabilitar se o `InnoDB` verifica o tag de formato de arquivo no tablespace do sistema (por exemplo, `Antelope` ou `Barracuda`). Se o tag for verificado e for superior ao suportado pela versão atual do `InnoDB`, ocorre um erro e o `InnoDB` não inicia. Se o tag não for superior, o `InnoDB` define o valor de `innodb_file_format_max` para o tag do formato de arquivo.
 
   Note
 
-  Despite the default value sometimes being displayed as `ON` or `OFF`, always use the numeric values 1 or 0 to turn this option on or off in your configuration file or command line string.
+  Apesar de o valor padrão ser às vezes exibido como `ON` ou `OFF`, sempre use os valores numéricos 1 ou 0 para ligar ou desligar esta opção em seu arquivo de configuração ou string de linha de comando.
 
-  For more information, see Section 14.10.2.1, “Compatibility Check When InnoDB Is Started”.
+  Para mais informações, consulte a Seção 14.10.2.1, “Verificação de Compatibilidade Quando o InnoDB é Iniciado”.
 
-  The `innodb_file_format_check` option is deprecated together with the `innodb_file_format` option. You should expect both options to be removed in a future release.
+  A opção `innodb_file_format_check` está descontinuada juntamente com a opção `innodb_file_format`. Você deve esperar que ambas as opções sejam removidas em uma futura versão.
 
 * `innodb_file_format_max`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_engine_lib_path"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-engine-lib-path=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_engine_lib_path</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-engine-lib-path=dir_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_engine_lib_path</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
-  At server startup, `InnoDB` sets the value of this variable to the file format tag in the system tablespace (for example, `Antelope` or `Barracuda`). If the server creates or opens a table with a “higher” file format, it sets the value of `innodb_file_format_max` to that format.
+  Na inicialização do servidor, o `InnoDB` define o valor desta variável para o tag de formato de arquivo no tablespace do sistema (por exemplo, `Antelope` ou `Barracuda`). Se o servidor criar ou abrir uma table com um formato de arquivo “superior”, ele define o valor de `innodb_file_format_max` para esse formato.
 
-  For related information, see Section 14.10, “InnoDB File-Format Management”.
+  Para informações relacionadas, consulte a Seção 14.10, “Gerenciamento do Formato de Arquivo do InnoDB”.
 
-  The `innodb_file_format_max` option is deprecated together with the `innodb_file_format` option. You should expect both options to be removed in a future release.
+  A opção `innodb_file_format_max` está descontinuada juntamente com a opção `innodb_file_format`. Você deve esperar que ambas as opções sejam removidas em uma futura versão.
 
 * `innodb_file_per_table`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_engine_lib_path"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-engine-lib-path=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_engine_lib_path</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-engine-lib-path=dir_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_engine_lib_path</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
-  When `innodb_file_per_table` is enabled, tables are created in file-per-table tablespaces by default. When disabled, tables are created in the system tablespace by default. For information about file-per-table tablespaces, see Section 14.6.3.2, “File-Per-Table Tablespaces”. For information about the `InnoDB` system tablespace, see Section 14.6.3.1, “The System Tablespace”.
+  Quando `innodb_file_per_table` está habilitado, as tabelas são criadas em tablespaces file-per-table por padrão. Quando desabilitado, as tabelas são criadas no tablespace do sistema por padrão. Para informações sobre tablespaces file-per-table, consulte a Seção 14.6.3.2, “Tablespaces File-Per-Table”. Para informações sobre o tablespace do sistema `InnoDB`, consulte a Seção 14.6.3.1, “O Tablespace do Sistema”.
 
-  The `innodb_file_per_table` variable can be configured at runtime using a `SET GLOBAL` statement, specified on the command line at startup, or specified in an option file. Configuration at runtime requires privileges sufficient to set global system variables (see Section 5.1.8.1, “System Variable Privileges”) and immediately affects the operation of all connections.
+  A variável `innodb_file_per_table` pode ser configurada em tempo de execução usando uma instrução `SET GLOBAL`, especificada na linha de comando na inicialização ou especificada em um arquivo de opções. A configuração em tempo de execução requer privilégios suficientes para definir variáveis de sistema globais (consulte a Seção 5.1.8.1, “Privilégios de Variáveis de Sistema”) e afeta imediatamente a operação de todas as conexões que se conectarem subsequentemente.
 
-  When a table that resides in a file-per-table tablespace is truncated or dropped, the freed space is returned to the operating system. Truncating or dropping a table that resides in the system tablespace only frees space in the system tablespace. Freed space in the system tablespace can be used again for `InnoDB` data but is not returned to the operating system, as system tablespace data files never shrink.
+  Quando uma table que reside em um tablespace file-per-table é truncada ou descartada (dropped), o espaço liberado é retornado ao sistema operacional. Truncar ou descartar uma table que reside no tablespace do sistema apenas libera espaço no tablespace do sistema. O espaço liberado no tablespace do sistema pode ser usado novamente para dados do `InnoDB`, mas não é retornado ao sistema operacional, pois os arquivos de dados do tablespace do sistema nunca encolhem.
 
-  When `innodb_file_per_table` is enabled, a table-copying `ALTER TABLE` operation on a table that resides in the system tablespace implicitly re-creates the table in a file-per-table tablespace. To prevent this from occurring, disable `innodb_file_per_table` before executing table-copying `ALTER TABLE` operations on tables that reside in the system tablespace.
+  Quando `innodb_file_per_table` está habilitado, uma operação `ALTER TABLE` de cópia de table em uma table que reside no tablespace do sistema implicitamente recria a table em um tablespace file-per-table. Para evitar que isso ocorra, desabilite `innodb_file_per_table` antes de executar operações `ALTER TABLE` de cópia de table em tabelas que residem no tablespace do sistema.
 
-  The `innodb_file_per-table` setting does not affect the creation of temporary tables. Temporary tables are created in the temporary tablespace. See Section 14.6.3.5, “The Temporary Tablespace”.
+  A configuração `innodb_file_per_table` não afeta a criação de tabelas temporárias. As tabelas temporárias são criadas no tablespace temporário. Consulte a Seção 14.6.3.5, “O Tablespace Temporário”.
 
 * `innodb_fill_factor`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_option"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-option=options</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_option</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-option=options</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_option</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
-  `InnoDB` performs a bulk load when creating or rebuilding indexes. This method of index creation is known as a “sorted index build”.
+  O `InnoDB` realiza um bulk load ao criar ou reconstruir Indexes. Este método de criação de Index é conhecido como “construção de Index ordenada” (sorted Index build).
 
-  `innodb_fill_factor` defines the percentage of space on each B-tree page that is filled during a sorted index build, with the remaining space reserved for future index growth. For example, setting `innodb_fill_factor` to 80 reserves 20 percent of the space on each B-tree page for future index growth. Actual percentages may vary. The `innodb_fill_factor` setting is interpreted as a hint rather than a hard limit.
+  `innodb_fill_factor` define a porcentagem de espaço em cada página B-tree que é preenchida durante uma construção de Index ordenada, com o espaço restante reservado para futuro crescimento do Index. Por exemplo, definir `innodb_fill_factor` para 80 reserva 20% do espaço em cada página B-tree para futuro crescimento do Index. As porcentagens reais podem variar. A configuração `innodb_fill_factor` é interpretada como uma sugestão em vez de um limite rígido.
 
-  An `innodb_fill_factor` setting of 100 leaves 1/16 of the space in clustered index pages free for future index growth.
+  Uma configuração `innodb_fill_factor` de 100 deixa 1/16 do espaço nas páginas de Index clusterizado livre para futuro crescimento do Index.
 
-  `innodb_fill_factor` applies to both B-tree leaf and non-leaf pages. It does not apply to external pages used for `TEXT` or `BLOB` entries.
+  `innodb_fill_factor` se aplica tanto às páginas folha quanto às páginas não folha do B-tree. Não se aplica a páginas externas usadas para entradas `TEXT` ou `BLOB`.
 
-  For more information, see Section 14.6.2.3, “Sorted Index Builds”.
+  Para mais informações, consulte a Seção 14.6.2.3, “Construções de Índice Ordenadas”.
 
 * `innodb_flush_log_at_timeout`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_option"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-option=options</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_option</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-option=options</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_option</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr> </tbody></table>
 
-  Write and flush the logs every *`N`* seconds. `innodb_flush_log_at_timeout` allows the timeout period between flushes to be increased in order to reduce flushing and avoid impacting performance of binary log group commit. The default setting for `innodb_flush_log_at_timeout` is once per second.
+  Escreve e faz flush dos logs a cada *`N`* segundos. `innodb_flush_log_at_timeout` permite que o período de timeout entre flushes seja aumentado para reduzir o flushing e evitar impactar a performance do group commit do binary log. A configuração padrão para `innodb_flush_log_at_timeout` é uma vez por segundo.
 
 * `innodb_flush_log_at_trx_commit`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_option"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-option=options</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_option</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-option=options</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_option</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr> </tbody></table>
 
-  Controls the balance between strict ACID compliance for commit operations and higher performance that is possible when commit-related I/O operations are rearranged and done in batches. You can achieve better performance by changing the default value but then you can lose transactions in a crash.
+  Controla o equilíbrio entre a estrita conformidade ACID para operações de commit e a maior performance que é possível quando as operações de I/O relacionadas ao commit são reorganizadas e feitas em batches. Você pode alcançar melhor performance alterando o valor padrão, mas pode perder transactions em caso de falha.
 
-  + The default setting of 1 is required for full ACID compliance. Logs are written and flushed to disk at each transaction commit.
+  + A configuração padrão de 1 é necessária para total conformidade ACID. Logs são escritos e submetidos a flush no disco a cada commit de transaction.
 
-  + With a setting of 0, logs are written and flushed to disk once per second. Transactions for which logs have not been flushed can be lost in a crash.
+  + Com uma configuração de 0, os logs são escritos e submetidos a flush no disco uma vez por segundo. Transactions para as quais os logs não foram submetidos a flush podem ser perdidas em caso de falha.
 
-  + With a setting of 2, logs are written after each transaction commit and flushed to disk once per second. Transactions for which logs have not been flushed can be lost in a crash.
+  + Com uma configuração de 2, os logs são escritos após cada commit de transaction e submetidos a flush no disco uma vez por segundo. Transactions para as quais os logs não foram submetidos a flush podem ser perdidas em caso de falha.
 
-  + For settings 0 and 2, once-per-second flushing is not 100% guaranteed. Flushing may occur more frequently due to DDL changes and other internal `InnoDB` activities that cause logs to be flushed independently of the `innodb_flush_log_at_trx_commit` setting, and sometimes less frequently due to scheduling issues. If logs are flushed once per second, up to one second of transactions can be lost in a crash. If logs are flushed more or less frequently than once per second, the amount of transactions that can be lost varies accordingly.
+  + Para as configurações 0 e 2, o flushing uma vez por segundo não é 100% garantido. O flushing pode ocorrer com mais frequência devido a alterações DDL e outras atividades internas do `InnoDB` que causam o flush dos logs independentemente da configuração `innodb_flush_log_at_trx_commit`, e às vezes com menos frequência devido a problemas de agendamento. Se os logs forem submetidos a flush uma vez por segundo, até um segundo de transactions pode ser perdido em caso de falha. Se os logs forem submetidos a flush com mais ou menos frequência do que uma vez por segundo, a quantidade de transactions que pode ser perdida varia de acordo.
 
-  + Log flushing frequency is controlled by `innodb_flush_log_at_timeout`, which allows you to set log flushing frequency to *`N`* seconds (where *`N`* is `1 ... 2700`, with a default value of 1). However, any unexpected **mysqld** process exit can erase up to *`N`* seconds of transactions.
+  + A frequência de flushing do log é controlada por `innodb_flush_log_at_timeout`, que permite definir a frequência de flushing do log para *`N`* segundos (onde *`N`* é `1 ... 2700`, com um valor padrão de 1). No entanto, qualquer saída inesperada do processo **mysqld** pode apagar até *`N`* segundos de transactions.
 
-  + DDL changes and other internal `InnoDB` activities flush the log independently of the `innodb_flush_log_at_trx_commit` setting.
+  + Alterações DDL e outras atividades internas do `InnoDB` submetem o log a flush independentemente da configuração `innodb_flush_log_at_trx_commit`.
 
-  + `InnoDB` crash recovery works regardless of the `innodb_flush_log_at_trx_commit` setting. Transactions are either applied entirely or erased entirely.
+  + O crash recovery do `InnoDB` funciona independentemente da configuração `innodb_flush_log_at_trx_commit`. As transactions são aplicadas inteiramente ou apagadas inteiramente.
 
-  For durability and consistency in a replication setup that uses `InnoDB` with transactions:
+  Para durabilidade e consistência em uma configuração de Replication que usa `InnoDB` com transactions:
 
-  + If binary logging is enabled, set `sync_binlog=1`.
+  + Se o binary logging estiver habilitado, defina `sync_binlog=1`.
 
-  + Always set `innodb_flush_log_at_trx_commit=1`.
+  + Sempre defina `innodb_flush_log_at_trx_commit=1`.
 
-  For information on the combination of settings on a replica that is most resilient to unexpected halts, see Section 16.3.2, “Handling an Unexpected Halt of a Replica”.
+  Para obter informações sobre a combinação de configurações em uma replica que seja mais resiliente a paradas inesperadas, consulte a Seção 16.3.2, “Lidando com uma Parada Inesperada de uma Replica”.
 
-  Caution
+  Cuidado
 
-  Many operating systems and some disk hardware fool the flush-to-disk operation. They may tell **mysqld** that the flush has taken place, even though it has not. In this case, the durability of transactions is not guaranteed even with the recommended settings, and in the worst case, a power outage can corrupt `InnoDB` data. Using a battery-backed disk cache in the SCSI disk controller or in the disk itself speeds up file flushes, and makes the operation safer. You can also try to disable the caching of disk writes in hardware caches.
+  Muitos sistemas operacionais e alguns hardwares de disco enganam a operação de flush-to-disk. Eles podem informar ao **mysqld** que o flush ocorreu, mesmo que não tenha. Neste caso, a durabilidade das transactions não é garantida mesmo com as configurações recomendadas e, no pior dos casos, uma falta de energia pode corromper os dados do `InnoDB`. Usar um disk cache com bateria no controlador de disco SCSI ou no próprio disco acelera os flushes de arquivo e torna a operação mais segura. Você também pode tentar desabilitar o caching de escritas de disco em caches de hardware.
 
 * `innodb_flush_method`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_option"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-option=options</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_option</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-option=options</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_option</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr> </tbody></table>
 
-  Defines the method used to flush data to `InnoDB` data files and log files, which can affect I/O throughput.
+  Define o método usado para fazer flush de dados para arquivos de dados e log files do `InnoDB`, o que pode afetar o throughput de I/O.
 
-  If `innodb_flush_method` is set to `NULL` on a Unix-like system, the `fsync` option is used by default. If `innodb_flush_method` is set to `NULL` on Windows, the `async_unbuffered` option is used by default.
+  Se `innodb_flush_method` for definido como `NULL` em um sistema tipo Unix, a opção `fsync` é usada por padrão. Se `innodb_flush_method` for definido como `NULL` no Windows, a opção `async_unbuffered` é usada por padrão.
 
-  The `innodb_flush_method` options for Unix-like systems include:
+  As opções de `innodb_flush_method` para sistemas tipo Unix incluem:
 
-  + `fsync`: `InnoDB` uses the `fsync()` system call to flush both the data and log files. `fsync` is the default setting.
+  + `fsync`: O `InnoDB` usa a chamada de sistema `fsync()` para fazer flush tanto dos arquivos de dados quanto dos log files. `fsync` é a configuração padrão.
 
-  + `O_DSYNC`: `InnoDB` uses `O_SYNC` to open and flush the log files, and `fsync()` to flush the data files. `InnoDB` does not use `O_DSYNC` directly because there have been problems with it on many varieties of Unix.
+  + `O_DSYNC`: O `InnoDB` usa `O_SYNC` para abrir e fazer flush dos log files, e `fsync()` para fazer flush dos arquivos de dados. O `InnoDB` não usa `O_DSYNC` diretamente porque tem havido problemas com ele em muitas variedades de Unix.
 
-  + `littlesync`: This option is used for internal performance testing and is currently unsupported. Use at your own risk.
+  + `littlesync`: Esta opção é usada para testes internos de performance e atualmente não é suportada. Use por sua conta e risco.
 
-  + `nosync`: This option is used for internal performance testing and is currently unsupported. Use at your own risk.
+  + `nosync`: Esta opção é usada para testes internos de performance e atualmente não é suportada. Use por sua conta e risco.
 
-  + `O_DIRECT`: `InnoDB` uses `O_DIRECT` (or `directio()` on Solaris) to open the data files, and uses `fsync()` to flush both the data and log files. This option is available on some GNU/Linux versions, FreeBSD, and Solaris.
+  + `O_DIRECT`: O `InnoDB` usa `O_DIRECT` (ou `directio()` no Solaris) para abrir os arquivos de dados, e usa `fsync()` para fazer flush tanto dos arquivos de dados quanto dos log files. Esta opção está disponível em algumas versões GNU/Linux, FreeBSD e Solaris.
 
-  + `O_DIRECT_NO_FSYNC`: `InnoDB` uses `O_DIRECT` during flushing I/O, but skips the `fsync()` system call after each write operation.
+  + `O_DIRECT_NO_FSYNC`: O `InnoDB` usa `O_DIRECT` durante o flushing de I/O, mas ignora a chamada de sistema `fsync()` após cada operação de escrita.
 
-    Prior to MySQL 5.7.25, this setting is not suitable for file systems such as XFS and EXT4, which require an `fsync()` system call to synchronize file system metadata changes. If you are not sure whether your file system requires an `fsync()` system call to synchronize file system metadata changes, use `O_DIRECT` instead.
+    Antes do MySQL 5.7.25, esta configuração não é adequada para sistemas de arquivos como XFS e EXT4, que exigem uma chamada de sistema `fsync()` para sincronizar alterações nos metadados do sistema de arquivos. Se você não tiver certeza se seu sistema de arquivos requer uma chamada de sistema `fsync()` para sincronizar alterações nos metadados do sistema de arquivos, use `O_DIRECT` em vez disso.
 
-    As of MySQL 5.7.25, `fsync()` is called after creating a new file, after increasing file size, and after closing a file, to ensure that file system metadata changes are synchronized. The `fsync()` system call is still skipped after each write operation.
+    A partir do MySQL 5.7.25, `fsync()` é chamado após a criação de um novo arquivo, após aumentar o tamanho do arquivo e após fechar um arquivo, para garantir que as alterações nos metadados do sistema de arquivos sejam sincronizadas. A chamada de sistema `fsync()` ainda é ignorada após cada operação de escrita.
 
-    Data loss is possible if redo log files and data files reside on different storage devices, and an unexpected exit occurs before data file writes are flushed from a device cache that is not battery-backed. If you use or intend to use different storage devices for redo log files and data files, and your data files reside on a device with a cache that is not battery-backed, use `O_DIRECT` instead.
+    A perda de dados é possível se os arquivos de redo log e os arquivos de dados residirem em dispositivos de armazenamento diferentes, e ocorrer uma saída inesperada antes que as escritas do arquivo de dados sejam submetidas a flush de um cache de dispositivo que não seja suportado por bateria. Se você usar ou pretender usar dispositivos de armazenamento diferentes para arquivos de redo log e arquivos de dados, e seus arquivos de dados residirem em um dispositivo com um cache que não é suportado por bateria, use `O_DIRECT` em vez disso.
 
-  The `innodb_flush_method` options for Windows systems include:
+  As opções de `innodb_flush_method` para sistemas Windows incluem:
 
-  + `async_unbuffered`: `InnoDB` uses Windows asynchronous I/O and non-buffered I/O. `async_unbuffered` is the default setting on Windows systems.
+  + `async_unbuffered`: O `InnoDB` usa I/O assíncrono do Windows e I/O não buffered. `async_unbuffered` é a configuração padrão em sistemas Windows.
 
-    Running MySQL server on a 4K sector hard drive on Windows is not supported with `async_unbuffered`. The workaround is to use `innodb_flush_method=normal`.
+    Executar o servidor MySQL em um disco rígido com setor de 4K no Windows não é suportado com `async_unbuffered`. A solução alternativa é usar `innodb_flush_method=normal`.
 
-  + `normal`: `InnoDB` uses simulated asynchronous I/O and buffered I/O.
+  + `normal`: O `InnoDB` usa I/O assíncrono simulado e I/O buffered.
 
-  + `unbuffered`: `InnoDB` uses simulated asynchronous I/O and non-buffered I/O.
+  + `unbuffered`: O `InnoDB` usa I/O assíncrono simulado e I/O não buffered.
 
-  How each setting affects performance depends on hardware configuration and workload. Benchmark your particular configuration to decide which setting to use, or whether to keep the default setting. Examine the `Innodb_data_fsyncs` status variable to see the overall number of `fsync()` calls for each setting. The mix of read and write operations in your workload can affect how a setting performs. For example, on a system with a hardware RAID controller and battery-backed write cache, `O_DIRECT` can help to avoid double buffering between the `InnoDB` buffer pool and the operating system file system cache. On some systems where `InnoDB` data and log files are located on a SAN, the default value or `O_DSYNC` might be faster for a read-heavy workload with mostly `SELECT` statements. Always test this parameter with hardware and workload that reflect your production environment. For general I/O tuning advice, see Section 8.5.8, “Optimizing InnoDB Disk I/O”.
+  Como cada configuração afeta a performance depende da configuração do hardware e da workload. Faça benchmark de sua configuração particular para decidir qual configuração usar, ou se deve manter a configuração padrão. Examine a variável de status `Innodb_data_fsyncs` para ver o número total de chamadas `fsync()` para cada configuração. A mistura de operações de leitura e escrita em sua workload pode afetar o desempenho de uma configuração. Por exemplo, em um sistema com um controlador RAID de hardware e write cache suportado por bateria, `O_DIRECT` pode ajudar a evitar double buffering entre o Buffer Pool do `InnoDB` e o cache do sistema de arquivos do sistema operacional. Em alguns sistemas onde os arquivos de dados e log do `InnoDB` estão localizados em uma SAN, o valor padrão ou `O_DSYNC` pode ser mais rápido para uma workload com muitas leituras e predominantemente instruções `SELECT`. Sempre teste este parâmetro com hardware e workload que reflitam seu ambiente de produção. Para conselhos gerais sobre ajuste de I/O, consulte a Seção 8.5.8, “Otimizando I/O de Disco do InnoDB”.
 
 * `innodb_flush_neighbors`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_option"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-option=options</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_option</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-option=options</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_option</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr> </tbody></table>
 
-  Specifies whether flushing a page from the `InnoDB` buffer pool also flushes other dirty pages in the same extent.
+  Especifica se o flush de uma página do Buffer Pool do `InnoDB` também faz flush de outras dirty pages no mesmo extent.
 
-  + A setting of 0 disables `innodb_flush_neighbors`. Dirty pages in the same extent are not flushed.
+  + Uma configuração de 0 desabilita `innodb_flush_neighbors`. Dirty pages no mesmo extent não são submetidas a flush.
 
-  + The default setting of 1 flushes contiguous dirty pages in the same extent.
+  + A configuração padrão de 1 faz flush de páginas contíguas sujas no mesmo extent.
 
-  + A setting of 2 flushes dirty pages in the same extent.
+  + Uma configuração de 2 faz flush de dirty pages no mesmo extent.
 
-  When the table data is stored on a traditional HDD storage device, flushing such neighbor pages in one operation reduces I/O overhead (primarily for disk seek operations) compared to flushing individual pages at different times. For table data stored on SSD, seek time is not a significant factor and you can turn this setting off to spread out write operations. For related information, see Section 14.8.3.5, “Configuring Buffer Pool Flushing”.
+  Quando os dados da table são armazenados em um dispositivo de armazenamento HDD tradicional, fazer flush de tais páginas vizinhas em uma operação reduz a sobrecarga de I/O (principalmente para operações de busca em disco) em comparação com o flush de páginas individuais em momentos diferentes. Para dados de table armazenados em SSD, o tempo de busca não é um fator significativo e você pode desativar esta configuração para distribuir as operações de escrita. Para informações relacionadas, consulte a Seção 14.8.3.5, “Configurando o Flushing do Buffer Pool”.
 
 * `innodb_flush_sync`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_option"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-option=options</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_option</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-option=options</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_option</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr> </tbody></table>
 
-  The `innodb_flush_sync` variable, which is enabled by default, causes the `innodb_io_capacity` setting to be ignored during bursts of I/O activity that occur at checkpoints. To adhere to the I/O rate defined by the `innodb_io_capacity` setting, disable `innodb_flush_sync`.
+  A variável `innodb_flush_sync`, que está habilitada por padrão, faz com que a configuração `innodb_io_capacity` seja ignorada durante picos de atividade de I/O que ocorrem em checkpoints. Para aderir à taxa de I/O definida pela configuração `innodb_io_capacity`, desabilite `innodb_flush_sync`.
 
-  For information about configuring the `innodb_flush_sync` variable, see Section 14.8.8, “Configuring InnoDB I/O Capacity”.
+  Para obter informações sobre como configurar a variável `innodb_flush_sync`, consulte a Seção 14.8.8, “Configurando a Capacidade de I/O do InnoDB”.
 
 * `innodb_flushing_avg_loops`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_option"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-option=options</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_option</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-option=options</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_option</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr> </tbody></table>
 
-  Number of iterations for which `InnoDB` keeps the previously calculated snapshot of the flushing state, controlling how quickly adaptive flushing responds to changing workloads. Increasing the value makes the rate of flush operations change smoothly and gradually as the workload changes. Decreasing the value makes adaptive flushing adjust quickly to workload changes, which can cause spikes in flushing activity if the workload increases and decreases suddenly.
+  Número de iterações para as quais o `InnoDB` mantém o snapshot calculado anteriormente do estado de flushing, controlando a rapidez com que o flushing adaptativo responde às workloads em mudança. Aumentar o valor faz com que a taxa de operações de flush mude de forma suave e gradual à medida que a workload muda. Diminuir o valor faz com que o flushing adaptativo se ajuste rapidamente às mudanças de workload, o que pode causar picos na atividade de flushing se a workload aumentar e diminuir repentinamente.
 
-  For related information, see Section 14.8.3.5, “Configuring Buffer Pool Flushing”.
+  Para informações relacionadas, consulte a Seção 14.8.3.5, “Configurando o Flushing do Buffer Pool”.
 
 * `innodb_force_load_corrupted`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_option"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-option=options</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_option</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-option=options</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_option</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr> </tbody></table>
 
-  Permits `InnoDB` to load tables at startup that are marked as corrupted. Use only during troubleshooting, to recover data that is otherwise inaccessible. When troubleshooting is complete, disable this setting and restart the server.
+  Permite que o `InnoDB` carregue tabelas na inicialização que estão marcadas como corrompidas. Use apenas durante a solução de problemas, para recuperar dados que de outra forma estariam inacessíveis. Quando a solução de problemas estiver completa, desabilite esta configuração e reinicie o servidor.
 
 * `innodb_force_recovery`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_option"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-option=options</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_option</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-option=options</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_option</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr> </tbody></table>
 
-  The crash recovery mode, typically only changed in serious troubleshooting situations. Possible values are from 0 to 6. For the meanings of these values and important information about `innodb_force_recovery`, see Section 14.22.2, “Forcing InnoDB Recovery”.
+  O modo de crash recovery, tipicamente alterado apenas em situações sérias de solução de problemas. Os valores possíveis são de 0 a 6. Para os significados desses valores e informações importantes sobre `innodb_force_recovery`, consulte a Seção 14.22.2, “Forçando a Recuperação do InnoDB”.
 
-  Warning
+  Aviso
 
-  Only set this variable to a value greater than 0 in an emergency situation so that you can start `InnoDB` and dump your tables. As a safety measure, `InnoDB` prevents `INSERT`, `UPDATE`, or `DELETE` operations when `innodb_force_recovery` is greater than 0. An `innodb_force_recovery` setting of 4 or greater places `InnoDB` into read-only mode.
+  Defina esta variável para um valor maior que 0 apenas em uma situação de emergência para que você possa iniciar o `InnoDB` e despejar suas tabelas. Como medida de segurança, o `InnoDB` impede operações `INSERT`, `UPDATE` ou `DELETE` quando `innodb_force_recovery` é maior que 0. Uma configuração `innodb_force_recovery` de 4 ou maior coloca o `InnoDB` em modo read-only.
 
-  These restrictions may cause replication administration commands to fail with an error because replication settings such as `relay_log_info_repository=TABLE` and `master_info_repository=TABLE` store information in `InnoDB` tables.
+  Estas restrições podem fazer com que comandos de administração de Replication falhem com um erro porque as configurações de Replication como `relay_log_info_repository=TABLE` e `master_info_repository=TABLE` armazenam informações em tabelas `InnoDB`.
 
 * `innodb_ft_aux_table`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_option"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-option=options</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_option</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-option=options</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_option</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr> </tbody></table>
 
-  Specifies the qualified name of an `InnoDB` table containing a `FULLTEXT` index. This variable is intended for diagnostic purposes and can only be set at runtime. For example:
+  Especifica o nome qualificado de uma table `InnoDB` contendo um Index `FULLTEXT`. Esta variável é destinada a fins de diagnóstico e só pode ser definida em tempo de execução. Por exemplo:
 
   ```sql
   SET GLOBAL innodb_ft_aux_table = 'test/t1';
   ```
 
-  After you set this variable to a name in the format `db_name/table_name`, the `INFORMATION_SCHEMA` tables `INNODB_FT_INDEX_TABLE`, `INNODB_FT_INDEX_CACHE`, `INNODB_FT_CONFIG`, `INNODB_FT_DELETED`, and `INNODB_FT_BEING_DELETED` show information about the search index for the specified table.
+  Depois de definir esta variável para um nome no formato `db_name/table_name`, as tabelas `INFORMATION_SCHEMA` `INNODB_FT_INDEX_TABLE`, `INNODB_FT_INDEX_CACHE`, `INNODB_FT_CONFIG`, `INNODB_FT_DELETED` e `INNODB_FT_BEING_DELETED` mostram informações sobre o Index de busca para a table especificada.
 
-  For more information, see Section 14.16.4, “InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables”.
+  Para mais informações, consulte a Seção 14.16.4, “Tabelas de Index FULLTEXT do INFORMATION_SCHEMA do InnoDB”.
 
 * `innodb_ft_cache_size`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_r_batch_size"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-r-batch-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_r_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1073741824</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-r-batch-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_r_batch_size</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1073741824</code></td> </tr></tbody></table>
 
-  The memory allocated, in bytes, for the `InnoDB` `FULLTEXT` search index cache, which holds a parsed document in memory while creating an `InnoDB` `FULLTEXT` index. Index inserts and updates are only committed to disk when the `innodb_ft_cache_size` size limit is reached. `innodb_ft_cache_size` defines the cache size on a per table basis. To set a global limit for all tables, see `innodb_ft_total_cache_size`.
+  A memória alocada, em bytes, para o cache de Index de busca `FULLTEXT` do `InnoDB`, que mantém um documento analisado na memória enquanto cria um Index `FULLTEXT` do `InnoDB`. Inserts e updates de Index são submetidos a commit no disco apenas quando o limite de tamanho de `innodb_ft_cache_size` é atingido. `innodb_ft_cache_size` define o tamanho do cache por base de table. Para definir um limite global para todas as tabelas, consulte `innodb_ft_total_cache_size`.
 
-  For more information, see InnoDB Full-Text Index Cache.
+  Para mais informações, consulte Cache de Index Full-Text do InnoDB.
 
 * `innodb_ft_enable_diag_print`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_r_batch_size"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-r-batch-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_r_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1073741824</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-r-batch-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_r_batch_size</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1073741824</code></td> </tr></tbody></table>
 
-  Whether to enable additional full-text search (FTS) diagnostic output. This option is primarily intended for advanced FTS debugging and is not of interest to most users. Output is printed to the error log and includes information such as:
+  Se deve habilitar a saída de diagnóstico adicional de busca de texto completo (FTS). Esta opção é destinada principalmente a Debug de FTS avançado e não é de interesse para a maioria dos usuários. A saída é impressa no error log e inclui informações como:
 
-  + FTS index sync progress (when the FTS cache limit is reached). For example:
+  + Progresso de sincronização do Index FTS (quando o limite do cache FTS é atingido). Por exemplo:
 
     ```sql
     FTS SYNC for table test, deleted count: 100 size: 10000 bytes
     SYNC words: 100
     ```
 
-  + FTS optimize progress. For example:
+  + Progresso de otimização FTS. Por exemplo:
 
     ```sql
     FTS start optimize test
@@ -807,13 +807,13 @@
     FTS_OPTIMIZE: processed "mysql"
     ```
 
-  + FTS index build progress. For example:
+  + Progresso de construção do Index FTS. Por exemplo:
 
     ```sql
     Number of doc processed: 1000
     ```
 
-  + For FTS queries, the query parsing tree, word weight, query processing time, and memory usage are printed. For example:
+  + Para Queries FTS, a árvore de parsing da Query, o peso da palavra, o tempo de processamento da Query e o uso de memória são impressos. Por exemplo:
 
     ```sql
     FTS Search Processing time: 1 secs: 100 millisec: row(s) 10000
@@ -822,177 +822,177 @@
 
 * `innodb_ft_enable_stopword`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_r_batch_size"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-r-batch-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_r_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1073741824</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-r-batch-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_r_batch_size</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1073741824</code></td> </tr></tbody></table>
 
-  Specifies that a set of stopwords is associated with an `InnoDB` `FULLTEXT` index at the time the index is created. If the `innodb_ft_user_stopword_table` option is set, the stopwords are taken from that table. Else, if the `innodb_ft_server_stopword_table` option is set, the stopwords are taken from that table. Otherwise, a built-in set of default stopwords is used.
+  Especifica que um conjunto de stopwords está associado a um Index `FULLTEXT` do `InnoDB` no momento em que o Index é criado. Se a opção `innodb_ft_user_stopword_table` estiver definida, as stopwords são retiradas dessa table. Caso contrário, se a opção `innodb_ft_server_stopword_table` estiver definida, as stopwords são retiradas dessa table. Caso contrário, um conjunto embutido de stopwords padrão é usado.
 
-  For more information, see Section 12.9.4, “Full-Text Stopwords”.
+  Para mais informações, consulte a Seção 12.9.4, “Stopwords de Full-Text”.
 
 * `innodb_ft_max_token_size`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_r_batch_size"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-r-batch-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_r_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1073741824</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-r-batch-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_r_batch_size</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1073741824</code></td> </tr></tbody></table>
 
-  Maximum character length of words that are stored in an `InnoDB` `FULLTEXT` index. Setting a limit on this value reduces the size of the index, thus speeding up queries, by omitting long keywords or arbitrary collections of letters that are not real words and are not likely to be search terms.
+  Comprimento máximo de caracteres das palavras que são armazenadas em um Index `FULLTEXT` do `InnoDB`. Definir um limite neste valor reduz o tamanho do Index, acelerando assim as Queries, omitindo palavras-chave longas ou coleções arbitrárias de letras que não são palavras reais e não são propensas a serem termos de busca.
 
-  For more information, see Section 12.9.6, “Fine-Tuning MySQL Full-Text Search”.
+  Para mais informações, consulte a Seção 12.9.6, “Ajustando a Busca Full-Text do MySQL”.
 
 * `innodb_ft_min_token_size`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_r_batch_size"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-r-batch-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_r_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1073741824</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-r-batch-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_r_batch_size</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1073741824</code></td> </tr></tbody></table>
 
-  Minimum length of words that are stored in an `InnoDB` `FULLTEXT` index. Increasing this value reduces the size of the index, thus speeding up queries, by omitting common words that are unlikely to be significant in a search context, such as the English words “a” and “to”. For content using a CJK (Chinese, Japanese, Korean) character set, specify a value of 1.
+  Comprimento mínimo de palavras que são armazenadas em um Index `FULLTEXT` do `InnoDB`. Aumentar este valor reduz o tamanho do Index, acelerando assim as Queries, omitindo palavras comuns que são improváveis de serem significativas em um contexto de busca, como as palavras em inglês “a” e “to”. Para conteúdo usando um conjunto de caracteres CJK (Chinês, Japonês, Coreano), especifique um valor de 1.
 
-  For more information, see Section 12.9.6, “Fine-Tuning MySQL Full-Text Search”.
+  Para mais informações, consulte a Seção 12.9.6, “Ajustando a Busca Full-Text do MySQL”.
 
 * `innodb_ft_num_word_optimize`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_r_batch_size"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-r-batch-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_r_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1073741824</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-r-batch-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_r_batch_size</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1073741824</code></td> </tr></tbody></table>
 
-  Number of words to process during each `OPTIMIZE TABLE` operation on an `InnoDB` `FULLTEXT` index. Because a bulk insert or update operation to a table containing a full-text search index could require substantial index maintenance to incorporate all changes, you might do a series of `OPTIMIZE TABLE` statements, each picking up where the last left off.
+  Número de palavras a serem processadas durante cada operação `OPTIMIZE TABLE` em um Index `FULLTEXT` do `InnoDB`. Como uma operação de bulk insert ou update em uma table contendo um Index de busca full-text pode exigir manutenção substancial do Index para incorporar todas as alterações, você pode fazer uma série de instruções `OPTIMIZE TABLE`, cada uma retomando de onde a última parou.
 
-  For more information, see Section 12.9.6, “Fine-Tuning MySQL Full-Text Search”.
+  Para mais informações, consulte a Seção 12.9.6, “Ajustando a Busca Full-Text do MySQL”.
 
 * `innodb_ft_result_cache_limit`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_r_batch_size"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-r-batch-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_r_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1073741824</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-r-batch-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_r_batch_size</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1073741824</code></td> </tr></tbody></table>
 
-  The `InnoDB` full-text search query result cache limit (defined in bytes) per full-text search query or per thread. Intermediate and final `InnoDB` full-text search query results are handled in memory. Use `innodb_ft_result_cache_limit` to place a size limit on the full-text search query result cache to avoid excessive memory consumption in case of very large `InnoDB` full-text search query results (millions or hundreds of millions of rows, for example). Memory is allocated as required when a full-text search query is processed. If the result cache size limit is reached, an error is returned indicating that the query exceeds the maximum allowed memory.
+  O limite de cache de resultado de Query de busca full-text do `InnoDB` (definido em bytes) por Query de busca full-text ou por Thread. Os resultados intermediários e finais da Query de busca full-text do `InnoDB` são tratados na memória. Use `innodb_ft_result_cache_limit` para colocar um limite de tamanho no cache de resultado de Query de busca full-text para evitar consumo excessivo de memória em caso de resultados de Query de busca full-text do `InnoDB` muito grandes (milhões ou centenas de milhões de rows, por exemplo). A memória é alocada conforme necessário quando uma Query de busca full-text é processada. Se o limite de tamanho do cache de resultado for atingido, um erro é retornado indicando que a Query excede a memória máxima permitida.
 
-  The maximum value of `innodb_ft_result_cache_limit` for all platform types and bit sizes is 2\*\*32-1.
+  O valor máximo de `innodb_ft_result_cache_limit` para todos os tipos de plataforma e tamanhos de bit é 2**32-1.
 
 * `innodb_ft_server_stopword_table`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_r_batch_size"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-r-batch-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_r_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1073741824</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-r-batch-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_r_batch_size</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1073741824</code></td> </tr></tbody></table>
 
-  This option is used to specify your own `InnoDB` `FULLTEXT` index stopword list for all `InnoDB` tables. To configure your own stopword list for a specific `InnoDB` table, use `innodb_ft_user_stopword_table`.
+  Esta opção é usada para especificar sua própria lista de stopwords de Index `FULLTEXT` do `InnoDB` para todas as tabelas `InnoDB`. Para configurar sua própria lista de stopwords para uma table `InnoDB` específica, use `innodb_ft_user_stopword_table`.
 
-  Set `innodb_ft_server_stopword_table` to the name of the table containing a list of stopwords, in the format `db_name/table_name`.
+  Defina `innodb_ft_server_stopword_table` para o nome da table contendo uma lista de stopwords, no formato `db_name/table_name`.
 
-  The stopword table must exist before you configure `innodb_ft_server_stopword_table`. `innodb_ft_enable_stopword` must be enabled and `innodb_ft_server_stopword_table` option must be configured before you create the `FULLTEXT` index.
+  A table de stopwords deve existir antes de você configurar `innodb_ft_server_stopword_table`. `innodb_ft_enable_stopword` deve estar habilitado e a opção `innodb_ft_server_stopword_table` deve ser configurada antes de você criar o Index `FULLTEXT`.
 
-  The stopword table must be an `InnoDB` table, containing a single `VARCHAR` column named `value`.
+  A table de stopwords deve ser uma table `InnoDB`, contendo uma única coluna `VARCHAR` chamada `value`.
 
-  For more information, see Section 12.9.4, “Full-Text Stopwords”.
+  Para mais informações, consulte a Seção 12.9.4, “Stopwords de Full-Text”.
 
 * `innodb_ft_sort_pll_degree`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_r_batch_size"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-r-batch-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_r_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1073741824</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-r-batch-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_r_batch_size</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1073741824</code></td> </tr></tbody></table>
 
-  Number of threads used in parallel to index and tokenize text in an `InnoDB` `FULLTEXT` index when building a search index.
+  Número de Threads usados em paralelo para indexar e tokenizar texto em um Index `FULLTEXT` do `InnoDB` ao construir um Index de busca.
 
-  For related information, see Section 14.6.2.4, “InnoDB Full-Text Indexes”, and `innodb_sort_buffer_size`.
+  Para informações relacionadas, consulte a Seção 14.6.2.4, “Indexes Full-Text do InnoDB”, e `innodb_sort_buffer_size`.
 
 * `innodb_ft_total_cache_size`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_r_batch_size"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-r-batch-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_r_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1073741824</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-r-batch-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_r_batch_size</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1073741824</code></td> </tr></tbody></table>
 
-  The total memory allocated, in bytes, for the `InnoDB` full-text search index cache for all tables. Creating numerous tables, each with a `FULLTEXT` search index, could consume a significant portion of available memory. `innodb_ft_total_cache_size` defines a global memory limit for all full-text search indexes to help avoid excessive memory consumption. If the global limit is reached by an index operation, a forced sync is triggered.
+  A memória total alocada, em bytes, para o cache de Index de busca full-text do `InnoDB` para todas as tabelas. Criar inúmeras tabelas, cada uma com um Index de busca `FULLTEXT`, pode consumir uma porção significativa da memória disponível. `innodb_ft_total_cache_size` define um limite de memória global para todos os Indexes de busca full-text para ajudar a evitar consumo excessivo de memória. Se o limite global for atingido por uma operação de Index, um sync forçado é acionado.
 
-  For more information, see InnoDB Full-Text Index Cache.
+  Para mais informações, consulte Cache de Index Full-Text do InnoDB.
 
 * `innodb_ft_user_stopword_table`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_w_batch_size"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-w-batch-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_w_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1048576</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-w-batch-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_w_batch_size</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr></tbody></table>
 
-  This option is used to specify your own `InnoDB` `FULLTEXT` index stopword list on a specific table. To configure your own stopword list for all `InnoDB` tables, use `innodb_ft_server_stopword_table`.
+  Esta opção é usada para especificar sua própria lista de stopwords de Index `FULLTEXT` do `InnoDB` em uma table específica. Para configurar sua própria lista de stopwords para todas as tabelas `InnoDB`, use `innodb_ft_server_stopword_table`.
 
-  Set `innodb_ft_user_stopword_table` to the name of the table containing a list of stopwords, in the format `db_name/table_name`.
+  Defina `innodb_ft_user_stopword_table` para o nome da table contendo uma lista de stopwords, no formato `db_name/table_name`.
 
-  The stopword table must exist before you configure `innodb_ft_user_stopword_table`. `innodb_ft_enable_stopword` must be enabled and `innodb_ft_user_stopword_table` must be configured before you create the `FULLTEXT` index.
+  A table de stopwords deve existir antes de você configurar `innodb_ft_user_stopword_table`. `innodb_ft_enable_stopword` deve estar habilitado e `innodb_ft_user_stopword_table` deve ser configurado antes de você criar o Index `FULLTEXT`.
 
-  The stopword table must be an `InnoDB` table, containing a single `VARCHAR` column named `value`.
+  A table de stopwords deve ser uma table `InnoDB`, contendo uma única coluna `VARCHAR` chamada `value`.
 
-  For more information, see Section 12.9.4, “Full-Text Stopwords”.
+  Para mais informações, consulte a Seção 12.9.4, “Stopwords de Full-Text”.
 
 * `innodb_io_capacity`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_w_batch_size"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-w-batch-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_w_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1048576</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-w-batch-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_w_batch_size</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr></tbody></table>
 
-  The `innodb_io_capacity` variable defines the number of I/O operations per second (IOPS) available to `InnoDB` background tasks, such as flushing pages from the buffer pool and merging data from the change buffer.
+  A variável `innodb_io_capacity` define o número de operações de I/O por segundo (IOPS) disponíveis para tarefas em background do `InnoDB`, como flushing de páginas do Buffer Pool e merging de dados do Change Buffer.
 
-  For information about configuring the `innodb_io_capacity` variable, see Section 14.8.8, “Configuring InnoDB I/O Capacity”.
+  Para obter informações sobre como configurar a variável `innodb_io_capacity`, consulte a Seção 14.8.8, “Configurando a Capacidade de I/O do InnoDB”.
 
 * `innodb_io_capacity_max`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_w_batch_size"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-w-batch-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_w_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1048576</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-w-batch-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_w_batch_size</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr></tbody></table>
 
-  If flushing activity falls behind, `InnoDB` can flush more aggressively, at a higher rate of I/O operations per second (IOPS) than defined by the `innodb_io_capacity` variable. The `innodb_io_capacity_max` variable defines a maximum number of IOPS performed by `InnoDB` background tasks in such situations.
+  Se a atividade de flushing ficar atrasada, o `InnoDB` pode fazer flush de forma mais agressiva, a uma taxa maior de operações de I/O por segundo (IOPS) do que a definida pela variável `innodb_io_capacity`. A variável `innodb_io_capacity_max` define um número máximo de IOPS realizados por tarefas em background do `InnoDB` em tais situações.
 
-  For information about configuring the `innodb_io_capacity_max` variable, see Section 14.8.8, “Configuring InnoDB I/O Capacity”.
+  Para obter informações sobre como configurar a variável `innodb_io_capacity_max`, consulte a Seção 14.8.8, “Configurando a Capacidade de I/O do InnoDB”.
 
 * `innodb_large_prefix`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_w_batch_size"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-w-batch-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_w_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1048576</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-w-batch-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_w_batch_size</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr></tbody></table>
 
-  When this option is enabled, index key prefixes longer than 767 bytes (up to 3072 bytes) are allowed for `InnoDB` tables that use `DYNAMIC` or `COMPRESSED` row format. See Section 14.23, “InnoDB Limits” for maximums associated with index key prefixes under various settings.
+  Quando esta opção está habilitada, prefixos de chave de Index maiores que 767 bytes (até 3072 bytes) são permitidos para tabelas `InnoDB` que usam o formato de row `DYNAMIC` ou `COMPRESSED`. Consulte a Seção 14.23, “Limites do InnoDB”, para os máximos associados a prefixos de chave de Index sob várias configurações.
 
-  For tables that use `REDUNDANT` or `COMPACT` row format, this option does not affect the permitted index key prefix length.
+  Para tabelas que usam o formato de row `REDUNDANT` ou `COMPACT`, esta opção não afeta o comprimento permitido do prefixo da chave de Index.
 
-  `innodb_large_prefix` is enabled by default in MySQL 5.7. This change coincides with the default value change for `innodb_file_format`, which is set to `Barracuda` by default in MySQL 5.7. Together, these default value changes allow larger index key prefixes to be created when using `DYNAMIC` or `COMPRESSED` row format. If either option is set to a non-default value, index key prefixes larger than 767 bytes are silently truncated.
+  `innodb_large_prefix` está habilitado por padrão no MySQL 5.7. Esta mudança coincide com a alteração do valor padrão para `innodb_file_format`, que é definido como `Barracuda` por padrão no MySQL 5.7. Juntas, essas alterações de valor padrão permitem que prefixos de chave de Index maiores sejam criados ao usar o formato de row `DYNAMIC` ou `COMPRESSED`. Se qualquer uma das opções for definida para um valor não padrão, prefixos de chave de Index maiores que 767 bytes são truncados silenciosamente.
 
-  `innodb_large_prefix` is deprecated; expect it to be removed in a future release. `innodb_large_prefix` was introduced to disable large index key prefixes for compatibility with earlier versions of `InnoDB` that do not support large index key prefixes.
+  `innodb_large_prefix` está descontinuada; espere que seja removida em uma futura versão. `innodb_large_prefix` foi introduzida para desabilitar prefixos de chave de Index grandes para compatibilidade com versões anteriores do `InnoDB` que não suportam prefixos de chave de Index grandes.
 
 * `innodb_limit_optimistic_insert_debug`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_w_batch_size"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-w-batch-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_w_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1048576</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-w-batch-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_w_batch_size</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr></tbody></table>
 
-  Limits the number of records per B-tree page. A default value of 0 means that no limit is imposed. This option is only available if debugging support is compiled in using the `WITH_DEBUG` **CMake** option.
+  Limita o número de registros por página B-tree. Um valor padrão de 0 significa que nenhum limite é imposto. Esta opção só está disponível se o suporte a Debug for compilado usando a opção **CMake** `WITH_DEBUG`.
 
 * `innodb_lock_wait_timeout`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_w_batch_size"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-w-batch-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_w_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1048576</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-w-batch-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_w_batch_size</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr></tbody></table>
 
-  The length of time in seconds an `InnoDB` transaction waits for a row lock before giving up. The default value is 50 seconds. A transaction that tries to access a row that is locked by another `InnoDB` transaction waits at most this many seconds for write access to the row before issuing the following error:
+  O tempo de espera em segundos de uma transaction `InnoDB` por um row lock antes de desistir. O valor padrão é 50 segundos. Uma transaction que tenta acessar uma row que está bloqueada por outra transaction `InnoDB` espera no máximo esta quantidade de segundos por acesso de escrita à row antes de emitir o seguinte erro:
 
   ```sql
   ERROR 1205 (HY000): Lock wait timeout exceeded; try restarting transaction
   ```
 
-  When a lock wait timeout occurs, the current statement is rolled back (not the entire transaction). To have the entire transaction roll back, start the server with the `--innodb-rollback-on-timeout` option. See also Section 14.22.4, “InnoDB Error Handling”.
+  Quando ocorre um timeout de espera por Lock, a instrução atual é revertida (rolled back) (não a transaction inteira). Para que a transaction inteira seja revertida, inicie o servidor com a opção `--innodb-rollback-on-timeout`. Consulte também a Seção 14.22.4, “Tratamento de Erros do InnoDB”.
 
-  You might decrease this value for highly interactive applications or OLTP systems, to display user feedback quickly or put the update into a queue for processing later. You might increase this value for long-running back-end operations, such as a transform step in a data warehouse that waits for other large insert or update operations to finish.
+  Você pode diminuir este valor para aplicações altamente interativas ou sistemas OLTP, para exibir feedback ao usuário rapidamente ou colocar o update em uma fila para processamento posterior. Você pode aumentar este valor para operações de back-end de longa duração, como uma etapa de transformação em um data warehouse que espera que outras grandes operações de insert ou update terminem.
 
-  `innodb_lock_wait_timeout` applies to `InnoDB` row locks only. A MySQL table lock does not happen inside `InnoDB` and this timeout does not apply to waits for table locks.
+  `innodb_lock_wait_timeout` se aplica apenas a row locks do `InnoDB`. Um table lock do MySQL não acontece dentro do `InnoDB` e este timeout não se aplica a esperas por table locks.
 
-  The lock wait timeout value does not apply to deadlocks when `innodb_deadlock_detect` is enabled (the default) because `InnoDB` detects deadlocks immediately and rolls back one of the deadlocked transactions. When `innodb_deadlock_detect` is disabled, `InnoDB` relies on `innodb_lock_wait_timeout` for transaction rollback when a deadlock occurs. See Section 14.7.5.2, “Deadlock Detection”.
+  O valor do timeout de espera por Lock não se aplica a deadlocks quando `innodb_deadlock_detect` está habilitado (o padrão) porque o `InnoDB` detecta deadlocks imediatamente e reverte uma das transactions em Deadlock. Quando `innodb_deadlock_detect` está desabilitado, o `InnoDB` depende de `innodb_lock_wait_timeout` para rollback de transaction quando um Deadlock ocorre. Consulte a Seção 14.7.5.2, “Detecção de Deadlock”.
 
-  `innodb_lock_wait_timeout` can be set at runtime with the `SET GLOBAL` or `SET SESSION` statement. Changing the `GLOBAL` setting requires privileges sufficient to set global system variables (see Section 5.1.8.1, “System Variable Privileges”) and affects the operation of all clients that subsequently connect. Any client can change the `SESSION` setting for `innodb_lock_wait_timeout`, which affects only that client.
+  `innodb_lock_wait_timeout` pode ser definido em tempo de execução com a instrução `SET GLOBAL` ou `SET SESSION`. Alterar a configuração `GLOBAL` requer privilégios suficientes para definir variáveis de sistema globais (consulte a Seção 5.1.8.1, “Privilégios de Variáveis de Sistema”) e afeta a operação de todos os clientes que se conectarem subsequentemente. Qualquer cliente pode alterar a configuração `SESSION` para `innodb_lock_wait_timeout`, o que afeta apenas esse cliente.
 
 * `innodb_locks_unsafe_for_binlog`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_w_batch_size"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-w-batch-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_w_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1048576</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-w-batch-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_w_batch_size</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr></tbody></table>
 
-  This variable affects how `InnoDB` uses gap locking for searches and index scans. `innodb_locks_unsafe_for_binlog` is deprecated; expect it to be removed in a future MySQL release.
+  Esta variável afeta como o `InnoDB` usa gap locking para buscas e Index scans. `innodb_locks_unsafe_for_binlog` está descontinuada; espere que seja removida em uma futura versão do MySQL.
 
-  Normally, `InnoDB` uses an algorithm called next-key locking that combines index-row locking with gap locking. `InnoDB` performs row-level locking in such a way that when it searches or scans a table index, it sets shared or exclusive locks on the index records it encounters. Thus, row-level locks are actually index-record locks. In addition, a next-key lock on an index record also affects the gap before the index record. That is, a next-key lock is an index-record lock plus a gap lock on the gap preceding the index record. If one session has a shared or exclusive lock on record `R` in an index, another session cannot insert a new index record in the gap immediately before `R` in the index order. See Section 14.7.1, “InnoDB Locking”.
+  Normalmente, o `InnoDB` usa um algoritmo chamado next-key locking que combina Index-row locking com gap locking. O `InnoDB` realiza Lock de nível de row de tal forma que, ao buscar ou escanear um Index de table, ele define shared ou exclusive Locks nos registros de Index que encontra. Assim, os Locks de nível de row são na verdade Locks de registro de Index. Além disso, um next-key Lock em um registro de Index também afeta o gap antes do registro de Index. Ou seja, um next-key Lock é um Index-record Lock mais um gap Lock no gap que precede o Index record. Se uma session tiver um shared ou exclusive Lock no registro `R` em um Index, outra session não pode inserir um novo Index record no gap imediatamente antes de `R` na ordem do Index. Consulte a Seção 14.7.1, “Locking do InnoDB”.
 
-  By default, the value of `innodb_locks_unsafe_for_binlog` is 0 (disabled), which means that gap locking is enabled: `InnoDB` uses next-key locks for searches and index scans. To enable the variable, set it to 1. This causes gap locking to be disabled: `InnoDB` uses only index-record locks for searches and index scans.
+  Por padrão, o valor de `innodb_locks_unsafe_for_binlog` é 0 (desabilitado), o que significa que o gap locking está habilitado: o `InnoDB` usa next-key locks para buscas e Index scans. Para habilitar a variável, defina-a como 1. Isso faz com que o gap locking seja desabilitado: o `InnoDB` usa apenas Index-record locks para buscas e Index scans.
 
-  Enabling `innodb_locks_unsafe_for_binlog` does not disable the use of gap locking for foreign-key constraint checking or duplicate-key checking.
+  Habilitar `innodb_locks_unsafe_for_binlog` não desabilita o uso de gap locking para verificação de restrição de foreign key ou verificação de chave duplicada.
 
-  The effects of enabling `innodb_locks_unsafe_for_binlog` are the same as setting the transaction isolation level to `READ COMMITTED`, with these exceptions:
+  Os efeitos de habilitar `innodb_locks_unsafe_for_binlog` são os mesmos que definir o nível de isolamento de transaction para `READ COMMITTED`, com estas exceções:
 
-  + Enabling `innodb_locks_unsafe_for_binlog` is a global setting and affects all sessions, whereas the isolation level can be set globally for all sessions, or individually per session.
+  + Habilitar `innodb_locks_unsafe_for_binlog` é uma configuração global e afeta todas as sessions, enquanto o nível de isolamento pode ser definido globalmente para todas as sessions, ou individualmente por session.
 
-  + `innodb_locks_unsafe_for_binlog` can be set only at server startup, whereas the isolation level can be set at startup or changed at runtime.
+  + `innodb_locks_unsafe_for_binlog` pode ser definida apenas na inicialização do servidor, enquanto o nível de isolamento pode ser definido na inicialização ou alterado em tempo de execução.
 
-  `READ COMMITTED` therefore offers finer and more flexible control than `innodb_locks_unsafe_for_binlog`. For more information about the effect of isolation level on gap locking, see Section 14.7.2.1, “Transaction Isolation Levels”.
+  Portanto, `READ COMMITTED` oferece controle mais fino e flexível do que `innodb_locks_unsafe_for_binlog`. Para mais informações sobre o efeito do nível de isolamento no gap locking, consulte a Seção 14.7.2.1, “Níveis de Isolamento de Transaction”.
 
-  Enabling `innodb_locks_unsafe_for_binlog` may cause phantom problems because other sessions can insert new rows into the gaps when gap locking is disabled. Suppose that there is an index on the `id` column of the `child` table and that you want to read and lock all rows from the table having an identifier value larger than 100, with the intention of updating some column in the selected rows later:
+  Habilitar `innodb_locks_unsafe_for_binlog` pode causar problemas de phantom porque outras sessions podem inserir novas rows nos gaps quando o gap locking está desabilitado. Suponha que haja um Index na coluna `id` da table `child` e que você queira ler e bloquear todas as rows da table com um valor de identificador maior que 100, com a intenção de atualizar alguma coluna nas rows selecionadas mais tarde:
 
   ```sql
   SELECT * FROM child WHERE id > 100 FOR UPDATE;
   ```
 
-  The query scans the index starting from the first record where the `id` is greater than 100. If the locks set on the index records in that range do not lock out inserts made in the gaps, another session can insert a new row into the table. Consequently, if you were to execute the same `SELECT` again within the same transaction, you would see a new row in the result set returned by the query. This also means that if new items are added to the database, `InnoDB` does not guarantee serializability. Therefore, if `innodb_locks_unsafe_for_binlog` is enabled, `InnoDB` guarantees at most an isolation level of `READ COMMITTED`. (Conflict serializability is still guaranteed.) For more information about phantoms, see Section 14.7.4, “Phantom Rows”.
+  A Query escaneia o Index começando do primeiro registro onde o `id` é maior que 100. Se os Locks definidos nos registros de Index nesse range não bloquearem inserts feitos nos gaps, outra session pode inserir uma nova row na table. Consequentemente, se você executasse o mesmo `SELECT` novamente dentro da mesma transaction, você veria uma nova row no conjunto de resultados retornado pela Query. Isso também significa que se novos itens forem adicionados ao Database, o `InnoDB` não garante serializability. Portanto, se `innodb_locks_unsafe_for_binlog` estiver habilitado, o `InnoDB` garante no máximo um nível de isolamento de `READ COMMITTED`. (A serializability de conflito ainda é garantida.) Para mais informações sobre phantoms, consulte a Seção 14.7.4, “Phantom Rows”.
 
-  Enabling `innodb_locks_unsafe_for_binlog` has additional effects:
+  Habilitar `innodb_locks_unsafe_for_binlog` tem efeitos adicionais:
 
-  + For `UPDATE` or `DELETE` statements, `InnoDB` holds locks only for rows that it updates or deletes. Record locks for nonmatching rows are released after MySQL has evaluated the `WHERE` condition. This greatly reduces the probability of deadlocks, but they can still happen.
+  + Para instruções `UPDATE` ou `DELETE`, o `InnoDB` mantém Locks apenas para rows que ele atualiza ou deleta. Row locks para rows não correspondentes são liberados após o MySQL ter avaliado a condição `WHERE`. Isso reduz muito a probabilidade de deadlocks, mas eles ainda podem acontecer.
 
-  + For `UPDATE` statements, if a row is already locked, `InnoDB` performs a “semi-consistent” read, returning the latest committed version to MySQL so that MySQL can determine whether the row matches the `WHERE` condition of the `UPDATE`. If the row matches (must be updated), MySQL reads the row again and this time `InnoDB` either locks it or waits for a lock on it.
+  + Para instruções `UPDATE`, se uma row já estiver bloqueada, o `InnoDB` realiza uma leitura “semi-consistente”, retornando a última versão com commit para o MySQL para que o MySQL possa determinar se a row corresponde à condição `WHERE` do `UPDATE`. Se a row corresponder (deve ser atualizada), o MySQL lê a row novamente e desta vez o `InnoDB` ou a bloqueia ou espera por um Lock nela.
 
-  Consider the following example, beginning with this table:
+  Considere o seguinte exemplo, começando com esta table:
 
   ```sql
   CREATE TABLE t (a INT NOT NULL, b INT) ENGINE = InnoDB;
@@ -1000,25 +1000,25 @@
   COMMIT;
   ```
 
-  In this case, table has no indexes, so searches and index scans use the hidden clustered index for record locking (see Section 14.6.2.1, “Clustered and Secondary Indexes”).
+  Neste caso, a table não tem Indexes, então buscas e Index scans usam o Index clusterizado oculto para row locking (consulte a Seção 14.6.2.1, “Indexes Clusterizados e Secundários”).
 
-  Suppose that one client performs an `UPDATE` using these statements:
+  Suponha que um cliente execute um `UPDATE` usando estas instruções:
 
   ```sql
   SET autocommit = 0;
   UPDATE t SET b = 5 WHERE b = 3;
   ```
 
-  Suppose also that a second client performs an `UPDATE` by executing these statements following those of the first client:
+  Suponha também que um segundo cliente execute um `UPDATE` executando estas instruções após as do primeiro cliente:
 
   ```sql
   SET autocommit = 0;
   UPDATE t SET b = 4 WHERE b = 2;
   ```
 
-  As `InnoDB` executes each `UPDATE`, it first acquires an exclusive lock for each row, and then determines whether to modify it. If `InnoDB` does not modify the row and `innodb_locks_unsafe_for_binlog` is enabled, it releases the lock. Otherwise, `InnoDB` retains the lock until the end of the transaction. This affects transaction processing as follows.
+  À medida que o `InnoDB` executa cada `UPDATE`, ele primeiro adquire um exclusive Lock para cada row e, em seguida, determina se deve modificá-la. Se o `InnoDB` não modificar a row e `innodb_locks_unsafe_for_binlog` estiver habilitado, ele libera o Lock. Caso contrário, o `InnoDB` retém o Lock até o final da transaction. Isso afeta o processamento da transaction da seguinte forma.
 
-  If `innodb_locks_unsafe_for_binlog` is disabled, the first `UPDATE` acquires x-locks and does not release any of them:
+  Se `innodb_locks_unsafe_for_binlog` estiver desabilitado, o primeiro `UPDATE` adquire x-locks e não libera nenhum deles:
 
   ```sql
   x-lock(1,2); retain x-lock
@@ -1028,13 +1028,13 @@
   x-lock(5,2); retain x-lock
   ```
 
-  The second `UPDATE` blocks as soon as it tries to acquire any locks (because the first update has retained locks on all rows), and does not proceed until the first `UPDATE` commits or rolls back:
+  O segundo `UPDATE` bloqueia assim que tenta adquirir qualquer Lock (porque o primeiro update reteve Locks em todas as rows) e não prossegue até que o primeiro `UPDATE` faça commit ou rollback:
 
   ```sql
   x-lock(1,2); block and wait for first UPDATE to commit or roll back
   ```
 
-  If `innodb_locks_unsafe_for_binlog` is enabled, the first `UPDATE` acquires x-locks and releases those for rows that it does not modify:
+  Se `innodb_locks_unsafe_for_binlog` estiver habilitado, o primeiro `UPDATE` adquire x-locks e libera aqueles para as rows que ele não modifica:
 
   ```sql
   x-lock(1,2); unlock(1,2)
@@ -1044,7 +1044,7 @@
   x-lock(5,2); unlock(5,2)
   ```
 
-  For the second `UPDATE`, `InnoDB` does a “semi-consistent” read, returning the latest committed version of each row to MySQL so that MySQL can determine whether the row matches the `WHERE` condition of the `UPDATE`:
+  Para o segundo `UPDATE`, o `InnoDB` faz uma leitura “semi-consistente”, retornando a última versão com commit de cada row para o MySQL para que o MySQL possa determinar se a row corresponde à condição `WHERE` do `UPDATE`:
 
   ```sql
   x-lock(1,2); update(1,2) to (1,4); retain x-lock
@@ -1056,246 +1056,246 @@
 
 * `innodb_log_buffer_size`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_w_batch_size"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-w-batch-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_w_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1048576</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-w-batch-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_w_batch_size</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr></tbody></table>
 
-  The size in bytes of the buffer that `InnoDB` uses to write to the log files on disk. The default value changed from 8MB to 16MB with the introduction of 32KB and 64KB `innodb_page_size` values. A large log buffer enables large transactions to run without the need to write the log to disk before the transactions commit. Thus, if you have transactions that update, insert, or delete many rows, making the log buffer larger saves disk I/O. For related information, see Memory Configuration, and Section 8.5.4, “Optimizing InnoDB Redo Logging”. For general I/O tuning advice, see Section 8.5.8, “Optimizing InnoDB Disk I/O”.
+  O tamanho em bytes do Buffer que o `InnoDB` usa para escrever nos log files no disco. O valor padrão mudou de 8MB para 16MB com a introdução dos valores de `innodb_page_size` de 32KB e 64KB. Um log Buffer grande permite que transactions grandes sejam executadas sem a necessidade de escrever o log no disco antes que as transactions façam commit. Assim, se você tiver transactions que atualizam, inserem ou deletam muitas rows, aumentar o log Buffer economiza I/O de disco. Para informações relacionadas, consulte Configuração de Memória e Seção 8.5.4, “Otimizando Redo Logging do InnoDB”. Para conselhos gerais sobre ajuste de I/O, consulte a Seção 8.5.8, “Otimizando I/O de Disco do InnoDB”.
 
 * `innodb_log_checkpoint_now`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_w_batch_size"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-w-batch-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_w_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1048576</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-w-batch-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_w_batch_size</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr></tbody></table>
 
-  Enable this debug option to force `InnoDB` to write a checkpoint. This option is only available if debugging support is compiled in using the `WITH_DEBUG` **CMake** option.
+  Habilite esta opção de Debug para forçar o `InnoDB` a escrever um checkpoint. Esta opção só está disponível se o suporte a Debug for compilado usando a opção **CMake** `WITH_DEBUG`.
 
 * `innodb_log_checksums`
 
-  <table frame="box" rules="all" summary="Properties for daemon_memcached_w_batch_size"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-w-batch-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_w_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1048576</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--daemon-memcached-w-batch-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>daemon_memcached_w_batch_size</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr></tbody></table>
 
-  Enables or disables checksums for redo log pages.
+  Habilita ou desabilita checksums para páginas de redo log.
 
-  `innodb_log_checksums=ON` enables the `CRC-32C` checksum algorithm for redo log pages. When `innodb_log_checksums` is disabled, the contents of the redo log page checksum field are ignored.
+  `innodb_log_checksums=ON` habilita o algoritmo de checksum `CRC-32C` para páginas de redo log. Quando `innodb_log_checksums` está desabilitado, o conteúdo do campo de checksum da página de redo log é ignorado.
 
-  Checksums on the redo log header page and redo log checkpoint pages are never disabled.
+  Checksums na página de cabeçalho do redo log e nas páginas de checkpoint do redo log nunca são desabilitados.
 
 * `innodb_log_compressed_pages`
 
-  <table frame="box" rules="all" summary="Properties for ignore_builtin_innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--ignore-builtin-innodb[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code>ignore_builtin_innodb</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--ignore-builtin-innodb[={OFF|ON}]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Variável de Sistema</th> <td><code>ignore_builtin_innodb</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr> </tbody></table>
 
-  Specifies whether images of re-compressed pages are written to the redo log. Re-compression may occur when changes are made to compressed data.
+  Especifica se as imagens de páginas recomprimidas são escritas no redo log. A recompreensão pode ocorrer quando alterações são feitas em dados comprimidos.
 
-  `innodb_log_compressed_pages` is enabled by default to prevent corruption that could occur if a different version of the `zlib` compression algorithm is used during recovery. If you are certain that the `zlib` version is not subject to change, you can disable `innodb_log_compressed_pages` to reduce redo log generation for workloads that modify compressed data.
+  `innodb_log_compressed_pages` está habilitado por padrão para evitar corrupção que poderia ocorrer se uma versão diferente do algoritmo de compressão `zlib` for usada durante o recovery. Se você tiver certeza de que a versão `zlib` não está sujeita a alterações, você pode desabilitar `innodb_log_compressed_pages` para reduzir a geração de redo log para workloads que modificam dados comprimidos.
 
-  To measure the effect of enabling or disabling `innodb_log_compressed_pages`, compare redo log generation for both settings under the same workload. Options for measuring redo log generation include observing the `Log sequence number` (LSN) in the `LOG` section of `SHOW ENGINE INNODB STATUS` output, or monitoring `Innodb_os_log_written` status for the number of bytes written to the redo log files.
+  Para medir o efeito de habilitar ou desabilitar `innodb_log_compressed_pages`, compare a geração de redo log para ambas as configurações sob a mesma workload. As opções para medir a geração de redo log incluem observar o `Log sequence number` (LSN) na seção `LOG` da saída de `SHOW ENGINE INNODB STATUS`, ou monitorar o status `Innodb_os_log_written` para o número de bytes escritos nos arquivos de redo log.
 
-  For related information, see Section 14.9.1.6, “Compression for OLTP Workloads”.
+  Para informações relacionadas, consulte a Seção 14.9.1.6, “Compressão para Workloads OLTP”.
 
 * `innodb_log_file_size`
 
-  <table frame="box" rules="all" summary="Properties for ignore_builtin_innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--ignore-builtin-innodb[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code>ignore_builtin_innodb</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--ignore-builtin-innodb[={OFF|ON}]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Variável de Sistema</th> <td><code>ignore_builtin_innodb</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr> </tbody></table>
 
-  The size in bytes of each log file in a log group. The combined size of log files (`innodb_log_file_size` \* `innodb_log_files_in_group`) cannot exceed a maximum value that is slightly less than 512GB. A pair of 255 GB log files, for example, approaches the limit but does not exceed it. The default value is 48MB.
+  O tamanho em bytes de cada log file em um log group. O tamanho combinado dos log files (`innodb_log_file_size` \* `innodb_log_files_in_group`) não pode exceder um valor máximo ligeiramente inferior a 512GB. Um par de log files de 255 GB, por exemplo, se aproxima do limite, mas não o excede. O valor padrão é 48MB.
 
-  Generally, the combined size of the log files should be large enough that the server can smooth out peaks and troughs in workload activity, which often means that there is enough redo log space to handle more than an hour of write activity. The larger the value, the less checkpoint flush activity is required in the buffer pool, saving disk I/O. Larger log files also make crash recovery slower.
+  Geralmente, o tamanho combinado dos log files deve ser grande o suficiente para que o servidor possa suavizar picos e vales na atividade da workload, o que geralmente significa que há espaço de redo log suficiente para lidar com mais de uma hora de atividade de escrita. Quanto maior o valor, menos atividade de flush de checkpoint é necessária no Buffer Pool, economizando I/O de disco. Log files maiores também tornam o crash recovery mais lento.
 
-  The minimum `innodb_log_file_size` value was increased from 1MB to 4MB in MySQL 5.7.11.
+  O valor mínimo de `innodb_log_file_size` foi aumentado de 1MB para 4MB no MySQL 5.7.11.
 
-  For related information, see Redo Log File Configuration. For general I/O tuning advice, see Section 8.5.8, “Optimizing InnoDB Disk I/O”.
+  Para informações relacionadas, consulte Configuração do Arquivo de Redo Log. Para conselhos gerais sobre ajuste de I/O, consulte a Seção 8.5.8, “Otimizando I/O de Disco do InnoDB”.
 
 * `innodb_log_files_in_group`
 
-  <table frame="box" rules="all" summary="Properties for ignore_builtin_innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--ignore-builtin-innodb[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code>ignore_builtin_innodb</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--ignore-builtin-innodb[={OFF|ON}]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Variável de Sistema</th> <td><code>ignore_builtin_innodb</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr> </tbody></table>
 
-  The number of log files in the log group. `InnoDB` writes to the files in a circular fashion. The default (and recommended) value is 2. The location of the files is specified by `innodb_log_group_home_dir`. The combined size of log files (`innodb_log_file_size` \* `innodb_log_files_in_group`) can be up to 512GB.
+  O número de log files no log group. O `InnoDB` escreve nos arquivos de forma circular. O valor padrão (e recomendado) é 2. A localização dos arquivos é especificada por `innodb_log_group_home_dir`. O tamanho combinado dos log files (`innodb_log_file_size` \* `innodb_log_files_in_group`) pode ser de até 512GB.
 
-  For related information, see Redo Log File Configuration.
+  Para informações relacionadas, consulte Configuração do Arquivo de Redo Log.
 
 * `innodb_log_group_home_dir`
 
-  <table frame="box" rules="all" summary="Properties for ignore_builtin_innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--ignore-builtin-innodb[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code>ignore_builtin_innodb</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--ignore-builtin-innodb[={OFF|ON}]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Variável de Sistema</th> <td><code>ignore_builtin_innodb</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr> </tbody></table>
 
-  The directory path to the `InnoDB` redo log files, whose number is specified by `innodb_log_files_in_group`. If you do not specify any `InnoDB` log variables, the default is to create two files named `ib_logfile0` and `ib_logfile1` in the MySQL data directory. Log file size is given by the `innodb_log_file_size` system variable.
+  O path do diretório para os arquivos de redo log do `InnoDB`, cujo número é especificado por `innodb_log_files_in_group`. Se você não especificar nenhuma variável de log do `InnoDB`, o padrão é criar dois arquivos chamados `ib_logfile0` e `ib_logfile1` no data directory do MySQL. O tamanho do log file é dado pela variável de sistema `innodb_log_file_size`.
 
-  For related information, see Redo Log File Configuration.
+  Para informações relacionadas, consulte Configuração do Arquivo de Redo Log.
 
 * `innodb_log_write_ahead_size`
 
-  <table frame="box" rules="all" summary="Properties for ignore_builtin_innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--ignore-builtin-innodb[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code>ignore_builtin_innodb</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--ignore-builtin-innodb[={OFF|ON}]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Variável de Sistema</th> <td><code>ignore_builtin_innodb</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr> </tbody></table>
 
-  Defines the write-ahead block size for the redo log, in bytes. To avoid “read-on-write”, set `innodb_log_write_ahead_size` to match the operating system or file system cache block size. The default setting is 8192 bytes. Read-on-write occurs when redo log blocks are not entirely cached to the operating system or file system due to a mismatch between write-ahead block size for the redo log and operating system or file system cache block size.
+  Define o tamanho do bloco write-ahead para o redo log, em bytes. Para evitar “read-on-write”, defina `innodb_log_write_ahead_size` para corresponder ao tamanho do bloco de cache do sistema operacional ou do sistema de arquivos. A configuração padrão é de 8192 bytes. O read-on-write ocorre quando os blocos de redo log não são totalmente armazenados em cache no sistema operacional ou no sistema de arquivos devido a uma incompatibilidade entre o tamanho do bloco write-ahead para o redo log e o tamanho do bloco de cache do sistema operacional ou do sistema de arquivos.
 
-  Valid values for `innodb_log_write_ahead_size` are multiples of the `InnoDB` log file block size (2n). The minimum value is the `InnoDB` log file block size (512). Write-ahead does not occur when the minimum value is specified. The maximum value is equal to the `innodb_page_size` value. If you specify a value for `innodb_log_write_ahead_size` that is larger than the `innodb_page_size` value, the `innodb_log_write_ahead_size` setting is truncated to the `innodb_page_size` value.
+  Os valores válidos para `innodb_log_write_ahead_size` são múltiplos do tamanho do bloco do log file do `InnoDB` (2n). O valor mínimo é o tamanho do bloco do log file do `InnoDB` (512). O write-ahead não ocorre quando o valor mínimo é especificado. O valor máximo é igual ao valor `innodb_page_size`. Se você especificar um valor para `innodb_log_write_ahead_size` que seja maior do que o valor `innodb_page_size`, a configuração `innodb_log_write_ahead_size` é truncada para o valor `innodb_page_size`.
 
-  Setting the `innodb_log_write_ahead_size` value too low in relation to the operating system or file system cache block size results in “read-on-write”. Setting the value too high may have a slight impact on `fsync` performance for log file writes due to several blocks being written at once.
+  Definir o valor `innodb_log_write_ahead_size` muito baixo em relação ao tamanho do bloco de cache do sistema operacional ou do sistema de arquivos resulta em “read-on-write”. Definir o valor muito alto pode ter um leve impacto na performance do `fsync` para escritas em log file devido a vários blocos sendo escritos de uma vez.
 
-  For related information, see Section 8.5.4, “Optimizing InnoDB Redo Logging”.
+  Para informações relacionadas, consulte a Seção 8.5.4, “Otimizando Redo Logging do InnoDB”.
 
 * `innodb_lru_scan_depth`
 
-  <table frame="box" rules="all" summary="Properties for ignore_builtin_innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--ignore-builtin-innodb[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code>ignore_builtin_innodb</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--ignore-builtin-innodb[={OFF|ON}]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Variável de Sistema</th> <td><code>ignore_builtin_innodb</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr> </tbody></table>
 
-  A parameter that influences the algorithms and heuristics for the flush operation for the `InnoDB` buffer pool. Primarily of interest to performance experts tuning I/O-intensive workloads. It specifies, per buffer pool instance, how far down the buffer pool LRU page list the page cleaner thread scans looking for dirty pages to flush. This is a background operation performed once per second.
+  Um parâmetro que influencia os algoritmos e heurísticas para a operação de flush do Buffer Pool do `InnoDB`. Principalmente de interesse para especialistas em performance que ajustam workloads intensivas em I/O. Ele especifica, por instância de Buffer Pool, o quão longe na lista LRU de páginas do Buffer Pool o Thread page cleaner escaneia em busca de dirty pages para fazer flush. Esta é uma operação em background realizada uma vez por segundo.
 
-  A setting smaller than the default is generally suitable for most workloads. A value that is much higher than necessary may impact performance. Only consider increasing the value if you have spare I/O capacity under a typical workload. Conversely, if a write-intensive workload saturates your I/O capacity, decrease the value, especially in the case of a large buffer pool.
+  Uma configuração menor que a padrão é geralmente adequada para a maioria das workloads. Um valor muito maior do que o necessário pode impactar a performance. Considere aumentar o valor apenas se você tiver capacidade de I/O de sobra sob uma workload típica. Por outro lado, se uma workload intensiva em escrita saturar sua capacidade de I/O, diminua o valor, especialmente no caso de um Buffer Pool grande.
 
-  When tuning `innodb_lru_scan_depth`, start with a low value and configure the setting upward with the goal of rarely seeing zero free pages. Also, consider adjusting `innodb_lru_scan_depth` when changing the number of buffer pool instances, since `innodb_lru_scan_depth` \* `innodb_buffer_pool_instances` defines the amount of work performed by the page cleaner thread each second.
+  Ao ajustar `innodb_lru_scan_depth`, comece com um valor baixo e configure-o para cima com o objetivo de raramente ver zero páginas livres. Além disso, considere ajustar `innodb_lru_scan_depth` ao alterar o número de instâncias do Buffer Pool, já que `innodb_lru_scan_depth` \* `innodb_buffer_pool_instances` define a quantidade de trabalho realizado pelo Thread page cleaner a cada segundo.
 
-  For related information, see Section 14.8.3.5, “Configuring Buffer Pool Flushing”. For general I/O tuning advice, see Section 8.5.8, “Optimizing InnoDB Disk I/O”.
+  Para informações relacionadas, consulte a Seção 14.8.3.5, “Configurando o Flushing do Buffer Pool”. Para conselhos gerais sobre ajuste de I/O, consulte a Seção 8.5.8, “Otimizando I/O de Disco do InnoDB”.
 
 * `innodb_max_dirty_pages_pct`
 
-  <table frame="box" rules="all" summary="Properties for ignore_builtin_innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--ignore-builtin-innodb[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code>ignore_builtin_innodb</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--ignore-builtin-innodb[={OFF|ON}]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Variável de Sistema</th> <td><code>ignore_builtin_innodb</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr> </tbody></table>
 
-  `InnoDB` tries to flush data from the buffer pool so that the percentage of dirty pages does not exceed this value. The default value is 75.
+  O `InnoDB` tenta fazer flush de dados do Buffer Pool para que a porcentagem de dirty pages não exceda este valor. O valor padrão é 75.
 
-  The `innodb_max_dirty_pages_pct` setting establishes a target for flushing activity. It does not affect the rate of flushing. For information about managing the rate of flushing, see Section 14.8.3.5, “Configuring Buffer Pool Flushing”.
+  A configuração `innodb_max_dirty_pages_pct` estabelece um alvo para a atividade de flushing. Não afeta a taxa de flushing. Para obter informações sobre como gerenciar a taxa de flushing, consulte a Seção 14.8.3.5, “Configurando o Flushing do Buffer Pool”.
 
-  For related information, see Section 14.8.3.5, “Configuring Buffer Pool Flushing”. For general I/O tuning advice, see Section 8.5.8, “Optimizing InnoDB Disk I/O”.
+  Para informações relacionadas, consulte a Seção 14.8.3.5, “Configurando o Flushing do Buffer Pool”. Para conselhos gerais sobre ajuste de I/O, consulte a Seção 8.5.8, “Otimizando I/O de Disco do InnoDB”.
 
 * `innodb_max_dirty_pages_pct_lwm`
 
-  <table frame="box" rules="all" summary="Properties for ignore_builtin_innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--ignore-builtin-innodb[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code>ignore_builtin_innodb</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--ignore-builtin-innodb[={OFF|ON}]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Variável de Sistema</th> <td><code>ignore_builtin_innodb</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr> </tbody></table>
 
-  Defines a low water mark representing the percentage of dirty pages at which preflushing is enabled to control the dirty page ratio. The default of 0 disables the pre-flushing behavior entirely. The configured value should always be lower than the `innodb_max_dirty_pages_pct` value. For more information, see Section 14.8.3.5, “Configuring Buffer Pool Flushing”.
+  Define um limite inferior (low water mark - LWM) que representa a porcentagem de dirty pages na qual o pré-flushing é habilitado para controlar a proporção de dirty pages. O padrão de 0 desabilita o comportamento de pré-flushing inteiramente. O valor configurado deve ser sempre inferior ao valor `innodb_max_dirty_pages_pct`. Para mais informações, consulte a Seção 14.8.3.5, “Configurando o Flushing do Buffer Pool”.
 
 * `innodb_max_purge_lag`
 
-  <table frame="box" rules="all" summary="Properties for ignore_builtin_innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--ignore-builtin-innodb[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code>ignore_builtin_innodb</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--ignore-builtin-innodb[={OFF|ON}]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Variável de Sistema</th> <td><code>ignore_builtin_innodb</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr> </tbody></table>
 
-  Defines the desired maximum purge lag. If this value is exceeded, a delay is imposed on `INSERT`, `UPDATE`, and `DELETE` operations to allow time for purge to catch up. The default value is 0, which means there is no maximum purge lag and no delay.
+  Define o máximo de purge lag desejado. Se este valor for excedido, um atraso é imposto nas operações `INSERT`, `UPDATE` e `DELETE` para dar tempo ao purge para alcançá-lo. O valor padrão é 0, o que significa que não há máximo purge lag e nenhum atraso.
 
-  For more information, see Section 14.8.10, “Purge Configuration”.
+  Para mais informações, consulte a Seção 14.8.10, “Configuração de Purge”.
 
 * `innodb_max_purge_lag_delay`
 
-  <table frame="box" rules="all" summary="Properties for ignore_builtin_innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--ignore-builtin-innodb[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code>ignore_builtin_innodb</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--ignore-builtin-innodb[={OFF|ON}]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Variável de Sistema</th> <td><code>ignore_builtin_innodb</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr> </tbody></table>
 
-  Specifies the maximum delay in microseconds for the delay imposed when the `innodb_max_purge_lag` threshold is exceeded. The specified `innodb_max_purge_lag_delay` value is an upper limit on the delay period calculated by the `innodb_max_purge_lag` formula.
+  Especifica o atraso máximo em microssegundos para o atraso imposto quando o limite `innodb_max_purge_lag` é excedido. O valor `innodb_max_purge_lag_delay` especificado é um limite superior no período de atraso calculado pela fórmula `innodb_max_purge_lag`.
 
-  For more information, see Section 14.8.10, “Purge Configuration”.
+  Para mais informações, consulte a Seção 14.8.10, “Configuração de Purge”.
 
 * `innodb_max_undo_log_size`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Defines a threshold size for undo tablespaces. If an undo tablespace exceeds the threshold, it can be marked for truncation when `innodb_undo_log_truncate` is enabled. The default value is 1073741824 bytes (1024 MiB).
+  Define um tamanho de limite para undo tablespaces. Se um undo tablespace exceder o limite, ele pode ser marcado para truncamento quando `innodb_undo_log_truncate` estiver habilitado. O valor padrão é 1073741824 bytes (1024 MiB).
 
-  For more information, see Truncating Undo Tablespaces.
+  Para mais informações, consulte Truncando Undo Tablespaces.
 
 * `innodb_merge_threshold_set_all_debug`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Defines a page-full percentage value for index pages that overrides the current `MERGE_THRESHOLD` setting for all indexes that are currently in the dictionary cache. This option is only available if debugging support is compiled in using the `WITH_DEBUG` **CMake** option. For related information, see Section 14.8.12, “Configuring the Merge Threshold for Index Pages”.
+  Define um valor percentual de preenchimento de página para Index pages que sobrescreve a configuração `MERGE_THRESHOLD` atual para todos os Indexes que estão atualmente no dictionary cache. Esta opção só está disponível se o suporte a Debug for compilado usando a opção **CMake** `WITH_DEBUG`. Para informações relacionadas, consulte a Seção 14.8.12, “Configurando o Merge Threshold para Index Pages”.
 
 * `innodb_monitor_disable`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  This variable acts as a switch, disabling `InnoDB` metrics counters. Counter data may be queried using the Information Schema `INNODB_METRICS` table. For usage information, see Section 14.16.6, “InnoDB INFORMATION_SCHEMA Metrics Table”.
+  Esta variável atua como um switch, desabilitando os contadores de métricas do `InnoDB`. Os dados do contador podem ser consultados usando a tabela `INNODB_METRICS` do Information Schema. Para informações de uso, consulte a Seção 14.16.6, “Tabela de Métricas do INFORMATION_SCHEMA do InnoDB”.
 
-  `innodb_monitor_disable='latch'` disables statistics collection for `SHOW ENGINE INNODB MUTEX`. For more information, see Section 13.7.5.15, “SHOW ENGINE Statement”.
+  `innodb_monitor_disable='latch'` desabilita a coleta de estatísticas para `SHOW ENGINE INNODB MUTEX`. Para mais informações, consulte a Seção 13.7.5.15, “Instrução SHOW ENGINE”.
 
 * `innodb_monitor_enable`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  This variable acts as a switch, enabling `InnoDB` metrics counters. Counter data may be queried using the Information Schema `INNODB_METRICS` table. For usage information, see Section 14.16.6, “InnoDB INFORMATION_SCHEMA Metrics Table”.
+  Esta variável atua como um switch, habilitando os contadores de métricas do `InnoDB`. Os dados do contador podem ser consultados usando a tabela `INNODB_METRICS` do Information Schema. Para informações de uso, consulte a Seção 14.16.6, “Tabela de Métricas do INFORMATION_SCHEMA do InnoDB”.
 
-  `innodb_monitor_enable='latch'` enables statistics collection for `SHOW ENGINE INNODB MUTEX`. For more information, see Section 13.7.5.15, “SHOW ENGINE Statement”.
+  `innodb_monitor_enable='latch'` habilita a coleta de estatísticas para `SHOW ENGINE INNODB MUTEX`. Para mais informações, consulte a Seção 13.7.5.15, “Instrução SHOW ENGINE”.
 
 * `innodb_monitor_reset`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  This variable acts as a switch, resetting the count value for `InnoDB` metrics counters to zero. Counter data may be queried using the Information Schema `INNODB_METRICS` table. For usage information, see Section 14.16.6, “InnoDB INFORMATION_SCHEMA Metrics Table”.
+  Esta variável atua como um switch, redefinindo o valor de contagem para os contadores de métricas do `InnoDB` para zero. Os dados do contador podem ser consultados usando a tabela `INNODB_METRICS` do Information Schema. Para informações de uso, consulte a Seção 14.16.6, “Tabela de Métricas do INFORMATION_SCHEMA do InnoDB”.
 
-  `innodb_monitor_reset='latch'` resets statistics reported by `SHOW ENGINE INNODB MUTEX`. For more information, see Section 13.7.5.15, “SHOW ENGINE Statement”.
+  `innodb_monitor_reset='latch'` redefine as estatísticas relatadas por `SHOW ENGINE INNODB MUTEX`. Para mais informações, consulte a Seção 13.7.5.15, “Instrução SHOW ENGINE”.
 
 * `innodb_monitor_reset_all`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  This variable acts as a switch, resetting all values (minimum, maximum, and so on) for `InnoDB` metrics counters. Counter data may be queried using the Information Schema `INNODB_METRICS` table. For usage information, see Section 14.16.6, “InnoDB INFORMATION_SCHEMA Metrics Table”.
+  Esta variável atua como um switch, redefinindo todos os valores (mínimo, máximo e assim por diante) para os contadores de métricas do `InnoDB`. Os dados do contador podem ser consultados usando a tabela `INNODB_METRICS` do Information Schema. Para informações de uso, consulte a Seção 14.16.6, “Tabela de Métricas do INFORMATION_SCHEMA do InnoDB”.
 
 * `innodb_numa_interleave`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Enables the NUMA interleave memory policy for allocation of the `InnoDB` buffer pool. When `innodb_numa_interleave` is enabled, the NUMA memory policy is set to `MPOL_INTERLEAVE` for the **mysqld** process. After the `InnoDB` buffer pool is allocated, the NUMA memory policy is set back to `MPOL_DEFAULT`. For the `innodb_numa_interleave` option to be available, MySQL must be compiled on a NUMA-enabled Linux system.
+  Habilita a política de memória NUMA interleave para alocação do Buffer Pool do `InnoDB`. Quando `innodb_numa_interleave` está habilitado, a política de memória NUMA é definida como `MPOL_INTERLEAVE` para o processo **mysqld**. Após o Buffer Pool do `InnoDB` ser alocado, a política de memória NUMA é definida novamente como `MPOL_DEFAULT`. Para que a opção `innodb_numa_interleave` esteja disponível, o MySQL deve ser compilado em um sistema Linux habilitado para NUMA.
 
-  As of MySQL 5.7.17, **CMake** sets the default `WITH_NUMA` value based on whether the current platform has `NUMA` support. For more information, see Section 2.8.7, “MySQL Source-Configuration Options”.
+  A partir do MySQL 5.7.17, o **CMake** define o valor padrão `WITH_NUMA` com base no suporte NUMA na plataforma atual. Para mais informações, consulte a Seção 2.8.7, “Opções de Configuração de Fonte do MySQL”.
 
 * `innodb_old_blocks_pct`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Specifies the approximate percentage of the `InnoDB` buffer pool used for the old block sublist. The range of values is 5 to 95. The default value is 37 (that is, 3/8 of the pool). Often used in combination with `innodb_old_blocks_time`.
+  Especifica a porcentagem aproximada do Buffer Pool do `InnoDB` usada para a sublista de blocos antigos. O intervalo de valores é de 5 a 95. O valor padrão é 37 (ou seja, 3/8 do Pool). Frequentemente usado em combinação com `innodb_old_blocks_time`.
 
-  For more information, see Section 14.8.3.3, “Making the Buffer Pool Scan Resistant”. For information about buffer pool management, the LRU algorithm, and eviction policies, see Section 14.5.1, “Buffer Pool”.
+  Para mais informações, consulte a Seção 14.8.3.3, “Tornando o Buffer Pool Resistente a Scan”. Para informações sobre gerenciamento de Buffer Pool, o algoritmo LRU e políticas de despejo (eviction), consulte a Seção 14.5.1, “Buffer Pool”.
 
 * `innodb_old_blocks_time`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Non-zero values protect against the buffer pool being filled by data that is referenced only for a brief period, such as during a full table scan. Increasing this value offers more protection against full table scans interfering with data cached in the buffer pool.
+  Valores não zero protegem contra o Buffer Pool ser preenchido por dados referenciados apenas por um breve período, como durante um full table scan. Aumentar este valor oferece mais proteção contra a interferência de full table scans com dados armazenados em cache no Buffer Pool.
 
-  Specifies how long in milliseconds a block inserted into the old sublist must stay there after its first access before it can be moved to the new sublist. If the value is 0, a block inserted into the old sublist moves immediately to the new sublist the first time it is accessed, no matter how soon after insertion the access occurs. If the value is greater than 0, blocks remain in the old sublist until an access occurs at least that many milliseconds after the first access. For example, a value of 1000 causes blocks to stay in the old sublist for 1 second after the first access before they become eligible to move to the new sublist.
+  Especifica por quanto tempo em milissegundos um bloco inserido na sublista antiga deve permanecer lá após seu primeiro acesso antes de poder ser movido para a nova sublista. Se o valor for 0, um bloco inserido na sublista antiga se move imediatamente para a nova sublista na primeira vez que é acessado, não importa quão logo após a inserção o acesso ocorra. Se o valor for maior que 0, os blocos permanecem na sublista antiga até que um acesso ocorra pelo menos essa quantidade de milissegundos após o primeiro acesso. Por exemplo, um valor de 1000 faz com que os blocos permaneçam na sublista antiga por 1 segundo após o primeiro acesso antes de se tornarem elegíveis para se moverem para a nova sublista.
 
-  The default value is 1000.
+  O valor padrão é 1000.
 
-  This variable is often used in combination with `innodb_old_blocks_pct`. For more information, see Section 14.8.3.3, “Making the Buffer Pool Scan Resistant”. For information about buffer pool management, the LRU algorithm, and eviction policies, see Section 14.5.1, “Buffer Pool”.
+  Esta variável é frequentemente usada em combinação com `innodb_old_blocks_pct`. Para mais informações, consulte a Seção 14.8.3.3, “Tornando o Buffer Pool Resistente a Scan”. Para informações sobre gerenciamento de Buffer Pool, o algoritmo LRU e políticas de despejo (eviction), consulte a Seção 14.5.1, “Buffer Pool”.
 
 * `innodb_online_alter_log_max_size`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Specifies an upper limit in bytes on the size of the temporary log files used during online DDL operations for `InnoDB` tables. There is one such log file for each index being created or table being altered. This log file stores data inserted, updated, or deleted in the table during the DDL operation. The temporary log file is extended when needed by the value of `innodb_sort_buffer_size`, up to the maximum specified by `innodb_online_alter_log_max_size`. If a temporary log file exceeds the upper size limit, the `ALTER TABLE` operation fails and all uncommitted concurrent DML operations are rolled back. Thus, a large value for this option allows more DML to happen during an online DDL operation, but also extends the period of time at the end of the DDL operation when the table is locked to apply the data from the log.
+  Especifica um limite superior em bytes no tamanho dos log files temporários usados durante operações DDL online para tabelas `InnoDB`. Há um log file desse tipo para cada Index sendo criado ou table sendo alterada. Este log file armazena dados inseridos, atualizados ou deletados na table durante a operação DDL. O log file temporário é estendido quando necessário pelo valor de `innodb_sort_buffer_size`, até o máximo especificado por `innodb_online_alter_log_max_size`. Se um log file temporário exceder o limite de tamanho superior, a operação `ALTER TABLE` falha e todas as operações DML concorrentes não submetidas a commit são revertidas. Assim, um valor grande para esta opção permite que mais DML ocorra durante uma operação DDL online, mas também estende o período de tempo no final da operação DDL quando a table está bloqueada para aplicar os dados do log.
 
 * `innodb_open_files`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Specifies the maximum number of files that `InnoDB` can have open at one time. The minimum value is 10. If `innodb_file_per_table` is disabled, the default value is 300; otherwise, the default value is 300 or the `table_open_cache` setting, whichever is higher.
+  Especifica o número máximo de arquivos que o `InnoDB` pode ter abertos ao mesmo tempo. O valor mínimo é 10. Se `innodb_file_per_table` estiver desabilitado, o valor padrão é 300; caso contrário, o valor padrão é 300 ou a configuração `table_open_cache`, o que for maior.
 
 * `innodb_optimize_fulltext_only`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Changes the way `OPTIMIZE TABLE` operates on `InnoDB` tables. Intended to be enabled temporarily, during maintenance operations for `InnoDB` tables with `FULLTEXT` indexes.
+  Altera a forma como `OPTIMIZE TABLE` opera em tabelas `InnoDB`. Destinado a ser habilitado temporariamente, durante operações de manutenção para tabelas `InnoDB` com Indexes `FULLTEXT`.
 
-  By default, `OPTIMIZE TABLE` reorganizes data in the clustered index of the table. When this option is enabled, `OPTIMIZE TABLE` skips the reorganization of table data, and instead processes newly added, deleted, and updated token data for `InnoDB` `FULLTEXT` indexes. For more information, see Optimizing InnoDB Full-Text Indexes.
+  Por padrão, `OPTIMIZE TABLE` reorganiza os dados no Index clusterizado da table. Quando esta opção está habilitada, `OPTIMIZE TABLE` ignora a reorganização dos dados da table e, em vez disso, processa dados de tokens recém-adicionados, deletados e atualizados para Indexes `FULLTEXT` do `InnoDB`. Para mais informações, consulte Otimizando Indexes Full-Text do InnoDB.
 
 * `innodb_page_cleaners`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  The number of page cleaner threads that flush dirty pages from buffer pool instances. Page cleaner threads perform flush list and LRU flushing. A single page cleaner thread was introduced in MySQL 5.6 to offload buffer pool flushing work from the `InnoDB` master thread. In MySQL 5.7, `InnoDB` provides support for multiple page cleaner threads. A value of 1 maintains the pre-MySQL 5.7 configuration in which there is a single page cleaner thread. When there are multiple page cleaner threads, buffer pool flushing tasks for each buffer pool instance are dispatched to idle page cleaner threads. The `innodb_page_cleaners` default value was changed from 1 to 4 in MySQL 5.7. If the number of page cleaner threads exceeds the number of buffer pool instances, `innodb_page_cleaners` is automatically set to the same value as `innodb_buffer_pool_instances`.
+  O número de Threads page cleaner que fazem flush de dirty pages das instâncias do Buffer Pool. Os Threads page cleaner realizam o flushing da lista de flush e da LRU. Um único Thread page cleaner foi introduzido no MySQL 5.6 para descarregar o trabalho de flushing do Buffer Pool do Thread mestre do `InnoDB`. No MySQL 5.7, o `InnoDB` fornece suporte para múltiplos Threads page cleaner. Um valor de 1 mantém a configuração pré-MySQL 5.7, na qual há um único Thread page cleaner. Quando há múltiplos Threads page cleaner, as tarefas de flushing do Buffer Pool para cada instância do Buffer Pool são despachadas para Threads page cleaner ociosos. O valor padrão de `innodb_page_cleaners` foi alterado de 1 para 4 no MySQL 5.7. Se o número de Threads page cleaner exceder o número de instâncias do Buffer Pool, `innodb_page_cleaners` é automaticamente definido para o mesmo valor que `innodb_buffer_pool_instances`.
 
-  If your workload is write-IO bound when flushing dirty pages from buffer pool instances to data files, and if your system hardware has available capacity, increasing the number of page cleaner threads may help improve write-IO throughput.
+  Se sua workload for write-IO bound ao fazer flush de dirty pages das instâncias do Buffer Pool para arquivos de dados, e se o hardware do seu sistema tiver capacidade disponível, aumentar o número de Threads page cleaner pode ajudar a melhorar o throughput de write-IO.
 
-  Multithreaded page cleaner support is extended to shutdown and recovery phases in MySQL 5.7.
+  O suporte a page cleaner multithreaded é estendido para as fases de desligamento e recovery no MySQL 5.7.
 
-  The `setpriority()` system call is used on Linux platforms where it is supported, and where the **mysqld** execution user is authorized to give `page_cleaner` threads priority over other MySQL and `InnoDB` threads to help page flushing keep pace with the current workload. `setpriority()` support is indicated by this `InnoDB` startup message:
+  A chamada de sistema `setpriority()` é usada em plataformas Linux onde é suportada, e onde o usuário de execução **mysqld** está autorizado a dar prioridade aos Threads `page_cleaner` sobre outros Threads MySQL e `InnoDB` para ajudar o flushing de páginas a acompanhar a workload atual. O suporte a `setpriority()` é indicado por esta mensagem de inicialização do `InnoDB`:
 
   ```sql
   [Note] InnoDB: If the mysqld execution user is authorized, page cleaner
   thread priority can be changed. See the man page of setpriority().
   ```
 
-  For systems where server startup and shutdown is not managed by systemd, **mysqld** execution user authorization can be configured in `/etc/security/limits.conf`. For example, if **mysqld** is run under the `mysql` user, you can authorize the `mysql` user by adding these lines to `/etc/security/limits.conf`:
+  Para sistemas onde a inicialização e o desligamento do servidor não são gerenciados pelo systemd, a autorização do usuário de execução **mysqld** pode ser configurada em `/etc/security/limits.conf`. Por exemplo, se o **mysqld** for executado sob o usuário `mysql`, você pode autorizar o usuário `mysql` adicionando estas linhas a `/etc/security/limits.conf`:
 
   ```sql
   mysql              hard    nice       -20
   mysql              soft    nice       -20
   ```
 
-  For systemd managed systems, the same can be achieved by specifying `LimitNICE=-20` in a localized systemd configuration file. For example, create a file named `override.conf` in `/etc/systemd/system/mysqld.service.d/override.conf` and add this entry:
+  Para sistemas gerenciados pelo systemd, o mesmo pode ser alcançado especificando `LimitNICE=-20` em um arquivo de configuração systemd localizado. Por exemplo, crie um arquivo chamado `override.conf` em `/etc/systemd/system/mysqld.service.d/override.conf` e adicione esta entrada:
 
   ```sql
   [Service]
   LimitNICE=-20
   ```
 
-  After creating or changing `override.conf`, reload the systemd configuration, then tell systemd to restart the MySQL service:
+  Após criar ou alterar `override.conf`, recarregue a configuração do systemd e, em seguida, instrua o systemd a reiniciar o serviço MySQL:
 
   ```sql
   systemctl daemon-reload
@@ -1303,9 +1303,9 @@
   systemctl restart mysql   # Debian platforms
   ```
 
-  For more information about using a localized systemd configuration file, see Configuring systemd for MySQL.
+  Para mais informações sobre como usar um arquivo de configuração systemd localizado, consulte Configurando systemd para MySQL.
 
-  After authorizing the **mysqld** execution user, use the **cat** command to verify the configured `Nice` limits for the **mysqld** process:
+  Após autorizar o usuário de execução **mysqld**, use o comando **cat** para verificar os limites `Nice` configurados para o processo **mysqld**:
 
   ```sql
   $> cat /proc/mysqld_pid/limits | grep nice
@@ -1314,485 +1314,485 @@
 
 * `innodb_page_size`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Specifies the page size for `InnoDB` tablespaces. Values can be specified in bytes or kilobytes. For example, a 16 kilobyte page size value can be specified as 16384, 16KB, or 16k.
+  Especifica o tamanho da página para tablespaces do `InnoDB`. Os valores podem ser especificados em bytes ou kilobytes. Por exemplo, um valor de tamanho de página de 16 kilobyte pode ser especificado como 16384, 16KB ou 16k.
 
-  `innodb_page_size` can only be configured prior to initializing the MySQL instance and cannot be changed afterward. If no value is specified, the instance is initialized using the default page size. See Section 14.8.1, “InnoDB Startup Configuration”.
+  `innodb_page_size` só pode ser configurado antes de inicializar a instância MySQL e não pode ser alterado depois. Se nenhum valor for especificado, a instância é inicializada usando o tamanho de página padrão. Consulte a Seção 14.8.1, “Configuração de Inicialização do InnoDB”.
 
-  Support for 32KB and 64KB page sizes was added in MySQL 5.7. For both 32KB and 64KB page sizes, the maximum row length is approximately 16000 bytes. `ROW_FORMAT=COMPRESSED` is not supported when `innodb_page_size` is set to 32KB or 64KB. For `innodb_page_size=32k`, extent size is 2MB. For `innodb_page_size=64KB`, extent size is 4MB. `innodb_log_buffer_size` should be set to at least 16M (the default) when using 32KB or 64KB page sizes.
+  O suporte para tamanhos de página de 32KB e 64KB foi adicionado no MySQL 5.7. Para tamanhos de página de 32KB e 64KB, o comprimento máximo da row é de aproximadamente 16000 bytes. `ROW_FORMAT=COMPRESSED` não é suportado quando `innodb_page_size` é definido para 32KB ou 64KB. Para `innodb_page_size=32k`, o tamanho do extent é 2MB. Para `innodb_page_size=64KB`, o tamanho do extent é 4MB. `innodb_log_buffer_size` deve ser definido para pelo menos 16M (o padrão) ao usar tamanhos de página de 32KB ou 64KB.
 
-  The default 16KB page size or larger is appropriate for a wide range of workloads, particularly for queries involving table scans and DML operations involving bulk updates. Smaller page sizes might be more efficient for OLTP workloads involving many small writes, where contention can be an issue when single pages contain many rows. Smaller pages might also be efficient with SSD storage devices, which typically use small block sizes. Keeping the `InnoDB` page size close to the storage device block size minimizes the amount of unchanged data that is rewritten to disk.
+  O tamanho de página padrão de 16KB ou maior é apropriado para uma ampla gama de workloads, particularmente para Queries envolvendo table scans e operações DML envolvendo bulk updates. Tamanhos de página menores podem ser mais eficientes para workloads OLTP envolvendo muitas escritas pequenas, onde a contenção pode ser um problema quando páginas únicas contêm muitas rows. Páginas menores também podem ser eficientes com dispositivos de armazenamento SSD, que geralmente usam tamanhos de bloco pequenos. Manter o tamanho da página do `InnoDB` próximo ao tamanho do bloco do dispositivo de armazenamento minimiza a quantidade de dados inalterados que são reescritos no disco.
 
-  The minimum file size for the first system tablespace data file (`ibdata1`) differs depending on the `innodb_page_size` value. See the `innodb_data_file_path` option description for more information.
+  O tamanho mínimo do arquivo para o primeiro arquivo de dados do tablespace do sistema (`ibdata1`) difere dependendo do valor de `innodb_page_size`. Consulte a descrição da opção `innodb_data_file_path` para mais informações.
 
-  A MySQL instance using a particular `InnoDB` page size cannot use data files or log files from an instance that uses a different page size.
+  Uma instância MySQL usando um tamanho de página `InnoDB` específico não pode usar arquivos de dados ou log files de uma instância que usa um tamanho de página diferente.
 
-  For general I/O tuning advice, see Section 8.5.8, “Optimizing InnoDB Disk I/O”.
+  Para conselhos gerais sobre ajuste de I/O, consulte a Seção 8.5.8, “Otimizando I/O de Disco do InnoDB”.
 
 * `innodb_print_all_deadlocks`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  When this option is enabled, information about all deadlocks in `InnoDB` user transactions is recorded in the `mysqld` error log. Otherwise, you see information about only the last deadlock, using the `SHOW ENGINE INNODB STATUS` command. An occasional `InnoDB` deadlock is not necessarily an issue, because `InnoDB` detects the condition immediately and rolls back one of the transactions automatically. You might use this option to troubleshoot why deadlocks are occurring if an application does not have appropriate error-handling logic to detect the rollback and retry its operation. A large number of deadlocks might indicate the need to restructure transactions that issue DML or `SELECT ... FOR UPDATE` statements for multiple tables, so that each transaction accesses the tables in the same order, thus avoiding the deadlock condition.
+  Quando esta opção está habilitada, informações sobre todos os deadlocks em transactions de usuário do `InnoDB` são registradas no error log do `mysqld`. Caso contrário, você verá informações apenas sobre o último Deadlock, usando o comando `SHOW ENGINE INNODB STATUS`. Um Deadlock ocasional do `InnoDB` não é necessariamente um problema, porque o `InnoDB` detecta a condição imediatamente e reverte uma das transactions automaticamente. Você pode usar esta opção para solucionar por que os deadlocks estão ocorrendo se uma aplicação não tiver lógica de tratamento de erros apropriada para detectar o rollback e tentar novamente sua operação. Um grande número de deadlocks pode indicar a necessidade de reestruturar transactions que emitem instruções DML ou `SELECT ... FOR UPDATE` para múltiplas tabelas, para que cada transaction acesse as tabelas na mesma ordem, evitando assim a condição de Deadlock.
 
-  For related information, see Section 14.7.5, “Deadlocks in InnoDB”.
+  Para informações relacionadas, consulte a Seção 14.7.5, “Deadlocks no InnoDB”.
 
 * `innodb_purge_batch_size`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Defines the number of undo log pages that purge parses and processes in one batch from the history list. In a multithreaded purge configuration, the coordinator purge thread divides `innodb_purge_batch_size` by `innodb_purge_threads` and assigns that number of pages to each purge thread. The `innodb_purge_batch_size` variable also defines the number of undo log pages that purge frees after every 128 iterations through the undo logs.
+  Define o número de páginas de undo log que o purge analisa e processa em um batch da lista de histórico. Em uma configuração de purge multithreaded, o Thread coordenador do purge divide `innodb_purge_batch_size` por `innodb_purge_threads` e atribui esse número de páginas a cada Thread de purge. A variável `innodb_purge_batch_size` também define o número de páginas de undo log que o purge libera após cada 128 iterações através dos undo logs.
 
-  The `innodb_purge_batch_size` option is intended for advanced performance tuning in combination with the `innodb_purge_threads` setting. Most users need not change `innodb_purge_batch_size` from its default value.
+  A opção `innodb_purge_batch_size` destina-se ao ajuste avançado de performance em combinação com a configuração `innodb_purge_threads`. A maioria dos usuários não precisa alterar `innodb_purge_batch_size` de seu valor padrão.
 
-  For related information, see Section 14.8.10, “Purge Configuration”.
+  Para informações relacionadas, consulte a Seção 14.8.10, “Configuração de Purge”.
 
 * `innodb_purge_threads`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  The number of background threads devoted to the `InnoDB` purge operation. Increasing the value creates additional purge threads, which can improve efficiency on systems where DML operations are performed on multiple tables.
+  O número de Threads em background dedicados à operação de purge do `InnoDB`. Aumentar o valor cria Threads de purge adicionais, o que pode melhorar a eficiência em sistemas onde operações DML são realizadas em múltiplas tabelas.
 
-  For related information, see Section 14.8.10, “Purge Configuration”.
+  Para informações relacionadas, consulte a Seção 14.8.10, “Configuração de Purge”.
 
 * `innodb_purge_rseg_truncate_frequency`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Defines the frequency with which the purge system frees rollback segments in terms of the number of times that purge is invoked. An undo tablespace cannot be truncated until its rollback segments are freed. Normally, the purge system frees rollback segments once every 128 times that purge is invoked. The default value is 128. Reducing this value increases the frequency with which the purge thread frees rollback segments.
+  Define a frequência com que o sistema de purge libera rollback segments em termos do número de vezes que o purge é invocado. Um undo tablespace não pode ser truncado até que seus rollback segments sejam liberados. Normalmente, o sistema de purge libera rollback segments uma vez a cada 128 vezes que o purge é invocado. O valor padrão é 128. Reduzir este valor aumenta a frequência com que o Thread de purge libera rollback segments.
 
-  `innodb_purge_rseg_truncate_frequency` is intended for use with `innodb_undo_log_truncate`. For more information, see Truncating Undo Tablespaces.
+  `innodb_purge_rseg_truncate_frequency` destina-se ao uso com `innodb_undo_log_truncate`. Para mais informações, consulte Truncando Undo Tablespaces.
 
 * `innodb_random_read_ahead`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Enables the random read-ahead technique for optimizing `InnoDB` I/O.
+  Habilita a técnica random read-ahead para otimizar o I/O do `InnoDB`.
 
-  For details about performance considerations for different types of read-ahead requests, see Section 14.8.3.4, “Configuring InnoDB Buffer Pool Prefetching (Read-Ahead)”"). For general I/O tuning advice, see Section 8.5.8, “Optimizing InnoDB Disk I/O”.
+  Para detalhes sobre considerações de performance para diferentes tipos de solicitações read-ahead, consulte a Seção 14.8.3.4, “Configurando o Prefetching do Buffer Pool do InnoDB (Read-Ahead)”"). Para conselhos gerais sobre ajuste de I/O, consulte a Seção 8.5.8, “Otimizando I/O de Disco do InnoDB”.
 
 * `innodb_read_ahead_threshold`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Controls the sensitivity of linear read-ahead that `InnoDB` uses to prefetch pages into the buffer pool. If `InnoDB` reads at least `innodb_read_ahead_threshold` pages sequentially from an extent (64 pages), it initiates an asynchronous read for the entire following extent. The permissible range of values is 0 to 64. A value of 0 disables read-ahead. For the default of 56, `InnoDB` must read at least 56 pages sequentially from an extent to initiate an asynchronous read for the following extent.
+  Controla a sensibilidade do linear read-ahead que o `InnoDB` usa para fazer prefetch de páginas para o Buffer Pool. Se o `InnoDB` ler pelo menos `innodb_read_ahead_threshold` páginas sequencialmente de um extent (64 páginas), ele inicia uma leitura assíncrona para o extent inteiro seguinte. O intervalo permitido de valores é de 0 a 64. Um valor de 0 desabilita o read-ahead. Para o padrão de 56, o `InnoDB` deve ler pelo menos 56 páginas sequencialmente de um extent para iniciar uma leitura assíncrona para o extent seguinte.
 
-  Knowing how many pages are read through the read-ahead mechanism, and how many of these pages are evicted from the buffer pool without ever being accessed, can be useful when fine-tuning the `innodb_read_ahead_threshold` setting. `SHOW ENGINE INNODB STATUS` output displays counter information from the `Innodb_buffer_pool_read_ahead` and `Innodb_buffer_pool_read_ahead_evicted` global status variables, which report the number of pages brought into the buffer pool by read-ahead requests, and the number of such pages evicted from the buffer pool without ever being accessed, respectively. The status variables report global values since the last server restart.
+  Saber quantas páginas são lidas através do mecanismo read-ahead e quantas dessas páginas são despejadas do Buffer Pool sem nunca serem acessadas pode ser útil ao ajustar a configuração `innodb_read_ahead_threshold`. A saída de `SHOW ENGINE INNODB STATUS` exibe informações de contador das variáveis de status global `Innodb_buffer_pool_read_ahead` e `Innodb_buffer_pool_read_ahead_evicted`, que relatam o número de páginas trazidas para o Buffer Pool por solicitações read-ahead, e o número de tais páginas despejadas do Buffer Pool sem nunca serem acessadas, respectivamente. As variáveis de status relatam valores globais desde a última reinicialização do servidor.
 
-  `SHOW ENGINE INNODB STATUS` also shows the rate at which the read-ahead pages are read and the rate at which such pages are evicted without being accessed. The per-second averages are based on the statistics collected since the last invocation of `SHOW ENGINE INNODB STATUS` and are displayed in the `BUFFER POOL AND MEMORY` section of the `SHOW ENGINE INNODB STATUS` output.
+  `SHOW ENGINE INNODB STATUS` também mostra a taxa na qual as páginas read-ahead são lidas e a taxa na qual tais páginas são despejadas sem serem acessadas. As médias por segundo são baseadas nas estatísticas coletadas desde a última invocação de `SHOW ENGINE INNODB STATUS` e são exibidas na seção `BUFFER POOL AND MEMORY` da saída de `SHOW ENGINE INNODB STATUS`.
 
-  For more information, see Section 14.8.3.4, “Configuring InnoDB Buffer Pool Prefetching (Read-Ahead)”"). For general I/O tuning advice, see Section 8.5.8, “Optimizing InnoDB Disk I/O”.
+  Para mais informações, consulte a Seção 14.8.3.4, “Configurando o Prefetching do Buffer Pool do InnoDB (Read-Ahead)”). Para conselhos gerais sobre ajuste de I/O, consulte a Seção 8.5.8, “Otimizando I/O de Disco do InnoDB”.
 
 * `innodb_read_io_threads`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  The number of I/O threads for read operations in `InnoDB`. Its counterpart for write threads is `innodb_write_io_threads`. For more information, see Section 14.8.6, “Configuring the Number of Background InnoDB I/O Threads”. For general I/O tuning advice, see Section 8.5.8, “Optimizing InnoDB Disk I/O”.
+  O número de I/O Threads para operações de leitura no `InnoDB`. Sua contraparte para Threads de escrita é `innodb_write_io_threads`. Para mais informações, consulte a Seção 14.8.6, “Configurando o Número de Threads de I/O em Background do InnoDB”. Para conselhos gerais sobre ajuste de I/O, consulte a Seção 8.5.8, “Otimizando I/O de Disco do InnoDB”.
 
   Note
 
-  On Linux systems, running multiple MySQL servers (typically more than 12) with default settings for `innodb_read_io_threads`, `innodb_write_io_threads`, and the Linux `aio-max-nr` setting can exceed system limits. Ideally, increase the `aio-max-nr` setting; as a workaround, you might reduce the settings for one or both of the MySQL variables.
+  Em sistemas Linux, executar múltiplos servidores MySQL (tipicamente mais de 12) com configurações padrão para `innodb_read_io_threads`, `innodb_write_io_threads` e a configuração Linux `aio-max-nr` pode exceder os limites do sistema. Idealmente, aumente a configuração `aio-max-nr`; como solução alternativa, você pode reduzir as configurações para uma ou ambas as variáveis MySQL.
 
 * `innodb_read_only`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Starts `InnoDB` in read-only mode. For distributing database applications or data sets on read-only media. Can also be used in data warehouses to share the same data directory between multiple instances. For more information, see Section 14.8.2, “Configuring InnoDB for Read-Only Operation”.
+  Inicia o `InnoDB` em modo read-only. Para distribuição de aplicações Database ou conjuntos de dados em mídia read-only. Também pode ser usado em data warehouses para compartilhar o mesmo data directory entre múltiplas instâncias. Para mais informações, consulte a Seção 14.8.2, “Configurando o InnoDB para Operação Read-Only”.
 
 * `innodb_replication_delay`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  The replication thread delay in milliseconds on a replica server if `innodb_thread_concurrency` is reached.
+  O atraso do Thread de Replication em milissegundos em um servidor replica se `innodb_thread_concurrency` for atingido.
 
 * `innodb_rollback_on_timeout`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  `InnoDB` rolls back only the last statement on a transaction timeout by default. If `--innodb-rollback-on-timeout` is specified, a transaction timeout causes `InnoDB` to abort and roll back the entire transaction.
+  O `InnoDB` reverte apenas a última instrução em um timeout de transaction por padrão. Se `--innodb-rollback-on-timeout` for especificado, um timeout de transaction faz com que o `InnoDB` aborte e reverta a transaction inteira.
 
-  For more information, see Section 14.22.4, “InnoDB Error Handling”.
+  Para mais informações, consulte a Seção 14.22.4, “Tratamento de Erros do InnoDB”.
 
 * `innodb_rollback_segments`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Defines the number of rollback segments used by `InnoDB` for transactions that generate undo records. The number of transactions that each rollback segment supports depends on the `InnoDB` page size and the number of undo logs assigned to each transaction. For more information, see Section 14.6.7, “Undo Logs”.
+  Define o número de rollback segments usados pelo `InnoDB` para transactions que geram undo records. O número de transactions que cada rollback segment suporta depende do tamanho da página do `InnoDB` e do número de undo logs atribuídos a cada transaction. Para mais informações, consulte a Seção 14.6.7, “Undo Logs”.
 
-  One rollback segment is always assigned to the system tablespace, and 32 rollback segments are reserved for use by temporary tables and reside in the temporary tablespace (`ibtmp1`). To allocate additional rollback segment, `innodb_rollback_segments` must be set to a value greater than 33. If you configure separate undo tablespaces, the rollback segment in the system tablespace is rendered inactive.
+  Um rollback segment é sempre atribuído ao tablespace do sistema, e 32 rollback segments são reservados para uso por tabelas temporárias e residem no tablespace temporário (`ibtmp1`). Para alocar rollback segments adicionais, `innodb_rollback_segments` deve ser definido para um valor igual ou maior que 33. Se você configurar undo tablespaces separados, o rollback segment no tablespace do sistema é tornado inativo.
 
-  When `innodb_rollback_segments` is set to 32 or less, `InnoDB` assigns one rollback segment to the system tablespace and 32 to the temporary tablespace.
+  Quando `innodb_rollback_segments` é definido como 32 ou menos, o `InnoDB` atribui um rollback segment ao tablespace do sistema e 32 ao tablespace temporário.
 
-  When `innodb_rollback_segments` is set to a value greater than 32, `InnoDB` assigns one rollback segment to the system tablespace, 32 to the temporary tablespace, and additional rollback segments to undo tablespaces, if present. If undo tablespaces are not present, additional rollback segments are assigned to the system tablespace.
+  Quando `innodb_rollback_segments` é definido para um valor maior que 32, o `InnoDB` atribui um rollback segment ao tablespace do sistema, 32 ao tablespace temporário e rollback segments adicionais a undo tablespaces, se presentes. Se undo tablespaces não estiverem presentes, rollback segments adicionais são atribuídos ao tablespace do sistema.
 
-  Although you can increase or decrease the number of rollback segments used by `InnoDB`, the number of rollback segments physically present in the system never decreases. Thus, you might start with a low value and gradually increase it to avoid allocating rollback segments that are not required. The `innodb_rollback_segments` default and maximum value is 128.
+  Embora você possa aumentar ou diminuir o número de rollback segments usados pelo `InnoDB`, o número de rollback segments fisicamente presentes no sistema nunca diminui. Assim, você pode começar com um valor baixo e aumentá-lo gradualmente para evitar alocar rollback segments que não são necessários. O valor padrão e máximo de `innodb_rollback_segments` é 128.
 
-  For related information, see Section 14.3, “InnoDB Multi-Versioning”. For information about configuring separate undo tablespaces, see Section 14.6.3.4, “Undo Tablespaces”.
+  Para informações relacionadas, consulte a Seção 14.3, “Multi-Versioning do InnoDB”. Para informações sobre como configurar undo tablespaces separados, consulte a Seção 14.6.3.4, “Undo Tablespaces”.
 
 * `innodb_saved_page_number_debug`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Saves a page number. Setting the `innodb_fil_make_page_dirty_debug` option dirties the page defined by `innodb_saved_page_number_debug`. The `innodb_saved_page_number_debug` option is only available if debugging support is compiled in using the `WITH_DEBUG` **CMake** option.
+  Salva um número de página. Definir a opção `innodb_fil_make_page_dirty_debug` torna suja a página definida por `innodb_saved_page_number_debug`. A opção `innodb_saved_page_number_debug` só está disponível se o suporte a Debug for compilado usando a opção **CMake** `WITH_DEBUG`.
 
 * `innodb_sort_buffer_size`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  This variable defines:
+  Esta variável define:
 
-  + The sort buffer size for online DDL operations that create or rebuild secondary indexes.
+  + O tamanho do sort Buffer para operações DDL online que criam ou reconstroem Indexes secundários.
 
-  + The amount by which the temporary log file is extended when recording concurrent DML during an online DDL operation, and the size of the temporary log file read buffer and write buffer.
+  + A quantidade pela qual o log file temporário é estendido ao registrar DML concorrente durante uma operação DDL online, e o tamanho do read Buffer e write Buffer do log file temporário.
 
-  For related information, see Section 14.13.3, “Online DDL Space Requirements”.
+  Para informações relacionadas, consulte a Seção 14.13.3, “Requisitos de Espaço de DDL Online”.
 
 * `innodb_spin_wait_delay`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  The maximum delay between polls for a spin lock. The low-level implementation of this mechanism varies depending on the combination of hardware and operating system, so the delay does not correspond to a fixed time interval. For more information, see Section 14.8.9, “Configuring Spin Lock Polling”.
+  O atraso máximo entre as polls para um spin Lock. A implementação de baixo nível deste mecanismo varia dependendo da combinação de hardware e sistema operacional, então o atraso não corresponde a um intervalo de tempo fixo. Para mais informações, consulte a Seção 14.8.9, “Configurando o Polling de Spin Lock”.
 
 * `innodb_stats_auto_recalc`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Causes `InnoDB` to automatically recalculate persistent statistics after the data in a table is changed substantially. The threshold value is 10% of the rows in the table. This setting applies to tables created when the `innodb_stats_persistent` option is enabled. Automatic statistics recalculation may also be configured by specifying `STATS_AUTO_RECALC=1` in a `CREATE TABLE` or `ALTER TABLE` statement. The amount of data sampled to produce the statistics is controlled by the `innodb_stats_persistent_sample_pages` variable.
+  Faz com que o `InnoDB` recalcule automaticamente estatísticas persistentes depois que os dados em uma table são alterados substancialmente. O valor limite é 10% das rows na table. Esta configuração se aplica a tabelas criadas quando a opção `innodb_stats_persistent` está habilitada. O recálculo automático de estatísticas também pode ser configurado especificando `STATS_AUTO_RECALC=1` em uma instrução `CREATE TABLE` ou `ALTER TABLE`. A quantidade de dados amostrados para produzir as estatísticas é controlada pela variável `innodb_stats_persistent_sample_pages`.
 
-  For more information, see Section 14.8.11.1, “Configuring Persistent Optimizer Statistics Parameters”.
+  Para mais informações, consulte a Seção 14.8.11.1, “Configurando Parâmetros de Estatísticas do Otimizador Persistentes”.
 
 * `innodb_stats_include_delete_marked`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  By default, `InnoDB` reads uncommitted data when calculating statistics. In the case of an uncommitted transaction that deletes rows from a table, `InnoDB` excludes records that are delete-marked when calculating row estimates and index statistics, which can lead to non-optimal execution plans for other transactions that are operating on the table concurrently using a transaction isolation level other than `READ UNCOMMITTED`. To avoid this scenario, `innodb_stats_include_delete_marked` can be enabled to ensure that `InnoDB` includes delete-marked records when calculating persistent optimizer statistics.
+  Por padrão, o `InnoDB` lê dados não submetidos a commit ao calcular estatísticas. No caso de uma transaction não submetida a commit que deleta rows de uma table, o `InnoDB` exclui registros marcados para deleção ao calcular estimativas de row e estatísticas de Index, o que pode levar a planos de execução não ideais para outras transactions que estão operando na table concorrentemente usando um nível de isolamento de transaction diferente de `READ UNCOMMITTED`. Para evitar este cenário, `innodb_stats_include_delete_marked` pode ser habilitado para garantir que o `InnoDB` inclua registros marcados para deleção ao calcular estatísticas persistentes do otimizador.
 
-  When `innodb_stats_include_delete_marked` is enabled, `ANALYZE TABLE` considers delete-marked records when recalculating statistics.
+  Quando `innodb_stats_include_delete_marked` está habilitado, `ANALYZE TABLE` considera registros marcados para deleção ao recalcular estatísticas.
 
-  `innodb_stats_include_delete_marked` is a global setting that affects all `InnoDB` tables. It is only applicable to persistent optimizer statistics.
+  `innodb_stats_include_delete_marked` é uma configuração global que afeta todas as tabelas `InnoDB`. É aplicável apenas a estatísticas persistentes do otimizador.
 
-  For related information, see Section 14.8.11.1, “Configuring Persistent Optimizer Statistics Parameters”.
+  Para informações relacionadas, consulte a Seção 14.8.11.1, “Configurando Parâmetros de Estatísticas do Otimizador Persistentes”.
 
 * `innodb_stats_method`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  How the server treats `NULL` values when collecting statistics about the distribution of index values for `InnoDB` tables. Permitted values are `nulls_equal`, `nulls_unequal`, and `nulls_ignored`. For `nulls_equal`, all `NULL` index values are considered equal and form a single value group with a size equal to the number of `NULL` values. For `nulls_unequal`, `NULL` values are considered unequal, and each `NULL` forms a distinct value group of size
+  Como o servidor trata valores `NULL` ao coletar estatísticas sobre a distribuição de valores de Index para tabelas `InnoDB`. Os valores permitidos são `nulls_equal`, `nulls_unequal` e `nulls_ignored`. Para `nulls_equal`, todos os valores de Index `NULL` são considerados iguais e formam um único grupo de valores com um tamanho igual ao número de valores `NULL`. Para `nulls_unequal`, os valores `NULL` são considerados desiguais, e cada `NULL` forma um grupo de valor distinto de tamanho
 
-  1. For `nulls_ignored`, `NULL` values are ignored.
+  1. Para `nulls_ignored`, os valores `NULL` são ignorados.
 
-  The method used to generate table statistics influences how the optimizer chooses indexes for query execution, as described in Section 8.3.7, “InnoDB and MyISAM Index Statistics Collection”.
+  O método usado para gerar estatísticas da table influencia como o otimizador escolhe Indexes para a execução de Query, conforme descrito na Seção 8.3.7, “Coleta de Estatísticas de Index do InnoDB e MyISAM”.
 
 * `innodb_stats_on_metadata`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  This option only applies when optimizer statistics are configured to be non-persistent. Optimizer statistics are not persisted to disk when `innodb_stats_persistent` is disabled or when individual tables are created or altered with `STATS_PERSISTENT=0`. For more information, see Section 14.8.11.2, “Configuring Non-Persistent Optimizer Statistics Parameters”.
+  Esta opção se aplica apenas quando as estatísticas do otimizador estão configuradas para serem não persistentes. As estatísticas do otimizador não são persistidas no disco quando `innodb_stats_persistent` está desabilitado ou quando tabelas individuais são criadas ou alteradas com `STATS_PERSISTENT=0`. Para mais informações, consulte a Seção 14.8.11.2, “Configurando Parâmetros de Estatísticas do Otimizador Não Persistentes”.
 
-  When `innodb_stats_on_metadata` is enabled, `InnoDB` updates non-persistent statistics when metadata statements such as `SHOW TABLE STATUS` or when accessing the Information Schema `TABLES` or `STATISTICS` tables. (These updates are similar to what happens for `ANALYZE TABLE`.) When disabled, `InnoDB` does not update statistics during these operations. Leaving the setting disabled can improve access speed for schemas that have a large number of tables or indexes. It can also improve the stability of execution plans for queries that involve `InnoDB` tables.
+  Quando `innodb_stats_on_metadata` está habilitado, o `InnoDB` atualiza estatísticas não persistentes quando há instruções de metadados como `SHOW TABLE STATUS` ou ao acessar as tabelas `TABLES` ou `STATISTICS` do Information Schema. (Estas atualizações são semelhantes ao que acontece para `ANALYZE TABLE`.) Quando desabilitado, o `InnoDB` não atualiza estatísticas durante essas operações. Deixar a configuração desabilitada pode melhorar a velocidade de acesso para schemas que têm um grande número de tabelas ou Indexes. Também pode melhorar a estabilidade dos planos de execução para Queries que envolvem tabelas `InnoDB`.
 
-  To change the setting, issue the statement `SET GLOBAL innodb_stats_on_metadata=mode`, where `mode` is either `ON` or `OFF` (or `1` or `0`). Changing the setting requires privileges sufficient to set global system variables (see Section 5.1.8.1, “System Variable Privileges”) and immediately affects the operation of all connections.
+  Para alterar a configuração, execute a instrução `SET GLOBAL innodb_stats_on_metadata=mode`, onde `mode` é `ON` ou `OFF` (ou `1` ou `0`). Alterar a configuração `GLOBAL` requer privilégios suficientes para definir variáveis de sistema globais (consulte a Seção 5.1.8.1, “Privilégios de Variáveis de Sistema”) e afeta imediatamente a operação de todas as conexões que se conectarem subsequentemente. Qualquer cliente pode alterar a configuração `SESSION` para `innodb_stats_on_metadata`, e a configuração afeta apenas esse cliente.
 
 * `innodb_stats_persistent`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Specifies whether `InnoDB` index statistics are persisted to disk. Otherwise, statistics may be recalculated frequently which can lead to variations in query execution plans. This setting is stored with each table when the table is created. You can set `innodb_stats_persistent` at the global level before creating a table, or use the `STATS_PERSISTENT` clause of the `CREATE TABLE` and `ALTER TABLE` statements to override the system-wide setting and configure persistent statistics for individual tables.
+  Especifica se as estatísticas de Index do `InnoDB` são persistidas no disco. Caso contrário, as estatísticas podem ser recalculadas frequentemente, o que pode levar a variações nos planos de execução de Query. Esta configuração é armazenada com cada table quando a table é criada. Você pode definir `innodb_stats_persistent` no nível global antes de criar uma table, ou usar a cláusula `STATS_PERSISTENT` das instruções `CREATE TABLE` e `ALTER TABLE` para sobrescrever a configuração em todo o sistema e configurar estatísticas persistentes para tabelas individuais.
 
-  For more information, see Section 14.8.11.1, “Configuring Persistent Optimizer Statistics Parameters”.
+  Para mais informações, consulte a Seção 14.8.11.1, “Configurando Parâmetros de Estatísticas do Otimizador Persistentes”.
 
 * `innodb_stats_persistent_sample_pages`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  The number of index pages to sample when estimating cardinality and other statistics for an indexed column, such as those calculated by `ANALYZE TABLE`. Increasing the value improves the accuracy of index statistics, which can improve the query execution plan, at the expense of increased I/O during the execution of `ANALYZE TABLE` for an `InnoDB` table. For more information, see Section 14.8.11.1, “Configuring Persistent Optimizer Statistics Parameters”.
+  O número de páginas de Index a serem amostradas ao estimar a cardinalidade e outras estatísticas para uma coluna indexada, como as calculadas por `ANALYZE TABLE`. Aumentar o valor melhora a precisão das estatísticas de Index, o que pode melhorar o plano de execução de Query, à custa de um aumento de I/O durante a execução de `ANALYZE TABLE` para uma table `InnoDB`. Para mais informações, consulte a Seção 14.8.11.1, “Configurando Parâmetros de Estatísticas do Otimizador Persistentes”.
 
   Note
 
-  Setting a high value for `innodb_stats_persistent_sample_pages` could result in lengthy `ANALYZE TABLE` execution time. To estimate the number of database pages accessed by `ANALYZE TABLE`, see Section 14.8.11.3, “Estimating ANALYZE TABLE Complexity for InnoDB Tables”.
+  Definir um valor alto para `innodb_stats_persistent_sample_pages` pode resultar em um tempo de execução de `ANALYZE TABLE` prolongado. Para estimar o número de páginas de Database acessadas por `ANALYZE TABLE`, consulte a Seção 14.8.11.3, “Estimando a Complexidade de ANALYZE TABLE para Tabelas InnoDB”.
 
-  `innodb_stats_persistent_sample_pages` only applies when `innodb_stats_persistent` is enabled for a table; when `innodb_stats_persistent` is disabled, `innodb_stats_transient_sample_pages` applies instead.
+  `innodb_stats_persistent_sample_pages` se aplica apenas quando `innodb_stats_persistent` está habilitado para uma table; quando `innodb_stats_persistent` está desabilitado, `innodb_stats_transient_sample_pages` se aplica em vez disso.
 
 * `innodb_stats_sample_pages`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Deprecated. Use `innodb_stats_transient_sample_pages` instead.
+  Descontinuada. Use `innodb_stats_transient_sample_pages` em vez disso.
 
 * `innodb_stats_transient_sample_pages`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  The number of index pages to sample when estimating cardinality and other statistics for an indexed column, such as those calculated by `ANALYZE TABLE`. The default value is 8. Increasing the value improves the accuracy of index statistics, which can improve the query execution plan, at the expense of increased I/O when opening an `InnoDB` table or recalculating statistics. For more information, see Section 14.8.11.2, “Configuring Non-Persistent Optimizer Statistics Parameters”.
+  O número de páginas de Index a serem amostradas ao estimar a cardinalidade e outras estatísticas para uma coluna indexada, como as calculadas por `ANALYZE TABLE`. O valor padrão é 8. Aumentar o valor melhora a precisão das estatísticas de Index, o que pode melhorar o plano de execução de Query, à custa de um aumento de I/O ao abrir uma table `InnoDB` ou recalcular estatísticas. Para mais informações, consulte a Seção 14.8.11.2, “Configurando Parâmetros de Estatísticas do Otimizador Não Persistentes”.
 
   Note
 
-  Setting a high value for `innodb_stats_transient_sample_pages` could result in lengthy `ANALYZE TABLE` execution time. To estimate the number of database pages accessed by `ANALYZE TABLE`, see Section 14.8.11.3, “Estimating ANALYZE TABLE Complexity for InnoDB Tables”.
+  Definir um valor alto para `innodb_stats_transient_sample_pages` pode resultar em um tempo de execução de `ANALYZE TABLE` prolongado. Para estimar o número de páginas de Database acessadas por `ANALYZE TABLE`, consulte a Seção 14.8.11.3, “Estimando a Complexidade de ANALYZE TABLE para Tabelas InnoDB”.
 
-  `innodb_stats_transient_sample_pages` only applies when `innodb_stats_persistent` is disabled for a table; when `innodb_stats_persistent` is enabled, `innodb_stats_persistent_sample_pages` applies instead. Takes the place of `innodb_stats_sample_pages`. For more information, see Section 14.8.11.2, “Configuring Non-Persistent Optimizer Statistics Parameters”.
+  `innodb_stats_transient_sample_pages` se aplica apenas quando `innodb_stats_persistent` está desabilitado para uma table; quando `innodb_stats_persistent` está habilitado, `innodb_stats_persistent_sample_pages` se aplica em vez disso. Substitui `innodb_stats_sample_pages`. Para mais informações, consulte a Seção 14.8.11.2, “Configurando Parâmetros de Estatísticas do Otimizador Não Persistentes”.
 
 * `innodb_status_output`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Enables or disables periodic output for the standard `InnoDB` Monitor. Also used in combination with `innodb_status_output_locks` to enable or disable periodic output for the `InnoDB` Lock Monitor. For more information, see Section 14.18.2, “Enabling InnoDB Monitors”.
+  Habilita ou desabilita a saída periódica para o Monitor `InnoDB` padrão. Também usado em combinação com `innodb_status_output_locks` para habilitar ou desabilitar a saída periódica para o Lock Monitor do `InnoDB`. Para mais informações, consulte a Seção 14.18.2, “Habilitando Monitores do InnoDB”.
 
 * `innodb_status_output_locks`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Enables or disables the `InnoDB` Lock Monitor. When enabled, the `InnoDB` Lock Monitor prints additional information about locks in `SHOW ENGINE INNODB STATUS` output and in periodic output printed to the MySQL error log. Periodic output for the `InnoDB` Lock Monitor is printed as part of the standard `InnoDB` Monitor output. The standard `InnoDB` Monitor must therefore be enabled for the `InnoDB` Lock Monitor to print data to the MySQL error log periodically. For more information, see Section 14.18.2, “Enabling InnoDB Monitors”.
+  Habilita ou desabilita o Lock Monitor do `InnoDB`. Quando habilitado, o Lock Monitor do `InnoDB` imprime informações adicionais sobre Locks na saída de `SHOW ENGINE INNODB STATUS` e na saída periódica impressa no error log do MySQL. A saída periódica para o Lock Monitor do `InnoDB` é impressa como parte da saída padrão do Monitor `InnoDB`. O Monitor `InnoDB` padrão deve, portanto, estar habilitado para que o Lock Monitor do `InnoDB` imprima dados no error log do MySQL periodicamente. Para mais informações, consulte a Seção 14.18.2, “Habilitando Monitores do InnoDB”.
 
 * `innodb_strict_mode`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  When `innodb_strict_mode` is enabled, `InnoDB` returns errors rather than warnings when checking for invalid or incompatible table options.
+  Quando `innodb_strict_mode` está habilitado, o `InnoDB` retorna erros em vez de avisos ao verificar opções de table inválidas ou incompatíveis.
 
-  It checks that `KEY_BLOCK_SIZE`, `ROW_FORMAT`, `DATA DIRECTORY`, `TEMPORARY`, and `TABLESPACE` options are compatible with each other and other settings.
+  Ele verifica se as opções `KEY_BLOCK_SIZE`, `ROW_FORMAT`, `DATA DIRECTORY`, `TEMPORARY` e `TABLESPACE` são compatíveis entre si e com outras configurações.
 
-  `innodb_strict_mode=ON` also enables a row size check when creating or altering a table, to prevent `INSERT` or `UPDATE` from failing due to the record being too large for the selected page size.
+  `innodb_strict_mode=ON` também habilita uma verificação de tamanho de row ao criar ou alterar uma table, para evitar que `INSERT` ou `UPDATE` falhem devido ao registro ser muito grande para o tamanho de página selecionado.
 
-  You can enable or disable `innodb_strict_mode` on the command line when starting `mysqld`, or in a MySQL configuration file. You can also enable or disable `innodb_strict_mode` at runtime with the statement `SET [GLOBAL|SESSION] innodb_strict_mode=mode`, where `mode` is either `ON` or `OFF`. Changing the `GLOBAL` setting requires privileges sufficient to set global system variables (see Section 5.1.8.1, “System Variable Privileges”) and affects the operation of all clients that subsequently connect. Any client can change the `SESSION` setting for `innodb_strict_mode`, and the setting affects only that client.
+  Você pode habilitar ou desabilitar `innodb_strict_mode` na linha de comando ao iniciar o `mysqld`, ou em um arquivo de configuração do MySQL. Você também pode habilitar ou desabilitar `innodb_strict_mode` em tempo de execução com a instrução `SET [GLOBAL|SESSION] innodb_strict_mode=mode`, onde `mode` é `ON` ou `OFF`. Alterar a configuração `GLOBAL` requer privilégios suficientes para definir variáveis de sistema globais (consulte a Seção 5.1.8.1, “Privilégios de Variáveis de Sistema”) e afeta a operação de todos os clientes que se conectarem subsequentemente. Qualquer cliente pode alterar a configuração `SESSION` para `innodb_strict_mode`, e a configuração afeta apenas esse cliente.
 
 * `innodb_support_xa`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Enables `InnoDB` support for two-phase commit in XA transactions, causing an extra disk flush for transaction preparation. The XA mechanism is used internally and is essential for any server that has its binary log turned on and is accepting changes to its data from more than one thread. If you disable `innodb_support_xa`, transactions can be written to the binary log in a different order than the live database is committing them, which can produce different data when the binary log is replayed in disaster recovery or on a replica. Do not disable `innodb_support_xa` on a replication source server unless you have an unusual setup where only one thread is able to change data.
+  Habilita o suporte do `InnoDB` para two-phase commit em transactions XA, causando um flush de disco extra para a preparação da transaction. O mecanismo XA é usado internamente e é essencial para qualquer servidor que tenha seu binary log ativado e esteja aceitando alterações em seus dados de mais de um Thread. Se você desabilitar `innodb_support_xa`, as transactions podem ser escritas no binary log em uma ordem diferente daquela em que o Database ativo as está submetendo a commit, o que pode produzir dados diferentes quando o binary log é reproduzido em disaster recovery ou em uma replica. Não desabilite `innodb_support_xa` em um servidor de origem de Replication, a menos que você tenha uma configuração incomum onde apenas um Thread é capaz de alterar dados.
 
-  `innodb_support_xa` is deprecated; expect it to be removed in a future MySQL release. `InnoDB` support for two-phase commit in XA transactions is always enabled as of MySQL 5.7.10. Disabling `innodb_support_xa` is no longer permitted as it makes replication unsafe and prevents performance gains associated with binary log group commit.
+  `innodb_support_xa` está descontinuada; espere que seja removida em uma futura versão do MySQL. O suporte do `InnoDB` para two-phase commit em transactions XA está sempre habilitado a partir do MySQL 5.7.10. Desabilitar `innodb_support_xa` não é mais permitido, pois torna a Replication insegura e impede ganhos de performance associados ao binary log group commit.
 
 * `innodb_sync_array_size`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Defines the size of the mutex/lock wait array. Increasing the value splits the internal data structure used to coordinate threads, for higher concurrency in workloads with large numbers of waiting threads. This setting must be configured when the MySQL instance is starting up, and cannot be changed afterward. Increasing the value is recommended for workloads that frequently produce a large number of waiting threads, typically greater than 768.
+  Define o tamanho do array de espera por mutex/Lock. Aumentar o valor divide a estrutura de dados interna usada para coordenar Threads, para maior concorrência em workloads com um grande número de Threads em espera. Esta configuração deve ser configurada quando a instância MySQL está sendo iniciada, e não pode ser alterada depois. Aumentar o valor é recomendado para workloads que frequentemente produzem um grande número de Threads em espera, tipicamente maior que 768.
 
 * `innodb_sync_spin_loops`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  The number of times a thread waits for an `InnoDB` mutex to be freed before the thread is suspended.
+  O número de vezes que um Thread espera por um mutex do `InnoDB` ser liberado antes que o Thread seja suspenso.
 
 * `innodb_sync_debug`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Enables sync debug checking for the `InnoDB` storage engine. This option is available only if debugging support is compiled in using the `WITH_DEBUG` **CMake** option.
+  Habilita a verificação de Debug de sync para o storage engine `InnoDB`. Esta opção está disponível apenas se o suporte a Debug for compilado usando a opção **CMake** `WITH_DEBUG`.
 
-  Previously, enabling `InnoDB` sync debug checking required that the Debug Sync facility be enabled using the `ENABLE_DEBUG_SYNC` **CMake** option, which has since been removed. This requirement was removed in MySQL 5.7 with the introduction of this variable.
+  Anteriormente, habilitar a verificação de Debug de sync do `InnoDB` exigia que a facilidade Debug Sync fosse habilitada usando a opção **CMake** `ENABLE_DEBUG_SYNC`, que foi removida desde então. Este requisito foi removido no MySQL 5.7 com a introdução desta variável.
 
 * `innodb_table_locks`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  If `autocommit = 0`, `InnoDB` honors `LOCK TABLES`; MySQL does not return from `LOCK TABLES ... WRITE` until all other threads have released all their locks to the table. The default value of `innodb_table_locks` is 1, which means that `LOCK TABLES` causes InnoDB to lock a table internally if `autocommit = 0`.
+  Se `autocommit = 0`, o `InnoDB` honra `LOCK TABLES`; o MySQL não retorna de `LOCK TABLES ... WRITE` até que todos os outros Threads tenham liberado todos os seus Locks para a table. O valor padrão de `innodb_table_locks` é 1, o que significa que `LOCK TABLES` faz com que o InnoDB bloqueie uma table internamente se `autocommit = 0`.
 
-  `innodb_table_locks = 0` has no effect for tables locked explicitly with `LOCK TABLES ... WRITE`. It does have an effect for tables locked for read or write by `LOCK TABLES ... WRITE` implicitly (for example, through triggers) or by `LOCK TABLES ... READ`.
+  `innodb_table_locks = 0` não tem efeito para tabelas bloqueadas explicitamente com `LOCK TABLES ... WRITE`. Tem efeito para tabelas bloqueadas para leitura ou escrita por `LOCK TABLES ... WRITE` implicitamente (por exemplo, através de triggers) ou por `LOCK TABLES ... READ`.
 
-  For related information, see Section 14.7, “InnoDB Locking and Transaction Model”.
+  Para informações relacionadas, consulte a Seção 14.7, “Modelo de Transação e Locking do InnoDB”.
 
 * `innodb_temp_data_file_path`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Defines the relative path, name, size, and attributes of `InnoDB` temporary tablespace data files. If you do not specify a value for `innodb_temp_data_file_path`, the default behavior is to create a single, auto-extending data file named `ibtmp1` in the MySQL data directory. The initial file size is slightly larger than 12MB.
+  Define o path relativo, nome, tamanho e atributos dos arquivos de dados do tablespace temporário do `InnoDB`. Se você não especificar um valor para `innodb_temp_data_file_path`, o comportamento padrão é criar um único arquivo de dados com auto-extensão chamado `ibtmp1` no data directory do MySQL. O tamanho inicial do arquivo é ligeiramente maior que 12MB.
 
-  The full syntax for a temporary tablespace data file specification includes the file name, file size, and `autoextend` and `max` attributes:
+  A sintaxe completa para uma especificação de arquivo de dados do tablespace temporário inclui o nome do arquivo, tamanho do arquivo e atributos `autoextend` e `max`:
 
   ```sql
   file_name:file_size[:autoextend[:max:max_file_size
   ```
 
-  The temporary tablespace data file cannot have the same name as another `InnoDB` data file. Any inability or error creating a temporary tablespace data file is treated as fatal and server startup is refused. The temporary tablespace has a dynamically generated space ID, which can change on each server restart.
+  O arquivo de dados do tablespace temporário não pode ter o mesmo nome que outro arquivo de dados do `InnoDB`. Qualquer incapacidade ou erro ao criar um arquivo de dados do tablespace temporário é tratado como fatal e a inicialização do servidor é recusada. O tablespace temporário tem um ID de espaço gerado dinamicamente, que pode mudar a cada reinicialização do servidor.
 
-  File sizes are specified KB, MB or GB (1024MB) by appending `K`, `M` or `G` to the size value. The sum of the sizes of the files must be slightly larger than 12MB.
+  Os tamanhos de arquivo são especificados em KB, MB ou GB (1024MB) anexando `K`, `M` ou `G` ao valor do tamanho. A soma dos tamanhos dos arquivos deve ser ligeiramente maior que 12MB.
 
-  The size limit of individual files is determined by your operating system. You can set the file size to more than 4GB on operating systems that support large files. Use of raw disk partitions for temporary tablespace data files is not supported.
+  O limite de tamanho dos arquivos individuais é determinado pelo seu sistema operacional. Você pode definir o tamanho do arquivo para mais de 4GB em sistemas operacionais que suportam arquivos grandes. O uso de partições de disco raw para arquivos de dados do tablespace temporário não é suportado.
 
-  The `autoextend` and `max` attributes can be used only for the data file that is specified last in the `innodb_temp_data_file_path` setting. For example:
+  Os atributos `autoextend` e `max` podem ser usados apenas para o arquivo de dados que é especificado por último na configuração `innodb_temp_data_file_path`. Por exemplo:
 
   ```sql
   [mysqld]
   innodb_temp_data_file_path=ibtmp1:50M;ibtmp2:12M:autoextend:max:500M
   ```
 
-  If you specify the `autoextend` option, `InnoDB` extends the data file if it runs out of free space. The `autoextend` increment is 64MB by default. To modify the increment, change the `innodb_autoextend_increment` system variable.
+  Se você especificar a opção `autoextend`, o `InnoDB` estende o arquivo de dados se ficar sem espaço livre. O incremento `autoextend` é de 64MB por padrão. Para modificar o incremento, altere a variável de sistema `innodb_autoextend_increment`.
 
-  The full directory path for temporary tablespace data files is formed by concatenating the paths defined by `innodb_data_home_dir` and `innodb_temp_data_file_path`.
+  O path completo do diretório para os arquivos de dados do tablespace temporário é formado concatenando os paths definidos por `innodb_data_home_dir` e `innodb_temp_data_file_path`.
 
-  The temporary tablespace is shared by all non-compressed `InnoDB` temporary tables. Compressed temporary tables reside in file-per-table tablespace files created in the temporary file directory, which is defined by the `tmpdir` configuration option.
+  O tablespace temporário é compartilhado por todas as tabelas temporárias `InnoDB` não comprimidas. As tabelas temporárias comprimidas residem em arquivos de tablespace file-per-table criados no diretório de arquivos temporários, que é definido pela opção de configuração `tmpdir`.
 
-  Before running `InnoDB` in read-only mode, set `innodb_temp_data_file_path` to a location outside of the data directory. The path must be relative to the data directory. For example:
+  Antes de executar o `InnoDB` em modo read-only, defina `innodb_temp_data_file_path` para um local fora do data directory. O path deve ser relativo ao data directory. Por exemplo:
 
   ```sql
   --innodb-temp-data-file-path=../../../tmp/ibtmp1:12M:autoextend
   ```
 
-  Metadata about active `InnoDB` temporary tables is located in the Information Schema `INNODB_TEMP_TABLE_INFO` table.
+  Metadados sobre tabelas temporárias `InnoDB` ativas estão localizados na tabela `INNODB_TEMP_TABLE_INFO` do Information Schema.
 
-  For related information, see Section 14.6.3.5, “The Temporary Tablespace”.
+  Para informações relacionadas, consulte a Seção 14.6.3.5, “O Tablespace Temporário”.
 
 * `innodb_thread_concurrency`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Defines the maximum number of threads permitted inside of `InnoDB`. A value of 0 (the default) is interpreted as infinite concurrency (no limit). This variable is intended for performance tuning on high concurrency systems.
+  Define o número máximo de Threads permitidos dentro do `InnoDB`. Um valor de 0 (o padrão) é interpretado como concorrência infinita (sem limite). Esta variável destina-se ao ajuste de performance em sistemas de alta concorrência.
 
-  `InnoDB` tries to keep the number of threads inside `InnoDB` less than or equal to the `innodb_thread_concurrency` limit. Threads waiting for locks are not counted in the number of concurrently executing threads.
+  O `InnoDB` tenta manter o número de Threads dentro do `InnoDB` menor ou igual ao limite `innodb_thread_concurrency`. Threads esperando por Locks não são contados no número de Threads executando concorrentemente.
 
-  The correct setting depends on workload and computing environment. Consider setting this variable if your MySQL instance shares CPU resources with other applications or if your workload or number of concurrent users is growing. Test a range of values to determine the setting that provides the best performance. `innodb_thread_concurrency` is a dynamic variable, which permits experimenting with different settings on a live test system. If a particular setting performs poorly, you can quickly set `innodb_thread_concurrency` back to 0.
+  A configuração correta depende da workload e do ambiente de computação. Considere definir esta variável se sua instância MySQL compartilha recursos de CPU com outras aplicações ou se sua workload ou número de usuários concorrentes está crescendo. Teste uma faixa de valores para determinar a configuração que oferece o melhor desempenho. `innodb_thread_concurrency` é uma variável dinâmica, o que permite experimentar diferentes configurações em um sistema de teste ativo. Se uma configuração específica tiver baixo desempenho, você pode rapidamente definir `innodb_thread_concurrency` de volta para 0.
 
-  Use the following guidelines to help find and maintain an appropriate setting:
+  Use as seguintes diretrizes para ajudar a encontrar e manter uma configuração apropriada:
 
-  + If the number of concurrent user threads for a workload is consistently small and does not affect performance, set `innodb_thread_concurrency=0` (no limit).
+  + Se o número de user threads concorrentes para uma workload for consistentemente pequeno e não afetar a performance, defina `innodb_thread_concurrency=0` (sem limite).
 
-  + If your workload is consistently heavy or occasionally spikes, set an `innodb_thread_concurrency` value and adjust it until you find the number of threads that provides the best performance. For example, suppose that your system typically has 40 to 50 users, but periodically the number increases to 60, 70, or more. Through testing, you find that performance remains largely stable with a limit of 80 concurrent users. In this case, set `innodb_thread_concurrency` to 80.
+  + Se sua workload for consistentemente pesada ou ocasionalmente apresentar picos, defina um valor `innodb_thread_concurrency` e ajuste-o até encontrar o número de Threads que oferece o melhor desempenho. Por exemplo, suponha que seu sistema tenha tipicamente 40 a 50 usuários, mas periodicamente o número aumenta para 60, 70 ou mais. Através de testes, você descobre que a performance permanece amplamente estável com um limite de 80 usuários concorrentes. Neste caso, defina `innodb_thread_concurrency` para 80.
 
-  + If you do not want `InnoDB` to use more than a certain number of virtual CPUs for user threads (20 virtual CPUs, for example), set `innodb_thread_concurrency` to this number (or possibly lower, depending on performance testing). If your goal is to isolate MySQL from other applications, consider binding the `mysqld` process exclusively to the virtual CPUs. Be aware, however, that exclusive binding can result in non-optimal hardware usage if the `mysqld` process is not consistently busy. In this case, you can bind the `mysqld` process to the virtual CPUs but allow other applications to use some or all of the virtual CPUs.
+  + Se você não quiser que o `InnoDB` use mais do que um certo número de CPUs virtuais para user threads (20 CPUs virtuais, por exemplo), defina `innodb_thread_concurrency` para este número (ou possivelmente menor, dependendo dos testes de performance). Se seu objetivo for isolar o MySQL de outras aplicações, considere vincular o processo `mysqld` exclusivamente às CPUs virtuais. Esteja ciente, no entanto, que a vinculação exclusiva pode resultar em uso não ideal de hardware se o processo `mysqld` não estiver consistentemente ocupado. Neste caso, você pode vincular o processo `mysqld` às CPUs virtuais, mas permitir que outras aplicações usem algumas ou todas as CPUs virtuais.
 
     Note
 
-    From an operating system perspective, using a resource management solution to manage how CPU time is shared among applications may be preferable to binding the `mysqld` process. For example, you could assign 90% of virtual CPU time to a given application while other critical processes *are not* running, and scale that value back to 40% when other critical processes *are* running.
+    Do ponto de vista do sistema operacional, usar uma solução de gerenciamento de recursos para gerenciar como o tempo de CPU é compartilhado entre aplicações pode ser preferível a vincular o processo `mysqld`. Por exemplo, você pode atribuir 90% do tempo de CPU virtual a uma determinada aplicação enquanto outros processos críticos *não* estão rodando, e reduzir esse valor para 40% quando outros processos críticos *estão* rodando.
 
-  + In some cases, the optimal `innodb_thread_concurrency` setting can be smaller than the number of virtual CPUs.
+  + Em alguns casos, a configuração ideal de `innodb_thread_concurrency` pode ser menor do que o número de CPUs virtuais.
 
-  + An `innodb_thread_concurrency` value that is too high can cause performance regression due to increased contention on system internals and resources.
+  + Um valor `innodb_thread_concurrency` muito alto pode causar regressão de performance devido ao aumento da contenção em recursos e internos do sistema.
 
-  + Monitor and analyze your system regularly. Changes to workload, number of users, or computing environment may require that you adjust the `innodb_thread_concurrency` setting.
+  + Monitore e analise seu sistema regularmente. Alterações na workload, número de usuários ou ambiente de computação podem exigir que você ajuste a configuração `innodb_thread_concurrency`.
 
-  A value of 0 disables the `queries inside InnoDB` and `queries in queue` counters in the `ROW OPERATIONS` section of `SHOW ENGINE INNODB STATUS` output.
+  Um valor de 0 desabilita os contadores `queries inside InnoDB` e `queries in queue` na seção `ROW OPERATIONS` da saída de `SHOW ENGINE INNODB STATUS`.
 
-  For related information, see Section 14.8.5, “Configuring Thread Concurrency for InnoDB”.
+  Para informações relacionadas, consulte a Seção 14.8.5, “Configurando a Concorrência de Threads para o InnoDB”.
 
 * `innodb_thread_sleep_delay`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Defines how long `InnoDB` threads sleep before joining the `InnoDB` queue, in microseconds. The default value is 10000. A value of 0 disables sleep. You can set `innodb_adaptive_max_sleep_delay` to the highest value you would allow for `innodb_thread_sleep_delay`, and `InnoDB` automatically adjusts `innodb_thread_sleep_delay` up or down depending on current thread-scheduling activity. This dynamic adjustment helps the thread scheduling mechanism to work smoothly during times when the system is lightly loaded or when it is operating near full capacity.
+  Define por quanto tempo os Threads do `InnoDB` dormem antes de entrar na fila do `InnoDB`, em microssegundos. O valor padrão é 10000. Um valor de 0 desabilita o sleep. Você pode definir `innodb_adaptive_max_sleep_delay` para o valor mais alto que você permitiria para `innodb_thread_sleep_delay`, e o `InnoDB` ajusta automaticamente `innodb_thread_sleep_delay` para cima ou para baixo dependendo da atividade de agendamento de Thread atual. Este ajuste dinâmico ajuda o mecanismo de agendamento de Thread a funcionar sem problemas durante períodos em que o sistema está com pouca carga ou quando está operando perto da capacidade total.
 
-  For more information, see Section 14.8.5, “Configuring Thread Concurrency for InnoDB”.
+  Para mais informações, consulte a Seção 14.8.5, “Configurando a Concorrência de Threads para o InnoDB”.
 
 * `innodb_tmpdir`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Used to define an alternate directory for temporary sort files created during online `ALTER TABLE` operations that rebuild the table.
+  Usado para definir um diretório alternativo para arquivos temporários de ordenação criados durante operações `ALTER TABLE` online que reconstroem a table.
 
-  Online `ALTER TABLE` operations that rebuild the table also create an *intermediate* table file in the same directory as the original table. The `innodb_tmpdir` option is not applicable to intermediate table files.
+  Operações `ALTER TABLE` online que reconstroem a table também criam um arquivo de table *intermediário* no mesmo diretório que a table original. A opção `innodb_tmpdir` não é aplicável a arquivos de table intermediários.
 
-  A valid value is any directory path other than the MySQL data directory path. If the value is NULL (the default), temporary files are created MySQL temporary directory (`$TMPDIR` on Unix, `%TEMP%` on Windows, or the directory specified by the `--tmpdir` configuration option). If a directory is specified, existence of the directory and permissions are only checked when `innodb_tmpdir` is configured using a `SET` statement. If a symlink is provided in a directory string, the symlink is resolved and stored as an absolute path. The path should not exceed 512 bytes. An online `ALTER TABLE` operation reports an error if `innodb_tmpdir` is set to an invalid directory. `innodb_tmpdir` overrides the MySQL `tmpdir` setting but only for online `ALTER TABLE` operations.
+  Um valor válido é qualquer path de diretório diferente do path do data directory do MySQL. Se o valor for NULL (o padrão), arquivos temporários são criados no diretório temporário do MySQL (`$TMPDIR` no Unix, `%TEMP%` no Windows, ou o diretório especificado pela opção de configuração `--tmpdir`). Se um diretório for especificado, a existência do diretório e as permissões são verificadas apenas quando `innodb_tmpdir` é configurado usando uma instrução `SET`. Se um symlink for fornecido em uma string de diretório, o symlink é resolvido e armazenado como um path absoluto. O path não deve exceder 512 bytes. Uma operação `ALTER TABLE` online reporta um erro se `innodb_tmpdir` for definido para um diretório inválido. `innodb_tmpdir` sobrescreve a configuração `tmpdir` do MySQL, mas apenas para operações `ALTER TABLE` online.
 
-  The `FILE` privilege is required to configure `innodb_tmpdir`.
+  O privilégio `FILE` é necessário para configurar `innodb_tmpdir`.
 
-  The `innodb_tmpdir` option was introduced to help avoid overflowing a temporary file directory located on a `tmpfs` file system. Such overflows could occur as a result of large temporary sort files created during online `ALTER TABLE` operations that rebuild the table.
+  A opção `innodb_tmpdir` foi introduzida para ajudar a evitar o transbordamento de um diretório de arquivo temporário localizado em um sistema de arquivos `tmpfs`. Tais transbordamentos poderiam ocorrer como resultado de grandes arquivos temporários de ordenação criados durante operações `ALTER TABLE` online que reconstroem a table.
 
-  In replication environments, only consider replicating the `innodb_tmpdir` setting if all servers have the same operating system environment. Otherwise, replicating the `innodb_tmpdir` setting could result in a replication failure when running online `ALTER TABLE` operations that rebuild the table. If server operating environments differ, it is recommended that you configure `innodb_tmpdir` on each server individually.
+  Em ambientes de Replication, considere replicar a configuração `innodb_tmpdir` apenas se todos os servidores tiverem o mesmo ambiente de sistema operacional. Caso contrário, replicar a configuração `innodb_tmpdir` pode resultar em uma falha de Replication ao executar operações `ALTER TABLE` online que reconstroem a table. Se os ambientes operacionais do servidor diferirem, recomenda-se que você configure `innodb_tmpdir` em cada servidor individualmente.
 
-  For more information, see Section 14.13.3, “Online DDL Space Requirements”. For information about online `ALTER TABLE` operations, see Section 14.13, “InnoDB and Online DDL”.
+  Para mais informações, consulte a Seção 14.13.3, “Requisitos de Espaço de DDL Online”. Para informações sobre operações `ALTER TABLE` online, consulte a Seção 14.13, “InnoDB e DDL Online”.
 
 * `innodb_trx_purge_view_update_only_debug`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Pauses purging of delete-marked records while allowing the purge view to be updated. This option artificially creates a situation in which the purge view is updated but purges have not yet been performed. This option is only available if debugging support is compiled in using the `WITH_DEBUG` **CMake** option.
+  Pausa o purge de registros marcados para deleção enquanto permite que a purge view seja atualizada. Esta opção cria artificialmente uma situação em que a purge view é atualizada, mas os purges ainda não foram realizados. Esta opção só está disponível se o suporte a Debug for compilado usando a opção **CMake** `WITH_DEBUG`.
 
 * `innodb_trx_rseg_n_slots_debug`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Sets a debug flag that limits `TRX_RSEG_N_SLOTS` to a given value for the `trx_rsegf_undo_find_free` function that looks for free slots for undo log segments. This option is only available if debugging support is compiled in using the `WITH_DEBUG` **CMake** option.
+  Define um flag de Debug que limita `TRX_RSEG_N_SLOTS` a um determinado valor para a função `trx_rsegf_undo_find_free` que procura slots livres para undo log segments. Esta opção só está disponível se o suporte a Debug for compilado usando a opção **CMake** `WITH_DEBUG`.
 
 * `innodb_undo_directory`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  The path where `InnoDB` creates undo tablespaces. Typically used to place undo logs on a different storage device. Used in conjunction with `innodb_rollback_segments` and `innodb_undo_tablespaces`.
+  O path onde o `InnoDB` cria undo tablespaces. Tipicamente usado para colocar undo logs em um dispositivo de armazenamento diferente. Usado em conjunto com `innodb_rollback_segments` e `innodb_undo_tablespaces`.
 
-  There is no default value (it is NULL). If a path is not specified, undo tablespaces are created in the MySQL data directory, as defined by `datadir`.
+  Não há valor padrão (é NULL). Se um path não for especificado, os undo tablespaces são criados no data directory do MySQL, conforme definido por `datadir`.
 
-  For more information, see Section 14.6.3.4, “Undo Tablespaces”.
+  Para mais informações, consulte a Seção 14.6.3.4, “Undo Tablespaces”.
 
 * `innodb_undo_log_truncate`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  When enabled, undo tablespaces that exceed the threshold value defined by `innodb_max_undo_log_size` are marked for truncation. Only undo tablespaces can be truncated. Truncating undo logs that reside in the system tablespace is not supported. For truncation to occur, there must be at least two undo tablespaces and two redo-enabled undo logs configured to use undo tablespaces. This means that `innodb_undo_tablespaces` must be set to a value equal to or greater than 2, and `innodb_rollback_segments` must set to a value equal to or greater than 35.
+  Quando habilitado, undo tablespaces que excedem o valor limite definido por `innodb_max_undo_log_size` são marcados para truncamento. Apenas undo tablespaces podem ser truncados. O truncamento de undo logs que residem no tablespace do sistema não é suportado. Para que o truncamento ocorra, deve haver pelo menos dois undo tablespaces e dois undo logs habilitados para redo configurados para usar undo tablespaces. Isso significa que `innodb_undo_tablespaces` deve ser definido para um valor igual ou maior que 2, e `innodb_rollback_segments` deve ser definido para um valor igual ou maior que 35.
 
-  The `innodb_purge_rseg_truncate_frequency` variable can be used to expedite truncation of undo tablespaces.
+  A variável `innodb_purge_rseg_truncate_frequency` pode ser usada para acelerar o truncamento de undo tablespaces.
 
-  For more information, see Truncating Undo Tablespaces.
+  Para mais informações, consulte Truncando Undo Tablespaces.
 
 * `innodb_undo_logs`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
   Note
 
-  `innodb_undo_logs` is deprecated; expect it to be removed in a future MySQL release.
+  `innodb_undo_logs` está descontinuada; espere que seja removida em uma futura versão do MySQL.
 
-  Defines the number of rollback segments used by `InnoDB`. The `innodb_undo_logs` option is an alias for `innodb_rollback_segments`. For more information, see the description of `innodb_rollback_segments`.
+  Define o número de rollback segments usados pelo `InnoDB`. A opção `innodb_undo_logs` é um alias para `innodb_rollback_segments`. Para mais informações, consulte a descrição de `innodb_rollback_segments`.
 
 * `innodb_undo_tablespaces`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  The number of undo tablespaces used by `InnoDB`. The default value is 0.
+  O número de undo tablespaces usados pelo `InnoDB`. O valor padrão é 0.
 
   Note
 
-  `innodb_undo_tablespaces` is deprecated; expect it to be removed in a future MySQL release.
+  `innodb_undo_tablespaces` está descontinuada; espere que seja removida em uma futura versão do MySQL.
 
-  Because undo logs can become large during long-running transactions, having undo logs in multiple tablespaces reduces the maximum size of any one tablespace. The undo tablespace files are created in the location defined by `innodb_undo_directory`, with names in the form of `undoN`, where *`N`* is a sequential series of integers (including leading zeros) representing the space ID.
+  Como os undo logs podem se tornar grandes durante transactions de longa duração, ter undo logs em múltiplos tablespaces reduz o tamanho máximo de qualquer tablespace. Os arquivos de undo tablespace são criados no local definido por `innodb_undo_directory`, com nomes no formato `undoN`, onde *`N`* é uma série sequencial de inteiros (incluindo zeros à esquerda) representando o ID do espaço.
 
-  The initial size of an undo tablespace file depends on the `innodb_page_size` value. For the default 16KB `InnoDB` page size, the initial undo tablespace file size is 10MiB. For 4KB, 8KB, 32KB, and 64KB page sizes, the initial undo tablespace files sizes are 7MiB, 8MiB, 20MiB, and 40MiB, respectively.
+  O tamanho inicial de um arquivo de undo tablespace depende do valor de `innodb_page_size`. Para o tamanho de página `InnoDB` padrão de 16KB, o tamanho inicial do arquivo de undo tablespace é 10MiB. Para tamanhos de página de 4KB, 8KB, 32KB e 64KB, os tamanhos iniciais dos arquivos de undo tablespace são 7MiB, 8MiB, 20MiB e 40MiB, respectivamente.
 
-  A minimum of two undo tablespaces is required to enable truncation of undo logs. See Truncating Undo Tablespaces.
+  É necessário um mínimo de dois undo tablespaces para habilitar o truncamento de undo logs. Consulte Truncando Undo Tablespaces.
 
-  Important
+  Importante
 
-  `innodb_undo_tablespaces` can only be configured prior to initializing the MySQL instance and cannot be changed afterward. If no value is specified, the instance is initialized using the default setting of 0. Attempting to restart `InnoDB` with a greater number of undo tablespaces than specified when the MySQL instance was initialized results in a startup failure and an error stating that `InnoDB` did not find the expected number of undo tablespaces.
+  `innodb_undo_tablespaces` só pode ser configurado antes de inicializar a instância MySQL e não pode ser alterado depois. Se nenhum valor for especificado, a instância é inicializada usando a configuração padrão de 0. Tentar reiniciar o `InnoDB` com um número maior de undo tablespaces do que o especificado quando a instância MySQL foi inicializada resulta em uma falha de inicialização e um erro indicando que o `InnoDB` não encontrou o número esperado de undo tablespaces.
 
-  32 of 128 rollback segments are reserved for temporary tables, as described in Section 14.6.7, “Undo Logs”. One rollback segment is always assigned to the system tablespace, which leaves 95 rollback segments available for undo tablespaces. This means the `innodb_undo_tablespaces` maximum limit is 95.
+  32 de 128 rollback segments são reservados para tabelas temporárias, conforme descrito na Seção 14.6.7, “Undo Logs”. Um rollback segment é sempre atribuído ao tablespace do sistema, o que deixa 95 rollback segments disponíveis para undo tablespaces. Isso significa que o limite máximo de `innodb_undo_tablespaces` é 95.
 
-  For more information, see Section 14.6.3.4, “Undo Tablespaces”.
+  Para mais informações, consulte a Seção 14.6.3.4, “Undo Tablespaces”.
 
 * `innodb_use_native_aio`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Specifies whether to use the Linux asynchronous I/O subsystem. This variable applies to Linux systems only, and cannot be changed while the server is running. Normally, you do not need to configure this option, because it is enabled by default.
+  Especifica se deve usar o subsistema I/O assíncrono do Linux. Esta variável se aplica apenas a sistemas Linux e não pode ser alterada enquanto o servidor está em execução. Normalmente, você não precisa configurar esta opção, pois está habilitada por padrão.
 
-  The asynchronous I/O capability that `InnoDB` has on Windows systems is available on Linux systems. (Other Unix-like systems continue to use synchronous I/O calls.) This feature improves the scalability of heavily I/O-bound systems, which typically show many pending reads/writes in `SHOW ENGINE INNODB STATUS\G` output.
+  A capacidade de I/O assíncrono que o `InnoDB` tem em sistemas Windows está disponível em sistemas Linux. (Outros sistemas tipo Unix continuam a usar chamadas de I/O síncronas.) Este recurso melhora a escalabilidade de sistemas intensivos em I/O, que tipicamente mostram muitas leituras/escritas pendentes na saída de `SHOW ENGINE INNODB STATUS\G`.
 
-  Running with a large number of `InnoDB` I/O threads, and especially running multiple such instances on the same server machine, can exceed capacity limits on Linux systems. In this case, you may receive the following error:
+  Executar com um grande número de I/O Threads do `InnoDB`, e especialmente executar múltiplas instâncias desse tipo na mesma máquina servidora, pode exceder os limites de capacidade em sistemas Linux. Neste caso, você pode receber o seguinte erro:
 
   ```sql
   EAGAIN: The specified maxevents exceeds the user's limit of available events.
   ```
 
-  You can typically address this error by writing a higher limit to `/proc/sys/fs/aio-max-nr`.
+  Você pode tipicamente resolver este erro escrevendo um limite superior em `/proc/sys/fs/aio-max-nr`.
 
-  However, if a problem with the asynchronous I/O subsystem in the OS prevents `InnoDB` from starting, you can start the server with `innodb_use_native_aio=0`. This option may also be disabled automatically during startup if `InnoDB` detects a potential problem such as a combination of `tmpdir` location, `tmpfs` file system, and Linux kernel that does not support AIO on `tmpfs`.
+  No entanto, se um problema com o subsistema I/O assíncrono no SO impedir que o `InnoDB` inicie, você pode iniciar o servidor com `innodb_use_native_aio=0`. Esta opção também pode ser desabilitada automaticamente durante a inicialização se o `InnoDB` detectar um problema potencial, como uma combinação de localização `tmpdir`, sistema de arquivos `tmpfs` e kernel Linux que não suporta AIO em `tmpfs`.
 
-  For more information, see Section 14.8.7, “Using Asynchronous I/O on Linux”.
+  Para mais informações, consulte a Seção 14.8.7, “Usando I/O Assíncrono no Linux”.
 
 * `innodb_version`
 
-  The `InnoDB` version number. In MySQL 5.7, separate version numbering for `InnoDB` does not apply and this value is the same the `version` number of the server.
+  O número da versão do `InnoDB`. No MySQL 5.7, a numeração de versão separada para o `InnoDB` não se aplica e este valor é o mesmo que o número da `version` do servidor.
 
 * `innodb_write_io_threads`
 
-  <table frame="box" rules="all" summary="Properties for innodb"><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Descontinuada</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  The number of I/O threads for write operations in `InnoDB`. The default value is 4. Its counterpart for read threads is `innodb_read_io_threads`. For more information, see Section 14.8.6, “Configuring the Number of Background InnoDB I/O Threads”. For general I/O tuning advice, see Section 8.5.8, “Optimizing InnoDB Disk I/O”.
+  O número de I/O Threads para operações de escrita no `InnoDB`. O valor padrão é 4. Sua contraparte para Threads de leitura é `innodb_read_io_threads`. Para mais informações, consulte a Seção 14.8.6, “Configurando o Número de Threads de I/O em Background do InnoDB”. Para conselhos gerais sobre ajuste de I/O, consulte a Seção 8.5.8, “Otimizando I/O de Disco do InnoDB”.
 
   Note
 
-  On Linux systems, running multiple MySQL servers (typically more than 12) with default settings for `innodb_read_io_threads`, `innodb_write_io_threads`, and the Linux `aio-max-nr` setting can exceed system limits. Ideally, increase the `aio-max-nr` setting; as a workaround, you might reduce the settings for one or both of the MySQL variables.
+  Em sistemas Linux, executar múltiplos servidores MySQL (tipicamente mais de 12) com configurações padrão para `innodb_read_io_threads`, `innodb_write_io_threads` e a configuração Linux `aio-max-nr` pode exceder os limites do sistema. Idealmente, aumente a configuração `aio-max-nr`; como solução alternativa, você pode reduzir as configurações para uma ou ambas as variáveis MySQL.
 
-  Also take into consideration the value of `sync_binlog`, which controls synchronization of the binary log to disk.
+  Considere também o valor de `sync_binlog`, que controla a sincronização do binary log no disco.
 
-  For general I/O tuning advice, see Section 8.5.8, “Optimizing InnoDB Disk I/O”.
+  Para conselhos gerais sobre ajuste de I/O, consulte a Seção 8.5.8, “Otimizando I/O de Disco do InnoDB”.

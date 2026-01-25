@@ -1,8 +1,8 @@
-### 12.9.3 Full-Text Searches with Query Expansion
+### 12.9.3 Buscas Full-Text com Expansão de Query
 
-Full-text search supports query expansion (and in particular, its variant “blind query expansion”). This is generally useful when a search phrase is too short, which often means that the user is relying on implied knowledge that the full-text search engine lacks. For example, a user searching for “database” may really mean that “MySQL”, “Oracle”, “DB2”, and “RDBMS” all are phrases that should match “databases” and should be returned, too. This is implied knowledge.
+A busca Full-Text suporta expansão de Query (e, em particular, sua variante "expansão cega de Query" – *blind query expansion*). Isso é geralmente útil quando uma frase de busca é muito curta, o que muitas vezes significa que o usuário está confiando em conhecimento implícito que o motor de busca Full-Text não possui. Por exemplo, um usuário buscando por “database” pode realmente querer dizer que “MySQL”, “Oracle”, “DB2” e “RDBMS” são todas frases que deveriam corresponder a “databases” e também serem retornadas. Este é o conhecimento implícito.
 
-Blind query expansion (also known as automatic relevance feedback) is enabled by adding `WITH QUERY EXPANSION` or `IN NATURAL LANGUAGE MODE WITH QUERY EXPANSION` following the search phrase. It works by performing the search twice, where the search phrase for the second search is the original search phrase concatenated with the few most highly relevant documents from the first search. Thus, if one of these documents contains the word “databases” and the word “MySQL”, the second search finds the documents that contain the word “MySQL” even if they do not contain the word “database”. The following example shows this difference:
+A expansão cega de Query (*blind query expansion*) (também conhecida como *automatic relevance feedback* – feedback automático de relevância) é ativada adicionando `WITH QUERY EXPANSION` ou `IN NATURAL LANGUAGE MODE WITH QUERY EXPANSION` após a frase de busca. Ela funciona realizando a busca duas vezes, onde a frase de busca para a segunda busca é a frase de busca original concatenada com os poucos documentos mais altamente relevantes da primeira busca. Assim, se um desses documentos contiver a palavra “databases” e a palavra “MySQL”, a segunda busca encontrará os documentos que contêm a palavra “MySQL” mesmo que não contenham a palavra “database”. O exemplo a seguir mostra essa diferença:
 
 ```sql
 mysql> SELECT * FROM articles
@@ -32,8 +32,8 @@ mysql> SELECT * FROM articles
 6 rows in set (0.00 sec)
 ```
 
-Another example could be searching for books by Georges Simenon about Maigret, when a user is not sure how to spell “Maigret”. A search for “Megre and the reluctant witnesses” finds only “Maigret and the Reluctant Witnesses” without query expansion. A search with query expansion finds all books with the word “Maigret” on the second pass.
+Outro exemplo poderia ser a busca por livros de Georges Simenon sobre Maigret, quando um usuário não tem certeza de como soletrar “Maigret”. Uma busca por “Megre and the reluctant witnesses” encontra apenas “Maigret and the Reluctant Witnesses” sem expansão de Query. Uma busca com expansão de Query encontra todos os livros com a palavra “Maigret” na segunda passagem.
 
-Note
+Nota
 
-Because blind query expansion tends to increase noise significantly by returning nonrelevant documents, use it only when a search phrase is short.
+Como a expansão cega de Query tende a aumentar o ruído significativamente, retornando documentos não relevantes, use-a apenas quando a frase de busca for curta.

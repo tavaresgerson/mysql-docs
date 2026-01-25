@@ -1,54 +1,54 @@
-### 24.4.14 The INFORMATION_SCHEMA INNODB_LOCKS Table
+### 24.4.14 A Tabela INNODB_LOCKS do INFORMATION_SCHEMA
 
-The [`INNODB_LOCKS`](information-schema-innodb-locks-table.html "24.4.14 The INFORMATION_SCHEMA INNODB_LOCKS Table") table provides information about each lock that an `InnoDB` transaction has requested but not yet acquired, and each lock that a transaction holds that is blocking another transaction.
+A tabela [`INNODB_LOCKS`](information-schema-innodb-locks-table.html "24.4.14 A Tabela INNODB_LOCKS do INFORMATION_SCHEMA") fornece informações sobre cada Lock que uma Transaction `InnoDB` solicitou, mas ainda não adquiriu, e cada Lock que uma Transaction possui e que está bloqueando outra Transaction.
 
-Note
+Nota
 
-This table is deprecated as of MySQL 5.7.14 and is removed in MySQL 8.0.
+Esta tabela está obsoleta (deprecated) a partir do MySQL 5.7.14 e foi removida no MySQL 8.0.
 
-The [`INNODB_LOCKS`](information-schema-innodb-locks-table.html "24.4.14 The INFORMATION_SCHEMA INNODB_LOCKS Table") table has these columns:
+A tabela [`INNODB_LOCKS`](information-schema-innodb-locks-table.html "24.4.14 A Tabela INNODB_LOCKS do INFORMATION_SCHEMA") possui as seguintes colunas:
 
 * `LOCK_ID`
 
-  A unique lock ID number, internal to `InnoDB`. Treat it as an opaque string. Although `LOCK_ID` currently contains `TRX_ID`, the format of the data in `LOCK_ID` is subject to change at any time. Do not write applications that parse the `LOCK_ID` value.
+  Um número de ID de Lock exclusivo, interno ao `InnoDB`. Trate-o como uma string opaca. Embora o `LOCK_ID` atualmente contenha o `TRX_ID`, o formato dos dados no `LOCK_ID` está sujeito a alterações a qualquer momento. Não escreva aplicações que façam parse do valor de `LOCK_ID`.
 
 * `LOCK_TRX_ID`
 
-  The ID of the transaction holding the lock. To obtain details about the transaction, join this column with the `TRX_ID` column of the [`INNODB_TRX`](information-schema-innodb-trx-table.html "24.4.28 The INFORMATION_SCHEMA INNODB_TRX Table") table.
+  O ID da Transaction que possui o Lock. Para obter detalhes sobre a Transaction, faça um JOIN desta coluna com a coluna `TRX_ID` da tabela [`INNODB_TRX`](information-schema-innodb-trx-table.html "24.4.28 A Tabela INNODB_TRX do INFORMATION_SCHEMA").
 
 * `LOCK_MODE`
 
-  How the lock is requested. Permitted lock mode descriptors are `S`, `X`, `IS`, `IX`, `GAP`, `AUTO_INC`, and `UNKNOWN`. Lock mode descriptors may be used in combination to identify particular lock modes. For information about `InnoDB` lock modes, see [Section 14.7.1, “InnoDB Locking”](innodb-locking.html "14.7.1 InnoDB Locking").
+  Como o Lock é solicitado. Os descritores de Lock mode permitidos são `S`, `X`, `IS`, `IX`, `GAP`, `AUTO_INC` e `UNKNOWN`. Os descritores de Lock mode podem ser usados em combinação para identificar modos de Lock específicos. Para obter informações sobre os modos de Lock do `InnoDB`, consulte [Section 14.7.1, “InnoDB Locking”](innodb-locking.html "14.7.1 InnoDB Locking").
 
 * `LOCK_TYPE`
 
-  The type of lock. Permitted values are `RECORD` for a row-level lock, `TABLE` for a table-level lock.
+  O tipo de Lock. Os valores permitidos são `RECORD` para um Lock no nível de linha (row-level lock), `TABLE` para um Lock no nível de tabela (table-level lock).
 
 * `LOCK_TABLE`
 
-  The name of the table that has been locked or contains locked records.
+  O nome da tabela que foi bloqueada ou que contém registros bloqueados.
 
 * `LOCK_INDEX`
 
-  The name of the index, if `LOCK_TYPE` is `RECORD`; otherwise `NULL`.
+  O nome do Index, se `LOCK_TYPE` for `RECORD`; caso contrário, `NULL`.
 
 * `LOCK_SPACE`
 
-  The tablespace ID of the locked record, if `LOCK_TYPE` is `RECORD`; otherwise `NULL`.
+  O ID do tablespace do registro bloqueado, se `LOCK_TYPE` for `RECORD`; caso contrário, `NULL`.
 
 * `LOCK_PAGE`
 
-  The page number of the locked record, if `LOCK_TYPE` is `RECORD`; otherwise `NULL`.
+  O número da page do registro bloqueado, se `LOCK_TYPE` for `RECORD`; caso contrário, `NULL`.
 
 * `LOCK_REC`
 
-  The heap number of the locked record within the page, if `LOCK_TYPE` is `RECORD`; otherwise `NULL`.
+  O número heap do registro bloqueado dentro da page, se `LOCK_TYPE` for `RECORD`; caso contrário, `NULL`.
 
 * `LOCK_DATA`
 
-  The data associated with the lock, if any. A value is shown if the `LOCK_TYPE` is `RECORD`, otherwise the value is `NULL`. Primary key values of the locked record are shown for a lock placed on the primary key index. Secondary index values of the locked record are shown for a lock placed on a unique secondary index. Secondary index values are shown with primary key values appended if the secondary index is not unique. If there is no primary key, `LOCK_DATA` shows either the key values of a selected unique index or the unique `InnoDB` internal row ID number, according to the rules governing `InnoDB` clustered index use (see [Section 14.6.2.1, “Clustered and Secondary Indexes”](innodb-index-types.html "14.6.2.1 Clustered and Secondary Indexes")). `LOCK_DATA` reports “supremum pseudo-record” for a lock taken on a supremum pseudo-record. If the page containing the locked record is not in the buffer pool because it was written to disk while the lock was held, `InnoDB` does not fetch the page from disk. Instead, `LOCK_DATA` reports `NULL`.
+  Os dados associados ao Lock, se houver. Um valor é exibido se o `LOCK_TYPE` for `RECORD`, caso contrário o valor é `NULL`. Os valores da Primary Key do registro bloqueado são exibidos para um Lock colocado no Primary Key Index. Os valores do Secondary Index do registro bloqueado são exibidos para um Lock colocado em um Secondary Index exclusivo (unique). Os valores do Secondary Index são exibidos com os valores da Primary Key anexados se o Secondary Index não for exclusivo. Se não houver Primary Key, `LOCK_DATA` exibe os valores de chave de um Index exclusivo selecionado ou o número de ID de linha interno exclusivo do `InnoDB`, de acordo com as regras que governam o uso do clustered index do `InnoDB` (consulte [Section 14.6.2.1, “Clustered and Secondary Indexes”](innodb-index-types.html "14.6.2.1 Clustered and Secondary Indexes")). `LOCK_DATA` reporta “supremum pseudo-record” para um Lock aplicado a um pseudo-registro supremum. Se a page contendo o registro bloqueado não estiver no Buffer Pool porque foi escrita no disco enquanto o Lock estava sendo mantido, o `InnoDB` não busca a page do disco. Em vez disso, `LOCK_DATA` reporta `NULL`.
 
-#### Example
+#### Exemplo
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCKS\G
@@ -76,12 +76,12 @@ lock_trx_id: 3722
   lock_data: 1, 9
 ```
 
-#### Notes
+#### Notas
 
-* Use this table to help diagnose performance problems that occur during times of heavy concurrent load. Its contents are updated as described in [Section 14.16.2.3, “Persistence and Consistency of InnoDB Transaction and Locking Information”](innodb-information-schema-internal-data.html "14.16.2.3 Persistence and Consistency of InnoDB Transaction and Locking Information").
+* Use esta tabela para ajudar a diagnosticar problemas de performance que ocorrem em momentos de alta carga concorrente. Seu conteúdo é atualizado conforme descrito em [Section 14.16.2.3, “Persistence and Consistency of InnoDB Transaction and Locking Information”](innodb-information-schema-internal-data.html "14.16.2.3 Persistence and Consistency of InnoDB Transaction and Locking Information").
 
-* You must have the [`PROCESS`](privileges-provided.html#priv_process) privilege to query this table.
+* Você deve ter o privilégio [`PROCESS`](privileges-provided.html#priv_process) para realizar Query nesta tabela.
 
-* Use the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table or the [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") statement to view additional information about the columns of this table, including data types and default values.
+* Use a tabela [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") do `INFORMATION_SCHEMA` ou o comando [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores default.
 
-* For usage information, see [Section 14.16.2.1, “Using InnoDB Transaction and Locking Information”](innodb-information-schema-examples.html "14.16.2.1 Using InnoDB Transaction and Locking Information").
+* Para informações de uso, consulte [Section 14.16.2.1, “Using InnoDB Transaction and Locking Information”](innodb-information-schema-examples.html "14.16.2.1 Using InnoDB Transaction and Locking Information").

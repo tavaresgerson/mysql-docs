@@ -1,27 +1,27 @@
-#### 14.10.2.2 Compatibility Check When a Table Is Opened
+#### 14.10.2.2 Check de Compatibilidade Quando uma Tabela é Aberta
 
-When a table is first accessed, InnoDB (including some releases prior to InnoDB 1.0) checks that the file format of the tablespace in which the table is stored is fully supported. This check prevents crashes or corruptions that would otherwise occur when tables using a “too new” data structure are encountered.
+Quando uma tabela é acessada pela primeira vez, o InnoDB (incluindo algumas versões anteriores ao InnoDB 1.0) verifica se o *file format* do *tablespace* no qual a tabela está armazenada é totalmente suportado. Este *check* evita *crashes* ou corrupções que ocorreriam caso fossem encontradas tabelas usando uma estrutura de dados “muito nova”.
 
-All tables using any file format supported by a release can be read or written (assuming the user has sufficient privileges). The setting of the system configuration parameter `innodb_file_format` can prevent creating a new table that uses a specific file format, even if the file format is supported by a given release. Such a setting might be used to preserve backward compatibility, but it does not prevent accessing any table that uses a supported format.
+Todas as tabelas que utilizam qualquer *file format* suportado por uma versão podem ser lidas ou escritas (assumindo que o usuário tenha privilégios suficientes). A configuração do parâmetro de configuração do sistema `innodb_file_format` pode impedir a criação de uma nova tabela que use um *file format* específico, mesmo que esse *file format* seja suportado por uma determinada versão. Tal configuração pode ser usada para preservar a compatibilidade retroativa, mas não impede o acesso a qualquer tabela que utilize um formato suportado.
 
-Versions of MySQL older than 5.0.21 cannot reliably use database files created by newer versions if a new file format was used when a table was created. To prevent various error conditions or corruptions, InnoDB checks file format compatibility when it opens a file (for example, upon first access to a table). If the currently running version of InnoDB does not support the file format identified by the table type in the InnoDB data dictionary, MySQL reports the following error:
+Versões do MySQL anteriores à 5.0.21 não conseguem usar de forma confiável *database files* criados por versões mais novas, caso um novo *file format* tenha sido usado quando a tabela foi criada. Para prevenir várias condições de erro ou corrupções, o InnoDB verifica a compatibilidade do *file format* quando abre um arquivo (por exemplo, no primeiro acesso a uma tabela). Se a versão do InnoDB atualmente em execução não suportar o *file format* identificado pelo tipo de tabela no *data dictionary* do InnoDB, o MySQL reporta o seguinte erro:
 
 ```sql
 ERROR 1146 (42S02): Table 'test.t1' doesn't exist
 ```
 
-InnoDB also writes a message to the error log:
+O InnoDB também grava uma mensagem no *error log*:
 
 ```sql
 InnoDB: table test/t1: unknown table type 33
 ```
 
-The table type should be equal to the tablespace flags, which contains the file format version as discussed in Section 14.10.3, “Identifying the File Format in Use”.
+O tipo de tabela deve ser igual aos *flags* do *tablespace*, que contém a versão do *file format*, conforme discutido na Seção 14.10.3, “Identificando o *File Format* em Uso”.
 
-Versions of InnoDB prior to MySQL 4.1 did not include table format identifiers in the database files, and versions prior to MySQL 5.0.21 did not include a table format compatibility check. Therefore, there is no way to ensure proper operations if a table in a newer file format is used with versions of InnoDB prior to 5.0.21.
+Versões do InnoDB anteriores ao MySQL 4.1 não incluíam identificadores de formato de tabela nos *database files*, e versões anteriores ao MySQL 5.0.21 não incluíam um *check* de compatibilidade de formato de tabela. Portanto, não há como garantir operações adequadas se uma tabela em um *file format* mais novo for usada com versões do InnoDB anteriores à 5.0.21.
 
-The file format management capability in InnoDB 1.0 and higher (tablespace tagging and run-time checks) allows InnoDB to verify as soon as possible that the running version of software can properly process the tables existing in the database.
+A capacidade de gerenciamento de *file format* no InnoDB 1.0 e superior (*tagging* de *tablespace* e *checks* em tempo de execução) permite que o InnoDB verifique o mais rápido possível se a versão do software em execução pode processar corretamente as tabelas existentes no *database*.
 
-If you permit InnoDB to open a database containing files in a format it does not support (by setting the parameter `innodb_file_format_check` to `OFF`), the table-level checking described in this section still applies.
+Se você permitir que o InnoDB abra um *database* contendo arquivos em um formato que não é suportado (definindo o parâmetro `innodb_file_format_check` como `OFF`), o *checking* em nível de tabela descrito nesta seção ainda se aplica.
 
-Users are *strongly* urged not to use database files that contain Barracuda file format tables with releases of InnoDB older than the MySQL 5.1 with the InnoDB Plugin. It may be possible to rebuild such tables to use the Antelope format.
+Os usuários são *fortemente* aconselhados a não usar *database files* que contenham tabelas no *file format* Barracuda com versões do InnoDB mais antigas do que o MySQL 5.1 com o InnoDB Plugin. Pode ser possível reconstruir tais tabelas para que usem o formato Antelope.

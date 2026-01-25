@@ -1,18 +1,18 @@
-#### 26.4.5.2 The extract_table_from_file_name() Function
+#### 26.4.5.2 A Função extract_table_from_file_name()
 
-Given a file path name, returns the path component that represents the table name.
+Dado um nome de *path* de arquivo, retorna o componente do *path* que representa o nome da tabela.
 
-This function is useful when extracting file I/O information from the Performance Schema that includes file path names. It provides a convenient way to display table names, which can be more easily understood than full path names, and can be used in joins against object table names.
+Esta função é útil ao extrair informações de I/O de arquivo do *Performance Schema* que incluem nomes de *path* de arquivo. Ela fornece uma maneira conveniente de exibir nomes de tabelas, que são mais facilmente compreendidos do que nomes de *path* completos, e pode ser usada em *JOINs* contra nomes de tabelas de objeto.
 
-##### Parameters
+##### Parâmetros
 
-* `path VARCHAR(512)`: The full path to a data file from which to extract the table name.
+* `path VARCHAR(512)`: O *path* completo para um arquivo de dados do qual extrair o nome da tabela.
 
-##### Return Value
+##### Valor de Retorno
 
-A `VARCHAR(64)` value.
+Um valor `VARCHAR(64)`.
 
-##### Example
+##### Exemplo
 
 ```sql
 mysql> SELECT sys.extract_table_from_file_name('/usr/local/mysql/data/world/City.ibd');

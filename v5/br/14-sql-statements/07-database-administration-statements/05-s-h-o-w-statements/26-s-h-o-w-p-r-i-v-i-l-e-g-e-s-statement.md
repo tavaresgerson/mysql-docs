@@ -1,10 +1,10 @@
-#### 13.7.5.26 SHOW PRIVILEGES Statement
+#### 13.7.5.26 SHOW PRIVILEGES Statement
 
 ```sql
 SHOW PRIVILEGES
 ```
 
-[`SHOW PRIVILEGES`](show-privileges.html "13.7.5.26 SHOW PRIVILEGES Statement") shows the list of system privileges that the MySQL server supports. The exact list of privileges depends on the version of your server.
+O [`SHOW PRIVILEGES`](show-privileges.html "13.7.5.26 SHOW PRIVILEGES Statement") mostra a lista de system privileges que o MySQL server suporta. A lista exata de privileges depende da versão do seu server.
 
 ```sql
 mysql> SHOW PRIVILEGES\G
@@ -31,4 +31,4 @@ Privilege: Create temporary tables
 ...
 ```
 
-Privileges belonging to a specific user are displayed by the [`SHOW GRANTS`](show-grants.html "13.7.5.21 SHOW GRANTS Statement") statement. See [Section 13.7.5.21, “SHOW GRANTS Statement”](show-grants.html "13.7.5.21 SHOW GRANTS Statement"), for more information.
+Privileges pertencentes a um user específico são exibidos pelo [`SHOW GRANTS`](show-grants.html "13.7.5.21 SHOW GRANTS Statement") Statement. Consulte a [Seção 13.7.5.21, “SHOW GRANTS Statement”](show-grants.html "13.7.5.21 SHOW GRANTS Statement"), para mais informações.

@@ -1,32 +1,32 @@
-## 27.9 MySQL Perl API
+## 27.9 API Perl do MySQL
 
-The Perl `DBI` module provides a generic interface for database access. You can write a DBI script that works with many different database engines without change. To use DBI with MySQL, install the following:
+O módulo Perl `DBI` fornece uma interface genérica para acesso a Database. Você pode escrever um script DBI que funciona com muitos motores de Database diferentes sem alteração. Para usar o DBI com MySQL, instale o seguinte:
 
-1. The `DBI` module.
-2. The `DBD::mysql` module. This is the DataBase Driver (DBD) module for Perl.
+1. O módulo `DBI`.
+2. O módulo `DBD::mysql`. Este é o módulo DataBase Driver (DBD) para Perl.
 
-3. Optionally, the DBD module for any other type of database server you want to access.
+3. Opcionalmente, o módulo DBD para qualquer outro tipo de servidor de Database ao qual você deseja acessar.
 
-Perl DBI is the recommended Perl interface. It replaces an older interface called `mysqlperl`, which should be considered obsolete.
+O Perl DBI é a interface Perl recomendada. Ele substitui uma interface mais antiga chamada `mysqlperl`, que deve ser considerada obsoleta.
 
-These sections contain information about using Perl with MySQL and writing MySQL applications in Perl:
+Estas seções contêm informações sobre como usar Perl com MySQL e como escrever aplicações MySQL em Perl:
 
-* For installation instructions for Perl DBI support, see [Section 2.12, “Perl Installation Notes”](perl-support.html "2.12 Perl Installation Notes").
+* Para instruções de instalação para o suporte a Perl DBI, consulte [Seção 2.12, “Notas de Instalação do Perl”](perl-support.html "2.12 Notas de Instalação do Perl").
 
-* For an example of reading options from option files, see [Section 5.7.4, “Using Client Programs in a Multiple-Server Environment”](multiple-server-clients.html "5.7.4 Using Client Programs in a Multiple-Server Environment").
+* Para um exemplo de leitura de opções a partir de arquivos de opção, consulte [Seção 5.7.4, “Usando Programas Client em um Ambiente de Múltiplos Servidores”](multiple-server-clients.html "5.7.4 Usando Programas Client em um Ambiente de Múltiplos Servidores").
 
-* For secure coding tips, see [Section 6.1.1, “Security Guidelines”](security-guidelines.html "6.1.1 Security Guidelines").
+* Para dicas de codificação segura, consulte [Seção 6.1.1, “Diretrizes de Segurança”](security-guidelines.html "6.1.1 Diretrizes de Segurança").
 
-* For debugging tips, see [Section 5.8.1.4, “Debugging mysqld under gdb”](using-gdb-on-mysqld.html "5.8.1.4 Debugging mysqld under gdb").
-* For some Perl-specific environment variables, see [Section 4.9, “Environment Variables”](environment-variables.html "4.9 Environment Variables").
+* Para dicas de Debugging, consulte [Seção 5.8.1.4, “Debugging mysqld sob gdb”](using-gdb-on-mysqld.html "5.8.1.4 Debugging mysqld sob gdb").
+* Para algumas environment variables específicas do Perl, consulte [Seção 4.9, “Environment Variables”](environment-variables.html "4.9 Environment Variables").
 
-* For considerations for running on macOS, see [Section 2.4, “Installing MySQL on macOS”](macos-installation.html "2.4 Installing MySQL on macOS").
+* Para considerações sobre a execução no macOS, consulte [Seção 2.4, “Instalando MySQL no macOS”](macos-installation.html "2.4 Instalando MySQL no macOS").
 
-* For ways to quote string literals, see [Section 9.1.1, “String Literals”](string-literals.html "9.1.1 String Literals").
+* Para maneiras de fazer quote em string literals, consulte [Seção 9.1.1, “String Literals”](string-literals.html "9.1.1 String Literals").
 
-DBI information is available at the command line, online, or in printed form:
+As informações sobre DBI estão disponíveis na linha de comando, online ou em formato impresso:
 
-* Once you have the `DBI` and `DBD::mysql` modules installed, you can get information about them at the command line with the `perldoc` command:
+* Assim que os módulos `DBI` e `DBD::mysql` estiverem instalados, você pode obter informações sobre eles na linha de comando com o comando `perldoc`:
 
   ```sql
   $> perldoc DBI
@@ -34,8 +34,8 @@ DBI information is available at the command line, online, or in printed form:
   $> perldoc DBD::mysql
   ```
 
-  You can also use `pod2man`, `pod2html`, and so on to translate this information into other formats.
+  Você também pode usar `pod2man`, `pod2html` e assim por diante para traduzir esta informação para outros formatos.
 
-* For online information about Perl DBI, visit the DBI website, <http://dbi.perl.org/>. That site hosts a general DBI mailing list.
+* Para informações online sobre Perl DBI, visite o website do DBI, <http://dbi.perl.org/>. Este site hospeda uma mailing list geral do DBI.
 
-* For printed information, the official DBI book is *Programming the Perl DBI* (Alligator Descartes and Tim Bunce, O'Reilly & Associates, 2000). Information about the book is available at the DBI website, <http://dbi.perl.org/>.
+* Para informações impressas, o livro oficial do DBI é *Programming the Perl DBI* (Alligator Descartes e Tim Bunce, O'Reilly & Associates, 2000). Informações sobre o livro estão disponíveis no website do DBI, <http://dbi.perl.org/>.

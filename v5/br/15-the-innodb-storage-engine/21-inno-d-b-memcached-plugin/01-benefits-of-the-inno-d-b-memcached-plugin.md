@@ -1,39 +1,39 @@
-### 14.21.1 Benefits of the InnoDB memcached Plugin
+### 14.21.1 Benefícios do Plugin InnoDB memcached
 
-This section outlines advantages the `daemon_memcached` plugin. The combination of `InnoDB` tables and **memcached** offers advantages over using either by themselves.
+Esta seção descreve as vantagens do plugin `daemon_memcached`. A combinação de tabelas `InnoDB` e **memcached** oferece vantagens sobre o uso de qualquer um deles isoladamente.
 
-* Direct access to the `InnoDB` storage engine avoids the parsing and planning overhead of SQL.
+* O acesso direto ao `InnoDB` storage engine evita a sobrecarga de parsing e planejamento de SQL.
 
-* Running **memcached** in the same process space as the MySQL server avoids the network overhead of passing requests back and forth.
+* Executar o **memcached** no mesmo espaço de processo que o servidor MySQL evita a sobrecarga de rede (network overhead) de passar requests de um lado para o outro.
 
-* Data written using the **memcached** protocol is transparently written to an `InnoDB` table, without going through the MySQL SQL layer. You can control frequency of writes to achieve higher raw performance when updating non-critical data.
+* Os dados escritos usando o protocolo **memcached** são gravados de forma transparente em uma tabela `InnoDB`, sem passar pela camada SQL do MySQL. Você pode controlar a frequência das writes para alcançar um raw performance mais alto ao atualizar dados não críticos.
 
-* Data requested through the **memcached** protocol is transparently queried from an `InnoDB` table, without going through the MySQL SQL layer.
+* Os dados solicitados através do protocolo **memcached** são consultados (queried) de forma transparente em uma tabela `InnoDB`, sem passar pela camada SQL do MySQL.
 
-* Subsequent requests for the same data is served from the `InnoDB` buffer pool. The buffer pool handles the in-memory caching. You can tune performance of data-intensive operations using `InnoDB` configuration options.
+* Requests subsequentes para os mesmos dados são atendidas pelo `InnoDB` Buffer Pool. O Buffer Pool gerencia o caching in-memory. Você pode ajustar o performance de operações com uso intensivo de dados usando as opções de configuração do `InnoDB`.
 
-* Data can be unstructured or structured, depending on the type of application. You can create a new table for data, or use existing tables.
+* Os dados podem ser não estruturados ou estruturados, dependendo do tipo de aplicação. Você pode criar uma nova tabela para os dados ou usar tabelas existentes.
 
-* `InnoDB` can handle composing and decomposing multiple column values into a single **memcached** item value, reducing the amount of string parsing and concatenation required in your application. For example, you can store the string value `2|4|6|8` in the **memcached** cache, and have `InnoDB` split the value based on a separator character, then store the result in four numeric columns.
+* O `InnoDB` pode lidar com a composição e decomposição de múltiplos valores de coluna em um único valor de item do **memcached**, reduzindo a quantidade de parsing de string e concatenação exigida na sua aplicação. Por exemplo, você pode armazenar o valor de string `2|4|6|8` no cache do **memcached** e fazer com que o `InnoDB` divida o valor com base em um caractere separador, armazenando o resultado em quatro colunas numéricas.
 
-* The transfer between memory and disk is handled automatically, simplifying application logic.
+* A transferência entre memória e disco é tratada automaticamente, simplificando a lógica da aplicação.
 
-* Data is stored in a MySQL database to protect against crashes, outages, and corruption.
+* Os dados são armazenados em um Database MySQL para proteção contra crashes, interrupções (outages) e corrupção.
 
-* You can access the underlying `InnoDB` table through SQL for reporting, analysis, ad hoc queries, bulk loading, multi-step transactional computations, set operations such as union and intersection, and other operations suited to the expressiveness and flexibility of SQL.
+* Você pode acessar a tabela `InnoDB` subjacente através de SQL para reporting, análise, ad hoc queries, bulk loading, cálculos transacionais de múltiplas etapas, operações de conjunto como union e intersection, e outras operações adequadas à expressividade e flexibilidade do SQL.
 
-* You can ensure high availability by using the `daemon_memcached` plugin on a source server in combination with MySQL replication.
+* Você pode garantir alta disponibilidade usando o plugin `daemon_memcached` em um source server em combinação com o MySQL Replication.
 
-* The integration of **memcached** with MySQL provides a way to make in-memory data persistent, so you can use it for more significant kinds of data. You can use more `add`, `incr`, and similar write operations in your application without concern that data could be lost. You can stop and start the **memcached** server without losing updates made to cached data. To guard against unexpected outages, you can take advantage of `InnoDB` crash recovery, replication, and backup capabilities.
+* A integração do **memcached** com o MySQL fornece uma maneira de tornar os dados in-memory persistentes, para que você possa usá-los para tipos de dados mais significativos. Você pode usar mais operações de write como `add`, `incr` e similares na sua aplicação sem se preocupar com a perda de dados. Você pode parar e iniciar o servidor **memcached** sem perder as atualizações feitas nos dados em cache. Para se proteger contra interrupções inesperadas, você pode aproveitar os recursos de Crash Recovery, Replication e Backup do `InnoDB`.
 
-* The way `InnoDB` does fast primary key lookups is a natural fit for **memcached** single-item queries. The direct, low-level database access path used by the `daemon_memcached` plugin is much more efficient for key-value lookups than equivalent SQL queries.
+* A maneira como o `InnoDB` realiza lookups rápidos de Primary Key é uma adaptação natural para **memcached** single-item queries. O caminho de acesso direto e de baixo nível ao Database usado pelo plugin `daemon_memcached` é muito mais eficiente para key-value lookups do que SQL Queries equivalentes.
 
-* The serialization features of **memcached**, which can turn complex data structures, binary files, or even code blocks into storeable strings, offer a simple way to get such objects into a database.
+* Os recursos de serialization do **memcached**, que podem transformar estruturas de dados complexas, arquivos binários ou até mesmo code blocks em strings armazenáveis, oferecem uma maneira simples de inserir esses objetos em um Database.
 
-* Because you can access the underlying data through SQL, you can produce reports, search or update across multiple keys, and call functions such as `AVG()` and `MAX()` on **memcached** data. All of these operations are expensive or complicated using **memcached** by itself.
+* Como você pode acessar os dados subjacentes via SQL, você pode produzir relatórios (reports), pesquisar ou atualizar em múltiplas keys e chamar funções como `AVG()` e `MAX()` nos dados do **memcached**. Todas essas operações são caras ou complicadas usando o **memcached** por si só.
 
-* You do not need to manually load data into **memcached** at startup. As particular keys are requested by an application, values are retrieved from the database automatically, and cached in memory using the `InnoDB` buffer pool.
+* Você não precisa carregar dados manualmente no **memcached** na inicialização (startup). À medida que keys específicas são solicitadas por uma aplicação, os valores são recuperados do Database automaticamente e armazenados em cache (cached) in-memory usando o `InnoDB` Buffer Pool.
 
-* Because **memcached** consumes relatively little CPU, and its memory footprint is easy to control, it can run comfortably alongside a MySQL instance on the same system.
+* Como o **memcached** consome relativamente pouca CPU, e seu footprint de memória é fácil de controlar, ele pode ser executado confortavelmente junto a uma instância MySQL no mesmo sistema.
 
-* Because data consistency is enforced by mechanisms used for regular `InnoDB` tables, you do not have to worry about stale **memcached** data or fallback logic to query the database in the case of a missing key.
+* Como a consistência dos dados é imposta por mecanismos usados para tabelas `InnoDB` regulares, você não precisa se preocupar com dados **memcached** desatualizados (stale) ou com lógica de fallback para realizar a Query no Database no caso de uma key ausente.

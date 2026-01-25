@@ -1,37 +1,37 @@
-### 16.3.5 Replicating Different Databases to Different Replicas
+### 16.3.5 Replicando Databases Diferentes para Replicas Diferentes
 
-There may be situations where you have a single source and want to replicate different databases to different replicas. For example, you may want to distribute different sales data to different departments to help spread the load during data analysis. A sample of this layout is shown in [Figure 16.2, “Replicating Databases to Separate Replicas”](replication-solutions-partitioning.html#figure_replication-multi-db "Figure 16.2 Replicating Databases to Separate Replicas").
+Pode haver situações em que você tenha um único Source e deseje replicar Databases diferentes para Replicas diferentes. Por exemplo, você pode querer distribuir dados de vendas distintos para diferentes departamentos para ajudar a distribuir a carga durante a análise de dados. Um exemplo deste arranjo é mostrado na [Figura 16.2, “Replicando Databases para Replicas Separadas”](replication-solutions-partitioning.html#figure_replication-multi-db "Figura 16.2 Replicando Databases para Replicas Separadas").
 
-**Figure 16.2 Replicating Databases to Separate Replicas**
+**Figura 16.2 Replicando Databases para Replicas Separadas**
 
-![The MySQL source has three databases, databaseA, databaseB, and databaseC. databaseA is replicated only to MySQL Replica 1, databaseB is replicated only to MySQL Replica 2, and databaseC is replicated only to MySQL Replica 3.](images/multi-db.png)
+![O MySQL Source tem três Databases, databaseA, databaseB e databaseC. databaseA é replicado apenas para o MySQL Replica 1, databaseB é replicado apenas para o MySQL Replica 2 e databaseC é replicado apenas para o MySQL Replica 3.](images/multi-db.png)
 
-You can achieve this separation by configuring the source and replicas as normal, and then limiting the binary log statements that each replica processes by using the [`--replicate-wild-do-table`](replication-options-replica.html#option_mysqld_replicate-wild-do-table) configuration option on each replica.
+Você pode alcançar essa separação configurando o Source e as Replicas normalmente e, em seguida, limitando as declarações do Binary Log que cada Replica processa usando a opção de configuração [`--replicate-wild-do-table`](replication-options-replica.html#option_mysqld_replicate-wild-do-table) em cada Replica.
 
-Important
+Importante
 
-You should *not* use [`--replicate-do-db`](replication-options-replica.html#option_mysqld_replicate-do-db) for this purpose when using statement-based replication, since statement-based replication causes this option's effects to vary according to the database that is currently selected. This applies to mixed-format replication as well, since this enables some updates to be replicated using the statement-based format.
+Você *não* deve usar [`--replicate-do-db`](replication-options-replica.html#option_mysqld_replicate-do-db) para este fim ao usar a replicação statement-based, visto que a replicação statement-based faz com que os efeitos desta opção variem de acordo com o Database atualmente selecionado. Isso se aplica também à replicação de formato misto (mixed-format replication), visto que isso permite que algumas atualizações sejam replicadas usando o formato statement-based.
 
-However, it should be safe to use [`--replicate-do-db`](replication-options-replica.html#option_mysqld_replicate-do-db) for this purpose if you are using row-based replication only, since in this case the currently selected database has no effect on the option's operation.
+No entanto, deve ser seguro usar [`--replicate-do-db`](replication-options-replica.html#option_mysqld_replicate-do-db) para este fim se você estiver usando apenas a replicação row-based, pois, neste caso, o Database atualmente selecionado não afeta a operação da opção.
 
-For example, to support the separation as shown in [Figure 16.2, “Replicating Databases to Separate Replicas”](replication-solutions-partitioning.html#figure_replication-multi-db "Figure 16.2 Replicating Databases to Separate Replicas"), you should configure each replica as follows, before executing [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement"):
+Por exemplo, para suportar a separação conforme mostrado na [Figura 16.2, “Replicando Databases para Replicas Separadas”](replication-solutions-partitioning.html#figure_replication-multi-db "Figura 16.2 Replicando Databases para Replicas Separadas"), você deve configurar cada Replica da seguinte forma, antes de executar [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement"):
 
-* Replica 1 should use `--replicate-wild-do-table=databaseA.%`.
+* O Replica 1 deve usar `--replicate-wild-do-table=databaseA.%`.
 
-* Replica 2 should use `--replicate-wild-do-table=databaseB.%`.
+* O Replica 2 deve usar `--replicate-wild-do-table=databaseB.%`.
 
-* Replica 3 should use `--replicate-wild-do-table=databaseC.%`.
+* O Replica 3 deve usar `--replicate-wild-do-table=databaseC.%`.
 
-Each replica in this configuration receives the entire binary log from the source, but executes only those events from the binary log that apply to the databases and tables included by the [`--replicate-wild-do-table`](replication-options-replica.html#option_mysqld_replicate-wild-do-table) option in effect on that replica.
+Cada Replica nesta configuração recebe o Binary Log inteiro do Source, mas executa apenas os eventos do Binary Log que se aplicam aos Databases e Tables incluídos pela opção [`--replicate-wild-do-table`](replication-options-replica.html#option_mysqld_replicate-wild-do-table) em vigor nesse Replica.
 
-If you have data that must be synchronized to the replicas before replication starts, you have a number of choices:
+Se você tiver dados que devem ser sincronizados com as Replicas antes do início da replicação, você tem várias opções:
 
-* Synchronize all the data to each replica, and delete the databases, tables, or both that you do not want to keep.
+* Sincronizar todos os dados para cada Replica e excluir os Databases, Tables ou ambos que você não deseja manter.
 
-* Use [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") to create a separate dump file for each database and load the appropriate dump file on each replica.
+* Use o [**mysqldump**](mysqldump.html "4.5.4 mysqldump — Um Programa de Backup de Database") para criar um arquivo de dump separado para cada Database e carregar o arquivo de dump apropriado em cada Replica.
 
-* Use a raw data file dump and include only the specific files and databases that you need for each replica.
+* Use um dump de arquivo de dados brutos (*raw data file dump*) e inclua apenas os arquivos e Databases específicos de que você precisa para cada Replica.
 
-  Note
+  Nota
 
-  This does not work with [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") databases unless you use [`innodb_file_per_table`](innodb-parameters.html#sysvar_innodb_file_per_table).
+  Isso não funciona com Databases [`InnoDB`](innodb-storage-engine.html "Capítulo 14 O InnoDB Storage Engine") a menos que você use [`innodb_file_per_table`](innodb-parameters.html#sysvar_innodb_file_per_table).

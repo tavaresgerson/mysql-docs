@@ -1,26 +1,26 @@
-#### 16.1.2.3 Obtaining the Replication Source's Binary Log Coordinates
+#### 16.1.2.3 Obtendo as Coordenadas do Binary Log da Origem da Replication
 
-To configure the replica to start the replication process at the correct point, you need to note the source's current coordinates within its binary log.
+Para configurar a replica para iniciar o processo de Replication no ponto correto, você precisa anotar as coordenadas atuais da origem dentro do seu Binary Log.
 
-Warning
+Aviso
 
-This procedure uses [`FLUSH TABLES WITH READ LOCK`](flush.html#flush-tables-with-read-lock), which blocks [`COMMIT`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") operations for [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") tables.
+Este procedimento utiliza [`FLUSH TABLES WITH READ LOCK`](flush.html#flush-tables-with-read-lock), que bloqueia operações de [`COMMIT`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") para tabelas [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine").
 
-If you are planning to shut down the source to create a data snapshot, you can optionally skip this procedure and instead store a copy of the binary log index file along with the data snapshot. In that situation, the source creates a new binary log file on restart. The source's binary log coordinates where the replica must start the replication process are therefore the start of that new file, which is the next binary log file on the source following after the files that are listed in the copied binary log index file.
+Se você estiver planejando desligar a origem para criar um Data Snapshot, você pode opcionalmente pular este procedimento e, em vez disso, armazenar uma cópia do arquivo de índice do Binary Log juntamente com o Data Snapshot. Nessa situação, a origem cria um novo arquivo de Binary Log ao reiniciar. As coordenadas do Binary Log da origem onde a replica deve iniciar o processo de Replication são, portanto, o início desse novo arquivo, que é o próximo arquivo de Binary Log na origem após os arquivos listados no arquivo de índice do Binary Log copiado.
 
-To obtain the source's binary log coordinates, follow these steps:
+Para obter as coordenadas do Binary Log da origem, siga estes passos:
 
-1. Start a session on the source by connecting to it with the command-line client, and flush all tables and block write statements by executing the [`FLUSH TABLES WITH READ LOCK`](flush.html#flush-tables-with-read-lock) statement:
+1. Inicie uma Session na origem conectando-se a ela com o Client de linha de comando, e faça o flush de todas as tabelas e bloqueie instruções de escrita executando a instrução [`FLUSH TABLES WITH READ LOCK`](flush.html#flush-tables-with-read-lock):
 
    ```sql
    mysql> FLUSH TABLES WITH READ LOCK;
    ```
 
-   Warning
+   Aviso
 
-   Leave the client from which you issued the [`FLUSH TABLES`](flush.html#flush-tables) statement running so that the read lock remains in effect. If you exit the client, the lock is released.
+   Mantenha o Client a partir do qual você emitiu a instrução [`FLUSH TABLES`](flush.html#flush-tables) em execução para que o Read Lock permaneça em vigor. Se você sair do Client, o Lock será liberado.
 
-2. In a different session on the source, use the [`SHOW MASTER STATUS`](show-master-status.html "13.7.5.23 SHOW MASTER STATUS Statement") statement to determine the current binary log file name and position:
+2. Em uma Session diferente na origem, use a instrução [`SHOW MASTER STATUS`](show-master-status.html "13.7.5.23 SHOW MASTER STATUS Statement") para determinar o nome e a Position atuais do arquivo de Binary Log:
 
    ```sql
    mysql> SHOW MASTER STATUS\G
@@ -33,14 +33,14 @@ To obtain the source's binary log coordinates, follow these steps:
    1 row in set (0.00 sec)
    ```
 
-   The `File` column shows the name of the log file and the `Position` column shows the position within the file. In this example, the binary log file is `mysql-bin.000003` and the position is 73. Record these values. You need them later when you are setting up the replica. They represent the replication coordinates at which the replica should begin processing new updates from the source.
+   A coluna `File` mostra o nome do arquivo de log e a coluna `Position` mostra a posição dentro do arquivo. Neste exemplo, o arquivo de Binary Log é `mysql-bin.000003` e a Position é 73. Registre estes valores. Você precisará deles mais tarde ao configurar a replica. Eles representam as coordenadas de Replication nas quais a replica deve começar a processar novas atualizações da origem.
 
-   If the source has been running previously without binary logging enabled, the log file name and position values displayed by [`SHOW MASTER STATUS`](show-master-status.html "13.7.5.23 SHOW MASTER STATUS Statement") or [**mysqldump --master-data**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") are empty. In that case, the values that you need to use later when specifying the source's log file and position are the empty string (`''`) and `4`.
+   Se a origem estava em execução anteriormente sem o Binary Logging habilitado, os valores de nome do arquivo de log e Position exibidos por [`SHOW MASTER STATUS`](show-master-status.html "13.7.5.23 SHOW MASTER STATUS Statement") ou [**mysqldump --master-data**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") estarão vazios. Nesse caso, os valores que você precisará usar posteriormente ao especificar o arquivo de log e a Position da origem são a string vazia (`''`) e `4`.
 
-You now have the information you need to enable the replica to start reading from the binary log in the correct place to start replication.
+Agora você tem as informações necessárias para permitir que a replica comece a ler do Binary Log no local correto para iniciar a Replication.
 
-The next step depends on whether you have existing data on the source. Choose one of the following options:
+O próximo passo depende se você tem dados existentes na origem. Escolha uma das seguintes opções:
 
-* If you have existing data that needs be to synchronized with the replica before you start replication, leave the client running so that the lock remains in place. This prevents any further changes being made, so that the data copied to the replica is in synchrony with the source. Proceed to [Section 16.1.2.4, “Choosing a Method for Data Snapshots”](replication-snapshot-method.html "16.1.2.4 Choosing a Method for Data Snapshots").
+* Se você tem dados existentes que precisam ser sincronizados com a replica antes de iniciar a Replication, mantenha o Client em execução para que o Lock permaneça ativo. Isso evita que quaisquer outras alterações sejam feitas, de modo que os dados copiados para a replica estejam em sincronia com a origem. Prossiga para [Section 16.1.2.4, “Choosing a Method for Data Snapshots”](replication-snapshot-method.html "16.1.2.4 Choosing a Method for Data Snapshots").
 
-* If you are setting up a new replication topology, you can exit the first session to release the read lock. See [Section 16.1.2.5.3, “Setting Up Replication between a New Source and Replicas”](replication-setup-replicas.html#replication-howto-newservers "16.1.2.5.3 Setting Up Replication between a New Source and Replicas") for how to proceed.
+* Se você estiver configurando uma nova topologia de Replication, você pode sair da primeira Session para liberar o Read Lock. Consulte [Section 16.1.2.5.3, “Setting Up Replication between a New Source and Replicas”](replication-setup-replicas.html#replication-howto-newservers "16.1.2.5.3 Setting Up Replication between a New Source and Replicas") para saber como proceder.

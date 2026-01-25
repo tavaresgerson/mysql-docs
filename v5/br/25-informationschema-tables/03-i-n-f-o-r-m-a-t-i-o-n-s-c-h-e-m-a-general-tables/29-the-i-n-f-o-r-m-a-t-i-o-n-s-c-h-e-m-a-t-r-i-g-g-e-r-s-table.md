@@ -1,88 +1,88 @@
-### 24.3.29 The INFORMATION_SCHEMA TRIGGERS Table
+### 24.3.29 A Tabela TRIGGERS do INFORMATION_SCHEMA
 
-The [`TRIGGERS`](information-schema-triggers-table.html "24.3.29 The INFORMATION_SCHEMA TRIGGERS Table") table provides information about triggers. To see information about a table's triggers, you must have the [`TRIGGER`](privileges-provided.html#priv_trigger) privilege for the table.
+A tabela [`TRIGGERS`](information-schema-triggers-table.html "24.3.29 The INFORMATION_SCHEMA TRIGGERS Table") fornece informações sobre triggers. Para visualizar informações sobre os triggers de uma tabela, você deve ter o privilégio [`TRIGGER`](privileges-provided.html#priv_trigger) para essa tabela.
 
-The [`TRIGGERS`](information-schema-triggers-table.html "24.3.29 The INFORMATION_SCHEMA TRIGGERS Table") table has these columns:
+A tabela [`TRIGGERS`](information-schema-triggers-table.html "24.3.29 The INFORMATION_SCHEMA TRIGGERS Table") possui as seguintes colunas:
 
 * `TRIGGER_CATALOG`
 
-  The name of the catalog to which the trigger belongs. This value is always `def`.
+  O nome do catalog ao qual o trigger pertence. Este valor é sempre `def`.
 
 * `TRIGGER_SCHEMA`
 
-  The name of the schema (database) to which the trigger belongs.
+  O nome do schema (Database) ao qual o trigger pertence.
 
 * `TRIGGER_NAME`
 
-  The name of the trigger.
+  O nome do trigger.
 
 * `EVENT_MANIPULATION`
 
-  The trigger event. This is the type of operation on the associated table for which the trigger activates. The value is `INSERT` (a row was inserted), `DELETE` (a row was deleted), or `UPDATE` (a row was modified).
+  O Evento do trigger. Este é o tipo de operação na tabela associada que ativa o trigger. O valor é `INSERT` (uma linha foi inserida), `DELETE` (uma linha foi excluída) ou `UPDATE` (uma linha foi modificada).
 
-* `EVENT_OBJECT_CATALOG`, `EVENT_OBJECT_SCHEMA`, and `EVENT_OBJECT_TABLE`
+* `EVENT_OBJECT_CATALOG`, `EVENT_OBJECT_SCHEMA`, e `EVENT_OBJECT_TABLE`
 
-  As noted in [Section 23.3, “Using Triggers”](triggers.html "23.3 Using Triggers"), every trigger is associated with exactly one table. These columns indicate the catalog and schema (database) in which this table occurs, and the table name, respectively. The `EVENT_OBJECT_CATALOG` value is always `def`.
+  Como observado na [Seção 23.3, “Using Triggers”](triggers.html "23.3 Using Triggers"), todo trigger está associado a exatamente uma tabela. Estas colunas indicam o catalog e o schema (Database) onde esta tabela ocorre, e o nome da tabela, respectivamente. O valor de `EVENT_OBJECT_CATALOG` é sempre `def`.
 
 * `ACTION_ORDER`
 
-  The ordinal position of the trigger's action within the list of triggers on the same table with the same `EVENT_MANIPULATION` and `ACTION_TIMING` values.
+  A posição ordinal da ação do trigger dentro da lista de triggers na mesma tabela com os mesmos valores de `EVENT_MANIPULATION` e `ACTION_TIMING`.
 
 * `ACTION_CONDITION`
 
-  This value is always `NULL`.
+  Este valor é sempre `NULL`.
 
 * `ACTION_STATEMENT`
 
-  The trigger body; that is, the statement executed when the trigger activates. This text uses UTF-8 encoding.
+  O corpo do trigger; ou seja, a instrução executada quando o trigger é ativado. Este texto usa codificação UTF-8.
 
 * `ACTION_ORIENTATION`
 
-  This value is always `ROW`.
+  Este valor é sempre `ROW`.
 
 * `ACTION_TIMING`
 
-  Whether the trigger activates before or after the triggering event. The value is `BEFORE` or `AFTER`.
+  Se o trigger é ativado antes ou depois do evento de disparo. O valor é `BEFORE` ou `AFTER`.
 
 * `ACTION_REFERENCE_OLD_TABLE`
 
-  This value is always `NULL`.
+  Este valor é sempre `NULL`.
 
 * `ACTION_REFERENCE_NEW_TABLE`
 
-  This value is always `NULL`.
+  Este valor é sempre `NULL`.
 
-* `ACTION_REFERENCE_OLD_ROW` and `ACTION_REFERENCE_NEW_ROW`
+* `ACTION_REFERENCE_OLD_ROW` e `ACTION_REFERENCE_NEW_ROW`
 
-  The old and new column identifiers, respectively. The `ACTION_REFERENCE_OLD_ROW` value is always `OLD` and the `ACTION_REFERENCE_NEW_ROW` value is always `NEW`.
+  Os identificadores de coluna old (antigo) e new (novo), respectivamente. O valor de `ACTION_REFERENCE_OLD_ROW` é sempre `OLD` e o valor de `ACTION_REFERENCE_NEW_ROW` é sempre `NEW`.
 
 * `CREATED`
 
-  The date and time when the trigger was created. This is a `TIMESTAMP(2)` value (with a fractional part in hundredths of seconds) for triggers created in MySQL 5.7.2 or later, `NULL` for triggers created prior to 5.7.2.
+  A data e hora em que o trigger foi criado. Este é um valor `TIMESTAMP(2)` (com uma parte fracionada em centésimos de segundo) para triggers criados no MySQL 5.7.2 ou posterior, e `NULL` para triggers criados antes de 5.7.2.
 
 * `SQL_MODE`
 
-  The SQL mode in effect when the trigger was created, and under which the trigger executes. For the permitted values, see [Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes").
+  O SQL mode em vigor quando o trigger foi criado, e sob o qual o trigger é executado. Para os valores permitidos, consulte a [Seção 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes").
 
 * `DEFINER`
 
-  The account named in the `DEFINER` clause (often the user who created the trigger), in `'user_name'@'host_name'` format.
+  A conta nomeada na cláusula `DEFINER` (geralmente o usuário que criou o trigger), no formato `'user_name'@'host_name'`.
 
 * `CHARACTER_SET_CLIENT`
 
-  The session value of the [`character_set_client`](server-system-variables.html#sysvar_character_set_client) system variable when the trigger was created.
+  O valor de sessão da variável de sistema [`character_set_client`](server-system-variables.html#sysvar_character_set_client) quando o trigger foi criado.
 
 * `COLLATION_CONNECTION`
 
-  The session value of the [`collation_connection`](server-system-variables.html#sysvar_collation_connection) system variable when the trigger was created.
+  O valor de sessão da variável de sistema [`collation_connection`](server-system-variables.html#sysvar_collation_connection) quando o trigger foi criado.
 
 * `DATABASE_COLLATION`
 
-  The collation of the database with which the trigger is associated.
+  O collation do Database ao qual o trigger está associado.
 
-#### Example
+#### Exemplo
 
-The following example uses the `ins_sum` trigger defined in [Section 23.3, “Using Triggers”](triggers.html "23.3 Using Triggers"):
+O exemplo a seguir usa o trigger `ins_sum` definido na [Seção 23.3, “Using Triggers”](triggers.html "23.3 Using Triggers"):
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.TRIGGERS
@@ -115,4 +115,4 @@ ACTION_REFERENCE_NEW_TABLE: NULL
         DATABASE_COLLATION: latin1_swedish_ci
 ```
 
-Trigger information is also available from the [`SHOW TRIGGERS`](show-triggers.html "13.7.5.38 SHOW TRIGGERS Statement") statement. See [Section 13.7.5.38, “SHOW TRIGGERS Statement”](show-triggers.html "13.7.5.38 SHOW TRIGGERS Statement").
+Informações sobre triggers também estão disponíveis através da instrução [`SHOW TRIGGERS`](show-triggers.html "13.7.5.38 SHOW TRIGGERS Statement"). Consulte a [Seção 13.7.5.38, “SHOW TRIGGERS Statement”](show-triggers.html "13.7.5.38 SHOW TRIGGERS Statement").

@@ -1,17 +1,17 @@
-### 21.3.1 Installation of NDB Cluster on Linux
+### 21.3.1 Instalação do NDB Cluster no Linux
 
-[21.3.1.1 Installing an NDB Cluster Binary Release on Linux](mysql-cluster-install-linux-binary.html)
+[21.3.1.1 Instalando uma Release Binária do NDB Cluster no Linux](mysql-cluster-install-linux-binary.html)
 
-[21.3.1.2 Installing NDB Cluster from RPM](mysql-cluster-install-linux-rpm.html)
+[21.3.1.2 Instalando o NDB Cluster a partir de RPM](mysql-cluster-install-linux-rpm.html)
 
-[21.3.1.3 Installing NDB Cluster Using .deb Files](mysql-cluster-install-debian.html)
+[21.3.1.3 Instalando o NDB Cluster Usando Arquivos .deb](mysql-cluster-install-debian.html)
 
-[21.3.1.4 Building NDB Cluster from Source on Linux](mysql-cluster-install-linux-source.html)
+[21.3.1.4 Compilando o NDB Cluster a partir do Código Fonte no Linux](mysql-cluster-install-linux-source.html)
 
-This section covers installation methods for NDB Cluster on Linux and other Unix-like operating systems. While the next few sections refer to a Linux operating system, the instructions and procedures given there should be easily adaptable to other supported Unix-like platforms. For manual installation and setup instructions specific to Windows systems, see [Section 21.3.2, “Installing NDB Cluster on Windows”](mysql-cluster-install-windows.html "21.3.2 Installing NDB Cluster on Windows").
+Esta seção abrange os métodos de instalação do NDB Cluster no Linux e em outros sistemas operacionais tipo Unix (Unix-like). Embora as próximas seções façam referência a um sistema operacional Linux, as instruções e os procedimentos fornecidos devem ser facilmente adaptáveis a outras plataformas Unix-like suportadas. Para instruções manuais de instalação e setup específicas para sistemas Windows, consulte [Section 21.3.2, “Installing NDB Cluster on Windows”](mysql-cluster-install-windows.html "21.3.2 Installing NDB Cluster on Windows").
 
-Each NDB Cluster host computer must have the correct executable programs installed. A host running an SQL node must have installed on it a MySQL Server binary ([**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server")). Management nodes require the management server daemon ([**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")); data nodes require the data node daemon ([**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") or [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)")). It is not necessary to install the MySQL Server binary on management node hosts and data node hosts. It is recommended that you also install the management client ([**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client")) on the management server host.
+Cada computador host do NDB Cluster deve ter os programas executáveis corretos instalados. Um host que executa um SQL node deve ter instalado um MySQL Server binary ([**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server")). Management nodes exigem o management server daemon ([**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")); data nodes exigem o data node daemon ([**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") ou [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)")). Não é necessário instalar o MySQL Server binary em hosts de management nodes e hosts de data nodes. Recomenda-se que você também instale o management client ([**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client")) no host do management server.
 
-Installation of NDB Cluster on Linux can be done using precompiled binaries from Oracle (downloaded as a .tar.gz archive), with RPM packages (also available from Oracle), or from source code. All three of these installation methods are described in the section that follow.
+A instalação do NDB Cluster no Linux pode ser feita usando binaries pré-compilados da Oracle (baixados como um arquivo .tar.gz), com pacotes RPM (também disponíveis na Oracle), ou a partir do código fonte. Todos esses três métodos de instalação são descritos nas seções seguintes.
 
-Regardless of the method used, it is still necessary following installation of the NDB Cluster binaries to create configuration files for all cluster nodes, before you can start the cluster. See [Section 21.3.3, “Initial Configuration of NDB Cluster”](mysql-cluster-install-configuration.html "21.3.3 Initial Configuration of NDB Cluster").
+Independentemente do método utilizado, após a instalação dos binaries do NDB Cluster, ainda é necessário criar configuration files para todos os cluster nodes, antes que o Cluster possa ser iniciado. Consulte [Section 21.3.3, “Initial Configuration of NDB Cluster”](mysql-cluster-install-configuration.html "21.3.3 Initial Configuration of NDB Cluster").

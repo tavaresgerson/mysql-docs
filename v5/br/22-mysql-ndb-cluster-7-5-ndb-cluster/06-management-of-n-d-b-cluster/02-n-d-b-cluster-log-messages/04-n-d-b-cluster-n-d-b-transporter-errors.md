@@ -1,95 +1,95 @@
-#### 21.6.2.4 NDB Cluster: NDB Transporter Errors
+#### 21.6.2.4 NDB Cluster: Erros do Transporter NDB
 
-This section lists error codes, names, and messages that are written to the cluster log in the event of transporter errors.
+Esta seção lista os códigos de erro, nomes e mensagens que são gravados no log do cluster no caso de erros do Transporter.
 
 0x00 :   TE_NO_ERROR
 
-    No error
+    Nenhum erro
 
 0x01 :   TE_ERROR_CLOSING_SOCKET
 
-    Error found during closing of socket
+    Erro encontrado durante o fechamento do socket
 
 0x02 :   TE_ERROR_IN_SELECT_BEFORE_ACCEPT
 
-    Error found before accept. The transporter will retry
+    Erro encontrado antes do accept. O Transporter tentará novamente
 
 0x03 :   TE_INVALID_MESSAGE_LENGTH
 
-    Error found in message (invalid message length)
+    Erro encontrado na mensagem (comprimento de mensagem inválido)
 
 0x04 :   TE_INVALID_CHECKSUM
 
-    Error found in message (checksum)
+    Erro encontrado na mensagem (checksum)
 
 0x05 :   TE_COULD_NOT_CREATE_SOCKET
 
-    Error found while creating socket(can't create socket)
+    Erro encontrado ao criar o socket (não foi possível criar o socket)
 
 0x06 :   TE_COULD_NOT_BIND_SOCKET
 
-    Error found while binding server socket
+    Erro encontrado ao realizar o bind do socket do servidor
 
 0x07 :   TE_LISTEN_FAILED
 
-    Error found while listening to server socket
+    Erro encontrado ao escutar o socket do servidor
 
 0x08 :   TE_ACCEPT_RETURN_ERROR
 
-    Error found during accept(accept return error)
+    Erro encontrado durante o accept (erro de retorno do accept)
 
 0x0b :   TE_SHM_DISCONNECT
 
-    The remote node has disconnected
+    O node remoto foi desconectado
 
 0x0c :   TE_SHM_IPC_STAT
 
-    Unable to check shm segment
+    Não foi possível verificar o segmento shm
 
 0x0d :   TE_SHM_UNABLE_TO_CREATE_SEGMENT
 
-    Unable to create shm segment
+    Não foi possível criar o segmento shm
 
 0x0e :   TE_SHM_UNABLE_TO_ATTACH_SEGMENT
 
-    Unable to attach shm segment
+    Não foi possível anexar (attach) o segmento shm
 
 0x0f :   TE_SHM_UNABLE_TO_REMOVE_SEGMENT
 
-    Unable to remove shm segment
+    Não foi possível remover o segmento shm
 
 0x10 :   TE_TOO_SMALL_SIGID
 
-    Sig ID too small
+    ID de Sig muito pequeno
 
 0x11 :   TE_TOO_LARGE_SIGID
 
-    Sig ID too large
+    ID de Sig muito grande
 
 0x12 :   TE_WAIT_STACK_FULL
 
-    Wait stack was full
+    A stack de espera estava cheia
 
 0x13 :   TE_RECEIVE_BUFFER_FULL
 
-    Receive buffer was full
+    O Receive Buffer estava cheio
 
 0x14 :   TE_SIGNAL_LOST_SEND_BUFFER_FULL
 
-    Send buffer was full,and trying to force send fails
+    O Send Buffer estava cheio, e tentar forçar o Send falhou
 
 0x15 :   TE_SIGNAL_LOST
 
-    Send failed for unknown reason(signal lost)
+    O Send falhou por razão desconhecida (signal lost)
 
 0x16 :   TE_SEND_BUFFER_FULL
 
-    The send buffer was full, but sleeping for a while solved
+    O Send Buffer estava cheio, mas esperar por um momento resolveu
 
 0x21 :   TE_SHM_IPC_PERMANENT
 
-    Shm ipc Permanent error
+    Erro permanente de Shm ipc
 
-Note
+Nota
 
-Transporter error codes 0x17 through 0x20 and 0x22 are reserved for SCI connections, which are not supported in this version of NDB Cluster, and so are not included here.
+Os códigos de erro do Transporter 0x17 a 0x20 e 0x22 são reservados para conexões SCI, que não são suportadas nesta versão do NDB Cluster, e, portanto, não estão incluídos aqui.

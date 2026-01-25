@@ -1,11 +1,11 @@
-#### 13.7.5.4 SHOW COLLATION Statement
+#### 13.7.5.4 Instrução SHOW COLLATION
 
 ```sql
 SHOW COLLATION
     [LIKE 'pattern' | WHERE expr]
 ```
 
-This statement lists collations supported by the server. By default, the output from [`SHOW COLLATION`](show-collation.html "13.7.5.4 SHOW COLLATION Statement") includes all available collations. The [`LIKE`](string-comparison-functions.html#operator_like) clause, if present, indicates which collation names to match. The `WHERE` clause can be given to select rows using more general conditions, as discussed in [Section 24.8, “Extensions to SHOW Statements”](extended-show.html "24.8 Extensions to SHOW Statements"). For example:
+Esta instrução lista as collations suportadas pelo servidor. Por padrão, a saída de [`SHOW COLLATION`](show-collation.html "13.7.5.4 SHOW COLLATION Statement") inclui todas as collations disponíveis. A cláusula [`LIKE`](string-comparison-functions.html#operator_like), se presente, indica quais nomes de collation devem ser correspondidos. A cláusula `WHERE` pode ser fornecida para selecionar linhas usando condições mais gerais, conforme discutido na [Seção 24.8, “Extensões às Instruções SHOW”](extended-show.html "24.8 Extensions to SHOW Statements"). Por exemplo:
 
 ```sql
 mysql> SHOW COLLATION WHERE Charset = 'latin1';
@@ -23,33 +23,33 @@ mysql> SHOW COLLATION WHERE Charset = 'latin1';
 +-------------------+---------+----+---------+----------+---------+
 ```
 
-[`SHOW COLLATION`](show-collation.html "13.7.5.4 SHOW COLLATION Statement") output has these columns:
+A saída de [`SHOW COLLATION`](show-collation.html "13.7.5.4 SHOW COLLATION Statement") possui estas colunas:
 
 * `Collation`
 
-  The collation name.
+  O nome da collation.
 
 * `Charset`
 
-  The name of the character set with which the collation is associated.
+  O nome do character set ao qual a collation está associada.
 
 * `Id`
 
-  The collation ID.
+  O ID da collation.
 
 * `Default`
 
-  Whether the collation is the default for its character set.
+  Indica se a collation é o padrão (default) para seu character set.
 
 * `Compiled`
 
-  Whether the character set is compiled into the server.
+  Indica se o character set está compilado no servidor.
 
 * `Sortlen`
 
-  This is related to the amount of memory required to sort strings expressed in the character set.
+  Isto está relacionado à quantidade de memória necessária para ordenar strings expressas no character set.
 
-To see the default collation for each character set, use the following statement. `Default` is a reserved word, so to use it as an identifier, it must be quoted as such:
+Para ver a collation padrão para cada character set, use a seguinte instrução. `Default` é uma palavra reservada, portanto, para usá-la como um identificador, ela deve ser citada como tal:
 
 ```sql
 mysql> SHOW COLLATION WHERE `Default` = 'Yes';
@@ -65,4 +65,4 @@ mysql> SHOW COLLATION WHERE `Default` = 'Yes';
 ...
 ```
 
-Collation information is also available from the `INFORMATION_SCHEMA` [`COLLATIONS`](information-schema-collations-table.html "24.3.3 The INFORMATION_SCHEMA COLLATIONS Table") table. See [Section 24.3.3, “The INFORMATION_SCHEMA COLLATIONS Table”](information-schema-collations-table.html "24.3.3 The INFORMATION_SCHEMA COLLATIONS Table").
+As informações de collation também estão disponíveis na tabela [`COLLATIONS`](information-schema-collations-table.html "24.3.3 The INFORMATION_SCHEMA COLLATIONS Table") do `INFORMATION_SCHEMA`. Consulte a [Seção 24.3.3, “A Tabela COLLATIONS do INFORMATION_SCHEMA”](information-schema-collations-table.html "24.3.3 The INFORMATION_SCHEMA COLLATIONS Table").

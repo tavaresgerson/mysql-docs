@@ -1,6 +1,6 @@
-## 15.6 The BLACKHOLE Storage Engine
+## 15.6 O Storage Engine BLACKHOLE
 
-The `BLACKHOLE` storage engine acts as a “black hole” that accepts data but throws it away and does not store it. Retrievals always return an empty result:
+O `BLACKHOLE` storage engine atua como um "buraco negro" que aceita dados, mas os descarta e não os armazena. As recuperações (Retrievals) sempre retornam um resultado vazio:
 
 ```sql
 mysql> CREATE TABLE test(i INT, c CHAR(10)) ENGINE = BLACKHOLE;
@@ -14,84 +14,84 @@ mysql> SELECT * FROM test;
 Empty set (0.00 sec)
 ```
 
-To enable the `BLACKHOLE` storage engine if you build MySQL from source, invoke **CMake** with the `-DWITH_BLACKHOLE_STORAGE_ENGINE` option.
+Para habilitar o `BLACKHOLE` storage engine se você estiver compilando o MySQL a partir do código-fonte (source), invoque o **CMake** com a opção `-DWITH_BLACKHOLE_STORAGE_ENGINE`.
 
-To examine the source for the `BLACKHOLE` engine, look in the `sql` directory of a MySQL source distribution.
+Para examinar o código-fonte (source) do engine `BLACKHOLE`, procure no diretório `sql` de uma distribuição de código-fonte do MySQL.
 
-When you create a `BLACKHOLE` table, the server creates a table format file in the database directory. The file begins with the table name and has an `.frm` extension. There are no other files associated with the table.
+Quando você cria uma tabela `BLACKHOLE`, o servidor cria um arquivo de formato de tabela no diretório do Database. O nome do arquivo começa com o nome da tabela e possui a extensão `.frm`. Não há outros arquivos associados à tabela.
 
-The `BLACKHOLE` storage engine supports all kinds of indexes. That is, you can include index declarations in the table definition.
+O `BLACKHOLE` storage engine suporta todos os tipos de Indexes. Ou seja, você pode incluir declarações de Index na definição da tabela.
 
-The maximum key length is 1000 bytes.
+O comprimento máximo da Key é de 1000 bytes.
 
-You can check whether the `BLACKHOLE` storage engine is available with the `SHOW ENGINES` statement.
+Você pode verificar se o `BLACKHOLE` storage engine está disponível com o comando `SHOW ENGINES`.
 
-Inserts into a `BLACKHOLE` table do not store any data, but if statement based binary logging is enabled, the SQL statements are logged and replicated to replica servers. This can be useful as a repeater or filter mechanism.
+Operations `INSERT` em uma tabela `BLACKHOLE` não armazenam dados, mas se o Binary Logging baseado em statement estiver habilitado, os statements SQL são logados e replicados para os servidores Replica. Isso pode ser útil como um repetidor ou mecanismo de filtro.
 
-Suppose that your application requires replica-side filtering rules, but transferring all binary log data to the replica first results in too much traffic. In such a case, it is possible to set up on the source host a “dummy” replica process whose default storage engine is `BLACKHOLE`, depicted as follows:
+Suponha que sua aplicação exija regras de filtragem do lado da Replica (replica-side filtering), mas que transferir todos os dados do Binary Log para a Replica primeiro resulte em excesso de tráfego. Nesses casos, é possível configurar no host Source um processo Replica "dummy" (fictício) cujo Storage Engine padrão é `BLACKHOLE`, conforme ilustrado a seguir:
 
-**Figure 15.1 Replication using BLACKHOLE for Filtering**
+**Figura 15.1 Replicação usando BLACKHOLE para Filtragem**
 
-![Replication using BLACKHOLE for filtering](images/blackhole-1.png)
+![Replicação usando BLACKHOLE para filtragem](images/blackhole-1.png)
 
-The source writes to its binary log. The “dummy” **mysqld** process acts as a replica, applying the desired combination of `replicate-do-*` and `replicate-ignore-*` rules, and writes a new, filtered binary log of its own. (See Section 16.1.6, “Replication and Binary Logging Options and Variables”.) This filtered log is provided to the replica.
+O Source grava em seu Binary Log. O processo **mysqld** "dummy" atua como uma Replica, aplicando a combinação desejada de regras `replicate-do-*` e `replicate-ignore-*`, e grava um novo Binary Log filtrado próprio. (Consulte a Seção 16.1.6, “Opções e Variáveis de Replicação e Binary Logging”.) Este log filtrado é fornecido à Replica.
 
-The dummy process does not actually store any data, so there is little processing overhead incurred by running the additional **mysqld** process on the replication source host. This type of setup can be repeated with additional replication replicas.
+O processo dummy não armazena dados, portanto, há pouca sobrecarga (overhead) de processamento incorrida ao executar o processo **mysqld** adicional no host Source de replicação. Este tipo de configuração pode ser repetido com Replias de replicação adicionais.
 
-`INSERT` triggers for `BLACKHOLE` tables work as expected. However, because the `BLACKHOLE` table does not actually store any data, `UPDATE` and `DELETE` triggers are not activated: The `FOR EACH ROW` clause in the trigger definition does not apply because there are no rows.
+Triggers `INSERT` para tabelas `BLACKHOLE` funcionam conforme esperado. No entanto, como a tabela `BLACKHOLE` não armazena dados, Triggers `UPDATE` e `DELETE` não são ativados: A cláusula `FOR EACH ROW` na definição do Trigger não se aplica porque não há linhas (rows).
 
-Other possible uses for the `BLACKHOLE` storage engine include:
+Outros usos possíveis para o `BLACKHOLE` storage engine incluem:
 
-* Verification of dump file syntax.
-* Measurement of the overhead from binary logging, by comparing performance using `BLACKHOLE` with and without binary logging enabled.
+* Verificação da sintaxe de arquivos dump.
+* Medição da sobrecarga (overhead) do Binary Logging, comparando o desempenho usando `BLACKHOLE` com e sem o Binary Logging habilitado.
+* O `BLACKHOLE` é essencialmente um storage engine "no-op" (sem operação), de modo que pode ser usado para encontrar gargalos de desempenho (performance bottlenecks) não relacionados ao próprio storage engine.
 
-* `BLACKHOLE` is essentially a “no-op” storage engine, so it could be used for finding performance bottlenecks not related to the storage engine itself.
+O engine `BLACKHOLE` é ciente de transações (transaction-aware), no sentido de que transações committed são gravadas no Binary Log e transações rolled-back não são.
 
-The `BLACKHOLE` engine is transaction-aware, in the sense that committed transactions are written to the binary log and rolled-back transactions are not.
+**Engine Blackhole e Colunas Auto Increment**
 
-**Blackhole Engine and Auto Increment Columns**
+O engine Blackhole é um engine no-op. Qualquer operação realizada em uma tabela usando BLACKHOLE não tem efeito. Isso deve ser considerado ao analisar o comportamento de colunas Primary Key que são auto increment. O engine não incrementa automaticamente os valores dos campos e não retém o estado da coluna auto increment. Isso tem implicações importantes na replicação.
 
-The Blackhole engine is a no-op engine. Any operations performed on a table using BLACKHOLE have no effect. This should be borne in mind when considering the behavior of primary key columns that auto increment. The engine does not automatically increment field values, and does not retain auto increment column state. This has important implications in replication.
+Considere o seguinte cenário de replicação onde todas as três condições a seguir se aplicam:
 
-Consider the following replication scenario where all three of the following conditions apply:
+1. Em um servidor Source existe uma tabela blackhole com um campo auto increment que é uma Primary Key.
 
-1. On a source server there is a blackhole table with an auto increment field that is a primary key.
+2. Em uma Replica existe a mesma tabela, mas usando o engine MyISAM.
 
-2. On a replica the same table exists but using the MyISAM engine.
-3. Inserts are performed into the source's table without explicitly setting the auto increment value in the `INSERT` statement itself or through using a `SET INSERT_ID` statement.
+3. São realizadas operações `INSERT` na tabela do Source sem definir explicitamente o valor auto increment no próprio statement `INSERT` ou usando um statement `SET INSERT_ID`.
 
-In this scenario, replication fails with a duplicate entry error on the primary key column.
+Neste cenário, a replicação falha com um erro de entrada duplicada na coluna Primary Key.
 
-In statement based replication, the value of `INSERT_ID` in the context event is always the same. Replication therefore fails due to trying insert a row with a duplicate value for a primary key column.
+Na replicação baseada em statement (statement based replication), o valor de `INSERT_ID` no evento de contexto é sempre o mesmo. A replicação falha, portanto, por tentar inserir uma row com um valor duplicado para uma coluna Primary Key.
 
-In row based replication, the value that the engine returns for the row always be the same for each insert. This results in the replica attempting to replay two insert log entries using the same value for the primary key column, and so replication fails.
+Na replicação baseada em row (row based replication), o valor que o engine retorna para a row será sempre o mesmo para cada `INSERT`. Isso resulta na Replica tentando reexecutar (replay) duas entradas de log de `INSERT` usando o mesmo valor para a coluna Primary Key, e assim a replicação falha.
 
-**Column Filtering**
+**Filtragem de Colunas**
 
-When using row-based replication, (`binlog_format=ROW`), a replica where the last columns are missing from a table is supported, as described in the section Section 16.4.1.10, “Replication with Differing Table Definitions on Source and Replica”.
+Ao usar replicação baseada em row (`binlog_format=ROW`), uma Replica onde as últimas colunas estão ausentes em uma tabela é suportada, conforme descrito na Seção 16.4.1.10, “Replicação com Definições de Tabela Diferentes no Source e na Replica”.
 
-This filtering works on the replica side, that is, the columns are copied to the replica before they are filtered out. There are at least two cases where it is not desirable to copy the columns to the replica:
+Essa filtragem funciona no lado da Replica (replica side); ou seja, as colunas são copiadas para a Replica antes de serem filtradas. Existem pelo menos dois casos em que não é desejável copiar as colunas para a Replica:
 
-1. If the data is confidential, so the replica server should not have access to it.
+1. Se os dados forem confidenciais, de modo que o servidor Replica não deva ter acesso a eles.
 
-2. If the source has many replicas, filtering before sending to the replicas may reduce network traffic.
+2. Se o Source tiver muitas Replias, a filtragem antes do envio às Replias pode reduzir o tráfego de rede.
 
-Source column filtering can be achieved using the `BLACKHOLE` engine. This is carried out in a way similar to how source table filtering is achieved - by using the `BLACKHOLE` engine and the `--replicate-do-table` or `--replicate-ignore-table` option.
+A filtragem de colunas do Source pode ser alcançada usando o engine `BLACKHOLE`. Isso é realizado de forma semelhante a como a filtragem de tabelas do Source é alcançada — usando o engine `BLACKHOLE` e a opção `--replicate-do-table` ou `--replicate-ignore-table`.
 
-The setup for the source is:
+A configuração para o Source é:
 
 ```sql
 CREATE TABLE t1 (public_col_1, ..., public_col_N,
                  secret_col_1, ..., secret_col_M) ENGINE=MyISAM;
 ```
 
-The setup for the trusted replica is:
+A configuração para a Replica confiável é:
 
 ```sql
 CREATE TABLE t1 (public_col_1, ..., public_col_N) ENGINE=BLACKHOLE;
 ```
 
-The setup for the untrusted replica is:
+A configuração para a Replica não confiável é:
 
 ```sql
 CREATE TABLE t1 (public_col_1, ..., public_col_N) ENGINE=MyISAM;

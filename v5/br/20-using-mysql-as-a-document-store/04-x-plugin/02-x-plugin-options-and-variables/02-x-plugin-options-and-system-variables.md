@@ -1,142 +1,142 @@
-#### 19.4.2.2 X Plugin Options and System Variables
+#### 19.4.2.2 Opções e Variáveis de Sistema do X Plugin
 
-To control activation of X Plugin, use this option:
+Para controlar a ativação do X Plugin, use esta opção:
 
 * `--mysqlx[=value]`
 
-  <table frame="box" rules="all" summary="Properties for mysqlx"><tbody><tr><th>Command-Line Format</th> <td><code>--mysqlx[=value]</code></td> </tr><tr><th>Introduced</th> <td>5.7.12</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysqlx"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx[=value]</code></td> </tr><tr><th>Introduzido em</th> <td>5.7.12</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
-  This option controls how the server loads X Plugin at startup. It is available only if the plugin has been previously registered with `INSTALL PLUGIN` or is loaded with `--plugin-load` or `--plugin-load-add`.
+  Esta opção controla como o Server carrega o X Plugin na inicialização. Está disponível apenas se o Plugin tiver sido registrado anteriormente com `INSTALL PLUGIN` ou se for carregado com `--plugin-load` ou `--plugin-load-add`.
 
-  The option value should be one of those available for plugin-loading options, as described in Section 5.5.1, “Installing and Uninstalling Plugins”. For example, `--mysqlx=FORCE_PLUS_PERMANENT` tells the server to load the plugin and prevent it from being removed while the server is running.
+  O valor da opção deve ser um daqueles disponíveis para opções de carregamento de Plugin, conforme descrito na Seção 5.5.1, “Instalando e Desinstalando Plugins”. Por exemplo, `--mysqlx=FORCE_PLUS_PERMANENT` instrui o Server a carregar o Plugin e impedir que ele seja removido enquanto o Server estiver em execução.
 
-If X Plugin is enabled, it exposes several system variables that permit control over its operation:
+Se o X Plugin estiver habilitado, ele expõe várias variáveis de sistema que permitem controlar sua operação:
 
 * `mysqlx_bind_address`
 
-  <table frame="box" rules="all" summary="Properties for mysqlx_bind_address"><tbody><tr><th>Command-Line Format</th> <td><code>--mysqlx-bind-address=addr</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>mysqlx_bind_address</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>*</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysqlx_bind_address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-bind-address=addr</code></td> </tr><tr><th>Introduzido em</th> <td>5.7.17</td> </tr><tr><th>Variável de Sistema</th> <td><code>mysqlx_bind_address</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>*</code></td> </tr></tbody></table>
 
-  The network address on which X Plugin listens for TCP/IP connections. This variable is not dynamic and can be configured only at startup. This is the X Plugin equivalent of the `bind_address` system variable; see that variable description for more information.
+  O endereço de rede no qual o X Plugin escuta por conexões TCP/IP. Esta variável não é Dynamic e só pode ser configurada na inicialização. Este é o equivalente do X Plugin para a variável de sistema `bind_address`; consulte a descrição dessa variável para mais informações.
 
-  `mysqlx_bind_address` accepts a single address value, which may specify a single non-wildcard IP address or host name, or one of the wildcard address formats that permit listening on multiple network interfaces (`*`, `0.0.0.0`, or `::`).
+  `mysqlx_bind_address` aceita um único valor de endereço, que pode especificar um único endereço IP não-wildcard ou nome de host, ou um dos formatos de endereço wildcard que permitem escutar em múltiplas interfaces de rede (`*`, `0.0.0.0` ou `::`).
 
-  An IP address can be specified as an IPv4 or IPv6 address. If the value is a host name, X Plugin resolves the name to an IP address and binds to that address. If a host name resolves to multiple IP addresses, X Plugin uses the first IPv4 address if there are any, or the first IPv6 address otherwise.
+  Um endereço IP pode ser especificado como um endereço IPv4 ou IPv6. Se o valor for um nome de host, o X Plugin resolve o nome para um endereço IP e faz o bind para esse endereço. Se um nome de host resolver para múltiplos endereços IP, o X Plugin usa o primeiro endereço IPv4, se houver, ou o primeiro endereço IPv6, caso contrário.
 
-  X Plugin treats different types of addresses as follows:
+  O X Plugin trata diferentes tipos de endereços da seguinte forma:
 
-  + If the address is `*`, X Plugin accepts TCP/IP connections on all server host IPv4 interfaces, and, if the server host supports IPv6, on all IPv6 interfaces. Use this address to permit both IPv4 and IPv6 connections for X Plugin. This value is the default.
+  + Se o endereço for `*`, o X Plugin aceita conexões TCP/IP em todas as interfaces IPv4 do Server host e, se o Server host suportar IPv6, em todas as interfaces IPv6. Use este endereço para permitir conexões IPv4 e IPv6 para o X Plugin. Este valor é o padrão.
 
-  + If the address is `0.0.0.0`, X Plugin accepts TCP/IP connections on all server host IPv4 interfaces.
+  + Se o endereço for `0.0.0.0`, o X Plugin aceita conexões TCP/IP em todas as interfaces IPv4 do Server host.
 
-  + If the address is `::`, X Plugin accepts TCP/IP connections on all server host IPv4 and IPv6 interfaces.
+  + Se o endereço for `::`, o X Plugin aceita conexões TCP/IP em todas as interfaces IPv4 e IPv6 do Server host.
 
-  + If the address is an IPv4-mapped address, X Plugin accepts TCP/IP connections for that address, in either IPv4 or IPv6 format. For example, if X Plugin is bound to `::ffff:127.0.0.1`, a client such as MySQL Shell can connect using `--host=127.0.0.1` or `--host=::ffff:127.0.0.1`.
+  + Se o endereço for um endereço mapeado para IPv4, o X Plugin aceita conexões TCP/IP para esse endereço, tanto no formato IPv4 quanto IPv6. Por exemplo, se o X Plugin estiver ligado a `::ffff:127.0.0.1`, um Client como o MySQL Shell pode conectar usando `--host=127.0.0.1` ou `--host=::ffff:127.0.0.1`.
 
-  + If the address is a “regular” IPv4 or IPv6 address (such as `127.0.0.1` or `::1`), X Plugin accepts TCP/IP connections only for that IPv4 or IPv6 address.
+  + Se o endereço for um endereço IPv4 ou IPv6 “regular” (como `127.0.0.1` ou `::1`), o X Plugin aceita conexões TCP/IP apenas para esse endereço IPv4 ou IPv6.
 
-  If binding to the address fails, X Plugin produces an error and the server does not load it.
+  Se o bind para o endereço falhar, o X Plugin gera um erro e o Server não o carrega.
 
 * `mysqlx_connect_timeout`
 
-  <table frame="box" rules="all" summary="Properties for mysqlx_connect_timeout"><tbody><tr><th>Command-Line Format</th> <td><code>--mysqlx-connect-timeout=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.12</td> </tr><tr><th>System Variable</th> <td><code>mysqlx_connect_timeout</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>30</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1000000000</code></td> </tr><tr><th>Unit</th> <td>seconds</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysqlx_connect_timeout"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-connect-timeout=#</code></td> </tr><tr><th>Introduzido em</th> <td>5.7.12</td> </tr><tr><th>Variável de Sistema</th> <td><code>mysqlx_connect_timeout</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Padrão</th> <td><code>30</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1000000000</code></td> </tr><tr><th>Unidade</th> <td>segundos</td> </tr></tbody></table>
 
-  The number of seconds X Plugin waits for the first packet to be received from newly connected clients. This is the X Plugin equivalent of `connect_timeout`; see that variable description for more information.
+  O número de segundos que o X Plugin espera para que o primeiro pacote seja recebido de Clients recém-conectados. Este é o equivalente do X Plugin para `connect_timeout`; consulte a descrição dessa variável para mais informações.
 
 * `mysqlx_idle_worker_thread_timeout`
 
-  <table frame="box" rules="all" summary="Properties for mysqlx_idle_worker_thread_timeout"><tbody><tr><th>Command-Line Format</th> <td><code>--mysqlx-idle-worker-thread-timeout=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.12</td> </tr><tr><th>System Variable</th> <td><code>mysqlx_idle_worker_thread_timeout</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>60</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>3600</code></td> </tr><tr><th>Unit</th> <td>seconds</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysqlx_idle_worker_thread_timeout"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-idle-worker-thread-timeout=#</code></td> </tr><tr><th>Introduzido em</th> <td>5.7.12</td> </tr><tr><th>Variável de Sistema</th> <td><code>mysqlx_idle_worker_thread_timeout</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Padrão</th> <td><code>60</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>3600</code></td> </tr><tr><th>Unidade</th> <td>segundos</td> </tr></tbody></table>
 
-  The number of seconds after which idle worker threads are terminated.
+  O número de segundos após o qual as worker threads ociosas são encerradas.
 
 * `mysqlx_max_allowed_packet`
 
-  <table frame="box" rules="all" summary="Properties for mysqlx_max_allowed_packet"><tbody><tr><th>Command-Line Format</th> <td><code>--mysqlx-max-allowed-packet=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.12</td> </tr><tr><th>System Variable</th> <td><code>mysqlx_max_allowed_packet</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>67108864</code></td> </tr><tr><th>Minimum Value</th> <td><code>512</code></td> </tr><tr><th>Maximum Value</th> <td><code>1073741824</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysqlx_max_allowed_packet"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-max-allowed-packet=#</code></td> </tr><tr><th>Introduzido em</th> <td>5.7.12</td> </tr><tr><th>Variável de Sistema</th> <td><code>mysqlx_max_allowed_packet</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Padrão</th> <td><code>67108864</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>512</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1073741824</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
 
-  The maximum size of network packets that can be received by X Plugin. This is the X Plugin equivalent of `max_allowed_packet`; see that variable description for more information.
+  O tamanho máximo dos pacotes de rede que podem ser recebidos pelo X Plugin. Este é o equivalente do X Plugin para `max_allowed_packet`; consulte a descrição dessa variável para mais informações.
 
 * `mysqlx_max_connections`
 
-  <table frame="box" rules="all" summary="Properties for mysqlx_max_connections"><tbody><tr><th>Command-Line Format</th> <td><code>--mysqlx-max-connections=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.12</td> </tr><tr><th>System Variable</th> <td><code>mysqlx_max_connections</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>100</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysqlx_max_connections"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-max-connections=#</code></td> </tr><tr><th>Introduzido em</th> <td>5.7.12</td> </tr><tr><th>Variável de Sistema</th> <td><code>mysqlx_max_connections</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Padrão</th> <td><code>100</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
-  The maximum number of concurrent client connections X Plugin can accept. This is the X Plugin equivalent of `max_connections`; see that variable description for more information.
+  O número máximo de conexões de Client simultâneas que o X Plugin pode aceitar. Este é o equivalente do X Plugin para `max_connections`; consulte a descrição dessa variável para mais informações.
 
-  For modifications to this variable, if the new value is smaller than the current number of connections, the new limit is taken into account only for new connections.
+  Para modificações nesta variável, se o novo valor for menor que o número atual de conexões, o novo limite é levado em consideração apenas para novas conexões.
 
 * `mysqlx_min_worker_threads`
 
-  <table frame="box" rules="all" summary="Properties for mysqlx_min_worker_threads"><tbody><tr><th>Command-Line Format</th> <td><code>--mysqlx-min-worker-threads=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.12</td> </tr><tr><th>System Variable</th> <td><code>mysqlx_min_worker_threads</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>2</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>100</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysqlx_min_worker_threads"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-min-worker-threads=#</code></td> </tr><tr><th>Introduzido em</th> <td>5.7.12</td> </tr><tr><th>Variável de Sistema</th> <td><code>mysqlx_min_worker_threads</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Padrão</th> <td><code>2</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>100</code></td> </tr></tbody></table>
 
-  The minimum number of worker threads used by X Plugin for handling client requests.
+  O número mínimo de worker threads usadas pelo X Plugin para lidar com solicitações de Client.
 
 * `mysqlx_port`
 
-  <table frame="box" rules="all" summary="Properties for mysqlx_port"><tbody><tr><th>Command-Line Format</th> <td><code>--mysqlx-port=port_num</code></td> </tr><tr><th>Introduced</th> <td>5.7.12</td> </tr><tr><th>System Variable</th> <td><code>mysqlx_port</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>33060</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysqlx_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-port=port_num</code></td> </tr><tr><th>Introduzido em</th> <td>5.7.12</td> </tr><tr><th>Variável de Sistema</th> <td><code>mysqlx_port</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Padrão</th> <td><code>33060</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
-  The network port on which X Plugin listens for TCP/IP connections. This is the X Plugin equivalent of `port`; see that variable description for more information.
+  A porta de rede na qual o X Plugin escuta por conexões TCP/IP. Este é o equivalente do X Plugin para `port`; consulte a descrição dessa variável para mais informações.
 
 * `mysqlx_port_open_timeout`
 
-  <table frame="box" rules="all" summary="Properties for mysqlx_port_open_timeout"><tbody><tr><th>Command-Line Format</th> <td><code>--mysqlx-port-open-timeout=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>mysqlx_port_open_timeout</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>120</code></td> </tr><tr><th>Unit</th> <td>seconds</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysqlx_port_open_timeout"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-port-open-timeout=#</code></td> </tr><tr><th>Introduzido em</th> <td>5.7.17</td> </tr><tr><th>Variável de Sistema</th> <td><code>mysqlx_port_open_timeout</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Padrão</th> <td><code>0</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>120</code></td> </tr><tr><th>Unidade</th> <td>segundos</td> </tr></tbody></table>
 
-  The number of seconds X Plugin waits for a TCP/IP port to become free.
+  O número de segundos que o X Plugin espera para que uma porta TCP/IP se torne livre.
 
 * `mysqlx_socket`
 
-  <table frame="box" rules="all" summary="Properties for mysqlx_socket"><tbody><tr><th>Command-Line Format</th> <td><code>--mysqlx-socket=file_name</code></td> </tr><tr><th>Introduced</th> <td>5.7.15</td> </tr><tr><th>System Variable</th> <td><code>mysqlx_socket</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>/tmp/mysqlx.sock</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysqlx_socket"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-socket=file_name</code></td> </tr><tr><th>Introduzido em</th> <td>5.7.15</td> </tr><tr><th>Variável de Sistema</th> <td><code>mysqlx_socket</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>/tmp/mysqlx.sock</code></td> </tr></tbody></table>
 
-  The path to a Unix socket file which X Plugin uses for connections. This setting is only used by MySQL Server when running on Unix operating systems. Clients can use this socket to connect to MySQL Server using X Plugin.
+  O caminho para um arquivo Unix socket que o X Plugin usa para conexões. Esta configuração é usada apenas pelo MySQL Server quando executado em sistemas operacionais Unix. Os Clients podem usar este socket para conectar-se ao MySQL Server usando o X Plugin.
 
-  The default `mysqlx_socket` path and file name is based on the default path and file name for the main socket file for MySQL Server, with the addition of an `x` appended to the file name. The default path and file name for the main socket file is `/tmp/mysql.sock`, therefore the default path and file name for the X Plugin socket file is `/tmp/mysqlx.sock`.
+  O caminho e nome de arquivo padrão `mysqlx_socket` são baseados no caminho e nome de arquivo padrão para o arquivo socket principal do MySQL Server, com a adição de um 'x' anexado ao nome do arquivo. O caminho e nome de arquivo padrão para o arquivo socket principal é `/tmp/mysql.sock`, portanto, o caminho e nome de arquivo padrão para o arquivo socket do X Plugin é `/tmp/mysqlx.sock`.
 
-  If you specify an alternative path and file name for the main socket file at server startup using the `socket` system variable, this does not affect the default for the X Plugin socket file. In this situation, if you want to store both sockets at a single path, you must set the `mysqlx_socket` system variable as well. For example in a configuration file:
+  Se você especificar um caminho e nome de arquivo alternativos para o arquivo socket principal na inicialização do Server usando a variável de sistema `socket`, isso não afeta o padrão para o arquivo socket do X Plugin. Nesta situação, se você quiser armazenar ambos os sockets em um único caminho, você também deve definir a variável de sistema `mysqlx_socket`. Por exemplo, em um arquivo de configuração:
 
   ```sql
   socket=/home/sockets/mysqld/mysql.sock
   mysqlx_socket=/home/sockets/xplugin/xplugin.sock
   ```
 
-  If you change the default path and file name for the main socket file at compile time using the `MYSQL_UNIX_ADDR` compile option, this does affect the default for the X Plugin socket file, which is formed by appending an `x` to the `MYSQL_UNIX_ADDR` file name. If you want to set a different default for the X Plugin socket file at compile time, use the `MYSQLX_UNIX_ADDR` compile option.
+  Se você alterar o caminho e nome de arquivo padrão para o arquivo socket principal no momento da compilação usando a opção de compilação `MYSQL_UNIX_ADDR`, isso afeta o padrão para o arquivo socket do X Plugin, que é formado anexando um 'x' ao nome de arquivo `MYSQL_UNIX_ADDR`. Se você quiser definir um padrão diferente para o arquivo socket do X Plugin no momento da compilação, use a opção de compilação `MYSQLX_UNIX_ADDR`.
 
-  The `MYSQLX_UNIX_PORT` environment variable can also be used to set a default for the X Plugin socket file at server startup (see Section 4.9, “Environment Variables”). If you set this environment variable, it overrides the compiled `MYSQLX_UNIX_ADDR` value, but is overridden by the `mysqlx_socket` value.
+  A variável de ambiente `MYSQLX_UNIX_PORT` também pode ser usada para definir um padrão para o arquivo socket do X Plugin na inicialização do Server (consulte a Seção 4.9, “Environment Variables”). Se você definir esta variável de ambiente, ela anula o valor compilado `MYSQLX_UNIX_ADDR`, mas é anulada pelo valor de `mysqlx_socket`.
 
 * `mysqlx_ssl_ca`
 
-  <table frame="box" rules="all" summary="Properties for mysqlx_bind_address"><tbody><tr><th>Command-Line Format</th> <td><code>--mysqlx-bind-address=addr</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>mysqlx_bind_address</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>*</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysqlx_bind_address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-bind-address=addr</code></td> </tr><tr><th>Introduzido em</th> <td>5.7.17</td> </tr><tr><th>Variável de Sistema</th> <td><code>mysqlx_bind_address</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>*</code></td> </tr></tbody></table>
 
-  The `mysqlx_ssl_ca` system variable is like `ssl_ca`, except that it applies to X Plugin rather than the MySQL Server main connection interface. For information about configuring encryption support for X Plugin, see Section 19.4.1, “Using Encrypted Connections with X Plugin”.
+  A variável de sistema `mysqlx_ssl_ca` é como `ssl_ca`, exceto que se aplica ao X Plugin em vez da interface de conexão principal do MySQL Server. Para obter informações sobre a configuração do suporte à criptografia para o X Plugin, consulte a Seção 19.4.1, “Usando Conexões Criptografadas com X Plugin”.
 
 * `mysqlx_ssl_capath`
 
-  <table frame="box" rules="all" summary="Properties for mysqlx_bind_address"><tbody><tr><th>Command-Line Format</th> <td><code>--mysqlx-bind-address=addr</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>mysqlx_bind_address</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>*</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysqlx_bind_address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-bind-address=addr</code></td> </tr><tr><th>Introduzido em</th> <td>5.7.17</td> </tr><tr><th>Variável de Sistema</th> <td><code>mysqlx_bind_address</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>*</code></td> </tr></tbody></table>
 
-  The `mysqlx_ssl_capath` system variable is like `ssl_capath`, except that it applies to X Plugin rather than the MySQL Server main connection interface. For information about configuring encryption support for X Plugin, see Section 19.4.1, “Using Encrypted Connections with X Plugin”.
+  A variável de sistema `mysqlx_ssl_capath` é como `ssl_capath`, exceto que se aplica ao X Plugin em vez da interface de conexão principal do MySQL Server. Para obter informações sobre a configuração do suporte à criptografia para o X Plugin, consulte a Seção 19.4.1, “Usando Conexões Criptografadas com X Plugin”.
 
 * `mysqlx_ssl_cert`
 
-  <table frame="box" rules="all" summary="Properties for mysqlx_bind_address"><tbody><tr><th>Command-Line Format</th> <td><code>--mysqlx-bind-address=addr</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>mysqlx_bind_address</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>*</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysqlx_bind_address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-bind-address=addr</code></td> </tr><tr><th>Introduzido em</th> <td>5.7.17</td> </tr><tr><th>Variável de Sistema</th> <td><code>mysqlx_bind_address</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>*</code></td> </tr></tbody></table>
 
-  The `mysqlx_ssl_cert` system variable is like `ssl_cert`, except that it applies to X Plugin rather than the MySQL Server main connection interface. For information about configuring encryption support for X Plugin, see Section 19.4.1, “Using Encrypted Connections with X Plugin”.
+  A variável de sistema `mysqlx_ssl_cert` é como `ssl_cert`, exceto que se aplica ao X Plugin em vez da interface de conexão principal do MySQL Server. Para obter informações sobre a configuração do suporte à criptografia para o X Plugin, consulte a Seção 19.4.1, “Usando Conexões Criptografadas com X Plugin”.
 
 * `mysqlx_ssl_cipher`
 
-  <table frame="box" rules="all" summary="Properties for mysqlx_bind_address"><tbody><tr><th>Command-Line Format</th> <td><code>--mysqlx-bind-address=addr</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>mysqlx_bind_address</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>*</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysqlx_bind_address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-bind-address=addr</code></td> </tr><tr><th>Introduzido em</th> <td>5.7.17</td> </tr><tr><th>Variável de Sistema</th> <td><code>mysqlx_bind_address</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>*</code></td> </tr></tbody></table>
 
-  The `mysqlx_ssl_cipher` system variable is like `ssl_cipher`, except that it applies to X Plugin rather than the MySQL Server main connection interface. For information about configuring encryption support for X Plugin, see Section 19.4.1, “Using Encrypted Connections with X Plugin”.
+  A variável de sistema `mysqlx_ssl_cipher` é como `ssl_cipher`, exceto que se aplica ao X Plugin em vez da interface de conexão principal do MySQL Server. Para obter informações sobre a configuração do suporte à criptografia para o X Plugin, consulte a Seção 19.4.1, “Usando Conexões Criptografadas com X Plugin”.
 
 * `mysqlx_ssl_crl`
 
-  <table frame="box" rules="all" summary="Properties for mysqlx_bind_address"><tbody><tr><th>Command-Line Format</th> <td><code>--mysqlx-bind-address=addr</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>mysqlx_bind_address</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>*</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysqlx_bind_address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-bind-address=addr</code></td> </tr><tr><th>Introduzido em</th> <td>5.7.17</td> </tr><tr><th>Variável de Sistema</th> <td><code>mysqlx_bind_address</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>*</code></td> </tr></tbody></table>
 
-  The `mysqlx_ssl_crl` system variable is like `ssl_crl`, except that it applies to X Plugin rather than the MySQL Server main connection interface. For information about configuring encryption support for X Plugin, see Section 19.4.1, “Using Encrypted Connections with X Plugin”.
+  A variável de sistema `mysqlx_ssl_crl` é como `ssl_crl`, exceto que se aplica ao X Plugin em vez da interface de conexão principal do MySQL Server. Para obter informações sobre a configuração do suporte à criptografia para o X Plugin, consulte a Seção 19.4.1, “Usando Conexões Criptografadas com X Plugin”.
 
 * `mysqlx_ssl_crlpath`
 
-  <table frame="box" rules="all" summary="Properties for mysqlx_bind_address"><tbody><tr><th>Command-Line Format</th> <td><code>--mysqlx-bind-address=addr</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>mysqlx_bind_address</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>*</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysqlx_bind_address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-bind-address=addr</code></td> </tr><tr><th>Introduzido em</th> <td>5.7.17</td> </tr><tr><th>Variável de Sistema</th> <td><code>mysqlx_bind_address</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>*</code></td> </tr></tbody></table>
 
-  The `mysqlx_ssl_crlpath` system variable is like `ssl_crlpath`, except that it applies to X Plugin rather than the MySQL Server main connection interface. For information about configuring encryption support for X Plugin, see Section 19.4.1, “Using Encrypted Connections with X Plugin”.
+  A variável de sistema `mysqlx_ssl_crlpath` é como `ssl_crlpath`, exceto que se aplica ao X Plugin em vez da interface de conexão principal do MySQL Server. Para obter informações sobre a configuração do suporte à criptografia para o X Plugin, consulte a Seção 19.4.1, “Usando Conexões Criptografadas com X Plugin”.
 
 * `mysqlx_ssl_key`
 
-  <table frame="box" rules="all" summary="Properties for mysqlx_bind_address"><tbody><tr><th>Command-Line Format</th> <td><code>--mysqlx-bind-address=addr</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>mysqlx_bind_address</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>*</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysqlx_bind_address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-bind-address=addr</code></td> </tr><tr><th>Introduzido em</th> <td>5.7.17</td> </tr><tr><th>Variável de Sistema</th> <td><code>mysqlx_bind_address</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>*</code></td> </tr></tbody></table>
 
-  The `mysqlx_ssl_key` system variable is like `ssl_key`, except that it applies to X Plugin rather than the MySQL Server main connection interface. For information about configuring encryption support for X Plugin, see Section 19.4.1, “Using Encrypted Connections with X Plugin”.
+  A variável de sistema `mysqlx_ssl_key` é como `ssl_key`, exceto que se aplica ao X Plugin em vez da interface de conexão principal do MySQL Server. Para obter informações sobre a configuração do suporte à criptografia para o X Plugin, consulte a Seção 19.4.1, “Usando Conexões Criptografadas com X Plugin”.

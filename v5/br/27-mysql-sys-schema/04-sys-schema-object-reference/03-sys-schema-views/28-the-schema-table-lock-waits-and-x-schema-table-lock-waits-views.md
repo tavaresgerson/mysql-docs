@@ -1,79 +1,79 @@
-#### 26.4.3.28 The schema_table_lock_waits and x$schema_table_lock_waits Views
+#### 26.4.3.28 As Views schema_table_lock_waits e x$schema_table_lock_waits
 
-These views display which sessions are blocked waiting on metadata locks, and what is blocking them.
+Estas views exibem quais sessions estão bloqueadas esperando por metadata locks, e o que as está bloqueando.
 
-The column descriptions here are brief. For additional information, see the description of the Performance Schema `metadata_locks` table at Section 25.12.12.1, “The metadata_locks Table”.
+As descrições das colunas aqui são breves. Para informações adicionais, consulte a descrição da tabela `metadata_locks` do Performance Schema na Seção 25.12.12.1, “The metadata_locks Table”.
 
-The `schema_table_lock_waits` and `x$schema_table_lock_waits` views have these columns:
+As views `schema_table_lock_waits` e `x$schema_table_lock_waits` contêm as seguintes colunas:
 
 * `object_schema`
 
-  The schema containing the object to be locked.
+  O schema que contém o objeto a ser bloqueado.
 
 * `object_name`
 
-  The name of the instrumented object.
+  O nome do objeto instrumentado.
 
 * `waiting_thread_id`
 
-  The thread ID of the thread that is waiting for the lock.
+  O Thread ID da Thread que está esperando pelo Lock.
 
 * `waiting_pid`
 
-  The processlist ID of the thread that is waiting for the lock.
+  O ID da processlist da Thread que está esperando pelo Lock.
 
 * `waiting_account`
 
-  The account associated with the session that is waiting for the lock.
+  A Account associada à session que está esperando pelo Lock.
 
 * `waiting_lock_type`
 
-  The type of the waiting lock.
+  O tipo do Lock em espera.
 
 * `waiting_lock_duration`
 
-  How long the waiting lock has been waiting.
+  Há quanto tempo o Lock em espera está aguardando.
 
 * `waiting_query`
 
-  The statement that is waiting for the lock.
+  O Statement que está esperando pelo Lock.
 
 * `waiting_query_secs`
 
-  How long the statement has been waiting, in seconds.
+  Há quanto tempo o Statement está esperando, em segundos.
 
 * `waiting_query_rows_affected`
 
-  The number of rows affected by the statement.
+  O número de rows afetadas pelo Statement.
 
 * `waiting_query_rows_examined`
 
-  The number of rows read from storage engines by the statement.
+  O número de rows lidas dos storage engines pelo Statement.
 
 * `blocking_thread_id`
 
-  The thread ID of the thread that is blocking the waiting lock.
+  O Thread ID da Thread que está bloqueando o Lock em espera.
 
 * `blocking_pid`
 
-  The processlist ID of the thread that is blocking the waiting lock.
+  O ID da processlist da Thread que está bloqueando o Lock em espera.
 
 * `blocking_account`
 
-  The account associated with the thread that is blocking the waiting lock.
+  A Account associada à Thread que está bloqueando o Lock em espera.
 
 * `blocking_lock_type`
 
-  The type of lock that is blocking the waiting lock.
+  O tipo de Lock que está bloqueando o Lock em espera.
 
 * `blocking_lock_duration`
 
-  How long the blocking lock has been held.
+  Há quanto tempo o Lock bloqueador tem sido mantido.
 
 * `sql_kill_blocking_query`
 
-  The `KILL` statement to execute to kill the blocking statement.
+  O Statement `KILL` a ser executado para encerrar (kill) o Statement bloqueador.
 
 * `sql_kill_blocking_connection`
 
-  The `KILL` statement to execute to kill the session running the blocking statement.
+  O Statement `KILL` a ser executado para encerrar (kill) a session que está executando o Statement bloqueador.

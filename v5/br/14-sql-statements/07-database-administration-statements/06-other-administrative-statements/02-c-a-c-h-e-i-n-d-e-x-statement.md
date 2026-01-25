@@ -1,4 +1,4 @@
-#### 13.7.6.2 CACHE INDEX Statement
+#### 13.7.6.2 Instrução CACHE INDEX
 
 ```sql
 CACHE INDEX {
@@ -16,9 +16,9 @@ partition_list: {
 }
 ```
 
-The [`CACHE INDEX`](cache-index.html "13.7.6.2 CACHE INDEX Statement") statement assigns table indexes to a specific key cache. It applies only to `MyISAM` tables, including partitioned `MyISAM` tables. After the indexes have been assigned, they can be preloaded into the cache if desired with [`LOAD INDEX INTO CACHE`](load-index.html "13.7.6.5 LOAD INDEX INTO CACHE Statement").
+A instrução [`CACHE INDEX`](cache-index.html "13.7.6.2 CACHE INDEX Statement") atribui Indexes de uma Table a um Key Cache específico. Ela se aplica apenas a Tables `MyISAM`, incluindo Tables `MyISAM` particionadas. Após os Indexes serem atribuídos, eles podem ser pré-carregados no Cache, se desejado, com [`LOAD INDEX INTO CACHE`](load-index.html "13.7.6.5 LOAD INDEX INTO CACHE Statement").
 
-The following statement assigns indexes from the tables `t1`, `t2`, and `t3` to the key cache named `hot_cache`:
+A instrução a seguir atribui Indexes das Tables `t1`, `t2` e `t3` ao Key Cache chamado `hot_cache`:
 
 ```sql
 mysql> CACHE INDEX t1, t2, t3 IN hot_cache;
@@ -31,28 +31,28 @@ mysql> CACHE INDEX t1, t2, t3 IN hot_cache;
 +---------+--------------------+----------+----------+
 ```
 
-The syntax of [`CACHE INDEX`](cache-index.html "13.7.6.2 CACHE INDEX Statement") enables you to specify that only particular indexes from a table should be assigned to the cache. However, the implementation assigns all the table's indexes to the cache, so there is no reason to specify anything other than the table name.
+A sintaxe de [`CACHE INDEX`](cache-index.html "13.7.6.2 CACHE INDEX Statement") permite especificar que apenas Indexes particulares de uma Table devem ser atribuídos ao Cache. No entanto, a implementação atribui todos os Indexes da Table ao Cache, então não há razão para especificar nada além do nome da Table.
 
-The key cache referred to in a [`CACHE INDEX`](cache-index.html "13.7.6.2 CACHE INDEX Statement") statement can be created by setting its size with a parameter setting statement or in the server parameter settings. For example:
+O Key Cache referenciado em uma instrução [`CACHE INDEX`](cache-index.html "13.7.6.2 CACHE INDEX Statement") pode ser criado definindo seu tamanho com uma instrução de configuração de parâmetro ou nas configurações de parâmetro do Server. Por exemplo:
 
 ```sql
 SET GLOBAL keycache1.key_buffer_size=128*1024;
 ```
 
-Key cache parameters are accessed as members of a structured system variable. See [Section 5.1.8.3, “Structured System Variables”](structured-system-variables.html "5.1.8.3 Structured System Variables").
+Os parâmetros de Key Cache são acessados como membros de uma Structured System Variable. Consulte [Seção 5.1.8.3, “Structured System Variables”](structured-system-variables.html "5.1.8.3 Structured System Variables").
 
-A key cache must exist before you assign indexes to it, or an error occurs:
+Um Key Cache deve existir antes que você possa atribuir Indexes a ele, ou ocorrerá um erro:
 
 ```sql
 mysql> CACHE INDEX t1 IN non_existent_cache;
 ERROR 1284 (HY000): Unknown key cache 'non_existent_cache'
 ```
 
-By default, table indexes are assigned to the main (default) key cache created at the server startup. When a key cache is destroyed, all indexes assigned to it are reassigned to the default key cache.
+Por padrão, os Indexes de Table são atribuídos ao Key Cache principal (default) criado na inicialização do Server. Quando um Key Cache é destruído, todos os Indexes atribuídos a ele são reatribuídos ao Key Cache default.
 
-Index assignment affects the server globally: If one client assigns an index to a given cache, this cache is used for all queries involving the index, no matter which client issues the queries.
+A atribuição de Indexes afeta o Server globalmente: Se um Client atribui um Index a um determinado Cache, este Cache é usado para todas as Queries que envolvem o Index, independentemente de qual Client emite as Queries.
 
-[`CACHE INDEX`](cache-index.html "13.7.6.2 CACHE INDEX Statement") is supported for partitioned `MyISAM` tables. You can assign one or more indexes for one, several, or all partitions to a given key cache. For example, you can do the following:
+[`CACHE INDEX`](cache-index.html "13.7.6.2 CACHE INDEX Statement") é suportado para Tables `MyISAM` particionadas. Você pode atribuir um ou mais Indexes para uma, várias ou todas as Partitions a um Key Cache específico. Por exemplo, você pode fazer o seguinte:
 
 ```sql
 CREATE TABLE pt (c1 INT, c2 VARCHAR(50), INDEX i(c1))
@@ -67,15 +67,15 @@ CACHE INDEX pt PARTITION (p0) IN kc_fast;
 CACHE INDEX pt PARTITION (p1, p3) IN kc_slow;
 ```
 
-The previous set of statements performs the following actions:
+O conjunto de instruções anterior realiza as seguintes ações:
 
-* Creates a partitioned table with 4 partitions; these partitions are automatically named `p0`, ..., `p3`; this table has an index named `i` on column `c1`.
+* Cria uma Table particionada com 4 Partitions; essas Partitions são automaticamente nomeadas `p0`, ..., `p3`; esta Table possui um Index chamado `i` na coluna `c1`.
 
-* Creates 2 key caches named `kc_fast` and `kc_slow`
+* Cria 2 Key Caches chamados `kc_fast` e `kc_slow`.
 
-* Assigns the index for partition `p0` to the `kc_fast` key cache and the index for partitions `p1` and `p3` to the `kc_slow` key cache; the index for the remaining partition (`p2`) uses the server's default key cache.
+* Atribui o Index para a Partition `p0` ao Key Cache `kc_fast` e o Index para as Partitions `p1` e `p3` ao Key Cache `kc_slow`; o Index para a Partition restante (`p2`) usa o Key Cache default do Server.
 
-If you wish instead to assign the indexes for all partitions in table `pt` to a single key cache named `kc_all`, you can use either of the following two statements:
+Se você desejar, em vez disso, atribuir os Indexes para todas as Partitions na Table `pt` a um único Key Cache chamado `kc_all`, você pode usar qualquer uma das duas instruções a seguir:
 
 ```sql
 CACHE INDEX pt PARTITION (ALL) IN kc_all;
@@ -83,8 +83,8 @@ CACHE INDEX pt PARTITION (ALL) IN kc_all;
 CACHE INDEX pt IN kc_all;
 ```
 
-The two statements just shown are equivalent, and issuing either one has exactly the same effect. In other words, if you wish to assign indexes for all partitions of a partitioned table to the same key cache, the `PARTITION (ALL)` clause is optional.
+As duas instruções mostradas são equivalentes, e emitir qualquer uma delas tem exatamente o mesmo efeito. Em outras palavras, se você deseja atribuir Indexes para todas as Partitions de uma Table particionada ao mesmo Key Cache, a cláusula `PARTITION (ALL)` é opcional.
 
-When assigning indexes for multiple partitions to a key cache, the partitions need not be contiguous, and you need not list their names in any particular order. Indexes for any partitions not explicitly assigned to a key cache automatically use the server default key cache.
+Ao atribuir Indexes para múltiplas Partitions a um Key Cache, as Partitions não precisam ser contíguas e você não precisa listar seus nomes em nenhuma ordem específica. Indexes para quaisquer Partitions que não sejam explicitamente atribuídas a um Key Cache usam automaticamente o Key Cache default do Server.
 
-Index preloading is also supported for partitioned `MyISAM` tables. For more information, see [Section 13.7.6.5, “LOAD INDEX INTO CACHE Statement”](load-index.html "13.7.6.5 LOAD INDEX INTO CACHE Statement").
+O pré-carregamento de Index também é suportado para Tables `MyISAM` particionadas. Para mais informações, consulte [Seção 13.7.6.5, “LOAD INDEX INTO CACHE Statement”](load-index.html "13.7.6.5 LOAD INDEX INTO CACHE Statement").

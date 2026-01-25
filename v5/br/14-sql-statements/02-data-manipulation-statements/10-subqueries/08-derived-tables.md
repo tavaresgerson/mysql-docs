@@ -1,20 +1,20 @@
-#### 13.2.10.8 Derived Tables
+#### 13.2.10.8 Tabelas Derivadas
 
-A derived table is an expression that generates a table within the scope of a query `FROM` clause. For example, a subquery in a [`SELECT`](select.html "13.2.9 SELECT Statement") statement `FROM` clause is a derived table:
+Uma *derived table* (tabela derivada) é uma expressão que gera uma tabela dentro do escopo de uma cláusula `FROM` de uma Query. Por exemplo, uma subquery na cláusula `FROM` de uma instrução [`SELECT`](select.html "13.2.9 SELECT Statement") é uma *derived table*:
 
 ```sql
 SELECT ... FROM (subquery) [AS] tbl_name ...
 ```
 
-The `[AS] tbl_name` clause is mandatory because every table in a `FROM` clause must have a name. Any columns in the derived table must have unique names.
+A cláusula `[AS] tbl_name` é obrigatória porque toda tabela em uma cláusula `FROM` deve ter um nome. Quaisquer colunas na *derived table* devem ter nomes exclusivos.
 
-For the sake of illustration, assume that you have this table:
+Para fins de ilustração, assuma que você tem esta tabela:
 
 ```sql
 CREATE TABLE t1 (s1 INT, s2 CHAR(5), s3 FLOAT);
 ```
 
-Here is how to use a subquery in the `FROM` clause, using the example table:
+Veja como usar uma subquery na cláusula `FROM`, usando a tabela de exemplo:
 
 ```sql
 INSERT INTO t1 VALUES (1,'1',1.0);
@@ -24,7 +24,7 @@ SELECT sb1,sb2,sb3
   WHERE sb1 > 1;
 ```
 
-Result:
+Resultado:
 
 ```sql
 +------+------+------+
@@ -34,13 +34,13 @@ Result:
 +------+------+------+
 ```
 
-Here is another example: Suppose that you want to know the average of a set of sums for a grouped table. This does not work:
+Aqui está outro exemplo: Suponha que você queira saber a média de um conjunto de somas para uma tabela agrupada. Isto não funciona:
 
 ```sql
 SELECT AVG(SUM(column1)) FROM t1 GROUP BY column1;
 ```
 
-However, this query provides the desired information:
+No entanto, esta Query fornece a informação desejada:
 
 ```sql
 SELECT AVG(sum_column1)
@@ -48,20 +48,20 @@ SELECT AVG(sum_column1)
         FROM t1 GROUP BY column1) AS t1;
 ```
 
-Notice that the column name used within the subquery (`sum_column1`) is recognized in the outer query.
+Observe que o nome da coluna usado dentro da subquery (`sum_column1`) é reconhecido na Query externa.
 
-A derived table can return a scalar, column, row, or table.
+Uma *derived table* pode retornar um escalar, coluna, linha ou tabela.
 
-Derived tables are subject to these restrictions:
+*Derived tables* estão sujeitas a estas restrições:
 
-* A derived table cannot be a correlated subquery.
-* A derived table cannot contain references to other tables of the same [`SELECT`](select.html "13.2.9 SELECT Statement").
+* Uma *derived table* não pode ser uma subquery correlacionada.
+* Uma *derived table* não pode conter referências a outras tabelas da mesma instrução [`SELECT`](select.html "13.2.9 SELECT Statement").
 
-* A derived table cannot contain outer references. This is a MySQL restriction, not a restriction of the SQL standard.
+* Uma *derived table* não pode conter referências externas (*outer references*). Esta é uma restrição do MySQL, não uma restrição do padrão SQL.
 
-The optimizer determines information about derived tables in such a way that [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") does not need to materialize them. See [Section 8.2.2.4, “Optimizing Derived Tables and View References with Merging or Materialization”](derived-table-optimization.html "8.2.2.4 Optimizing Derived Tables and View References with Merging or Materialization").
+O Optimizer determina informações sobre *derived tables* de tal forma que o [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") não precisa materializá-las. Consulte [Seção 8.2.2.4, “Otimizando Tabelas Derivadas e Referências de View com Mesclagem ou Materialização”](derived-table-optimization.html "8.2.2.4 Optimizing Derived Tables and View References with Merging or Materialization").
 
-It is possible under certain circumstances that using [`EXPLAIN SELECT`](explain.html "13.8.2 EXPLAIN Statement") modifies table data. This can occur if the outer query accesses any tables and an inner query invokes a stored function that changes one or more rows of a table. Suppose that there are two tables `t1` and `t2` in database `d1`, and a stored function `f1` that modifies `t2`, created as shown here:
+É possível, sob certas circunstâncias, que o uso de [`EXPLAIN SELECT`](explain.html "13.8.2 EXPLAIN Statement") modifique os dados da tabela. Isso pode ocorrer se a Query externa acessar quaisquer tabelas e uma Query interna invocar uma stored function que altere uma ou mais linhas de uma tabela. Suponha que existam duas tabelas `t1` e `t2` no Database `d1`, e uma stored function `f1` que modifica `t2`, criada conforme mostrado aqui:
 
 ```sql
 CREATE DATABASE d1;
@@ -75,7 +75,7 @@ CREATE FUNCTION f1(p1 INT) RETURNS INT
   END;
 ```
 
-Referencing the function directly in an [`EXPLAIN SELECT`](explain.html "13.8.2 EXPLAIN Statement") has no effect on `t2`, as shown here:
+Referenciar a função diretamente em um [`EXPLAIN SELECT`](explain.html "13.8.2 EXPLAIN Statement") não tem efeito em `t2`, conforme mostrado aqui:
 
 ```sql
 mysql> SELECT * FROM t2;
@@ -101,7 +101,7 @@ mysql> SELECT * FROM t2;
 Empty set (0.01 sec)
 ```
 
-This is because the [`SELECT`](select.html "13.2.9 SELECT Statement") statement did not reference any tables, as can be seen in the `table` and `Extra` columns of the output. This is also true of the following nested [`SELECT`](select.html "13.2.9 SELECT Statement"):
+Isso ocorre porque a instrução [`SELECT`](select.html "13.2.9 SELECT Statement") não referenciou nenhuma tabela, como pode ser visto nas colunas `table` e `Extra` da saída. Isto também é verdade para a seguinte instrução [`SELECT`](select.html "13.2.9 SELECT Statement") aninhada:
 
 ```sql
 mysql> EXPLAIN SELECT NOW() AS a1, (SELECT f1(5)) AS a2\G
@@ -131,7 +131,7 @@ mysql> SELECT * FROM t2;
 Empty set (0.00 sec)
 ```
 
-However, if the outer [`SELECT`](select.html "13.2.9 SELECT Statement") references any tables, the optimizer executes the statement in the subquery as well, with the result that `t2` is modified:
+No entanto, se a instrução [`SELECT`](select.html "13.2.9 SELECT Statement") externa referenciar quaisquer tabelas, o Optimizer também executa a instrução na subquery, resultando na modificação de `t2`:
 
 ```sql
 mysql> EXPLAIN SELECT * FROM t1 AS a1, (SELECT f1(5)) AS a2\G

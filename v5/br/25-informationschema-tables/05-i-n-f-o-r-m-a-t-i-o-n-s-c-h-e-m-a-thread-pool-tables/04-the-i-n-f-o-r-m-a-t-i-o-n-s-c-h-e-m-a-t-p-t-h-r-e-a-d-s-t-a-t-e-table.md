@@ -1,27 +1,27 @@
-### 24.5.4 The INFORMATION_SCHEMA TP_THREAD_STATE Table
+### 24.5.4 A Tabela TP_THREAD_STATE do INFORMATION_SCHEMA
 
-The [`TP_THREAD_STATE`](information-schema-tp-thread-state-table.html "24.5.4 The INFORMATION_SCHEMA TP_THREAD_STATE Table") table has one row per thread created by the thread pool to handle connections.
+A tabela [`TP_THREAD_STATE`](information-schema-tp-thread-state-table.html "24.5.4 The INFORMATION_SCHEMA TP_THREAD_STATE Table") possui uma linha por `thread` criada pelo `thread pool` para manipular conexões.
 
-The [`TP_THREAD_STATE`](information-schema-tp-thread-state-table.html "24.5.4 The INFORMATION_SCHEMA TP_THREAD_STATE Table") table has these columns:
+A tabela [`TP_THREAD_STATE`](information-schema-tp-thread-state-table.html "24.5.4 The INFORMATION_SCHEMA TP_THREAD_STATE Table") possui estas colunas:
 
 * `TP_GROUP_ID`
 
-  The thread group ID.
+  O ID do grupo de `thread`.
 
 * `TP_THREAD_NUMBER`
 
-  The ID of the thread within its thread group. `TP_GROUP_ID` and `TP_THREAD_NUMBER` together provide a unique key within the table.
+  O ID da `thread` dentro do seu grupo de `thread`. `TP_GROUP_ID` e `TP_THREAD_NUMBER` juntos fornecem uma `key` única dentro da tabela.
 
 * `PROCESS_COUNT`
 
-  The 10ms interval in which the statement that uses this thread is currently executing. 0 means no statement is executing, 1 means it is in the first 10ms, and so forth.
+  O intervalo de 10ms no qual o *statement* que utiliza esta `thread` está sendo executado atualmente. 0 significa que nenhum *statement* está sendo executado, 1 significa que está nos primeiros 10ms, e assim por diante.
 
 * `WAIT_TYPE`
 
-  The type of wait for the thread. `NULL` means the thread is not blocked. Otherwise, the thread is blocked by a call to `thd_wait_begin()` and the value specifies the type of wait. The `xxx_WAIT` columns of the [`TP_THREAD_GROUP_STATS`](information-schema-tp-thread-group-stats-table.html "24.5.3 The INFORMATION_SCHEMA TP_THREAD_GROUP_STATS Table") table accumulate counts for each wait type.
+  O tipo de espera (`wait`) da `thread`. `NULL` significa que a `thread` não está bloqueada. Caso contrário, a `thread` está bloqueada por uma chamada a `thd_wait_begin()` e o valor especifica o tipo de espera. As colunas `xxx_WAIT` da tabela [`TP_THREAD_GROUP_STATS`](information-schema-tp-thread-group-stats-table.html "24.5.3 The INFORMATION_SCHEMA TP_THREAD_GROUP_STATS Table") acumulam contagens para cada tipo de espera.
 
-  The `WAIT_TYPE` value is a string that describes the type of wait, as shown in the following table.
+  O valor de `WAIT_TYPE` é uma *string* que descreve o tipo de espera, conforme mostrado na tabela a seguir.
 
-  **Table 24.8 TP_THREAD_STATE Table WAIT_TYPE Values**
+  **Tabela 24.8 Valores de WAIT_TYPE da Tabela TP_THREAD_STATE**
 
-  <table summary="TP_THREAD_STATE table WAIT_TYPE values. The first column is the wait type. The second column describes the wait type."><col style="width: 35%"/><col style="width: 65%"/><thead><tr> <th>Wait Type</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><code>THD_WAIT_SLEEP</code></td> <td>Waiting for sleep</td> </tr><tr> <td><code>THD_WAIT_DISKIO</code></td> <td>Waiting for Disk IO</td> </tr><tr> <td><code>THD_WAIT_ROW_LOCK</code></td> <td>Waiting for row lock</td> </tr><tr> <td><code>THD_WAIT_GLOBAL_LOCK</code></td> <td>Waiting for global lock</td> </tr><tr> <td><code>THD_WAIT_META_DATA_LOCK</code></td> <td>Waiting for metadata lock</td> </tr><tr> <td><code>THD_WAIT_TABLE_LOCK</code></td> <td>Waiting for table lock</td> </tr><tr> <td><code>THD_WAIT_USER_LOCK</code></td> <td>Waiting for user lock</td> </tr><tr> <td><code>THD_WAIT_BINLOG</code></td> <td>Waiting for binlog</td> </tr><tr> <td><code>THD_WAIT_GROUP_COMMIT</code></td> <td>Waiting for group commit</td> </tr><tr> <td><code>THD_WAIT_SYNC</code></td> <td>Waiting for fsync</td> </tr></tbody></table>
+  <table summary="Valores de WAIT_TYPE da tabela TP_THREAD_STATE. A primeira coluna é o tipo de espera. A segunda coluna descreve o tipo de espera."><col style="width: 35%"/><col style="width: 65%"/><thead><tr> <th>Tipo de Espera</th> <th>Significado</th> </tr></thead><tbody><tr> <td><code>THD_WAIT_SLEEP</code></td> <td>Esperando por *sleep* (espera)</td> </tr><tr> <td><code>THD_WAIT_DISKIO</code></td> <td>Esperando por Disk IO</td> </tr><tr> <td><code>THD_WAIT_ROW_LOCK</code></td> <td>Esperando por `row lock`</td> </tr><tr> <td><code>THD_WAIT_GLOBAL_LOCK</code></td> <td>Esperando por `global lock`</td> </tr><tr> <td><code>THD_WAIT_META_DATA_LOCK</code></td> <td>Esperando por `metadata lock`</td> </tr><tr> <td><code>THD_WAIT_TABLE_LOCK</code></td> <td>Esperando por `table lock`</td> </tr><tr> <td><code>THD_WAIT_USER_LOCK</code></td> <td>Esperando por `user lock`</td> </tr><tr> <td><code>THD_WAIT_BINLOG</code></td> <td>Esperando por `binlog`</td> </tr><tr> <td><code>THD_WAIT_GROUP_COMMIT</code></td> <td>Esperando por `group commit`</td> </tr><tr> <td><code>THD_WAIT_SYNC</code></td> <td>Esperando por `fsync`</td> </tr> </tbody></table>

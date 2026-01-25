@@ -1,5 +1,5 @@
-## 27.10 MySQL Python API
+## 27.10 API MySQL para Python
 
-`MySQLdb` is a third-party driver that provides MySQL support for Python, compliant with the Python DB API version 2.0. It can be found at <http://sourceforge.net/projects/mysql-python/>.
+O `MySQLdb` é um *driver* de terceiros que fornece suporte MySQL para Python, compatível com a Python DB API versão 2.0. Ele pode ser encontrado em <http://sourceforge.net/projects/mysql-python/>.
 
-The new MySQL Connector/Python component provides an interface to the same Python API, and is built into the MySQL Server and supported by Oracle. See [MySQL Connector/Python Developer Guide](/doc/connector-python/en/) for details on the Connector, as well as coding guidelines for Python applications and sample Python code.
+O novo componente MySQL Connector/Python fornece uma interface para a mesma Python API e está integrado ao MySQL Server e é suportado pela Oracle. Consulte o [Guia do Desenvolvedor do MySQL Connector/Python](/doc/connector-python/en/) para obter detalhes sobre o Connector, bem como diretrizes de codificação para aplicações Python e código de exemplo Python.

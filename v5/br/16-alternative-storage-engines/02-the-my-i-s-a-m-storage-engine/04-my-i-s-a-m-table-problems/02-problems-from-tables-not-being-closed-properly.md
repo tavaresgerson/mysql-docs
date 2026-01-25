@@ -1,32 +1,32 @@
-#### 15.2.4.2 Problems from Tables Not Being Closed Properly
+#### 15.2.4.2 Problemas Causados por Tabelas Não Fechadas Corretamente
 
-Each `MyISAM` index file (`.MYI` file) has a counter in the header that can be used to check whether a table has been closed properly. If you get the following warning from `CHECK TABLE` or **myisamchk**, it means that this counter has gone out of sync:
+Cada arquivo de Index `MyISAM` (arquivo `.MYI`) possui um counter no header que pode ser usado para verificar se uma table foi fechada corretamente. Se você receber o seguinte aviso do `CHECK TABLE` ou do **myisamchk**, isso significa que este counter ficou dessincronizado:
 
 ```sql
 clients are using or haven't closed the table properly
 ```
 
-This warning does not necessarily mean that the table is corrupted, but you should at least check the table.
+Este aviso não significa necessariamente que a table esteja corrompida, mas você deve, pelo menos, verificar a table.
 
-The counter works as follows:
+O counter funciona da seguinte forma:
 
-* The first time a table is updated in MySQL, a counter in the header of the index files is incremented.
+* Na primeira vez que uma table é atualizada no MySQL, um counter no header dos Index files é incrementado.
 
-* The counter is not changed during further updates.
-* When the last instance of a table is closed (because a `FLUSH TABLES` operation was performed or because there is no room in the table cache), the counter is decremented if the table has been updated at any point.
+* O counter não é alterado durante atualizações subsequentes.
+* Quando a última instância de uma table é fechada (porque uma operação `FLUSH TABLES` foi executada ou porque não há espaço no cache da table), o counter é decrementado se a table tiver sido atualizada em algum momento.
 
-* When you repair the table or check the table and it is found to be okay, the counter is reset to zero.
+* Quando você realiza o repair da table ou o check da table e ela é considerada OK, o counter é zerado.
 
-* To avoid problems with interaction with other processes that might check the table, the counter is not decremented on close if it was zero.
+* Para evitar problemas de interação com outros processos que possam verificar a table, o counter não é decrementado ao fechar se ele já estava zero.
 
-In other words, the counter can become incorrect only under these conditions:
+Em outras palavras, o counter pode se tornar incorreto apenas sob estas condições:
 
-* A `MyISAM` table is copied without first issuing `LOCK TABLES` and `FLUSH TABLES`.
+* Uma table `MyISAM` é copiada sem antes emitir `LOCK TABLES` e `FLUSH TABLES`.
 
-* MySQL has crashed between an update and the final close. (The table may still be okay because MySQL always issues writes for everything between each statement.)
+* O MySQL travou (crashed) entre uma atualização e o fechamento final. (A table pode ainda estar OK porque o MySQL sempre emite writes para tudo entre cada statement.)
 
-* A table was modified by **myisamchk --recover** or **myisamchk --update-state** at the same time that it was in use by **mysqld**.
+* Uma table foi modificada por **myisamchk --recover** ou **myisamchk --update-state** ao mesmo tempo em que estava em uso pelo **mysqld**.
 
-* Multiple **mysqld** servers are using the table and one server performed a `REPAIR TABLE` or `CHECK TABLE` on the table while it was in use by another server. In this setup, it is safe to use `CHECK TABLE`, although you might get the warning from other servers. However, `REPAIR TABLE` should be avoided because when one server replaces the data file with a new one, this is not known to the other servers.
+* Múltiplos servers **mysqld** estão usando a table, e um server executou um `REPAIR TABLE` ou `CHECK TABLE` na table enquanto ela estava em uso por outro server. Nesta configuração, é seguro usar `CHECK TABLE`, embora você possa receber o aviso de outros servers. No entanto, `REPAIR TABLE` deve ser evitado, porque quando um server substitui o data file por um novo, isso não é do conhecimento dos outros servers.
 
-  In general, it is a bad idea to share a data directory among multiple servers. See Section 5.7, “Running Multiple MySQL Instances on One Machine”, for additional discussion.
+  Em geral, é uma má ideia compartilhar um data directory entre múltiplos servers. Consulte a Seção 5.7, “Running Multiple MySQL Instances on One Machine”, para discussão adicional.

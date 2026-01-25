@@ -1,6 +1,6 @@
-### 12.4.1 Operator Precedence
+### 12.4.1 Precedência de Operadores
 
-Operator precedences are shown in the following list, from highest precedence to the lowest. Operators that are shown together on a line have the same precedence.
+As precedências de operadores são mostradas na lista a seguir, da precedência mais alta para a mais baixa. Operadores que são mostrados juntos em uma linha têm a mesma precedência.
 
 ```sql
 INTERVAL
@@ -22,19 +22,19 @@ OR, ||
 = (assignment), :=
 ```
 
-The precedence of `=` depends on whether it is used as a comparison operator (`=`) or as an assignment operator (`=`). When used as a comparison operator, it has the same precedence as `<=>`, `>=`, `>`, `<=`, `<`, `<>`, `!=`, `IS`, `LIKE`, `REGEXP`, and `IN()`. When used as an assignment operator, it has the same precedence as `:=`. Section 13.7.4.1, “SET Syntax for Variable Assignment”, and Section 9.4, “User-Defined Variables”, explain how MySQL determines which interpretation of `=` should apply.
+A precedência de `=` depende se ele é usado como um comparison operator (`=`) ou como um assignment operator (`=`). Quando usado como um comparison operator, ele tem a mesma precedência que `<=>`, `>=`, `>`, `<=`, `<`, `<>`, `!=`, `IS`, `LIKE`, `REGEXP` e `IN()`. Quando usado como um assignment operator, ele tem a mesma precedência que `:=`. A Seção 13.7.4.1, “SET Syntax for Variable Assignment”, e a Seção 9.4, “User-Defined Variables”, explicam como o MySQL determina qual interpretação de `=` deve ser aplicada.
 
-For operators that occur at the same precedence level within an expression, evaluation proceeds left to right, with the exception that assignments evaluate right to left.
+Para operadores que ocorrem no mesmo nível de precedência dentro de uma expressão, a avaliação prossegue da esquerda para a direita, com a exceção de que as atribuições avaliam da direita para a esquerda.
 
-The precedence and meaning of some operators depends on the SQL mode:
+A precedência e o significado de alguns operadores dependem do SQL mode:
 
-* By default, `||` is a logical `OR` operator. With `PIPES_AS_CONCAT` enabled, `||` is string concatenation, with a precedence between `^` and the unary operators.
+* Por padrão, `||` é um operador `OR` lógico. Com `PIPES_AS_CONCAT` habilitado, `||` é uma concatenação de strings, com uma precedência entre `^` e os unary operators.
 
-* By default, `!` has a higher precedence than `NOT`. With `HIGH_NOT_PRECEDENCE` enabled, `!` and `NOT` have the same precedence.
+* Por padrão, `!` tem uma precedência maior que `NOT`. Com `HIGH_NOT_PRECEDENCE` habilitado, `!` e `NOT` têm a mesma precedência.
 
-See Section 5.1.10, “Server SQL Modes”.
+Veja a Seção 5.1.10, “Server SQL Modes”.
 
-The precedence of operators determines the order of evaluation of terms in an expression. To override this order and group terms explicitly, use parentheses. For example:
+A precedência dos operadores determina a ordem de avaliação dos termos em uma expressão. Para anular esta ordem e agrupar termos explicitamente, utilize parênteses. Por exemplo:
 
 ```sql
 mysql> SELECT 1+2*3;

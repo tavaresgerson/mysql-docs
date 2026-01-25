@@ -1,10 +1,10 @@
-#### 13.7.5.7 SHOW CREATE EVENT Statement
+#### 13.7.5.7 Instrução SHOW CREATE EVENT
 
 ```sql
 SHOW CREATE EVENT event_name
 ```
 
-This statement displays the [`CREATE EVENT`](create-event.html "13.1.12 CREATE EVENT Statement") statement needed to re-create a given event. It requires the [`EVENT`](privileges-provided.html#priv_event) privilege for the database from which the event is to be shown. For example (using the same event `e_daily` defined and then altered in [Section 13.7.5.18, “SHOW EVENTS Statement”](show-events.html "13.7.5.18 SHOW EVENTS Statement")):
+Esta instrução exibe a instrução [`CREATE EVENT`](create-event.html "13.1.12 CREATE EVENT Statement") necessária para recriar um determinado Event. Ela requer o `privilege` [`EVENT`](privileges-provided.html#priv_event) para o Database do qual o Event deve ser mostrado. Por exemplo (usando o mesmo Event `e_daily` definido e depois alterado na [Seção 13.7.5.18, “SHOW EVENTS Statement”](show-events.html "13.7.5.18 SHOW EVENTS Statement")):
 
 ```sql
 mysql> SHOW CREATE EVENT myschema.e_daily\G
@@ -33,6 +33,6 @@ collation_connection: utf8_general_ci
   Database Collation: latin1_swedish_ci
 ```
 
-`character_set_client` is the session value of the [`character_set_client`](server-system-variables.html#sysvar_character_set_client) system variable when the event was created. `collation_connection` is the session value of the [`collation_connection`](server-system-variables.html#sysvar_collation_connection) system variable when the event was created. `Database Collation` is the collation of the database with which the event is associated.
+`character_set_client` é o valor da `session` da `system variable` [`character_set_client`](server-system-variables.html#sysvar_character_set_client) quando o Event foi criado. `collation_connection` é o valor da `session` da `system variable` [`collation_connection`](server-system-variables.html#sysvar_collation_connection) quando o Event foi criado. `Database Collation` é a `collation` do Database ao qual o Event está associado.
 
-The output reflects the current status of the event (`ENABLE`) rather than the status with which it was created.
+A saída reflete o status atual do Event (`ENABLE`) em vez do status com o qual ele foi criado.

@@ -1,14 +1,14 @@
-### 12.8.3 Character Set and Collation of Function Results
+### 12.8.3 Character Set e Collation de Resultados de Função
 
-MySQL has many operators and functions that return a string. This section answers the question: What is the character set and collation of such a string?
+O MySQL possui muitos operadores e funções que retornam uma string. Esta seção responde à pergunta: Qual é o Character Set e a Collation de tal string?
 
-For simple functions that take string input and return a string result as output, the output's character set and collation are the same as those of the principal input value. For example, `UPPER(X)` returns a string with the same character string and collation as *`X`*. The same applies for `INSTR()`, `LCASE()`, `LOWER()`, `LTRIM()`, `MID()`, `REPEAT()`, `REPLACE()`, `REVERSE()`, `RIGHT()`, `RPAD()`, `RTRIM()`, `SOUNDEX()`, `SUBSTRING()`, `TRIM()`, `UCASE()`, and `UPPER()`.
+Para funções simples que aceitam uma string como input e retornam um resultado string como output, o Character Set e a Collation do output são os mesmos do valor de input principal. Por exemplo, `UPPER(X)` retorna uma string com o mesmo Character Set e Collation que *`X`*. O mesmo se aplica a `INSTR()`, `LCASE()`, `LOWER()`, `LTRIM()`, `MID()`, `REPEAT()`, `REPLACE()`, `REVERSE()`, `RIGHT()`, `RPAD()`, `RTRIM()`, `SOUNDEX()`, `SUBSTRING()`, `TRIM()`, `UCASE()` e `UPPER()`.
 
 Note
 
-The `REPLACE()` function, unlike all other functions, always ignores the collation of the string input and performs a case-sensitive comparison.
+A função `REPLACE()`, diferentemente de todas as outras funções, sempre ignora a Collation da string de input e executa uma comparação case-sensitive.
 
-If a string input or function result is a binary string, the string has the `binary` character set and collation. This can be checked by using the `CHARSET()` and `COLLATION()` functions, both of which return `binary` for a binary string argument:
+Se um input string ou resultado de função for uma string Binary, a string possui o Character Set e Collation `binary`. Isso pode ser verificado usando as funções `CHARSET()` e `COLLATION()`, ambas retornando `binary` para um argumento string Binary:
 
 ```sql
 mysql> SELECT CHARSET(BINARY 'a'), COLLATION(BINARY 'a');
@@ -19,23 +19,23 @@ mysql> SELECT CHARSET(BINARY 'a'), COLLATION(BINARY 'a');
 +---------------------+-----------------------+
 ```
 
-For operations that combine multiple string inputs and return a single string output, the “aggregation rules” of standard SQL apply for determining the collation of the result:
+Para operações que combinam múltiplos inputs string e retornam um único output string, as “regras de agregação” do SQL padrão se aplicam para determinar a Collation do resultado:
 
-* If an explicit `COLLATE Y` occurs, use *`Y`*.
+* Se ocorrer um `COLLATE Y` explícito, use *`Y`*.
 
-* If explicit `COLLATE Y` and `COLLATE Z` occur, raise an error.
+* Se ocorrerem `COLLATE Y` e `COLLATE Z` explícitos, gere um erro.
 
-* Otherwise, if all collations are *`Y`*, use *`Y`*.
+* Caso contrário, se todas as Collations forem *`Y`*, use *`Y`*.
 
-* Otherwise, the result has no collation.
+* Caso contrário, o resultado não possui Collation.
 
-For example, with `CASE ... WHEN a THEN b WHEN b THEN c COLLATE X END`, the resulting collation is *`X`*. The same applies for `UNION`, `||`, `CONCAT()`, `ELT()`, `GREATEST()`, `IF()`, and `LEAST()`.
+Por exemplo, com `CASE ... WHEN a THEN b WHEN b THEN c COLLATE X END`, a Collation resultante é *`X`*. O mesmo se aplica a `UNION`, `||`, `CONCAT()`, `ELT()`, `GREATEST()`, `IF()` e `LEAST()`.
 
-For operations that convert to character data, the character set and collation of the strings that result from the operations are defined by the `character_set_connection` and `collation_connection` system variables that determine the default connection character set and collation (see Section 10.4, “Connection Character Sets and Collations”). This applies only to `CAST()`, `CONV()`, `FORMAT()`, `HEX()`, and `SPACE()`.
+Para operações que convertem para dados de caractere, o Character Set e a Collation das strings resultantes das operações são definidos pelas variáveis de sistema `character_set_connection` e `collation_connection`, que determinam o Character Set e a Collation de conexão padrão (consulte a Seção 10.4, “Connection Character Sets and Collations”). Isso se aplica somente a `CAST()`, `CONV()`, `FORMAT()`, `HEX()` e `SPACE()`.
 
-As of MySQL 5.7.19, an exception to the preceding principle occurs for expressions for virtual generated columns. In such expressions, the table character set is used for `CONV()` or `HEX()` results, regardless of connection character set.
+A partir do MySQL 5.7.19, ocorre uma exceção ao princípio anterior para expressões em colunas geradas virtuais. Nessas expressões, o Character Set da tabela é usado para resultados de `CONV()` ou `HEX()`, independentemente do Character Set de conexão.
 
-If there is any question about the character set or collation of the result returned by a string function, use the `CHARSET()` or `COLLATION()` function to find out:
+Se houver qualquer dúvida sobre o Character Set ou a Collation do resultado retornado por uma função de string, use a função `CHARSET()` ou `COLLATION()` para descobrir:
 
 ```sql
 mysql> SELECT USER(), CHARSET(USER()), COLLATION(USER());

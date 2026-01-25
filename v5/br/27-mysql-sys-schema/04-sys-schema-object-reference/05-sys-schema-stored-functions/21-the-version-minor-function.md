@@ -1,16 +1,16 @@
-#### 26.4.5.21 The version_minor() Function
+#### 26.4.5.21 A Função version_minor()
 
-This function returns the minor version of the MySQL server.
+Esta função retorna a versão minor do MySQL server.
 
-##### Parameters
+##### Parâmetros
 
-None.
+Nenhum.
 
-##### Return Value
+##### Valor de Retorno
 
-A `TINYINT UNSIGNED` value.
+Um valor `TINYINT UNSIGNED`.
 
-##### Example
+##### Exemplo
 
 ```sql
 mysql> SELECT VERSION(), sys.version_minor();

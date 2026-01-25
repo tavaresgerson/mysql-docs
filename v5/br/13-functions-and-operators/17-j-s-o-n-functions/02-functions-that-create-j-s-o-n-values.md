@@ -1,10 +1,10 @@
-### 12.17.2 Functions That Create JSON Values
+### 12.17.2 Funções que Criam Valores JSON
 
-The functions listed in this section compose JSON values from component elements.
+As funções listadas nesta seção compõem valores JSON a partir de elementos componentes.
 
 * [`JSON_ARRAY([val[, val] ...])`](json-creation-functions.html#function_json-array)
 
-  Evaluates a (possibly empty) list of values and returns a JSON array containing those values.
+  Avalia uma lista de valores (possivelmente vazia) e retorna um JSON array contendo esses valores.
 
   ```sql
   mysql> SELECT JSON_ARRAY(1, "abc", NULL, TRUE, CURTIME());
@@ -17,7 +17,7 @@ The functions listed in this section compose JSON values from component elements
 
 * [`JSON_OBJECT([key, val[, key, val] ...])`](json-creation-functions.html#function_json-object)
 
-  Evaluates a (possibly empty) list of key-value pairs and returns a JSON object containing those pairs. An error occurs if any key name is `NULL` or the number of arguments is odd.
+  Avalia uma lista de pares key-value (possivelmente vazia) e retorna um JSON object contendo esses pares. Ocorre um erro se qualquer nome de key for `NULL` ou se o número de argumentos for ímpar.
 
   ```sql
   mysql> SELECT JSON_OBJECT('id', 87, 'name', 'carrot');
@@ -30,11 +30,11 @@ The functions listed in this section compose JSON values from component elements
 
 * `JSON_QUOTE(string)`
 
-  Quotes a string as a JSON value by wrapping it with double quote characters and escaping interior quote and other characters, then returning the result as a `utf8mb4` string. Returns `NULL` if the argument is `NULL`.
+  Coloca aspas em uma string como um valor JSON, envolvendo-a com caracteres de aspas duplas e escapando aspas internas e outros caracteres, e então retorna o resultado como uma string `utf8mb4`. Retorna `NULL` se o argumento for `NULL`.
 
-  This function is typically used to produce a valid JSON string literal for inclusion within a JSON document.
+  Esta função é tipicamente usada para produzir um JSON string literal válido para inclusão em um documento JSON.
 
-  Certain special characters are escaped with backslashes per the escape sequences shown in Table 12.23, “JSON_UNQUOTE() Special Character Escape Sequences” Special Character Escape Sequences").
+  Certos caracteres especiais são escapados com barras invertidas (backslashes) conforme as sequências de escape mostradas na Tabela 12.23, “JSON_UNQUOTE() Special Character Escape Sequences” (Sequências de Escape de Caracteres Especiais).
 
   ```sql
   mysql> SELECT JSON_QUOTE('null'), JSON_QUOTE('"null"');
@@ -51,6 +51,6 @@ The functions listed in this section compose JSON values from component elements
   +-------------------------+
   ```
 
-You can also obtain JSON values by casting values of other types to the `JSON` type using `CAST(value AS JSON)`; see Converting between JSON and non-JSON values, for more information.
+Você também pode obter valores JSON realizando o *casting* (conversão de tipo) de valores de outros tipos para o tipo `JSON` usando `CAST(value AS JSON)`; consulte Converting between JSON and non-JSON values para mais informações.
 
-Two aggregate functions generating JSON values are available (MySQL 5.7.22 and later). `JSON_ARRAYAGG()` returns a result set as a single JSON array, and `JSON_OBJECTAGG()` returns a result set as a single JSON object. For more information, see Section 12.19, “Aggregate Functions”.
+Duas funções de agregação que geram valores JSON estão disponíveis (MySQL 5.7.22 e posterior). `JSON_ARRAYAGG()` retorna um result set como um único JSON array, e `JSON_OBJECTAGG()` retorna um result set como um único JSON object. Para mais informações, consulte a Seção 12.19, “Aggregate Functions”.

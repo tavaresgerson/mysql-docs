@@ -1,8 +1,8 @@
-### 12.21.5 Precision Math Examples
+### 12.21.5 Exemplos de Matemática de Precisão
 
-This section provides some examples that show precision math query results in MySQL. These examples demonstrate the principles described in Section 12.21.3, “Expression Handling”, and Section 12.21.4, “Rounding Behavior”.
+Esta seção fornece alguns exemplos que mostram resultados de Querys de matemática de precisão no MySQL. Estes exemplos demonstram os princípios descritos na Seção 12.21.3, “Tratamento de Expressões”, e na Seção 12.21.4, “Comportamento de Arredondamento”.
 
-**Example 1**. Numbers are used with their exact value as given when possible:
+**Exemplo 1**. Os números são usados com seu valor exato, conforme fornecido, sempre que possível:
 
 ```sql
 mysql> SELECT (.1 + .2) = .3;
@@ -13,7 +13,7 @@ mysql> SELECT (.1 + .2) = .3;
 +----------------+
 ```
 
-For floating-point values, results are inexact:
+Para valores de ponto flutuante, os resultados são inexatos:
 
 ```sql
 mysql> SELECT (.1E0 + .2E0) = .3E0;
@@ -24,7 +24,7 @@ mysql> SELECT (.1E0 + .2E0) = .3E0;
 +----------------------+
 ```
 
-Another way to see the difference in exact and approximate value handling is to add a small number to a sum many times. Consider the following stored procedure, which adds `.0001` to a variable 1,000 times.
+Outra forma de ver a diferença no tratamento de valores exatos e aproximados é adicionar um número pequeno a uma soma várias vezes. Considere o seguinte stored procedure, que adiciona `.0001` a uma variável 1.000 vezes.
 
 ```sql
 CREATE PROCEDURE p ()
@@ -41,7 +41,7 @@ BEGIN
 END;
 ```
 
-The sum for both `d` and `f` logically should be 1, but that is true only for the decimal calculation. The floating-point calculation introduces small errors:
+A soma para ambos `d` e `f` logicamente deveria ser 1, mas isso é verdadeiro apenas para o cálculo decimal. O cálculo de ponto flutuante introduz pequenos erros:
 
 ```sql
 +--------+------------------+
@@ -51,9 +51,7 @@ The sum for both `d` and `f` logically should be 1, but that is true only for th
 +--------+------------------+
 ```
 
-**Example 2**. Multiplication is performed with the scale required by standard SQL. That is, for two numbers *`X1`* and *`X2`* that have scale *`S1`* and *`S2`*, the scale of the result is `S1
-
-+ S2`:
+**Exemplo 2**. A multiplicação é realizada com a escala exigida pelo SQL padrão. Ou seja, para dois números *`X1`* e *`X2`* que possuem escala *`S1`* e *`S2`*, a escala do resultado é `S1 + S2`:
 
 ```sql
 mysql> SELECT .01 * .01;
@@ -64,11 +62,11 @@ mysql> SELECT .01 * .01;
 +-----------+
 ```
 
-**Example 3**. Rounding behavior for exact-value numbers is well-defined:
+**Exemplo 3**. O comportamento de arredondamento para números de valor exato é bem definido:
 
-Rounding behavior (for example, with the `ROUND()` function) is independent of the implementation of the underlying C library, which means that results are consistent from platform to platform.
+O comportamento de arredondamento (por exemplo, com a função `ROUND()`) é independente da implementação da biblioteca C subjacente, o que significa que os resultados são consistentes de plataforma para plataforma.
 
-* Rounding for exact-value columns (`DECIMAL` - DECIMAL, NUMERIC") and integer) and exact-valued numbers uses the “round half away from zero” rule. A value with a fractional part of .5 or greater is rounded away from zero to the nearest integer, as shown here:
+* O arredondamento para colunas de valor exato (`DECIMAL` - DECIMAL, NUMERIC") e integer) e números de valor exato usa a regra "arredondar metade para longe de zero" (round half away from zero). Um valor com uma parte fracionária de .5 ou maior é arredondado para longe de zero para o inteiro mais próximo, conforme mostrado aqui:
 
   ```sql
   mysql> SELECT ROUND(2.5), ROUND(-2.5);
@@ -79,7 +77,7 @@ Rounding behavior (for example, with the `ROUND()` function) is independent of t
   +------------+-------------+
   ```
 
-* Rounding for floating-point values uses the C library, which on many systems uses the “round to nearest even” rule. A value with a fractional part exactly half way between two integers is rounded to the nearest even integer:
+* O arredondamento para valores de ponto flutuante usa a biblioteca C, que em muitos sistemas utiliza a regra "arredondar para o par mais próximo" (round to nearest even). Um valor com uma parte fracionária exatamente na metade do caminho entre dois inteiros é arredondado para o inteiro par mais próximo:
 
   ```sql
   mysql> SELECT ROUND(2.5E0), ROUND(-2.5E0);
@@ -90,9 +88,9 @@ Rounding behavior (for example, with the `ROUND()` function) is independent of t
   +--------------+---------------+
   ```
 
-**Example 4**. In strict mode, inserting a value that is out of range for a column causes an error, rather than truncation to a legal value.
+**Exemplo 4**. Em modo estrito (strict mode), a inserção de um valor que está fora do intervalo (out of range) para uma coluna causa um erro, em vez de truncamento para um valor legal.
 
-When MySQL is not running in strict mode, truncation to a legal value occurs:
+Quando o MySQL não está rodando em modo estrito, ocorre o truncamento para um valor legal:
 
 ```sql
 mysql> SET sql_mode='';
@@ -113,7 +111,7 @@ mysql> SELECT i FROM t;
 1 row in set (0.00 sec)
 ```
 
-However, an error occurs if strict mode is in effect:
+No entanto, um erro ocorre se o strict mode estiver em vigor:
 
 ```sql
 mysql> SET sql_mode='STRICT_ALL_TABLES';
@@ -129,9 +127,9 @@ mysql> SELECT i FROM t;
 Empty set (0.00 sec)
 ```
 
-**Example 5**: In strict mode and with `ERROR_FOR_DIVISION_BY_ZERO` set, division by zero causes an error, not a result of `NULL`.
+**Exemplo 5**: Em modo estrito (strict mode) e com `ERROR_FOR_DIVISION_BY_ZERO` configurado, a divisão por zero causa um erro, e não um resultado `NULL`.
 
-In nonstrict mode, division by zero has a result of `NULL`:
+Em modo não estrito (nonstrict mode), a divisão por zero resulta em `NULL`:
 
 ```sql
 mysql> SET sql_mode='';
@@ -152,7 +150,7 @@ mysql> SELECT i FROM t;
 1 row in set (0.03 sec)
 ```
 
-However, division by zero is an error if the proper SQL modes are in effect:
+No entanto, a divisão por zero é um erro se os modos SQL apropriados estiverem em vigor:
 
 ```sql
 mysql> SET sql_mode='STRICT_ALL_TABLES,ERROR_FOR_DIVISION_BY_ZERO';
@@ -168,9 +166,9 @@ mysql> SELECT i FROM t;
 Empty set (0.01 sec)
 ```
 
-**Example 6**. Exact-value literals are evaluated as exact values.
+**Exemplo 6**. Literais de valor exato são avaliados como valores exatos.
 
-Approximate-value literals are evaluated using floating point, but exact-value literals are handled as `DECIMAL` - DECIMAL, NUMERIC"):
+Literais de valor aproximado são avaliados usando ponto flutuante, mas literais de valor exato são tratados como `DECIMAL` - DECIMAL, NUMERIC":
 
 ```sql
 mysql> CREATE TABLE t SELECT 2.5 AS a, 25E-1 AS b;
@@ -187,9 +185,9 @@ mysql> DESCRIBE t;
 2 rows in set (0.01 sec)
 ```
 
-**Example 7**. If the argument to an aggregate function is an exact numeric type, the result is also an exact numeric type, with a scale at least that of the argument.
+**Exemplo 7**. Se o argumento para uma função agregada for de um tipo numérico exato, o resultado também é de um tipo numérico exato, com uma escala pelo menos igual à do argumento.
 
-Consider these statements:
+Considere estas instruções:
 
 ```sql
 mysql> CREATE TABLE t (i INT, d DECIMAL, f FLOAT);
@@ -197,7 +195,7 @@ mysql> INSERT INTO t VALUES(1,1,1);
 mysql> CREATE TABLE y SELECT AVG(i), AVG(d), AVG(f) FROM t;
 ```
 
-The result is a double only for the floating-point argument. For exact type arguments, the result is also an exact type:
+O resultado é um double apenas para o argumento de ponto flutuante. Para argumentos de tipo exato, o resultado também é de um tipo exato:
 
 ```sql
 mysql> DESCRIBE y;
@@ -210,4 +208,4 @@ mysql> DESCRIBE y;
 +--------+---------------+------+-----+---------+-------+
 ```
 
-The result is a double only for the floating-point argument. For exact type arguments, the result is also an exact type.
+O resultado é um double apenas para o argumento de ponto flutuante. Para argumentos de tipo exato, o resultado também é de um tipo exato.

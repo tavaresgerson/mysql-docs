@@ -1,25 +1,25 @@
-#### 21.4.3.4 Defining Computers in an NDB Cluster
+#### 21.4.3.4 Definindo Computadores em um NDB Cluster
 
-The `[computer]` section has no real significance other than serving as a way to avoid the need of defining host names for each node in the system. All parameters mentioned here are required.
+A seção `[computer]` não tem real importância além de servir como uma forma de evitar a necessidade de definir nomes de host (host names) para cada node no sistema. Todos os parâmetros mencionados aqui são obrigatórios.
 
 * `Id`
 
-  <table frame="box" rules="all" summary="Id computer configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>string</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Informações sobre tipo e valor do parâmetro de configuração Id computer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>string</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Tipo de Restart</th> <td><p> <span><strong>Restart Inicial do Sistema: </strong></span>Requer o desligamento completo do cluster, limpando e restaurando o sistema de arquivos do cluster a partir de um backup, e então reiniciando o cluster. (NDB 7.5.0) </p></td> </tr> </tbody></table>
 
-  This is a unique identifier, used to refer to the host computer elsewhere in the configuration file.
+  Este é um identificador exclusivo, usado para se referir ao computador host em outras partes do arquivo de configuração.
 
-  Important
+  Importante
 
-  The computer ID is *not* the same as the node ID used for a management, API, or data node. Unlike the case with node IDs, you cannot use `NodeId` in place of `Id` in the `[computer]` section of the `config.ini` file.
+  O ID do computador *não* é o mesmo que o Node ID usado para um node de gerência (management), API ou de dados (data node). Ao contrário do que acontece com os Node IDs, você não pode usar `NodeId` no lugar de `Id` na seção `[computer]` do arquivo `config.ini`.
 
 * `HostName`
 
-  <table frame="box" rules="all" summary="HostName computer configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name or IP address</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Informações sobre tipo e valor do parâmetro de configuração HostName computer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Tipo de Restart</th> <td><p> <span><strong>Node Restart: </strong></span>Requer um rolling restart (restart progressivo) do cluster. (NDB 7.5.0) </p></td> </tr> </tbody></table>
 
-  This is the computer's hostname or IP address.
+  Este é o hostname ou o endereço IP do computador.
 
-**Restart types.** Information about the restart types used by the parameter descriptions in this section is shown in the following table:
+**Tipos de Restart.** As informações sobre os tipos de restart utilizados nas descrições de parâmetros desta seção são apresentadas na tabela a seguir:
 
-**Table 21.7 NDB Cluster restart types**
+**Tabela 21.7 Tipos de restart do NDB Cluster**
 
-<table><col style="width: 10%"/><col style="width: 30%"/><col style="width: 60%"/><thead><tr> <th>Symbol</th> <th>Restart Type</th> <th>Description</th> </tr></thead><tbody><tr> <th>N</th> <td>Node</td> <td>The parameter can be updated using a rolling restart (see Section 21.6.5, “Performing a Rolling Restart of an NDB Cluster”)</td> </tr><tr> <th>S</th> <td>System</td> <td>All cluster nodes must be shut down completely, then restarted, to effect a change in this parameter</td> </tr><tr> <th>I</th> <td>Initial</td> <td>Data nodes must be restarted using the <code>--initial</code> option</td> </tr></tbody></table>
+<table><col style="width: 10%"/><col style="width: 30%"/><col style="width: 60%"/><thead><tr> <th>Símbolo</th> <th>Tipo de Restart</th> <th>Descrição</th> </tr></thead><tbody><tr> <th>N</th> <td>Node</td> <td>O parâmetro pode ser atualizado usando um rolling restart (restart progressivo) (consulte a Seção 21.6.5, “Executando um Rolling Restart de um NDB Cluster”)</td> </tr><tr> <th>S</th> <td>Sistema</td> <td>Todos os nodes do cluster devem ser completamente desligados e, em seguida, reiniciados para que uma alteração neste parâmetro entre em vigor</td> </tr><tr> <th>I</th> <td>Inicial</td> <td>Os data nodes devem ser reiniciados usando a opção <code>--initial</code></td> </tr></tbody></table>

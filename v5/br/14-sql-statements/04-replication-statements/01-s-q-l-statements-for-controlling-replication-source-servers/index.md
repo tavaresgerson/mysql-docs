@@ -1,16 +1,16 @@
-### 13.4.1 SQL Statements for Controlling Replication Source Servers
+### 13.4.1 Instruções SQL para Controlar Servidores Source de Replicação
 
-[13.4.1.1 PURGE BINARY LOGS Statement](purge-binary-logs.html)
+[13.4.1.1 Instrução PURGE BINARY LOGS](purge-binary-logs.html)
 
-[13.4.1.2 RESET MASTER Statement](reset-master.html)
+[13.4.1.2 Instrução RESET MASTER](reset-master.html)
 
-[13.4.1.3 SET sql_log_bin Statement](set-sql-log-bin.html)
+[13.4.1.3 Instrução SET sql_log_bin](set-sql-log-bin.html)
 
-This section discusses statements for managing replication source servers. [Section 13.4.2, “SQL Statements for Controlling Replica Servers”](replication-statements-replica.html "13.4.2 SQL Statements for Controlling Replica Servers"), discusses statements for managing replica servers.
+Esta seção aborda instruções para gerenciar servidores source de replicação. [Seção 13.4.2, “Instruções SQL para Controlar Servidores Replica”](replication-statements-replica.html "13.4.2 Instruções SQL para Controlar Servidores Replica"), aborda instruções para gerenciar servidores replica.
 
-In addition to the statements described here, the following [`SHOW`](show.html "13.7.5 SHOW Statements") statements are used with source servers in replication. For information about these statements, see [Section 13.7.5, “SHOW Statements”](show.html "13.7.5 SHOW Statements").
+Além das instruções descritas aqui, as seguintes instruções [`SHOW`](show.html "13.7.5 Instruções SHOW") são usadas com servidores source em replicação. Para obter informações sobre estas instruções, consulte [Seção 13.7.5, “Instruções SHOW”](show.html "13.7.5 Instruções SHOW").
 
-* [`SHOW BINARY LOGS`](show-binary-logs.html "13.7.5.1 SHOW BINARY LOGS Statement")
-* [`SHOW BINLOG EVENTS`](show-binlog-events.html "13.7.5.2 SHOW BINLOG EVENTS Statement")
-* [`SHOW MASTER STATUS`](show-master-status.html "13.7.5.23 SHOW MASTER STATUS Statement")
-* [`SHOW SLAVE HOSTS`](show-slave-hosts.html "13.7.5.33 SHOW SLAVE HOSTS Statement")
+* [`SHOW BINARY LOGS`](show-binary-logs.html "13.7.5.1 Instrução SHOW BINARY LOGS")
+* [`SHOW BINLOG EVENTS`](show-binlog-events.html "13.7.5.2 Instrução SHOW BINLOG EVENTS")
+* [`SHOW MASTER STATUS`](show-master-status.html "13.7.5.23 Instrução SHOW MASTER STATUS")
+* [`SHOW SLAVE HOSTS`](show-slave-hosts.html "13.7.5.33 Instrução SHOW SLAVE HOSTS")

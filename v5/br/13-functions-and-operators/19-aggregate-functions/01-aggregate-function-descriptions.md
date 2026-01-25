@@ -1,33 +1,33 @@
-### 12.19.1 Aggregate Function Descriptions
+### 12.19.1 Descrições de Funções de Agregação
 
-This section describes aggregate functions that operate on sets of values. They are often used with a `GROUP BY` clause to group values into subsets.
+Esta seção descreve as funções de agregação que operam em conjuntos de valores. Elas são frequentemente usadas com uma cláusula `GROUP BY` para agrupar valores em subconjuntos.
 
-**Table 12.25 Aggregate Functions**
+**Table 12.25 Funções de Agregação**
 
-<table frame="box" rules="all" summary="A reference that lists aggregate functions."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Name</th> <th>Description</th> <th>Introduced</th> </tr></thead><tbody><tr><th><code>AVG()</code></th> <td> Return the average value of the argument </td> <td></td> </tr><tr><th><code>BIT_AND()</code></th> <td> Return bitwise AND </td> <td></td> </tr><tr><th><code>BIT_OR()</code></th> <td> Return bitwise OR </td> <td></td> </tr><tr><th><code>BIT_XOR()</code></th> <td> Return bitwise XOR </td> <td></td> </tr><tr><th><code>COUNT()</code></th> <td> Return a count of the number of rows returned </td> <td></td> </tr><tr><th><code>COUNT(DISTINCT)</code></th> <td> Return the count of a number of different values </td> <td></td> </tr><tr><th><code>GROUP_CONCAT()</code></th> <td> Return a concatenated string </td> <td></td> </tr><tr><th><code>JSON_ARRAYAGG()</code></th> <td> Return result set as a single JSON array </td> <td>5.7.22</td> </tr><tr><th><code>JSON_OBJECTAGG()</code></th> <td> Return result set as a single JSON object </td> <td>5.7.22</td> </tr><tr><th><code>MAX()</code></th> <td> Return the maximum value </td> <td></td> </tr><tr><th><code>MIN()</code></th> <td> Return the minimum value </td> <td></td> </tr><tr><th><code>STD()</code></th> <td> Return the population standard deviation </td> <td></td> </tr><tr><th><code>STDDEV()</code></th> <td> Return the population standard deviation </td> <td></td> </tr><tr><th><code>STDDEV_POP()</code></th> <td> Return the population standard deviation </td> <td></td> </tr><tr><th><code>STDDEV_SAMP()</code></th> <td> Return the sample standard deviation </td> <td></td> </tr><tr><th><code>SUM()</code></th> <td> Return the sum </td> <td></td> </tr><tr><th><code>VAR_POP()</code></th> <td> Return the population standard variance </td> <td></td> </tr><tr><th><code>VAR_SAMP()</code></th> <td> Return the sample variance </td> <td></td> </tr><tr><th><code>VARIANCE()</code></th> <td> Return the population standard variance </td> <td></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista funções de agregação."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Nome</th> <th>Descrição</th> <th>Introduzido</th> </tr></thead><tbody><tr><th><code>AVG()</code></th> <td> Retorna o valor médio do argumento </td> <td></td> </tr><tr><th><code>BIT_AND()</code></th> <td> Retorna AND bit a bit </td> <td></td> </tr><tr><th><code>BIT_OR()</code></th> <td> Retorna OR bit a bit </td> <td></td> </tr><tr><th><code>BIT_XOR()</code></th> <td> Retorna XOR bit a bit </td> <td></td> </tr><tr><th><code>COUNT()</code></th> <td> Retorna uma contagem do número de linhas retornadas </td> <td></td> </tr><tr><th><code>COUNT(DISTINCT)</code></th> <td> Retorna a contagem de um número de valores diferentes </td> <td></td> </tr><tr><th><code>GROUP_CONCAT()</code></th> <td> Retorna uma string concatenada </td> <td></td> </tr><tr><th><code>JSON_ARRAYAGG()</code></th> <td> Retorna o conjunto de resultados como um único array JSON </td> <td>5.7.22</td> </tr><tr><th><code>JSON_OBJECTAGG()</code></th> <td> Retorna o conjunto de resultados como um único objeto JSON </td> <td>5.7.22</td> </tr><tr><th><code>MAX()</code></th> <td> Retorna o valor máximo </td> <td></td> </tr><tr><th><code>MIN()</code></th> <td> Retorna o valor mínimo </td> <td></td> </tr><tr><th><code>STD()</code></th> <td> Retorna o desvio padrão populacional </td> <td></td> </tr><tr><th><code>STDDEV()</code></th> <td> Retorna o desvio padrão populacional </td> <td></td> </tr><tr><th><code>STDDEV_POP()</code></th> <td> Retorna o desvio padrão populacional </td> <td></td> </tr><tr><th><code>STDDEV_SAMP()</code></th> <td> Retorna o desvio padrão da amostra </td> <td></td> </tr><tr><th><code>SUM()</code></th> <td> Retorna a soma </td> <td></td> </tr><tr><th><code>VAR_POP()</code></th> <td> Retorna a variância padrão populacional </td> <td></td> </tr><tr><th><code>VAR_SAMP()</code></th> <td> Retorna a variância da amostra </td> <td></td> </tr><tr><th><code>VARIANCE()</code></th> <td> Retorna a variância padrão populacional </td> <td></td> </tr> </tbody></table>
 
-Unless otherwise stated, aggregate functions ignore `NULL` values.
+A menos que seja indicado de outra forma, as funções de agregação ignoram valores `NULL`.
 
-If you use an aggregate function in a statement containing no `GROUP BY` clause, it is equivalent to grouping on all rows. For more information, see Section 12.19.3, “MySQL Handling of GROUP BY”.
+Se você usar uma função de agregação em uma instrução que não contenha uma cláusula `GROUP BY`, isso é equivalente a agrupar todas as linhas. Para mais informações, consulte a Seção 12.19.3, “Tratamento de GROUP BY no MySQL”.
 
-For numeric arguments, the variance and standard deviation functions return a `DOUBLE` - FLOAT, DOUBLE") value. The `SUM()` and `AVG()` functions return a `DECIMAL` - DECIMAL, NUMERIC") value for exact-value arguments (integer or `DECIMAL` - DECIMAL, NUMERIC")), and a `DOUBLE` - FLOAT, DOUBLE") value for approximate-value arguments (`FLOAT` - FLOAT, DOUBLE") or `DOUBLE` - FLOAT, DOUBLE")).
+Para argumentos numéricos, as funções de variância e desvio padrão retornam um valor `DOUBLE`. As funções `SUM()` e `AVG()` retornam um valor `DECIMAL` para argumentos de valor exato (integer ou `DECIMAL`), e um valor `DOUBLE` para argumentos de valor aproximado (`FLOAT` ou `DOUBLE`).
 
-The `SUM()` and `AVG()` aggregate functions do not work with temporal values. (They convert the values to numbers, losing everything after the first nonnumeric character.) To work around this problem, convert to numeric units, perform the aggregate operation, and convert back to a temporal value. Examples:
+As funções de agregação `SUM()` e `AVG()` não funcionam com valores temporais. (Elas convertem os valores em números, perdendo tudo após o primeiro caractere não numérico.) Para contornar esse problema, converta para unidades numéricas, realize a operação de agregação e converta de volta para um valor temporal. Exemplos:
 
 ```sql
 SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(time_col))) FROM tbl_name;
 SELECT FROM_DAYS(SUM(TO_DAYS(date_col))) FROM tbl_name;
 ```
 
-Functions such as `SUM()` or `AVG()` that expect a numeric argument cast the argument to a number if necessary. For `SET` or `ENUM` values, the cast operation causes the underlying numeric value to be used.
+Funções como `SUM()` ou `AVG()` que esperam um argumento numérico fazem o cast do argumento para um número, se necessário. Para valores `SET` ou `ENUM`, a operação de cast faz com que o valor numérico subjacente seja usado.
 
-The `BIT_AND()`, `BIT_OR()`, and `BIT_XOR()` aggregate functions perform bit operations. They require `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") (64-bit integer) arguments and return `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") values. Arguments of other types are converted to `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") and truncation might occur. For information about a change in MySQL 8.0 that permits bit operations to take binary string type arguments (`BINARY`, `VARBINARY`, and the `BLOB` types), see Section 12.12, “Bit Functions and Operators”.
+As funções de agregação `BIT_AND()`, `BIT_OR()` e `BIT_XOR()` realizam operações de bit. Elas requerem argumentos `BIGINT` (inteiro de 64 bits) e retornam valores `BIGINT`. Argumentos de outros tipos são convertidos para `BIGINT`, e pode ocorrer truncamento. Para obter informações sobre uma alteração no MySQL 8.0 que permite que operações de bit aceitem argumentos do tipo string binária (`BINARY`, `VARBINARY` e os tipos `BLOB`), consulte a Seção 12.12, “Funções e Operadores de Bit”.
 
 * `AVG([DISTINCT] expr)`
 
-  Returns the average value of `expr`. The `DISTINCT` option can be used to return the average of the distinct values of *`expr`*.
+  Retorna o valor médio de *`expr`*. A opção `DISTINCT` pode ser usada para retornar a média dos valores distintos de *`expr`*.
 
-  If there are no matching rows, `AVG()` returns `NULL`.
+  Se não houver linhas correspondentes, `AVG()` retorna `NULL`.
 
   ```sql
   mysql> SELECT student_name, AVG(test_score)
@@ -37,27 +37,27 @@ The `BIT_AND()`, `BIT_OR()`, and `BIT_XOR()` aggregate functions perform bit ope
 
 * `BIT_AND(expr)`
 
-  Returns the bitwise `AND` of all bits in *`expr`*. The calculation is performed with 64-bit (`BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")) precision.
+  Retorna o `AND` bit a bit de todos os bits em *`expr`*. O cálculo é realizado com precisão de 64 bits (`BIGINT`).
 
-  If there are no matching rows, `BIT_AND()` returns a neutral value (all bits set to 1).
+  Se não houver linhas correspondentes, `BIT_AND()` retorna um valor neutro (todos os bits definidos como 1).
 
 * `BIT_OR(expr)`
 
-  Returns the bitwise `OR` of all bits in *`expr`*. The calculation is performed with 64-bit (`BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")) precision.
+  Retorna o `OR` bit a bit de todos os bits em *`expr`*. O cálculo é realizado com precisão de 64 bits (`BIGINT`).
 
-  If there are no matching rows, `BIT_OR()` returns a neutral value (all bits set to 0).
+  Se não houver linhas correspondentes, `BIT_OR()` retorna um valor neutro (todos os bits definidos como 0).
 
 * `BIT_XOR(expr)`
 
-  Returns the bitwise `XOR` of all bits in *`expr`*. The calculation is performed with 64-bit (`BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")) precision.
+  Retorna o `XOR` bit a bit de todos os bits em *`expr`*. O cálculo é realizado com precisão de 64 bits (`BIGINT`).
 
-  If there are no matching rows, `BIT_XOR()` returns a neutral value (all bits set to 0).
+  Se não houver linhas correspondentes, `BIT_XOR()` retorna um valor neutro (todos os bits definidos como 0).
 
 * `COUNT(expr)`
 
-  Returns a count of the number of non-`NULL` values of *`expr`* in the rows retrieved by a `SELECT` statement. The result is a `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") value.
+  Retorna uma contagem do número de valores não-`NULL` de *`expr`* nas linhas recuperadas por uma instrução `SELECT`. O resultado é um valor `BIGINT`.
 
-  If there are no matching rows, `COUNT()` returns `0`.
+  Se não houver linhas correspondentes, `COUNT()` retorna `0`.
 
   ```sql
   mysql> SELECT student.student_name,COUNT(*)
@@ -66,41 +66,41 @@ The `BIT_AND()`, `BIT_OR()`, and `BIT_XOR()` aggregate functions perform bit ope
          GROUP BY student_name;
   ```
 
-  `COUNT(*)` is somewhat different in that it returns a count of the number of rows retrieved, whether or not they contain `NULL` values.
+  `COUNT(*)` é um pouco diferente, pois retorna a contagem do número de linhas recuperadas, independentemente de elas conterem valores `NULL`.
 
-  For transactional storage engines such as `InnoDB`, storing an exact row count is problematic. Multiple transactions may be occurring at the same time, each of which may affect the count.
+  Para storage engines transacionais como o `InnoDB`, armazenar uma contagem exata de linhas é problemático. Múltiplas transações podem estar ocorrendo ao mesmo tempo, e cada uma delas pode afetar a contagem.
 
-  `InnoDB` does not keep an internal count of rows in a table because concurrent transactions might “see” different numbers of rows at the same time. Consequently, `SELECT COUNT(*)` statements only count rows visible to the current transaction.
+  O `InnoDB` não mantém uma contagem interna de linhas em uma tabela porque transações concorrentes podem “ver” diferentes números de linhas ao mesmo tempo. Consequentemente, as instruções `SELECT COUNT(*)` contam apenas as linhas visíveis para a transação atual.
 
-  Prior to MySQL 5.7.18, `InnoDB` processes `SELECT COUNT(*)` statements by scanning the clustered index. As of MySQL 5.7.18, `InnoDB` processes `SELECT COUNT(*)` statements by traversing the smallest available secondary index unless an index or optimizer hint directs the optimizer to use a different index. If a secondary index is not present, the clustered index is scanned.
+  Antes do MySQL 5.7.18, o `InnoDB` processava as instruções `SELECT COUNT(*)` ao escanear o clustered index. A partir do MySQL 5.7.18, o `InnoDB` processa as instruções `SELECT COUNT(*)` ao percorrer o menor secondary index disponível, a menos que uma dica de index ou do optimizer direcione o optimizer a usar um index diferente. Se um secondary index não estiver presente, o clustered index é escaneado.
 
-  Processing `SELECT COUNT(*)` statements takes some time if index records are not entirely in the buffer pool. For a faster count, create a counter table and let your application update it according to the inserts and deletes it does. However, this method may not scale well in situations where thousands of concurrent transactions are initiating updates to the same counter table. If an approximate row count is sufficient, use `SHOW TABLE STATUS`.
+  O processamento de instruções `SELECT COUNT(*)` leva algum tempo se os registros de index não estiverem inteiramente no buffer pool. Para uma contagem mais rápida, crie uma tabela de contador e permita que seu aplicativo a atualize de acordo com as inserções e exclusões que ele realiza. No entanto, este método pode não ser escalável em situações onde milhares de transações concorrentes estão iniciando atualizações na mesma tabela de contador. Se uma contagem aproximada de linhas for suficiente, use `SHOW TABLE STATUS`.
 
-  `InnoDB` handles `SELECT COUNT(*)` and `SELECT COUNT(1)` operations in the same way. There is no performance difference.
+  O `InnoDB` lida com as operações `SELECT COUNT(*)` e `SELECT COUNT(1)` da mesma maneira. Não há diferença de performance.
 
-  For `MyISAM` tables, `COUNT(*)` is optimized to return very quickly if the `SELECT` retrieves from one table, no other columns are retrieved, and there is no `WHERE` clause. For example:
+  Para tabelas `MyISAM`, `COUNT(*)` é otimizado para retornar muito rapidamente se o `SELECT` recuperar dados de uma única tabela, nenhuma outra coluna for recuperada e não houver cláusula `WHERE`. Por exemplo:
 
   ```sql
   mysql> SELECT COUNT(*) FROM student;
   ```
 
-  This optimization only applies to `MyISAM` tables, because an exact row count is stored for this storage engine and can be accessed very quickly. `COUNT(1)` is only subject to the same optimization if the first column is defined as `NOT NULL`.
+  Esta otimização se aplica apenas a tabelas `MyISAM`, porque uma contagem exata de linhas é armazenada para este storage engine e pode ser acessada muito rapidamente. `COUNT(1)` está sujeito à mesma otimização apenas se a primeira coluna for definida como `NOT NULL`.
 
 * `COUNT(DISTINCT expr,[expr...])`
 
-  Returns a count of the number of rows with different non-`NULL` *`expr`* values.
+  Retorna uma contagem do número de linhas com valores *`expr`* não-`NULL` diferentes.
 
-  If there are no matching rows, `COUNT(DISTINCT)` returns `0`.
+  Se não houver linhas correspondentes, `COUNT(DISTINCT)` retorna `0`.
 
   ```sql
   mysql> SELECT COUNT(DISTINCT results) FROM student;
   ```
 
-  In MySQL, you can obtain the number of distinct expression combinations that do not contain `NULL` by giving a list of expressions. In standard SQL, you would have to do a concatenation of all expressions inside `COUNT(DISTINCT ...)`.
+  No MySQL, você pode obter o número de combinações de expressões distintas que não contenham `NULL` fornecendo uma lista de expressões. No SQL padrão, você teria que fazer uma concatenação de todas as expressões dentro de `COUNT(DISTINCT ...)`.
 
 * `GROUP_CONCAT(expr)`
 
-  This function returns a string result with the concatenated non-`NULL` values from a group. It returns `NULL` if there are no non-`NULL` values. The full syntax is as follows:
+  Esta função retorna um resultado string com os valores não-`NULL` concatenados de um grupo. Ela retorna `NULL` se não houver valores não-`NULL`. A sintaxe completa é a seguinte:
 
   ```sql
   GROUP_CONCAT([DISTINCT] expr [,expr ...]
@@ -116,7 +116,7 @@ The `BIT_AND()`, `BIT_OR()`, and `BIT_XOR()` aggregate functions perform bit ope
          GROUP BY student_name;
   ```
 
-  Or:
+  Ou:
 
   ```sql
   mysql> SELECT student_name,
@@ -126,23 +126,23 @@ The `BIT_AND()`, `BIT_OR()`, and `BIT_XOR()` aggregate functions perform bit ope
          GROUP BY student_name;
   ```
 
-  In MySQL, you can get the concatenated values of expression combinations. To eliminate duplicate values, use the `DISTINCT` clause. To sort values in the result, use the `ORDER BY` clause. To sort in reverse order, add the `DESC` (descending) keyword to the name of the column you are sorting by in the `ORDER BY` clause. The default is ascending order; this may be specified explicitly using the `ASC` keyword. The default separator between values in a group is comma (`,`). To specify a separator explicitly, use `SEPARATOR` followed by the string literal value that should be inserted between group values. To eliminate the separator altogether, specify `SEPARATOR ''`.
+  No MySQL, você pode obter os valores concatenados de combinações de expressões. Para eliminar valores duplicados, use a cláusula `DISTINCT`. Para ordenar valores no resultado, use a cláusula `ORDER BY`. Para ordenar em ordem inversa, adicione a palavra-chave `DESC` (decrescente) ao nome da coluna pela qual você está ordenando na cláusula `ORDER BY`. O padrão é ordem ascendente; isso pode ser especificado explicitamente usando a palavra-chave `ASC`. O separador padrão entre valores em um grupo é a vírgula (`,`). Para especificar um separador explicitamente, use `SEPARATOR` seguido pelo valor literal string que deve ser inserido entre os valores do grupo. Para eliminar o separador completamente, especifique `SEPARATOR ''`.
 
-  The result is truncated to the maximum length that is given by the `group_concat_max_len` system variable, which has a default value of 1024. The value can be set higher, although the effective maximum length of the return value is constrained by the value of `max_allowed_packet`. The syntax to change the value of `group_concat_max_len` at runtime is as follows, where *`val`* is an unsigned integer:
+  O resultado é truncado para o comprimento máximo dado pela variável de sistema `group_concat_max_len`, que tem um valor padrão de 1024. O valor pode ser definido mais alto, embora o comprimento máximo efetivo do valor de retorno seja limitado pelo valor de `max_allowed_packet`. A sintaxe para alterar o valor de `group_concat_max_len` em tempo de execução é a seguinte, onde *`val`* é um inteiro sem sinal:
 
   ```sql
   SET [GLOBAL | SESSION] group_concat_max_len = val;
   ```
 
-  The return value is a nonbinary or binary string, depending on whether the arguments are nonbinary or binary strings. The result type is `TEXT` or `BLOB` unless `group_concat_max_len` is less than or equal to 512, in which case the result type is `VARCHAR` or `VARBINARY`.
+  O valor de retorno é uma string não binária ou binária, dependendo se os argumentos são strings não binárias ou binárias. O tipo de resultado é `TEXT` ou `BLOB`, a menos que `group_concat_max_len` seja menor ou igual a 512, caso em que o tipo de resultado é `VARCHAR` ou `VARBINARY`.
 
-  If `GROUP_CONCAT()` is invoked from within the **mysql** client, binary string results display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see Section 4.5.1, “mysql — The MySQL Command-Line Client”.
+  Se `GROUP_CONCAT()` for invocada de dentro do cliente **mysql**, os resultados de string binária são exibidos usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O Cliente de Linha de Comando do MySQL”.
 
-  See also `CONCAT()` and `CONCAT_WS()`: Section 12.8, “String Functions and Operators”.
+  Consulte também `CONCAT()` e `CONCAT_WS()`: Seção 12.8, “Funções e Operadores de String”.
 
 * `JSON_ARRAYAGG(col_or_expr)`
 
-  Aggregates a result set as a single `JSON` array whose elements consist of the rows. The order of elements in this array is undefined. The function acts on a column or an expression that evaluates to a single value. Returns `NULL` if the result contains no rows, or in the event of an error.
+  Agrega um conjunto de resultados como um único array `JSON` cujos elementos consistem nas linhas. A ordem dos elementos neste array é indefinida. A função atua em uma coluna ou em uma expressão que avalia um único valor. Retorna `NULL` se o resultado não contiver linhas ou em caso de erro.
 
   ```sql
   mysql> SELECT o_id, attribute, value FROM t3;
@@ -167,11 +167,11 @@ The `BIT_AND()`, `BIT_OR()`, and `BIT_XOR()` aggregate functions perform bit ope
   2 rows in set (0.00 sec)
   ```
 
-  Added in MySQL 5.7.22.
+  Adicionado no MySQL 5.7.22.
 
 * `JSON_OBJECTAGG(key, value)`
 
-  Takes two column names or expressions as arguments, the first of these being used as a key and the second as a value, and returns a JSON object containing key-value pairs. Returns `NULL` if the result contains no rows, or in the event of an error. An error occurs if any key name is `NULL` or the number of arguments is not equal to 2.
+  Aceita dois nomes de coluna ou expressões como argumentos, sendo o primeiro usado como *key* e o segundo como *value*, e retorna um objeto JSON contendo pares *key-value*. Retorna `NULL` se o resultado não contiver linhas ou em caso de erro. Ocorre um erro se qualquer nome de *key* for `NULL` ou se o número de argumentos não for igual a 2.
 
   ```sql
   mysql> SELECT o_id, attribute, value FROM t3;
@@ -196,9 +196,9 @@ The `BIT_AND()`, `BIT_OR()`, and `BIT_XOR()` aggregate functions perform bit ope
   2 rows in set (0.00 sec)
   ```
 
-  **Duplicate key handling.** When the result of this function is normalized, values having duplicate keys are discarded. In keeping with the MySQL `JSON` data type specification that does not permit duplicate keys, only the last value encountered is used with that key in the returned object (“last duplicate key wins”). This means that the result of using this function on columns from a `SELECT` can depend on the order in which the rows are returned, which is not guaranteed.
+  **Tratamento de keys duplicadas.** Quando o resultado desta função é normalizado, valores com *keys* duplicadas são descartados. De acordo com a especificação do tipo de dado `JSON` do MySQL, que não permite *keys* duplicadas, apenas o último *value* encontrado é usado com aquela *key* no objeto retornado (“a última *key* duplicada vence”). Isso significa que o resultado do uso desta função em colunas de um `SELECT` pode depender da ordem em que as linhas são retornadas, o que não é garantido.
 
-  Consider the following:
+  Considere o seguinte:
 
   ```sql
   mysql> CREATE TABLE t(c VARCHAR(10), i INT);
@@ -252,15 +252,15 @@ The `BIT_AND()`, `BIT_OR()`, and `BIT_XOR()` aggregate functions perform bit ope
   1 row in set (0.00 sec)
   ```
 
-  See Normalization, Merging, and Autowrapping of JSON Values, for additional information and examples.
+  Consulte Normalization, Merging, and Autowrapping of JSON Values, para informações adicionais e exemplos.
 
-  Added in MySQL 5.7.22.
+  Adicionado no MySQL 5.7.22.
 
 * `MAX([DISTINCT] expr)`
 
-  Returns the maximum value of *`expr`*. `MAX()` may take a string argument; in such cases, it returns the maximum string value. See Section 8.3.1, “How MySQL Uses Indexes”. The `DISTINCT` keyword can be used to find the maximum of the distinct values of *`expr`*, however, this produces the same result as omitting `DISTINCT`.
+  Retorna o valor máximo de *`expr`*. `MAX()` pode aceitar um argumento string; nesses casos, ele retorna o valor máximo da string. Consulte a Seção 8.3.1, “Como o MySQL Usa Indexes”. A palavra-chave `DISTINCT` pode ser usada para encontrar o máximo dos valores distintos de *`expr`*, no entanto, isso produz o mesmo resultado que omitir `DISTINCT`.
 
-  If there are no matching rows, `MAX()` returns `NULL`.
+  Se não houver linhas correspondentes, `MAX()` retorna `NULL`.
 
   ```sql
   mysql> SELECT student_name, MIN(test_score), MAX(test_score)
@@ -268,13 +268,13 @@ The `BIT_AND()`, `BIT_OR()`, and `BIT_XOR()` aggregate functions perform bit ope
          GROUP BY student_name;
   ```
 
-  For `MAX()`, MySQL currently compares `ENUM` and `SET` columns by their string value rather than by the string's relative position in the set. This differs from how `ORDER BY` compares them.
+  Para `MAX()`, o MySQL atualmente compara colunas `ENUM` e `SET` por seu valor string em vez de pela posição relativa da string no conjunto. Isso difere da forma como `ORDER BY` as compara.
 
 * `MIN([DISTINCT] expr)`
 
-  Returns the minimum value of *`expr`*. `MIN()` may take a string argument; in such cases, it returns the minimum string value. See Section 8.3.1, “How MySQL Uses Indexes”. The `DISTINCT` keyword can be used to find the minimum of the distinct values of *`expr`*, however, this produces the same result as omitting `DISTINCT`.
+  Retorna o valor mínimo de *`expr`*. `MIN()` pode aceitar um argumento string; nesses casos, ele retorna o valor mínimo da string. Consulte a Seção 8.3.1, “Como o MySQL Usa Indexes”. A palavra-chave `DISTINCT` pode ser usada para encontrar o mínimo dos valores distintos de *`expr`*, no entanto, isso produz o mesmo resultado que omitir `DISTINCT`.
 
-  If there are no matching rows, `MIN()` returns `NULL`.
+  Se não houver linhas correspondentes, `MIN()` retorna `NULL`.
 
   ```sql
   mysql> SELECT student_name, MIN(test_score), MAX(test_score)
@@ -282,52 +282,52 @@ The `BIT_AND()`, `BIT_OR()`, and `BIT_XOR()` aggregate functions perform bit ope
          GROUP BY student_name;
   ```
 
-  For `MIN()`, MySQL currently compares `ENUM` and `SET` columns by their string value rather than by the string's relative position in the set. This differs from how `ORDER BY` compares them.
+  Para `MIN()`, o MySQL atualmente compara colunas `ENUM` e `SET` por seu valor string em vez de pela posição relativa da string no conjunto. Isso difere da forma como `ORDER BY` as compara.
 
 * `STD(expr)`
 
-  Returns the population standard deviation of *`expr`*. `STD()` is a synonym for the standard SQL function `STDDEV_POP()`, provided as a MySQL extension.
+  Retorna o desvio padrão populacional de *`expr`*. `STD()` é um sinônimo para a função SQL padrão `STDDEV_POP()`, fornecido como uma extensão do MySQL.
 
-  If there are no matching rows, `STD()` returns `NULL`.
+  Se não houver linhas correspondentes, `STD()` retorna `NULL`.
 
 * `STDDEV(expr)`
 
-  Returns the population standard deviation of *`expr`*. `STDDEV()` is a synonym for the standard SQL function `STDDEV_POP()`, provided for compatibility with Oracle.
+  Retorna o desvio padrão populacional de *`expr`*. `STDDEV()` é um sinônimo para a função SQL padrão `STDDEV_POP()`, fornecido para compatibilidade com Oracle.
 
-  If there are no matching rows, `STDDEV()` returns `NULL`.
+  Se não houver linhas correspondentes, `STDDEV()` retorna `NULL`.
 
 * `STDDEV_POP(expr)`
 
-  Returns the population standard deviation of *`expr`* (the square root of `VAR_POP()`). You can also use `STD()` or `STDDEV()`, which are equivalent but not standard SQL.
+  Retorna o desvio padrão populacional de *`expr`* (a raiz quadrada de `VAR_POP()`). Você também pode usar `STD()` ou `STDDEV()`, que são equivalentes, mas não são SQL padrão.
 
-  If there are no matching rows, `STDDEV_POP()` returns `NULL`.
+  Se não houver linhas correspondentes, `STDDEV_POP()` retorna `NULL`.
 
 * `STDDEV_SAMP(expr)`
 
-  Returns the sample standard deviation of *`expr`* (the square root of `VAR_SAMP()`.
+  Retorna o desvio padrão da amostra de *`expr`* (a raiz quadrada de `VAR_SAMP()`).
 
-  If there are no matching rows, `STDDEV_SAMP()` returns `NULL`.
+  Se não houver linhas correspondentes, `STDDEV_SAMP()` retorna `NULL`.
 
 * `SUM([DISTINCT] expr)`
 
-  Returns the sum of *`expr`*. If the return set has no rows, `SUM()` returns `NULL`. The `DISTINCT` keyword can be used to sum only the distinct values of *`expr`*.
+  Retorna a soma de *`expr`*. Se o conjunto de retorno não tiver linhas, `SUM()` retorna `NULL`. A palavra-chave `DISTINCT` pode ser usada para somar apenas os valores distintos de *`expr`*.
 
-  If there are no matching rows, `SUM()` returns `NULL`.
+  Se não houver linhas correspondentes, `SUM()` retorna `NULL`.
 
 * `VAR_POP(expr)`
 
-  Returns the population standard variance of *`expr`*. It considers rows as the whole population, not as a sample, so it has the number of rows as the denominator. You can also use `VARIANCE()`, which is equivalent but is not standard SQL.
+  Retorna a variância padrão populacional de *`expr`*. Ela considera as linhas como a população inteira, não como uma amostra, portanto, tem o número de linhas como denominador. Você também pode usar `VARIANCE()`, que é equivalente, mas não é SQL padrão.
 
-  If there are no matching rows, `VAR_POP()` returns `NULL`.
+  Se não houver linhas correspondentes, `VAR_POP()` retorna `NULL`.
 
 * `VAR_SAMP(expr)`
 
-  Returns the sample variance of *`expr`*. That is, the denominator is the number of rows minus one.
+  Retorna a variância da amostra de *`expr`*. Ou seja, o denominador é o número de linhas menos um.
 
-  If there are no matching rows, `VAR_SAMP()` returns `NULL`.
+  Se não houver linhas correspondentes, `VAR_SAMP()` retorna `NULL`.
 
 * `VARIANCE(expr)`
 
-  Returns the population standard variance of *`expr`*. `VARIANCE()` is a synonym for the standard SQL function `VAR_POP()`, provided as a MySQL extension.
+  Retorna a variância padrão populacional de *`expr`*. `VARIANCE()` é um sinônimo para a função SQL padrão `VAR_POP()`, fornecido como uma extensão do MySQL.
 
-  If there are no matching rows, `VARIANCE()` returns `NULL`.
+  Se não houver linhas correspondentes, `VARIANCE()` retorna `NULL`.

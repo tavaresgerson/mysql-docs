@@ -1,4 +1,4 @@
-### 13.1.9 ALTER TABLESPACE Statement
+### 13.1.9 ALTER TABLESPACE Statement
 
 ```sql
 ALTER TABLESPACE tablespace_name
@@ -8,27 +8,27 @@ ALTER TABLESPACE tablespace_name
     ENGINE [=] engine_name
 ```
 
-This statement is used either to add a new data file, or to drop a data file from a tablespace.
+Esta instrução é usada para adicionar um novo data file ou para descartar um data file de um tablespace.
 
-The `ADD DATAFILE` variant enables you to specify an initial size using an `INITIAL_SIZE` clause, where *`size`* is measured in bytes; the default value is 134217728 (128 MB). You may optionally follow *`size`* with a one-letter abbreviation for an order of magnitude, similar to those used in `my.cnf`. Generally, this is one of the letters `M` (megabytes) or `G` (gigabytes).
+A variante `ADD DATAFILE` permite especificar um tamanho inicial usando uma cláusula `INITIAL_SIZE`, onde *`tamanho`* é medido em bytes; o valor padrão é 134217728 (128 MB). Opcionalmente, você pode seguir *`tamanho`* com uma abreviação de uma letra para uma ordem de magnitude, semelhante às usadas em `my.cnf`. Geralmente, esta é uma das letras `M` (megabytes) ou `G` (gigabytes).
 
-Note
+Nota
 
-All NDB Cluster Disk Data objects share the same namespace. This means that *each Disk Data object* must be uniquely named (and not merely each Disk Data object of a given type). For example, you cannot have a tablespace and a data file with the same name, or an undo log file and a tablespace with the same name.
+Todos os objetos NDB Cluster Disk Data compartilham o mesmo namespace. Isso significa que *cada objeto Disk Data* deve ter um nome exclusivo (e não apenas cada objeto Disk Data de um determinado tipo). Por exemplo, você não pode ter um tablespace e um data file com o mesmo nome, nem um arquivo de log de undo e um tablespace com o mesmo nome.
 
-On 32-bit systems, the maximum supported value for `INITIAL_SIZE` is 4294967296 (4 GB). (Bug #29186)
+Em sistemas de 32 bits, o valor máximo suportado para `INITIAL_SIZE` é 4294967296 (4 GB). (Bug #29186)
 
-`INITIAL_SIZE` is rounded, explicitly, as for [`CREATE TABLESPACE`](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement").
+`INITIAL_SIZE` é explicitamente arredondado, assim como para [`CREATE TABLESPACE`](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement").
 
-Once a data file has been created, its size cannot be changed; however, you can add more data files to the tablespace using additional `ALTER TABLESPACE ... ADD DATAFILE` statements.
+Uma vez que um data file tenha sido criado, seu tamanho não pode ser alterado; no entanto, você pode adicionar mais data files ao tablespace usando instruções `ALTER TABLESPACE ... ADD DATAFILE` adicionais.
 
-Using `DROP DATAFILE` with [`ALTER TABLESPACE`](alter-tablespace.html "13.1.9 ALTER TABLESPACE Statement") drops the data file '*`file_name`*' from the tablespace. You cannot drop a data file from a tablespace which is in use by any table; in other words, the data file must be empty (no extents used). See [Section 21.6.11.1, “NDB Cluster Disk Data Objects”](mysql-cluster-disk-data-objects.html "21.6.11.1 NDB Cluster Disk Data Objects"). In addition, any data file to be dropped must previously have been added to the tablespace with [`CREATE TABLESPACE`](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement") or [`ALTER TABLESPACE`](alter-tablespace.html "13.1.9 ALTER TABLESPACE Statement").
+Usar `DROP DATAFILE` com [`ALTER TABLESPACE`](alter-tablespace.html "13.1.9 ALTER TABLESPACE Statement") descarta o data file '*`file_name`*' do tablespace. Você não pode descartar um data file de um tablespace que esteja em uso por qualquer tabela; em outras palavras, o data file deve estar vazio (nenhum extent usado). Veja [Section 21.6.11.1, “NDB Cluster Disk Data Objects”](mysql-cluster-disk-data-objects.html "21.6.11.1 NDB Cluster Disk Data Objects"). Além disso, qualquer data file a ser descartado deve ter sido adicionado previamente ao tablespace com [`CREATE TABLESPACE`](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement") ou [`ALTER TABLESPACE`](alter-tablespace.html "13.1.9 ALTER TABLESPACE Statement").
 
-Both `ALTER TABLESPACE ... ADD DATAFILE` and `ALTER TABLESPACE ... DROP DATAFILE` require an `ENGINE` clause which specifies the storage engine used by the tablespace. Currently, the only accepted values for *`engine_name`* are [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") and [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6").
+Ambos `ALTER TABLESPACE ... ADD DATAFILE` e `ALTER TABLESPACE ... DROP DATAFILE` exigem uma cláusula `ENGINE` que especifica o storage engine usado pelo tablespace. Atualmente, os únicos valores aceitos para *`engine_name`* são [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") e [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6").
 
-`WAIT` is parsed but otherwise ignored, and so has no effect in MySQL 5.7. It is intended for future expansion.
+`WAIT` é analisado, mas ignorado de outra forma, e, portanto, não tem efeito no MySQL 5.7. Ele é destinado a expansão futura.
 
-When `ALTER TABLESPACE ... ADD DATAFILE` is used with `ENGINE = NDB`, a data file is created on each Cluster data node. You can verify that the data files were created and obtain information about them by querying the Information Schema [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") table. For example, the following query shows all data files belonging to the tablespace named `newts`:
+Quando `ALTER TABLESPACE ... ADD DATAFILE` é usado com `ENGINE = NDB`, um data file é criado em cada data node do Cluster. Você pode verificar se os data files foram criados e obter informações sobre eles consultando a tabela [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") do Information Schema. Por exemplo, a seguinte Query mostra todos os data files pertencentes ao tablespace nomeado `newts`:
 
 ```sql
 mysql> SELECT LOGFILE_GROUP_NAME, FILE_NAME, EXTRA
@@ -45,6 +45,6 @@ mysql> SELECT LOGFILE_GROUP_NAME, FILE_NAME, EXTRA
 2 rows in set (0.03 sec)
 ```
 
-See [Section 24.3.9, “The INFORMATION_SCHEMA FILES Table”](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table").
+Veja [Section 24.3.9, “The INFORMATION_SCHEMA FILES Table”](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table").
 
-[`ALTER TABLESPACE`](alter-tablespace.html "13.1.9 ALTER TABLESPACE Statement") is useful only with Disk Data storage for NDB Cluster. See [Section 21.6.11, “NDB Cluster Disk Data Tables”](mysql-cluster-disk-data.html "21.6.11 NDB Cluster Disk Data Tables").
+[`ALTER TABLESPACE`](alter-tablespace.html "13.1.9 ALTER TABLESPACE Statement") é útil apenas com Disk Data storage para NDB Cluster. Veja [Section 21.6.11, “NDB Cluster Disk Data Tables”](mysql-cluster-disk-data.html "21.6.11 NDB Cluster Disk Data Tables").

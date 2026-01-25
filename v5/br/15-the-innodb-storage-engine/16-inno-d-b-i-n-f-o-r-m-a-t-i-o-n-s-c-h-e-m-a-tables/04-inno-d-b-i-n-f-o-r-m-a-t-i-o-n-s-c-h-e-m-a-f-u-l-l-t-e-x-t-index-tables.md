@@ -1,6 +1,6 @@
-### 14.16.4 InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables
+### 14.16.4 Tabelas de FULLTEXT Index do InnoDB no INFORMATION_SCHEMA
 
-The following tables provide metadata for `FULLTEXT` indexes:
+As seguintes tabelas fornecem metadados para os Index `FULLTEXT`:
 
 ```sql
 mysql> SHOW TABLES FROM INFORMATION_SCHEMA LIKE 'INNODB_FT%';
@@ -16,31 +16,31 @@ mysql> SHOW TABLES FROM INFORMATION_SCHEMA LIKE 'INNODB_FT%';
 +-------------------------------------------+
 ```
 
-#### Table Overview
+#### Visão Geral da Tabela
 
-* `INNODB_FT_CONFIG`: Provides metadata about the `FULLTEXT` index and associated processing for an `InnoDB` table.
+* `INNODB_FT_CONFIG`: Fornece metadados sobre o Index `FULLTEXT` e o processamento associado para uma tabela `InnoDB`.
 
-* `INNODB_FT_BEING_DELETED`: Provides a snapshot of the `INNODB_FT_DELETED` table; it is used only during an `OPTIMIZE TABLE` maintenance operation. When `OPTIMIZE TABLE` is run, the `INNODB_FT_BEING_DELETED` table is emptied, and `DOC_ID` values are removed from the `INNODB_FT_DELETED` table. Because the contents of `INNODB_FT_BEING_DELETED` typically have a short lifetime, this table has limited utility for monitoring or debugging. For information about running `OPTIMIZE TABLE` on tables with `FULLTEXT` indexes, see Section 12.9.6, “Fine-Tuning MySQL Full-Text Search”.
+* `INNODB_FT_BEING_DELETED`: Fornece um snapshot da tabela `INNODB_FT_DELETED`; ela é usada apenas durante uma operação de manutenção `OPTIMIZE TABLE`. Quando `OPTIMIZE TABLE` é executado, a tabela `INNODB_FT_BEING_DELETED` é esvaziada, e os valores de `DOC_ID` são removidos da tabela `INNODB_FT_DELETED`. Devido ao fato de o conteúdo de `INNODB_FT_BEING_DELETED` tipicamente ter uma curta vida útil, esta tabela tem utilidade limitada para monitoramento ou debugging. Para obter informações sobre a execução de `OPTIMIZE TABLE` em tabelas com Index `FULLTEXT`, consulte a Seção 12.9.6, “Ajuste Fino da Pesquisa Full-Text do MySQL”.
 
-* `INNODB_FT_DELETED`: Stores rows that are deleted from the `FULLTEXT` index for an `InnoDB` table. To avoid expensive index reorganization during DML operations for an `InnoDB` `FULLTEXT` index, the information about newly deleted words is stored separately, filtered out of search results when you do a text search, and removed from the main search index only when you issue an `OPTIMIZE TABLE` statement for the `InnoDB` table.
+* `INNODB_FT_DELETED`: Armazena linhas que são excluídas do Index `FULLTEXT` para uma tabela `InnoDB`. Para evitar reorganização de Index custosa durante operações DML para um Index `FULLTEXT` do `InnoDB`, as informações sobre palavras recém-excluídas são armazenadas separadamente, filtradas dos resultados de busca ao realizar uma pesquisa de texto, e removidas do Index de busca principal somente quando você emite uma instrução `OPTIMIZE TABLE` para a tabela `InnoDB`.
 
-* `INNODB_FT_DEFAULT_STOPWORD`: Holds a list of stopwords that are used by default when creating a `FULLTEXT` index on `InnoDB` tables.
+* `INNODB_FT_DEFAULT_STOPWORD`: Contém uma lista de stopwords (palavras de parada) que são usadas por padrão ao criar um Index `FULLTEXT` em tabelas `InnoDB`.
 
-  For information about the `INNODB_FT_DEFAULT_STOPWORD` table, see Section 12.9.4, “Full-Text Stopwords”.
+  Para obter informações sobre a tabela `INNODB_FT_DEFAULT_STOPWORD`, consulte a Seção 12.9.4, “Full-Text Stopwords”.
 
-* `INNODB_FT_INDEX_TABLE`: Provides information about the inverted index used to process text searches against the `FULLTEXT` index of an `InnoDB` table.
+* `INNODB_FT_INDEX_TABLE`: Fornece informações sobre o Index invertido usado para processar buscas de texto contra o Index `FULLTEXT` de uma tabela `InnoDB`.
 
-* `INNODB_FT_INDEX_CACHE`: Provides token information about newly inserted rows in a `FULLTEXT` index. To avoid expensive index reorganization during DML operations, the information about newly indexed words is stored separately, and combined with the main search index only when `OPTIMIZE TABLE` is run, when the server is shut down, or when the cache size exceeds a limit defined by the `innodb_ft_cache_size` or `innodb_ft_total_cache_size` system variable.
+* `INNODB_FT_INDEX_CACHE`: Fornece informações de token sobre linhas recém-inseridas em um Index `FULLTEXT`. Para evitar reorganização de Index custosa durante operações DML, a informação sobre palavras recém-indexadas é armazenada separadamente, e combinada com o Index de busca principal somente quando `OPTIMIZE TABLE` é executado, quando o servidor é desligado (shut down), ou quando o tamanho do cache excede um limite definido pelas variáveis de sistema `innodb_ft_cache_size` ou `innodb_ft_total_cache_size`.
 
-Note
+Nota
 
-With the exception of the `INNODB_FT_DEFAULT_STOPWORD` table, these tables are empty initially. Before querying any of them, set the value of the `innodb_ft_aux_table` system variable to the name (including the database name) of the table that contains the `FULLTEXT` index (for example, `test/articles`).
+Com exceção da tabela `INNODB_FT_DEFAULT_STOPWORD`, estas tabelas estão vazias inicialmente. Antes de consultar qualquer uma delas, defina o valor da variável de sistema `innodb_ft_aux_table` para o nome (incluindo o nome do Database) da tabela que contém o Index `FULLTEXT` (por exemplo, `test/articles`).
 
-**Example 14.5 InnoDB FULLTEXT Index INFORMATION_SCHEMA Tables**
+**Exemplo 14.5 Tabelas INFORMATION_SCHEMA de FULLTEXT Index do InnoDB**
 
-This example uses a table with a `FULLTEXT` index to demonstrate the data contained in the `FULLTEXT` index `INFORMATION_SCHEMA` tables.
+Este exemplo usa uma tabela com um Index `FULLTEXT` para demonstrar os dados contidos nas tabelas `INFORMATION_SCHEMA` do Index `FULLTEXT`.
 
-1. Create a table with a `FULLTEXT` index and insert some data:
+1. Crie uma tabela com um Index `FULLTEXT` e insira alguns dados:
 
    ```sql
    mysql> CREATE TABLE articles (
@@ -59,13 +59,13 @@ This example uses a table with a `FULLTEXT` index to demonstrate the data contai
           ('MySQL Security','When configured properly, MySQL ...');
    ```
 
-2. Set the `innodb_ft_aux_table` variable to the name of the table with the `FULLTEXT` index. If this variable is not set, the `InnoDB` `FULLTEXT` `INFORMATION_SCHEMA` tables are empty, with the exception of `INNODB_FT_DEFAULT_STOPWORD`.
+2. Defina a variável `innodb_ft_aux_table` para o nome da tabela com o Index `FULLTEXT`. Se esta variável não for definida, as tabelas `INFORMATION_SCHEMA` de `FULLTEXT` do `InnoDB` estarão vazias, com exceção de `INNODB_FT_DEFAULT_STOPWORD`.
 
    ```sql
    SET GLOBAL innodb_ft_aux_table = 'test/articles';
    ```
 
-3. Query the `INNODB_FT_INDEX_CACHE` table, which shows information about newly inserted rows in a `FULLTEXT` index. To avoid expensive index reorganization during DML operations, data for newly inserted rows remains in the `FULLTEXT` index cache until `OPTIMIZE TABLE` is run (or until the server is shut down or cache limits are exceeded).
+3. Consulte a tabela `INNODB_FT_INDEX_CACHE`, que mostra informações sobre linhas recém-inseridas em um Index `FULLTEXT`. Para evitar reorganização de Index custosa durante operações DML, os dados para linhas recém-inseridas permanecem no cache do Index `FULLTEXT` até que `OPTIMIZE TABLE` seja executado (ou até que o servidor seja desligado ou os limites do cache sejam excedidos).
 
    ```sql
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_FT_INDEX_CACHE LIMIT 5;
@@ -80,7 +80,7 @@ This example uses a table with a `FULLTEXT` index to demonstrate the data contai
    +------------+--------------+-------------+-----------+--------+----------+
    ```
 
-4. Enable the `innodb_optimize_fulltext_only` system variable and run `OPTIMIZE TABLE` on the table that contains the `FULLTEXT` index. This operation flushes the contents of the `FULLTEXT` index cache to the main `FULLTEXT` index. `innodb_optimize_fulltext_only` changes the way the `OPTIMIZE TABLE` statement operates on `InnoDB` tables, and is intended to be enabled temporarily, during maintenance operations on `InnoDB` tables with `FULLTEXT` indexes.
+4. Habilite a variável de sistema `innodb_optimize_fulltext_only` e execute `OPTIMIZE TABLE` na tabela que contém o Index `FULLTEXT`. Esta operação despeja (flushes) o conteúdo do cache do Index `FULLTEXT` para o Index `FULLTEXT` principal. `innodb_optimize_fulltext_only` altera a maneira como a instrução `OPTIMIZE TABLE` opera em tabelas `InnoDB`, e destina-se a ser habilitada temporariamente, durante operações de manutenção em tabelas `InnoDB` com Index `FULLTEXT`.
 
    ```sql
    mysql> SET GLOBAL innodb_optimize_fulltext_only=ON;
@@ -93,7 +93,7 @@ This example uses a table with a `FULLTEXT` index to demonstrate the data contai
    +---------------+----------+----------+----------+
    ```
 
-5. Query the `INNODB_FT_INDEX_TABLE` table to view information about data in the main `FULLTEXT` index, including information about the data that was just flushed from the `FULLTEXT` index cache.
+5. Consulte a tabela `INNODB_FT_INDEX_TABLE` para visualizar informações sobre os dados no Index `FULLTEXT` principal, incluindo informações sobre os dados que acabaram de ser despejados do cache do Index `FULLTEXT`.
 
    ```sql
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_FT_INDEX_TABLE LIMIT 5;
@@ -108,20 +108,20 @@ This example uses a table with a `FULLTEXT` index to demonstrate the data contai
    +------------+--------------+-------------+-----------+--------+----------+
    ```
 
-   The `INNODB_FT_INDEX_CACHE` table is now empty since the `OPTIMIZE TABLE` operation flushed the `FULLTEXT` index cache.
+   A tabela `INNODB_FT_INDEX_CACHE` agora está vazia, uma vez que a operação `OPTIMIZE TABLE` despejou o cache do Index `FULLTEXT`.
 
    ```sql
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_FT_INDEX_CACHE LIMIT 5;
    Empty set (0.00 sec)
    ```
 
-6. Delete some records from the `test/articles` table.
+6. Exclua alguns registros da tabela `test/articles`.
 
    ```sql
    mysql> DELETE FROM test.articles WHERE id < 4;
    ```
 
-7. Query the `INNODB_FT_DELETED` table. This table records rows that are deleted from the `FULLTEXT` index. To avoid expensive index reorganization during DML operations, information about newly deleted records is stored separately, filtered out of search results when you do a text search, and removed from the main search index when you run `OPTIMIZE TABLE`.
+7. Consulte a tabela `INNODB_FT_DELETED`. Esta tabela registra linhas que são excluídas do Index `FULLTEXT`. Para evitar reorganização de Index custosa durante operações DML, a informação sobre registros recém-excluídos é armazenada separadamente, filtrada dos resultados de busca ao realizar uma pesquisa de texto, e removida do Index de busca principal quando você executa `OPTIMIZE TABLE`.
 
    ```sql
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_FT_DELETED;
@@ -134,7 +134,7 @@ This example uses a table with a `FULLTEXT` index to demonstrate the data contai
    +--------+
    ```
 
-8. Run `OPTIMIZE TABLE` to remove the deleted records.
+8. Execute `OPTIMIZE TABLE` para remover os registros excluídos.
 
    ```sql
    mysql> OPTIMIZE TABLE articles;
@@ -145,22 +145,22 @@ This example uses a table with a `FULLTEXT` index to demonstrate the data contai
    +---------------+----------+----------+----------+
    ```
 
-   The `INNODB_FT_DELETED` table should now be empty.
+   A tabela `INNODB_FT_DELETED` deve agora estar vazia.
 
    ```sql
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_FT_DELETED;
    Empty set (0.00 sec)
    ```
 
-9. Query the `INNODB_FT_CONFIG` table. This table contains metadata about the `FULLTEXT` index and related processing:
+9. Consulte a tabela `INNODB_FT_CONFIG`. Esta tabela contém metadados sobre o Index `FULLTEXT` e o processamento relacionado:
 
-   * `optimize_checkpoint_limit`: The number of seconds after which an `OPTIMIZE TABLE` run stops.
+   * `optimize_checkpoint_limit`: O número de segundos após o qual uma execução de `OPTIMIZE TABLE` para.
 
-   * `synced_doc_id`: The next `DOC_ID` to be issued.
+   * `synced_doc_id`: O próximo `DOC_ID` a ser emitido.
 
-   * `stopword_table_name`: The *`database/table`* name for a user-defined stopword table. The `VALUE` column is empty if there is no user-defined stopword table.
+   * `stopword_table_name`: O nome *`database/table`* para uma tabela de stopword (palavras de parada) definida pelo usuário. A coluna `VALUE` fica vazia se não houver uma tabela de stopword definida pelo usuário.
 
-   * `use_stopword`: Indicates whether a stopword table is used, which is defined when the `FULLTEXT` index is created.
+   * `use_stopword`: Indica se uma tabela de stopword é usada, o que é definido quando o Index `FULLTEXT` é criado.
 
    ```sql
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_FT_CONFIG;
@@ -174,7 +174,7 @@ This example uses a table with a `FULLTEXT` index to demonstrate the data contai
    +---------------------------+-------+
    ```
 
-10. Disable `innodb_optimize_fulltext_only`, since it is intended to be enabled only temporarily:
+10. Desabilite `innodb_optimize_fulltext_only`, já que ela se destina a ser habilitada apenas temporariamente:
 
     ```sql
     mysql> SET GLOBAL innodb_optimize_fulltext_only=OFF;

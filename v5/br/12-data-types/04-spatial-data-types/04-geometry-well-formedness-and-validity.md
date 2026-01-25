@@ -1,22 +1,22 @@
-### 11.4.4 Geometry Well-Formedness and Validity
+### 11.4.4 Bem-Formação e Validade de Geometrias
 
-For geometry values, MySQL distinguishes between the concepts of syntactically well-formed and geometrically valid.
+Para valores de geometry, o MySQL distingue entre os conceitos de sintaticamente bem-formado e geometricamente válido.
 
-A geometry is syntactically well-formed if it satisfies conditions such as those in this (nonexhaustive) list:
+Uma geometry é sintaticamente bem-formada se satisfizer condições como as listadas a seguir (esta lista não é exaustiva):
 
-* Linestrings have at least two points
-* Polygons have at least one ring
-* Polygon rings are closed (first and last points the same)
-* Polygon rings have at least 4 points (minimum polygon is a triangle with first and last points the same)
+* Linestrings devem ter pelo menos dois pontos
+* Polygons devem ter pelo menos um ring
+* Rings de Polygon devem ser fechados (o primeiro e o último ponto são iguais)
+* Rings de Polygon devem ter pelo menos 4 pontos (o polygon mínimo é um triângulo onde o primeiro e o último ponto são iguais)
 
-* Collections are not empty (except `GeometryCollection`)
+* Collections não devem estar vazias (exceto `GeometryCollection`)
 
-A geometry is geometrically valid if it is syntactically well-formed and satisfies conditions such as those in this (nonexhaustive) list:
+Uma geometry é geometricamente válida se for sintaticamente bem-formada e satisfizer condições como as listadas a seguir (esta lista não é exaustiva):
 
-* Polygons are not self-intersecting
-* Polygon interior rings are inside the exterior ring
-* Multipolygons do not have overlapping polygons
+* Polygons não devem ser auto-interceptados
+* Rings interiores de Polygon devem estar dentro do ring exterior
+* Multipolygons não devem ter polygons sobrepostos
 
-Spatial functions fail if a geometry is not syntactically well-formed. Spatial import functions that parse WKT or WKB values raise an error for attempts to create a geometry that is not syntactically well-formed. Syntactic well-formedness is also checked for attempts to store geometries into tables.
+Funções espaciais falham se uma geometry não for sintaticamente bem-formada. Funções de importação espacial que analisam valores WKT ou WKB levantam um erro quando há tentativas de criar uma geometry que não é sintaticamente bem-formada. A bem-formação sintática também é verificada em tentativas de armazenar geometries em tabelas.
 
-It is permitted to insert, select, and update geometrically invalid geometries, but they must be syntactically well-formed. Due to the computational expense, MySQL does not check explicitly for geometric validity. Spatial computations may detect some cases of invalid geometries and raise an error, but they may also return an undefined result without detecting the invalidity. Applications that require geometically valid geometries should check them using the `ST_IsValid()` function.
+É permitido inserir, selecionar e atualizar geometries geometricamente inválidas, mas elas devem ser sintaticamente bem-formadas. Devido ao custo computacional, o MySQL não verifica explicitamente a validade geométrica. Computações espaciais podem detectar alguns casos de geometries inválidas e levantar um erro, mas também podem retornar um resultado indefinido sem detectar a invalidade. Aplicações que exigem geometries geometricamente válidas devem verificá-las usando a função `ST_IsValid()`.

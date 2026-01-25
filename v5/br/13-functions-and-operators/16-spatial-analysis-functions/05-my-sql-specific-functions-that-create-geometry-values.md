@@ -1,10 +1,10 @@
-### 12.16.5 MySQL-Specific Functions That Create Geometry Values
+### 12.16.5 Funções Específicas do MySQL Que Criam Valores de Geometria
 
-MySQL provides a set of useful nonstandard functions for creating geometry values. The functions described in this section are MySQL extensions to the OpenGIS specification.
+O MySQL fornece um conjunto de funções não padrão úteis para a criação de valores de geometria. As funções descritas nesta seção são extensões do MySQL para a especificação OpenGIS.
 
-These functions produce geometry objects from either WKB values or geometry objects as arguments. If any argument is not a proper WKB or geometry representation of the proper object type, the return value is `NULL`.
+Essas funções produzem objetos de geometry a partir de valores WKB ou objetos de geometry como argumentos. Se qualquer argumento não for uma representação WKB ou geometry apropriada do tipo de objeto correto, o valor de retorno será `NULL`.
 
-For example, you can insert the geometry return value from `Point()` directly into a `POINT` column:
+Por exemplo, você pode inserir o valor de retorno geometry de `Point()` diretamente em uma coluna `POINT`:
 
 ```sql
 INSERT INTO t1 (pt_col) VALUES(Point(1,2));
@@ -12,32 +12,32 @@ INSERT INTO t1 (pt_col) VALUES(Point(1,2));
 
 * `GeometryCollection(g [, g] ...)`
 
-  Constructs a `GeometryCollection` value from the geometry arguments.
+  Constrói um valor `GeometryCollection` a partir dos argumentos de geometry.
 
-  `GeometryCollection()` returns all the proper geometries contained in the arguments even if a nonsupported geometry is present.
+  `GeometryCollection()` retorna todas as geometries apropriadas contidas nos argumentos, mesmo que uma geometry não suportada esteja presente.
 
-  `GeometryCollection()` with no arguments is permitted as a way to create an empty geometry.
+  `GeometryCollection()` sem argumentos é permitido como uma maneira de criar uma geometry vazia.
 
 * `LineString(pt [, pt] ...)`
 
-  Constructs a `LineString` value from a number of `Point` or WKB `Point` arguments. If the number of arguments is less than two, the return value is `NULL`.
+  Constrói um valor `LineString` a partir de vários argumentos `Point` ou WKB `Point`. Se o número de argumentos for menor que dois, o valor de retorno será `NULL`.
 
 * `MultiLineString(ls [, ls] ...)`
 
-  Constructs a `MultiLineString` value using `LineString` or WKB `LineString` arguments.
+  Constrói um valor `MultiLineString` usando argumentos `LineString` ou WKB `LineString`.
 
 * `MultiPoint(pt [, pt2] ...)`
 
-  Constructs a `MultiPoint` value using `Point` or WKB `Point` arguments.
+  Constrói um valor `MultiPoint` usando argumentos `Point` ou WKB `Point`.
 
 * `MultiPolygon(poly [, poly] ...)`
 
-  Constructs a `MultiPolygon` value from a set of `Polygon` or WKB `Polygon` arguments.
+  Constrói um valor `MultiPolygon` a partir de um conjunto de argumentos `Polygon` ou WKB `Polygon`.
 
 * `Point(x, y)`
 
-  Constructs a `Point` using its coordinates.
+  Constrói um `Point` usando suas coordenadas.
 
 * `Polygon(ls [, ls] ...)`
 
-  Constructs a `Polygon` value from a number of `LineString` or WKB `LineString` arguments. If any argument does not represent a `LinearRing` (that is, not a closed and simple `LineString`), the return value is `NULL`.
+  Constrói um valor `Polygon` a partir de vários argumentos `LineString` ou WKB `LineString`. Se algum argumento não representar um `LinearRing` (ou seja, não for um `LineString` fechado e simples), o valor de retorno será `NULL`.

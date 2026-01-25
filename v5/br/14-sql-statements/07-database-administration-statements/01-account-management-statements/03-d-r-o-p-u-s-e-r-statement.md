@@ -1,25 +1,25 @@
-#### 13.7.1.3 DROP USER Statement
+#### 13.7.1.3 Declaração DROP USER
 
 ```sql
 DROP USER [IF EXISTS] user [, user] ...
 ```
 
-The [`DROP USER`](drop-user.html "13.7.1.3 DROP USER Statement") statement removes one or more MySQL accounts and their privileges. It removes privilege rows for the account from all grant tables.
+A declaração [`DROP USER`](drop-user.html "13.7.1.3 DROP USER Statement") remove uma ou mais contas MySQL e seus privilégios. Ela remove as linhas de privilégio da conta de todas as *grant tables*.
 
-To use [`DROP USER`](drop-user.html "13.7.1.3 DROP USER Statement"), you must have the global [`CREATE USER`](privileges-provided.html#priv_create-user) privilege, or the [`DELETE`](privileges-provided.html#priv_delete) privilege for the `mysql` system database. When the [`read_only`](server-system-variables.html#sysvar_read_only) system variable is enabled, [`DROP USER`](drop-user.html "13.7.1.3 DROP USER Statement") additionally requires the [`SUPER`](privileges-provided.html#priv_super) privilege.
+Para usar [`DROP USER`](drop-user.html "13.7.1.3 DROP USER Statement"), você deve ter o privilégio global [`CREATE USER`](privileges-provided.html#priv_create-user), ou o privilégio [`DELETE`](privileges-provided.html#priv_delete) para o *system database* `mysql`. Quando a *system variable* [`read_only`](server-system-variables.html#sysvar_read_only) estiver habilitada, [`DROP USER`](drop-user.html "13.7.1.3 DROP USER Statement") requer adicionalmente o privilégio [`SUPER`](privileges-provided.html#priv_super).
 
-An error occurs if you try to drop an account that does not exist. If the `IF EXISTS` clause is given, the statement produces a warning for each named user that does not exist, rather than an error.
+Ocorre um erro se você tentar dropar uma conta que não existe. Se a cláusula `IF EXISTS` for fornecida, a declaração produz um *warning* para cada usuário nomeado que não existe, em vez de um erro.
 
-Each account name uses the format described in [Section 6.2.4, “Specifying Account Names”](account-names.html "6.2.4 Specifying Account Names"). For example:
+Cada nome de conta usa o formato descrito na [Seção 6.2.4, “Specifying Account Names”](account-names.html "6.2.4 Specifying Account Names"). Por exemplo:
 
 ```sql
 DROP USER 'jeffrey'@'localhost';
 ```
 
-The host name part of the account name, if omitted, defaults to `'%'`.
+A parte do *host name* do nome da conta, se omitida, assume o padrão `'%'`.
 
-Important
+Importante
 
-[`DROP USER`](drop-user.html "13.7.1.3 DROP USER Statement") does not automatically close any open user sessions. Rather, in the event that a user with an open session is dropped, the statement does not take effect until that user's session is closed. Once the session is closed, the user is dropped, and that user's next attempt to log in fails. *This is by design*.
+[`DROP USER`](drop-user.html "13.7.1.3 DROP USER Statement") não fecha automaticamente nenhuma *session* de usuário aberta. Em vez disso, no caso de um usuário com uma *session* aberta ser dropado, a declaração não entra em vigor até que a *session* desse usuário seja fechada. Uma vez que a *session* é fechada, o usuário é dropado, e a próxima tentativa desse usuário de realizar o *log in* falha. *Isto é por design*.
 
-[`DROP USER`](drop-user.html "13.7.1.3 DROP USER Statement") does not automatically drop or invalidate databases or objects within them that the old user created. This includes stored programs or views for which the `DEFINER` attribute names the dropped user. Attempts to access such objects may produce an error if they execute in definer security context. (For information about security context, see [Section 23.6, “Stored Object Access Control”](stored-objects-security.html "23.6 Stored Object Access Control").)
+[`DROP USER`](drop-user.html "13.7.1.3 DROP USER Statement") não *dropa* ou invalida automaticamente *databases* ou *objects* dentro deles que o usuário antigo criou. Isso inclui *stored programs* ou *views* para os quais o atributo `DEFINER` nomeia o usuário dropado. Tentativas de acesso a tais *objects* podem produzir um erro se eles forem executados no *definer security context*. (Para obter informações sobre *security context*, consulte a [Seção 23.6, “Stored Object Access Control”](stored-objects-security.html "23.6 Stored Object Access Control").)

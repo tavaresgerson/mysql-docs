@@ -1,27 +1,27 @@
-### 13.6.7 Condition Handling
+### 13.6.7 Tratamento de Condições (Condition Handling)
 
-[13.6.7.1 DECLARE ... CONDITION Statement](declare-condition.html)
+[13.6.7.1 Instrução DECLARE ... CONDITION](declare-condition.html)
 
-[13.6.7.2 DECLARE ... HANDLER Statement](declare-handler.html)
+[13.6.7.2 Instrução DECLARE ... HANDLER](declare-handler.html)
 
-[13.6.7.3 GET DIAGNOSTICS Statement](get-diagnostics.html)
+[13.6.7.3 Instrução GET DIAGNOSTICS](get-diagnostics.html)
 
-[13.6.7.4 RESIGNAL Statement](resignal.html)
+[13.6.7.4 Instrução RESIGNAL](resignal.html)
 
-[13.6.7.5 SIGNAL Statement](signal.html)
+[13.6.7.5 Instrução SIGNAL](signal.html)
 
-[13.6.7.6 Scope Rules for Handlers](handler-scope.html)
+[13.6.7.6 Regras de Escopo para Handlers](handler-scope.html)
 
-[13.6.7.7 The MySQL Diagnostics Area](diagnostics-area.html)
+[13.6.7.7 A Área de Diagnósticos do MySQL (Diagnostics Area)](diagnostics-area.html)
 
-[13.6.7.8 Condition Handling and OUT or INOUT Parameters](conditions-and-parameters.html)
+[13.6.7.8 Tratamento de Condições e Parâmetros OUT ou INOUT](conditions-and-parameters.html)
 
-[13.6.7.9 Restrictions on Condition Handling](condition-handling-restrictions.html)
+[13.6.7.9 Restrições no Tratamento de Condições](condition-handling-restrictions.html)
 
-Conditions may arise during stored program execution that require special handling, such as exiting the current program block or continuing execution. Handlers can be defined for general conditions such as warnings or exceptions, or for specific conditions such as a particular error code. Specific conditions can be assigned names and referred to that way in handlers.
+Condições podem surgir durante a execução de programas armazenados que exigem tratamento especial, como sair do bloco de programa atual ou continuar a execução. **Handlers** podem ser definidos para condições gerais, como warnings ou exceptions, ou para condições específicas, como um código de erro particular. Condições específicas podem receber nomes e ser referenciadas dessa forma nos **handlers**.
 
-To name a condition, use the [`DECLARE ... CONDITION`](declare-condition.html "13.6.7.1 DECLARE ... CONDITION Statement") statement. To declare a handler, use the [`DECLARE ... HANDLER`](declare-handler.html "13.6.7.2 DECLARE ... HANDLER Statement") statement. See [Section 13.6.7.1, “DECLARE ... CONDITION Statement”](declare-condition.html "13.6.7.1 DECLARE ... CONDITION Statement"), and [Section 13.6.7.2, “DECLARE ... HANDLER Statement”](declare-handler.html "13.6.7.2 DECLARE ... HANDLER Statement"). For information about how the server chooses handlers when a condition occurs, see [Section 13.6.7.6, “Scope Rules for Handlers”](handler-scope.html "13.6.7.6 Scope Rules for Handlers").
+Para nomear uma condição, use a instrução [`DECLARE ... CONDITION`](declare-condition.html "13.6.7.1 Instrução DECLARE ... CONDITION"). Para declarar um **handler**, use a instrução [`DECLARE ... HANDLER`](declare-handler.html "13.6.7.2 Instrução DECLARE ... HANDLER"). Consulte [Seção 13.6.7.1, “Instrução DECLARE ... CONDITION”](declare-condition.html "13.6.7.1 Instrução DECLARE ... CONDITION"), e [Seção 13.6.7.2, “Instrução DECLARE ... HANDLER”](declare-handler.html "13.6.7.2 Instrução DECLARE ... HANDLER"). Para informações sobre como o servidor escolhe os **handlers** quando uma condição ocorre, consulte [Seção 13.6.7.6, “Regras de Escopo para Handlers”](handler-scope.html "13.6.7.6 Regras de Escopo para Handlers").
 
-To raise a condition, use the [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") statement. To modify condition information within a condition handler, use [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement"). See [Section 13.6.7.1, “DECLARE ... CONDITION Statement”](declare-condition.html "13.6.7.1 DECLARE ... CONDITION Statement"), and [Section 13.6.7.2, “DECLARE ... HANDLER Statement”](declare-handler.html "13.6.7.2 DECLARE ... HANDLER Statement").
+Para levantar uma condição, use a instrução [`SIGNAL`](signal.html "13.6.7.5 Instrução SIGNAL"). Para modificar informações da condição dentro de um **condition handler**, use [`RESIGNAL`](resignal.html "13.6.7.4 Instrução RESIGNAL"). Consulte [Seção 13.6.7.1, “Instrução DECLARE ... CONDITION”](declare-condition.html "13.6.7.1 Instrução DECLARE ... CONDITION"), e [Seção 13.6.7.2, “Instrução DECLARE ... HANDLER”](declare-handler.html "13.6.7.2 Instrução DECLARE ... HANDLER").
 
-To retrieve information from the diagnostics area, use the [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") statement (see [Section 13.6.7.3, “GET DIAGNOSTICS Statement”](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement")). For information about the diagnostics area, see [Section 13.6.7.7, “The MySQL Diagnostics Area”](diagnostics-area.html "13.6.7.7 The MySQL Diagnostics Area").
+Para recuperar informações da área de diagnósticos, use a instrução [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 Instrução GET DIAGNOSTICS") (consulte [Seção 13.6.7.3, “Instrução GET DIAGNOSTICS”](get-diagnostics.html "13.6.7.3 Instrução GET DIAGNOSTICS")). Para informações sobre a área de diagnósticos, consulte [Seção 13.6.7.7, “A Área de Diagnósticos do MySQL (Diagnostics Area)”](diagnostics-area.html "13.6.7.7 A Área de Diagnósticos do MySQL (Diagnostics Area)").

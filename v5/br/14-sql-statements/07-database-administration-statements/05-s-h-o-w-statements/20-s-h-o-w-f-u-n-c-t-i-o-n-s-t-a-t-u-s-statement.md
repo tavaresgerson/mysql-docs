@@ -1,8 +1,8 @@
-#### 13.7.5.20 SHOW FUNCTION STATUS Statement
+#### 13.7.5.20 Instrução SHOW FUNCTION STATUS
 
 ```sql
 SHOW FUNCTION STATUS
     [LIKE 'pattern' | WHERE expr]
 ```
 
-This statement is similar to [`SHOW PROCEDURE STATUS`](show-procedure-status.html "13.7.5.28 SHOW PROCEDURE STATUS Statement") but for stored functions. See [Section 13.7.5.28, “SHOW PROCEDURE STATUS Statement”](show-procedure-status.html "13.7.5.28 SHOW PROCEDURE STATUS Statement").
+Esta instrução é similar a [`SHOW PROCEDURE STATUS`](show-procedure-status.html "13.7.5.28 SHOW PROCEDURE STATUS Statement"), mas para funções armazenadas (stored functions). Consulte [Seção 13.7.5.28, “Instrução SHOW PROCEDURE STATUS”](show-procedure-status.html "13.7.5.28 SHOW PROCEDURE STATUS Statement").

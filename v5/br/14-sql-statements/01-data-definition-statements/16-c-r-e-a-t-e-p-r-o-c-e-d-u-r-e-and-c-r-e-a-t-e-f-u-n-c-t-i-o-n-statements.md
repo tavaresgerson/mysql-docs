@@ -1,4 +1,4 @@
-### 13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements
+### 13.1.16 Instruções CREATE PROCEDURE e CREATE FUNCTION
 
 ```sql
 CREATE
@@ -33,39 +33,39 @@ routine_body:
     Valid SQL routine statement
 ```
 
-These statements are used to create a stored routine (a stored procedure or function). That is, the specified routine becomes known to the server. By default, a stored routine is associated with the default database. To associate the routine explicitly with a given database, specify the name as *`db_name.sp_name`* when you create it.
+Estas instruções são usadas para criar uma stored ROUTINE (uma stored PROCEDURE ou FUNCTION). Ou seja, a ROUTINE especificada torna-se conhecida pelo server. Por padrão, uma stored ROUTINE é associada ao default DATABASE. Para associar a ROUTINE explicitamente a um DATABASE específico, especifique o nome como *`db_name.sp_name`* ao criá-la.
 
-The `CREATE FUNCTION` statement is also used in MySQL to support loadable functions. See [Section 13.7.3.1, “CREATE FUNCTION Statement for Loadable Functions”](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions"). A loadable function can be regarded as an external stored function. Stored functions share their namespace with loadable functions. See [Section 9.2.5, “Function Name Parsing and Resolution”](function-resolution.html "9.2.5 Function Name Parsing and Resolution"), for the rules describing how the server interprets references to different kinds of functions.
+A instrução `CREATE FUNCTION` também é usada no MySQL para suportar loadable FUNCTIONs. Consulte [Seção 13.7.3.1, “Instrução CREATE FUNCTION para Loadable Functions”](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions"). Uma loadable FUNCTION pode ser considerada uma stored FUNCTION externa. Stored FUNCTIONs compartilham seu namespace com loadable FUNCTIONs. Consulte [Seção 9.2.5, “Análise e Resolução de Nomes de FUNCTION”](function-resolution.html "9.2.5 Function Name Parsing and Resolution"), para as regras que descrevem como o server interpreta referências a diferentes tipos de FUNCTIONs.
 
-To invoke a stored procedure, use the [`CALL`](call.html "13.2.1 CALL Statement") statement (see [Section 13.2.1, “CALL Statement”](call.html "13.2.1 CALL Statement")). To invoke a stored function, refer to it in an expression. The function returns a value during expression evaluation.
+Para invocar uma stored PROCEDURE, use a instrução [`CALL`](call.html "13.2.1 CALL Statement") (consulte [Seção 13.2.1, “Instrução CALL”](call.html "13.2.1 CALL Statement")). Para invocar uma stored FUNCTION, referencie-a em uma expression. A FUNCTION retorna um valor durante a avaliação da expression.
 
-[`CREATE PROCEDURE`](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements") and [`CREATE FUNCTION`](create-function.html "13.1.13 CREATE FUNCTION Statement") require the [`CREATE ROUTINE`](privileges-provided.html#priv_create-routine) privilege. If the `DEFINER` clause is present, the privileges required depend on the *`user`* value, as discussed in [Section 23.6, “Stored Object Access Control”](stored-objects-security.html "23.6 Stored Object Access Control"). If binary logging is enabled, [`CREATE FUNCTION`](create-function.html "13.1.13 CREATE FUNCTION Statement") might require the [`SUPER`](privileges-provided.html#priv_super) privilege, as discussed in [Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging").
+[`CREATE PROCEDURE`](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements") e [`CREATE FUNCTION`](create-function.html "13.1.13 CREATE FUNCTION Statement") requerem o privilégio [`CREATE ROUTINE`](privileges-provided.html#priv_create-routine). Se a cláusula `DEFINER` estiver presente, os privilégios necessários dependem do valor *`user`*, conforme discutido em [Seção 23.6, “Controle de Acesso a Objetos Armazenados”](stored-objects-security.html "23.6 Stored Object Access Control"). Se o binary logging estiver habilitado, [`CREATE FUNCTION`](create-function.html "13.1.13 CREATE FUNCTION Statement") pode requerer o privilégio [`SUPER`](privileges-provided.html#priv_super), conforme discutido em [Seção 23.7, “Binary Logging de Stored Programs”](stored-programs-logging.html "23.7 Stored Program Binary Logging").
 
-By default, MySQL automatically grants the [`ALTER ROUTINE`](privileges-provided.html#priv_alter-routine) and [`EXECUTE`](privileges-provided.html#priv_execute) privileges to the routine creator. This behavior can be changed by disabling the [`automatic_sp_privileges`](server-system-variables.html#sysvar_automatic_sp_privileges) system variable. See [Section 23.2.2, “Stored Routines and MySQL Privileges”](stored-routines-privileges.html "23.2.2 Stored Routines and MySQL Privileges").
+Por padrão, o MySQL concede automaticamente os privilégios [`ALTER ROUTINE`](privileges-provided.html#priv_alter-routine) e [`EXECUTE`](privileges-provided.html#priv_execute) ao criador da ROUTINE. Este comportamento pode ser alterado desabilitando a variável de sistema [`automatic_sp_privileges`](server-system-variables.html#sysvar_automatic_sp_privileges). Consulte [Seção 23.2.2, “Stored Routines e Privilégios MySQL”](stored-routines-privileges.html "23.2.2 Stored Routines and MySQL Privileges").
 
-The `DEFINER` and `SQL SECURITY` clauses specify the security context to be used when checking access privileges at routine execution time, as described later in this section.
+As cláusulas `DEFINER` e `SQL SECURITY` especificam o security context a ser usado ao verificar privilégios de acesso no momento da execução da ROUTINE, conforme descrito posteriormente nesta seção.
 
-If the routine name is the same as the name of a built-in SQL function, a syntax error occurs unless you use a space between the name and the following parenthesis when defining the routine or invoking it later. For this reason, avoid using the names of existing SQL functions for your own stored routines.
+Se o nome da ROUTINE for o mesmo nome de uma built-in SQL FUNCTION, ocorrerá um syntax error, a menos que você use um espaço entre o nome e o parêntese seguinte ao definir a ROUTINE ou ao invocá-la posteriormente. Por esta razão, evite usar nomes de FUNCTIONs SQL existentes para suas próprias stored ROUTINEs.
 
-The [`IGNORE_SPACE`](sql-mode.html#sqlmode_ignore_space) SQL mode applies to built-in functions, not to stored routines. It is always permissible to have spaces after a stored routine name, regardless of whether [`IGNORE_SPACE`](sql-mode.html#sqlmode_ignore_space) is enabled.
+O SQL mode [`IGNORE_SPACE`](sql-mode.html#sqlmode_ignore_space) se aplica a built-in FUNCTIONs, não a stored ROUTINEs. É sempre permitido ter espaços após o nome de uma stored ROUTINE, independentemente de [`IGNORE_SPACE`](sql-mode.html#sqlmode_ignore_space) estar habilitado.
 
-The parameter list enclosed within parentheses must always be present. If there are no parameters, an empty parameter list of `()` should be used. Parameter names are not case-sensitive.
+A lista de parâmetros entre parênteses deve estar sempre presente. Se não houver parâmetros, deve ser usada uma lista de parâmetros vazia de `()`. Os nomes dos parâmetros não diferenciam maiúsculas de minúsculas (case-sensitive).
 
-Each parameter is an `IN` parameter by default. To specify otherwise for a parameter, use the keyword `OUT` or `INOUT` before the parameter name.
+Cada parâmetro é um parâmetro `IN` por padrão. Para especificar o contrário para um parâmetro, use a keyword `OUT` ou `INOUT` antes do nome do parâmetro.
 
-Note
+Nota
 
-Specifying a parameter as `IN`, `OUT`, or `INOUT` is valid only for a `PROCEDURE`. For a `FUNCTION`, parameters are always regarded as `IN` parameters.
+Especificar um parâmetro como `IN`, `OUT` ou `INOUT` é válido apenas para uma `PROCEDURE`. Para uma `FUNCTION`, os parâmetros são sempre considerados parâmetros `IN`.
 
-An `IN` parameter passes a value into a procedure. The procedure might modify the value, but the modification is not visible to the caller when the procedure returns. An `OUT` parameter passes a value from the procedure back to the caller. Its initial value is `NULL` within the procedure, and its value is visible to the caller when the procedure returns. An `INOUT` parameter is initialized by the caller, can be modified by the procedure, and any change made by the procedure is visible to the caller when the procedure returns.
+Um parâmetro `IN` passa um valor para dentro de uma PROCEDURE. A PROCEDURE pode modificar o valor, mas a modificação não é visível para o caller (quem chama) quando a PROCEDURE retorna. Um parâmetro `OUT` passa um valor da PROCEDURE de volta para o caller. Seu valor inicial é `NULL` dentro da PROCEDURE, e seu valor é visível para o caller quando a PROCEDURE retorna. Um parâmetro `INOUT` é inicializado pelo caller, pode ser modificado pela PROCEDURE, e qualquer alteração feita pela PROCEDURE é visível para o caller quando a PROCEDURE retorna.
 
-For each `OUT` or `INOUT` parameter, pass a user-defined variable in the [`CALL`](call.html "13.2.1 CALL Statement") statement that invokes the procedure so that you can obtain its value when the procedure returns. If you are calling the procedure from within another stored procedure or function, you can also pass a routine parameter or local routine variable as an `OUT` or `INOUT` parameter. If you are calling the procedure from within a trigger, you can also pass `NEW.col_name` as an `OUT` or `INOUT` parameter.
+Para cada parâmetro `OUT` ou `INOUT`, passe uma user-defined variable na instrução [`CALL`](call.html "13.2.1 CALL Statement") que invoca a PROCEDURE para que você possa obter seu valor quando a PROCEDURE retornar. Se você estiver chamando a PROCEDURE de dentro de outra stored PROCEDURE ou FUNCTION, você também pode passar um parâmetro de ROUTINE ou uma local routine variable como um parâmetro `OUT` ou `INOUT`. Se você estiver chamando a PROCEDURE de dentro de um TRIGGER, você também pode passar `NEW.col_name` como um parâmetro `OUT` ou `INOUT`.
 
-For information about the effect of unhandled conditions on procedure parameters, see [Section 13.6.7.8, “Condition Handling and OUT or INOUT Parameters”](conditions-and-parameters.html "13.6.7.8 Condition Handling and OUT or INOUT Parameters").
+Para informações sobre o efeito de condições não tratadas nos parâmetros da PROCEDURE, consulte [Seção 13.6.7.8, “Tratamento de Condições e Parâmetros OUT ou INOUT”](conditions-and-parameters.html "13.6.7.8 Condition Handling and OUT or INOUT Parameters").
 
-Routine parameters cannot be referenced in statements prepared within the routine; see [Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs").
+Os parâmetros da ROUTINE não podem ser referenciados em instruções prepared dentro da ROUTINE; consulte [Seção 23.8, “Restrições sobre Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs").
 
-The following example shows a simple stored procedure that, given a country code, counts the number of cities for that country that appear in the `city` table of the `world` database. The country code is passed using an `IN` parameter, and the city count is returned using an `OUT` parameter:
+O exemplo a seguir mostra uma stored PROCEDURE simples que, dado um código de país, conta o número de cidades para aquele país que aparecem na tabela `city` do DATABASE `world`. O código do país é passado usando um parâmetro `IN`, e a contagem de cidades é retornada usando um parâmetro `OUT`:
 
 ```sql
 mysql> delimiter //
@@ -102,11 +102,11 @@ mysql> SELECT @cities;
 1 row in set (0.00 sec)
 ```
 
-The example uses the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client `delimiter` command to change the statement delimiter from `;` to `//` while the procedure is being defined. This enables the `;` delimiter used in the procedure body to be passed through to the server rather than being interpreted by [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") itself. See [Section 23.1, “Defining Stored Programs”](stored-programs-defining.html "23.1 Defining Stored Programs").
+O exemplo usa o comando `delimiter` do client [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") para alterar o statement delimiter de `;` para `//` enquanto a PROCEDURE está sendo definida. Isso permite que o delimiter `;` usado no body da PROCEDURE seja passado para o server em vez de ser interpretado pelo próprio [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"). Consulte [Seção 23.1, “Definindo Stored Programs”](stored-programs-defining.html "23.1 Defining Stored Programs").
 
-The `RETURNS` clause may be specified only for a `FUNCTION`, for which it is mandatory. It indicates the return type of the function, and the function body must contain a `RETURN value` statement. If the [`RETURN`](return.html "13.6.5.7 RETURN Statement") statement returns a value of a different type, the value is coerced to the proper type. For example, if a function specifies an [`ENUM`](enum.html "11.3.5 The ENUM Type") or [`SET`](set.html "11.3.6 The SET Type") value in the `RETURNS` clause, but the [`RETURN`](return.html "13.6.5.7 RETURN Statement") statement returns an integer, the value returned from the function is the string for the corresponding [`ENUM`](enum.html "11.3.5 The ENUM Type") member of set of [`SET`](set.html "11.3.6 The SET Type") members.
+A cláusula `RETURNS` pode ser especificada apenas para uma `FUNCTION`, para a qual é obrigatória. Ela indica o return type da FUNCTION, e o body da FUNCTION deve conter uma instrução `RETURN value`. Se a instrução [`RETURN`](return.html "13.6.5.7 RETURN Statement") retornar um valor de um tipo diferente, o valor é coagido ao tipo apropriado. Por exemplo, se uma FUNCTION especificar um valor [`ENUM`](enum.html "11.3.5 The ENUM Type") ou [`SET`](set.html "11.3.6 The SET Type") na cláusula `RETURNS`, mas a instrução [`RETURN`](return.html "13.6.5.7 RETURN Statement") retornar um INTEGER, o valor retornado da FUNCTION será a string para o membro [`ENUM`](enum.html "11.3.5 The ENUM Type") ou o conjunto de membros [`SET`](set.html "11.3.6 The SET Type") correspondente.
 
-The following example function takes a parameter, performs an operation using an SQL function, and returns the result. In this case, it is unnecessary to use `delimiter` because the function definition contains no internal `;` statement delimiters:
+A FUNCTION de exemplo a seguir aceita um parâmetro, executa uma operação usando uma SQL FUNCTION e retorna o resultado. Neste caso, é desnecessário usar `delimiter` porque a definição da FUNCTION não contém delimiters de instrução `;` internos:
 
 ```sql
 mysql> CREATE FUNCTION hello (s CHAR(20))
@@ -123,57 +123,57 @@ mysql> SELECT hello('world');
 1 row in set (0.00 sec)
 ```
 
-Parameter types and function return types can be declared to use any valid data type. The `COLLATE` attribute can be used if preceded by a `CHARACTER SET` specification.
+Os tipos de parâmetro e os return types de FUNCTION podem ser declarados para usar qualquer data type válido. O atributo `COLLATE` pode ser usado se for precedido por uma especificação `CHARACTER SET`.
 
-The *`routine_body`* consists of a valid SQL routine statement. This can be a simple statement such as [`SELECT`](select.html "13.2.9 SELECT Statement") or [`INSERT`](insert.html "13.2.5 INSERT Statement"), or a compound statement written using `BEGIN` and `END`. Compound statements can contain declarations, loops, and other control structure statements. The syntax for these statements is described in [Section 13.6, “Compound Statements”](sql-compound-statements.html "13.6 Compound Statements"). In practice, stored functions tend to use compound statements, unless the body consists of a single [`RETURN`](return.html "13.6.5.7 RETURN Statement") statement.
+O *`routine_body`* consiste em uma instrução SQL ROUTINE válida. Esta pode ser uma instrução simples, como [`SELECT`](select.html "13.2.9 SELECT Statement") ou [`INSERT`](insert.html "13.2.5 INSERT Statement"), ou uma compound statement escrita usando `BEGIN` e `END`. Compound statements podem conter `DECLARE`s, LOOPS e outras instruções de control structure. A sintaxe para estas instruções é descrita em [Seção 13.6, “Compound Statements”](sql-compound-statements.html "13.6 Compound Statements"). Na prática, stored FUNCTIONs tendem a usar compound statements, a menos que o body consista em uma única instrução [`RETURN`](return.html "13.6.5.7 RETURN Statement").
 
-MySQL permits routines to contain DDL statements, such as `CREATE` and `DROP`. MySQL also permits stored procedures (but not stored functions) to contain SQL transaction statements such as [`COMMIT`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements"). Stored functions may not contain statements that perform explicit or implicit commit or rollback. Support for these statements is not required by the SQL standard, which states that each DBMS vendor may decide whether to permit them.
+O MySQL permite que ROUTINEs contenham instruções DDL, como `CREATE` e `DROP`. O MySQL também permite que stored PROCEDUREs (mas não stored FUNCTIONs) contenham instruções SQL transaction, como [`COMMIT`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements"). Stored FUNCTIONs não podem conter instruções que realizam COMMIT ou ROLLBACK explícito ou implícito. O suporte para estas instruções não é exigido pelo padrão SQL, que afirma que cada fornecedor de DBMS pode decidir se as permite.
 
-Statements that return a result set can be used within a stored procedure but not within a stored function. This prohibition includes [`SELECT`](select.html "13.2.9 SELECT Statement") statements that do not have an `INTO var_list` clause and other statements such as [`SHOW`](show.html "13.7.5 SHOW Statements"), [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement"), and [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement"). For statements that can be determined at function definition time to return a result set, a `Not allowed to return a result set from a function` error occurs ([`ER_SP_NO_RETSET`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_sp_no_retset)). For statements that can be determined only at runtime to return a result set, a `PROCEDURE %s can't return a result set in the given context` error occurs ([`ER_SP_BADSELECT`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_sp_badselect)).
+Instruções que retornam um result set podem ser usadas dentro de uma stored PROCEDURE, mas não dentro de uma stored FUNCTION. Esta proibição inclui instruções [`SELECT`](select.html "13.2.9 SELECT Statement") que não possuem uma cláusula `INTO var_list` e outras instruções como [`SHOW`](show.html "13.7.5 SHOW Statements"), [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") e [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement"). Para instruções que podem ser determinadas no tempo de definição da FUNCTION como retornando um result set, ocorre um ERROR `Not allowed to return a result set from a function` ([`ER_SP_NO_RETSET`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_sp_no_retset)). Para instruções que podem ser determinadas como retornando um result set apenas em runtime, ocorre um ERROR `PROCEDURE %s can't return a result set in the given context` ([`ER_SP_BADSELECT`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_sp_badselect)).
 
-[`USE`](use.html "13.8.4 USE Statement") statements within stored routines are not permitted. When a routine is invoked, an implicit `USE db_name` is performed (and undone when the routine terminates). The causes the routine to have the given default database while it executes. References to objects in databases other than the routine default database should be qualified with the appropriate database name.
+Instruções [`USE`](use.html "13.8.4 USE Statement") dentro de stored ROUTINEs não são permitidas. Quando uma ROUTINE é invocada, um `USE db_name` implícito é realizado (e desfeito quando a ROUTINE termina). Isso faz com que a ROUTINE use o default DATABASE fornecido enquanto é executada. Referências a objetos em DATABASEs diferentes do default DATABASE da ROUTINE devem ser qualificadas com o nome do DATABASE apropriado.
 
-For additional information about statements that are not permitted in stored routines, see [Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs").
+Para informações adicionais sobre instruções que não são permitidas em stored ROUTINEs, consulte [Seção 23.8, “Restrições sobre Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs").
 
-For information about invoking stored procedures from within programs written in a language that has a MySQL interface, see [Section 13.2.1, “CALL Statement”](call.html "13.2.1 CALL Statement").
+Para informações sobre como invocar stored PROCEDUREs a partir de programas escritos em uma linguagem que possui uma interface MySQL, consulte [Seção 13.2.1, “Instrução CALL”](call.html "13.2.1 CALL Statement").
 
-MySQL stores the [`sql_mode`](server-system-variables.html#sysvar_sql_mode) system variable setting in effect when a routine is created or altered, and always executes the routine with this setting in force, *regardless of the current server SQL mode when the routine begins executing*.
+O MySQL armazena a configuração da variável de sistema [`sql_mode`](server-system-variables.html#sysvar_sql_mode) em vigor quando uma ROUTINE é criada ou alterada, e sempre executa a ROUTINE com essa configuração em vigor, *independentemente do SQL mode atual do server quando a ROUTINE começa a ser executada*.
 
-The switch from the SQL mode of the invoker to that of the routine occurs after evaluation of arguments and assignment of the resulting values to routine parameters. If you define a routine in strict SQL mode but invoke it in nonstrict mode, assignment of arguments to routine parameters does not take place in strict mode. If you require that expressions passed to a routine be assigned in strict SQL mode, you should invoke the routine with strict mode in effect.
+A mudança do SQL mode do invoker (quem invoca) para o da ROUTINE ocorre após a avaliação dos argumentos e a atribuição dos valores resultantes aos parâmetros da ROUTINE. Se você definir uma ROUTINE em SQL mode estrito, mas a invocar em modo não estrito, a atribuição de argumentos aos parâmetros da ROUTINE não ocorre em modo estrito. Se você exigir que as expressions passadas para uma ROUTINE sejam atribuídas em SQL mode estrito, você deve invocar a ROUTINE com o modo estrito em vigor.
 
-The `COMMENT` characteristic is a MySQL extension, and may be used to describe the stored routine. This information is displayed by the [`SHOW CREATE PROCEDURE`](show-create-procedure.html "13.7.5.9 SHOW CREATE PROCEDURE Statement") and [`SHOW CREATE FUNCTION`](show-create-function.html "13.7.5.8 SHOW CREATE FUNCTION Statement") statements.
+A characteristic `COMMENT` é uma extensão MySQL e pode ser usada para descrever a stored ROUTINE. Esta informação é exibida pelas instruções [`SHOW CREATE PROCEDURE`](show-create-procedure.html "13.7.5.9 SHOW CREATE PROCEDURE Statement") e [`SHOW CREATE FUNCTION`](show-create-function.html "13.7.5.8 SHOW CREATE FUNCTION Statement").
 
-The `LANGUAGE` characteristic indicates the language in which the routine is written. The server ignores this characteristic; only SQL routines are supported.
+A characteristic `LANGUAGE` indica a linguagem na qual a ROUTINE está escrita. O server ignora esta characteristic; apenas SQL ROUTINEs são suportadas.
 
-A routine is considered “deterministic” if it always produces the same result for the same input parameters, and “not deterministic” otherwise. If neither `DETERMINISTIC` nor `NOT DETERMINISTIC` is given in the routine definition, the default is `NOT DETERMINISTIC`. To declare that a function is deterministic, you must specify `DETERMINISTIC` explicitly.
+Uma ROUTINE é considerada “deterministic” se ela sempre produzir o mesmo resultado para os mesmos input parameters, e “not deterministic” caso contrário. Se nem `DETERMINISTIC` nem `NOT DETERMINISTIC` for fornecido na definição da ROUTINE, o default é `NOT DETERMINISTIC`. Para declarar que uma FUNCTION é deterministic, você deve especificar `DETERMINISTIC` explicitamente.
 
-Assessment of the nature of a routine is based on the “honesty” of the creator: MySQL does not check that a routine declared `DETERMINISTIC` is free of statements that produce nondeterministic results. However, misdeclaring a routine might affect results or affect performance. Declaring a nondeterministic routine as `DETERMINISTIC` might lead to unexpected results by causing the optimizer to make incorrect execution plan choices. Declaring a deterministic routine as `NONDETERMINISTIC` might diminish performance by causing available optimizations not to be used.
+A avaliação da natureza de uma ROUTINE baseia-se na "honestidade" do criador: o MySQL não verifica se uma ROUTINE declarada `DETERMINISTIC` está livre de instruções que produzam resultados nondeterministic. No entanto, declarar incorretamente uma ROUTINE pode afetar os resultados ou o performance. Declarar uma ROUTINE nondeterministic como `DETERMINISTIC` pode levar a resultados inesperados, fazendo com que o optimizer faça escolhas incorretas de execution plan. Declarar uma ROUTINE deterministic como `NONDETERMINISTIC` pode diminuir o performance, impedindo que otimizações disponíveis sejam usadas.
 
-If binary logging is enabled, the `DETERMINISTIC` characteristic affects which routine definitions MySQL accepts. See [Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging").
+Se o binary logging estiver habilitado, a characteristic `DETERMINISTIC` afeta quais definições de ROUTINE o MySQL aceita. Consulte [Seção 23.7, “Binary Logging de Stored Programs”](stored-programs-logging.html "23.7 Stored Program Binary Logging").
 
-A routine that contains the [`NOW()`](date-and-time-functions.html#function_now) function (or its synonyms) or [`RAND()`](mathematical-functions.html#function_rand) is nondeterministic, but it might still be replication-safe. For [`NOW()`](date-and-time-functions.html#function_now), the binary log includes the timestamp and replicates correctly. [`RAND()`](mathematical-functions.html#function_rand) also replicates correctly as long as it is called only a single time during the execution of a routine. (You can consider the routine execution timestamp and random number seed as implicit inputs that are identical on the source and replica.)
+Uma ROUTINE que contém a FUNCTION [`NOW()`](date-and-time-functions.html#function_now) (ou seus sinônimos) ou [`RAND()`](mathematical-functions.html#function_rand) é nondeterministic, mas ainda pode ser replication-safe. Para [`NOW()`](date-and-time-functions.html#function_now), o binary log inclui o timestamp e replica corretamente. [`RAND()`](mathematical-functions.html#function_rand) também replica corretamente, desde que seja chamada apenas uma única vez durante a execução de uma ROUTINE. (Você pode considerar o timestamp de execução da ROUTINE e a seed de número aleatório como INPUTs implícitos que são idênticos na source e na replica.)
 
-Several characteristics provide information about the nature of data use by the routine. In MySQL, these characteristics are advisory only. The server does not use them to constrain what kinds of statements a routine is permitted to execute.
+Várias characteristics fornecem informações sobre a natureza do uso de dados pela ROUTINE. No MySQL, estas characteristics são apenas consultivas (advisory). O server não as usa para restringir que tipos de instruções uma ROUTINE tem permissão para executar.
 
-* `CONTAINS SQL` indicates that the routine does not contain statements that read or write data. This is the default if none of these characteristics is given explicitly. Examples of such statements are `SET @x = 1` or `DO RELEASE_LOCK('abc')`, which execute but neither read nor write data.
+* `CONTAINS SQL` indica que a ROUTINE não contém instruções que leem ou escrevem dados. Este é o default se nenhuma destas characteristics for fornecida explicitamente. Exemplos de tais instruções são `SET @x = 1` ou `DO RELEASE_LOCK('abc')`, que são executadas, mas nem leem nem escrevem dados.
 
-* `NO SQL` indicates that the routine contains no SQL statements.
+* `NO SQL` indica que a ROUTINE não contém instruções SQL.
 
-* `READS SQL DATA` indicates that the routine contains statements that read data (for example, [`SELECT`](select.html "13.2.9 SELECT Statement")), but not statements that write data.
+* `READS SQL DATA` indica que a ROUTINE contém instruções que leem dados (por exemplo, [`SELECT`](select.html "13.2.9 SELECT Statement")), mas não instruções que escrevem dados.
 
-* `MODIFIES SQL DATA` indicates that the routine contains statements that may write data (for example, [`INSERT`](insert.html "13.2.5 INSERT Statement") or [`DELETE`](delete.html "13.2.2 DELETE Statement")).
+* `MODIFIES SQL DATA` indica que a ROUTINE contém instruções que podem escrever dados (por exemplo, [`INSERT`](insert.html "13.2.5 INSERT Statement") ou [`DELETE`](delete.html "13.2.2 DELETE Statement")).
 
-The `SQL SECURITY` characteristic can be `DEFINER` or `INVOKER` to specify the security context; that is, whether the routine executes using the privileges of the account named in the routine `DEFINER` clause or the user who invokes it. This account must have permission to access the database with which the routine is associated. The default value is `DEFINER`. The user who invokes the routine must have the [`EXECUTE`](privileges-provided.html#priv_execute) privilege for it, as must the `DEFINER` account if the routine executes in definer security context.
+A characteristic `SQL SECURITY` pode ser `DEFINER` ou `INVOKER` para especificar o security context; ou seja, se a ROUTINE executa usando os privilégios da conta nomeada na cláusula `DEFINER` da ROUTINE ou do user que a invoca. Esta conta deve ter permissão para acessar o DATABASE ao qual a ROUTINE está associada. O valor default é `DEFINER`. O user que invoca a ROUTINE deve ter o privilégio [`EXECUTE`](privileges-provided.html#priv_execute) para ela, assim como a conta `DEFINER`, se a ROUTINE for executada no security context de definer.
 
-The `DEFINER` clause specifies the MySQL account to be used when checking access privileges at routine execution time for routines that have the `SQL SECURITY DEFINER` characteristic.
+A cláusula `DEFINER` especifica a conta MySQL a ser usada ao verificar privilégios de acesso no momento da execução da ROUTINE para ROUTINEs que possuem a characteristic `SQL SECURITY DEFINER`.
 
-If the `DEFINER` clause is present, the *`user`* value should be a MySQL account specified as `'user_name'@'host_name'`, [`CURRENT_USER`](information-functions.html#function_current-user), or [`CURRENT_USER()`](information-functions.html#function_current-user). The permitted *`user`* values depend on the privileges you hold, as discussed in [Section 23.6, “Stored Object Access Control”](stored-objects-security.html "23.6 Stored Object Access Control"). Also see that section for additional information about stored routine security.
+Se a cláusula `DEFINER` estiver presente, o valor *`user`* deve ser uma conta MySQL especificada como `'user_name'@'host_name'`, [`CURRENT_USER`](information-functions.html#function_current-user) ou [`CURRENT_USER()`](information-functions.html#function_current-user). Os valores *`user`* permitidos dependem dos privilégios que você possui, conforme discutido em [Seção 23.6, “Controle de Acesso a Objetos Armazenados”](stored-objects-security.html "23.6 Stored Object Access Control"). Consulte também esta seção para obter informações adicionais sobre a segurança de stored ROUTINEs.
 
-If the `DEFINER` clause is omitted, the default definer is the user who executes the [`CREATE PROCEDURE`](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements") or [`CREATE FUNCTION`](create-function.html "13.1.13 CREATE FUNCTION Statement") statement. This is the same as specifying `DEFINER = CURRENT_USER` explicitly.
+Se a cláusula `DEFINER` for omitida, o definer default é o user que executa a instrução [`CREATE PROCEDURE`](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements") ou [`CREATE FUNCTION`](create-function.html "13.1.13 CREATE FUNCTION Statement"). Isso é o mesmo que especificar `DEFINER = CURRENT_USER` explicitamente.
 
-Within the body of a stored routine that is defined with the `SQL SECURITY DEFINER` characteristic, the [`CURRENT_USER`](information-functions.html#function_current-user) function returns the routine's `DEFINER` value. For information about user auditing within stored routines, see [Section 6.2.18, “SQL-Based Account Activity Auditing”](account-activity-auditing.html "6.2.18 SQL-Based Account Activity Auditing").
+Dentro do body de uma stored ROUTINE que é definida com a characteristic `SQL SECURITY DEFINER`, a FUNCTION [`CURRENT_USER`](information-functions.html#function_current-user) retorna o valor `DEFINER` da ROUTINE. Para informações sobre auditoria de user dentro de stored ROUTINEs, consulte [Seção 6.2.18, “Auditoria de Atividade de Conta Baseada em SQL”](account-activity-auditing.html "6.2.18 SQL-Based Account Activity Auditing").
 
-Consider the following procedure, which displays a count of the number of MySQL accounts listed in the `mysql.user` system table:
+Considere a seguinte PROCEDURE, que exibe uma contagem do número de contas MySQL listadas na tabela de sistema `mysql.user`:
 
 ```sql
 CREATE DEFINER = 'admin'@'localhost' PROCEDURE account_count()
@@ -182,9 +182,9 @@ BEGIN
 END;
 ```
 
-The procedure is assigned a `DEFINER` account of `'admin'@'localhost'` no matter which user defines it. It executes with the privileges of that account no matter which user invokes it (because the default security characteristic is `DEFINER`). The procedure succeeds or fails depending on whether invoker has the [`EXECUTE`](privileges-provided.html#priv_execute) privilege for it and `'admin'@'localhost'` has the [`SELECT`](privileges-provided.html#priv_select) privilege for the `mysql.user` table.
+A PROCEDURE recebe uma conta `DEFINER` de `'admin'@'localhost'`, independentemente do user que a define. Ela executa com os privilégios dessa conta, independentemente do user que a invoca (porque a characteristic de segurança default é `DEFINER`). A PROCEDURE é bem-sucedida ou falha dependendo se o invoker possui o privilégio [`EXECUTE`](privileges-provided.html#priv_execute) para ela e se `'admin'@'localhost'` possui o privilégio [`SELECT`](privileges-provided.html#priv_select) para a tabela `mysql.user`.
 
-Now suppose that the procedure is defined with the `SQL SECURITY INVOKER` characteristic:
+Agora suponha que a PROCEDURE seja definida com a characteristic `SQL SECURITY INVOKER`:
 
 ```sql
 CREATE DEFINER = 'admin'@'localhost' PROCEDURE account_count()
@@ -194,18 +194,18 @@ BEGIN
 END;
 ```
 
-The procedure still has a `DEFINER` of `'admin'@'localhost'`, but in this case, it executes with the privileges of the invoking user. Thus, the procedure succeeds or fails depending on whether the invoker has the [`EXECUTE`](privileges-provided.html#priv_execute) privilege for it and the [`SELECT`](privileges-provided.html#priv_select) privilege for the `mysql.user` table.
+A PROCEDURE ainda tem um `DEFINER` de `'admin'@'localhost'`, mas neste caso, ela executa com os privilégios do user invoker. Assim, a PROCEDURE é bem-sucedida ou falha dependendo se o invoker possui o privilégio [`EXECUTE`](privileges-provided.html#priv_execute) para ela e o privilégio [`SELECT`](privileges-provided.html#priv_select) para a tabela `mysql.user`.
 
-The server handles the data type of a routine parameter, local routine variable created with [`DECLARE`](declare.html "13.6.3 DECLARE Statement"), or function return value as follows:
+O server lida com o data type de um parâmetro de ROUTINE, local routine variable criada com [`DECLARE`](declare.html "13.6.3 DECLARE Statement"), ou return value de FUNCTION da seguinte forma:
 
-* Assignments are checked for data type mismatches and overflow. Conversion and overflow problems result in warnings, or errors in strict SQL mode.
+* As atribuições são verificadas quanto a incompatibilidades de data type e overflow. Problemas de conversão e overflow resultam em WARNINGs, ou ERRORs em SQL mode estrito.
 
-* Only scalar values can be assigned. For example, a statement such as `SET x = (SELECT 1, 2)` is invalid.
+* Apenas valores scalar podem ser atribuídos. Por exemplo, uma instrução como `SET x = (SELECT 1, 2)` é inválida.
 
-* For character data types, if `CHARACTER SET` is includedd in the declaration, the specified character set and its default collation is used. If the `COLLATE` attribute is also present, that collation is used rather than the default collation.
+* Para data types de CHARACTER, se `CHARACTER SET` for incluído na declaração, o character set especificado e seu default collation serão usados. Se o atributo `COLLATE` também estiver presente, esse collation será usado em vez do default collation.
 
-  If `CHARACTER SET` and `COLLATE` are not present, the database character set and collation in effect at routine creation time are used. To avoid having the server use the database character set and collation, provide an explicit `CHARACTER SET` and a `COLLATE` attribute for character data parameters.
+  Se `CHARACTER SET` e `COLLATE` não estiverem presentes, o character set e collation do DATABASE em vigor no momento da criação da ROUTINE serão usados. Para evitar que o server use o character set e collation do DATABASE, forneça um `CHARACTER SET` explícito e um atributo `COLLATE` para parâmetros de character data.
 
-  If you alter the database default character set or collation, stored routines that are to use the new database defaults must be dropped and recreated.
+  Se você alterar o character set ou collation default do DATABASE, as stored ROUTINEs que devem usar os novos defaults do DATABASE devem ser descartadas e recriadas.
 
-  The database character set and collation are given by the value of the [`character_set_database`](server-system-variables.html#sysvar_character_set_database) and [`collation_database`](server-system-variables.html#sysvar_collation_database) system variables. For more information, see [Section 10.3.3, “Database Character Set and Collation”](charset-database.html "10.3.3 Database Character Set and Collation").
+  O character set e collation do DATABASE são fornecidos pelo valor das variáveis de sistema [`character_set_database`](server-system-variables.html#sysvar_character_set_database) e [`collation_database`](server-system-variables.html#sysvar_collation_database). Para mais informações, consulte [Seção 10.3.3, “Character Set e Collation do Database”](charset-database.html "10.3.3 Database Character Set and Collation").

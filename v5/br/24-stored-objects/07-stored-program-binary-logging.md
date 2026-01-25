@@ -1,34 +1,34 @@
-## 23.7 Stored Program Binary Logging
+## 23.7 Log Binário de Programas Armazenados
 
-The binary log contains information about SQL statements that modify database contents. This information is stored in the form of “events” that describe the modifications. (Binary log events differ from scheduled event stored objects.) The binary log has two important purposes:
+O Binary Log contém informações sobre SQL statements que modificam o conteúdo do Database. Esta informação é armazenada na forma de “eventos” que descrevem as modificações. (Eventos de Binary Log diferem de objetos armazenados de eventos agendados.) O Binary Log tem dois propósitos importantes:
 
-* For replication, the binary log is used on source replication servers as a record of the statements to be sent to replica servers. The source sends the events contained in its binary log to its replicas, which execute those events to make the same data changes that were made on the source. See Section 16.2, “Replication Implementation”.
+* Para Replicação, o Binary Log é usado em Source servers de Replicação como um registro dos statements a serem enviados aos Replica servers. O Source envia os eventos contidos em seu Binary Log para suas Replicas, que executam esses eventos para realizar as mesmas alterações de dados que foram feitas no Source. Consulte a Seção 16.2, “Implementação de Replicação”.
 
-* Certain data recovery operations require use of the binary log. After a backup file has been restored, the events in the binary log that were recorded after the backup was made are re-executed. These events bring databases up to date from the point of the backup. See Section 7.3.2, “Using Backups for Recovery”.
+* Certas operações de recuperação de dados exigem o uso do Binary Log. Após um arquivo de backup ter sido restaurado, os eventos no Binary Log que foram registrados após o backup ser feito são reexecutados. Estes eventos atualizam os Databases a partir do ponto do backup. Consulte a Seção 7.3.2, “Usando Backups para Recuperação”.
 
-However, if logging occurs at the statement level, there are certain binary logging issues with respect to stored programs (stored procedures and functions, triggers, and events):
+No entanto, se o logging ocorrer no statement level, há certos problemas de Binary Logging em relação a Stored Programs (Stored Procedures e Functions, Triggers e Events):
 
-* In some cases, a statement might affect different sets of rows on source and replica.
+* Em alguns casos, um statement pode afetar diferentes conjuntos de rows no Source e no Replica.
 
-* Replicated statements executed on a replica are processed by the replica SQL thread, which has full privileges. It is possible for a procedure to follow different execution paths on source and replica servers, so a user can write a routine containing a dangerous statement that executes only on the replica where it is processed by a thread that has full privileges.
+* Statements replicados executados em um Replica são processados pelo SQL Thread do Replica, que possui full privileges. É possível que uma Procedure siga diferentes caminhos de execução nos Source e Replica servers, de modo que um usuário possa escrever uma rotina contendo um statement perigoso que é executado apenas no Replica, onde é processado por um Thread que possui full privileges.
 
-* If a stored program that modifies data is nondeterministic, it is not repeatable. This can result in different data on source and replica, or cause restored data to differ from the original data.
+* Se um Stored Program que modifica dados for nondeterministic, ele não é repetível. Isso pode resultar em dados diferentes no Source e no Replica, ou fazer com que os dados restaurados difiram dos dados originais.
 
-This section describes how MySQL handles binary logging for stored programs. It states the current conditions that the implementation places on the use of stored programs, and what you can do to avoid logging problems. It also provides additional information about the reasons for these conditions.
+Esta seção descreve como o MySQL lida com o Binary Logging para Stored Programs. Ela estabelece as condições atuais que a implementação impõe ao uso de Stored Programs, e o que você pode fazer para evitar problemas de logging. Ela também fornece informações adicionais sobre as razões para estas condições.
 
-Unless noted otherwise, the remarks here assume that binary logging is enabled on the server (see Section 5.4.4, “The Binary Log”.) If the binary log is not enabled, replication is not possible, nor is the binary log available for data recovery. In MySQL 5.7, binary logging is not enabled by default, and you enable it using the `--log-bin` option.
+A menos que indicado de outra forma, as observações aqui assumem que o Binary Logging está habilitado no server (consulte a Seção 5.4.4, “O Binary Log”). Se o Binary Log não estiver habilitado, a Replicação não é possível, nem o Binary Log está disponível para recuperação de dados. No MySQL 5.7, o Binary Logging não é habilitado por padrão, e você o habilita usando a opção `--log-bin`.
 
-In general, the issues described here result when binary logging occurs at the SQL statement level (statement-based binary logging). If you use row-based binary logging, the log contains changes made to individual rows as a result of executing SQL statements. When routines or triggers execute, row changes are logged, not the statements that make the changes. For stored procedures, this means that the `CALL` statement is not logged. For stored functions, row changes made within the function are logged, not the function invocation. For triggers, row changes made by the trigger are logged. On the replica side, only the row changes are seen, not the stored program invocation.
+Em geral, os problemas aqui descritos resultam quando o Binary Logging ocorre no nível do SQL statement (statement-based binary logging). Se você usar row-based binary logging, o log contém as alterações feitas em rows individuais como resultado da execução de SQL statements. Quando rotinas ou Triggers são executados, as alterações de rows são logadas, e não os statements que fazem as alterações. Para Stored Procedures, isso significa que o statement `CALL` não é logado. Para Stored Functions, as alterações de rows feitas dentro da Function são logadas, e não a invocation da Function. Para Triggers, as alterações de rows feitas pelo Trigger são logadas. No lado do Replica, apenas as alterações de rows são vistas, e não a invocation do Stored Program.
 
-Mixed format binary logging (`binlog_format=MIXED`) uses statement-based binary logging, except for cases where only row-based binary logging is guaranteed to lead to proper results. With mixed format, when a stored function, stored procedure, trigger, event, or prepared statement contains anything that is not safe for statement-based binary logging, the entire statement is marked as unsafe and logged in row format. The statements used to create and drop procedures, functions, triggers, and events are always safe, and are logged in statement format. For more information about row-based, mixed, and statement-based logging, and how safe and unsafe statements are determined, see Section 16.2.1, “Replication Formats”.
+O Binary Logging de formato misto (`binlog_format=MIXED`) usa statement-based binary logging, exceto para casos em que apenas o row-based binary logging é garantido para levar a resultados adequados. Com o formato misto, quando uma Stored Function, Stored Procedure, Trigger, Event ou Prepared Statement contém algo que não é seguro para statement-based binary logging, o statement inteiro é marcado como inseguro e logado em row format. Os statements usados para criar e dropar Procedures, Functions, Triggers e Events são sempre seguros e são logados em statement format. Para mais informações sobre logging row-based, misto e statement-based, e como os statements seguros e inseguros são determinados, consulte a Seção 16.2.1, “Formatos de Replicação”.
 
-The conditions on the use of stored functions in MySQL can be summarized as follows. These conditions do not apply to stored procedures or Event Scheduler events and they do not apply unless binary logging is enabled.
+As condições para o uso de Stored Functions no MySQL podem ser resumidas da seguinte forma. Estas condições não se aplicam a Stored Procedures ou Event Scheduler events e não se aplicam a menos que o Binary Logging esteja habilitado.
 
-* To create or alter a stored function, you must have the `SUPER` privilege, in addition to the `CREATE ROUTINE` or `ALTER ROUTINE` privilege that is normally required. (Depending on the `DEFINER` value in the function definition, `SUPER` might be required regardless of whether binary logging is enabled. See Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”.)
+* Para criar ou alterar uma Stored Function, você deve ter o privilege `SUPER`, além do privilege `CREATE ROUTINE` ou `ALTER ROUTINE` que é normalmente exigido. (Dependendo do valor `DEFINER` na definição da Function, `SUPER` pode ser exigido independentemente de o Binary Logging estar habilitado. Consulte a Seção 13.1.16, “Instruções CREATE PROCEDURE e CREATE FUNCTION”.)
 
-* When you create a stored function, you must declare either that it is deterministic or that it does not modify data. Otherwise, it may be unsafe for data recovery or replication.
+* Ao criar uma Stored Function, você deve declarar que ela é deterministic ou que não modifica dados. Caso contrário, ela pode ser insegura para recuperação de dados ou Replicação.
 
-  By default, for a `CREATE FUNCTION` statement to be accepted, at least one of `DETERMINISTIC`, `NO SQL`, or `READS SQL DATA` must be specified explicitly. Otherwise an error occurs:
+  Por padrão, para que um statement `CREATE FUNCTION` seja aceito, pelo menos um de `DETERMINISTIC`, `NO SQL` ou `READS SQL DATA` deve ser especificado explicitamente. Caso contrário, ocorre um erro:
 
   ```sql
   ERROR 1418 (HY000): This function has none of DETERMINISTIC, NO SQL,
@@ -37,7 +37,7 @@ The conditions on the use of stored functions in MySQL can be summarized as foll
   variable)
   ```
 
-  This function is deterministic (and does not modify data), so it is safe:
+  Esta Function é deterministic (e não modifica dados), então é segura:
 
   ```sql
   CREATE FUNCTION f1(i INT)
@@ -49,7 +49,7 @@ The conditions on the use of stored functions in MySQL can be summarized as foll
   END;
   ```
 
-  This function uses `UUID()`, which is not deterministic, so the function also is not deterministic and is not safe:
+  Esta Function usa `UUID()`, que é nondeterministic, então a Function também não é deterministic e não é segura:
 
   ```sql
   CREATE FUNCTION f2()
@@ -59,7 +59,7 @@ The conditions on the use of stored functions in MySQL can be summarized as foll
   END;
   ```
 
-  This function modifies data, so it may not be safe:
+  Esta Function modifica dados, então pode não ser segura:
 
   ```sql
   CREATE FUNCTION f3(p_id INT)
@@ -70,33 +70,33 @@ The conditions on the use of stored functions in MySQL can be summarized as foll
   END;
   ```
 
-  Assessment of the nature of a function is based on the “honesty” of the creator. MySQL does not check that a function declared `DETERMINISTIC` is free of statements that produce nondeterministic results.
+  A avaliação da natureza de uma Function é baseada na “honestidade” do criador. O MySQL não verifica se uma Function declarada `DETERMINISTIC` está livre de statements que produzem resultados nondeterministic.
 
-* When you attempt to execute a stored function, if `binlog_format=STATEMENT` is set, the `DETERMINISTIC` keyword must be specified in the function definition. If this is not the case, an error is generated and the function does not run, unless `log_bin_trust_function_creators=1` is specified to override this check (see below). For recursive function calls, the `DETERMINISTIC` keyword is required on the outermost call only. If row-based or mixed binary logging is in use, the statement is accepted and replicated even if the function was defined without the `DETERMINISTIC` keyword.
+* Quando você tenta executar uma Stored Function, se `binlog_format=STATEMENT` estiver definido, a keyword `DETERMINISTIC` deve ser especificada na definição da Function. Se este não for o caso, um erro é gerado e a Function não é executada, a menos que `log_bin_trust_function_creators=1` seja especificado para anular esta verificação (veja abaixo). Para chamadas de Function recursivas, a keyword `DETERMINISTIC` é exigida apenas na chamada mais externa. Se row-based ou mixed binary logging estiver em uso, o statement é aceito e replicado mesmo que a Function tenha sido definida sem a keyword `DETERMINISTIC`.
 
-* Because MySQL does not check if a function really is deterministic at creation time, the invocation of a stored function with the `DETERMINISTIC` keyword might carry out an action that is unsafe for statement-based logging, or invoke a function or procedure containing unsafe statements. If this occurs when `binlog_format=STATEMENT` is set, a warning message is issued. If row-based or mixed binary logging is in use, no warning is issued, and the statement is replicated in row-based format.
+* Como o MySQL não verifica se uma Function é realmente deterministic no momento da criação, a invocation de uma Stored Function com a keyword `DETERMINISTIC` pode realizar uma ação que é insegura para statement-based logging, ou invocar uma Function ou Procedure contendo statements inseguros. Se isso ocorrer quando `binlog_format=STATEMENT` estiver definido, uma mensagem de warning é emitida. Se row-based ou mixed binary logging estiver em uso, nenhum warning é emitido, e o statement é replicado em formato row-based.
 
-* To relax the preceding conditions on function creation (that you must have the `SUPER` privilege and that a function must be declared deterministic or to not modify data), set the global `log_bin_trust_function_creators` system variable to 1. By default, this variable has a value of 0, but you can change it like this:
+* Para relaxar as condições precedentes sobre a criação de Functions (que você deve ter o privilege `SUPER` e que uma Function deve ser declarada como deterministic ou não modificar dados), defina a system variable global `log_bin_trust_function_creators` como 1. Por padrão, esta variável tem o valor 0, mas você pode alterá-la assim:
 
   ```sql
   mysql> SET GLOBAL log_bin_trust_function_creators = 1;
   ```
 
-  You can also set this variable at server startup.
+  Você também pode definir esta variável na inicialização do server.
 
-  If binary logging is not enabled, `log_bin_trust_function_creators` does not apply. `SUPER` is not required for function creation unless, as described previously, the `DEFINER` value in the function definition requires it.
+  Se o Binary Logging não estiver habilitado, `log_bin_trust_function_creators` não se aplica. `SUPER` não é exigido para a criação de Function, a menos que, conforme descrito anteriormente, o valor `DEFINER` na definição da Function o exija.
 
-* For information about built-in functions that may be unsafe for replication (and thus cause stored functions that use them to be unsafe as well), see Section 16.4.1, “Replication Features and Issues”.
+* Para informações sobre built-in functions que podem ser inseguras para Replicação (e, portanto, fazer com que as Stored Functions que as utilizam também sejam inseguras), consulte a Seção 16.4.1, “Recursos e Problemas de Replicação”.
 
-Triggers are similar to stored functions, so the preceding remarks regarding functions also apply to triggers with the following exception: `CREATE TRIGGER` does not have an optional `DETERMINISTIC` characteristic, so triggers are assumed to be always deterministic. However, this assumption might be invalid in some cases. For example, the `UUID()` function is nondeterministic (and does not replicate). Be careful about using such functions in triggers.
+Triggers são semelhantes a Stored Functions, então as observações precedentes sobre Functions também se aplicam a Triggers com a seguinte exceção: `CREATE TRIGGER` não tem uma característica `DETERMINISTIC` opcional, então os Triggers são assumidos como sendo sempre deterministic. No entanto, esta suposição pode ser inválida em alguns casos. Por exemplo, a Function `UUID()` é nondeterministic (e não replica). Tenha cuidado ao usar tais Functions em Triggers.
 
-Triggers can update tables, so error messages similar to those for stored functions occur with `CREATE TRIGGER` if you do not have the required privileges. On the replica side, the replica uses the trigger `DEFINER` attribute to determine which user is considered to be the creator of the trigger.
+Triggers podem atualizar tabelas, então mensagens de erro semelhantes às de Stored Functions ocorrem com `CREATE TRIGGER` se você não tiver os privileges exigidos. No lado do Replica, o Replica usa o atributo `DEFINER` do Trigger para determinar qual usuário é considerado o criador do Trigger.
 
-The rest of this section provides additional detail about the logging implementation and its implications. You need not read it unless you are interested in the background on the rationale for the current logging-related conditions on stored routine use. This discussion applies only for statement-based logging, and not for row-based logging, with the exception of the first item: `CREATE` and `DROP` statements are logged as statements regardless of the logging mode.
+O restante desta seção fornece detalhes adicionais sobre a implementação do logging e suas implicações. Você não precisa lê-lo, a menos que esteja interessado no contexto da lógica para as condições atuais relacionadas ao logging sobre o uso de rotinas armazenadas. Esta discussão se aplica apenas ao statement-based logging, e não ao row-based logging, com exceção do primeiro item: statements `CREATE` e `DROP` são logados como statements, independentemente do modo de logging.
 
-* The server writes `CREATE EVENT`, `CREATE PROCEDURE`, `CREATE FUNCTION`, `ALTER EVENT`, `ALTER PROCEDURE`, `ALTER FUNCTION`, `DROP EVENT`, `DROP PROCEDURE`, and `DROP FUNCTION` statements to the binary log.
+* O server grava os statements `CREATE EVENT`, `CREATE PROCEDURE`, `CREATE FUNCTION`, `ALTER EVENT`, `ALTER PROCEDURE`, `ALTER FUNCTION`, `DROP EVENT`, `DROP PROCEDURE` e `DROP FUNCTION` no Binary Log.
 
-* A stored function invocation is logged as a `SELECT` statement if the function changes data and occurs within a statement that would not otherwise be logged. This prevents nonreplication of data changes that result from use of stored functions in nonlogged statements. For example, `SELECT` statements are not written to the binary log, but a `SELECT` might invoke a stored function that makes changes. To handle this, a `SELECT func_name()` statement is written to the binary log when the given function makes a change. Suppose that the following statements are executed on the source server:
+* Uma Stored Function invocation é logada como um statement `SELECT` se a Function alterar dados e ocorrer dentro de um statement que de outra forma não seria logado. Isso evita a não-replicação de alterações de dados que resultam do uso de Stored Functions em statements não logados. Por exemplo, statements `SELECT` não são escritos no Binary Log, mas um `SELECT` pode invocar uma Stored Function que faça alterações. Para lidar com isso, um statement `SELECT func_name()` é escrito no Binary Log quando a Function dada realiza uma alteração. Suponha que os seguintes statements sejam executados no Source server:
 
   ```sql
   CREATE FUNCTION f1(a INT) RETURNS INT
@@ -113,22 +113,22 @@ The rest of this section provides additional detail about the logging implementa
   SELECT f1(a) FROM t1;
   ```
 
-  When the `SELECT` statement executes, the function `f1()` is invoked three times. Two of those invocations insert a row, and MySQL logs a `SELECT` statement for each of them. That is, MySQL writes the following statements to the binary log:
+  Quando o statement `SELECT` é executado, a Function `f1()` é invocada três vezes. Duas dessas invocations inserem uma row, e o MySQL loga um statement `SELECT` para cada uma delas. Ou seja, o MySQL escreve os seguintes statements no Binary Log:
 
   ```sql
   SELECT f1(1);
   SELECT f1(2);
   ```
 
-  The server also logs a `SELECT` statement for a stored function invocation when the function invokes a stored procedure that causes an error. In this case, the server writes the `SELECT` statement to the log along with the expected error code. On the replica, if the same error occurs, that is the expected result and replication continues. Otherwise, replication stops.
+  O server também loga um statement `SELECT` para uma Stored Function invocation quando a Function invoca uma Stored Procedure que causa um erro. Neste caso, o server escreve o statement `SELECT` no log juntamente com o código de erro esperado. No Replica, se o mesmo erro ocorrer, esse é o resultado esperado e a Replicação continua. Caso contrário, a Replicação para.
 
-* Logging stored function invocations rather than the statements executed by a function has a security implication for replication, which arises from two factors:
+* O logging de Stored Function invocations em vez dos statements executados por uma Function tem uma implicação de segurança para a Replicação, que surge de dois fatores:
 
-  + It is possible for a function to follow different execution paths on source and replica servers.
+  + É possível que uma Function siga diferentes execution paths nos Source e Replica servers.
 
-  + Statements executed on a replica are processed by the replica SQL thread which has full privileges.
+  + Statements executados em um Replica são processados pelo SQL Thread do Replica, que possui full privileges.
 
-  The implication is that although a user must have the `CREATE ROUTINE` privilege to create a function, the user can write a function containing a dangerous statement that executes only on the replica where it is processed by a thread that has full privileges. For example, if the source and replica servers have server ID values of 1 and 2, respectively, a user on the source server could create and invoke an unsafe function `unsafe_func()` as follows:
+  A implicação é que, embora um usuário deva ter o privilege `CREATE ROUTINE` para criar uma Function, o usuário pode escrever uma Function contendo um statement perigoso que é executado apenas no Replica, onde é processado por um Thread que possui full privileges. Por exemplo, se os Source e Replica servers tiverem valores de ID de server de 1 e 2, respectivamente, um usuário no Source server poderia criar e invocar uma Function insegura `unsafe_func()` da seguinte forma:
 
   ```sql
   mysql> delimiter //
@@ -142,9 +142,9 @@ The rest of this section provides additional detail about the logging implementa
   mysql> INSERT INTO t VALUES(unsafe_func());
   ```
 
-  The `CREATE FUNCTION` and `INSERT` statements are written to the binary log, so the replica executes them. Because the replica SQL thread has full privileges, it executes the dangerous statement. Thus, the function invocation has different effects on the source and replica and is not replication-safe.
+  Os statements `CREATE FUNCTION` e `INSERT` são escritos no Binary Log, então o Replica os executa. Como o SQL Thread do Replica possui full privileges, ele executa o statement perigoso. Assim, a Stored Function invocation tem efeitos diferentes no Source e no Replica e não é safe para Replicação.
 
-  To guard against this danger for servers that have binary logging enabled, stored function creators must have the `SUPER` privilege, in addition to the usual `CREATE ROUTINE` privilege that is required. Similarly, to use `ALTER FUNCTION`, you must have the `SUPER` privilege in addition to the `ALTER ROUTINE` privilege. Without the `SUPER` privilege, an error occurs:
+  Para se proteger contra este perigo em servers que têm o Binary Logging habilitado, os criadores de Stored Function devem ter o privilege `SUPER`, além do privilege `CREATE ROUTINE` usualmente exigido. Da mesma forma, para usar `ALTER FUNCTION`, você deve ter o privilege `SUPER` além do privilege `ALTER ROUTINE`. Sem o privilege `SUPER`, ocorre um erro:
 
   ```sql
   ERROR 1419 (HY000): You do not have the SUPER privilege and
@@ -152,20 +152,20 @@ The rest of this section provides additional detail about the logging implementa
   log_bin_trust_function_creators variable)
   ```
 
-  If you do not want to require function creators to have the `SUPER` privilege (for example, if all users with the `CREATE ROUTINE` privilege on your system are experienced application developers), set the global `log_bin_trust_function_creators` system variable to 1. You can also set this variable at server startup. If binary logging is not enabled, `log_bin_trust_function_creators` does not apply. `SUPER` is not required for function creation unless, as described previously, the `DEFINER` value in the function definition requires it.
+  Se você não quiser exigir que os criadores de Functions tenham o privilege `SUPER` (por exemplo, se todos os usuários com o privilege `CREATE ROUTINE` em seu sistema forem desenvolvedores de aplicações experientes), defina a system variable global `log_bin_trust_function_creators` como 1. Você também pode definir esta variável na inicialização do server. Se o Binary Logging não estiver habilitado, `log_bin_trust_function_creators` não se aplica. `SUPER` não é exigido para a criação de Function, a menos que, conforme descrito anteriormente, o valor `DEFINER` na definição da Function o exija.
 
-* If a function that performs updates is nondeterministic, it is not repeatable. This can have two undesirable effects:
+* Se uma Function que realiza updates for nondeterministic, ela não é repetível. Isso pode ter dois efeitos indesejáveis:
 
-  + It makes a replica different from the source.
-  + Restored data is different from the original data.
+  + Torna um Replica diferente do Source.
+  + Dados restaurados são diferentes dos dados originais.
 
-  To deal with these problems, MySQL enforces the following requirement: On a source server, creation and alteration of a function is refused unless you declare the function to be deterministic or to not modify data. Two sets of function characteristics apply here:
+  Para lidar com esses problemas, o MySQL impõe o seguinte requisito: Em um Source server, a criação e alteração de uma Function são recusadas, a menos que você declare a Function como deterministic ou que ela não modifique dados. Dois conjuntos de características de Function se aplicam aqui:
 
-  + The `DETERMINISTIC` and `NOT DETERMINISTIC` characteristics indicate whether a function always produces the same result for given inputs. The default is `NOT DETERMINISTIC` if neither characteristic is given. To declare that a function is deterministic, you must specify `DETERMINISTIC` explicitly.
+  + As características `DETERMINISTIC` e `NOT DETERMINISTIC` indicam se uma Function sempre produz o mesmo resultado para inputs fornecidos. O default é `NOT DETERMINISTIC` se nenhuma característica for fornecida. Para declarar que uma Function é deterministic, você deve especificar `DETERMINISTIC` explicitamente.
 
-  + The `CONTAINS SQL`, `NO SQL`, `READS SQL DATA`, and `MODIFIES SQL DATA` characteristics provide information about whether the function reads or writes data. Either `NO SQL` or `READS SQL DATA` indicates that a function does not change data, but you must specify one of these explicitly because the default is `CONTAINS SQL` if no characteristic is given.
+  + As características `CONTAINS SQL`, `NO SQL`, `READS SQL DATA` e `MODIFIES SQL DATA` fornecem informações sobre se a Function lê ou escreve dados. `NO SQL` ou `READS SQL DATA` indica que uma Function não altera dados, mas você deve especificar uma delas explicitamente porque o default é `CONTAINS SQL` se nenhuma característica for fornecida.
 
-  By default, for a `CREATE FUNCTION` statement to be accepted, at least one of `DETERMINISTIC`, `NO SQL`, or `READS SQL DATA` must be specified explicitly. Otherwise an error occurs:
+  Por padrão, para que um statement `CREATE FUNCTION` seja aceito, pelo menos um de `DETERMINISTIC`, `NO SQL` ou `READS SQL DATA` deve ser especificado explicitamente. Caso contrário, ocorre um erro:
 
   ```sql
   ERROR 1418 (HY000): This function has none of DETERMINISTIC, NO SQL,
@@ -174,19 +174,19 @@ The rest of this section provides additional detail about the logging implementa
   variable)
   ```
 
-  If you set `log_bin_trust_function_creators` to 1, the requirement that functions be deterministic or not modify data is dropped.
+  Se você definir `log_bin_trust_function_creators` como 1, o requisito de que Functions sejam deterministic ou não modifiquem dados é descartado.
 
-* Stored procedure calls are logged at the statement level rather than at the `CALL` level. That is, the server does not log the `CALL` statement, it logs those statements within the procedure that actually execute. As a result, the same changes that occur on the source server are observed on replicas. This prevents problems that could result from a procedure having different execution paths on different machines.
+* As chamadas de Stored Procedure são logadas no statement level em vez de no nível `CALL`. Ou seja, o server não loga o statement `CALL`, ele loga os statements dentro da Procedure que realmente executam. Como resultado, as mesmas alterações que ocorrem no Source server são observadas nas Replicas. Isso evita problemas que poderiam resultar de uma Procedure ter diferentes execution paths em diferentes máquinas.
 
-  In general, statements executed within a stored procedure are written to the binary log using the same rules that would apply were the statements to be executed in standalone fashion. Some special care is taken when logging procedure statements because statement execution within procedures is not quite the same as in nonprocedure context:
+  Em geral, os statements executados dentro de uma Stored Procedure são escritos no Binary Log usando as mesmas regras que se aplicariam se os statements fossem executados de forma standalone. Um cuidado especial é tomado ao logar statements de Procedure porque a execução de statements dentro de Procedures não é exatamente a mesma que em um contexto não-Procedure:
 
-  + A statement to be logged might contain references to local procedure variables. These variables do not exist outside of stored procedure context, so a statement that refers to such a variable cannot be logged literally. Instead, each reference to a local variable is replaced by this construct for logging purposes:
+  + Um statement a ser logado pode conter referências a local procedure variables. Estas variáveis não existem fora do contexto da Stored Procedure, então um statement que se refere a tal variável não pode ser logado literalmente. Em vez disso, cada referência a uma local variable é substituída por esta construção para fins de logging:
 
     ```sql
     NAME_CONST(var_name, var_value)
     ```
 
-    *`var_name`* is the local variable name, and *`var_value`* is a constant indicating the value that the variable has at the time the statement is logged. `NAME_CONST()` has a value of *`var_value`*, and a “name” of *`var_name`*. Thus, if you invoke this function directly, you get a result like this:
+    *`var_name`* é o nome da local variable, e *`var_value`* é uma constante indicando o valor que a variável tem no momento em que o statement é logado. `NAME_CONST()` tem um valor de *`var_value`*, e um “name” de *`var_name`*. Assim, se você invocar esta Function diretamente, você obtém um resultado como este:
 
     ```sql
     mysql> SELECT NAME_CONST('myname', 14);
@@ -197,43 +197,42 @@ The rest of this section provides additional detail about the logging implementa
     +--------+
     ```
 
-    `NAME_CONST()` enables a logged standalone statement to be executed on a replica with the same effect as the original statement that was executed on the source within a stored procedure.
+    `NAME_CONST()` permite que um statement standalone logado seja executado em um Replica com o mesmo efeito que o statement original que foi executado no Source dentro de uma Stored Procedure.
 
-    The use of `NAME_CONST()` can result in a problem for `CREATE TABLE ... SELECT` statements when the source column expressions refer to local variables. Converting these references to `NAME_CONST()` expressions can result in column names that are different on the source and replica servers, or names that are too long to be legal column identifiers. A workaround is to supply aliases for columns that refer to local variables. Consider this statement when `myvar` has a value of 1:
+    O uso de `NAME_CONST()` pode resultar em um problema para statements `CREATE TABLE ... SELECT` quando as expressões de coluna Source se referem a local variables. Converter essas referências para expressões `NAME_CONST()` pode resultar em nomes de coluna diferentes nos Source e Replica servers, ou nomes que são muito longos para serem legal column identifiers. Uma solução alternativa é fornecer aliases para colunas que se referem a local variables. Considere este statement quando `myvar` tem o valor 1:
 
     ```sql
     CREATE TABLE t1 SELECT myvar;
     ```
 
-    That is rewritten as follows:
+    Isso é reescrito da seguinte forma:
 
     ```sql
     CREATE TABLE t1 SELECT NAME_CONST(myvar, 1);
     ```
 
-    To ensure that the source and replica tables have the same column names, write the statement like this:
+    Para garantir que as tabelas Source e Replica tenham os mesmos nomes de coluna, escreva o statement assim:
 
     ```sql
     CREATE TABLE t1 SELECT myvar AS myvar;
     ```
 
-    The rewritten statement becomes:
+    O statement reescrito se torna:
 
     ```sql
     CREATE TABLE t1 SELECT NAME_CONST(myvar, 1) AS myvar;
     ```
 
-  + A statement to be logged might contain references to user-defined variables. To handle this, MySQL writes a `SET` statement to the binary log to make sure that the variable exists on the replica with the same value as on the source. For example, if a statement refers to a variable `@my_var`, that statement is preceded in the binary log by the following statement, where *`value`* is the value of `@my_var` on the source:
+  + Um statement a ser logado pode conter referências a user-defined variables. Para lidar com isso, o MySQL escreve um statement `SET` no Binary Log para garantir que a variável exista no Replica com o mesmo valor que no Source. Por exemplo, se um statement se refere a uma variável `@my_var`, esse statement é precedido no Binary Log pelo seguinte statement, onde *`value`* é o valor de `@my_var` no Source:
 
     ```sql
     SET @my_var = value;
     ```
 
-  + Procedure calls can occur within a committed or rolled-back transaction. Transactional context is accounted for so that the transactional aspects of procedure execution are replicated correctly. That is, the server logs those statements within the procedure that actually execute and modify data, and also logs `BEGIN`, `COMMIT`, and `ROLLBACK` statements as necessary. For example, if a procedure updates only transactional tables and is executed within a transaction that is rolled back, those updates are not logged. If the procedure occurs within a committed transaction, `BEGIN` and `COMMIT` statements are logged with the updates. For a procedure that executes within a rolled-back transaction, its statements are logged using the same rules that would apply if the statements were executed in standalone fashion:
+  + Chamadas de Procedure podem ocorrer dentro de uma Transaction committed ou rolled-back. O contexto Transactional é contabilizado para que os aspectos Transactional da execução da Procedure sejam replicados corretamente. Ou seja, o server loga os statements dentro da Procedure que realmente executam e modificam dados, e também loga os statements `BEGIN`, `COMMIT` e `ROLLBACK` conforme necessário. Por exemplo, se uma Procedure atualiza apenas tabelas Transactional e é executada dentro de uma Transaction que é rolled back, essas updates não são logadas. Se a Procedure ocorrer dentro de uma Transaction committed, os statements `BEGIN` e `COMMIT` são logados com as updates. Para uma Procedure que é executada dentro de uma Transaction rolled-back, seus statements são logados usando as mesmas regras que se aplicariam se os statements fossem executados de forma standalone:
 
-    - Updates to transactional tables are not logged.
-    - Updates to nontransactional tables are logged because rollback does not cancel them.
+    - Updates para tabelas Transactional não são logadas.
+    - Updates para tabelas não-Transactional são logadas porque o rollback não as cancela.
+    - Updates para uma mistura de tabelas Transactional e não-Transactional são logadas envolvidas por `BEGIN` e `ROLLBACK` para que as Replicas façam as mesmas alterações e rollbacks que no Source.
 
-    - Updates to a mix of transactional and nontransactional tables are logged surrounded by `BEGIN` and `ROLLBACK` so that replicas make the same changes and rollbacks as on the source.
-
-* A stored procedure call is *not* written to the binary log at the statement level if the procedure is invoked from within a stored function. In that case, the only thing logged is the statement that invokes the function (if it occurs within a statement that is logged) or a `DO` statement (if it occurs within a statement that is not logged). For this reason, care should be exercised in the use of stored functions that invoke a procedure, even if the procedure is otherwise safe in itself.
+* Uma chamada de Stored Procedure *não* é escrita no Binary Log no statement level se a Procedure for invocada de dentro de uma Stored Function. Nesse caso, a única coisa logada é o statement que invoca a Function (se ocorrer dentro de um statement que é logado) ou um statement `DO` (se ocorrer dentro de um statement que não é logado). Por esta razão, deve-se ter cuidado no uso de Stored Functions que invocam uma Procedure, mesmo que a Procedure seja de outra forma segura em si mesma.

@@ -1,41 +1,41 @@
-#### 26.4.3.45 The user_summary_by_statement_latency and x$user_summary_by_statement_latency Views
+#### 26.4.3.45 As Views user_summary_by_statement_latency e x$user_summary_by_statement_latency
 
-These views summarize overall statement statistics, grouped by user. By default, rows are sorted by descending total latency.
+Essas Views resumem as estatísticas gerais de *statements*, agrupadas por *user*. Por padrão, as linhas são ordenadas pela *total latency* decrescente.
 
-The `user_summary_by_statement_latency` and `x$user_summary_by_statement_latency` views have these columns:
+As Views `user_summary_by_statement_latency` e `x$user_summary_by_statement_latency` possuem estas colunas:
 
 * `user`
 
-  The client user name. Rows for which the `USER` column in the underlying Performance Schema table is `NULL` are assumed to be for background threads and are reported with a host name of `background`.
+  O nome do *user* cliente. Linhas para as quais a coluna `USER` na tabela subjacente do *Performance Schema* é `NULL` são presumidas como sendo de *background threads* e são reportadas com um nome de *host* de `background`.
 
 * `total`
 
-  The total number of statements for the user.
+  O número total de *statements* para o *user*.
 
 * `total_latency`
 
-  The total wait time of timed statements for the user.
+  O tempo total de espera (*wait time*) de *statements* cronometrados para o *user*.
 
 * `max_latency`
 
-  The maximum single wait time of timed statements for the user.
+  O tempo máximo de espera (*wait time*) única de *statements* cronometrados para o *user*.
 
 * `lock_latency`
 
-  The total time waiting for locks by timed statements for the user.
+  O tempo total de espera por *Locks* (*waiting for Locks*) por *statements* cronometrados para o *user*.
 
 * `rows_sent`
 
-  The total number of rows returned by statements for the user.
+  O número total de *rows* retornadas pelos *statements* para o *user*.
 
 * `rows_examined`
 
-  The total number of rows read from storage engines by statements for the user.
+  O número total de *rows* lidas dos *storage engines* pelos *statements* para o *user*.
 
 * `rows_affected`
 
-  The total number of rows affected by statements for the user.
+  O número total de *rows* afetadas pelos *statements* para o *user*.
 
 * `full_scans`
 
-  The total number of full table scans by statements for the user.
+  O número total de *full table scans* (varreduras completas de tabela) pelos *statements* para o *user*.

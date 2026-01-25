@@ -1,87 +1,87 @@
-### 25.12.15 Performance Schema Summary Tables
+### 25.12.15 Tabelas de Resumo do Performance Schema
 
-[25.12.15.1 Wait Event Summary Tables](performance-schema-wait-summary-tables.html)
+[25.12.15.1 Tabelas de Resumo de Eventos de Wait](performance-schema-wait-summary-tables.html)
 
-[25.12.15.2 Stage Summary Tables](performance-schema-stage-summary-tables.html)
+[25.12.15.2 Tabelas de Resumo de Stage](performance-schema-stage-summary-tables.html)
 
-[25.12.15.3 Statement Summary Tables](performance-schema-statement-summary-tables.html)
+[25.12.15.3 Tabelas de Resumo de Statement](performance-schema-statement-summary-tables.html)
 
-[25.12.15.4 Transaction Summary Tables](performance-schema-transaction-summary-tables.html)
+[25.12.15.4 Tabelas de Resumo de Transaction](performance-schema-transaction-summary-tables.html)
 
-[25.12.15.5 Object Wait Summary Table](performance-schema-objects-summary-global-by-type-table.html)
+[25.12.15.5 Tabela de Resumo de Wait de Object](performance-schema-objects-summary-global-by-type-table.html)
 
-[25.12.15.6 File I/O Summary Tables](performance-schema-file-summary-tables.html)
+[25.12.15.6 Tabelas de Resumo de I/O de Arquivo](performance-schema-file-summary-tables.html)
 
-[25.12.15.7 Table I/O and Lock Wait Summary Tables](performance-schema-table-wait-summary-tables.html)
+[25.12.15.7 Tabelas de Resumo de I/O de Tabela e Wait de Lock](performance-schema-table-wait-summary-tables.html)
 
-[25.12.15.8 Socket Summary Tables](performance-schema-socket-summary-tables.html)
+[25.12.15.8 Tabelas de Resumo de Socket](performance-schema-socket-summary-tables.html)
 
-[25.12.15.9 Memory Summary Tables](performance-schema-memory-summary-tables.html)
+[25.12.15.9 Tabelas de Resumo de Memória](performance-schema-memory-summary-tables.html)
 
-[25.12.15.10 Status Variable Summary Tables](performance-schema-status-variable-summary-tables.html)
+[25.12.15.10 Tabelas de Resumo de Variáveis de Status](performance-schema-status-variable-summary-tables.html)
 
-Summary tables provide aggregated information for terminated events over time. The tables in this group summarize event data in different ways.
+Tabelas de resumo fornecem informações agregadas para eventos finalizados ao longo do tempo. As tabelas neste grupo resumem dados de eventos de diferentes maneiras.
 
-Each summary table has grouping columns that determine how to group the data to be aggregated, and summary columns that contain the aggregated values. Tables that summarize events in similar ways often have similar sets of summary columns and differ only in the grouping columns used to determine how events are aggregated.
+Cada tabela de resumo possui colunas de agrupamento que determinam como agrupar os dados a serem agregados, e colunas de resumo que contêm os valores agregados. Tabelas que resumem eventos de maneiras semelhantes frequentemente têm conjuntos similares de colunas de resumo e diferem apenas nas colunas de agrupamento usadas para determinar como os eventos são agregados.
 
-Summary tables can be truncated with [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement"). Generally, the effect is to reset the summary columns to 0 or `NULL`, not to remove rows. This enables you to clear collected values and restart aggregation. That might be useful, for example, after you have made a runtime configuration change. Exceptions to this truncation behavior are noted in individual summary table sections.
+Tabelas de resumo podem ser truncadas usando [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement"). Geralmente, o efeito é redefinir as colunas de resumo para 0 ou `NULL`, e não remover linhas. Isso permite limpar os valores coletados e reiniciar a agregação. Isso pode ser útil, por exemplo, após você realizar uma alteração de configuração em tempo de execução. Exceções a este comportamento de truncamento são observadas nas seções de tabelas de resumo individuais.
 
-#### Wait Event Summaries
+#### Resumos de Eventos de Wait
 
-**Table 25.3 Performance Schema Wait Event Summary Tables**
+**Tabela 25.3 Tabelas de Resumo de Eventos de Wait do Performance Schema**
 
-<table frame="box" rules="all" summary="A reference that lists all Performance Schema wait event summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>events_waits_summary_by_account_by_event_name</code></td> <td>Wait events per account and event name</td> </tr><tr><td><code>events_waits_summary_by_host_by_event_name</code></td> <td>Wait events per host name and event name</td> </tr><tr><td><code>events_waits_summary_by_instance</code></td> <td>Wait events per instance</td> </tr><tr><td><code>events_waits_summary_by_thread_by_event_name</code></td> <td>Wait events per thread and event name</td> </tr><tr><td><code>events_waits_summary_by_user_by_event_name</code></td> <td>Wait events per user name and event name</td> </tr><tr><td><code>events_waits_summary_global_by_event_name</code></td> <td>Wait events per event name</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista todas as tabelas de resumo de eventos de wait do Performance Schema."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome da Tabela</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>events_waits_summary_by_account_by_event_name</code></td> <td>Eventos de Wait por account e event name</td> </tr><tr><td><code>events_waits_summary_by_host_by_event_name</code></td> <td>Eventos de Wait por host name e event name</td> </tr><tr><td><code>events_waits_summary_by_instance</code></td> <td>Eventos de Wait por instance</td> </tr><tr><td><code>events_waits_summary_by_thread_by_event_name</code></td> <td>Eventos de Wait por thread e event name</td> </tr><tr><td><code>events_waits_summary_by_user_by_event_name</code></td> <td>Eventos de Wait por user name e event name</td> </tr><tr><td><code>events_waits_summary_global_by_event_name</code></td> <td>Eventos de Wait por event name</td> </tr> </tbody></table>
 
-#### Stage Summaries
+#### Resumos de Stage
 
-**Table 25.4 Performance Schema Stage Event Summary Tables**
+**Tabela 25.4 Tabelas de Resumo de Eventos de Stage do Performance Schema**
 
-<table frame="box" rules="all" summary="A reference that lists all Performance Schema stage event summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>events_stages_summary_by_account_by_event_name</code></td> <td>Stage events per account and event name</td> </tr><tr><td><code>events_stages_summary_by_host_by_event_name</code></td> <td>Stage events per host name and event name</td> </tr><tr><td><code>events_stages_summary_by_thread_by_event_name</code></td> <td>Stage waits per thread and event name</td> </tr><tr><td><code>events_stages_summary_by_user_by_event_name</code></td> <td>Stage events per user name and event name</td> </tr><tr><td><code>events_stages_summary_global_by_event_name</code></td> <td>Stage waits per event name</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista todas as tabelas de resumo de eventos de stage do Performance Schema."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome da Tabela</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>events_stages_summary_by_account_by_event_name</code></td> <td>Eventos de Stage por account e event name</td> </tr><tr><td><code>events_stages_summary_by_host_by_event_name</code></td> <td>Eventos de Stage por host name e event name</td> </tr><tr><td><code>events_stages_summary_by_thread_by_event_name</code></td> <td>Waits de Stage por thread e event name</td> </tr><tr><td><code>events_stages_summary_by_user_by_event_name</code></td> <td>Eventos de Stage por user name e event name</td> </tr><tr><td><code>events_stages_summary_global_by_event_name</code></td> <td>Waits de Stage por event name</td> </tr> </tbody></table>
 
-#### Statement Summaries
+#### Resumos de Statement
 
-**Table 25.5 Performance Schema Statement Event Summary Tables**
+**Tabela 25.5 Tabelas de Resumo de Eventos de Statement do Performance Schema**
 
-<table frame="box" rules="all" summary="A reference that lists all Performance Schema statement event summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>events_statements_summary_by_account_by_event_name</code></td> <td>Statement events per account and event name</td> </tr><tr><td><code>events_statements_summary_by_digest</code></td> <td>Statement events per schema and digest value</td> </tr><tr><td><code>events_statements_summary_by_host_by_event_name</code></td> <td>Statement events per host name and event name</td> </tr><tr><td><code>events_statements_summary_by_program</code></td> <td>Statement events per stored program</td> </tr><tr><td><code>events_statements_summary_by_thread_by_event_name</code></td> <td>Statement events per thread and event name</td> </tr><tr><td><code>events_statements_summary_by_user_by_event_name</code></td> <td>Statement events per user name and event name</td> </tr><tr><td><code>events_statements_summary_global_by_event_name</code></td> <td>Statement events per event name</td> </tr><tr><td><code>prepared_statements_instances</code></td> <td>Prepared statement instances and statistics</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista todas as tabelas de resumo de eventos de statement do Performance Schema."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome da Tabela</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>events_statements_summary_by_account_by_event_name</code></td> <td>Eventos de Statement por account e event name</td> </tr><tr><td><code>events_statements_summary_by_digest</code></td> <td>Eventos de Statement por schema e valor de digest</td> </tr><tr><td><code>events_statements_summary_by_host_by_event_name</code></td> <td>Eventos de Statement por host name e event name</td> </tr><tr><td><code>events_statements_summary_by_program</code></td> <td>Eventos de Statement por stored program</td> </tr><tr><td><code>events_statements_summary_by_thread_by_event_name</code></td> <td>Eventos de Statement por thread e event name</td> </tr><tr><td><code>events_statements_summary_by_user_by_event_name</code></td> <td>Eventos de Statement por user name e event name</td> </tr><tr><td><code>events_statements_summary_global_by_event_name</code></td> <td>Eventos de Statement por event name</td> </tr><tr><td><code>prepared_statements_instances</code></td> <td>Instâncias e estatísticas de prepared statement</td> </tr> </tbody></table>
 
-#### Transaction Summaries
+#### Resumos de Transaction
 
-**Table 25.6 Performance Schema Transaction Event Summary Tables**
+**Tabela 25.6 Tabelas de Resumo de Eventos de Transaction do Performance Schema**
 
-<table frame="box" rules="all" summary="A reference that lists all Performance Schema transaction event summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>events_transactions_summary_by_account_by_event_name</code></td> <td>Transaction events per account and event name</td> </tr><tr><td><code>events_transactions_summary_by_host_by_event_name</code></td> <td>Transaction events per host name and event name</td> </tr><tr><td><code>events_transactions_summary_by_thread_by_event_name</code></td> <td>Transaction events per thread and event name</td> </tr><tr><td><code>events_transactions_summary_by_user_by_event_name</code></td> <td>Transaction events per user name and event name</td> </tr><tr><td><code>events_transactions_summary_global_by_event_name</code></td> <td>Transaction events per event name</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista todas as tabelas de resumo de eventos de transaction do Performance Schema."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome da Tabela</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>events_transactions_summary_by_account_by_event_name</code></td> <td>Eventos de Transaction por account e event name</td> </tr><tr><td><code>events_transactions_summary_by_host_by_event_name</code></td> <td>Eventos de Transaction por host name e event name</td> </tr><tr><td><code>events_transactions_summary_by_thread_by_event_name</code></td> <td>Eventos de Transaction por thread e event name</td> </tr><tr><td><code>events_transactions_summary_by_user_by_event_name</code></td> <td>Eventos de Transaction por user name e event name</td> </tr><tr><td><code>events_transactions_summary_global_by_event_name</code></td> <td>Eventos de Transaction por event name</td> </tr> </tbody></table>
 
-#### Object Wait Summaries
+#### Resumos de Wait de Object
 
-**Table 25.7 Performance Schema Object Event Summary Tables**
+**Tabela 25.7 Tabelas de Resumo de Eventos de Object do Performance Schema**
 
-<table frame="box" rules="all" summary="A reference that lists all Performance Schema object event summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>objects_summary_global_by_type</code></td> <td>Object summaries</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista todas as tabelas de resumo de eventos de object do Performance Schema."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome da Tabela</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>objects_summary_global_by_type</code></td> <td>Resumos de Object</td> </tr> </tbody></table>
 
-#### File I/O Summaries
+#### Resumos de I/O de Arquivo
 
-**Table 25.8 Performance Schema File I/O Event Summary Tables**
+**Tabela 25.8 Tabelas de Resumo de Eventos de I/O de Arquivo do Performance Schema**
 
-<table frame="box" rules="all" summary="A reference that lists all Performance Schema file I/O event summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>file_summary_by_event_name</code></td> <td>File events per event name</td> </tr><tr><td><code>file_summary_by_instance</code></td> <td>File events per file instance</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista todas as tabelas de resumo de eventos de I/O de Arquivo do Performance Schema."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome da Tabela</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>file_summary_by_event_name</code></td> <td>Eventos de Arquivo por event name</td> </tr><tr><td><code>file_summary_by_instance</code></td> <td>Eventos de Arquivo por file instance</td> </tr> </tbody></table>
 
-#### Table I/O and Lock Wait Summaries
+#### Resumos de I/O de Tabela e Wait de Lock
 
-**Table 25.9 Performance Schema Table I/O and Lock Wait Event Summary Tables**
+**Tabela 25.9 Tabelas de Resumo de Eventos de I/O de Tabela e Wait de Lock do Performance Schema**
 
-<table frame="box" rules="all" summary="A reference that lists all Performance Schema table I/O and lock event summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>table_io_waits_summary_by_index_usage</code></td> <td>Table I/O waits per index</td> </tr><tr><td><code>table_io_waits_summary_by_table</code></td> <td>Table I/O waits per table</td> </tr><tr><td><code>table_lock_waits_summary_by_table</code></td> <td>Table lock waits per table</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista todas as tabelas de resumo de eventos de I/O de tabela e lock do Performance Schema."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome da Tabela</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>table_io_waits_summary_by_index_usage</code></td> <td>Waits de I/O de Tabela por Index</td> </tr><tr><td><code>table_io_waits_summary_by_table</code></td> <td>Waits de I/O de Tabela por table</td> </tr><tr><td><code>table_lock_waits_summary_by_table</code></td> <td>Waits de Lock de Tabela por table</td> </tr> </tbody></table>
 
-#### Socket Summaries
+#### Resumos de Socket
 
-**Table 25.10 Performance Schema Socket Event Summary Tables**
+**Tabela 25.10 Tabelas de Resumo de Eventos de Socket do Performance Schema**
 
-<table frame="box" rules="all" summary="A reference that lists all Performance Schema socket event summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>socket_summary_by_event_name</code></td> <td>Socket waits and I/O per event name</td> </tr><tr><td><code>socket_summary_by_instance</code></td> <td>Socket waits and I/O per instance</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista todas as tabelas de resumo de eventos de socket do Performance Schema."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome da Tabela</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>socket_summary_by_event_name</code></td> <td>Waits de Socket e I/O por event name</td> </tr><tr><td><code>socket_summary_by_instance</code></td> <td>Waits de Socket e I/O por instance</td> </tr> </tbody></table>
 
-#### Memory Summaries
+#### Resumos de Memória
 
-**Table 25.11 Performance Schema Memory Operation Summary Tables**
+**Tabela 25.11 Tabelas de Resumo de Operações de Memória do Performance Schema**
 
-<table frame="box" rules="all" summary="A reference that lists all Performance Schema memory operation summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>memory_summary_by_account_by_event_name</code></td> <td>Memory operations per account and event name</td> </tr><tr><td><code>memory_summary_by_host_by_event_name</code></td> <td>Memory operations per host and event name</td> </tr><tr><td><code>memory_summary_by_thread_by_event_name</code></td> <td>Memory operations per thread and event name</td> </tr><tr><td><code>memory_summary_by_user_by_event_name</code></td> <td>Memory operations per user and event name</td> </tr><tr><td><code>memory_summary_global_by_event_name</code></td> <td>Memory operations globally per event name</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista todas as tabelas de resumo de operações de memória do Performance Schema."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome da Tabela</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>memory_summary_by_account_by_event_name</code></td> <td>Operações de Memória por account e event name</td> </tr><tr><td><code>memory_summary_by_host_by_event_name</code></td> <td>Operações de Memória por host e event name</td> </tr><tr><td><code>memory_summary_by_thread_by_event_name</code></td> <td>Operações de Memória por thread e event name</td> </tr><tr><td><code>memory_summary_by_user_by_event_name</code></td> <td>Operações de Memória por user e event name</td> </tr><tr><td><code>memory_summary_global_by_event_name</code></td> <td>Operações de Memória globalmente por event name</td> </tr> </tbody></table>
 
-#### Status Variable Summaries
+#### Resumos de Variáveis de Status
 
-**Table 25.12 Performance Schema Error Status Variable Summary Tables**
+**Tabela 25.12 Tabelas de Resumo de Variáveis de Status de Erro do Performance Schema**
 
-<table frame="box" rules="all" summary="A reference that lists all Performance Schema status variable summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>status_by_account</code></td> <td>Session status variables per account</td> </tr><tr><td><code>status_by_host</code></td> <td>Session status variables per host name</td> </tr><tr><td><code>status_by_user</code></td> <td>Session status variables per user name</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista todas as tabelas de resumo de variáveis de status do Performance Schema."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome da Tabela</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>status_by_account</code></td> <td>Variáveis de status de Session por account</td> </tr><tr><td><code>status_by_host</code></td> <td>Variáveis de status de Session por host name</td> </tr><tr><td><code>status_by_user</code></td> <td>Variáveis de status de Session por user name</td> </tr> </tbody></table>

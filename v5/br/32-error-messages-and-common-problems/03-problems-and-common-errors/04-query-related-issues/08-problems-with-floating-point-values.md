@@ -1,8 +1,8 @@
-#### B.3.4.8 Problems with Floating-Point Values
+#### B.3.4.8 Problemas com Valores de Ponto Flutuante
 
-Floating-point numbers sometimes cause confusion because they are approximate and not stored as exact values. A floating-point value as written in an SQL statement may not be the same as the value represented internally. Attempts to treat floating-point values as exact in comparisons may lead to problems. They are also subject to platform or implementation dependencies. The [`FLOAT`](floating-point-types.html "11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE") and [`DOUBLE`](floating-point-types.html "11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE") data types are subject to these issues. For [`DECIMAL`](fixed-point-types.html "11.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC") columns, MySQL performs operations with a precision of 65 decimal digits, which should solve most common inaccuracy problems.
+Números de ponto flutuante (floating-point numbers) às vezes causam confusão porque são aproximados e não são armazenados como valores exatos. Um valor de ponto flutuante conforme escrito em uma instrução SQL pode não ser o mesmo que o valor representado internamente. Tentativas de tratar valores de ponto flutuante como exatos em comparações podem levar a problemas. Eles também estão sujeitos a dependências de plataforma ou de implementação. Os tipos de dados [`FLOAT`](floating-point-types.html "11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE") e [`DOUBLE`](floating-point-types.html "11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE") estão sujeitos a essas questões. Para colunas [`DECIMAL`](fixed-point-types.html "11.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC"), o MySQL executa operações com uma precisão de 65 dígitos decimais, o que deve resolver a maioria dos problemas comuns de imprecisão.
 
-The following example uses [`DOUBLE`](floating-point-types.html "11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE") to demonstrate how calculations that are done using floating-point operations are subject to floating-point error.
+O exemplo a seguir usa [`DOUBLE`](floating-point-types.html "11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE") para demonstrar como cálculos realizados usando operações de ponto flutuante estão sujeitos a erros de ponto flutuante.
 
 ```sql
 mysql> CREATE TABLE t1 (i INT, d1 DOUBLE, d2 DOUBLE);
@@ -28,11 +28,11 @@ mysql> SELECT i, SUM(d1) AS a, SUM(d2) AS b
 +------+-------+------+
 ```
 
-The result is correct. Although the first five records look like they should not satisfy the comparison (the values of `a` and `b` do not appear to be different), they may do so because the difference between the numbers shows up around the tenth decimal or so, depending on factors such as computer architecture or the compiler version or optimization level. For example, different CPUs may evaluate floating-point numbers differently.
+O resultado está correto. Embora os cinco primeiros registros pareçam não satisfazer a comparação (os valores de `a` e `b` não parecem ser diferentes), eles podem satisfazê-la porque a diferença entre os números aparece por volta do décimo decimal, ou algo parecido, dependendo de fatores como arquitetura do computador, versão do compilador ou nível de otimização. Por exemplo, diferentes CPUs podem avaliar números de ponto flutuante de maneiras distintas.
 
-If columns `d1` and `d2` had been defined as [`DECIMAL`](fixed-point-types.html "11.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC") rather than [`DOUBLE`](floating-point-types.html "11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE"), the result of the [`SELECT`](select.html "13.2.9 SELECT Statement") query would have contained only one row—the last one shown above.
+Se as colunas `d1` e `d2` tivessem sido definidas como [`DECIMAL`](fixed-point-types.html "11.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC") em vez de [`DOUBLE`](floating-point-types.html "11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE"), o resultado da Query [`SELECT`](select.html "13.2.9 SELECT Statement") conteria apenas uma linha — a última mostrada acima.
 
-The correct way to do floating-point number comparison is to first decide on an acceptable tolerance for differences between the numbers and then do the comparison against the tolerance value. For example, if we agree that floating-point numbers should be regarded the same if they are same within a precision of one in ten thousand (0.0001), the comparison should be written to find differences larger than the tolerance value:
+A maneira correta de realizar a comparação de números de ponto flutuante é primeiro decidir uma tolerância aceitável para as diferenças entre os números e, em seguida, fazer a comparação em relação ao valor da tolerância. Por exemplo, se concordarmos que os números de ponto flutuante devem ser considerados iguais se estiverem dentro de uma precisão de um em dez mil (0.0001), a comparação deve ser escrita para encontrar diferenças maiores que o valor da tolerância:
 
 ```sql
 mysql> SELECT i, SUM(d1) AS a, SUM(d2) AS b FROM t1
@@ -45,7 +45,7 @@ mysql> SELECT i, SUM(d1) AS a, SUM(d2) AS b FROM t1
 1 row in set (0.00 sec)
 ```
 
-Conversely, to get rows where the numbers are the same, the test should find differences within the tolerance value:
+Por outro lado, para obter linhas onde os números são iguais, o teste deve encontrar diferenças dentro do valor da tolerância:
 
 ```sql
 mysql> SELECT i, SUM(d1) AS a, SUM(d2) AS b FROM t1
@@ -62,7 +62,7 @@ mysql> SELECT i, SUM(d1) AS a, SUM(d2) AS b FROM t1
 5 rows in set (0.03 sec)
 ```
 
-Floating-point values are subject to platform or implementation dependencies. Suppose that you execute the following statements:
+Valores de ponto flutuante estão sujeitos a dependências de plataforma ou de implementação. Suponha que você execute as seguintes instruções:
 
 ```sql
 CREATE TABLE t1(c1 FLOAT(53,0), c2 FLOAT(53,0));
@@ -70,6 +70,6 @@ INSERT INTO t1 VALUES('1e+52','-1e+52');
 SELECT * FROM t1;
 ```
 
-On some platforms, the `SELECT` statement returns `inf` and `-inf`. On others, it returns `0` and `-0`.
+Em algumas plataformas, a instrução `SELECT` retorna `inf` e `-inf`. Em outras, retorna `0` e `-0`.
 
-An implication of the preceding issues is that if you attempt to create a replica by dumping table contents with [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") on the source and reloading the dump file into the replica, tables containing floating-point columns might differ between the two hosts.
+Uma implicação das questões anteriores é que, se você tentar criar uma réplica despejando o conteúdo da tabela com [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") na origem e recarregando o arquivo dump na réplica, as tabelas contendo colunas de ponto flutuante podem diferir entre os dois hosts.

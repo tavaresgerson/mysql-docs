@@ -1,35 +1,35 @@
-#### 16.3.1.2 Backing Up Raw Data from a Replica
+#### 16.3.1.2 Backup de Dados Brutos a partir de uma Replica
 
-To guarantee the integrity of the files that are copied, backing up the raw data files on your MySQL replica should take place while your replica server is shut down. If the MySQL server is still running, background tasks may still be updating the database files, particularly those involving storage engines with background processes such as `InnoDB`. With `InnoDB`, these problems should be resolved during crash recovery, but since the replica server can be shut down during the backup process without affecting the execution of the source it makes sense to take advantage of this capability.
+Para garantir a integridade dos arquivos que são copiados, o backup dos arquivos de dados brutos na sua Replica MySQL deve ocorrer enquanto o servidor da Replica estiver desligado. Se o servidor MySQL ainda estiver em execução, tarefas em segundo plano podem continuar atualizando os arquivos do Database, particularmente aquelas envolvendo storage engines com processos em segundo plano, como o `InnoDB`. Com o `InnoDB`, esses problemas devem ser resolvidos durante a recuperação de falhas (crash recovery), mas como o servidor da Replica pode ser desligado durante o processo de backup sem afetar a execução do Source, faz sentido tirar proveito dessa capacidade.
 
-To shut down the server and back up the files:
+Para desligar o servidor e fazer o backup dos arquivos:
 
-1. Shut down the replica MySQL server:
+1. Desligue o servidor MySQL da Replica:
 
    ```sql
    $> mysqladmin shutdown
    ```
 
-2. Copy the data files. You can use any suitable copying or archive utility, including **cp**, **tar** or **WinZip**. For example, assuming that the data directory is located under the current directory, you can archive the entire directory as follows:
+2. Copie os arquivos de dados. Você pode usar qualquer utilitário de cópia ou arquivamento adequado, incluindo **cp**, **tar** ou **WinZip**. Por exemplo, assumindo que o diretório de dados (data directory) esteja localizado sob o diretório atual, você pode arquivar o diretório inteiro da seguinte forma:
 
    ```sql
    $> tar cf /tmp/dbbackup.tar ./data
    ```
 
-3. Start the MySQL server again. Under Unix:
+3. Inicie o servidor MySQL novamente. Em Unix:
 
    ```sql
    $> mysqld_safe &
    ```
 
-   Under Windows:
+   Em Windows:
 
    ```sql
    C:\> "C:\Program Files\MySQL\MySQL Server 5.7\bin\mysqld"
    ```
 
-Normally you should back up the entire data directory for the replica MySQL server. If you want to be able to restore the data and operate as a replica (for example, in the event of failure of the replica), then in addition to the replica's data, you should also back up the replica status files, the replication metadata repositories, and the relay log files. These files are needed to resume replication after you restore the replica's data.
+Normalmente, você deve fazer o backup do diretório de dados (data directory) inteiro para o servidor MySQL da Replica. Se você deseja poder restaurar os dados e operar como uma Replica (por exemplo, em caso de falha da Replica), além dos dados da Replica, você também deve fazer o backup dos arquivos de status da Replica, dos repositórios de metadados de replication e dos arquivos relay log. Esses arquivos são necessários para retomar a replication após a restauração dos dados da Replica.
 
-If you lose the relay logs but still have the `relay-log.info` file, you can check it to determine how far the replication SQL thread has executed in the source's binary logs. Then you can use [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") with the `MASTER_LOG_FILE` and `MASTER_LOG_POS` options to tell the replica to re-read the binary logs from that point. This requires that the binary logs still exist on the source server.
+Se você perder os relay logs, mas ainda tiver o arquivo `relay-log.info`, você pode verificá-lo para determinar até onde o replication SQL thread foi executado nos binary logs do Source. Em seguida, você pode usar [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") com as opções `MASTER_LOG_FILE` e `MASTER_LOG_POS` para instruir a Replica a reler os binary logs a partir desse ponto. Isso requer que os binary logs ainda existam no servidor Source.
 
-If your replica is replicating [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") statements, you should also back up any `SQL_LOAD-*` files that exist in the directory that the replica uses for this purpose. The replica needs these files to resume replication of any interrupted [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") operations. The location of this directory is the value of the [`slave_load_tmpdir`](replication-options-replica.html#sysvar_slave_load_tmpdir) system variable. If the server was not started with that variable set, the directory location is the value of the [`tmpdir`](server-system-variables.html#sysvar_tmpdir) system variable.
+Se a sua Replica estiver replicando instruções [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement"), você também deve fazer o backup de quaisquer arquivos `SQL_LOAD-*` que existam no diretório que a Replica usa para essa finalidade. A Replica precisa desses arquivos para retomar a replication de quaisquer operações [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") interrompidas. A localização deste diretório é o valor da variável de sistema [`slave_load_tmpdir`](replication-options-replica.html#sysvar_slave_load_tmpdir). Se o servidor não foi iniciado com essa variável configurada, a localização do diretório é o valor da variável de sistema [`tmpdir`](server-system-variables.html#sysvar_tmpdir).

@@ -1,49 +1,49 @@
-#### 25.12.3.3 The mutex_instances Table
+#### 25.12.3.3 A Tabela mutex_instances
 
-The [`mutex_instances`](performance-schema-mutex-instances-table.html "25.12.3.3 The mutex_instances Table") table lists all the mutexes seen by the Performance Schema while the server executes. A mutex is a synchronization mechanism used in the code to enforce that only one thread at a given time can have access to some common resource. The resource is said to be “protected” by the mutex.
+A tabela [`mutex_instances`](performance-schema-mutex-instances-table.html "25.12.3.3 The mutex_instances Table") lista todos os mutexes vistos pelo Performance Schema enquanto o servidor executa. Um mutex é um mecanismo de sincronização usado no código para garantir que apenas um Thread por vez possa ter acesso a algum recurso comum. Diz-se que o recurso é “protegido” pelo mutex.
 
-When two threads executing in the server (for example, two user sessions executing a query simultaneously) do need to access the same resource (a file, a buffer, or some piece of data), these two threads compete against each other, so that the first query to obtain a lock on the mutex causes the other query to wait until the first is done and unlocks the mutex.
+Quando dois Threads em execução no servidor (por exemplo, duas sessões de usuário executando uma Query simultaneamente) precisam acessar o mesmo recurso (um arquivo, um Buffer, ou alguma parte de dados), esses dois Threads competem entre si, de modo que a primeira Query a obter um Lock no mutex faz com que a outra Query espere até que a primeira termine e desbloqueie o mutex.
 
-The work performed while holding a mutex is said to be in a “critical section,” and multiple queries do execute this critical section in a serialized way (one at a time), which is a potential bottleneck.
+O trabalho realizado enquanto se mantém um mutex é considerado uma "seção crítica" (critical section), e múltiplas Queries executam esta seção crítica de forma serializada (uma de cada vez), o que é um potencial Bottleneck.
 
-The [`mutex_instances`](performance-schema-mutex-instances-table.html "25.12.3.3 The mutex_instances Table") table has these columns:
+A tabela [`mutex_instances`](performance-schema-mutex-instances-table.html "25.12.3.3 The mutex_instances Table") possui as seguintes colunas:
 
 * `NAME`
 
-  The instrument name associated with the mutex.
+  O nome do Instrument associado ao mutex.
 
 * `OBJECT_INSTANCE_BEGIN`
 
-  The address in memory of the instrumented mutex.
+  O endereço na memória do mutex instrumentado.
 
 * `LOCKED_BY_THREAD_ID`
 
-  When a thread currently has a mutex locked, `LOCKED_BY_THREAD_ID` is the `THREAD_ID` of the locking thread, otherwise it is `NULL`.
+  Quando um Thread atualmente tem um mutex com Lock, `LOCKED_BY_THREAD_ID` é o `THREAD_ID` do Thread que o bloqueou, caso contrário, é `NULL`.
 
-[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not permitted for the [`mutex_instances`](performance-schema-mutex-instances-table.html "25.12.3.3 The mutex_instances Table") table.
+O [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") não é permitido para a tabela [`mutex_instances`](performance-schema-mutex-instances-table.html "25.12.3.3 The mutex_instances Table").
 
-For every mutex instrumented in the code, the Performance Schema provides the following information.
+Para cada mutex instrumentado no código, o Performance Schema fornece as seguintes informações.
 
-* The [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table lists the name of the instrumentation point, with the prefix `wait/synch/mutex/`.
+* A tabela [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") lista o nome do ponto de instrumentação, com o prefixo `wait/synch/mutex/`.
 
-* When some code creates a mutex, a row is added to the [`mutex_instances`](performance-schema-mutex-instances-table.html "25.12.3.3 The mutex_instances Table") table. The `OBJECT_INSTANCE_BEGIN` column is a property that uniquely identifies the mutex.
+* Quando algum código cria um mutex, uma linha é adicionada à tabela [`mutex_instances`](performance-schema-mutex-instances-table.html "25.12.3.3 The mutex_instances Table"). A coluna `OBJECT_INSTANCE_BEGIN` é uma propriedade que identifica o mutex de forma única.
 
-* When a thread attempts to lock a mutex, the [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table") table shows a row for that thread, indicating that it is waiting on a mutex (in the `EVENT_NAME` column), and indicating which mutex is waited on (in the `OBJECT_INSTANCE_BEGIN` column).
+* Quando um Thread tenta obter um Lock em um mutex, a tabela [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table") mostra uma linha para esse Thread, indicando que ele está esperando por um mutex (na coluna `EVENT_NAME`), e indicando qual mutex está sendo esperado (na coluna `OBJECT_INSTANCE_BEGIN`).
 
-* When a thread succeeds in locking a mutex:
+* Quando um Thread é bem-sucedido em obter um Lock em um mutex:
 
-  + [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table") shows that the wait on the mutex is completed (in the `TIMER_END` and `TIMER_WAIT` columns)
+  + [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table") mostra que a espera pelo mutex foi concluída (nas colunas `TIMER_END` e `TIMER_WAIT`)
 
-  + The completed wait event is added to the [`events_waits_history`](performance-schema-events-waits-history-table.html "25.12.4.2 The events_waits_history Table") and [`events_waits_history_long`](performance-schema-events-waits-history-long-table.html "25.12.4.3 The events_waits_history_long Table") tables
+  + O evento de espera concluído é adicionado às tabelas [`events_waits_history`](performance-schema-events-waits-history-table.html "25.12.4.2 The events_waits_history Table") e [`events_waits_history_long`](performance-schema-events-waits-history-long-table.html "25.12.4.3 The events_waits_history_long Table")
 
-  + [`mutex_instances`](performance-schema-mutex-instances-table.html "25.12.3.3 The mutex_instances Table") shows that the mutex is now owned by the thread (in the `THREAD_ID` column).
+  + [`mutex_instances`](performance-schema-mutex-instances-table.html "25.12.3.3 The mutex_instances Table") mostra que o mutex agora é de propriedade do Thread (na coluna `THREAD_ID`).
 
-* When a thread unlocks a mutex, [`mutex_instances`](performance-schema-mutex-instances-table.html "25.12.3.3 The mutex_instances Table") shows that the mutex now has no owner (the `THREAD_ID` column is `NULL`).
+* Quando um Thread desbloqueia um mutex, [`mutex_instances`](performance-schema-mutex-instances-table.html "25.12.3.3 The mutex_instances Table") mostra que o mutex agora não tem proprietário (a coluna `THREAD_ID` é `NULL`).
 
-* When a mutex object is destroyed, the corresponding row is removed from [`mutex_instances`](performance-schema-mutex-instances-table.html "25.12.3.3 The mutex_instances Table").
+* Quando um objeto mutex é destruído, a linha correspondente é removida de [`mutex_instances`](performance-schema-mutex-instances-table.html "25.12.3.3 The mutex_instances Table").
 
-By performing queries on both of the following tables, a monitoring application or a DBA can detect bottlenecks or deadlocks between threads that involve mutexes:
+Ao executar Queries em ambas as tabelas a seguir, um aplicativo de monitoramento ou um DBA pode detectar Bottlenecks ou Deadlocks entre Threads que envolvem mutexes:
 
-* [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table"), to see what mutex a thread is waiting for
+* [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table"), para ver qual mutex um Thread está esperando
 
-* [`mutex_instances`](performance-schema-mutex-instances-table.html "25.12.3.3 The mutex_instances Table"), to see which other thread currently owns a mutex
+* [`mutex_instances`](performance-schema-mutex-instances-table.html "25.12.3.3 The mutex_instances Table"), para ver qual outro Thread é atualmente o proprietário de um mutex

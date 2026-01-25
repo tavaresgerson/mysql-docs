@@ -1,12 +1,12 @@
-#### 26.4.4.13 The ps_setup_reset_to_default() Procedure
+#### 26.4.4.13 O Procedimento ps_setup_reset_to_default()
 
-Resets the Performance Schema configuration to its default settings.
+Redefine a configuração do Performance Schema para suas definições padrão.
 
-##### Parameters
+##### Parâmetros
 
-* `in_verbose BOOLEAN`: Whether to display information about each setup stage during procedure execution. This includes the SQL statements executed.
+* `in_verbose BOOLEAN`: Indica se deve exibir informações sobre cada estágio de setup durante a execução do procedimento. Isso inclui as instruções SQL executadas.
 
-##### Example
+##### Exemplo
 
 ```sql
 mysql> CALL sys.ps_setup_reset_to_default(TRUE)\G

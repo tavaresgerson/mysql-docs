@@ -1,59 +1,59 @@
-### 21.7.3 Known Issues in NDB Cluster Replication
+### 21.7.3 Problemas Conhecidos na Replicação NDB Cluster
 
-This section discusses known problems or issues when using replication with NDB Cluster.
+Esta seção discute problemas ou questões conhecidas ao usar replicação com o NDB Cluster.
 
-**Loss of connection between source and replica.**
+**Perda de conexão entre o Source e a Replica.**
 
-A loss of connection can occur either between the source cluster SQL node and the replica cluster SQL node, or between the source SQL node and the data nodes of the source cluster. In the latter case, this can occur not only as a result of loss of physical connection (for example, a broken network cable), but due to the overflow of data node event buffers; if the SQL node is too slow to respond, it may be dropped by the cluster (this is controllable to some degree by adjusting the [`MaxBufferedEpochs`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxbufferedepochs) and [`TimeBetweenEpochs`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenepochs) configuration parameters). If this occurs, *it is entirely possible for new data to be inserted into the source cluster without being recorded in the source SQL node's binary log*. For this reason, to guarantee high availability, it is extremely important to maintain a backup replication channel, to monitor the primary channel, and to fail over to the secondary replication channel when necessary to keep the replica cluster synchronized with the source. NDB Cluster is not designed to perform such monitoring on its own; for this, an external application is required.
+Uma perda de conexão pode ocorrer entre o nó SQL do cluster Source e o nó SQL do cluster Replica, ou entre o nó SQL do Source e os *data nodes* do cluster Source. No último caso, isso pode ocorrer não apenas como resultado da perda de conexão física (por exemplo, um cabo de rede rompido), mas devido ao estouro dos *event buffers* dos *data nodes*; se o nó SQL for muito lento para responder, ele pode ser desconectado (*dropped*) pelo cluster (isso é controlável até certo ponto ajustando os parâmetros de configuração [`MaxBufferedEpochs`] e [`TimeBetweenEpochs`]). Se isso ocorrer, *é totalmente possível que novos dados sejam inseridos no cluster Source sem serem registrados no binary log do nó SQL do Source*. Por esse motivo, para garantir a alta disponibilidade, é extremamente importante manter um canal de replicação de backup, monitorar o canal primário e realizar o *failover* para o canal de replicação secundário quando necessário para manter o cluster Replica sincronizado com o Source. O NDB Cluster não foi projetado para realizar tal monitoramento por conta própria; para isso, é necessária uma aplicação externa.
 
-The source SQL node issues a “gap” event when connecting or reconnecting to the source cluster. (A gap event is a type of “incident event,” which indicates an incident that occurs that affects the contents of the database but that cannot easily be represented as a set of changes. Examples of incidents are server failures, database resynchronization, some software updates, and some hardware changes.) When the replica encounters a gap in the replication log, it stops with an error message. This message is available in the output of [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement"), and indicates that the SQL thread has stopped due to an incident registered in the replication stream, and that manual intervention is required. See [Section 21.7.8, “Implementing Failover with NDB Cluster Replication”](mysql-cluster-replication-failover.html "21.7.8 Implementing Failover with NDB Cluster Replication"), for more information about what to do in such circumstances.
+O nó SQL do Source emite um evento "gap" ao se conectar ou reconectar ao cluster Source. (Um evento *gap* é um tipo de “incident event”, que indica um incidente que ocorre que afeta o conteúdo do Database, mas que não pode ser facilmente representado como um conjunto de mudanças. Exemplos de incidentes são falhas de servidor, ressincronização do Database, algumas atualizações de software e algumas alterações de hardware.) Quando a Replica encontra um *gap* no log de replicação, ela para com uma mensagem de erro. Esta mensagem está disponível na saída de [`SHOW SLAVE STATUS`], e indica que o *SQL thread* parou devido a um incidente registrado no fluxo de replicação, e que é necessária intervenção manual. Consulte [Seção 21.7.8, “Implementando Failover com Replicação NDB Cluster”](mysql-cluster-replication-failover.html "21.7.8 Implementando Failover com Replicação NDB Cluster"), para obter mais informações sobre o que fazer em tais circunstâncias.
 
-Important
+Importante
 
-Because NDB Cluster is not designed on its own to monitor replication status or provide failover, if high availability is a requirement for the replica server or cluster, then you must set up multiple replication lines, monitor the source [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") on the primary replication line, and be prepared fail over to a secondary line if and as necessary. This must be done manually, or possibly by means of a third-party application. For information about implementing this type of setup, see [Section 21.7.7, “Using Two Replication Channels for NDB Cluster Replication”](mysql-cluster-replication-two-channels.html "21.7.7 Using Two Replication Channels for NDB Cluster Replication"), and [Section 21.7.8, “Implementing Failover with NDB Cluster Replication”](mysql-cluster-replication-failover.html "21.7.8 Implementing Failover with NDB Cluster Replication").
+Como o NDB Cluster não foi projetado para monitorar o status da replicação ou fornecer *failover* por conta própria, se a alta disponibilidade for um requisito para o servidor ou cluster Replica, você deve configurar múltiplas linhas de replicação, monitorar o [**mysqld**] Source na linha de replicação primária e estar preparado para fazer o *failover* para uma linha secundária se e quando necessário. Isso deve ser feito manualmente ou, possivelmente, por meio de uma aplicação de terceiros. Para obter informações sobre a implementação desse tipo de configuração, consulte [Seção 21.7.7, “Usando Dois Canais de Replicação para Replicação NDB Cluster”](mysql-cluster-replication-two-channels.html "21.7.7 Usando Dois Canais de Replicação para Replicação NDB Cluster"), e [Seção 21.7.8, “Implementando Failover com Replicação NDB Cluster”](mysql-cluster-replication-failover.html "21.7.8 Implementando Failover com Replicação NDB Cluster").
 
-If you are replicating from a standalone MySQL server to an NDB Cluster, one channel is usually sufficient.
+Se você estiver replicando de um MySQL Server *standalone* para um NDB Cluster, um canal geralmente é suficiente.
 
-**Circular replication.**
+**Replicação circular.**
 
-NDB Cluster Replication supports circular replication, as shown in the next example. The replication setup involves three NDB Clusters numbered 1, 2, and 3, in which Cluster 1 acts as the replication source for Cluster 2, Cluster 2 acts as the source for Cluster 3, and Cluster 3 acts as the source for Cluster 1, thus completing the circle. Each NDB Cluster has two SQL nodes, with SQL nodes A and B belonging to Cluster 1, SQL nodes C and D belonging to Cluster 2, and SQL nodes E and F belonging to Cluster 3.
+A Replicação NDB Cluster suporta replicação circular, conforme mostrado no próximo exemplo. A configuração de replicação envolve três Clusters NDB numerados 1, 2 e 3, nos quais o Cluster 1 atua como Source de replicação para o Cluster 2, o Cluster 2 atua como Source para o Cluster 3, e o Cluster 3 atua como Source para o Cluster 1, completando assim o círculo. Cada NDB Cluster possui dois nós SQL, com os nós SQL A e B pertencentes ao Cluster 1, nós SQL C e D pertencentes ao Cluster 2, e nós SQL E e F pertencentes ao Cluster 3.
 
-Circular replication using these clusters is supported as long as the following conditions are met:
+A replicação circular usando esses clusters é suportada, desde que as seguintes condições sejam atendidas:
 
-* The SQL nodes on all source and replica clusters are the same.
-* All SQL nodes acting as sources and replicas are started with the [`log_slave_updates`](replication-options-binary-log.html#sysvar_log_slave_updates) system variable enabled.
+* Os nós SQL em todos os clusters Source e Replica são os mesmos.
+* Todos os nós SQL que atuam como Sources e Replicas são iniciados com a variável de sistema [`log_slave_updates`] habilitada.
 
-This type of circular replication setup is shown in the following diagram:
+Este tipo de configuração de replicação circular é mostrado no diagrama a seguir:
 
-**Figure 21.13 NDB Cluster Circular Replication With All Sources As Replicas**
+**Figura 21.13 Replicação Circular NDB Cluster Com Todos os Sources Como Replicas**
 
 ![Some content is described in the surrounding text. The diagram shows three clusters, each with two nodes. Arrows connecting SQL nodes in different clusters illustrate that all sources are also replicas.](images/cluster-circular-replication-1.png)
 
-In this scenario, SQL node A in Cluster 1 replicates to SQL node C in Cluster 2; SQL node C replicates to SQL node E in Cluster 3; SQL node E replicates to SQL node A. In other words, the replication line (indicated by the curved arrows in the diagram) directly connects all SQL nodes used as sources and replicas.
+Neste cenário, o nó SQL A no Cluster 1 replica para o nó SQL C no Cluster 2; o nó SQL C replica para o nó SQL E no Cluster 3; o nó SQL E replica para o nó SQL A. Em outras palavras, a linha de replicação (indicada pelas setas curvas no diagrama) conecta diretamente todos os nós SQL usados como Sources e Replicas.
 
-It should also be possible to set up circular replication in which not all source SQL nodes are also replicas, as shown here:
+Também deve ser possível configurar a replicação circular na qual nem todos os nós SQL Source são também Replicas, conforme mostrado aqui:
 
-**Figure 21.14 NDB Cluster Circular Replication Where Not All Sources Are Replicas**
+**Figura 21.14 Replicação Circular NDB Cluster Onde Nem Todos os Sources São Replicas**
 
 ![Some content is described in the surrounding text. The diagram shows three clusters, each with two nodes. Arrows connecting SQL nodes in different clusters illustrate that not all sources are replicas.](images/cluster-circular-replication-2.png)
 
-In this case, different SQL nodes in each cluster are used as sources and replicas. However, you must *not* start any of the SQL nodes with the [`log_slave_updates`](replication-options-binary-log.html#sysvar_log_slave_updates) system variable enabled. This type of circular replication scheme for NDB Cluster, in which the line of replication (again indicated by the curved arrows in the diagram) is discontinuous, should be possible, but it should be noted that it has not yet been thoroughly tested and must therefore still be considered experimental.
+Neste caso, diferentes nós SQL em cada cluster são usados como Sources e Replicas. No entanto, você *não* deve iniciar nenhum dos nós SQL com a variável de sistema [`log_slave_updates`] habilitada. Este tipo de esquema de replicação circular para NDB Cluster, no qual a linha de replicação (novamente indicada pelas setas curvas no diagrama) é descontínua, deve ser possível, mas deve-se notar que ainda não foi totalmente testado e, portanto, deve ser considerado experimental.
 
-Note
+Nota
 
-The [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine uses idempotent execution mode, which suppresses duplicate-key and other errors that otherwise break circular replication of NDB Cluster. This is equivalent to setting the global [`slave_exec_mode`](replication-options-replica.html#sysvar_slave_exec_mode) system variable to `IDEMPOTENT`, although this is not necessary in NDB Cluster replication, since NDB Cluster sets this variable automatically and ignores any attempts to set it explicitly.
+O storage engine [`NDB`] usa o modo de execução *idempotent*, que suprime erros de chave duplicada (*duplicate-key*) e outros erros que, de outra forma, interromperiam a replicação circular do NDB Cluster. Isso é equivalente a definir a variável de sistema global [`slave_exec_mode`] como `IDEMPOTENT`, embora isso não seja necessário na replicação NDB Cluster, visto que o NDB Cluster define essa variável automaticamente e ignora qualquer tentativa de defini-la explicitamente.
 
-**NDB Cluster replication and primary keys.**
+**Replicação NDB Cluster e Primary Keys.**
 
-In the event of a node failure, errors in replication of [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables without primary keys can still occur, due to the possibility of duplicate rows being inserted in such cases. For this reason, it is highly recommended that all [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables being replicated have explicit primary keys.
+No caso de uma falha de nó, erros na replicação de tabelas [`NDB`] sem Primary Keys ainda podem ocorrer, devido à possibilidade de linhas duplicadas serem inseridas em tais casos. Por esse motivo, é altamente recomendado que todas as tabelas [`NDB`] sendo replicadas tenham Primary Keys explícitas.
 
-**NDB Cluster Replication and Unique Keys.**
+**Replicação NDB Cluster e Unique Keys.**
 
-In older versions of NDB Cluster, operations that updated values of unique key columns of [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables could result in duplicate-key errors when replicated. This issue is solved for replication between [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables by deferring unique key checks until after all table row updates have been performed.
+Em versões mais antigas do NDB Cluster, operações que atualizavam valores de colunas de Unique Key de tabelas [`NDB`] podiam resultar em erros de chave duplicada (*duplicate-key errors*) quando replicadas. Este problema é resolvido para replicação entre tabelas [`NDB`] adiando as verificações de Unique Key até depois que todas as atualizações de linhas da tabela terem sido executadas.
 
-Deferring constraints in this way is currently supported only by [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"). Thus, updates of unique keys when replicating from [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") to a different storage engine such as [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") or [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") are still not supported.
+O adiamento de Constraints dessa forma é atualmente suportado apenas pelo [`NDB`]. Assim, atualizações de Unique Keys ao replicar de [`NDB`] para um *storage engine* diferente, como [`InnoDB`] ou [`MyISAM`], ainda não são suportadas.
 
-The problem encountered when replicating without deferred checking of unique key updates can be illustrated using [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table such as `t`, is created and populated on the source (and transmitted to a replica that does not support deferred unique key updates) as shown here:
+O problema encontrado ao replicar sem a verificação adiada de atualizações de Unique Key pode ser ilustrado usando uma tabela [`NDB`], como `t`, que é criada e preenchida no Source (e transmitida para uma Replica que não suporta atualizações adiadas de Unique Key) conforme mostrado aqui:
 
 ```sql
 CREATE TABLE t (
@@ -66,92 +66,92 @@ INSERT INTO t
     VALUES (1,1), (2,2), (3,3), (4,4), (5,5);
 ```
 
-The following [`UPDATE`](update.html "13.2.11 UPDATE Statement") statement on `t` succeeds on the source, since the rows affected are processed in the order determined by the `ORDER BY` option, performed over the entire table:
+A seguinte instrução [`UPDATE`] em `t` é bem-sucedida no Source, já que as linhas afetadas são processadas na ordem determinada pela opção `ORDER BY`, realizada em toda a tabela:
 
 ```sql
 UPDATE t SET c = c - 1 ORDER BY p;
 ```
 
-The same statement fails with a duplicate key error or other constraint violation on the replica, because the ordering of the row updates is performed for one partition at a time, rather than for the table as a whole.
+A mesma instrução falha com um erro de chave duplicada ou outra violação de Constraint na Replica, porque a ordenação das atualizações de linha é realizada para uma *Partition* de cada vez, em vez de para a tabela como um todo.
 
-Note
+Nota
 
-Every [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table is implicitly partitioned by key when it is created. See [Section 22.2.5, “KEY Partitioning”](partitioning-key.html "22.2.5 KEY Partitioning"), for more information.
+Toda tabela [`NDB`] é implicitamente particionada por Key quando é criada. Consulte [Seção 22.2.5, “Partitioning KEY”](partitioning-key.html "22.2.5 KEY Partitioning"), para obter mais informações.
 
-**GTIDs not supported.** Replication using global transaction IDs is not compatible with the `NDB` storage engine, and is not supported. Enabling GTIDs is likely to cause NDB Cluster Replication to fail.
+**GTIDs não suportados.** A replicação usando Global Transaction IDs (GTIDs) não é compatível com o *storage engine* `NDB` e não é suportada. Habilitar GTIDs provavelmente fará com que a Replicação NDB Cluster falhe.
 
-**Multithreaded replicas not supported.** NDB Cluster does not support multithreaded replicas. This is because the replica may not be able to separate transactions occurring in one database from those in another if they are written within the same epoch. In addition, every transaction handled by the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine involves at least two databases—the target database and the `mysql` system database—due to the requirement for updating the `mysql.ndb_apply_status` table (see [Section 21.7.4, “NDB Cluster Replication Schema and Tables”](mysql-cluster-replication-schema.html "21.7.4 NDB Cluster Replication Schema and Tables")). This in turn breaks the requirement for multithreading that the transaction is specific to a given database.
+**Replicas Multithread não suportadas.** O NDB Cluster não suporta Replicas multithread. Isso ocorre porque a Replica pode não ser capaz de separar *Transactions* que ocorrem em um Database daquelas em outro se elas forem escritas dentro do mesmo *epoch*. Além disso, toda *Transaction* tratada pelo *storage engine* [`NDB`] envolve pelo menos dois Databases — o Database alvo e o Database de sistema `mysql` — devido ao requisito de atualização da tabela `mysql.ndb_apply_status` (consulte [Seção 21.7.4, “Schema e Tabelas de Replicação NDB Cluster”](mysql-cluster-replication-schema.html "21.7.4 NDB Cluster Replication Schema and Tables")). Isso, por sua vez, quebra o requisito para *multithreading* de que a *Transaction* seja específica para um determinado Database.
 
-Prior to NDB 7.5.7 and NDB 7.6.3, setting any system variables relating to multithreaded slaves such as [`slave_parallel_workers`](replication-options-replica.html#sysvar_slave_parallel_workers) and [`slave_checkpoint_group`](replication-options-replica.html#sysvar_slave_checkpoint_group) (or the equivalent [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") startup options) was completely ignored, and had no effect.
+Antes do NDB 7.5.7 e NDB 7.6.3, a definição de quaisquer variáveis de sistema relacionadas a *slaves* multithread, como [`slave_parallel_workers`] e [`slave_checkpoint_group`] (ou as opções de inicialização [**mysqld**] equivalentes), era completamente ignorada e não tinha efeito.
 
-Beginning with NDB 7.5.7 and NDB 7.6.3, `slave_parallel_workers` is always 0. If set to any other value on startup, `NDB` changes it to 0, and writes a message to the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server log file.
+A partir do NDB 7.5.7 e NDB 7.6.3, `slave_parallel_workers` é sempre 0. Se definido para qualquer outro valor na inicialização, o `NDB` o altera para 0 e escreve uma mensagem no arquivo de log do servidor [**mysqld**].
 
-**Restarting with --initial.**
+**Reiniciando com --initial.**
 
-Restarting the cluster with the [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial) option causes the sequence of GCI and epoch numbers to start over from `0`. (This is generally true of NDB Cluster and not limited to replication scenarios involving Cluster.) The MySQL servers involved in replication should in this case be restarted. After this, you should use the [`RESET MASTER`](reset-master.html "13.4.1.2 RESET MASTER Statement") and [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") statements to clear the invalid `ndb_binlog_index` and `ndb_apply_status` tables, respectively.
+Reiniciar o cluster com a opção [`--initial`] faz com que a sequência de números GCI e *epoch* recomece do `0`. (Isso é geralmente verdade para o NDB Cluster e não se limita a cenários de replicação envolvendo o Cluster.) Os MySQL Servers envolvidos na replicação devem ser reiniciados neste caso. Depois disso, você deve usar as instruções [`RESET MASTER`] e [`RESET SLAVE`] para limpar as tabelas `ndb_binlog_index` e `ndb_apply_status` inválidas, respectivamente.
 
-**Replication from NDB to other storage engines.** It is possible to replicate an [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table on the source to a table using a different storage engine on the replica, taking into account the restrictions listed here:
+**Replicação de NDB para outros storage engines.** É possível replicar uma tabela [`NDB`] no Source para uma tabela usando um *storage engine* diferente na Replica, levando em conta as restrições listadas aqui:
 
-* Multi-source and circular replication are not supported (tables on both the source and the replica must use the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine for this to work).
+* Replicação Multi-source e circular não são suportadas (as tabelas tanto no Source quanto na Replica devem usar o *storage engine* [`NDB`] para que isso funcione).
 
-* Using a storage engine which does not perform binary logging for tables on the replica requires special handling.
+* Usar um *storage engine* que não executa *binary logging* para tabelas na Replica requer tratamento especial.
 
-* Use of a nontransactional storage engine for tables on the replica also requires special handling.
+* O uso de um *storage engine* não-transactional para tabelas na Replica também requer tratamento especial.
 
-* The source [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") must be started with [`--ndb-log-update-as-write=0`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-update-as-write) or `--ndb-log-update-as-write=OFF`.
+* O [**mysqld**] Source deve ser iniciado com [`--ndb-log-update-as-write=0`] ou `--ndb-log-update-as-write=OFF`.
 
-The next few paragraphs provide additional information about each of the issues just described.
+Os próximos parágrafos fornecem informações adicionais sobre cada uma das questões acabadas de descrever.
 
-**Multiple sources not supported when replicating NDB to other storage engines.** For replication from [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") to a different storage engine, the relationship between the two databases must be one-to-one. This means that bidirectional or circular replication is not supported between NDB Cluster and other storage engines.
+**Múltiplos Sources não suportados ao replicar NDB para outros storage engines.** Para replicação de [`NDB`] para um *storage engine* diferente, o relacionamento entre os dois Databases deve ser de um-para-um. Isso significa que a replicação bidirecional ou circular não é suportada entre o NDB Cluster e outros *storage engines*.
 
-In addition, it is not possible to configure more than one replication channel when replicating between [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") and a different storage engine. (An NDB Cluster database *can* simultaneously replicate to multiple NDB Cluster databases.) If the source uses [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables, it is still possible to have more than one MySQL Server maintain a binary log of all changes, but for the replica to change sources (fail over), the new source-replica relationship must be explicitly defined on the replica.
+Além disso, não é possível configurar mais de um canal de replicação ao replicar entre [`NDB`] e um *storage engine* diferente. (Um Database NDB Cluster *pode* replicar simultaneamente para múltiplos Databases NDB Cluster.) Se o Source usar tabelas [`NDB`], ainda é possível que mais de um MySQL Server mantenha um *binary log* de todas as mudanças, mas para a Replica mudar de Sources (*failover*), o novo relacionamento Source-Replica deve ser explicitamente definido na Replica.
 
-**Replicating NDB tables to a storage engine that does not perform binary logging.**
+**Replicando tabelas NDB para um storage engine que não executa binary logging.**
 
-If you attempt to replicate from an NDB Cluster to a replica that uses a storage engine that does not handle its own binary logging, the replication process aborts with the error Binary logging not possible ... Statement cannot be written atomically since more than one engine involved and at least one engine is self-logging (Error 1595). It is possible to work around this issue in one of the following ways:
+Se você tentar replicar de um NDB Cluster para uma Replica que usa um *storage engine* que não gerencia seu próprio *binary logging*, o processo de replicação é abortado com o erro *Binary logging not possible ... Statement cannot be written atomically since more than one engine involved and at least one engine is self-logging (Error 1595)*. É possível contornar esse problema de uma das seguintes maneiras:
 
-* **Turn off binary logging on the replica.** This can be accomplished by setting [`sql_log_bin = 0`](replication-options-binary-log.html#sysvar_sql_log_bin).
+* **Desligar o binary logging na Replica.** Isso pode ser realizado definindo [`sql_log_bin = 0`].
 
-* **Change the storage engine used for the mysql.ndb_apply_status table.** Causing this table to use an engine that does not handle its own binary logging can also eliminate the conflict. This can be done by issuing a statement such as [`ALTER TABLE mysql.ndb_apply_status ENGINE=MyISAM`](alter-table.html "13.1.8 ALTER TABLE Statement") on the replica. It is safe to do this when using a storage engine other than [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") on the replica, since you do not need to worry about keeping multiple replicas synchronized.
+* **Alterar o storage engine usado para a tabela mysql.ndb_apply_status.** Fazer com que esta tabela use um *engine* que não gerencia seu próprio *binary logging* também pode eliminar o conflito. Isso pode ser feito emitindo uma instrução como [`ALTER TABLE mysql.ndb_apply_status ENGINE=MyISAM`] na Replica. É seguro fazer isso ao usar um *storage engine* diferente de [`NDB`] na Replica, já que você não precisa se preocupar em manter múltiplas Replicas sincronizadas.
 
-* **Filter out changes to the mysql.ndb_apply_status table on the replica.** This can be done by starting the replica with [`--replicate-ignore-table=mysql.ndb_apply_status`](replication-options-replica.html#option_mysqld_replicate-ignore-table). If you need for other tables to be ignored by replication, you might wish to use an appropriate [`--replicate-wild-ignore-table`](replication-options-replica.html#option_mysqld_replicate-wild-ignore-table) option instead.
+* **Filtrar alterações na tabela mysql.ndb_apply_status na Replica.** Isso pode ser feito iniciando a Replica com [`--replicate-ignore-table=mysql.ndb_apply_status`]. Se você precisar que outras tabelas sejam ignoradas pela replicação, você pode usar uma opção [`--replicate-wild-ignore-table`] apropriada.
 
-Important
+Importante
 
-You should *not* disable replication or binary logging of `mysql.ndb_apply_status` or change the storage engine used for this table when replicating from one NDB Cluster to another. See [Replication and binary log filtering rules with replication between NDB Clusters](mysql-cluster-replication-issues.html#mysql-cluster-replication-issues-filtering "Replication and binary log filtering rules with replication between NDB Clusters"), for details.
+Você *não* deve desabilitar a replicação ou o *binary logging* de `mysql.ndb_apply_status` ou alterar o *storage engine* usado para esta tabela ao replicar de um NDB Cluster para outro. Consulte [Replicação e regras de filtragem de binary log na replicação entre NDB Clusters](mysql-cluster-replication-issues.html#mysql-cluster-replication-issues-filtering "Replication and binary log filtering rules with replication between NDB Clusters"), para obter detalhes.
 
-**Replication from NDB to a nontransactional storage engine.** When replicating from [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") to a nontransactional storage engine such as [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine"), you may encounter unnecessary duplicate key errors when replicating [`INSERT ... ON DUPLICATE KEY UPDATE`](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement") statements. You can suppress these by using [`--ndb-log-update-as-write=0`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-update-as-write), which forces updates to be logged as writes, rather than as updates.
+**Replicação de NDB para um storage engine não-transactional.** Ao replicar de [`NDB`] para um *storage engine* não-transactional como [`MyISAM`], você pode encontrar erros de chave duplicada desnecessários ao replicar instruções [`INSERT ... ON DUPLICATE KEY UPDATE`]. Você pode suprimi-los usando [`--ndb-log-update-as-write=0`], que força as atualizações a serem registradas como *writes* (escritas), em vez de como atualizações.
 
-**Replication and binary log filtering rules with replication between NDB Clusters.** If you are using any of the options `--replicate-do-*`, `--replicate-ignore-*`, [`--binlog-do-db`](replication-options-binary-log.html#option_mysqld_binlog-do-db), or [`--binlog-ignore-db`](replication-options-binary-log.html#option_mysqld_binlog-ignore-db) to filter databases or tables being replicated, you must take care not to block replication or binary logging of the `mysql.ndb_apply_status`, which is required for replication between NDB Clusters to operate properly. In particular, you must keep in mind the following:
+**Regras de filtragem de Replicação e Binary Log na replicação entre NDB Clusters.** Se você estiver usando qualquer uma das opções `--replicate-do-*`, `--replicate-ignore-*`, [`--binlog-do-db`], ou [`--binlog-ignore-db`] para filtrar Databases ou tabelas sendo replicadas, você deve tomar cuidado para não bloquear a replicação ou o *binary logging* da tabela `mysql.ndb_apply_status`, que é necessária para que a replicação entre NDB Clusters funcione corretamente. Em particular, você deve ter em mente o seguinte:
 
-1. Using [`--replicate-do-db=db_name`](replication-options-replica.html#option_mysqld_replicate-do-db) (and no other `--replicate-do-*` or `--replicate-ignore-*` options) means that *only* tables in database *`db_name`* are replicated. In this case, you should also use [`--replicate-do-db=mysql`](replication-options-replica.html#option_mysqld_replicate-do-db), [`--binlog-do-db=mysql`](replication-options-binary-log.html#option_mysqld_binlog-do-db), or [`--replicate-do-table=mysql.ndb_apply_status`](replication-options-replica.html#option_mysqld_replicate-do-table) to ensure that `mysql.ndb_apply_status` is populated on replicas.
+1. Usar [`--replicate-do-db=db_name`] (e nenhuma outra opção `--replicate-do-*` ou `--replicate-ignore-*`) significa que *apenas* as tabelas no Database *`db_name`* são replicadas. Neste caso, você também deve usar [`--replicate-do-db=mysql`], [`--binlog-do-db=mysql`], ou [`--replicate-do-table=mysql.ndb_apply_status`] para garantir que `mysql.ndb_apply_status` seja populada nas Replicas.
 
-   Using [`--binlog-do-db=db_name`](replication-options-binary-log.html#option_mysqld_binlog-do-db) (and no other [`--binlog-do-db`](replication-options-binary-log.html#option_mysqld_binlog-do-db) options) means that changes *only* to tables in database *`db_name`* are written to the binary log. In this case, you should also use [`--replicate-do-db=mysql`](replication-options-replica.html#option_mysqld_replicate-do-db), [`--binlog-do-db=mysql`](replication-options-binary-log.html#option_mysqld_binlog-do-db), or [`--replicate-do-table=mysql.ndb_apply_status`](replication-options-replica.html#option_mysqld_replicate-do-table) to ensure that `mysql.ndb_apply_status` is populated on replicas.
+   Usar [`--binlog-do-db=db_name`] (e nenhuma outra opção [`--binlog-do-db`]) significa que as alterações *apenas* nas tabelas no Database *`db_name`* são escritas no *binary log*. Neste caso, você também deve usar [`--replicate-do-db=mysql`], [`--binlog-do-db=mysql`], ou [`--replicate-do-table=mysql.ndb_apply_status`] para garantir que `mysql.ndb_apply_status` seja populada nas Replicas.
 
-2. Using [`--replicate-ignore-db=mysql`](replication-options-replica.html#option_mysqld_replicate-ignore-db) means that no tables in the `mysql` database are replicated. In this case, you should also use [`--replicate-do-table=mysql.ndb_apply_status`](replication-options-replica.html#option_mysqld_replicate-do-table) to ensure that `mysql.ndb_apply_status` is replicated.
+2. Usar [`--replicate-ignore-db=mysql`] significa que nenhuma tabela no Database `mysql` é replicada. Neste caso, você também deve usar [`--replicate-do-table=mysql.ndb_apply_status`] para garantir que `mysql.ndb_apply_status` seja replicada.
 
-   Using [`--binlog-ignore-db=mysql`](replication-options-binary-log.html#option_mysqld_binlog-ignore-db) means that no changes to tables in the `mysql` database are written to the binary log. In this case, you should also use [`--replicate-do-table=mysql.ndb_apply_status`](replication-options-replica.html#option_mysqld_replicate-do-table) to ensure that `mysql.ndb_apply_status` is replicated.
+   Usar [`--binlog-ignore-db=mysql`] significa que nenhuma alteração nas tabelas no Database `mysql` é escrita no *binary log*. Neste caso, você também deve usar [`--replicate-do-table=mysql.ndb_apply_status`] para garantir que `mysql.ndb_apply_status` seja replicada.
 
-You should also remember that each replication rule requires the following:
+Você também deve lembrar que cada regra de replicação exige o seguinte:
 
-1. Its own `--replicate-do-*` or `--replicate-ignore-*` option, and that multiple rules cannot be expressed in a single replication filtering option. For information about these rules, see [Section 16.1.6, “Replication and Binary Logging Options and Variables”](replication-options.html "16.1.6 Replication and Binary Logging Options and Variables").
+1. Sua própria opção `--replicate-do-*` ou `--replicate-ignore-*`, e que múltiplas regras não podem ser expressas em uma única opção de filtragem de replicação. Para obter informações sobre essas regras, consulte [Seção 16.1.6, “Opções e Variáveis de Replicação e Binary Logging”](replication-options.html "16.1.6 Replication and Binary Logging Options and Variables").
 
-2. Its own [`--binlog-do-db`](replication-options-binary-log.html#option_mysqld_binlog-do-db) or [`--binlog-ignore-db`](replication-options-binary-log.html#option_mysqld_binlog-ignore-db) option, and that multiple rules cannot be expressed in a single binary log filtering option. For information about these rules, see [Section 5.4.4, “The Binary Log”](binary-log.html "5.4.4 The Binary Log").
+2. Sua própria opção [`--binlog-do-db`] ou [`--binlog-ignore-db`], e que múltiplas regras não podem ser expressas em uma única opção de filtragem de *binary log*. Para obter informações sobre essas regras, consulte [Seção 5.4.4, “O Binary Log”](binary-log.html "5.4.4 The Binary Log").
 
-If you are replicating an NDB Cluster to a replica that uses a storage engine other than [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"), the considerations just given previously may not apply, as discussed elsewhere in this section.
+Se você estiver replicando um NDB Cluster para uma Replica que usa um *storage engine* diferente de [`NDB`], as considerações dadas acima podem não se aplicar, conforme discutido em outras partes desta seção.
 
-**NDB Cluster Replication and IPv6.** While the NDB API and MGM API (and thus data nodes and management nodes) do not support IPv6 in NDB 7.5 and 7.6, MySQL Servers—including those acting as SQL nodes in an NDB Cluster—can use IPv6 to contact other MySQL Servers. This means that you can replicate between NDB Clusters using IPv6 to connect the source and replica SQL nodes as shown by the dotted arrow in the following diagram:
+**Replicação NDB Cluster e IPv6.** Embora o NDB API e o MGM API (e, portanto, os *data nodes* e *management nodes*) não suportem IPv6 no NDB 7.5 e 7.6, os MySQL Servers — incluindo aqueles que atuam como nós SQL em um NDB Cluster — podem usar IPv6 para contatar outros MySQL Servers. Isso significa que você pode replicar entre NDB Clusters usando IPv6 para conectar os nós SQL Source e Replica, conforme mostrado pela seta pontilhada no diagrama a seguir:
 
-**Figure 21.15 Replication Between SQL Nodes Connected Using IPv6**
+**Figura 21.15 Replicação Entre Nós SQL Conectados Usando IPv6**
 
 ![Most content is described in the surrounding text. The dotted line representing a MySQL-to-MySQL IPv6 connection is between two nodes, one each from the source and replica clusters. All connections within the cluster, such as data node to data node or data node to management node, are connected with solid lines to indicate IPv4 connections only.](images/cluster-replication-ipv6.png)
 
-All connections originating *within* the NDB Cluster —represented in the preceding diagram by solid arrows—must use IPv4. In other words, all NDB Cluster data nodes, management servers, and management clients must be accessible from one another using IPv4. In addition, SQL nodes must use IPv4 to communicate with the cluster.
+Todas as conexões originadas *dentro* do NDB Cluster — representadas no diagrama anterior por setas sólidas — devem usar IPv4. Em outras palavras, todos os *data nodes*, servidores de gerenciamento (*management servers*) e clientes de gerenciamento (*management clients*) do NDB Cluster devem ser acessíveis uns dos outros usando IPv4. Além disso, os nós SQL devem usar IPv4 para se comunicar com o cluster.
 
-Since there is currently no support in the NDB and MGM APIs for IPv6, any applications written using these APIs must also make all connections using IPv4.
+Como atualmente não há suporte no NDB e MGM APIs para IPv6, quaisquer aplicações escritas usando esses APIs também devem fazer todas as conexões usando IPv4.
 
-**Attribute promotion and demotion.** NDB Cluster Replication includes support for attribute promotion and demotion. The implementation of the latter distinguishes between lossy and non-lossy type conversions, and their use on the replica can be controlled by setting the [`slave_type_conversions`](replication-options-replica.html#sysvar_slave_type_conversions) global server system variable.
+**Promoção e demotion de Atributos.** A Replicação NDB Cluster inclui suporte para promoção e *demotion* de atributos. A implementação desta última distingue entre conversões de tipo *lossy* (com perda de dados) e *non-lossy* (sem perda de dados), e seu uso na Replica pode ser controlado definindo a variável de sistema global de servidor [`slave_type_conversions`].
 
-For more information about attribute promotion and demotion in NDB Cluster, see [Row-based replication: attribute promotion and demotion](replication-features-differing-tables.html#replication-features-attribute-promotion "Row-based replication: attribute promotion and demotion").
+Para obter mais informações sobre promoção e *demotion* de atributos no NDB Cluster, consulte [Replicação baseada em linha: promoção e demotion de atributos](replication-features-differing-tables.html#replication-features-attribute-promotion "Row-based replication: attribute promotion and demotion").
 
-`NDB`, unlike [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") or [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine"), does not write changes to virtual columns to the binary log; however, this has no detrimental effects on NDB Cluster Replication or replication between `NDB` and other storage engines. Changes to stored generated columns are logged.
+O `NDB`, ao contrário do [`InnoDB`] ou [`MyISAM`], não escreve alterações em colunas virtuais no *binary log*; no entanto, isso não tem efeitos prejudiciais na Replicação NDB Cluster ou na replicação entre `NDB` e outros *storage engines*. As alterações em colunas geradas armazenadas (*stored generated columns*) são registradas.

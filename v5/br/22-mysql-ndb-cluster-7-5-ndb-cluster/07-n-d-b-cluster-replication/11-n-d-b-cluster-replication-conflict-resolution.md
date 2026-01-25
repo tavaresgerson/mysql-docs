@@ -1,58 +1,58 @@
-### 21.7.11 NDB Cluster Replication Conflict Resolution
+### 21.7.11 Resolução de Conflitos na Replicação do NDB Cluster
 
-* [Requirements](mysql-cluster-replication-conflict-resolution.html#conflict-resolution-requirements "Requirements")
-* [Source Column Control](mysql-cluster-replication-conflict-resolution.html#conflict-resolution-source-column "Source Column Control")
-* [Conflict Resolution Control](mysql-cluster-replication-conflict-resolution.html#conflict-resolution-control "Conflict Resolution Control")
-* [Conflict Resolution Functions](mysql-cluster-replication-conflict-resolution.html#conflict-resolution-functions "Conflict Resolution Functions")
-* [Conflict Resolution Exceptions Table](mysql-cluster-replication-conflict-resolution.html#conflict-resolution-exceptions-table "Conflict Resolution Exceptions Table")
-* [Conflict Detection Status Variables](mysql-cluster-replication-conflict-resolution.html#conflict-detection-statvars "Conflict Detection Status Variables")
-* [Examples](mysql-cluster-replication-conflict-resolution.html#conflict-detection-examples "Examples")
+* [Requisitos](mysql-cluster-replication-conflict-resolution.html#conflict-resolution-requirements "Requirements")
+* [Controle de Colunas na Origem](mysql-cluster-replication-conflict-resolution.html#conflict-resolution-source-column "Source Column Control")
+* [Controle de Resolução de Conflitos](mysql-cluster-replication-conflict-resolution.html#conflict-resolution-control "Conflict Resolution Control")
+* [Funções de Resolução de Conflitos](mysql-cluster-replication-conflict-resolution.html#conflict-resolution-functions "Conflict Resolution Functions")
+* [Tabela de Exceções da Resolução de Conflitos](mysql-cluster-replication-conflict-resolution.html#conflict-resolution-exceptions-table "Conflict Resolution Exceptions Table")
+* [Variáveis de Status da Detecção de Conflitos](mysql-cluster-replication-conflict-resolution.html#conflict-detection-statvars "Conflict Detection Status Variables")
+* [Exemplos](mysql-cluster-replication-conflict-resolution.html#conflict-detection-examples "Examples")
 
-When using a replication setup involving multiple sources (including circular replication), it is possible that different sources may try to update the same row on the replica with different data. Conflict resolution in NDB Cluster Replication provides a means of resolving such conflicts by permitting a user-defined resolution column to be used to determine whether or not an update on a given source should be applied on the replica.
+Quando se utiliza uma configuração de *replication* que envolve múltiplas *sources* (incluindo replicação circular), é possível que diferentes *sources* tentem realizar o *update* da mesma *row* na *replica* com dados distintos. A resolução de conflitos na Replicação do NDB Cluster fornece um meio de resolver tais conflitos, permitindo que uma coluna de resolução definida pelo usuário seja utilizada para determinar se um *update* em uma determinada *source* deve ser aplicado ou não na *replica*.
 
-Some types of conflict resolution supported by NDB Cluster (`NDB$OLD()`, `NDB$MAX()`, `NDB$MAX_DELETE_WIN()`) implement this user-defined column as a “timestamp” column (although its type cannot be [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"), as explained later in this section). These types of conflict resolution are always applied a row-by-row basis rather than a transactional basis. The epoch-based conflict resolution functions `NDB$EPOCH()` and `NDB$EPOCH_TRANS()` compare the order in which epochs are replicated (and thus these functions are transactional). Different methods can be used to compare resolution column values on the replica when conflicts occur, as explained later in this section; the method used can be set to act on a single table, database, or server, or on a set of one or more tables using pattern matching. See [Matching with wildcards](mysql-cluster-replication-schema.html#ndb-replication-wildcards "Matching with wildcards"), for information about using pattern matches in the `db`, `table_name`, and `server_id` columns of the `mysql.ndb_replication` table.
+Alguns tipos de resolução de conflitos suportados pelo NDB Cluster (`NDB$OLD()`, `NDB$MAX()`, `NDB$MAX_DELETE_WIN()`) implementam esta coluna definida pelo usuário como uma coluna de "*timestamp*" (embora seu tipo não possa ser [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"), conforme explicado mais adiante nesta seção). Estes tipos de resolução de conflitos são sempre aplicados *row-by-row* em vez de em uma base *transactional*. As funções de resolução de conflitos baseadas em *epoch*, `NDB$EPOCH()` e `NDB$EPOCH_TRANS()`, comparam a ordem em que os *epochs* são replicados (e, portanto, estas funções são *transactional*). Diferentes métodos podem ser usados para comparar valores de coluna de resolução na *replica* quando ocorrem conflitos, conforme explicado mais adiante nesta seção; o método usado pode ser configurado para atuar em uma única *table*, *database*, ou *server*, ou em um conjunto de uma ou mais *tables* usando correspondência de padrões (*pattern matching*). Veja [Correspondência com caracteres curinga (wildcards)](mysql-cluster-replication-schema.html#ndb-replication-wildcards "Matching with wildcards"), para informações sobre o uso de correspondências de padrões nas colunas `db`, `table_name` e `server_id` da *table* `mysql.ndb_replication`.
 
-You should also keep in mind that it is the application's responsibility to ensure that the resolution column is correctly populated with relevant values, so that the resolution function can make the appropriate choice when determining whether to apply an update.
+Você também deve ter em mente que é responsabilidade da aplicação garantir que a coluna de resolução seja populada corretamente com valores relevantes, para que a função de resolução possa fazer a escolha apropriada ao determinar se deve aplicar um *update*.
 
-#### Requirements
+#### Requisitos
 
-Preparations for conflict resolution must be made on both the source and the replica. These tasks are described in the following list:
+Os preparativos para a resolução de conflitos devem ser feitos tanto na *source* quanto na *replica*. Estas tarefas estão descritas na lista a seguir:
 
-* On the source writing the binary logs, you must determine which columns are sent (all columns or only those that have been updated). This is done for the MySQL Server as a whole by applying the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") startup option [`--ndb-log-updated-only`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-updated-only) (described later in this section), or on one or more specific tables by placing the proper entries in the `mysql.ndb_replication` table (see [ndb_replication Table](mysql-cluster-replication-schema.html#ndb-replication-ndb-replication "ndb_replication Table")).
+* Na *source* que está gravando os *binary logs*, você deve determinar quais colunas são enviadas (todas as colunas ou apenas aquelas que foram atualizadas). Isto é feito para o MySQL Server como um todo aplicando a opção de inicialização do [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") [`--ndb-log-updated-only`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-updated-only) (descrita mais adiante nesta seção), ou em uma ou mais *tables* específicas, inserindo as entradas adequadas na *table* `mysql.ndb_replication` (veja [Tabela ndb_replication](mysql-cluster-replication-schema.html#ndb-replication-ndb-replication "ndb_replication Table")).
 
   Note
 
-  If you are replicating tables with very large columns (such as [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") or [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") columns), [`--ndb-log-updated-only`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-updated-only) can also be useful for reducing the size of the binary logs and avoiding possible replication failures due to exceeding [`max_allowed_packet`](server-system-variables.html#sysvar_max_allowed_packet).
+  Se você estiver replicando *tables* com colunas muito grandes (como colunas [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") ou [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types")), [`--ndb-log-updated-only`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-updated-only) também pode ser útil para reduzir o tamanho dos *binary logs* e evitar possíveis falhas de *replication* devido a exceder [`max_allowed_packet`](server-system-variables.html#sysvar_max_allowed_packet).
 
-  See [Section 16.4.1.19, “Replication and max_allowed_packet”](replication-features-max-allowed-packet.html "16.4.1.19 Replication and max_allowed_packet"), for more information about this issue.
+  Veja [Seção 16.4.1.19, “Replicação e max_allowed_packet”](replication-features-max-allowed-packet.html "16.4.1.19 Replication and max_allowed_packet"), para mais informações sobre este problema.
 
-* On the replica, you must determine which type of conflict resolution to apply (“latest timestamp wins”, “same timestamp wins”, “primary wins”, “primary wins, complete transaction”, or none). This is done using the `mysql.ndb_replication` system table, and applies to one or more specific tables (see [ndb_replication Table](mysql-cluster-replication-schema.html#ndb-replication-ndb-replication "ndb_replication Table")).
+* Na *replica*, você deve determinar qual tipo de resolução de conflitos aplicar (“o *timestamp* mais recente vence”, “o mesmo *timestamp* vence”, “a *primary* vence”, “a *primary* vence, *transaction* completa”, ou nenhuma). Isto é feito usando a *system table* `mysql.ndb_replication`, e se aplica a uma ou mais *tables* específicas (veja [Tabela ndb_replication](mysql-cluster-replication-schema.html#ndb-replication-ndb-replication "ndb_replication Table")).
 
-* NDB Cluster also supports read conflict detection, that is, detecting conflicts between reads of a given row in one cluster and updates or deletes of the same row in another cluster. This requires exclusive read locks obtained by setting [`ndb_log_exclusive_reads`](mysql-cluster-options-variables.html#sysvar_ndb_log_exclusive_reads) equal to 1 on the replica. All rows read by a conflicting read are logged in the exceptions table. For more information, see [Read conflict detection and resolution](mysql-cluster-replication-conflict-resolution.html#conflict-resolution-read-conflicts "Read conflict detection and resolution").
+* O NDB Cluster também suporta a detecção de conflitos de *read*, ou seja, detectar conflitos entre *reads* de uma determinada *row* em um *cluster* e *updates* ou *deletes* da mesma *row* em outro *cluster*. Isso requer *read locks* exclusivos obtidos definindo [`ndb_log_exclusive_reads`](mysql-cluster-options-variables.html#sysvar_ndb_log_exclusive_reads) igual a 1 na *replica*. Todas as *rows* lidas por um *read* conflitante são registradas na *exceptions table*. Para mais informações, veja [Detecção e resolução de conflitos de read](mysql-cluster-replication-conflict-resolution.html#conflict-resolution-read-conflicts "Read conflict detection and resolution").
 
-* `NDB` applies `WRITE_ROW` events strictly as inserts, requiring that there is not already any such row; that is, an incoming write is always rejected if the row already exists.
+* O `NDB` aplica *events* `WRITE_ROW` estritamente como *inserts*, exigindo que não haja tal *row* já existente; ou seja, um *write* de entrada é sempre rejeitado se a *row* já existir.
 
-When using the functions `NDB$OLD()`, `NDB$MAX()`, and `NDB$MAX_DELETE_WIN()` for timestamp-based conflict resolution, we often refer to the column used for determining updates as a “timestamp” column. However, the data type of this column is never [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"); instead, its data type should be [`INT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") ([`INTEGER`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")) or [`BIGINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"). The “timestamp” column should also be `UNSIGNED` and `NOT NULL`.
+Ao usar as funções `NDB$OLD()`, `NDB$MAX()` e `NDB$MAX_DELETE_WIN()` para resolução de conflitos baseada em *timestamp*, frequentemente nos referimos à coluna usada para determinar os *updates* como uma coluna de "*timestamp*". No entanto, o tipo de dados desta coluna nunca é [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"); em vez disso, seu tipo de dados deve ser [`INT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") ([`INTEGER`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")) ou [`BIGINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"). A coluna de "*timestamp*" também deve ser `UNSIGNED` e `NOT NULL`.
 
-The `NDB$EPOCH()` and `NDB$EPOCH_TRANS()` functions discussed later in this section work by comparing the relative order of replication epochs applied on a primary and secondary NDB Cluster, and do not make use of timestamps.
+As funções `NDB$EPOCH()` e `NDB$EPOCH_TRANS()` discutidas mais adiante nesta seção funcionam comparando a ordem relativa dos *epochs* de *replication* aplicados em um NDB Cluster *primary* e *secondary*, e não fazem uso de *timestamps*.
 
-#### Source Column Control
+#### Controle de Colunas na Origem
 
-We can see update operations in terms of “before” and “after” images—that is, the states of the table before and after the update is applied. Normally, when updating a table with a primary key, the “before” image is not of great interest; however, when we need to determine on a per-update basis whether or not to use the updated values on a replica, we need to make sure that both images are written to the source's binary log. This is done with the [`--ndb-log-update-as-write`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-update-as-write) option for [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), as described later in this section.
+Podemos ver as operações de *update* em termos de imagens "antes" e "depois" — ou seja, os estados da *table* antes e depois que o *update* é aplicado. Normalmente, ao atualizar uma *table* com uma *Primary Key*, a imagem "antes" não é de grande interesse; no entanto, quando precisamos determinar, por *update*, se devemos ou não usar os valores atualizados em uma *replica*, precisamos garantir que ambas as imagens sejam gravadas no *binary log* da *source*. Isso é feito com a opção [`--ndb-log-update-as-write`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-update-as-write) para [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), conforme descrito mais adiante nesta seção.
 
 Important
 
-Whether logging of complete rows or of updated columns only is done is decided when the MySQL server is started, and cannot be changed online; you must either restart [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), or start a new [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") instance with different logging options.
+Se o *logging* de *rows* completas ou apenas de colunas atualizadas é feito é decidido quando o MySQL *server* é iniciado e não pode ser alterado *online*; você deve reiniciar o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), ou iniciar uma nova instância do [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") com diferentes opções de *logging*.
 
-#### Conflict Resolution Control
+#### Controle de Resolução de Conflitos
 
-Conflict resolution is usually enabled on the server where conflicts can occur. Like logging method selection, it is enabled by entries in the `mysql.ndb_replication` table.
+A resolução de conflitos geralmente é habilitada no *server* onde os conflitos podem ocorrer. Assim como a seleção do método de *logging*, ela é habilitada por entradas na *table* `mysql.ndb_replication`.
 
-`NBT_UPDATED_ONLY_MINIMAL` and `NBT_UPDATED_FULL_MINIMAL` can be used with `NDB$EPOCH()`, `NDB$EPOCH2()`, and `NDB$EPOCH_TRANS()`, because these do not require “before” values of columns which are not primary keys. Conflict resolution algorithms requiring the old values, such as `NDB$MAX()` and `NDB$OLD()`, do not work correctly with these `binlog_type` values.
+`NBT_UPDATED_ONLY_MINIMAL` e `NBT_UPDATED_FULL_MINIMAL` podem ser usados com `NDB$EPOCH()`, `NDB$EPOCH2()` e `NDB$EPOCH_TRANS()`, porque estes não exigem valores "antes" de colunas que não são *Primary Keys*. Algoritmos de resolução de conflitos que exigem os valores antigos, como `NDB$MAX()` e `NDB$OLD()`, não funcionam corretamente com estes valores de `binlog_type`.
 
-#### Conflict Resolution Functions
+#### Funções de Resolução de Conflitos
 
-This section provides detailed information about the functions which can be used for conflict detection and resolution with NDB Replication. These functions are listed here in alphabetical order:
+Esta seção fornece informações detalhadas sobre as funções que podem ser usadas para detecção e resolução de conflitos com a Replicação NDB. Estas funções estão listadas aqui em ordem alfabética:
 
 * [NDB$OLD()](mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-old "NDB$OLD()")
 * [NDB$MAX()](mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-max "NDB$MAX()")
@@ -64,7 +64,7 @@ This section provides detailed information about the functions which can be used
 
 ##### NDB$OLD()
 
-If the value of *`column_name`* is the same on both the source and the replica, then the update is applied; otherwise, the update is not applied on the replica and an exception is written to the log. This is illustrated by the following pseudocode:
+Se o valor de *`column_name`* for o mesmo tanto na *source* quanto na *replica*, então o *update* é aplicado; caso contrário, o *update* não é aplicado na *replica* e uma exceção é gravada no *log*. Isso é ilustrado pelo seguinte pseudo-código:
 
 ```sql
 if (source_old_column_value == replica_current_column_value)
@@ -73,30 +73,30 @@ else
   log_exception();
 ```
 
-This function can be used for “same value wins” conflict resolution. This type of conflict resolution ensures that updates are not applied on the replica from the wrong source.
+Esta função pode ser usada para resolução de conflitos do tipo "mesmo valor vence" (*same value wins*). Este tipo de resolução de conflitos garante que os *updates* não sejam aplicados na *replica* a partir da *source* errada.
 
 Important
 
-The column value from the source's “before” image is used by this function.
+O valor da coluna da imagem "antes" da *source* é usado por esta função.
 
 ##### NDB$MAX()
 
-If the “timestamp” column value for a given row coming from the source is higher than that on the replica, it is applied; otherwise it is not applied on the replica. This is illustrated by the following pseudocode:
+Se o valor da coluna "*timestamp*" para uma dada *row* vindo da *source* for superior ao valor na *replica*, ele é aplicado; caso contrário, não é aplicado na *replica*. Isso é ilustrado pelo seguinte pseudo-código:
 
 ```sql
 if (source_new_column_value > replica_current_column_value)
   apply_update();
 ```
 
-This function can be used for “greatest timestamp wins” conflict resolution. This type of conflict resolution ensures that, in the event of a conflict, the version of the row that was most recently updated is the version that persists.
+Esta função pode ser usada para resolução de conflitos do tipo "*timestamp* maior vence" (*greatest timestamp wins*). Este tipo de resolução de conflitos garante que, no caso de um conflito, a versão da *row* que foi atualizada mais recentemente é a versão que persiste.
 
 Important
 
-The column value from the sources's “after” image is used by this function.
+O valor da coluna da imagem "depois" da *source* é usado por esta função.
 
 ##### NDB$MAX_DELETE_WIN()
 
-This is a variation on `NDB$MAX()`. Due to the fact that no timestamp is available for a delete operation, a delete using `NDB$MAX()` is in fact processed as `NDB$OLD`, but for some use cases, this is not optimal. For `NDB$MAX_DELETE_WIN()`, if the “timestamp” column value for a given row adding or updating an existing row coming from the source is higher than that on the replica, it is applied. However, delete operations are treated as always having the higher value. This is illustrated by the following pseudocode:
+Esta é uma variação de `NDB$MAX()`. Devido ao fato de que nenhum *timestamp* está disponível para uma operação de *delete*, um *delete* usando `NDB$MAX()` é, na verdade, processado como `NDB$OLD`, mas para alguns casos de uso, isso não é ideal. Para `NDB$MAX_DELETE_WIN()`, se o valor da coluna "*timestamp*" para uma dada *row* adicionando ou atualizando uma *row* existente vindo da *source* for superior ao valor na *replica*, ele é aplicado. No entanto, as operações de *delete* são tratadas como sempre tendo o valor mais alto. Isso é ilustrado pelo seguinte pseudo-código:
 
 ```sql
 if ( (source_new_column_value > replica_current_column_value)
@@ -105,107 +105,107 @@ if ( (source_new_column_value > replica_current_column_value)
   apply_update();
 ```
 
-This function can be used for “greatest timestamp, delete wins” conflict resolution. This type of conflict resolution ensures that, in the event of a conflict, the version of the row that was deleted or (otherwise) most recently updated is the version that persists.
+Esta função pode ser usada para resolução de conflitos do tipo "*timestamp* maior, *delete* vence" (*greatest timestamp, delete wins*). Este tipo de resolução de conflitos garante que, no caso de um conflito, a versão da *row* que foi excluída ou (de outra forma) mais recentemente atualizada é a versão que persiste.
 
 Note
 
-As with `NDB$MAX()`, the column value from the source's “after” image is the value used by this function.
+Assim como acontece com `NDB$MAX()`, o valor da coluna da imagem "depois" da *source* é o valor usado por esta função.
 
 ##### NDB$EPOCH()
 
-The `NDB$EPOCH()` function tracks the order in which replicated epochs are applied on a replica cluster relative to changes originating on the replica. This relative ordering is used to determine whether changes originating on the replica are concurrent with any changes that originate locally, and are therefore potentially in conflict.
+A função `NDB$EPOCH()` rastreia a ordem em que os *epochs* replicados são aplicados em um *cluster replica* em relação às alterações originadas na *replica*. Esta ordenação relativa é usada para determinar se as alterações originadas na *replica* são concorrentes com quaisquer alterações que se originam localmente e, portanto, estão potencialmente em conflito.
 
-Most of what follows in the description of `NDB$EPOCH()` also applies to `NDB$EPOCH_TRANS()`. Any exceptions are noted in the text.
+A maior parte do que se segue na descrição de `NDB$EPOCH()` também se aplica a `NDB$EPOCH_TRANS()`. Quaisquer exceções são observadas no texto.
 
-`NDB$EPOCH()` is asymmetric, operating on one NDB Cluster in a bidirectional replication configuration (sometimes referred to as “active-active” replication). We refer here to cluster on which it operates as the primary, and the other as the secondary. The replica on the primary is responsible for detecting and handling conflicts, while the replica on the secondary is not involved in any conflict detection or handling.
+`NDB$EPOCH()` é assimétrica, operando em um NDB Cluster em uma configuração de *replication* bidirecional (às vezes referida como *replication* "ativo-ativo"). Referimo-nos aqui ao *cluster* no qual ela opera como a *primary*, e o outro como a *secondary*. A *replica* na *primary* é responsável por detectar e lidar com conflitos, enquanto a *replica* na *secondary* não está envolvida em nenhuma detecção ou tratamento de conflitos.
 
-When the replica on the primary detects conflicts, it injects events into its own binary log to compensate for these; this ensures that the secondary NDB Cluster eventually realigns itself with the primary and so keeps the primary and secondary from diverging. This compensation and realignment mechanism requires that the primary NDB Cluster always wins any conflicts with the secondary—that is, that the primary's changes are always used rather than those from the secondary in event of a conflict. This “primary always wins” rule has the following implications:
+Quando a *replica* na *primary* detecta conflitos, ela injeta *events* em seu próprio *binary log* para compensá-los; isso garante que o NDB Cluster *secondary* se realinhe eventualmente com a *primary* e, assim, evita que a *primary* e a *secondary* divirjam. Este mecanismo de compensação e realinhamento exige que o NDB Cluster *primary* sempre vença quaisquer conflitos com a *secondary* — ou seja, que as alterações da *primary* sejam sempre usadas em vez daquelas da *secondary* em caso de conflito. Esta regra de "a *primary* sempre vence" tem as seguintes implicações:
 
-* Operations that change data, once committed on the primary, are fully persistent and are not undone or rolled back by conflict detection and resolution.
+* Operações que alteram dados, uma vez *committed* na *primary*, são totalmente persistentes e não são desfeitas ou revertidas (*rolled back*) pela detecção e resolução de conflitos.
 
-* Data read from the primary is fully consistent. Any changes committed on the Primary (locally or from the replica) are not reverted later.
+* Os dados lidos da *primary* são totalmente consistentes. Quaisquer alterações *committed* na *Primary* (localmente ou da *replica*) não são revertidas posteriormente.
 
-* Operations that change data on the secondary may later be reverted if the primary determines that they are in conflict.
+* As operações que alteram dados na *secondary* podem ser revertidas posteriormente se a *primary* determinar que estão em conflito.
 
-* Individual rows read on the secondary are self-consistent at all times, each row always reflecting either a state committed by the secondary, or one committed by the primary.
+* *Rows* individuais lidas na *secondary* são autoconsistentes em todos os momentos, cada *row* sempre refletindo um estado *committed* pela *secondary*, ou um *committed* pela *primary*.
 
-* Sets of rows read on the secondary may not necessarily be consistent at a given single point in time. For `NDB$EPOCH_TRANS()`, this is a transient state; for `NDB$EPOCH()`, it can be a persistent state.
+* Conjuntos de *rows* lidas na *secondary* podem não ser necessariamente consistentes em um determinado ponto no tempo. Para `NDB$EPOCH_TRANS()`, este é um estado transitório; para `NDB$EPOCH()`, pode ser um estado persistente.
 
-* Assuming a period of sufficient length without any conflicts, all data on the secondary NDB Cluster (eventually) becomes consistent with the primary's data.
+* Assumindo um período de tempo suficiente sem quaisquer conflitos, todos os dados no NDB Cluster *secondary* (eventualmente) se tornam consistentes com os dados da *primary*.
 
-`NDB$EPOCH()` and `NDB$EPOCH_TRANS()` do not require any user schema modifications, or application changes to provide conflict detection. However, careful thought must be given to the schema used, and the access patterns used, to verify that the complete system behaves within specified limits.
+`NDB$EPOCH()` e `NDB$EPOCH_TRANS()` não exigem modificações de *schema* do usuário, ou alterações de aplicação para fornecer detecção de conflitos. No entanto, deve-se pensar cuidadosamente no *schema* usado e nos padrões de *access* usados, para verificar se o sistema completo se comporta dentro dos limites especificados.
 
-Each of the `NDB$EPOCH()` and `NDB$EPOCH_TRANS()` functions can take an optional parameter; this is the number of bits to use to represent the lower 32 bits of the epoch, and should be set to no less than the value calculated as shown here:
+Cada uma das funções `NDB$EPOCH()` e `NDB$EPOCH_TRANS()` pode aceitar um parâmetro opcional; este é o número de *bits* a serem usados para representar os 32 *bits* inferiores do *epoch*, e deve ser definido como não inferior ao valor calculado conforme mostrado aqui:
 
 ```sql
 CEIL( LOG2( TimeBetweenGlobalCheckpoints / TimeBetweenEpochs ), 1)
 ```
 
-For the default values of these configuration parameters (2000 and 100 milliseconds, respectively), this gives a value of 5 bits, so the default value (6) should be sufficient, unless other values are used for [`TimeBetweenGlobalCheckpoints`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenglobalcheckpoints), [`TimeBetweenEpochs`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenepochs), or both. A value that is too small can result in false positives, while one that is too large could lead to excessive wasted space in the database.
+Para os valores padrão destes parâmetros de configuração (2000 e 100 milissegundos, respectivamente), isto fornece um valor de 5 *bits*, portanto o valor padrão (6) deve ser suficiente, a menos que outros valores sejam usados para [`TimeBetweenGlobalCheckpoints`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenglobalcheckpoints), [`TimeBetweenEpochs`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenepochs), ou ambos. Um valor muito pequeno pode resultar em falsos positivos, enquanto um valor muito grande pode levar a um desperdício excessivo de espaço no *database*.
 
-Both `NDB$EPOCH()` and `NDB$EPOCH_TRANS()` insert entries for conflicting rows into the relevant exceptions tables, provided that these tables have been defined according to the same exceptions table schema rules as described elsewhere in this section (see [NDB$OLD()](mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-old "NDB$OLD()")). You must create any exceptions table before creating the data table with which it is to be used.
+Ambos `NDB$EPOCH()` e `NDB$EPOCH_TRANS()` inserem entradas para *rows* conflitantes nas *exceptions tables* relevantes, desde que estas *tables* tenham sido definidas de acordo com as mesmas regras de *schema* de *exceptions table* descritas em outras partes desta seção (veja [NDB$OLD()](mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-old "NDB$OLD()")). Você deve criar qualquer *exceptions table* antes de criar a *data table* com a qual ela será usada.
 
-As with the other conflict detection functions discussed in this section, `NDB$EPOCH()` and `NDB$EPOCH_TRANS()` are activated by including relevant entries in the `mysql.ndb_replication` table (see [ndb_replication Table](mysql-cluster-replication-schema.html#ndb-replication-ndb-replication "ndb_replication Table")). The roles of the primary and secondary NDB Clusters in this scenario are fully determined by `mysql.ndb_replication` table entries.
+Assim como as outras funções de detecção de conflitos discutidas nesta seção, `NDB$EPOCH()` e `NDB$EPOCH_TRANS()` são ativadas incluindo entradas relevantes na *table* `mysql.ndb_replication` (veja [Tabela ndb_replication](mysql-cluster-replication-schema.html#ndb-replication-ndb-replication "ndb_replication Table")). Os papéis dos NDB Clusters *primary* e *secondary* neste cenário são totalmente determinados pelas entradas da *table* `mysql.ndb_replication`.
 
-Because the conflict detection algorithms employed by `NDB$EPOCH()` and `NDB$EPOCH_TRANS()` are asymmetric, you must use different values for the `server_id` entries of the primary and secondary replicas.
+Como os algoritmos de detecção de conflitos empregados por `NDB$EPOCH()` e `NDB$EPOCH_TRANS()` são assimétricos, você deve usar valores diferentes para as entradas de `server_id` das *replicas* *primary* e *secondary*.
 
-A conflict between `DELETE` operations alone is not sufficient to trigger a conflict using `NDB$EPOCH()` or `NDB$EPOCH_TRANS()`, and the relative placement within epochs does not matter.
+Um conflito entre operações `DELETE` por si só não é suficiente para desencadear um conflito usando `NDB$EPOCH()` ou `NDB$EPOCH_TRANS()`, e o posicionamento relativo dentro dos *epochs* não importa.
 
-**Limitations on NDB$EPOCH()**
+**Limitações em NDB$EPOCH()**
 
-The following limitations currently apply when using `NDB$EPOCH()` to perform conflict detection:
+As seguintes limitações se aplicam atualmente ao usar `NDB$EPOCH()` para realizar a detecção de conflitos:
 
-* Conflicts are detected using NDB Cluster epoch boundaries, with granularity proportional to [`TimeBetweenEpochs`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenepochs) (default: 100 milliseconds). The minimum conflict window is the minimum time during which concurrent updates to the same data on both clusters always report a conflict. This is always a nonzero length of time, and is roughly proportional to `2 * (latency + queueing + TimeBetweenEpochs)`. This implies that—assuming the default for [`TimeBetweenEpochs`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenepochs) and ignoring any latency between clusters (as well as any queuing delays)—the minimum conflict window size is approximately 200 milliseconds. This minimum window should be considered when looking at expected application “race” patterns.
+* Conflitos são detectados usando limites de *epoch* do NDB Cluster, com granularidade proporcional a [`TimeBetweenEpochs`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenepochs) (padrão: 100 milissegundos). A *conflict window* mínima é o tempo mínimo durante o qual *updates* concorrentes para os mesmos dados em ambos os *clusters* sempre reportam um conflito. Este é sempre um tempo de duração diferente de zero, e é aproximadamente proporcional a `2 * (latency + queueing + TimeBetweenEpochs)`. Isso implica que — assumindo o padrão para [`TimeBetweenEpochs`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenepochs) e ignorando qualquer *latency* entre *clusters* (bem como quaisquer atrasos de *queueing*) — o tamanho mínimo da *conflict window* é de aproximadamente 200 milissegundos. Esta *window* mínima deve ser considerada ao analisar os padrões de "corrida" (*race patterns*) esperados da aplicação.
 
-* Additional storage is required for tables using the `NDB$EPOCH()` and `NDB$EPOCH_TRANS()` functions; from 1 to 32 bits extra space per row is required, depending on the value passed to the function.
+* É necessário armazenamento adicional para *tables* que utilizam as funções `NDB$EPOCH()` e `NDB$EPOCH_TRANS()`; é necessário de 1 a 32 *bits* de espaço extra por *row*, dependendo do valor passado para a função.
 
-* Conflicts between delete operations may result in divergence between the primary and secondary. When a row is deleted on both clusters concurrently, the conflict can be detected, but is not recorded, since the row is deleted. This means that further conflicts during the propagation of any subsequent realignment operations are not detected, which can lead to divergence.
+* Conflitos entre operações de *delete* podem resultar em divergência entre a *primary* e a *secondary*. Quando uma *row* é excluída em ambos os *clusters* concomitantemente, o conflito pode ser detectado, mas não é registrado, uma vez que a *row* é excluída. Isso significa que outros conflitos durante a propagação de quaisquer operações de realinhamento subsequentes não são detectados, o que pode levar à divergência.
 
-  Deletes should be externally serialized, or routed to one cluster only. Alternatively, a separate row should be updated transactionally with such deletes and any inserts that follow them, so that conflicts can be tracked across row deletes. This may require changes in applications.
+  Os *deletes* devem ser serializados externamente ou roteados para apenas um *cluster*. Alternativamente, uma *row* separada deve ser atualizada *transactionally* com tais *deletes* e quaisquer *inserts* que os sigam, para que os conflitos possam ser rastreados através dos *deletes* de *rows*. Isso pode exigir alterações nas aplicações.
 
-* Only two NDB Clusters in a birectional “active-active” configuration are currently supported when using `NDB$EPOCH()` or `NDB$EPOCH_TRANS()` for conflict detection.
+* Apenas dois NDB Clusters em uma configuração bidirecional "ativo-ativo" são atualmente suportados ao usar `NDB$EPOCH()` ou `NDB$EPOCH_TRANS()` para detecção de conflitos.
 
-* Tables having [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") or [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") columns are not currently supported with `NDB$EPOCH()` or `NDB$EPOCH_TRANS()`.
+* *Tables* que possuem colunas [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") ou [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") não são atualmente suportadas com `NDB$EPOCH()` ou `NDB$EPOCH_TRANS()`.
 
 ##### NDB$EPOCH_TRANS()
 
-`NDB$EPOCH_TRANS()` extends the `NDB$EPOCH()` function. Conflicts are detected and handled in the same way using the “primary wins all” rule (see [NDB$EPOCH()](mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-epoch "NDB$EPOCH()")) but with the extra condition that any other rows updated in the same transaction in which the conflict occurred are also regarded as being in conflict. In other words, where `NDB$EPOCH()` realigns individual conflicting rows on the secondary, `NDB$EPOCH_TRANS()` realigns conflicting transactions.
+`NDB$EPOCH_TRANS()` estende a função `NDB$EPOCH()`. Os conflitos são detectados e tratados da mesma forma, usando a regra "a *primary* vence todos" (veja [NDB$EPOCH()](mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-epoch "NDB$EPOCH()")), mas com a condição extra de que quaisquer outras *rows* atualizadas na mesma *transaction* em que o conflito ocorreu também são consideradas em conflito. Em outras palavras, onde `NDB$EPOCH()` realinha *rows* conflitantes individuais na *secondary*, `NDB$EPOCH_TRANS()` realinha *transactions* conflitantes.
 
-In addition, any transactions which are detectably dependent on a conflicting transaction are also regarded as being in conflict, these dependencies being determined by the contents of the secondary cluster's binary log. Since the binary log contains only data modification operations (inserts, updates, and deletes), only overlapping data modifications are used to determine dependencies between transactions.
+Além disso, quaisquer *transactions* que sejam detectavelmente dependentes de uma *transaction* conflitante também são consideradas em conflito, sendo estas dependências determinadas pelo conteúdo do *binary log* do *cluster secondary*. Como o *binary log* contém apenas operações de modificação de dados (*inserts*, *updates* e *deletes*), apenas modificações de dados sobrepostas são usadas para determinar dependências entre *transactions*.
 
-`NDB$EPOCH_TRANS()` is subject to the same conditions and limitations as `NDB$EPOCH()`, and in addition requires that Version 2 binary log row events are used ([`log_bin_use_v1_row_events`](replication-options-binary-log.html#sysvar_log_bin_use_v1_row_events) equal to 0), which adds a storage overhead of 2 bytes per event in the binary log. In addition, all transaction IDs must be recorded in the secondary's binary log, using [`--ndb-log-transaction-id`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-transaction-id) set to `ON`. This adds a variable amount of overhead (up to 13 bytes per row).
+`NDB$EPOCH_TRANS()` está sujeito às mesmas condições e limitações de `NDB$EPOCH()`, e ainda requer que *row events* da Versão 2 do *binary log* sejam usados ([`log_bin_use_v1_row_events`](replication-options-binary-log.html#sysvar_log_bin_use_v1_row_events) igual a 0), o que adiciona uma sobrecarga de armazenamento de 2 *bytes* por *event* no *binary log*. Além disso, todos os IDs de *transaction* devem ser registrados no *binary log* da *secondary*, usando [`--ndb-log-transaction-id`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-transaction-id) definido como `ON`. Isto adiciona uma quantidade variável de sobrecarga (até 13 *bytes* por *row*).
 
-See [NDB$EPOCH()](mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-epoch "NDB$EPOCH()").
+Veja [NDB$EPOCH()](mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-epoch "NDB$EPOCH()").
 
 ##### NDB$EPOCH2()
 
-The `NDB$EPOCH2()` function is similar to `NDB$EPOCH()`, except that `NDB$EPOCH2()` provides for delete-delete handling with a bidirectional replication topology. In this scenario, primary and secondary roles are assigned to the two sources by setting the [`ndb_slave_conflict_role`](mysql-cluster-options-variables.html#sysvar_ndb_slave_conflict_role) system variable to the appropriate value on each source (usually one each of `PRIMARY`, `SECONDARY`). When this is done, modifications made by the secondary are reflected by the primary back to the secondary which then conditionally applies them.
+A função `NDB$EPOCH2()` é semelhante a `NDB$EPOCH()`, exceto que `NDB$EPOCH2()` oferece tratamento de *delete-delete* com uma topologia de *replication* bidirecional. Neste cenário, os papéis de *primary* e *secondary* são atribuídos às duas *sources* definindo a variável de sistema [`ndb_slave_conflict_role`](mysql-cluster-options-variables.html#sysvar_ndb_slave_conflict_role) para o valor apropriado em cada *source* (geralmente um de `PRIMARY` e outro de `SECONDARY`). Quando isso é feito, as modificações feitas pela *secondary* são refletidas pela *primary* de volta para a *secondary*, que então as aplica condicionalmente.
 
 ##### NDB$EPOCH2_TRANS()
 
-`NDB$EPOCH2_TRANS()` extends the `NDB$EPOCH2()` function. Conflicts are detected and handled in the same way, and assigning primary and secondary roles to the replicating clusters, but with the extra condition that any other rows updated in the same transaction in which the conflict occurred are also regarded as being in conflict. That is, `NDB$EPOCH2()` realigns individual conflicting rows on the secondary, while `NDB$EPOCH_TRANS()` realigns conflicting transactions.
+`NDB$EPOCH2_TRANS()` estende a função `NDB$EPOCH2()`. Os conflitos são detectados e tratados da mesma forma, e atribuindo papéis de *primary* e *secondary* aos *clusters* em *replication*, mas com a condição extra de que quaisquer outras *rows* atualizadas na mesma *transaction* em que o conflito ocorreu também são consideradas em conflito. Ou seja, `NDB$EPOCH2()` realinha *rows* conflitantes individuais na *secondary*, enquanto `NDB$EPOCH_TRANS()` realinha *transactions* conflitantes.
 
-Where `NDB$EPOCH()` and `NDB$EPOCH_TRANS()` use metadata that is specified per row, per last modified epoch, to determine on the primary whether an incoming replicated row change from the secondary is concurrent with a locally committed change; concurrent changes are regarded as conflicting, with subesequent exceptions table updates and realignment of the secondary. A problem arises when a row is deleted on the primary so there is no longer any last-modified epoch available to determine whether any replicated operations conflict, which means that conflicting delete operationss are not detected. This can result in divergence, an example being a delete on one cluster which is concurrent with a delete and insert on the other; this why delete operations can be routed to only one cluster when using `NDB$EPOCH()` and `NDB$EPOCH_TRANS()`.
+Onde `NDB$EPOCH()` e `NDB$EPOCH_TRANS()` usam metadados que são especificados por *row*, por último *epoch* modificado, para determinar na *primary* se uma alteração de *row* replicada de entrada da *secondary* é concorrente com uma alteração localmente *committed*; as alterações concorrentes são consideradas conflitantes, com atualizações subsequentes na *exceptions table* e realinhamento da *secondary*. Surge um problema quando uma *row* é excluída na *primary*, de modo que não há mais nenhum *epoch* de última modificação disponível para determinar se quaisquer operações replicadas entram em conflito, o que significa que operações de *delete* conflitantes não são detectadas. Isso pode resultar em divergência, sendo um exemplo um *delete* em um *cluster* que é concorrente com um *delete* e *insert* no outro; é por isso que as operações de *delete* podem ser roteadas para apenas um *cluster* ao usar `NDB$EPOCH()` e `NDB$EPOCH_TRANS()`.
 
-`NDB$EPOCH2()` bypasses the issue just described—storing information about deleted rows on the PRIMARY—by ignoring any delete-delete conflict, and by avoiding any potential resultant divergence as well. This is accomplished by reflecting any operation successfully applied on and replicated from the secondary back to the secondary. On its return to the secondary, it can be used to reapply an operation on the secondary which was deleted by an operation originating from the primary.
+`NDB$EPOCH2()` contorna o problema que acabamos de descrever — armazenando informações sobre *rows* excluídas na *PRIMARY* — ignorando qualquer conflito *delete-delete* e evitando qualquer potencial divergência resultante também. Isso é realizado refletindo qualquer operação aplicada com sucesso e replicada da *secondary* de volta para a *secondary*. Em seu retorno à *secondary*, ela pode ser usada para reaplicar uma operação na *secondary* que foi excluída por uma operação originada da *primary*.
 
-When using `NDB$EPOCH2()`, you should keep in mind that the secondary applies the delete from the primary, removing the new row until it is restored by a reflected operation. In theory, the subsequent insert or update on the secondary conflicts with the delete from the primary, but in this case, we choose to ignore this and allow the secondary to “win”, in the interest of preventing divergence between the clusters. In other words, after a delete, the primary does not detect conflicts, and instead adopts the secondary's following changes immediately. Because of this, the secondary's state can revisit multiple previous committed states as it progresses to a final (stable) state, and some of these may be visible.
+Ao usar `NDB$EPOCH2()`, você deve ter em mente que a *secondary* aplica o *delete* da *primary*, removendo a nova *row* até que ela seja restaurada por uma operação refletida. Em teoria, o *insert* ou *update* subsequente na *secondary* entra em conflito com o *delete* da *primary*, mas neste caso, optamos por ignorar isso e permitir que a *secondary* "vença", no interesse de evitar a divergência entre os *clusters*. Em outras palavras, após um *delete*, a *primary* não detecta conflitos e, em vez disso, adota as alterações seguintes da *secondary* imediatamente. Devido a isso, o estado da *secondary* pode revisitar múltiplos estados *committed* anteriores à medida que avança para um estado final (estável), e alguns deles podem ser visíveis.
 
-You should also be aware that reflecting all operations from the secondary back to the primary increases the size of the primary's logbinary log, as well as demands on bandwidth, CPU usage, and disk I/O.
+Você também deve estar ciente de que refletir todas as operações da *secondary* de volta para a *primary* aumenta o tamanho do *binary log* da *primary*, bem como as demandas por largura de banda, uso de CPU e I/O de *disk*.
 
-Application of reflected operations on the secondary depends on the state of the target row on the secondary. Whether or not reflected changes are applied on the secondary can be tracked by checking the [`Ndb_conflict_reflected_op_prepare_count`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_reflected_op_prepare_count) and [`Ndb_conflict_reflected_op_discard_count`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_reflected_op_discard_count) status variables. The number of changes applied is simply the difference between these two values (note that `Ndb_conflict_reflected_op_prepare_count` is always greater than or equal to `Ndb_conflict_reflected_op_discard_count`).
+A aplicação de operações refletidas na *secondary* depende do estado da *row* alvo na *secondary*. Se as alterações refletidas são aplicadas ou não na *secondary* pode ser rastreado verificando as variáveis de *status* [`Ndb_conflict_reflected_op_prepare_count`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_reflected_op_prepare_count) e [`Ndb_conflict_reflected_op_discard_count`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_reflected_op_discard_count). O número de alterações aplicadas é simplesmente a diferença entre estes dois valores (note que `Ndb_conflict_reflected_op_prepare_count` é sempre maior ou igual a `Ndb_conflict_reflected_op_discard_count`).
 
-Events are applied if and only if both of the following conditions are true:
+Os *events* são aplicados se e somente se ambas as seguintes condições forem verdadeiras:
 
-* The existence of the row—that is, whether or not it exists—is in accordance with the type of event. For delete and update operations, the row must already exist. For insert operations, the row must *not* exist.
+* A existência da *row* — isto é, se ela existe ou não — está de acordo com o tipo de *event*. Para operações de *delete* e *update*, a *row* já deve existir. Para operações de *insert*, a *row* *não* deve existir.
 
-* The row was last modified by the primary. It is possible that the modification was accomplished through the execution of a reflected operation.
+* A *row* foi modificada pela última vez pela *primary*. É possível que a modificação tenha sido realizada através da execução de uma operação refletida.
 
-If both of these conditions are not met, the reflected operation is discarded by the secondary.
+Se ambas as condições não forem atendidas, a operação refletida é descartada pela *secondary*.
 
-#### Conflict Resolution Exceptions Table
+#### Tabela de Exceções da Resolução de Conflitos
 
-To use the `NDB$OLD()` conflict resolution function, it is also necessary to create an exceptions table corresponding to each [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table for which this type of conflict resolution is to be employed. This is also true when using `NDB$EPOCH()` or `NDB$EPOCH_TRANS()`. The name of this table is that of the table for which conflict resolution is to be applied, with the string `$EX` appended. (For example, if the name of the original table is `mytable`, the name of the corresponding exceptions table name should be `mytable$EX`.) The syntax for creating the exceptions table is as shown here:
+Para usar a função de resolução de conflitos `NDB$OLD()`, também é necessário criar uma *exceptions table* correspondente a cada *table* [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") para a qual este tipo de resolução de conflitos deve ser empregado. Isto também é verdade ao usar `NDB$EPOCH()` ou `NDB$EPOCH_TRANS()`. O nome desta *table* é o nome da *table* para a qual a resolução de conflitos deve ser aplicada, com a *string* `$EX` anexada. (Por exemplo, se o nome da *table* original for `mytable`, o nome da *exceptions table* correspondente deve ser `mytable$EX`.) A sintaxe para criar a *exceptions table* é a mostrada aqui:
 
 ```sql
 CREATE TABLE original_table$EX  (
@@ -230,69 +230,69 @@ CREATE TABLE original_table$EX  (
 ) ENGINE=NDB;
 ```
 
-The first four columns are required. The names of the first four columns and the columns matching the original table's primary key columns are not critical; however, we suggest for reasons of clarity and consistency, that you use the names shown here for the `server_id`, `source_server_id`, `source_epoch`, and `count` columns, and that you use the same names as in the original table for the columns matching those in the original table's primary key.
+As quatro primeiras colunas são obrigatórias. Os nomes das quatro primeiras colunas e das colunas que correspondem às colunas da *Primary Key* da *table* original não são críticos; no entanto, sugerimos, por razões de clareza e consistência, que você use os nomes mostrados aqui para as colunas `server_id`, `source_server_id`, `source_epoch` e `count`, e que você use os mesmos nomes da *table* original para as colunas que correspondem àquelas na *Primary Key* da *table* original.
 
-If the exceptions table uses one or more of the optional columns `NDB$OP_TYPE`, `NDB$CFT_CAUSE`, or `NDB$ORIG_TRANSID` discussed later in this section, then each of the required columns must also be named using the prefix `NDB$`. If desired, you can use the `NDB$` prefix to name the required columns even if you do not define any optional columns, but in this case, all four of the required columns must be named using the prefix.
+Se a *exceptions table* usar uma ou mais das colunas opcionais `NDB$OP_TYPE`, `NDB$CFT_CAUSE` ou `NDB$ORIG_TRANSID` discutidas mais adiante nesta seção, então cada uma das colunas obrigatórias também deve ser nomeada usando o prefixo `NDB$`. Se desejar, você pode usar o prefixo `NDB$` para nomear as colunas obrigatórias, mesmo que não defina nenhuma coluna opcional, mas neste caso, todas as quatro colunas obrigatórias devem ser nomeadas usando o prefixo.
 
-Following these columns, the columns making up the original table's primary key should be copied in the order in which they are used to define the primary key of the original table. The data types for the columns duplicating the primary key columns of the original table should be the same as (or larger than) those of the original columns. A subset of the primary key columns may be used.
+Após estas colunas, as colunas que compõem a *Primary Key* da *table* original devem ser copiadas na ordem em que são usadas para definir a *Primary Key* da *table* original. Os tipos de dados para as colunas que duplicam as colunas da *Primary Key* da *table* original devem ser os mesmos (ou maiores) do que os das colunas originais. Um subconjunto das colunas da *Primary Key* pode ser usado.
 
-The exceptions table must use the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine. (An example that uses `NDB$OLD()` with an exceptions table is shown later in this section.)
+A *exceptions table* deve usar o *storage engine* [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"). (Um exemplo que usa `NDB$OLD()` com uma *exceptions table* é mostrado mais adiante nesta seção.)
 
-Additional columns may optionally be defined following the copied primary key columns, but not before any of them; any such extra columns cannot be `NOT NULL`. NDB Cluster supports three additional, predefined optional columns `NDB$OP_TYPE`, `NDB$CFT_CAUSE`, and `NDB$ORIG_TRANSID`, which are described in the next few paragraphs.
+Colunas adicionais podem ser definidas opcionalmente após as colunas da *Primary Key* copiadas, mas não antes de nenhuma delas; tais colunas extras não podem ser `NOT NULL`. O NDB Cluster suporta três colunas opcionais adicionais predefinidas, `NDB$OP_TYPE`, `NDB$CFT_CAUSE` e `NDB$ORIG_TRANSID`, que são descritas nos próximos parágrafos.
 
-`NDB$OP_TYPE`: This column can be used to obtain the type of operation causing the conflict. If you use this column, define it as shown here:
+`NDB$OP_TYPE`: Esta coluna pode ser usada para obter o tipo de operação que causa o conflito. Se você usar esta coluna, defina-a conforme mostrado aqui:
 
 ```sql
 NDB$OP_TYPE ENUM('WRITE_ROW', 'UPDATE_ROW', 'DELETE_ROW',
     'REFRESH_ROW', 'READ_ROW') NOT NULL
 ```
 
-The `WRITE_ROW`, `UPDATE_ROW`, and `DELETE_ROW` operation types represent user-initiated operations. `REFRESH_ROW` operations are operations generated by conflict resolution in compensating transactions sent back to the originating cluster from the cluster that detected the conflict. `READ_ROW` operations are user-initiated read tracking operations defined with exclusive row locks.
+Os tipos de operação `WRITE_ROW`, `UPDATE_ROW` e `DELETE_ROW` representam operações iniciadas pelo usuário. As operações `REFRESH_ROW` são operações geradas pela resolução de conflitos em *transactions* de compensação enviadas de volta ao *cluster* de origem a partir do *cluster* que detectou o conflito. As operações `READ_ROW` são operações de rastreamento de *read* iniciadas pelo usuário definidas com *row locks* exclusivos.
 
-`NDB$CFT_CAUSE`: You can define an optional column `NDB$CFT_CAUSE` which provides the cause of the registered conflict. This column, if used, is defined as shown here:
+`NDB$CFT_CAUSE`: Você pode definir uma coluna opcional `NDB$CFT_CAUSE` que fornece a causa do conflito registrado. Esta coluna, se usada, é definida conforme mostrado aqui:
 
 ```sql
 NDB$CFT_CAUSE ENUM('ROW_DOES_NOT_EXIST', 'ROW_ALREADY_EXISTS',
     'DATA_IN_CONFLICT', 'TRANS_IN_CONFLICT') NOT NULL
 ```
 
-`ROW_DOES_NOT_EXIST` can be reported as the cause for `UPDATE_ROW` and `WRITE_ROW` operations; `ROW_ALREADY_EXISTS` can be reported for `WRITE_ROW` events. `DATA_IN_CONFLICT` is reported when a row-based conflict function detects a conflict; `TRANS_IN_CONFLICT` is reported when a transactional conflict function rejects all of the operations belonging to a complete transaction.
+`ROW_DOES_NOT_EXIST` pode ser relatado como a causa para operações `UPDATE_ROW` e `WRITE_ROW`; `ROW_ALREADY_EXISTS` pode ser relatado para *events* `WRITE_ROW`. `DATA_IN_CONFLICT` é relatado quando uma função de conflito baseada em *row* detecta um conflito; `TRANS_IN_CONFLICT` é relatado quando uma função de conflito *transactional* rejeita todas as operações pertencentes a uma *transaction* completa.
 
-`NDB$ORIG_TRANSID`: The `NDB$ORIG_TRANSID` column, if used, contains the ID of the originating transaction. This column should be defined as follows:
+`NDB$ORIG_TRANSID`: A coluna `NDB$ORIG_TRANSID`, se usada, contém o ID da *transaction* de origem. Esta coluna deve ser definida da seguinte forma:
 
 ```sql
 NDB$ORIG_TRANSID BIGINT UNSIGNED NOT NULL
 ```
 
-`NDB$ORIG_TRANSID` is a 64-bit value generated by `NDB`. This value can be used to correlate multiple exceptions table entries belonging to the same conflicting transaction from the same or different exceptions tables.
+`NDB$ORIG_TRANSID` é um valor de 64 *bits* gerado pelo `NDB`. Este valor pode ser usado para correlacionar múltiplas entradas de *exceptions table* pertencentes à mesma *transaction* conflitante da mesma ou de diferentes *exceptions tables*.
 
-Additional reference columns which are not part of the original table's primary key can be named `colname$OLD` or `colname$NEW`. `colname$OLD` references old values in update and delete operations—that is, operations containing `DELETE_ROW` events. `colname$NEW` can be used to reference new values in insert and update operations—in other words, operations using `WRITE_ROW` events, `UPDATE_ROW` events, or both types of events. Where a conflicting operation does not supply a value for a given reference column that is not a primary key, the exceptions table row contains either `NULL`, or a defined default value for that column.
+Colunas de referência adicionais que não fazem parte da *Primary Key* da *table* original podem ser nomeadas `colname$OLD` ou `colname$NEW`. `colname$OLD` referencia valores antigos em operações de *update* e *delete* — ou seja, operações que contêm *events* `DELETE_ROW`. `colname$NEW` pode ser usado para referenciar novos valores em operações de *insert* e *update* — em outras palavras, operações que usam *events* `WRITE_ROW`, *events* `UPDATE_ROW`, ou ambos os tipos de *events*. Onde uma operação conflitante não fornece um valor para uma determinada coluna de referência que não é uma *Primary Key*, a *row* da *exceptions table* contém `NULL`, ou um valor padrão definido para essa coluna.
 
 Important
 
-The `mysql.ndb_replication` table is read when a data table is set up for replication, so the row corresponding to a table to be replicated must be inserted into `mysql.ndb_replication` *before* the table to be replicated is created.
+A *table* `mysql.ndb_replication` é lida quando uma *data table* é configurada para *replication*, portanto, a *row* correspondente a uma *table* a ser replicada deve ser inserida em `mysql.ndb_replication` *antes* que a *table* a ser replicada seja criada.
 
-#### Conflict Detection Status Variables
+#### Variáveis de Status da Detecção de Conflitos
 
-Several status variables can be used to monitor conflict detection. You can see how many rows have been found in conflict by `NDB$EPOCH()` since this replica was last restarted from the current value of the [`Ndb_conflict_fn_epoch`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_epoch) system status variable.
+Várias variáveis de *status* podem ser usadas para monitorar a detecção de conflitos. Você pode ver quantas *rows* foram encontradas em conflito por `NDB$EPOCH()` desde a última vez que esta *replica* foi reiniciada a partir do valor atual da variável de *status* do sistema [`Ndb_conflict_fn_epoch`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_epoch).
 
-[`Ndb_conflict_fn_epoch_trans`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_epoch_trans) provides the number of rows that have been found directly in conflict by `NDB$EPOCH_TRANS()`. [`Ndb_conflict_fn_epoch2`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_epoch2) and [`Ndb_conflict_fn_epoch2_trans`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_epoch2_trans) show the number of rows found in conflict by `NDB$EPOCH2()` and `NDB$EPOCH2_TRANS()`, respectively. The number of rows actually realigned, including those affected due to their membership in or dependency on the same transactions as other conflicting rows, is given by [`Ndb_conflict_trans_row_reject_count`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_trans_row_reject_count).
+[`Ndb_conflict_fn_epoch_trans`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_epoch_trans) fornece o número de *rows* que foram encontradas diretamente em conflito por `NDB$EPOCH_TRANS()`. [`Ndb_conflict_fn_epoch2`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_epoch2) e [`Ndb_conflict_fn_epoch2_trans`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_epoch2_trans) mostram o número de *rows* encontradas em conflito por `NDB$EPOCH2()` e `NDB$EPOCH2_TRANS()`, respectivamente. O número de *rows* realmente realinhadas, incluindo aquelas afetadas devido à sua participação ou dependência das mesmas *transactions* que outras *rows* conflitantes, é dado por [`Ndb_conflict_trans_row_reject_count`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_trans_row_reject_count).
 
-Another server status variable [`Ndb_conflict_fn_max`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_max) provides a count of the number of times that a row was not applied on the current SQL node due to “greatest timestamp wins” conflict resolution since the last time that [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") was started. [`Ndb_conflict_fn_max_del_win`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_max_del_win) provides a count of the number of times that conflict resolution based on the outcome of `NDB$MAX_DELETE_WIN()` has been applied.
+Outra variável de *status* do *server* [`Ndb_conflict_fn_max`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_max) fornece uma contagem do número de vezes que uma *row* não foi aplicada no *SQL node* atual devido à resolução de conflito de "o *timestamp* maior vence" desde a última vez que o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") foi iniciado. [`Ndb_conflict_fn_max_del_win`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_max_del_win) fornece uma contagem do número de vezes que a resolução de conflitos baseada no resultado de `NDB$MAX_DELETE_WIN()` foi aplicada.
 
-The number of times that a row was not applied as the result of “same timestamp wins” conflict resolution on a given [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") since the last time it was restarted is given by the global status variable [`Ndb_conflict_fn_old`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_old). In addition to incrementing [`Ndb_conflict_fn_old`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_old), the primary key of the row that was not used is inserted into an exceptions table, as explained elsewhere in this section.
+O número de vezes que uma *row* não foi aplicada como resultado da resolução de conflito de "o mesmo *timestamp* vence" em um determinado [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") desde a última vez que foi reiniciado é dado pela variável de *status* global [`Ndb_conflict_fn_old`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_old). Além de incrementar [`Ndb_conflict_fn_old`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_old), a *Primary Key* da *row* que não foi usada é inserida em uma *exceptions table*, conforme explicado em outra parte desta seção.
 
-See also [Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables").
+Veja também [Seção 21.4.3.9.3, “Variáveis de Status do NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables").
 
-#### Examples
+#### Exemplos
 
-The following examples assume that you have already a working NDB Cluster replication setup, as described in [Section 21.7.5, “Preparing the NDB Cluster for Replication”](mysql-cluster-replication-preparation.html "21.7.5 Preparing the NDB Cluster for Replication"), and [Section 21.7.6, “Starting NDB Cluster Replication (Single Replication Channel)”](mysql-cluster-replication-starting.html "21.7.6 Starting NDB Cluster Replication (Single Replication Channel)").
+Os exemplos a seguir assumem que você já tem uma configuração de *replication* do NDB Cluster em funcionamento, conforme descrito em [Seção 21.7.5, “Preparando o NDB Cluster para Replicação”](mysql-cluster-replication-preparation.html "21.7.5 Preparing the NDB Cluster for Replication") e [Seção 21.7.6, “Iniciando a Replicação do NDB Cluster (Canal Único de Replicação)”](mysql-cluster-replication-starting.html "21.7.6 Starting NDB Cluster Replication (Single Replication Channel)").
 
-**NDB$MAX() example.** Suppose you wish to enable “greatest timestamp wins” conflict resolution on table `test.t1`, using column `mycol` as the “timestamp”. This can be done using the following steps:
+**Exemplo de NDB$MAX().** Suponha que você deseja habilitar a resolução de conflitos de "o *timestamp* maior vence" na *table* `test.t1`, usando a coluna `mycol` como o "*timestamp*". Isso pode ser feito usando as seguintes etapas:
 
-1. Make sure that you have started the source [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with [`--ndb-log-update-as-write=OFF`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-update-as-write).
+1. Certifique-se de que você iniciou o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") da *source* com [`--ndb-log-update-as-write=OFF`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-update-as-write).
 
-2. On the source, perform this [`INSERT`](insert.html "13.2.5 INSERT Statement") statement:
+2. Na *source*, execute esta instrução [`INSERT`](insert.html "13.2.5 INSERT Statement"):
 
    ```sql
    INSERT INTO mysql.ndb_replication
@@ -301,13 +301,13 @@ The following examples assume that you have already a working NDB Cluster replic
 
    Note
 
-   If the `ndb_replication` table does not already exist, you must create it. See [ndb_replication Table](mysql-cluster-replication-schema.html#ndb-replication-ndb-replication "ndb_replication Table").
+   Se a *table* `ndb_replication` ainda não existir, você deve criá-la. Veja [Tabela ndb_replication](mysql-cluster-replication-schema.html#ndb-replication-ndb-replication "ndb_replication Table").
 
-   Inserting a 0 into the `server_id` column indicates that all SQL nodes accessing this table should use conflict resolution. If you want to use conflict resolution on a specific [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") only, use the actual server ID.
+   Inserir 0 na coluna `server_id` indica que todos os *SQL nodes* que acessam esta *table* devem usar a resolução de conflitos. Se você quiser usar a resolução de conflitos em um [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") específico apenas, use o ID real do *server*.
 
-   Inserting `NULL` into the `binlog_type` column has the same effect as inserting 0 (`NBT_DEFAULT`); the server default is used.
+   Inserir `NULL` na coluna `binlog_type` tem o mesmo efeito que inserir 0 (`NBT_DEFAULT`); o padrão do *server* é usado.
 
-3. Create the `test.t1` table:
+3. Crie a *table* `test.t1`:
 
    ```sql
    CREATE TABLE test.t1 (
@@ -317,13 +317,13 @@ The following examples assume that you have already a working NDB Cluster replic
    ) ENGINE=NDB;
    ```
 
-   Now, when updates are performed on this table, conflict resolution is applied, and the version of the row having the greatest value for `mycol` is written to the replica.
+   Agora, quando *updates* são realizados nesta *table*, a resolução de conflitos é aplicada, e a versão da *row* que tem o maior valor para `mycol` é gravada na *replica*.
 
 Note
 
-Other `binlog_type` options such as `NBT_UPDATED_ONLY_USE_UPDATE` (`6`) should be used to control logging on the source using the `ndb_replication` table rather than by using command-line options.
+Outras opções de `binlog_type`, como `NBT_UPDATED_ONLY_USE_UPDATE` (`6`), devem ser usadas para controlar o *logging* na *source* usando a *table* `ndb_replication* em vez de usar opções de linha de comando.
 
-**NDB$OLD() example.** Suppose an [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table such as the one defined here is being replicated, and you wish to enable “same timestamp wins” conflict resolution for updates to this table:
+**Exemplo de NDB$OLD().** Suponha que uma *table* [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") como a definida aqui está sendo replicada, e você deseja habilitar a resolução de conflitos de "o mesmo *timestamp* vence" para *updates* nesta *table*:
 
 ```sql
 CREATE TABLE test.t2  (
@@ -336,18 +336,18 @@ CREATE TABLE test.t2  (
 )   ENGINE=NDB;
 ```
 
-The following steps are required, in the order shown:
+As seguintes etapas são necessárias, na ordem mostrada:
 
-1. First—and *prior* to creating `test.t2`—you must insert a row into the [`mysql.ndb_replication`](mysql-cluster-replication-schema.html#ndb-replication-ndb-replication "ndb_replication Table") table, as shown here:
+1. Primeiro — e *antes* de criar `test.t2` — você deve inserir uma *row* na *table* [`mysql.ndb_replication`](mysql-cluster-replication-schema.html#ndb-replication-ndb-replication "ndb_replication Table"), conforme mostrado aqui:
 
    ```sql
    INSERT INTO mysql.ndb_replication
        VALUES ('test', 't2', 0, 0, 'NDB$OLD(mycol)');
    ```
 
-   Possible values for the `binlog_type` column are shown earlier in this section; in this case, we use `0` to specify that the server default logging behavior be used. The value `'NDB$OLD(mycol)'` should be inserted into the `conflict_fn` column.
+   Os valores possíveis para a coluna `binlog_type` são mostrados anteriormente nesta seção; neste caso, usamos `0` para especificar que o comportamento de *logging* padrão do *server* seja usado. O valor `'NDB$OLD(mycol)'` deve ser inserido na coluna `conflict_fn`.
 
-2. Create an appropriate exceptions table for `test.t2`. The table creation statement shown here includes all required columns; any additional columns must be declared following these columns, and before the definition of the table's primary key.
+2. Crie uma *exceptions table* apropriada para `test.t2`. A instrução de criação de *table* mostrada aqui inclui todas as colunas obrigatórias; quaisquer colunas adicionais devem ser declaradas após estas colunas, e antes da definição da *Primary Key* da *table*.
 
    ```sql
    CREATE TABLE test.t2$EX  (
@@ -364,7 +364,7 @@ The following steps are required, in the order shown:
    )   ENGINE=NDB;
    ```
 
-   We can include additional columns for information about the type, cause, and originating transaction ID for a given conflict. We are also not required to supply matching columns for all primary key columns in the original table. This means you can create the exceptions table like this:
+   Podemos incluir colunas adicionais para obter informações sobre o tipo, a causa e o ID da *transaction* de origem para um determinado conflito. Também não somos obrigados a fornecer colunas correspondentes para todas as colunas da *Primary Key* na *table* original. Isso significa que você pode criar a *exceptions table* assim:
 
    ```sql
    CREATE TABLE test.t2$EX  (
@@ -388,17 +388,17 @@ The following steps are required, in the order shown:
 
    Note
 
-   The `NDB$` prefix is required for the four required columns since we included at least one of the columns `NDB$OP_TYPE`, `NDB$CFT_CAUSE`, or `NDB$ORIG_TRANSID` in the table definition.
+   O prefixo `NDB$` é obrigatório para as quatro colunas obrigatórias, uma vez que incluímos pelo menos uma das colunas `NDB$OP_TYPE`, `NDB$CFT_CAUSE` ou `NDB$ORIG_TRANSID` na definição da *table*.
 
-3. Create the table `test.t2` as shown previously.
+3. Crie a *table* `test.t2` conforme mostrado anteriormente.
 
-These steps must be followed for every table for which you wish to perform conflict resolution using `NDB$OLD()`. For each such table, there must be a corresponding row in `mysql.ndb_replication`, and there must be an exceptions table in the same database as the table being replicated.
+Estas etapas devem ser seguidas para cada *table* para a qual você deseja realizar a resolução de conflitos usando `NDB$OLD()`. Para cada *table* desta natureza, deve haver uma *row* correspondente em `mysql.ndb_replication`, e deve haver uma *exceptions table* no mesmo *database* da *table* que está sendo replicada.
 
-**Read conflict detection and resolution.**
+**Detecção e resolução de conflitos de read.**
 
-NDB Cluster also supports tracking of read operations, which makes it possible in circular replication setups to manage conflicts between reads of a given row in one cluster and updates or deletes of the same row in another. This example uses `employee` and `department` tables to model a scenario in which an employee is moved from one department to another on the source cluster (which we refer to hereafter as cluster *A*) while the replica cluster (hereafter *B*) updates the employee count of the employee's former department in an interleaved transaction.
+O NDB Cluster também suporta o rastreamento de operações de *read*, o que torna possível em configurações de *replication* circular gerenciar conflitos entre *reads* de uma determinada *row* em um *cluster* e *updates* ou *deletes* da mesma *row* em outro. Este exemplo usa as *tables* `employee` e `department` para modelar um cenário no qual um funcionário é movido de um departamento para outro no *cluster source* (ao qual nos referimos doravante como *cluster A*) enquanto o *cluster replica* (doravante *B*) atualiza a contagem de funcionários do antigo departamento do funcionário em uma *transaction* intercalada.
 
-The data tables have been created using the following SQL statements:
+As *data tables* foram criadas usando as seguintes instruções SQL:
 
 ```sql
 # Employee table
@@ -416,7 +416,7 @@ CREATE TABLE department (
 )   ENGINE=NDB;
 ```
 
-The contents of the two tables include the rows shown in the (partial) output of the following [`SELECT`](select.html "13.2.9 SELECT Statement") statements:
+O conteúdo das duas *tables* inclui as *rows* mostradas na saída (parcial) das seguintes instruções [`SELECT`](select.html "13.2.9 SELECT Statement"):
 
 ```sql
 mysql> SELECT id, name, dept FROM employee;
@@ -440,7 +440,7 @@ mysql> SELECT id, name, members FROM department;
 +-----+-------------+---------+
 ```
 
-We assume that we are already using an exceptions table that includes the four required columns (and these are used for this table's primary key), the optional columns for operation type and cause, and the original table's primary key column, created using the SQL statement shown here:
+Assumimos que já estamos usando uma *exceptions table* que inclui as quatro colunas obrigatórias (e estas são usadas para a *Primary Key* desta *table*), as colunas opcionais para tipo e causa da operação, e a coluna da *Primary Key* da *table* original, criada usando a instrução SQL mostrada aqui:
 
 ```sql
 CREATE TABLE employee$EX  (
@@ -462,7 +462,7 @@ CREATE TABLE employee$EX  (
 )   ENGINE=NDB;
 ```
 
-Suppose there occur the two simultaneous transactions on the two clusters. On cluster *A*, we create a new department, then move employee number 999 into that department, using the following SQL statements:
+Suponha que ocorram as duas *transactions* simultâneas nos dois *clusters*. No *cluster A*, criamos um novo departamento e, em seguida, movemos o funcionário número 999 para esse departamento, usando as seguintes instruções SQL:
 
 ```sql
 BEGIN;
@@ -471,7 +471,7 @@ BEGIN;
 COMMIT;
 ```
 
-At the same time, on cluster *B*, another transaction reads from `employee`, as shown here:
+Ao mesmo tempo, no *cluster B*, outra *transaction* faz um *read* de `employee`, conforme mostrado aqui:
 
 ```sql
 BEGIN;
@@ -480,9 +480,9 @@ BEGIN;
 commit;
 ```
 
-The conflicting transactions are not normally detected by the conflict resolution mechanism, since the conflict is between a read (`SELECT`) and an update operation. You can circumvent this issue by executing [`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") [`ndb_log_exclusive_reads`](mysql-cluster-options-variables.html#sysvar_ndb_log_exclusive_reads) `= 1` on the replica cluster. Acquiring exclusive read locks in this way causes any rows read on the source to be flagged as needing conflict resolution on the replica cluster. If we enable exclusive reads in this way prior to the logging of these transactions, the read on cluster *B* is tracked and sent to cluster *A* for resolution; the conflict on the employee row is subsequently detected and the transaction on cluster *B* is aborted.
+As *transactions* conflitantes não são normalmente detectadas pelo mecanismo de resolução de conflitos, uma vez que o conflito está entre uma operação de *read* (`SELECT`) e uma operação de *update*. Você pode contornar este problema executando [`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") [`ndb_log_exclusive_reads`](mysql-cluster-options-variables.html#sysvar_ndb_log_exclusive_reads) `= 1` no *cluster replica*. Adquirir *exclusive read locks* desta forma faz com que quaisquer *rows* lidas na *source* sejam sinalizadas como necessitando de resolução de conflitos no *cluster replica*. Se habilitarmos *exclusive reads* desta forma antes do *logging* destas *transactions*, o *read* no *cluster B* é rastreado e enviado ao *cluster A* para resolução; o conflito na *row* do funcionário é subsequentemente detectado e a *transaction* no *cluster B* é abortada.
 
-The conflict is registered in the exceptions table (on cluster *A*) as a `READ_ROW` operation (see [Conflict Resolution Exceptions Table](mysql-cluster-replication-conflict-resolution.html#conflict-resolution-exceptions-table "Conflict Resolution Exceptions Table"), for a description of operation types), as shown here:
+O conflito é registrado na *exceptions table* (no *cluster A*) como uma operação `READ_ROW` (veja [Tabela de Exceções da Resolução de Conflitos](mysql-cluster-replication-conflict-resolution.html#conflict-resolution-exceptions-table "Conflict Resolution Exceptions Table"), para uma descrição dos tipos de operação), conforme mostrado aqui:
 
 ```sql
 mysql> SELECT id, NDB$OP_TYPE, NDB$CFT_CAUSE FROM employee$EX;
@@ -494,7 +494,7 @@ mysql> SELECT id, NDB$OP_TYPE, NDB$CFT_CAUSE FROM employee$EX;
 +-------+-------------+-------------------+
 ```
 
-Any existing rows found in the read operation are flagged. This means that multiple rows resulting from the same conflict may be logged in the exception table, as shown by examining the effects a conflict between an update on cluster *A* and a read of multiple rows on cluster *B* from the same table in simultaneous transactions. The transaction executed on cluster *A* is shown here:
+Quaisquer *rows* existentes encontradas na operação de *read* são sinalizadas. Isso significa que múltiplas *rows* resultantes do mesmo conflito podem ser registradas na *exception table*, conforme mostrado ao examinar os efeitos de um conflito entre um *update* no *cluster A* e um *read* de múltiplas *rows* no *cluster B* da mesma *table* em *transactions* simultâneas. A *transaction* executada no *cluster A* é mostrada aqui:
 
 ```sql
 BEGIN;
@@ -505,7 +505,7 @@ BEGIN;
 COMMIT;
 ```
 
-Concurrently a transaction containing the statements shown here runs on cluster *B*:
+Concomitantemente, uma *transaction* contendo as instruções mostradas aqui é executada no *cluster B*:
 
 ```sql
 SET ndb_log_exclusive_reads = 1;  # Must be set if not already enabled
@@ -516,7 +516,7 @@ BEGIN;
 COMMIT;
 ```
 
-In this case, all three rows matching the `WHERE` condition in the second transaction's `SELECT` are read, and are thus flagged in the exceptions table, as shown here:
+Neste caso, todas as três *rows* que correspondem à condição `WHERE` no `SELECT` da segunda *transaction* são lidas e, portanto, são sinalizadas na *exceptions table*, conforme mostrado aqui:
 
 ```sql
 mysql> SELECT id, NDB$OP_TYPE, NDB$CFT_CAUSE FROM employee$EX;
@@ -531,4 +531,4 @@ mysql> SELECT id, NDB$OP_TYPE, NDB$CFT_CAUSE FROM employee$EX;
 +-------+-------------+-------------------+
 ```
 
-Read tracking is performed on the basis of existing rows only. A read based on a given condition track conflicts only of any rows that are *found* and not of any rows that are inserted in an interleaved transaction. This is similar to how exclusive row locking is performed in a single instance of NDB Cluster.
+O rastreamento de *read* é realizado apenas com base nas *rows* existentes. Um *read* baseado em uma determinada condição rastreia conflitos apenas de quaisquer *rows* que são *encontradas* e não de quaisquer *rows* que são inseridas em uma *transaction* intercalada. Isso é semelhante à forma como o *exclusive row locking* é realizado em uma única instância do NDB Cluster.

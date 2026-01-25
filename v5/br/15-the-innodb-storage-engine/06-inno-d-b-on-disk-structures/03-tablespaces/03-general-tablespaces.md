@@ -1,34 +1,34 @@
-#### 14.6.3.3 General Tablespaces
+#### 14.6.3.3 Tablespaces Gerais
 
-A general tablespace is a shared `InnoDB` tablespace that is created using `CREATE TABLESPACE` syntax. General tablespace capabilities and features are described under the following topics in this section:
+Um tablespace geral é um tablespace `InnoDB` compartilhado que é criado usando a sintaxe `CREATE TABLESPACE`. As capacidades e recursos dos tablespaces gerais são descritos nos seguintes tópicos nesta seção:
 
-* General Tablespace Capabilities
-* Creating a General Tablespace
-* Adding Tables to a General Tablespace
-* General Tablespace Row Format Support
-* Moving Tables Between Tablespaces Using ALTER TABLE
-* Dropping a General Tablespace
-* General Tablespace Limitations
+* Capacidades de Tablespace Geral
+* Criando um Tablespace Geral
+* Adicionando Tabelas a um Tablespace Geral
+* Suporte a Row Format de Tablespace Geral
+* Movendo Tabelas Entre Tablespaces Usando ALTER TABLE
+* Eliminando um Tablespace Geral
+* Limitações de Tablespace Geral
 
-##### General Tablespace Capabilities
+##### Capacidades de Tablespace Geral
 
-General tablespaces provide the following capabilities:
+Tablespaces gerais fornecem as seguintes capacidades:
 
-* Similar to the system tablespace, general tablespaces are shared tablespaces capable of storing data for multiple tables.
+* Similar ao system tablespace, os tablespaces gerais são tablespaces compartilhados capazes de armazenar dados para múltiplas tabelas.
 
-* General tablespaces have a potential memory advantage over file-per-table tablespaces. The server keeps tablespace metadata in memory for the lifetime of a tablespace. Multiple tables in fewer general tablespaces consume less memory for tablespace metadata than the same number of tables in separate file-per-table tablespaces.
+* Tablespaces gerais têm uma potencial vantagem de memória sobre os tablespaces *file-per-table*. O servidor mantém os metadados do tablespace na memória durante a vida útil do tablespace. Múltiplas tabelas em menos tablespaces gerais consomem menos memória para metadados de tablespace do que o mesmo número de tabelas em tablespaces *file-per-table* separados.
 
-* General tablespace data files can be placed in a directory relative to or independent of the MySQL data directory, which provides you with many of the data file and storage management capabilities of file-per-table tablespaces. As with file-per-table tablespaces, the ability to place data files outside of the MySQL data directory allows you to manage performance of critical tables separately, setup RAID or DRBD for specific tables, or bind tables to particular disks, for example.
+* Os arquivos de dados do tablespace geral podem ser colocados em um diretório relativo ou independente do *data directory* do MySQL, o que oferece muitas das capacidades de gerenciamento de armazenamento e arquivos de dados dos tablespaces *file-per-table*. Assim como nos tablespaces *file-per-table*, a capacidade de colocar arquivos de dados fora do *data directory* do MySQL permite gerenciar o desempenho de tabelas críticas separadamente, configurar RAID ou DRBD para tabelas específicas, ou vincular tabelas a discos particulares, por exemplo.
 
-* General tablespaces support both Antelope and Barracuda file formats, and therefore support all table row formats and associated features. With support for both file formats, general tablespaces have no dependence on `innodb_file_format` or `innodb_file_per_table` settings, nor do these variables have any effect on general tablespaces.
+* Tablespaces gerais suportam os formatos de arquivo Antelope e Barracuda e, portanto, suportam todos os *row formats* de tabela e recursos associados. Com suporte para ambos os formatos de arquivo, os tablespaces gerais não dependem das configurações `innodb_file_format` ou `innodb_file_per_table`, nem estas variáveis têm qualquer efeito sobre os tablespaces gerais.
 
-* The `TABLESPACE` option can be used with `CREATE TABLE` to create tables in a general tablespaces, file-per-table tablespace, or in the system tablespace.
+* A opção `TABLESPACE` pode ser usada com `CREATE TABLE` para criar tabelas em tablespaces gerais, tablespace *file-per-table* ou no system tablespace.
 
-* The `TABLESPACE` option can be used with `ALTER TABLE` to move tables between general tablespaces, file-per-table tablespaces, and the system tablespace.
+* A opção `TABLESPACE` pode ser usada com `ALTER TABLE` para mover tabelas entre tablespaces gerais, tablespaces *file-per-table* e o system tablespace.
 
-##### Creating a General Tablespace
+##### Criando um Tablespace Geral
 
-General tablespaces are created using `CREATE TABLESPACE` syntax.
+Tablespaces gerais são criados usando a sintaxe `CREATE TABLESPACE`.
 
 ```sql
 CREATE TABLESPACE tablespace_name
@@ -37,37 +37,37 @@ CREATE TABLESPACE tablespace_name
         [ENGINE [=] engine_name]
 ```
 
-A general tablespace can be created in the data directory or outside of it. To avoid conflicts with implicitly created file-per-table tablespaces, creating a general tablespace in a subdirectory under the data directory is not supported. When creating a general tablespace outside of the data directory, the directory must exist prior to creating the tablespace.
+Um tablespace geral pode ser criado no *data directory* ou fora dele. Para evitar conflitos com tablespaces *file-per-table* criados implicitamente, a criação de um tablespace geral em um subdiretório abaixo do *data directory* não é suportada. Ao criar um tablespace geral fora do *data directory*, o diretório deve existir antes de criar o tablespace.
 
-An .isl file is created in the MySQL data directory when a general tablespace is created outside of the MySQL data directory.
+Um arquivo .isl é criado no *data directory* do MySQL quando um tablespace geral é criado fora do *data directory* do MySQL.
 
-Examples:
+Exemplos:
 
-Creating a general tablespace in the data directory:
+Criando um tablespace geral no *data directory*:
 
 ```sql
 mysql> CREATE TABLESPACE `ts1` ADD DATAFILE 'ts1.ibd' Engine=InnoDB;
 ```
 
-Creating a general tablespace in a directory outside of the data directory:
+Criando um tablespace geral em um diretório fora do *data directory*:
 
 ```sql
 mysql> CREATE TABLESPACE `ts1` ADD DATAFILE '/my/tablespace/directory/ts1.ibd' Engine=InnoDB;
 ```
 
-You can specify a path that is relative to the data directory as long as the tablespace directory is not under the data directory. In this example, the `my_tablespace` directory is at the same level as the data directory:
+Você pode especificar um caminho que seja relativo ao *data directory*, contanto que o diretório do tablespace não esteja abaixo do *data directory*. Neste exemplo, o diretório `my_tablespace` está no mesmo nível do *data directory*:
 
 ```sql
 mysql> CREATE TABLESPACE `ts1` ADD DATAFILE '../my_tablespace/ts1.ibd' Engine=InnoDB;
 ```
 
-Note
+Nota
 
-The `ENGINE = InnoDB` clause must be defined as part of the `CREATE TABLESPACE` statement, or `InnoDB` must be defined as the default storage engine (`default_storage_engine=InnoDB`).
+A cláusula `ENGINE = InnoDB` deve ser definida como parte da instrução `CREATE TABLESPACE`, ou `InnoDB` deve ser definido como o *storage engine* padrão (`default_storage_engine=InnoDB`).
 
-##### Adding Tables to a General Tablespace
+##### Adicionando Tabelas a um Tablespace Geral
 
-After creating a general tablespace, `CREATE TABLE tbl_name ... TABLESPACE [=] tablespace_name` or `ALTER TABLE tbl_name TABLESPACE [=] tablespace_name` statements can be used to add tables to the tablespace, as shown in the following examples:
+Após criar um tablespace geral, as instruções `CREATE TABLE tbl_name ... TABLESPACE [=] tablespace_name` ou `ALTER TABLE tbl_name TABLESPACE [=] tablespace_name` podem ser usadas para adicionar tabelas ao tablespace, conforme mostrado nos seguintes exemplos:
 
 `CREATE TABLE`:
 
@@ -81,25 +81,40 @@ mysql> CREATE TABLE t1 (c1 INT PRIMARY KEY) TABLESPACE ts1;
 mysql> ALTER TABLE t2 TABLESPACE ts1;
 ```
 
-Note
+Nota
 
-Support for adding table partitions to shared tablespaces was deprecated in MySQL 5.7.24; expect it to be removed in a future version of MySQL. Shared tablespaces include the `InnoDB` system tablespace and general tablespaces.
+O suporte para adicionar *partitions* de tabela a tablespaces compartilhados foi descontinuado no MySQL 5.7.24; espera-se que seja removido em uma futura versão do MySQL. Tablespaces compartilhados incluem o `InnoDB` system tablespace e os tablespaces gerais.
 
-For detailed syntax information, see `CREATE TABLE` and `ALTER TABLE`.
+Para informações detalhadas sobre a sintaxe, consulte `CREATE TABLE` e `ALTER TABLE`.
 
-##### General Tablespace Row Format Support
+##### Suporte a Row Format de Tablespace Geral
 
-General tablespaces support all table row formats (`REDUNDANT`, `COMPACT`, `DYNAMIC`, `COMPRESSED`) with the caveat that compressed and uncompressed tables cannot coexist in the same general tablespace due to different physical page sizes.
+Tablespaces gerais suportam todos os *row formats* de tabela (`REDUNDANT`, `COMPACT`, `DYNAMIC`, `COMPRESSED`) com a ressalva de que tabelas compactadas e não compactadas não podem coexistir no mesmo tablespace geral devido a diferentes tamanhos de *page* física.
 
-For a general tablespace to contain compressed tables (`ROW_FORMAT=COMPRESSED`), the `FILE_BLOCK_SIZE` option must be specified, and the `FILE_BLOCK_SIZE` value must be a valid compressed page size in relation to the `innodb_page_size` value. Also, the physical page size of the compressed table (`KEY_BLOCK_SIZE`) must be equal to `FILE_BLOCK_SIZE/1024`. For example, if `innodb_page_size=16KB` and `FILE_BLOCK_SIZE=8K`, the `KEY_BLOCK_SIZE` of the table must be 8.
+Para que um tablespace geral contenha tabelas compactadas (`ROW_FORMAT=COMPRESSED`), a opção `FILE_BLOCK_SIZE` deve ser especificada, e o valor de `FILE_BLOCK_SIZE` deve ser um tamanho de *page* compactada válido em relação ao valor de `innodb_page_size`. Além disso, o tamanho da *page* física da tabela compactada (`KEY_BLOCK_SIZE`) deve ser igual a `FILE_BLOCK_SIZE/1024`. Por exemplo, se `innodb_page_size=16KB` e `FILE_BLOCK_SIZE=8K`, o `KEY_BLOCK_SIZE` da tabela deve ser 8.
 
-The following table shows permitted `innodb_page_size`, `FILE_BLOCK_SIZE`, and `KEY_BLOCK_SIZE` combinations. `FILE_BLOCK_SIZE` values may also be specified in bytes. To determine a valid `KEY_BLOCK_SIZE` value for a given `FILE_BLOCK_SIZE`, divide the `FILE_BLOCK_SIZE` value by 1024. Table compression is not support for 32K and 64K `InnoDB` page sizes. For more information about `KEY_BLOCK_SIZE`, see `CREATE TABLE`, and Section 14.9.1.2, “Creating Compressed Tables”.
+A tabela a seguir mostra as combinações permitidas de `innodb_page_size`, `FILE_BLOCK_SIZE` e `KEY_BLOCK_SIZE`. Os valores de `FILE_BLOCK_SIZE` também podem ser especificados em bytes. Para determinar um valor válido de `KEY_BLOCK_SIZE` para um dado `FILE_BLOCK_SIZE`, divida o valor de `FILE_BLOCK_SIZE` por 1024. A compressão de tabela não é suportada para tamanhos de *page* `InnoDB` de 32K e 64K. Para mais informações sobre `KEY_BLOCK_SIZE`, consulte `CREATE TABLE` e a Seção 14.9.1.2, “Criando Tabelas Compactadas”.
 
-**Table 14.3 Permitted Page Size, FILE_BLOCK_SIZE, and KEY_BLOCK_SIZE Combinations for Compressed Tables**
+**Tabela 14.3 Combinações Permitidas de Page Size, FILE_BLOCK_SIZE e KEY_BLOCK_SIZE para Tabelas Compactadas**
 
-<table frame="all"><col style="width: 33%"/><col style="width: 33%"/><col style="width: 34%"/><thead><tr> <th>InnoDB Page Size (innodb_page_size)</th> <th>Permitted FILE_BLOCK_SIZE Value</th> <th>Permitted KEY_BLOCK_SIZE Value</th> </tr></thead><tbody><tr> <th>64KB</th> <td>64K (65536)</td> <td>Compression is not supported</td> </tr><tr> <th>32KB</th> <td>32K (32768)</td> <td>Compression is not supported</td> </tr><tr> <th>16KB</th> <td>16K (16384)</td> <td>None. If <code>innodb_page_size</code> is equal to <code>FILE_BLOCK_SIZE</code>, the tablespace cannot contain a compressed table.</td> </tr><tr> <th>16KB</th> <td>8K (8192)</td> <td>8</td> </tr><tr> <th>16KB</th> <td>4K (4096)</td> <td>4</td> </tr><tr> <th>16KB</th> <td>2K (2048)</td> <td>2</td> </tr><tr> <th>16KB</th> <td>1K (1024)</td> <td>1</td> </tr><tr> <th>8KB</th> <td>8K (8192)</td> <td>None. If <code>innodb_page_size</code> is equal to <code>FILE_BLOCK_SIZE</code>, the tablespace cannot contain a compressed table.</td> </tr><tr> <th>8KB</th> <td>4K (4096)</td> <td>4</td> </tr><tr> <th>8KB</th> <td>2K (2048)</td> <td>2</td> </tr><tr> <th>8KB</th> <td>1K (1024)</td> <td>1</td> </tr><tr> <th>4KB</th> <td>4K (4096)</td> <td>None. If <code>innodb_page_size</code> is equal to <code>FILE_BLOCK_SIZE</code>, the tablespace cannot contain a compressed table.</td> </tr><tr> <th>4K</th> <td>2K (2048)</td> <td>2</td> </tr><tr> <th>4KB</th> <td>1K (1024)</td> <td>1</td> </tr></tbody></table>
+| InnoDB Page Size (innodb_page_size) | Valor Permitido de FILE_BLOCK_SIZE | Valor Permitido de KEY_BLOCK_SIZE |
+| :--- | :--- | :--- |
+| 64KB | 64K (65536) | A Compressão não é suportada |
+| 32KB | 32K (32768) | A Compressão não é suportada |
+| 16KB | 16K (16384) | Nenhum. Se `innodb_page_size` for igual a `FILE_BLOCK_SIZE`, o tablespace não pode conter uma tabela compactada. |
+| 16KB | 8K (8192) | 8 |
+| 16KB | 4K (4096) | 4 |
+| 16KB | 2K (2048) | 2 |
+| 16KB | 1K (1024) | 1 |
+| 8KB | 8K (8192) | Nenhum. Se `innodb_page_size` for igual a `FILE_BLOCK_SIZE`, o tablespace não pode conter uma tabela compactada. |
+| 8KB | 4K (4096) | 4 |
+| 8KB | 2K (2048) | 2 |
+| 8KB | 1K (1024) | 1 |
+| 4KB | 4K (4096) | Nenhum. Se `innodb_page_size` for igual a `FILE_BLOCK_SIZE`, o tablespace não pode conter uma tabela compactada. |
+| 4K | 2K (2048) | 2 |
+| 4KB | 1K (1024) | 1 |
 
-This example demonstrates creating a general tablespace and adding a compressed table. The example assumes a default `innodb_page_size` of 16KB. The `FILE_BLOCK_SIZE` of 8192 requires that the compressed table have a `KEY_BLOCK_SIZE` of 8.
+Este exemplo demonstra a criação de um tablespace geral e a adição de uma tabela compactada. O exemplo assume um `innodb_page_size` padrão de 16KB. O `FILE_BLOCK_SIZE` de 8192 exige que a tabela compactada tenha um `KEY_BLOCK_SIZE` de 8.
 
 ```sql
 mysql> CREATE TABLESPACE `ts2` ADD DATAFILE 'ts2.ibd' FILE_BLOCK_SIZE = 8192 Engine=InnoDB;
@@ -107,49 +122,49 @@ mysql> CREATE TABLESPACE `ts2` ADD DATAFILE 'ts2.ibd' FILE_BLOCK_SIZE = 8192 Eng
 mysql> CREATE TABLE t4 (c1 INT PRIMARY KEY) TABLESPACE ts2 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
 ```
 
-If you do not specify `FILE_BLOCK_SIZE` when creating a general tablespace, `FILE_BLOCK_SIZE` defaults to `innodb_page_size`. When `FILE_BLOCK_SIZE` is equal to `innodb_page_size`, the tablespace may only contain tables with an uncompressed row format (`COMPACT`, `REDUNDANT`, and `DYNAMIC` row formats).
+Se você não especificar `FILE_BLOCK_SIZE` ao criar um tablespace geral, `FILE_BLOCK_SIZE` usa como padrão `innodb_page_size`. Quando `FILE_BLOCK_SIZE` é igual a `innodb_page_size`, o tablespace pode conter apenas tabelas com um *row format* não compactado (os *row formats* `COMPACT`, `REDUNDANT` e `DYNAMIC`).
 
-##### Moving Tables Between Tablespaces Using ALTER TABLE
+##### Movendo Tabelas Entre Tablespaces Usando ALTER TABLE
 
-`ALTER TABLE` with the `TABLESPACE` option can be used to move a table to an existing general tablespace, to a new file-per-table tablespace, or to the system tablespace.
+`ALTER TABLE` com a opção `TABLESPACE` pode ser usado para mover uma tabela para um tablespace geral existente, para um novo tablespace *file-per-table* ou para o system tablespace.
 
-Note
+Nota
 
-Support for placing table partitions in shared tablespaces was deprecated in MySQL 5.7.24; expect it to be removed in a future version of MySQL. Shared tablespaces include the `InnoDB` system tablespace and general tablespaces.
+O suporte para colocar *partitions* de tabela em tablespaces compartilhados foi descontinuado no MySQL 5.7.24; espera-se que seja removido em uma futura versão do MySQL. Tablespaces compartilhados incluem o `InnoDB` system tablespace e os tablespaces gerais.
 
-To move a table from a file-per-table tablespace or from the system tablespace to a general tablespace, specify the name of the general tablespace. The general tablespace must exist. See `ALTER TABLESPACE` for more information.
+Para mover uma tabela de um tablespace *file-per-table* ou do system tablespace para um tablespace geral, especifique o nome do tablespace geral. O tablespace geral deve existir. Consulte `ALTER TABLESPACE` para mais informações.
 
 ```sql
 ALTER TABLE tbl_name TABLESPACE [=] tablespace_name;
 ```
 
-To move a table from a general tablespace or file-per-table tablespace to the system tablespace, specify `innodb_system` as the tablespace name.
+Para mover uma tabela de um tablespace geral ou tablespace *file-per-table* para o system tablespace, especifique `innodb_system` como o nome do tablespace.
 
 ```sql
 ALTER TABLE tbl_name TABLESPACE [=] innodb_system;
 ```
 
-To move a table from the system tablespace or a general tablespace to a file-per-table tablespace, specify `innodb_file_per_table` as the tablespace name.
+Para mover uma tabela do system tablespace ou de um tablespace geral para um tablespace *file-per-table*, especifique `innodb_file_per_table` como o nome do tablespace.
 
 ```sql
 ALTER TABLE tbl_name TABLESPACE [=] innodb_file_per_table;
 ```
 
-`ALTER TABLE ... TABLESPACE` operations cause a full table rebuild, even if the `TABLESPACE` attribute has not changed from its previous value.
+As operações `ALTER TABLE ... TABLESPACE` causam uma reconstrução completa da tabela (*full table rebuild*), mesmo que o atributo `TABLESPACE` não tenha mudado de seu valor anterior.
 
-`ALTER TABLE ... TABLESPACE` syntax does not support moving a table from a temporary tablespace to a persistent tablespace.
+A sintaxe `ALTER TABLE ... TABLESPACE` não suporta a movimentação de uma tabela de um tablespace temporário para um tablespace persistente.
 
-The `DATA DIRECTORY` clause is permitted with `CREATE TABLE ... TABLESPACE=innodb_file_per_table` but is otherwise not supported for use in combination with the `TABLESPACE` option.
+A cláusula `DATA DIRECTORY` é permitida com `CREATE TABLE ... TABLESPACE=innodb_file_per_table`, mas não é suportada para uso em combinação com a opção `TABLESPACE` em outros casos.
 
-Restrictions apply when moving tables from encrypted tablespaces. See Encryption Limitations.
+Restrições se aplicam ao mover tabelas de tablespaces criptografados. Consulte Limitações de Criptografia.
 
-##### Dropping a General Tablespace
+##### Eliminando um Tablespace Geral
 
-The `DROP TABLESPACE` statement is used to drop an `InnoDB` general tablespace.
+A instrução `DROP TABLESPACE` é usada para eliminar um tablespace geral `InnoDB`.
 
-All tables must be dropped from the tablespace prior to a `DROP TABLESPACE` operation. If the tablespace is not empty, `DROP TABLESPACE` returns an error.
+Todas as tabelas devem ser eliminadas do tablespace antes de uma operação `DROP TABLESPACE`. Se o tablespace não estiver vazio, `DROP TABLESPACE` retorna um erro.
 
-Use a query similar to the following to identify tables in a general tablespace.
+Use uma Query semelhante à seguinte para identificar tabelas em um tablespace geral.
 
 ```sql
 mysql> SELECT a.NAME AS space_name, b.NAME AS table_name FROM INFORMATION_SCHEMA.INNODB_TABLESPACES a,
@@ -163,15 +178,15 @@ mysql> SELECT a.NAME AS space_name, b.NAME AS table_name FROM INFORMATION_SCHEMA
 +------------+------------+
 ```
 
-If a `DROP TABLESPACE` operation on an *empty* general tablespace returns an error, the tablespace may contain an orphan temporary or intermediate table that was left by an `ALTER TABLE` operation that was interrupted by a server exit. For more information, see Section 14.22.3, “Troubleshooting InnoDB Data Dictionary Operations”.
+Se uma operação `DROP TABLESPACE` em um tablespace geral *vazio* retornar um erro, o tablespace pode conter uma tabela temporária ou intermediária órfã que foi deixada por uma operação `ALTER TABLE` interrompida por uma saída do servidor. Para mais informações, consulte a Seção 14.22.3, “Troubleshooting InnoDB Data Dictionary Operations”.
 
-A general `InnoDB` tablespace is not deleted automatically when the last table in the tablespace is dropped. The tablespace must be dropped explicitly using `DROP TABLESPACE tablespace_name`.
+Um tablespace geral `InnoDB` não é excluído automaticamente quando a última tabela no tablespace é eliminada. O tablespace deve ser eliminado explicitamente usando `DROP TABLESPACE tablespace_name`.
 
-A general tablespace does not belong to any particular database. A `DROP DATABASE` operation can drop tables that belong to a general tablespace but it cannot drop the tablespace, even if the `DROP DATABASE` operation drops all tables that belong to the tablespace.
+Um tablespace geral não pertence a nenhum Database específico. Uma operação `DROP DATABASE` pode eliminar tabelas que pertencem a um tablespace geral, mas não pode eliminar o tablespace, mesmo que a operação `DROP DATABASE` elimine todas as tabelas que pertencem a ele.
 
-Similar to the system tablespace, truncating or dropping tables stored in a general tablespace creates free space internally in the general tablespace .ibd data file which can only be used for new `InnoDB` data. Space is not released back to the operating system as it is when a file-per-table tablespace is deleted during a `DROP TABLE` operation.
+Semelhante ao system tablespace, truncar ou eliminar tabelas armazenadas em um tablespace geral cria espaço livre internamente no arquivo de dados .ibd do tablespace geral, o qual pode ser usado apenas para novos dados `InnoDB`. O espaço não é liberado de volta ao sistema operacional, como ocorre quando um tablespace *file-per-table* é excluído durante uma operação `DROP TABLE`.
 
-This example demonstrates how to drop an `InnoDB` general tablespace. The general tablespace `ts1` is created with a single table. The table must be dropped before dropping the tablespace.
+Este exemplo demonstra como eliminar um tablespace geral `InnoDB`. O tablespace geral `ts1` é criado com uma única tabela. A tabela deve ser eliminada antes de eliminar o tablespace.
 
 ```sql
 mysql> CREATE TABLESPACE `ts1` ADD DATAFILE 'ts1.ibd' Engine=InnoDB;
@@ -183,24 +198,24 @@ mysql> DROP TABLE t1;
 mysql> DROP TABLESPACE ts1;
 ```
 
-Note
+Nota
 
-`tablespace_name` is a case-sensitive identifier in MySQL.
+`tablespace_name` é um identificador sensível a maiúsculas e minúsculas no MySQL.
 
-##### General Tablespace Limitations
+##### Limitações de Tablespace Geral
 
-* A generated or existing tablespace cannot be changed to a general tablespace.
+* Um tablespace gerado ou existente não pode ser alterado para um tablespace geral.
 
-* Creation of temporary general tablespaces is not supported.
-* General tablespaces do not support temporary tables.
-* Tables stored in a general tablespace may only be opened in MySQL releases that support general tablespaces.
+* A criação de tablespaces gerais temporários não é suportada.
+* Tablespaces gerais não suportam tabelas temporárias.
+* Tabelas armazenadas em um tablespace geral só podem ser abertas em versões do MySQL que suportam tablespaces gerais.
 
-* Similar to the system tablespace, truncating or dropping tables stored in a general tablespace creates free space internally in the general tablespace .ibd data file which can only be used for new `InnoDB` data. Space is not released back to the operating system as it is for file-per-table tablespaces.
+* Semelhante ao system tablespace, truncar ou eliminar tabelas armazenadas em um tablespace geral cria espaço livre internamente no arquivo de dados .ibd do tablespace geral, o qual pode ser usado apenas para novos dados `InnoDB`. O espaço não é liberado de volta ao sistema operacional, como ocorre com os tablespaces *file-per-table*.
 
-  Additionally, a table-copying `ALTER TABLE` operation on table that resides in a shared tablespace (a general tablespace or the system tablespace) can increase the amount of space used by the tablespace. Such operations require as much additional space as the data in the table plus indexes. The additional space required for the table-copying `ALTER TABLE` operation is not released back to the operating system as it is for file-per-table tablespaces.
+  Além disso, uma operação `ALTER TABLE` de cópia de tabela em uma tabela que reside em um tablespace compartilhado (um tablespace geral ou o system tablespace) pode aumentar a quantidade de espaço usado pelo tablespace. Tais operações requerem tanto espaço adicional quanto os dados na tabela mais os *Indexes*. O espaço adicional necessário para a operação `ALTER TABLE` de cópia de tabela não é liberado de volta ao sistema operacional, como ocorre com os tablespaces *file-per-table*.
 
-* `ALTER TABLE ... DISCARD TABLESPACE` and `ALTER TABLE ...IMPORT TABLESPACE` are not supported for tables that belong to a general tablespace.
+* `ALTER TABLE ... DISCARD TABLESPACE` e `ALTER TABLE ... IMPORT TABLESPACE` não são suportados para tabelas que pertencem a um tablespace geral.
 
-* Support for placing table partitions in general tablespaces was deprecated in MySQL 5.7.24; expect it to be removed in a future version of MySQL.
+* O suporte para colocar *partitions* de tabela em tablespaces gerais foi descontinuado no MySQL 5.7.24; espera-se que seja removido em uma futura versão do MySQL.
 
-* The `ADD DATAFILE` clause is not supported in a replication environment where the source and replica reside on the same host, as it would cause the source and replica to create a tablespace of the same name in the same location.
+* A cláusula `ADD DATAFILE` não é suportada em um ambiente de Replication onde a origem (*source*) e a réplica (*replica*) residem no mesmo *host*, pois isso faria com que a origem e a réplica criassem um tablespace com o mesmo nome e no mesmo local.

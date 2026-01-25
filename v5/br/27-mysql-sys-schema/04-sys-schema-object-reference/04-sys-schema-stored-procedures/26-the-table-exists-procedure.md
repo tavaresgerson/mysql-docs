@@ -1,24 +1,24 @@
-#### 26.4.4.26 The table_exists() Procedure
+#### 26.4.4.26 O Procedure table_exists()
 
-Tests whether a given table exists as a regular table, a `TEMPORARY` table, or a view. The procedure returns the table type in an `OUT` parameter. If both a temporary and a permanent table exist with the given name, `TEMPORARY` is returned.
+Testa se uma determinada table existe como uma table regular, uma table `TEMPORARY` ou uma view. O procedure retorna o tipo da table em um `OUT` parameter. Se existirem tanto uma table temporária quanto uma table permanente com o nome fornecido, `TEMPORARY` é retornado.
 
-##### Parameters
+##### Parâmetros
 
-* `in_db VARCHAR(64)`: The name of the database in which to check for table existance.
+* `in_db VARCHAR(64)`: O nome do Database no qual verificar a existência da table.
 
-* `in_table VARCHAR(64)`: The name of the table to check the existance of.
+* `in_table VARCHAR(64)`: O nome da table cuja existência deve ser verificada.
 
-* `out_exists ENUM('', 'BASE TABLE', 'VIEW', 'TEMPORARY')`: The return value. This is an `OUT` parameter, so it must be a variable into which the table type can be stored. When the procedure returns, the variable has one of the following values to indicate whether the table exists:
+* `out_exists ENUM('', 'BASE TABLE', 'VIEW', 'TEMPORARY')`: O valor de retorno. Este é um `OUT` parameter, portanto, deve ser uma variável na qual o tipo da table possa ser armazenado. Quando o procedure retorna, a variável assume um dos seguintes valores para indicar se a table existe:
 
-  + `''`: The table name does not exist as a base table, `TEMPORARY` table, or view.
+  + `''`: O nome da table não existe como uma base table, table `TEMPORARY` ou view.
 
-  + `BASE TABLE`: The table name exists as a base (permanent) table.
+  + `BASE TABLE`: O nome da table existe como uma base table (permanente).
 
-  + `VIEW`: The table name exists as a view.
+  + `VIEW`: O nome da table existe como uma view.
 
-  + `TEMPORARY`: The table name exists as a `TEMPORARY` table.
+  + `TEMPORARY`: O nome da table existe como uma table `TEMPORARY`.
 
-##### Example
+##### Exemplo
 
 ```sql
 mysql> CREATE DATABASE db1;

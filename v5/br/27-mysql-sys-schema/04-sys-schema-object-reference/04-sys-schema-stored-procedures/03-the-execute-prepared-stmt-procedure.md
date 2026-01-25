@@ -1,22 +1,22 @@
-#### 26.4.4.3 The execute_prepared_stmt() Procedure
+#### 26.4.4.3 O Procedimento execute_prepared_stmt()
 
-Given an SQL statement as a string, executes it as a prepared statement. The prepared statement is deallocated after execution, so it is not subject to reuse. Thus, this procedure is useful primarily for executing dynamic statements on a one-time basis.
+Dada uma instrução SQL como uma string, a executa como uma prepared statement. A prepared statement é desalocada após a execução, portanto, não está sujeita à reutilização. Assim, este procedimento é útil principalmente para executar dynamic statements de forma pontual (one-time basis).
 
-This procedure uses `sys_execute_prepared_stmt` as the prepared statement name. If that statement name exists when the procedure is called, its previous content is destroyed.
+Este procedimento usa `sys_execute_prepared_stmt` como o nome da prepared statement. Se esse nome de statement existir quando o procedimento for chamado, seu conteúdo anterior será destruído.
 
-##### Parameters
+##### Parâmetros
 
-* `in_query LONGTEXT CHARACTER SET utf8`: The statement string to execute.
+* `in_query LONGTEXT CHARACTER SET utf8`: A statement string a ser executada.
 
-##### Configuration Options
+##### Opções de Configuração
 
-`execute_prepared_stmt()` Procedure") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 26.4.2.1, “The sys_config Table”):
+A operação do procedimento `execute_prepared_stmt()` pode ser modificada usando as seguintes opções de configuração ou suas variáveis definidas pelo usuário correspondentes (consulte a Seção 26.4.2.1, “The sys_config Table”):
 
 * `debug`, `@sys.debug`
 
-  If this option is `ON`, produce debugging output. The default is `OFF`.
+  Se esta opção estiver `ON`, produzirá saída de debugging. O padrão é `OFF`.
 
-##### Example
+##### Exemplo
 
 ```sql
 mysql> CALL sys.execute_prepared_stmt('SELECT COUNT(*) FROM mysql.user');

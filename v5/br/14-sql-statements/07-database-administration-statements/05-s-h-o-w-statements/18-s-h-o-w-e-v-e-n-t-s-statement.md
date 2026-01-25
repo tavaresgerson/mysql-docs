@@ -1,4 +1,4 @@
-#### 13.7.5.18 SHOW EVENTS Statement
+#### 13.7.5.18 Declaração SHOW EVENTS
 
 ```sql
 SHOW EVENTS
@@ -6,9 +6,9 @@ SHOW EVENTS
     [LIKE 'pattern' | WHERE expr]
 ```
 
-This statement displays information about Event Manager events, which are discussed in [Section 23.4, “Using the Event Scheduler”](event-scheduler.html "23.4 Using the Event Scheduler"). It requires the [`EVENT`](privileges-provided.html#priv_event) privilege for the database from which the events are to be shown.
+Esta declaração exibe informações sobre eventos do Event Manager, que são discutidos na [Seção 23.4, “Usando o Event Scheduler”](event-scheduler.html "23.4 Using the Event Scheduler"). Ela requer o privilégio [`EVENT`](privileges-provided.html#priv_event) para o Database do qual os eventos devem ser mostrados.
 
-In its simplest form, [`SHOW EVENTS`](show-events.html "13.7.5.18 SHOW EVENTS Statement") lists all of the events in the current schema:
+Em sua forma mais simples, [`SHOW EVENTS`](show-events.html "13.7.5.18 SHOW EVENTS Statement") lista todos os eventos no schema atual:
 
 ```sql
 mysql> SELECT CURRENT_USER(), SCHEMA();
@@ -38,80 +38,80 @@ collation_connection: utf8_general_ci
   Database Collation: latin1_swedish_ci
 ```
 
-To see events for a specific schema, use the `FROM` clause. For example, to see events for the `test` schema, use the following statement:
+Para ver eventos de um schema específico, use a cláusula `FROM`. Por exemplo, para ver eventos para o schema `test`, use a seguinte declaração:
 
 ```sql
 SHOW EVENTS FROM test;
 ```
 
-The [`LIKE`](string-comparison-functions.html#operator_like) clause, if present, indicates which event names to match. The `WHERE` clause can be given to select rows using more general conditions, as discussed in [Section 24.8, “Extensions to SHOW Statements”](extended-show.html "24.8 Extensions to SHOW Statements").
+A cláusula [`LIKE`](string-comparison-functions.html#operator_like), se presente, indica quais nomes de evento devem ser correspondidos. A cláusula `WHERE` pode ser fornecida para selecionar linhas usando condições mais gerais, conforme discutido na [Seção 24.8, “Extensões para Declarações SHOW”](extended-show.html "24.8 Extensions to SHOW Statements").
 
-[`SHOW EVENTS`](show-events.html "13.7.5.18 SHOW EVENTS Statement") output has these columns:
+A saída de [`SHOW EVENTS`](show-events.html "13.7.5.18 SHOW EVENTS Statement") possui estas colunas:
 
 * `Db`
 
-  The name of the schema (database) to which the event belongs.
+  O nome do schema (Database) ao qual o evento pertence.
 
 * `Name`
 
-  The name of the event.
+  O nome do evento.
 
 * `Definer`
 
-  The account of the user who created the event, in `'user_name'@'host_name'` format.
+  A conta do usuário que criou o evento, no formato `'user_name'@'host_name'`.
 
 * `Time zone`
 
-  The event time zone, which is the time zone used for scheduling the event and that is in effect within the event as it executes. The default value is `SYSTEM`.
+  O time zone do evento, que é o time zone usado para agendar o evento e que está em vigor dentro do evento enquanto ele é executado. O valor default é `SYSTEM`.
 
 * `Type`
 
-  The event repetition type, either `ONE TIME` (transient) or `RECURRING` (repeating).
+  O tipo de repetição do evento, ou `ONE TIME` (transiente) ou `RECURRING` (repetitivo).
 
 * `Execute At`
 
-  For a one-time event, this is the [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") value specified in the `AT` clause of the [`CREATE EVENT`](create-event.html "13.1.12 CREATE EVENT Statement") statement used to create the event, or of the last [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") statement that modified the event. The value shown in this column reflects the addition or subtraction of any `INTERVAL` value included in the event's `AT` clause. For example, if an event is created using `ON SCHEDULE AT CURRENT_TIMESTAMP + '1:6' DAY_HOUR`, and the event was created at 2018-02-09 14:05:30, the value shown in this column would be `'2018-02-10 20:05:30'`. If the event's timing is determined by an `EVERY` clause instead of an `AT` clause (that is, if the event is recurring), the value of this column is `NULL`.
+  Para um evento de execução única, este é o valor [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") especificado na cláusula `AT` da declaração [`CREATE EVENT`](create-event.html "13.1.12 CREATE EVENT Statement") usada para criar o evento, ou da última declaração [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") que modificou o evento. O valor exibido nesta coluna reflete a adição ou subtração de qualquer valor `INTERVAL` incluído na cláusula `AT` do evento. Por exemplo, se um evento for criado usando `ON SCHEDULE AT CURRENT_TIMESTAMP + '1:6' DAY_HOUR`, e o evento foi criado em 2018-02-09 14:05:30, o valor exibido nesta coluna seria `'2018-02-10 20:05:30'`. Se o tempo do evento for determinado por uma cláusula `EVERY` em vez de uma cláusula `AT` (ou seja, se o evento for `recurring`), o valor desta coluna é `NULL`.
 
 * `Interval Value`
 
-  For a recurring event, the number of intervals to wait between event executions. For a transient event, the value of this column is always `NULL`.
+  Para um evento recorrente, o número de intervalos a aguardar entre as execuções do evento. Para um evento transiente, o valor desta coluna é sempre `NULL`.
 
 * `Interval Field`
 
-  The time units used for the interval which a recurring event waits before repeating. For a transient event, the value of this column is always `NULL`.
+  As unidades de tempo usadas para o intervalo que um evento recorrente aguarda antes de se repetir. Para um evento transiente, o valor desta coluna é sempre `NULL`.
 
 * `Starts`
 
-  The start date and time for a recurring event. This is displayed as a [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") value, and is `NULL` if no start date and time are defined for the event. For a transient event, this column is always `NULL`. For a recurring event whose definition includes a `STARTS` clause, this column contains the corresponding [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") value. As with the `Execute At` column, this value resolves any expressions used. If there is no `STARTS` clause affecting the timing of the event, this column is `NULL`
+  A data e hora de início para um evento recorrente. Isso é exibido como um valor [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") e é `NULL` se nenhuma data e hora de início for definida para o evento. Para um evento transiente, esta coluna é sempre `NULL`. Para um evento recorrente cuja definição inclui uma cláusula `STARTS`, esta coluna contém o valor [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") correspondente. Assim como na coluna `Execute At`, este valor resolve quaisquer expressões utilizadas. Se não houver uma cláusula `STARTS` afetando o tempo do evento, esta coluna é `NULL`.
 
 * `Ends`
 
-  For a recurring event whose definition includes a `ENDS` clause, this column contains the corresponding [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") value. As with the `Execute At` column, this value resolves any expressions used. If there is no `ENDS` clause affecting the timing of the event, this column is `NULL`.
+  Para um evento recorrente cuja definição inclui uma cláusula `ENDS`, esta coluna contém o valor [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") correspondente. Assim como na coluna `Execute At`, este valor resolve quaisquer expressões utilizadas. Se não houver uma cláusula `ENDS` afetando o tempo do evento, esta coluna é `NULL`.
 
 * `Status`
 
-  The event status. One of `ENABLED`, `DISABLED`, or `SLAVESIDE_DISABLED`. `SLAVESIDE_DISABLED` indicates that the creation of the event occurred on another MySQL server acting as a replication source and replicated to the current MySQL server which is acting as a replica, but the event is not presently being executed on the replica. For more information, see [Section 16.4.1.16, “Replication of Invoked Features”](replication-features-invoked.html "16.4.1.16 Replication of Invoked Features"). information.
+  O status do evento. Um de `ENABLED`, `DISABLED` ou `SLAVESIDE_DISABLED`. `SLAVESIDE_DISABLED` indica que a criação do evento ocorreu em outro servidor MySQL atuando como uma fonte de Replication e foi replicado para o servidor MySQL atual que está atuando como uma replica, mas o evento não está sendo executado no momento na replica. Para mais informações, consulte [Seção 16.4.1.16, “Replication de Funcionalidades Invocadas”](replication-features-invoked.html "16.4.1.16 Replication of Invoked Features").
 
 * `Originator`
 
-  The server ID of the MySQL server on which the event was created; used in replication. This value may be updated by [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") to the server ID of the server on which that statement occurs, if executed on a source server. The default value is 0.
+  O Server ID do servidor MySQL no qual o evento foi criado; usado na Replication. Este valor pode ser atualizado por [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") para o Server ID do servidor no qual essa declaração ocorre, se executada em um servidor source. O valor default é 0.
 
 * `character_set_client`
 
-  The session value of the [`character_set_client`](server-system-variables.html#sysvar_character_set_client) system variable when the event was created.
+  O valor de sessão da variável de sistema [`character_set_client`](server-system-variables.html#sysvar_character_set_client) quando o evento foi criado.
 
 * `collation_connection`
 
-  The session value of the [`collation_connection`](server-system-variables.html#sysvar_collation_connection) system variable when the event was created.
+  O valor de sessão da variável de sistema [`collation_connection`](server-system-variables.html#sysvar_collation_connection) quando o evento foi criado.
 
 * `Database Collation`
 
-  The collation of the database with which the event is associated.
+  A collation do Database ao qual o evento está associado.
 
-For more information about `SLAVESIDE_DISABLED` and the `Originator` column, see [Section 16.4.1.16, “Replication of Invoked Features”](replication-features-invoked.html "16.4.1.16 Replication of Invoked Features").
+Para mais informações sobre `SLAVESIDE_DISABLED` e a coluna `Originator`, consulte [Seção 16.4.1.16, “Replication de Funcionalidades Invocadas”](replication-features-invoked.html "16.4.1.16 Replication of Invoked Features").
 
-Times displayed by [`SHOW EVENTS`](show-events.html "13.7.5.18 SHOW EVENTS Statement") are given in the event time zone, as discussed in [Section 23.4.4, “Event Metadata”](events-metadata.html "23.4.4 Event Metadata").
+Os horários exibidos por [`SHOW EVENTS`](show-events.html "13.7.5.18 SHOW EVENTS Statement") são fornecidos no time zone do evento, conforme discutido na [Seção 23.4.4, “Metadados de Eventos”](events-metadata.html "23.4.4 Event Metadata").
 
-Event information is also available from the `INFORMATION_SCHEMA` [`EVENTS`](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table") table. See [Section 24.3.8, “The INFORMATION_SCHEMA EVENTS Table”](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table").
+As informações do evento também estão disponíveis na tabela `INFORMATION_SCHEMA` [`EVENTS`](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table"). Consulte [Seção 24.3.8, “A Tabela INFORMATION_SCHEMA EVENTS”](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table").
 
-The event action statement is not shown in the output of [`SHOW EVENTS`](show-events.html "13.7.5.18 SHOW EVENTS Statement"). Use [`SHOW CREATE EVENT`](show-create-event.html "13.7.5.7 SHOW CREATE EVENT Statement") or the `INFORMATION_SCHEMA` [`EVENTS`](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table") table.
+A declaração de ação do evento não é exibida na saída de [`SHOW EVENTS`](show-events.html "13.7.5.18 SHOW EVENTS Statement"). Use [`SHOW CREATE EVENT`](show-create-event.html "13.7.5.7 SHOW CREATE EVENT Statement") ou a tabela `INFORMATION_SCHEMA` [`EVENTS`](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table").

@@ -1,49 +1,49 @@
-#### B.3.4.3 Problems with NULL Values
+#### B.3.4.3 Problemas com Valores NULL
 
-The concept of the `NULL` value is a common source of confusion for newcomers to SQL, who often think that `NULL` is the same thing as an empty string `''`. This is not the case. For example, the following statements are completely different:
+O conceito do valor `NULL` é uma fonte comum de confusão para novatos em SQL, que frequentemente pensam que `NULL` é a mesma coisa que uma string vazia `''`. Este não é o caso. Por exemplo, as seguintes instruções são completamente diferentes:
 
 ```sql
 mysql> INSERT INTO my_table (phone) VALUES (NULL);
 mysql> INSERT INTO my_table (phone) VALUES ('');
 ```
 
-Both statements insert a value into the `phone` column, but the first inserts a `NULL` value and the second inserts an empty string. The meaning of the first can be regarded as “phone number is not known” and the meaning of the second can be regarded as “the person is known to have no phone, and thus no phone number.”
+Ambas as instruções inserem um valor na coluna `phone`, mas a primeira insere um valor `NULL` e a segunda insere uma string vazia. O significado da primeira pode ser considerado como “o número de telefone não é conhecido” e o significado da segunda pode ser considerado como “sabe-se que a pessoa não possui telefone e, portanto, não possui número de telefone.”
 
-To help with `NULL` handling, you can use the [`IS NULL`](comparison-operators.html#operator_is-null) and [`IS NOT NULL`](comparison-operators.html#operator_is-not-null) operators and the [`IFNULL()`](flow-control-functions.html#function_ifnull) function.
+Para auxiliar no tratamento de `NULL`, você pode usar os operadores [`IS NULL`](comparison-operators.html#operator_is-null) e [`IS NOT NULL`](comparison-operators.html#operator_is-not-null) e a função [`IFNULL()`](flow-control-functions.html#function_ifnull).
 
-In SQL, the `NULL` value is never true in comparison to any other value, even `NULL`. An expression that contains `NULL` always produces a `NULL` value unless otherwise indicated in the documentation for the operators and functions involved in the expression. All columns in the following example return `NULL`:
+Em SQL, o valor `NULL` nunca é verdadeiro em comparação com qualquer outro valor, nem mesmo `NULL`. Uma expressão que contém `NULL` sempre produz um valor `NULL`, a menos que seja indicado o contrário na documentação para os operadores e funções envolvidos na expressão. Todas as colunas no exemplo a seguir retornam `NULL`:
 
 ```sql
 mysql> SELECT NULL, 1+NULL, CONCAT('Invisible',NULL);
 ```
 
-To search for column values that are `NULL`, you cannot use an `expr = NULL` test. The following statement returns no rows, because `expr = NULL` is never true for any expression:
+Para buscar valores de coluna que são `NULL`, você não pode usar um teste `expr = NULL`. A seguinte instrução não retorna linhas, porque `expr = NULL` nunca é verdadeiro para qualquer expressão:
 
 ```sql
 mysql> SELECT * FROM my_table WHERE phone = NULL;
 ```
 
-To look for `NULL` values, you must use the [`IS NULL`](comparison-operators.html#operator_is-null) test. The following statements show how to find the `NULL` phone number and the empty phone number:
+Para procurar por valores `NULL`, você deve usar o teste [`IS NULL`](comparison-operators.html#operator_is-null). As seguintes instruções mostram como encontrar o número de telefone `NULL` e o número de telefone vazio:
 
 ```sql
 mysql> SELECT * FROM my_table WHERE phone IS NULL;
 mysql> SELECT * FROM my_table WHERE phone = '';
 ```
 
-See [Section 3.3.4.6, “Working with NULL Values”](working-with-null.html "3.3.4.6 Working with NULL Values"), for additional information and examples.
+Veja [Seção 3.3.4.6, “Trabalhando com Valores NULL”](working-with-null.html "3.3.4.6 Working with NULL Values"), para informações e exemplos adicionais.
 
-You can add an index on a column that can have `NULL` values if you are using the `MyISAM`, `InnoDB`, or `MEMORY` storage engine. Otherwise, you must declare an indexed column `NOT NULL`, and you cannot insert `NULL` into the column.
+Você pode adicionar um Index em uma coluna que pode ter valores `NULL` se estiver usando o storage engine `MyISAM`, `InnoDB` ou `MEMORY`. Caso contrário, você deve declarar uma coluna indexada como `NOT NULL`, e não poderá inserir `NULL` na coluna.
 
-When reading data with [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement"), empty or missing columns are updated with `''`. To load a `NULL` value into a column, use `\N` in the data file. The literal word `NULL` may also be used under some circumstances. See [Section 13.2.6, “LOAD DATA Statement”](load-data.html "13.2.6 LOAD DATA Statement").
+Ao ler dados com [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement"), colunas vazias ou ausentes são atualizadas com `''`. Para carregar um valor `NULL` em uma coluna, use `\N` no arquivo de dados. A palavra literal `NULL` também pode ser usada sob certas circunstâncias. Veja [Seção 13.2.6, “LOAD DATA Statement”](load-data.html "13.2.6 LOAD DATA Statement").
 
-When using `DISTINCT`, `GROUP BY`, or `ORDER BY`, all `NULL` values are regarded as equal.
+Ao usar `DISTINCT`, `GROUP BY` ou `ORDER BY`, todos os valores `NULL` são considerados iguais.
 
-When using `ORDER BY`, `NULL` values are presented first, or last if you specify `DESC` to sort in descending order.
+Ao usar `ORDER BY`, os valores `NULL` são apresentados primeiro, ou por último se você especificar `DESC` para ordenar em ordem decrescente.
 
-Aggregate (group) functions such as [`COUNT()`](aggregate-functions.html#function_count), [`MIN()`](aggregate-functions.html#function_min), and [`SUM()`](aggregate-functions.html#function_sum) ignore `NULL` values. The exception to this is [`COUNT(*)`](aggregate-functions.html#function_count), which counts rows and not individual column values. For example, the following statement produces two counts. The first is a count of the number of rows in the table, and the second is a count of the number of non-`NULL` values in the `age` column:
+Funções de agregação (group), como [`COUNT()`](aggregate-functions.html#function_count), [`MIN()`](aggregate-functions.html#function_min) e [`SUM()`](aggregate-functions.html#function_sum) ignoram valores `NULL`. A exceção a isso é [`COUNT(*)`](aggregate-functions.html#function_count), que conta linhas e não valores de colunas individuais. Por exemplo, a seguinte instrução produz duas contagens. A primeira é uma contagem do número de linhas na tabela, e a segunda é uma contagem do número de valores não-`NULL` na coluna `age`:
 
 ```sql
 mysql> SELECT COUNT(*), COUNT(age) FROM person;
 ```
 
-For some data types, MySQL handles `NULL` values specially. For example, if you insert `NULL` into an integer or floating-point column that has the `AUTO_INCREMENT` attribute, the next number in the sequence is inserted. Under certain conditions, if you insert `NULL` into a [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") column, the current date and time is inserted; this behavior depends in part on the server SQL mode (see [Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")) as well as the value of the [`explicit_defaults_for_timestamp`](server-system-variables.html#sysvar_explicit_defaults_for_timestamp) system variable.
+Para alguns tipos de dados, o MySQL trata valores `NULL` de maneira especial. Por exemplo, se você inserir `NULL` em uma coluna de inteiro ou ponto flutuante que possui o atributo `AUTO_INCREMENT`, o próximo número na sequência é inserido. Sob certas condições, se você inserir `NULL` em uma coluna [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"), a data e hora atuais são inseridas; este comportamento depende em parte do SQL mode do servidor (veja [Seção 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")), bem como do valor da variável de sistema [`explicit_defaults_for_timestamp`](server-system-variables.html#sysvar_explicit_defaults_for_timestamp).

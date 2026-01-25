@@ -1,4 +1,4 @@
-#### 13.7.5.38 SHOW TRIGGERS Statement
+#### 13.7.5.38 Instrução SHOW TRIGGERS
 
 ```sql
 SHOW TRIGGERS
@@ -6,9 +6,9 @@ SHOW TRIGGERS
     [LIKE 'pattern' | WHERE expr]
 ```
 
-[`SHOW TRIGGERS`](show-triggers.html "13.7.5.38 SHOW TRIGGERS Statement") lists the triggers currently defined for tables in a database (the default database unless a `FROM` clause is given). This statement returns results only for databases and tables for which you have the [`TRIGGER`](privileges-provided.html#priv_trigger) privilege. The [`LIKE`](string-comparison-functions.html#operator_like) clause, if present, indicates which table names (not trigger names) to match and causes the statement to display triggers for those tables. The `WHERE` clause can be given to select rows using more general conditions, as discussed in [Section 24.8, “Extensions to SHOW Statements”](extended-show.html "24.8 Extensions to SHOW Statements").
+O [`SHOW TRIGGERS`](show-triggers.html "13.7.5.38 SHOW TRIGGERS Statement") lista os Triggers atualmente definidos para tabelas em um Database (o Database padrão, a menos que uma cláusula `FROM` seja fornecida). Esta instrução retorna resultados apenas para Databases e tabelas para as quais você tem o privilégio [`TRIGGER`](privileges-provided.html#priv_trigger). A cláusula [`LIKE`](string-comparison-functions.html#operator_like), se presente, indica quais nomes de tabela (não nomes de Trigger) devem ser comparados e faz com que a instrução exiba os Triggers para essas tabelas. A cláusula `WHERE` pode ser fornecida para selecionar linhas usando condições mais gerais, conforme discutido na [Seção 24.8, “Extensões para Instruções SHOW”](extended-show.html "24.8 Extensions to SHOW Statements").
 
-For the `ins_sum` trigger defined in [Section 23.3, “Using Triggers”](triggers.html "23.3 Using Triggers"), the output of [`SHOW TRIGGERS`](show-triggers.html "13.7.5.38 SHOW TRIGGERS Statement") is as shown here:
+Para o Trigger `ins_sum` definido na [Seção 23.3, “Usando Triggers”](triggers.html "23.3 Using Triggers"), a saída de [`SHOW TRIGGERS`](show-triggers.html "13.7.5.38 SHOW TRIGGERS Statement") é mostrada aqui:
 
 ```sql
 mysql> SHOW TRIGGERS LIKE 'acc%'\G
@@ -29,50 +29,50 @@ collation_connection: utf8_general_ci
   Database Collation: latin1_swedish_ci
 ```
 
-[`SHOW TRIGGERS`](show-triggers.html "13.7.5.38 SHOW TRIGGERS Statement") output has these columns:
+A saída de [`SHOW TRIGGERS`](show-triggers.html "13.7.5.38 SHOW TRIGGERS Statement") possui as seguintes colunas:
 
 * `Trigger`
 
-  The name of the trigger.
+  O nome do Trigger.
 
 * `Event`
 
-  The trigger event. This is the type of operation on the associated table for which the trigger activates. The value is `INSERT` (a row was inserted), `DELETE` (a row was deleted), or `UPDATE` (a row was modified).
+  O Event do Trigger. Este é o tipo de operação na tabela associada para a qual o Trigger é ativado. O valor é `INSERT` (uma linha foi inserida), `DELETE` (uma linha foi excluída) ou `UPDATE` (uma linha foi modificada).
 
 * `Table`
 
-  The table for which the trigger is defined.
+  A tabela para a qual o Trigger é definido.
 
 * `Statement`
 
-  The trigger body; that is, the statement executed when the trigger activates.
+  O corpo (body) do Trigger; ou seja, a instrução executada quando o Trigger é ativado.
 
 * `Timing`
 
-  Whether the trigger activates before or after the triggering event. The value is `BEFORE` or `AFTER`.
+  Indica se o Trigger é ativado antes ou depois do Event acionador. O valor é `BEFORE` ou `AFTER`.
 
 * `Created`
 
-  The date and time when the trigger was created. This is a `TIMESTAMP(2)` value (with a fractional part in hundredths of seconds) for triggers created in MySQL 5.7.2 or later, `NULL` for triggers created prior to 5.7.2.
+  A data e hora em que o Trigger foi criado. Este é um valor `TIMESTAMP(2)` (com uma parte fracionária em centésimos de segundos) para Triggers criados no MySQL 5.7.2 ou posterior, `NULL` para Triggers criados antes de 5.7.2.
 
 * `sql_mode`
 
-  The SQL mode in effect when the trigger was created, and under which the trigger executes. For the permitted values, see [Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes").
+  O SQL mode em vigor quando o Trigger foi criado, e sob o qual o Trigger é executado. Para os valores permitidos, consulte [Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes").
 
 * `Definer`
 
-  The account of the user who created the trigger, in `'user_name'@'host_name'` format.
+  A conta do usuário que criou o Trigger, no formato `'user_name'@'host_name'`.
 
 * `character_set_client`
 
-  The session value of the [`character_set_client`](server-system-variables.html#sysvar_character_set_client) system variable when the trigger was created.
+  O valor de sessão da variável de sistema [`character_set_client`](server-system-variables.html#sysvar_character_set_client) quando o Trigger foi criado.
 
 * `collation_connection`
 
-  The session value of the [`collation_connection`](server-system-variables.html#sysvar_collation_connection) system variable when the trigger was created.
+  O valor de sessão da variável de sistema [`collation_connection`](server-system-variables.html#sysvar_collation_connection) quando o Trigger foi criado.
 
 * `Database Collation`
 
-  The collation of the database with which the trigger is associated.
+  O Collation do Database ao qual o Trigger está associado.
 
-Trigger information is also available from the `INFORMATION_SCHEMA` [`TRIGGERS`](information-schema-triggers-table.html "24.3.29 The INFORMATION_SCHEMA TRIGGERS Table") table. See [Section 24.3.29, “The INFORMATION_SCHEMA TRIGGERS Table”](information-schema-triggers-table.html "24.3.29 The INFORMATION_SCHEMA TRIGGERS Table").
+Informações sobre Triggers também estão disponíveis na tabela [`TRIGGERS`](information-schema-triggers-table.html "24.3.29 The INFORMATION_SCHEMA TRIGGERS Table") do `INFORMATION_SCHEMA`. Consulte a [Seção 24.3.29, “A Tabela TRIGGERS do INFORMATION_SCHEMA”](information-schema-triggers-table.html "24.3.29 The INFORMATION_SCHEMA TRIGGERS Table").

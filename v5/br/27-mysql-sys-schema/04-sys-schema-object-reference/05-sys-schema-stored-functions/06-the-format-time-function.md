@@ -1,16 +1,16 @@
-#### 26.4.5.6 The format_time() Function
+#### 26.4.5.6 A Função format_time()
 
-Given a Performance Schema latency or wait time in picoseconds, converts it to human-readable format and returns a string consisting of a value and a units indicator. Depending on the size of the value, the units part is `ps` (picoseconds), `ns` (nanoseconds), `us` (microseconds), `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours), `d` (days), or `w` (weeks).
+Dada uma latência do Performance Schema ou um tempo de espera em picoseconds, converte-o para um formato legível por humanos e retorna uma string que consiste em um valor e um indicador de unidades. Dependendo do tamanho do valor, a parte da unidade é `ps` (picoseconds), `ns` (nanoseconds), `us` (microseconds), `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours), `d` (days) ou `w` (weeks).
 
-##### Parameters
+##### Parâmetros
 
-* `picoseconds TEXT`: The picoseconds value to format.
+* `picoseconds TEXT`: O valor em picoseconds a ser formatado.
 
-##### Return Value
+##### Valor de Retorno
 
-A `TEXT` value.
+Um valor `TEXT`.
 
-##### Example
+##### Exemplo
 
 ```sql
 mysql> SELECT sys.format_time(3501), sys.format_time(188732396662000);

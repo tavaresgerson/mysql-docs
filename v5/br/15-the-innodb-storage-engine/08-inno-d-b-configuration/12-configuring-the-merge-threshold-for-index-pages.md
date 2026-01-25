@@ -1,14 +1,14 @@
-### 14.8.12 Configuring the Merge Threshold for Index Pages
+### 14.8.12 Configurando o Merge Threshold para Index Pages
 
-You can configure the `MERGE_THRESHOLD` value for index pages. If the “page-full” percentage for an index page falls below the `MERGE_THRESHOLD` value when a row is deleted or when a row is shortened by an `UPDATE` operation, `InnoDB` attempts to merge the index page with a neighboring index page. The default `MERGE_THRESHOLD` value is 50, which is the previously hardcoded value. The minimum `MERGE_THRESHOLD` value is 1 and the maximum value is 50.
+Você pode configurar o valor de `MERGE_THRESHOLD` para as index pages. Se a porcentagem de "page-full" (página cheia) para uma index page cair abaixo do valor de `MERGE_THRESHOLD` quando uma linha é excluída ou quando uma linha é encurtada por uma operação `UPDATE`, o `InnoDB` tenta fazer o merge da index page com uma index page vizinha. O valor `MERGE_THRESHOLD` padrão é 50, que é o valor previamente fixado (hardcoded). O valor mínimo de `MERGE_THRESHOLD` é 1 e o valor máximo é 50.
 
-When the “page-full” percentage for an index page falls below 50%, which is the default `MERGE_THRESHOLD` setting, `InnoDB` attempts to merge the index page with a neighboring page. If both pages are close to 50% full, a page split can occur soon after the pages are merged. If this merge-split behavior occurs frequently, it can have an adverse affect on performance. To avoid frequent merge-splits, you can lower the `MERGE_THRESHOLD` value so that `InnoDB` attempts page merges at a lower “page-full” percentage. Merging pages at a lower page-full percentage leaves more room in index pages and helps reduce merge-split behavior.
+Quando a porcentagem de "page-full" para uma index page cai abaixo de 50%, que é a configuração `MERGE_THRESHOLD` padrão, o `InnoDB` tenta fazer o merge da index page com uma página vizinha. Se ambas as páginas estiverem próximas de 50% de ocupação, um page split (divisão de página) pode ocorrer logo após o merge das páginas. Se este comportamento de merge-split ocorrer frequentemente, pode ter um efeito adverso no performance. Para evitar merge-splits frequentes, você pode reduzir o valor de `MERGE_THRESHOLD` para que o `InnoDB` tente fazer merges de página em uma porcentagem de "page-full" mais baixa. O merge de páginas em uma porcentagem de página cheia menor deixa mais espaço nas index pages e ajuda a reduzir o comportamento de merge-split.
 
-The `MERGE_THRESHOLD` for index pages can be defined for a table or for individual indexes. A `MERGE_THRESHOLD` value defined for an individual index takes priority over a `MERGE_THRESHOLD` value defined for the table. If undefined, the `MERGE_THRESHOLD` value defaults to 50.
+O `MERGE_THRESHOLD` para index pages pode ser definido para uma table ou para indexes individuais. Um valor `MERGE_THRESHOLD` definido para um index individual tem prioridade sobre um valor `MERGE_THRESHOLD` definido para a table. Se não for definido, o valor de `MERGE_THRESHOLD` assume o padrão de 50.
 
-#### Setting MERGE_THRESHOLD for a Table
+#### Definindo MERGE_THRESHOLD para uma Table
 
-You can set the `MERGE_THRESHOLD` value for a table using the *`table_option`* `COMMENT` clause of the `CREATE TABLE` statement. For example:
+Você pode definir o valor de `MERGE_THRESHOLD` para uma table usando a cláusula *`table_option`* `COMMENT` da instrução `CREATE TABLE`. Por exemplo:
 
 ```sql
 CREATE TABLE t1 (
@@ -17,7 +17,7 @@ CREATE TABLE t1 (
 ) COMMENT='MERGE_THRESHOLD=45';
 ```
 
-You can also set the `MERGE_THRESHOLD` value for an existing table using the *`table_option`* `COMMENT` clause with `ALTER TABLE`:
+Você também pode definir o valor de `MERGE_THRESHOLD` para uma table existente usando a cláusula *`table_option`* `COMMENT` com `ALTER TABLE`:
 
 ```sql
 CREATE TABLE t1 (
@@ -28,11 +28,11 @@ CREATE TABLE t1 (
 ALTER TABLE t1 COMMENT='MERGE_THRESHOLD=40';
 ```
 
-#### Setting MERGE_THRESHOLD for Individual Indexes
+#### Definindo MERGE_THRESHOLD para Indexes Individuais
 
-To set the `MERGE_THRESHOLD` value for an individual index, you can use the *`index_option`* `COMMENT` clause with `CREATE TABLE`, `ALTER TABLE`, or `CREATE INDEX`, as shown in the following examples:
+Para definir o valor de `MERGE_THRESHOLD` para um index individual, você pode usar a cláusula *`index_option`* `COMMENT` com `CREATE TABLE`, `ALTER TABLE` ou `CREATE INDEX`, conforme mostrado nos exemplos a seguir:
 
-* Setting `MERGE_THRESHOLD` for an individual index using `CREATE TABLE`:
+* Definindo `MERGE_THRESHOLD` para um index individual usando `CREATE TABLE`:
 
   ```sql
   CREATE TABLE t1 (
@@ -41,7 +41,7 @@ To set the `MERGE_THRESHOLD` value for an individual index, you can use the *`in
   );
   ```
 
-* Setting `MERGE_THRESHOLD` for an individual index using `ALTER TABLE`:
+* Definindo `MERGE_THRESHOLD` para um index individual usando `ALTER TABLE`:
 
   ```sql
   CREATE TABLE t1 (
@@ -53,20 +53,20 @@ To set the `MERGE_THRESHOLD` value for an individual index, you can use the *`in
   ALTER TABLE t1 ADD KEY id_index (id) COMMENT 'MERGE_THRESHOLD=40';
   ```
 
-* Setting `MERGE_THRESHOLD` for an individual index using `CREATE INDEX`:
+* Definindo `MERGE_THRESHOLD` para um index individual usando `CREATE INDEX`:
 
   ```sql
   CREATE TABLE t1 (id INT);
   CREATE INDEX id_index ON t1 (id) COMMENT 'MERGE_THRESHOLD=40';
   ```
 
-Note
+Nota
 
-You cannot modify the `MERGE_THRESHOLD` value at the index level for `GEN_CLUST_INDEX`, which is the clustered index created by `InnoDB` when an `InnoDB` table is created without a primary key or unique key index. You can only modify the `MERGE_THRESHOLD` value for `GEN_CLUST_INDEX` by setting `MERGE_THRESHOLD` for the table.
+Você não pode modificar o valor de `MERGE_THRESHOLD` no nível do index para `GEN_CLUST_INDEX`, que é o clustered index criado pelo `InnoDB` quando uma table `InnoDB` é criada sem uma primary key ou unique key index. Você só pode modificar o valor de `MERGE_THRESHOLD` para `GEN_CLUST_INDEX` definindo `MERGE_THRESHOLD` para a table.
 
-#### Querying the MERGE_THRESHOLD Value for an Index
+#### Consultando o Valor de MERGE_THRESHOLD para um Index
 
-The current `MERGE_THRESHOLD` value for an index can be obtained by querying the `INNODB_SYS_INDEXES` table. For example:
+O valor atual de `MERGE_THRESHOLD` para um index pode ser obtido consultando a table `INNODB_SYS_INDEXES`. Por exemplo:
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_SYS_INDEXES WHERE NAME='id_index' \G
@@ -81,7 +81,7 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_SYS_INDEXES WHERE NAME='id_index'
 MERGE_THRESHOLD: 40
 ```
 
-You can use `SHOW CREATE TABLE` to view the `MERGE_THRESHOLD` value for a table, if explicitly defined using the *`table_option`* `COMMENT` clause:
+Você pode usar `SHOW CREATE TABLE` para visualizar o valor de `MERGE_THRESHOLD` para uma table, se definido explicitamente usando a cláusula *`table_option`* `COMMENT`:
 
 ```sql
 mysql> SHOW CREATE TABLE t2 \G
@@ -93,11 +93,11 @@ Create Table: CREATE TABLE `t2` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 ```
 
-Note
+Nota
 
-A `MERGE_THRESHOLD` value defined at the index level takes priority over a `MERGE_THRESHOLD` value defined for the table. If undefined, `MERGE_THRESHOLD` defaults to 50% (`MERGE_THRESHOLD=50`, which is the previously hardcoded value.
+Um valor `MERGE_THRESHOLD` definido no nível do index tem prioridade sobre um valor `MERGE_THRESHOLD` definido para a table. Se não for definido, `MERGE_THRESHOLD` assume o padrão de 50% (`MERGE_THRESHOLD=50`), que é o valor previamente fixado (hardcoded).
 
-Likewise, you can use `SHOW INDEX` to view the `MERGE_THRESHOLD` value for an index, if explicitly defined using the *`index_option`* `COMMENT` clause:
+Da mesma forma, você pode usar `SHOW INDEX` para visualizar o valor de `MERGE_THRESHOLD` para um index, se definido explicitamente usando a cláusula *`index_option`* `COMMENT`:
 
 ```sql
 mysql> SHOW INDEX FROM t2 \G
@@ -117,9 +117,9 @@ mysql> SHOW INDEX FROM t2 \G
 Index_comment: MERGE_THRESHOLD=40
 ```
 
-#### Measuring the Effect of MERGE_THRESHOLD Settings
+#### Medindo o Efeito das Configurações de MERGE_THRESHOLD
 
-The `INNODB_METRICS` table provides two counters that can be used to measure the effect of a `MERGE_THRESHOLD` setting on index page merges.
+A table `INNODB_METRICS` fornece dois counters que podem ser usados para medir o efeito de uma configuração de `MERGE_THRESHOLD` nos merges de index page.
 
 ```sql
 mysql> SELECT NAME, COMMENT FROM INFORMATION_SCHEMA.INNODB_METRICS
@@ -132,12 +132,12 @@ mysql> SELECT NAME, COMMENT FROM INFORMATION_SCHEMA.INNODB_METRICS
 +-----------------------------+----------------------------------------+
 ```
 
-When lowering the `MERGE_THRESHOLD` value, the objectives are:
+Ao reduzir o valor de `MERGE_THRESHOLD`, os objetivos são:
 
-* A smaller number of page merge attempts and successful page merges
+* Um número menor de tentativas de page merge e de page merges bem-sucedidos
 
-* A similar number of page merge attempts and successful page merges
+* Um número similar de tentativas de page merge e de page merges bem-sucedidos
 
-A `MERGE_THRESHOLD` setting that is too small could result in large data files due to an excessive amount of empty page space.
+Uma configuração de `MERGE_THRESHOLD` muito pequena pode resultar em arquivos de dados grandes devido a uma quantidade excessiva de espaço vazio nas páginas.
 
-For information about using `INNODB_METRICS` counters, see Section 14.16.6, “InnoDB INFORMATION_SCHEMA Metrics Table”.
+Para obter informações sobre como usar os counters de `INNODB_METRICS`, consulte a Seção 14.16.6, "InnoDB INFORMATION_SCHEMA Metrics Table".

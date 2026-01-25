@@ -1,53 +1,53 @@
-#### 21.6.3.1 NDB Cluster Logging Management Commands
+#### 21.6.3.1 Comandos de Gerenciamento de Logging do NDB Cluster
 
-[**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") supports a number of management commands related to the cluster log and node logs. In the listing that follows, *`node_id`* denotes either a storage node ID or the keyword `ALL`, which indicates that the command should be applied to all of the cluster's data nodes.
+[**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") suporta vários comandos de gerenciamento relacionados ao log do cluster e aos logs dos nodes. Na lista a seguir, *`node_id`* denota o ID de um nó de armazenamento (storage node ID) ou a palavra-chave `ALL`, que indica que o comando deve ser aplicado a todos os data nodes do cluster.
 
 * `CLUSTERLOG ON`
 
-  Turns the cluster log on.
+  Liga o log do cluster.
 
 * `CLUSTERLOG OFF`
 
-  Turns the cluster log off.
+  Desliga o log do cluster.
 
 * `CLUSTERLOG INFO`
 
-  Provides information about cluster log settings.
+  Fornece informações sobre as configurações do log do cluster.
 
 * `node_id CLUSTERLOG category=threshold`
 
-  Logs *`category`* events with priority less than or equal to *`threshold`* in the cluster log.
+  Registra eventos da *`category`* com prioridade menor ou igual a *`threshold`* no log do cluster.
 
 * `CLUSTERLOG TOGGLE severity_level`
 
-  Toggles cluster logging of events of the specified *`severity_level`*.
+  Alterna o logging de eventos do cluster do *`severity_level`* especificado.
 
-The following table describes the default setting (for all data nodes) of the cluster log category threshold. If an event has a priority with a value lower than or equal to the priority threshold, it is reported in the cluster log.
+A tabela a seguir descreve a configuração padrão (para todos os data nodes) do limite (threshold) da categoria do log do cluster. Se um evento tiver uma prioridade com um valor menor ou igual ao limite de prioridade, ele será reportado no log do cluster.
 
-Note
+Nota
 
-Events are reported per data node, and that the threshold can be set to different values on different nodes.
+Os eventos são reportados por data node, e o limite (threshold) pode ser configurado para valores diferentes em nodes diferentes.
 
-**Table 21.48 Cluster log categories, with default threshold setting**
+**Tabela 21.48 Categorias do log do Cluster, com configuração de limite padrão**
 
-<table><thead><tr> <th>Category</th> <th>Default threshold (All data nodes)</th> </tr></thead><tbody><tr> <td><code>STARTUP</code></td> <td><code>7</code></td> </tr><tr> <td><code>SHUTDOWN</code></td> <td><code>7</code></td> </tr><tr> <td><code>STATISTICS</code></td> <td><code>7</code></td> </tr><tr> <td><code>CHECKPOINT</code></td> <td><code>7</code></td> </tr><tr> <td><code>NODERESTART</code></td> <td><code>7</code></td> </tr><tr> <td><code>CONNECTION</code></td> <td><code>8</code></td> </tr><tr> <td><code>ERROR</code></td> <td><code>15</code></td> </tr><tr> <td><code>INFO</code></td> <td><code>7</code></td> </tr><tr> <td><code>BACKUP</code></td> <td><code>15</code></td> </tr><tr> <td><code>CONGESTION</code></td> <td><code>7</code></td> </tr><tr> <td><code>SCHEMA</code></td> <td><code>7</code></td> </tr></tbody></table>
+<table><thead><tr> <th>Categoria</th> <th>Limite Padrão (Todos os Data Nodes)</th> </tr></thead><tbody><tr> <td><code>STARTUP</code></td> <td><code>7</code></td> </tr><tr> <td><code>SHUTDOWN</code></td> <td><code>7</code></td> </tr><tr> <td><code>STATISTICS</code></td> <td><code>7</code></td> </tr><tr> <td><code>CHECKPOINT</code></td> <td><code>7</code></td> </tr><tr> <td><code>NODERESTART</code></td> <td><code>7</code></td> </tr><tr> <td><code>CONNECTION</code></td> <td><code>8</code></td> </tr><tr> <td><code>ERROR</code></td> <td><code>15</code></td> </tr><tr> <td><code>INFO</code></td> <td><code>7</code></td> </tr><tr> <td><code>BACKUP</code></td> <td><code>15</code></td> </tr><tr> <td><code>CONGESTION</code></td> <td><code>7</code></td> </tr><tr> <td><code>SCHEMA</code></td> <td><code>7</code></td> </tr></tbody></table>
 
-The `STATISTICS` category can provide a great deal of useful data. See [Section 21.6.3.3, “Using CLUSTERLOG STATISTICS in the NDB Cluster Management Client”](mysql-cluster-log-statistics.html "21.6.3.3 Using CLUSTERLOG STATISTICS in the NDB Cluster Management Client"), for more information.
+A categoria `STATISTICS` pode fornecer uma grande quantidade de dados úteis. Consulte [Seção 21.6.3.3, “Utilizando CLUSTERLOG STATISTICS no Cliente de Gerenciamento do NDB Cluster”](mysql-cluster-log-statistics.html "21.6.3.3 Using CLUSTERLOG STATISTICS in the NDB Cluster Management Client"), para mais informações.
 
-Thresholds are used to filter events within each category. For example, a `STARTUP` event with a priority of 3 is not logged unless the threshold for `STARTUP` is set to 3 or higher. Only events with priority 3 or lower are sent if the threshold is 3.
+Os Limites (Thresholds) são usados para filtrar eventos dentro de cada categoria. Por exemplo, um evento `STARTUP` com prioridade 3 não é registrado a menos que o limite para `STARTUP` seja definido como 3 ou superior. Somente eventos com prioridade 3 ou inferior são enviados se o limite for 3.
 
-The following table shows the event severity levels.
+A tabela a seguir mostra os níveis de severidade de eventos.
 
-Note
+Nota
 
-These correspond to Unix `syslog` levels, except for `LOG_EMERG` and `LOG_NOTICE`, which are not used or mapped.
+Estes correspondem aos níveis de `syslog` do Unix, exceto por `LOG_EMERG` e `LOG_NOTICE`, que não são usados ou mapeados.
 
-**Table 21.49 Event severity levels**
+**Tabela 21.49 Níveis de severidade de evento**
 
-<table><col style="width: 20%"/><col style="width: 20%"/><col style="width: 60%"/><thead><tr> <th>Severity Level Value</th> <th>Severity</th> <th>Description</th> </tr></thead><tbody><tr> <th>1</th> <td><code>ALERT</code></td> <td>A condition that should be corrected immediately, such as a corrupted system database</td> </tr><tr> <th>2</th> <td><code>CRITICAL</code></td> <td>Critical conditions, such as device errors or insufficient resources</td> </tr><tr> <th>3</th> <td><code>ERROR</code></td> <td>Conditions that should be corrected, such as configuration errors</td> </tr><tr> <th>4</th> <td><code>WARNING</code></td> <td>Conditions that are not errors, but that might require special handling</td> </tr><tr> <th>5</th> <td><code>INFO</code></td> <td>Informational messages</td> </tr><tr> <th>6</th> <td><code>DEBUG</code></td> <td>Debugging messages used for <code>NDBCLUSTER</code> development</td> </tr></tbody></table>
+<table><col style="width: 20%"/><col style="width: 20%"/><col style="width: 60%"/><thead><tr> <th>Valor do Nível de Severidade</th> <th>Severidade</th> <th>Descrição</th> </tr></thead><tbody><tr> <th>1</th> <td><code>ALERT</code></td> <td>Uma condição que deve ser corrigida imediatamente, como um Database de sistema corrompido</td> </tr><tr> <th>2</th> <td><code>CRITICAL</code></td> <td>Condições críticas, como erros de dispositivo ou recursos insuficientes</td> </tr><tr> <th>3</th> <td><code>ERROR</code></td> <td>Condições que devem ser corrigidas, como erros de configuração</td> </tr><tr> <th>4</th> <td><code>WARNING</code></td> <td>Condições que não são erros, mas que podem exigir tratamento especial</td> </tr><tr> <th>5</th> <td><code>INFO</code></td> <td>Mensagens informativas</td> </tr><tr> <th>6</th> <td><code>DEBUG</code></td> <td>Mensagens de Debugging usadas para o desenvolvimento do <code>NDBCLUSTER</code></td> </tr></tbody></table>
 
-Event severity levels can be turned on or off using `CLUSTERLOG TOGGLE`. If a severity level is turned on, then all events with a priority less than or equal to the category thresholds are logged. If the severity level is turned off then no events belonging to that severity level are logged.
+Os níveis de severidade de evento podem ser ligados ou desligados usando `CLUSTERLOG TOGGLE`. Se um nível de severidade estiver ligado, todos os eventos com uma prioridade menor ou igual aos limites da categoria são registrados. Se o nível de severidade estiver desligado, nenhum evento pertencente a esse nível de severidade será registrado.
 
-Important
+Importante
 
-Cluster log levels are set on a per [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"), per subscriber basis. This means that, in an NDB Cluster with multiple management servers, using a `CLUSTERLOG` command in an instance of [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") connected to one management server affects only logs generated by that management server but not by any of the others. This also means that, should one of the management servers be restarted, only logs generated by that management server are affected by the resetting of log levels caused by the restart.
+Os níveis de log do cluster são definidos por [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"), por assinante (subscriber). Isto significa que, em um NDB Cluster com múltiplos management servers, usar um comando `CLUSTERLOG` em uma instância do [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") conectado a um management server afeta apenas os logs gerados por esse management server, mas não por nenhum dos outros. Isso também significa que, caso um dos management servers seja reiniciado, apenas os logs gerados por esse management server são afetados pela redefinição dos níveis de log causada pela reinicialização.

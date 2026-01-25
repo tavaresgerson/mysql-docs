@@ -1,7 +1,38 @@
-### 24.4.1 INFORMATION_SCHEMA InnoDB Table Reference
+### 24.4.1 Referência de Tabelas InnoDB do INFORMATION_SCHEMA
 
-The following table summarizes `INFORMATION_SCHEMA` InnoDB tables. For greater detail, see the individual table descriptions.
+A tabela a seguir resume as tabelas InnoDB do `INFORMATION_SCHEMA`. Para mais detalhes, consulte as descrições individuais das tabelas.
 
-**Table 24.3 INFORMATION_SCHEMA InnoDB Tables**
+**Tabela 24.3 Tabelas InnoDB do INFORMATION_SCHEMA**
 
-<table frame="box" rules="all" summary="A reference that lists INFORMATION_SCHEMA InnoDB tables."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Table Name</th> <th>Description</th> <th>Deprecated</th> </tr></thead><tbody><tr><th><code>INNODB_BUFFER_PAGE</code></th> <td>Pages in InnoDB buffer pool</td> <td></td> </tr><tr><th><code>INNODB_BUFFER_PAGE_LRU</code></th> <td>LRU ordering of pages in InnoDB buffer pool</td> <td></td> </tr><tr><th><code>INNODB_BUFFER_POOL_STATS</code></th> <td>InnoDB buffer pool statistics</td> <td></td> </tr><tr><th><code>INNODB_CMP</code></th> <td>Status for operations related to compressed InnoDB tables</td> <td></td> </tr><tr><th><code>INNODB_CMP_PER_INDEX</code></th> <td>Status for operations related to compressed InnoDB tables and indexes</td> <td></td> </tr><tr><th><code>INNODB_CMP_PER_INDEX_RESET</code></th> <td>Status for operations related to compressed InnoDB tables and indexes</td> <td></td> </tr><tr><th><code>INNODB_CMP_RESET</code></th> <td>Status for operations related to compressed InnoDB tables</td> <td></td> </tr><tr><th><code>INNODB_CMPMEM</code></th> <td>Status for compressed pages within InnoDB buffer pool</td> <td></td> </tr><tr><th><code>INNODB_CMPMEM_RESET</code></th> <td>Status for compressed pages within InnoDB buffer pool</td> <td></td> </tr><tr><th><code>INNODB_FT_BEING_DELETED</code></th> <td>Snapshot of INNODB_FT_DELETED table</td> <td></td> </tr><tr><th><code>INNODB_FT_CONFIG</code></th> <td>Metadata for InnoDB table FULLTEXT index and associated processing</td> <td></td> </tr><tr><th><code>INNODB_FT_DEFAULT_STOPWORD</code></th> <td>Default list of stopwords for InnoDB FULLTEXT indexes</td> <td></td> </tr><tr><th><code>INNODB_FT_DELETED</code></th> <td>Rows deleted from InnoDB table FULLTEXT index</td> <td></td> </tr><tr><th><code>INNODB_FT_INDEX_CACHE</code></th> <td>Token information for newly inserted rows in InnoDB FULLTEXT index</td> <td></td> </tr><tr><th><code>INNODB_FT_INDEX_TABLE</code></th> <td>Inverted index information for processing text searches against InnoDB table FULLTEXT index</td> <td></td> </tr><tr><th><code>INNODB_LOCK_WAITS</code></th> <td>InnoDB transaction lock-wait information</td> <td>5.7.14</td> </tr><tr><th><code>INNODB_LOCKS</code></th> <td>InnoDB transaction lock information</td> <td>5.7.14</td> </tr><tr><th><code>INNODB_METRICS</code></th> <td>InnoDB performance information</td> <td></td> </tr><tr><th><code>INNODB_SYS_COLUMNS</code></th> <td>Columns in each InnoDB table</td> <td></td> </tr><tr><th><code>INNODB_SYS_DATAFILES</code></th> <td>Data file path information for InnoDB file-per-table and general tablespaces</td> <td></td> </tr><tr><th><code>INNODB_SYS_FIELDS</code></th> <td>Key columns of InnoDB indexes</td> <td></td> </tr><tr><th><code>INNODB_SYS_FOREIGN</code></th> <td>InnoDB foreign-key metadata</td> <td></td> </tr><tr><th><code>INNODB_SYS_FOREIGN_COLS</code></th> <td>InnoDB foreign-key column status information</td> <td></td> </tr><tr><th><code>INNODB_SYS_INDEXES</code></th> <td>InnoDB index metadata</td> <td></td> </tr><tr><th><code>INNODB_SYS_TABLES</code></th> <td>InnoDB table metadata</td> <td></td> </tr><tr><th><code>INNODB_SYS_TABLESPACES</code></th> <td>InnoDB file-per-table, general, and undo tablespace metadata</td> <td></td> </tr><tr><th><code>INNODB_SYS_TABLESTATS</code></th> <td>InnoDB table low-level status information</td> <td></td> </tr><tr><th><code>INNODB_SYS_VIRTUAL</code></th> <td>InnoDB virtual generated column metadata</td> <td></td> </tr><tr><th><code>INNODB_TEMP_TABLE_INFO</code></th> <td>Information about active user-created InnoDB temporary tables</td> <td></td> </tr><tr><th><code>INNODB_TRX</code></th> <td>Active InnoDB transaction information</td> <td></td> </tr></tbody></table>
+| Nome da Tabela | Descrição | Descontinuada |
+| :--- | :--- | :--- |
+| `INNODB_BUFFER_PAGE` | Páginas no InnoDB Buffer Pool | |
+| `INNODB_BUFFER_PAGE_LRU` | Ordenação LRU das páginas no InnoDB Buffer Pool | |
+| `INNODB_BUFFER_POOL_STATS` | Estatísticas do InnoDB Buffer Pool | |
+| `INNODB_CMP` | Status das operações relacionadas a tabelas InnoDB compactadas | |
+| `INNODB_CMP_PER_INDEX` | Status das operações relacionadas a tabelas e Indexes InnoDB compactados | |
+| `INNODB_CMP_PER_INDEX_RESET` | Status das operações relacionadas a tabelas e Indexes InnoDB compactados | |
+| `INNODB_CMP_RESET` | Status das operações relacionadas a tabelas InnoDB compactadas | |
+| `INNODB_CMPMEM` | Status das páginas compactadas dentro do InnoDB Buffer Pool | |
+| `INNODB_CMPMEM_RESET` | Status das páginas compactadas dentro do InnoDB Buffer Pool | |
+| `INNODB_FT_BEING_DELETED` | Snapshot da tabela INNODB_FT_DELETED | |
+| `INNODB_FT_CONFIG` | Metadados para FULLTEXT Index de tabelas InnoDB e processamento associado | |
+| `INNODB_FT_DEFAULT_STOPWORD` | Lista padrão de "stopwords" para FULLTEXT Indexes InnoDB | |
+| `INNODB_FT_DELETED` | Linhas excluídas do FULLTEXT Index de tabelas InnoDB | |
+| `INNODB_FT_INDEX_CACHE` | Informações de Token para linhas recém-inseridas no FULLTEXT Index InnoDB | |
+| `INNODB_FT_INDEX_TABLE` | Informações de Inverted Index para processamento de buscas de texto em FULLTEXT Index de tabelas InnoDB | |
+| `INNODB_LOCK_WAITS` | Informações de espera de Lock de transações InnoDB | 5.7.14 |
+| `INNODB_LOCKS` | Informações de Lock de transações InnoDB | 5.7.14 |
+| `INNODB_METRICS` | Informações de performance do InnoDB | |
+| `INNODB_SYS_COLUMNS` | Colunas em cada tabela InnoDB | |
+| `INNODB_SYS_DATAFILES` | Informações de caminho de Data File para tablespaces file-per-table e gerais do InnoDB | |
+| `INNODB_SYS_FIELDS` | Colunas chave de Indexes InnoDB | |
+| `INNODB_SYS_FOREIGN` | Metadados de Foreign Key InnoDB | |
+| `INNODB_SYS_FOREIGN_COLS` | Informações de status de coluna de Foreign Key InnoDB | |
+| `INNODB_SYS_INDEXES` | Metadados de Index InnoDB | |
+| `INNODB_SYS_TABLES` | Metadados de tabela InnoDB | |
+| `INNODB_SYS_TABLESPACES` | Metadados de tablespace file-per-table, geral e undo do InnoDB | |
+| `INNODB_SYS_TABLESTATS` | Informações de status de baixo nível de tabelas InnoDB | |
+| `INNODB_SYS_VIRTUAL` | Metadados de coluna gerada virtual do InnoDB | |
+| `INNODB_TEMP_TABLE_INFO` | Informações sobre tabelas temporárias InnoDB ativas criadas pelo usuário | |
+| `INNODB_TRX` | Informações de transação InnoDB ativas | |

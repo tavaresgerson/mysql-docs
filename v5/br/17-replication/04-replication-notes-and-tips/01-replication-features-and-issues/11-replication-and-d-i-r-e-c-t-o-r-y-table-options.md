@@ -1,5 +1,7 @@
-#### 16.4.1.11 Replication and DIRECTORY Table Options
+#### 16.4.1.11 Replicação e Opções de Tabela DIRECTORY
 
-If a `DATA DIRECTORY` or `INDEX DIRECTORY` table option is used in a [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement on the source server, the table option is also used on the replica. This can cause problems if no corresponding directory exists in the replica host's file system or if it exists but is not accessible to the replica server. This can be overridden by using the [`NO_DIR_IN_CREATE`](sql-mode.html#sqlmode_no_dir_in_create) server SQL mode on the replica, which causes the replica to ignore the `DATA DIRECTORY` and `INDEX DIRECTORY` table options when replicating [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statements. The result is that `MyISAM` data and index files are created in the table's database directory.
+Se uma opção de tabela `DATA DIRECTORY` ou `INDEX DIRECTORY` for usada em uma instrução [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") no servidor source, a opção de tabela também é usada no replica. Isso pode causar problemas se não houver um directory correspondente no file system do host replica ou se ele existir, mas não estiver acessível ao servidor replica.
 
-For more information, see [Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes").
+Isso pode ser sobrescrito usando o SQL mode de servidor [`NO_DIR_IN_CREATE`](sql-mode.html#sqlmode_no_dir_in_create) no replica, o que faz com que o replica ignore as opções de tabela `DATA DIRECTORY` e `INDEX DIRECTORY` ao replicar instruções [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement"). O resultado é que os arquivos de dados e Index do `MyISAM` são criados no database directory da tabela.
+
+Para mais informações, consulte [Seção 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes").

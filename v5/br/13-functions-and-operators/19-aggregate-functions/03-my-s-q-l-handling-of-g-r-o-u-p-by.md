@@ -1,6 +1,6 @@
-### 12.19.3 MySQL Handling of GROUP BY
+### 12.19.3 Tratamento de GROUP BY pelo MySQL
 
-SQL-92 and earlier does not permit queries for which the select list, `HAVING` condition, or `ORDER BY` list refer to nonaggregated columns that are not named in the `GROUP BY` clause. For example, this query is illegal in standard SQL-92 because the nonaggregated `name` column in the select list does not appear in the `GROUP BY`:
+SQL-92 e padrões anteriores não permitem Queries nas quais a lista de seleção, a condição `HAVING` ou a lista `ORDER BY` referenciem colunas não agregadas que não estão nomeadas na cláusula `GROUP BY`. Por exemplo, esta Query é ilegal no SQL-92 padrão porque a coluna não agregada `name` na lista de seleção não aparece no `GROUP BY`:
 
 ```sql
 SELECT o.custid, c.name, MAX(o.payment)
@@ -9,13 +9,13 @@ SELECT o.custid, c.name, MAX(o.payment)
   GROUP BY o.custid;
 ```
 
-For the query to be legal in SQL-92, the `name` column must be omitted from the select list or named in the `GROUP BY` clause.
+Para que a Query seja legal no SQL-92, a coluna `name` deve ser omitida da lista de seleção ou nomeada na cláusula `GROUP BY`.
 
-SQL:1999 and later permits such nonaggregates per optional feature T301 if they are functionally dependent on `GROUP BY` columns: If such a relationship exists between `name` and `custid`, the query is legal. This would be the case, for example, were `custid` a primary key of `customers`.
+SQL:1999 e padrões posteriores permitem tais não agregados pelo recurso opcional T301 se eles forem funcionalmente dependentes das colunas do `GROUP BY`: Se tal relacionamento existir entre `name` e `custid`, a Query é legal. Este seria o caso, por exemplo, se `custid` fosse uma Primary Key de `customers`.
 
-MySQL 5.7.5 and later implements detection of functional dependence. If the `ONLY_FULL_GROUP_BY` SQL mode is enabled (which it is by default), MySQL rejects queries for which the select list, `HAVING` condition, or `ORDER BY` list refer to nonaggregated columns that are neither named in the `GROUP BY` clause nor are functionally dependent on them. (Before 5.7.5, MySQL does not detect functional dependency and `ONLY_FULL_GROUP_BY` is not enabled by default.)
+O MySQL 5.7.5 e posterior implementa a detecção de dependência funcional. Se o SQL mode `ONLY_FULL_GROUP_BY` estiver ativado (o que é por padrão), o MySQL rejeita Queries para as quais a lista de seleção, a condição `HAVING` ou a lista `ORDER BY` referenciem colunas não agregadas que não estão nomeadas na cláusula `GROUP BY` nem são funcionalmente dependentes delas. (Antes do 5.7.5, o MySQL não detecta dependência funcional e `ONLY_FULL_GROUP_BY` não é ativado por padrão.)
 
-MySQL 5.7.5 and later also permits a nonaggregate column not named in a `GROUP BY` clause when `ONLY_FULL_GROUP_BY` SQL mode is enabled, provided that this column is limited to a single value, as shown in the following example:
+O MySQL 5.7.5 e posterior também permite uma coluna não agregada não nomeada em uma cláusula `GROUP BY` quando o SQL mode `ONLY_FULL_GROUP_BY` está ativado, desde que esta coluna esteja limitada a um único valor, como mostrado no exemplo a seguir:
 
 ```sql
 mysql> CREATE TABLE mytable (
@@ -39,7 +39,7 @@ mysql> SELECT a, SUM(b) FROM mytable WHERE a = 'abc';
 +------+--------+
 ```
 
-It is also possible to have more than one nonaggregate column in the `SELECT` list when employing `ONLY_FULL_GROUP_BY`. In this case, every such column must be limited to a single value, and all such limiting conditions must be joined by logical `AND`, as shown here:
+Também é possível ter mais de uma coluna não agregada na lista `SELECT` ao usar `ONLY_FULL_GROUP_BY`. Neste caso, cada uma dessas colunas deve ser limitada a um único valor, e todas essas condições limitantes devem ser unidas por `AND` lógico, como mostrado aqui:
 
 ```sql
 mysql> DROP TABLE IF EXISTS mytable;
@@ -75,21 +75,21 @@ mysql> SELECT a, b, SUM(c) FROM mytable
 +------+------+--------+
 ```
 
-If `ONLY_FULL_GROUP_BY` is disabled, a MySQL extension to the standard SQL use of `GROUP BY` permits the select list, `HAVING` condition, or `ORDER BY` list to refer to nonaggregated columns even if the columns are not functionally dependent on `GROUP BY` columns. This causes MySQL to accept the preceding query. In this case, the server is free to choose any value from each group, so unless they are the same, the values chosen are nondeterministic, which is probably not what you want. Furthermore, the selection of values from each group cannot be influenced by adding an `ORDER BY` clause. Result set sorting occurs after values have been chosen, and `ORDER BY` does not affect which value within each group the server chooses. Disabling `ONLY_FULL_GROUP_BY` is useful primarily when you know that, due to some property of the data, all values in each nonaggregated column not named in the `GROUP BY` are the same for each group.
+Se `ONLY_FULL_GROUP_BY` estiver desativado, uma extensão do MySQL ao uso padrão SQL de `GROUP BY` permite que a lista de seleção, a condição `HAVING` ou a lista `ORDER BY` referenciem colunas não agregadas, mesmo que as colunas não sejam funcionalmente dependentes das colunas do `GROUP BY`. Isso faz com que o MySQL aceite a Query anterior. Neste caso, o servidor está livre para escolher qualquer valor de cada grupo, então, a menos que sejam os mesmos, os valores escolhidos são não determinísticos, o que provavelmente não é o que você deseja. Além disso, a seleção de valores de cada grupo não pode ser influenciada pela adição de uma cláusula `ORDER BY`. A classificação do conjunto de resultados ocorre depois que os valores foram escolhidos, e o `ORDER BY` não afeta qual valor dentro de cada grupo o servidor escolhe. Desativar `ONLY_FULL_GROUP_BY` é útil principalmente quando você sabe que, devido a alguma propriedade dos dados, todos os valores em cada coluna não agregada não nomeada no `GROUP BY` são os mesmos para cada grupo.
 
-You can achieve the same effect without disabling `ONLY_FULL_GROUP_BY` by using `ANY_VALUE()` to refer to the nonaggregated column.
+Você pode obter o mesmo efeito sem desativar `ONLY_FULL_GROUP_BY` usando `ANY_VALUE()` para referenciar a coluna não agregada.
 
-The following discussion demonstrates functional dependence, the error message MySQL produces when functional dependence is absent, and ways of causing MySQL to accept a query in the absence of functional dependence.
+A discussão a seguir demonstra a dependência funcional, a mensagem de erro que o MySQL produz quando a dependência funcional está ausente e maneiras de fazer com que o MySQL aceite uma Query na ausência de dependência funcional.
 
-This query might be invalid with `ONLY_FULL_GROUP_BY` enabled because the nonaggregated `address` column in the select list is not named in the `GROUP BY` clause:
+Esta Query pode ser inválida com `ONLY_FULL_GROUP_BY` ativado porque a coluna não agregada `address` na lista de seleção não está nomeada na cláusula `GROUP BY`:
 
 ```sql
 SELECT name, address, MAX(age) FROM t GROUP BY name;
 ```
 
-The query is valid if `name` is a primary key of `t` or is a unique `NOT NULL` column. In such cases, MySQL recognizes that the selected column is functionally dependent on a grouping column. For example, if `name` is a primary key, its value determines the value of `address` because each group has only one value of the primary key and thus only one row. As a result, there is no randomness in the choice of `address` value in a group and no need to reject the query.
+A Query é válida se `name` for uma Primary Key de `t` ou for uma coluna `NOT NULL` exclusiva (unique). Nesses casos, o MySQL reconhece que a coluna selecionada é funcionalmente dependente de uma coluna de agrupamento. Por exemplo, se `name` é uma Primary Key, seu valor determina o valor de `address` porque cada grupo tem apenas um valor da Primary Key e, portanto, apenas uma linha. Como resultado, não há aleatoriedade na escolha do valor de `address` em um grupo e não há necessidade de rejeitar a Query.
 
-The query is invalid if `name` is not a primary key of `t` or a unique `NOT NULL` column. In this case, no functional dependency can be inferred and an error occurs:
+A Query é inválida se `name` não for uma Primary Key de `t` ou uma coluna `NOT NULL` exclusiva. Neste caso, nenhuma dependência funcional pode ser inferida e ocorre um erro:
 
 ```sql
 mysql> SELECT name, address, MAX(age) FROM t GROUP BY name;
@@ -99,17 +99,17 @@ is not functionally dependent on columns in GROUP BY clause; this
 is incompatible with sql_mode=only_full_group_by
 ```
 
-If you know that, *for a given data set,* each `name` value in fact uniquely determines the `address` value, `address` is effectively functionally dependent on `name`. To tell MySQL to accept the query, you can use the `ANY_VALUE()` function:
+Se você souber que, *para um dado conjunto de dados*, cada valor de `name` de fato determina unicamente o valor de `address`, `address` é efetivamente funcionalmente dependente de `name`. Para instruir o MySQL a aceitar a Query, você pode usar a função `ANY_VALUE()`:
 
 ```sql
 SELECT name, ANY_VALUE(address), MAX(age) FROM t GROUP BY name;
 ```
 
-Alternatively, disable `ONLY_FULL_GROUP_BY`.
+Alternativamente, desative `ONLY_FULL_GROUP_BY`.
 
-The preceding example is quite simple, however. In particular, it is unlikely you would group on a single primary key column because every group would contain only one row. For addtional examples demonstrating functional dependence in more complex queries, see Section 12.19.4, “Detection of Functional Dependence”.
+O exemplo anterior é bastante simples, no entanto. Em particular, é improvável que você agrupe em uma única coluna de Primary Key, pois cada grupo conteria apenas uma linha. Para exemplos adicionais que demonstram dependência funcional em Queries mais complexas, consulte Seção 12.19.4, “Detection of Functional Dependence”.
 
-If a query has aggregate functions and no `GROUP BY` clause, it cannot have nonaggregated columns in the select list, `HAVING` condition, or `ORDER BY` list with `ONLY_FULL_GROUP_BY` enabled:
+Se uma Query tiver funções de agregação e nenhuma cláusula `GROUP BY`, ela não poderá ter colunas não agregadas na lista de seleção, condição `HAVING` ou lista `ORDER BY` com `ONLY_FULL_GROUP_BY` ativado:
 
 ```sql
 mysql> SELECT name, MAX(age) FROM t;
@@ -118,13 +118,13 @@ ERROR 1140 (42000): In aggregated query without GROUP BY, expression
 is incompatible with sql_mode=only_full_group_by
 ```
 
-Without `GROUP BY`, there is a single group and it is nondeterministic which `name` value to choose for the group. Here, too, `ANY_VALUE()` can be used, if it is immaterial which `name` value MySQL chooses:
+Sem `GROUP BY`, há um único grupo e é não determinístico qual valor de `name` escolher para o grupo. Aqui, também, `ANY_VALUE()` pode ser usado, se for irrelevante qual valor de `name` o MySQL escolher:
 
 ```sql
 SELECT ANY_VALUE(name), MAX(age) FROM t;
 ```
 
-In MySQL 5.7.5 and later, `ONLY_FULL_GROUP_BY` also affects handling of queries that use `DISTINCT` and `ORDER BY`. Consider the case of a table `t` with three columns `c1`, `c2`, and `c3` that contains these rows:
+No MySQL 5.7.5 e posterior, `ONLY_FULL_GROUP_BY` também afeta o tratamento de Queries que usam `DISTINCT` e `ORDER BY`. Considere o caso de uma tabela `t` com três colunas `c1`, `c2` e `c3` que contém estas linhas:
 
 ```sql
 c1 c2 c3
@@ -133,18 +133,18 @@ c1 c2 c3
 1  2  C
 ```
 
-Suppose that we execute the following query, expecting the results to be ordered by `c3`:
+Suponha que executemos a seguinte Query, esperando que os resultados sejam ordenados por `c3`:
 
 ```sql
 SELECT DISTINCT c1, c2 FROM t ORDER BY c3;
 ```
 
-To order the result, duplicates must be eliminated first. But to do so, should we keep the first row or the third? This arbitrary choice influences the retained value of `c3`, which in turn influences ordering and makes it arbitrary as well. To prevent this problem, a query that has `DISTINCT` and `ORDER BY` is rejected as invalid if any `ORDER BY` expression does not satisfy at least one of these conditions:
+Para ordenar o resultado, os duplicados devem ser eliminados primeiro. Mas para fazer isso, devemos manter a primeira linha ou a terceira? Esta escolha arbitrária influencia o valor retido de `c3`, o que por sua vez influencia a ordenação e a torna arbitrária também. Para evitar este problema, uma Query que tenha `DISTINCT` e `ORDER BY` é rejeitada como inválida se qualquer expressão `ORDER BY` não satisfizer pelo menos uma destas condições:
 
-* The expression is equal to one in the select list
-* All columns referenced by the expression and belonging to the query's selected tables are elements of the select list
+* A expressão é igual a uma na lista de seleção
+* Todas as colunas referenciadas pela expressão e pertencentes às tabelas selecionadas da Query são elementos da lista de seleção
 
-Another MySQL extension to standard SQL permits references in the `HAVING` clause to aliased expressions in the select list. For example, the following query returns `name` values that occur only once in table `orders`:
+Outra extensão do MySQL ao SQL padrão permite referências na cláusula `HAVING` a expressões com alias (aliased expressions) na lista de seleção. Por exemplo, a seguinte Query retorna valores de `name` que ocorrem apenas uma vez na tabela `orders`:
 
 ```sql
 SELECT name, COUNT(name) FROM orders
@@ -152,7 +152,7 @@ SELECT name, COUNT(name) FROM orders
   HAVING COUNT(name) = 1;
 ```
 
-The MySQL extension permits the use of an alias in the `HAVING` clause for the aggregated column:
+A extensão do MySQL permite o uso de um alias na cláusula `HAVING` para a coluna agregada:
 
 ```sql
 SELECT name, COUNT(name) AS c FROM orders
@@ -160,11 +160,9 @@ SELECT name, COUNT(name) AS c FROM orders
   HAVING c = 1;
 ```
 
-Note
+**Nota** Antes do MySQL 5.7.5, ativar `ONLY_FULL_GROUP_BY` desabilita esta extensão, exigindo assim que a cláusula `HAVING` seja escrita usando expressões sem alias.
 
-Before MySQL 5.7.5, enabling `ONLY_FULL_GROUP_BY` disables this extension, thus requiring the `HAVING` clause to be written using unaliased expressions.
-
-Standard SQL permits only column expressions in `GROUP BY` clauses, so a statement such as this is invalid because `FLOOR(value/100)` is a noncolumn expression:
+O SQL padrão permite apenas expressões de coluna nas cláusulas `GROUP BY`, portanto, uma instrução como esta é inválida porque `FLOOR(value/100)` é uma expressão que não é uma coluna:
 
 ```sql
 SELECT id, FLOOR(value/100)
@@ -172,9 +170,9 @@ SELECT id, FLOOR(value/100)
   GROUP BY id, FLOOR(value/100);
 ```
 
-MySQL extends standard SQL to permit noncolumn expressions in `GROUP BY` clauses and considers the preceding statement valid.
+O MySQL estende o SQL padrão para permitir expressões que não são colunas nas cláusulas `GROUP BY` e considera a instrução anterior válida.
 
-Standard SQL also does not permit aliases in `GROUP BY` clauses. MySQL extends standard SQL to permit aliases, so another way to write the query is as follows:
+O SQL padrão também não permite aliases nas cláusulas `GROUP BY`. O MySQL estende o SQL padrão para permitir aliases, então outra forma de escrever a Query é a seguinte:
 
 ```sql
 SELECT id, FLOOR(value/100) AS val
@@ -182,9 +180,9 @@ SELECT id, FLOOR(value/100) AS val
   GROUP BY id, val;
 ```
 
-The alias `val` is considered a column expression in the `GROUP BY` clause.
+O alias `val` é considerado uma expressão de coluna na cláusula `GROUP BY`.
 
-In the presence of a noncolumn expression in the `GROUP BY` clause, MySQL recognizes equality between that expression and expressions in the select list. This means that with `ONLY_FULL_GROUP_BY` SQL mode enabled, the query containing `GROUP BY id, FLOOR(value/100)` is valid because that same `FLOOR()` expression occurs in the select list. However, MySQL does not try to recognize functional dependence on `GROUP BY` noncolumn expressions, so the following query is invalid with `ONLY_FULL_GROUP_BY` enabled, even though the third selected expression is a simple formula of the `id` column and the `FLOOR()` expression in the `GROUP BY` clause:
+Na presença de uma expressão que não é coluna na cláusula `GROUP BY`, o MySQL reconhece a igualdade entre essa expressão e as expressões na lista de seleção. Isso significa que, com o SQL mode `ONLY_FULL_GROUP_BY` ativado, a Query contendo `GROUP BY id, FLOOR(value/100)` é válida porque essa mesma expressão `FLOOR()` ocorre na lista de seleção. No entanto, o MySQL não tenta reconhecer a dependência funcional em expressões `GROUP BY` que não são colunas, então a Query a seguir é inválida com `ONLY_FULL_GROUP_BY` ativado, embora a terceira expressão selecionada seja uma fórmula simples da coluna `id` e da expressão `FLOOR()` na cláusula `GROUP BY`:
 
 ```sql
 SELECT id, FLOOR(value/100), id+FLOOR(value/100)
@@ -192,7 +190,7 @@ SELECT id, FLOOR(value/100), id+FLOOR(value/100)
   GROUP BY id, FLOOR(value/100);
 ```
 
-A workaround is to use a derived table:
+Uma solução alternativa é usar uma tabela derivada:
 
 ```sql
 SELECT id, F, id+F

@@ -1,16 +1,16 @@
-### 21.5.2 ndbinfo_select_all — Select From ndbinfo Tables
+### 21.5.2 ndbinfo_select_all — Select de Tabelas ndbinfo
 
-[**ndbinfo_select_all**](mysql-cluster-programs-ndbinfo-select-all.html "21.5.2 ndbinfo_select_all — Select From ndbinfo Tables") is a client program that selects all rows and columns from one or more tables in the [`ndbinfo`](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database") database
+O [**ndbinfo_select_all**](mysql-cluster-programs-ndbinfo-select-all.html "21.5.2 ndbinfo_select_all — Select From ndbinfo Tables") é um programa cliente que seleciona todas as linhas e colunas de uma ou mais tabelas no Database [`ndbinfo`](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database").
 
-Not all `ndbinfo` tables available in the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client can be read by this program (see later in this section). In addition, [**ndbinfo_select_all**](mysql-cluster-programs-ndbinfo-select-all.html "21.5.2 ndbinfo_select_all — Select From ndbinfo Tables") can show information about some tables internal to `ndbinfo` which cannot be accessed using SQL, including the `tables` and `columns` metadata tables.
+Nem todas as tabelas `ndbinfo` disponíveis no cliente [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") podem ser lidas por este programa (veja mais adiante nesta seção). Além disso, o [**ndbinfo_select_all**](mysql-cluster-programs-ndbinfo-select-all.html "21.5.2 ndbinfo_select_all — Select From ndbinfo Tables") pode exibir informações sobre algumas tabelas internas do `ndbinfo` que não podem ser acessadas usando SQL, incluindo as tabelas de metadados `tables` e `columns`.
 
-To select from one or more `ndbinfo` tables using [**ndbinfo_select_all**](mysql-cluster-programs-ndbinfo-select-all.html "21.5.2 ndbinfo_select_all — Select From ndbinfo Tables"), it is necessary to supply the names of the tables when invoking the program as shown here:
+Para fazer um select de uma ou mais tabelas `ndbinfo` usando [**ndbinfo_select_all**](mysql-cluster-programs-ndbinfo-select-all.html "21.5.2 ndbinfo_select_all — Select From ndbinfo Tables"), é necessário fornecer os nomes das tabelas ao invocar o programa, conforme mostrado aqui:
 
 ```sql
 $> ndbinfo_select_all table_name1  [table_name2] [...]
 ```
 
-For example:
+Por exemplo:
 
 ```sql
 $> ndbinfo_select_all logbuffers logspaces
@@ -41,133 +41,133 @@ node_id log_type        log_id  log_part        total   used    high
 $>
 ```
 
-Options that can be used with [**ndbinfo_select_all**](mysql-cluster-programs-ndbinfo-select-all.html "21.5.2 ndbinfo_select_all — Select From ndbinfo Tables") are shown in the following table. Additional descriptions follow the table.
+As opções que podem ser usadas com [**ndbinfo_select_all**](mysql-cluster-programs-ndbinfo-select-all.html "21.5.2 ndbinfo_select_all — Select From ndbinfo Tables") são mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
-**Table 21.23 Command-line options used with the program ndbinfo_select_all**
+**Tabela 21.23 Opções de linha de comando usadas com o programa ndbinfo_select_all**
 
-<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code> --character-sets-dir=path </code> </p></th> <td>Directory containing character sets</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retries=# </code> </p></th> <td>Number of times to retry connection before giving up</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retry-delay=# </code> </p></th> <td>Number of seconds to wait between attempts to contact management server</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection-string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Same as --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --core-file </code> </p></th> <td>Write core file on error; used in debugging</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--database=db_name</code>, </p><p> <code> -d </code> </p></th> <td>Name of database where table is located</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-extra-file=path </code> </p></th> <td>Read given file after global files are read</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-file=path </code> </p></th> <td>Read default options from given file only</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-group-suffix=string </code> </p></th> <td>Also read groups with concat(group, suffix)</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --delay=# </code> </p></th> <td>Set delay in seconds between loops</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>, </p><p> <code> -? </code> </p></th> <td>Display help text and exit</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --login-path=path </code> </p></th> <td>Read given path from login file</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--loops=#</code>, </p><p> <code> -l </code> </p></th> <td>Set number of times to perform select</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection-string</code>, </p><p> <code> -c </code> </p></th> <td>Set connect string for connecting to ndb_mgmd. Syntax: "[nodeid=id;][host=]hostname[:port]". Overrides entries in NDB_CONNECTSTRING and my.cnf</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection-string</code>, </p><p> <code> -c </code> </p></th> <td>Same as --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb-nodeid=# </code> </p></th> <td>Set node ID for this node, overriding any ID set by --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --no-defaults </code> </p></th> <td>Do not read default options from any option file other than login file</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb-optimized-node-selection </code> </p></th> <td>Enable optimizations for selection of nodes for transactions. Enabled by default; use --skip-ndb-optimized-node-selection to disable</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--parallelism=#</code>, </p><p> <code> -p </code> </p></th> <td>Set degree of parallelism</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --print-defaults </code> </p></th> <td>Print program argument list and exit</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>, </p><p> <code> -? </code> </p></th> <td>Display help text and exit; same as --help</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>, </p><p> <code> -V </code> </p></th> <td>Display version information and exit</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody></table>
+<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Formato</th> <th>Descrição</th> <th>Adicionado, Obsoleto ou Removido</th> </tr></thead><tbody><tr> <th><p> <code> --character-sets-dir=path </code> </p></th> <td>Diretório contendo character sets</td> <td><p> (Suportado em todas as versões NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retries=# </code> </p></th> <td>Número de vezes para tentar novamente a conexão antes de desistir</td> <td><p> (Suportado em todas as versões NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retry-delay=# </code> </p></th> <td>Número de segundos a esperar entre as tentativas de contato com o management server</td> <td><p> (Suportado em todas as versões NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection-string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p> (Suportado em todas as versões NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --core-file </code> </p></th> <td>Escreve core file em caso de erro; usado em debugging</td> <td><p> (Suportado em todas as versões NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--database=db_name</code>, </p><p> <code> -d </code> </p></th> <td>Nome do Database onde a tabela está localizada</td> <td><p> (Suportado em todas as versões NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-extra-file=path </code> </p></th> <td>Lê o arquivo fornecido após a leitura dos arquivos globais</td> <td><p> (Suportado em todas as versões NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-file=path </code> </p></th> <td>Lê as opções default apenas do arquivo fornecido</td> <td><p> (Suportado em todas as versões NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-group-suffix=string </code> </p></th> <td>Também lê grupos com concat(group, suffix)</td> <td><p> (Suportado em todas as versões NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --delay=# </code> </p></th> <td>Define o delay em segundos entre os loops</td> <td><p> (Suportado em todas as versões NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>, </p><p> <code> -? </code> </p></th> <td>Exibe o texto de ajuda e sai</td> <td><p> (Suportado em todas as versões NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --login-path=path </code> </p></th> <td>Lê o caminho fornecido a partir do arquivo de login</td> <td><p> (Suportado em todas as versões NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--loops=#</code>, </p><p> <code> -l </code> </p></th> <td>Define o número de vezes para realizar o select</td> <td><p> (Suportado em todas as versões NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection-string</code>, </p><p> <code> -c </code> </p></th> <td>Define a connect string para conexão com ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Sobrescreve as entradas em NDB_CONNECTSTRING e my.cnf</td> <td><p> (Suportado em todas as versões NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection-string</code>, </p><p> <code> -c </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p> (Suportado em todas as versões NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb-nodeid=# </code> </p></th> <td>Define o ID do node para este node, sobrescrevendo qualquer ID definido por --ndb-connectstring</td> <td><p> (Suportado em todas as versões NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --no-defaults </code> </p></th> <td>Não lê as opções default de nenhum arquivo de opções, exceto o arquivo de login</td> <td><p> (Suportado em todas as versões NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb-optimized-node-selection </code> </p></th> <td>Habilita otimizações para a seleção de nodes para transactions. Habilitado por default; use --skip-ndb-optimized-node-selection para desabilitar</td> <td><p> (Suportado em todas as versões NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--parallelism=#</code>, </p><p> <code> -p </code> </p></th> <td>Define o grau de parallelism</td> <td><p> (Suportado em todas as versões NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --print-defaults </code> </p></th> <td>Imprime a lista de argumentos do programa e sai</td> <td><p> (Suportado em todas as versões NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>, </p><p> <code> -? </code> </p></th> <td>Exibe o texto de ajuda e sai; o mesmo que --help</td> <td><p> (Suportado em todas as versões NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>, </p><p> <code> -V </code> </p></th> <td>Exibe as informações de versão e sai</td> <td><p> (Suportado em todas as versões NDB baseadas no MySQL 5.7) </p></td> </tr></tbody></table>
 
 * `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Directory containing character sets.
+  Diretório contendo character sets.
 
 * `--connect-retries`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>12</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Number of times to retry connection before giving up.
+  Número de vezes para tentar novamente a conexão antes de desistir.
 
 * `--connect-retry-delay`
 
-  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>5</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>5</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>5</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>5</code></td> </tr></tbody></table>
 
-  Number of seconds to wait between attempts to contact management server.
+  Número de segundos a esperar entre as tentativas de contato com o management server.
 
 * `--connect-string`
 
-  <table frame="box" rules="all" summary="Properties for connect-string"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-string=connection-string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-string"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connect-string=connection-string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Default</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Same as [`--ndb-connectstring`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_ndb-connectstring).
+  O mesmo que [`--ndb-connectstring`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_ndb-connectstring).
 
 * `--core-file`
 
-  <table frame="box" rules="all" summary="Properties for core-file"><tbody><tr><th>Command-Line Format</th> <td><code>--core-file</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para core-file"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--core-file</code></td> </tr></tbody></table>
 
-  Write core file on error; used in debugging.
+  Escreve core file em caso de erro; usado em debugging.
 
 * `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Default</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Read given file after global files are read.
+  Lê o arquivo fornecido após a leitura dos arquivos globais.
 
 * `--defaults-file`
 
-  <table frame="box" rules="all" summary="Properties for defaults-file"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--defaults-file=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Default</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Read default options from given file only.
+  Lê as opções default apenas do arquivo fornecido.
 
 * `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-group-suffix=string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--defaults-group-suffix=string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Default</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Also read groups with concat(group, suffix).
+  Também lê grupos com concat(group, suffix).
 
 * `--delay=seconds`
 
-  <table frame="box" rules="all" summary="Properties for delay"><tbody><tr><th>Command-Line Format</th> <td><code>--delay=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>5</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>MAX_INT</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para delay"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--delay=#</code></td> </tr><tr><th>Tipo</th> <td>Numeric</td> </tr><tr><th>Valor Default</th> <td><code>5</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>MAX_INT</code></td> </tr></tbody></table>
 
-  This option sets the number of seconds to wait between executing loops. Has no effect if [`--loops`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_loops) is set to 0 or 1.
+  Esta opção define o número de segundos a esperar entre a execução dos loops. Não tem efeito se [`--loops`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_loops) estiver definido como 0 ou 1.
 
 * `--help`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Display help text and exit.
+  Exibe o texto de ajuda e sai.
 
 * `--login-path`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Read given path from login file.
+  Lê o caminho fornecido a partir do arquivo de login.
 
 * `--loops=number`, `-l number`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  This option sets the number of times to execute the select. Use [`--delay`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_delay) to set the time between loops.
+  Esta opção define o número de vezes para executar o select. Use [`--delay`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_delay) para definir o tempo entre os loops.
 
 * `--ndb-connectstring`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Set connect string for connecting to ndb_mgmd. Syntax: "[nodeid=id;][host=]hostname[:port]". Overrides entries in NDB_CONNECTSTRING and my.cnf.
+  Define a connect string para conexão com ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Sobrescreve as entradas em NDB_CONNECTSTRING e my.cnf.
 
 * `--ndb-mgmd-host`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Same as [`--ndb-connectstring`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_ndb-connectstring).
+  O mesmo que [`--ndb-connectstring`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_ndb-connectstring).
 
 * `--ndb-nodeid`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Set node ID for this node, overriding any ID set by [`--ndb-connectstring`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_ndb-connectstring).
+  Define o ID do node para este node, sobrescrevendo qualquer ID definido por [`--ndb-connectstring`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_ndb-connectstring).
 
 * `--ndb-optimized-node-selection`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Enable optimizations for selection of nodes for transactions. Enabled by default; use `--skip-ndb-optimized-node-selection` to disable.
+  Habilita otimizações para a seleção de nodes para transactions. Habilitado por default; use `--skip-ndb-optimized-node-selection` para desabilitar.
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Do not read default options from any option file other than login file.
+  Não lê as opções default de nenhum arquivo de opções, exceto o arquivo de login.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Print program argument list and exit.
+  Imprime a lista de argumentos do programa e sai.
 
 * `--usage`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Display help text and exit; same as [`--help`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_help).
+  Exibe o texto de ajuda e sai; o mesmo que [`--help`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_help).
 
 * `--version`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>12</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Display version information and exit.
+  Exibe as informações de versão e sai.
 
-[**ndbinfo_select_all**](mysql-cluster-programs-ndbinfo-select-all.html "21.5.2 ndbinfo_select_all — Select From ndbinfo Tables") is unable to read the following tables:
+O [**ndbinfo_select_all**](mysql-cluster-programs-ndbinfo-select-all.html "21.5.2 ndbinfo_select_all — Select From ndbinfo Tables") não consegue ler as seguintes tabelas:
 
 * [`arbitrator_validity_detail`](mysql-cluster-ndbinfo-arbitrator-validity-detail.html "21.6.15.1 The ndbinfo arbitrator_validity_detail Table")
 * [`arbitrator_validity_summary`](mysql-cluster-ndbinfo-arbitrator-validity-summary.html "21.6.15.2 The ndbinfo arbitrator_validity_summary Table")

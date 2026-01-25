@@ -1,10 +1,10 @@
-### 13.2.9 SELECT Statement
+### 13.2.9 Declaração SELECT
 
-[13.2.9.1 SELECT ... INTO Statement](select-into.html)
+[13.2.9.1 Declaração SELECT ... INTO](select-into.html)
 
-[13.2.9.2 JOIN Clause](join.html)
+[13.2.9.2 Cláusula JOIN](join.html)
 
-[13.2.9.3 UNION Clause](union.html)
+[13.2.9.3 Cláusula UNION](union.html)
 
 ```sql
 SELECT
@@ -48,115 +48,115 @@ export_options:
     ]
 ```
 
-[`SELECT`](select.html "13.2.9 SELECT Statement") is used to retrieve rows selected from one or more tables, and can include [`UNION`](union.html "13.2.9.3 UNION Clause") statements and subqueries. See [Section 13.2.9.3, “UNION Clause”](union.html "13.2.9.3 UNION Clause"), and [Section 13.2.10, “Subqueries”](subqueries.html "13.2.10 Subqueries").
+A declaração [`SELECT`](select.html "13.2.9 SELECT Statement") é usada para recuperar linhas selecionadas de uma ou mais tabelas, e pode incluir declarações [`UNION`](union.html "13.2.9.3 UNION Clause") e subqueries. Consulte [Seção 13.2.9.3, “Cláusula UNION”](union.html "13.2.9.3 UNION Clause"), e [Seção 13.2.10, “Subqueries”](subqueries.html "13.2.10 Subqueries").
 
-The most commonly used clauses of [`SELECT`](select.html "13.2.9 SELECT Statement") statements are these:
+As cláusulas mais comumente usadas da declaração [`SELECT`](select.html "13.2.9 SELECT Statement") são estas:
 
-* Each *`select_expr`* indicates a column that you want to retrieve. There must be at least one *`select_expr`*.
+* Cada *`select_expr`* indica uma coluna que você deseja recuperar. Deve haver pelo menos um *`select_expr`*.
 
-* *`table_references`* indicates the table or tables from which to retrieve rows. Its syntax is described in [Section 13.2.9.2, “JOIN Clause”](join.html "13.2.9.2 JOIN Clause").
+* *`table_references`* indica a tabela ou tabelas das quais recuperar as linhas. Sua sintaxe é descrita na [Seção 13.2.9.2, “Cláusula JOIN”](join.html "13.2.9.2 JOIN Clause").
 
-* `SELECT` supports explicit partition selection using the `PARTITION` clause with a list of partitions or subpartitions (or both) following the name of the table in a *`table_reference`* (see [Section 13.2.9.2, “JOIN Clause”](join.html "13.2.9.2 JOIN Clause")). In this case, rows are selected only from the partitions listed, and any other partitions of the table are ignored. For more information and examples, see [Section 22.5, “Partition Selection”](partitioning-selection.html "22.5 Partition Selection").
+* `SELECT` suporta seleção explícita de Partition usando a cláusula `PARTITION` com uma lista de Partitions ou Subpartitions (ou ambos) após o nome da tabela em um *`table_reference`* (consulte [Seção 13.2.9.2, “Cláusula JOIN”](join.html "13.2.9.2 JOIN Clause")). Neste caso, as linhas são selecionadas apenas das Partitions listadas, e quaisquer outras Partitions da tabela são ignoradas. Para mais informações e exemplos, consulte [Seção 22.5, “Seleção de Partition”](partitioning-selection.html "22.5 Partition Selection").
 
-  `SELECT ... PARTITION` from tables using storage engines such as [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") that perform table-level locks (and thus partition locks) lock only the partitions or subpartitions named by the `PARTITION` option.
+  `SELECT ... PARTITION` de tabelas que usam Storage Engines como [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") que executam Locks de nível de tabela (e, portanto, Locks de Partition) bloqueia apenas as Partitions ou Subpartitions nomeadas pela opção `PARTITION`.
 
-  For more information, see [Section 22.6.4, “Partitioning and Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking").
+  Para mais informações, consulte [Seção 22.6.4, “Partitioning e Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking").
 
-* The `WHERE` clause, if given, indicates the condition or conditions that rows must satisfy to be selected. *`where_condition`* is an expression that evaluates to true for each row to be selected. The statement selects all rows if there is no `WHERE` clause.
+* A cláusula `WHERE`, se fornecida, indica a condição ou condições que as linhas devem satisfazer para serem selecionadas. *`where_condition`* é uma expression que avalia como true para cada linha a ser selecionada. A declaração seleciona todas as linhas se não houver cláusula `WHERE`.
 
-  In the `WHERE` expression, you can use any of the functions and operators that MySQL supports, except for aggregate (group) functions. See [Section 9.5, “Expressions”](expressions.html "9.5 Expressions"), and [Chapter 12, *Functions and Operators*](functions.html "Chapter 12 Functions and Operators").
+  Na expression `WHERE`, você pode usar qualquer uma das Functions e Operators que o MySQL suporta, exceto Functions de agregação (grupo). Consulte [Seção 9.5, “Expressions”](expressions.html "9.5 Expressions"), e [Capítulo 12, *Functions e Operators*](functions.html "Chapter 12 Functions and Operators").
 
-[`SELECT`](select.html "13.2.9 SELECT Statement") can also be used to retrieve rows computed without reference to any table.
+A declaração [`SELECT`](select.html "13.2.9 SELECT Statement") também pode ser usada para recuperar linhas computadas sem referência a nenhuma tabela.
 
-For example:
+Por exemplo:
 
 ```sql
 mysql> SELECT 1 + 1;
         -> 2
 ```
 
-You are permitted to specify `DUAL` as a dummy table name in situations where no tables are referenced:
+É permitido especificar `DUAL` como um nome de tabela dummy em situações onde nenhuma tabela é referenciada:
 
 ```sql
 mysql> SELECT 1 + 1 FROM DUAL;
         -> 2
 ```
 
-`DUAL` is purely for the convenience of people who require that all [`SELECT`](select.html "13.2.9 SELECT Statement") statements should have `FROM` and possibly other clauses. MySQL may ignore the clauses. MySQL does not require `FROM DUAL` if no tables are referenced.
+`DUAL` existe puramente para a conveniência de pessoas que exigem que todas as declarações [`SELECT`](select.html "13.2.9 SELECT Statement") devam ter a cláusula `FROM` e, possivelmente, outras cláusulas. O MySQL pode ignorar as cláusulas. O MySQL não exige `FROM DUAL` se nenhuma tabela for referenciada.
 
-In general, clauses used must be given in exactly the order shown in the syntax description. For example, a `HAVING` clause must come after any `GROUP BY` clause and before any `ORDER BY` clause. The `INTO` clause, if present, can appear in any position indicated by the syntax description, but within a given statement can appear only once, not in multiple positions. For more information about `INTO`, see [Section 13.2.9.1, “SELECT ... INTO Statement”](select-into.html "13.2.9.1 SELECT ... INTO Statement").
+Em geral, as cláusulas utilizadas devem ser fornecidas exatamente na ordem mostrada na descrição da sintaxe. Por exemplo, uma cláusula `HAVING` deve vir depois de qualquer cláusula `GROUP BY` e antes de qualquer cláusula `ORDER BY`. A cláusula `INTO`, se presente, pode aparecer em qualquer posição indicada pela descrição da sintaxe, mas dentro de uma determinada declaração pode aparecer apenas uma vez, não em múltiplas posições. Para mais informações sobre `INTO`, consulte [Seção 13.2.9.1, “Declaração SELECT ... INTO”](select-into.html "13.2.9.1 SELECT ... INTO Statement").
 
-The list of *`select_expr`* terms comprises the select list that indicates which columns to retrieve. Terms specify a column or expression or can use `*`-shorthand:
+A lista de termos *`select_expr`* compreende a lista de seleção que indica quais colunas recuperar. Os termos especificam uma coluna ou expression ou podem usar a abreviação `*` (asterisco):
 
-* A select list consisting only of a single unqualified `*` can be used as shorthand to select all columns from all tables:
+* Uma lista de seleção que consiste apenas em um único `*` não qualificado pode ser usada como abreviação para selecionar todas as colunas de todas as tabelas:
 
   ```sql
   SELECT * FROM t1 INNER JOIN t2 ...
   ```
 
-* `tbl_name.*` can be used as a qualified shorthand to select all columns from the named table:
+* `tbl_name.*` pode ser usada como uma abreviação qualificada para selecionar todas as colunas da tabela nomeada:
 
   ```sql
   SELECT t1.*, t2.* FROM t1 INNER JOIN t2 ...
   ```
 
-* Use of an unqualified `*` with other items in the select list may produce a parse error. For example:
+* O uso de um `*` não qualificado com outros itens na lista de seleção pode produzir um erro de parse. Por exemplo:
 
   ```sql
   SELECT id, * FROM t1
   ```
 
-  To avoid this problem, use a qualified `tbl_name.*` reference:
+  Para evitar este problema, use uma referência qualificada `tbl_name.*`:
 
   ```sql
   SELECT id, t1.* FROM t1
   ```
 
-  Use qualified `tbl_name.*` references for each table in the select list:
+  Use referências qualificadas `tbl_name.*` para cada tabela na lista de seleção:
 
   ```sql
   SELECT AVG(score), t1.* FROM t1 ...
   ```
 
-The following list provides additional information about other `SELECT` clauses:
+A lista a seguir fornece informações adicionais sobre outras cláusulas `SELECT`:
 
-* A *`select_expr`* can be given an alias using `AS alias_name`. The alias is used as the expression's column name and can be used in `GROUP BY`, `ORDER BY`, or `HAVING` clauses. For example:
+* Uma *`select_expr`* pode receber um alias usando `AS alias_name`. O alias é usado como o nome da coluna da expression e pode ser usado nas cláusulas `GROUP BY`, `ORDER BY` ou `HAVING`. Por exemplo:
 
   ```sql
   SELECT CONCAT(last_name,', ',first_name) AS full_name
     FROM mytable ORDER BY full_name;
   ```
 
-  The `AS` keyword is optional when aliasing a *`select_expr`* with an identifier. The preceding example could have been written like this:
+  O keyword `AS` é opcional ao definir um alias para uma *`select_expr`* com um Identifier. O exemplo anterior poderia ter sido escrito assim:
 
   ```sql
   SELECT CONCAT(last_name,', ',first_name) full_name
     FROM mytable ORDER BY full_name;
   ```
 
-  However, because the `AS` is optional, a subtle problem can occur if you forget the comma between two *`select_expr`* expressions: MySQL interprets the second as an alias name. For example, in the following statement, `columnb` is treated as an alias name:
+  No entanto, como o `AS` é opcional, um problema sutil pode ocorrer se você esquecer a vírgula entre duas expressions *`select_expr`*: o MySQL interpreta a segunda como um nome de alias. Por exemplo, na seguinte declaração, `columnb` é tratada como um nome de alias:
 
   ```sql
   SELECT columna columnb FROM mytable;
   ```
 
-  For this reason, it is good practice to be in the habit of using `AS` explicitly when specifying column aliases.
+  Por esta razão, é uma boa prática ter o hábito de usar `AS` explicitamente ao especificar aliases de coluna.
 
-  It is not permissible to refer to a column alias in a `WHERE` clause, because the column value might not yet be determined when the `WHERE` clause is executed. See [Section B.3.4.4, “Problems with Column Aliases”](problems-with-alias.html "B.3.4.4 Problems with Column Aliases").
+  Não é permitido referenciar um alias de coluna em uma cláusula `WHERE`, pois o valor da coluna pode ainda não ter sido determinado quando a cláusula `WHERE` é executada. Consulte [Seção B.3.4.4, “Problemas com Aliases de Coluna”](problems-with-alias.html "B.3.4.4 Problems with Column Aliases").
 
-* The `FROM table_references` clause indicates the table or tables from which to retrieve rows. If you name more than one table, you are performing a join. For information on join syntax, see [Section 13.2.9.2, “JOIN Clause”](join.html "13.2.9.2 JOIN Clause"). For each table specified, you can optionally specify an alias.
+* A cláusula `FROM table_references` indica a tabela ou tabelas das quais recuperar as linhas. Se você nomear mais de uma tabela, você está realizando um JOIN. Para informações sobre a sintaxe JOIN, consulte [Seção 13.2.9.2, “Cláusula JOIN”](join.html "13.2.9.2 JOIN Clause"). Para cada tabela especificada, você pode opcionalmente especificar um alias.
 
   ```sql
   tbl_name AS] alias] [index_hint]
   ```
 
-  The use of index hints provides the optimizer with information about how to choose indexes during query processing. For a description of the syntax for specifying these hints, see [Section 8.9.4, “Index Hints”](index-hints.html "8.9.4 Index Hints").
+  O uso de Index Hints (Dicas de Index) fornece ao optimizer informações sobre como escolher Indexes durante o processamento da Query. Para uma descrição da sintaxe para especificar essas dicas, consulte [Seção 8.9.4, “Index Hints”](index-hints.html "8.9.4 Index Hints").
 
-  You can use `SET max_seeks_for_key=value` as an alternative way to force MySQL to prefer key scans instead of table scans. See [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").
+  Você pode usar `SET max_seeks_for_key=value` como uma forma alternativa de forçar o MySQL a preferir Key Scans em vez de Table Scans. Consulte [Seção 5.1.7, “Variáveis de Sistema do Servidor”](server-system-variables.html "5.1.7 Server System Variables").
 
-* You can refer to a table within the default database as *`tbl_name`*, or as *`db_name`*.*`tbl_name`* to specify a database explicitly. You can refer to a column as *`col_name`*, *`tbl_name`*.*`col_name`*, or *`db_name`*.*`tbl_name`*.*`col_name`*. You need not specify a *`tbl_name`* or *`db_name`*.*`tbl_name`* prefix for a column reference unless the reference would be ambiguous. See [Section 9.2.2, “Identifier Qualifiers”](identifier-qualifiers.html "9.2.2 Identifier Qualifiers"), for examples of ambiguity that require the more explicit column reference forms.
+* Você pode referenciar uma tabela dentro do Database padrão como *`tbl_name`*, ou como *`db_name`*.*`tbl_name`* para especificar um Database explicitamente. Você pode referenciar uma coluna como *`col_name`*, *`tbl_name`*.*`col_name`*, ou *`db_name`*.*`tbl_name`*.*`col_name`*. Você não precisa especificar um prefixo *`tbl_name`* ou *`db_name`*.*`tbl_name`* para uma referência de coluna, a menos que a referência seja ambígua. Consulte [Seção 9.2.2, “Qualificadores de Identifier”](identifier-qualifiers.html "9.2.2 Identifier Qualifiers"), para exemplos de ambiguidade que exigem as formas mais explícitas de referência de coluna.
 
-* A table reference can be aliased using `tbl_name AS alias_name` or *`tbl_name alias_name`*. These statements are equivalent:
+* Uma referência de tabela pode receber um alias usando `tbl_name AS alias_name` ou *`tbl_name alias_name`*. Estas declarações são equivalentes:
 
   ```sql
   SELECT t1.name, t2.salary FROM employee AS t1, info AS t2
@@ -166,7 +166,7 @@ The following list provides additional information about other `SELECT` clauses:
     WHERE t1.name = t2.name;
   ```
 
-* Columns selected for output can be referred to in `ORDER BY` and `GROUP BY` clauses using column names, column aliases, or column positions. Column positions are integers and begin with 1:
+* Colunas selecionadas para output podem ser referenciadas nas cláusulas `ORDER BY` e `GROUP BY` usando nomes de coluna, aliases de coluna ou posições de coluna. As posições de coluna são inteiros e começam com 1:
 
   ```sql
   SELECT college, region, seed FROM tournament
@@ -179,100 +179,100 @@ The following list provides additional information about other `SELECT` clauses:
     ORDER BY 2, 3;
   ```
 
-  To sort in reverse order, add the `DESC` (descending) keyword to the name of the column in the `ORDER BY` clause that you are sorting by. The default is ascending order; this can be specified explicitly using the `ASC` keyword.
+  Para ordenar em ordem inversa, adicione o keyword `DESC` (descendente) ao nome da coluna na cláusula `ORDER BY` pela qual você está ordenando. O padrão é ordem ascendente; isto pode ser especificado explicitamente usando o keyword `ASC`.
 
-  If `ORDER BY` occurs within a parenthesized query expression and also is applied in the outer query, the results are undefined and may change in a future MySQL version.
+  Se `ORDER BY` ocorrer dentro de uma Query Expression entre parênteses e também for aplicado na Query externa, os resultados são indefinidos e podem mudar em uma futura versão do MySQL.
 
-  Use of column positions is deprecated because the syntax has been removed from the SQL standard.
+  O uso de posições de coluna está deprecated porque a sintaxe foi removida do padrão SQL.
 
-* MySQL extends the `GROUP BY` clause so that you can also specify `ASC` and `DESC` after columns named in the clause. However, this syntax is deprecated. To produce a given sort order, provide an `ORDER BY` clause.
+* O MySQL estende a cláusula `GROUP BY` para que você também possa especificar `ASC` e `DESC` após as colunas nomeadas na cláusula. No entanto, esta sintaxe está deprecated. Para produzir uma determinada ordem de classificação, forneça uma cláusula `ORDER BY`.
 
-* If you use `GROUP BY`, output rows are sorted according to the `GROUP BY` columns as if you had an `ORDER BY` for the same columns. To avoid the overhead of sorting that `GROUP BY` produces, add `ORDER BY NULL`:
+* Se você usar `GROUP BY`, as linhas de output são ordenadas de acordo com as colunas `GROUP BY` como se você tivesse um `ORDER BY` para as mesmas colunas. Para evitar o overhead de ordenação que `GROUP BY` produz, adicione `ORDER BY NULL`:
 
   ```sql
   SELECT a, COUNT(b) FROM test_table GROUP BY a ORDER BY NULL;
   ```
 
-  Relying on implicit `GROUP BY` sorting (that is, sorting in the absence of `ASC` or `DESC` designators) or explicit sorting for `GROUP BY` (that is, by using explicit `ASC` or `DESC` designators for `GROUP BY` columns) is deprecated. To produce a given sort order, provide an `ORDER BY` clause.
+  Confiar na ordenação implícita do `GROUP BY` (ou seja, ordenar na ausência de designadores `ASC` ou `DESC`) ou na ordenação explícita para `GROUP BY` (ou seja, usando designadores `ASC` ou `DESC` explícitos para colunas `GROUP BY`) está deprecated. Para produzir uma determinada ordem de classificação, forneça uma cláusula `ORDER BY`.
 
-* When you use `ORDER BY` or `GROUP BY` to sort a column in a [`SELECT`](select.html "13.2.9 SELECT Statement"), the server sorts values using only the initial number of bytes indicated by the [`max_sort_length`](server-system-variables.html#sysvar_max_sort_length) system variable.
+* Quando você usa `ORDER BY` ou `GROUP BY` para ordenar uma coluna em um [`SELECT`](select.html "13.2.9 SELECT Statement"), o servidor ordena os valores usando apenas o número inicial de bytes indicados pela variável de sistema [`max_sort_length`](server-system-variables.html#sysvar_max_sort_length).
 
-* MySQL extends the use of `GROUP BY` to permit selecting fields that are not mentioned in the `GROUP BY` clause. If you are not getting the results that you expect from your query, please read the description of `GROUP BY` found in [Section 12.19, “Aggregate Functions”](aggregate-functions-and-modifiers.html "12.19 Aggregate Functions").
+* O MySQL estende o uso de `GROUP BY` para permitir a seleção de campos que não são mencionados na cláusula `GROUP BY`. Se você não estiver obtendo os resultados esperados de sua Query, por favor, leia a descrição de `GROUP BY` encontrada na [Seção 12.19, “Funções de Agregação”](aggregate-functions-and-modifiers.html "12.19 Aggregate Functions").
 
-* `GROUP BY` permits a `WITH ROLLUP` modifier. See [Section 12.19.2, “GROUP BY Modifiers”](group-by-modifiers.html "12.19.2 GROUP BY Modifiers").
+* `GROUP BY` permite um modificador `WITH ROLLUP`. Consulte [Seção 12.19.2, “Modificadores GROUP BY”](group-by-modifiers.html "12.19.2 GROUP BY Modifiers").
 
-* The `HAVING` clause, like the `WHERE` clause, specifies selection conditions. The `WHERE` clause specifies conditions on columns in the select list, but cannot refer to aggregate functions. The `HAVING` clause specifies conditions on groups, typically formed by the `GROUP BY` clause. The query result includes only groups satisfying the `HAVING` conditions. (If no `GROUP BY` is present, all rows implicitly form a single aggregate group.)
+* A cláusula `HAVING`, assim como a cláusula `WHERE`, especifica condições de seleção. A cláusula `WHERE` especifica condições nas colunas na lista de seleção, mas não pode referenciar Funções de Agregação. A cláusula `HAVING` especifica condições em grupos, tipicamente formados pela cláusula `GROUP BY`. O resultado da Query inclui apenas grupos que satisfazem as condições `HAVING`. (Se nenhum `GROUP BY` estiver presente, todas as linhas implicitamente formam um único grupo de agregação.)
 
-  The `HAVING` clause is applied nearly last, just before items are sent to the client, with no optimization. (`LIMIT` is applied after `HAVING`.)
+  A cláusula `HAVING` é aplicada quase por último, logo antes que os itens sejam enviados ao cliente, sem otimização. (`LIMIT` é aplicado após `HAVING`.)
 
-  The SQL standard requires that `HAVING` must reference only columns in the `GROUP BY` clause or columns used in aggregate functions. However, MySQL supports an extension to this behavior, and permits `HAVING` to refer to columns in the [`SELECT`](select.html "13.2.9 SELECT Statement") list and columns in outer subqueries as well.
+  O padrão SQL exige que `HAVING` referencie apenas colunas na cláusula `GROUP BY` ou colunas usadas em Funções de Agregação. No entanto, o MySQL suporta uma extensão a este comportamento, e permite que `HAVING` referencie colunas na lista [`SELECT`](select.html "13.2.9 SELECT Statement") e colunas em Subqueries externas também.
 
-  If the `HAVING` clause refers to a column that is ambiguous, a warning occurs. In the following statement, `col2` is ambiguous because it is used as both an alias and a column name:
+  Se a cláusula `HAVING` referenciar uma coluna ambígua, ocorre um warning. Na declaração a seguir, `col2` é ambígua porque é usada tanto como um alias quanto como um nome de coluna:
 
   ```sql
   SELECT COUNT(col1) AS col2 FROM t GROUP BY col2 HAVING col2 = 2;
   ```
 
-  Preference is given to standard SQL behavior, so if a `HAVING` column name is used both in `GROUP BY` and as an aliased column in the select column list, preference is given to the column in the `GROUP BY` column.
+  A preferência é dada ao comportamento padrão SQL, então se um nome de coluna `HAVING` for usado tanto em `GROUP BY` quanto como uma coluna com alias na lista de colunas de seleção, a preferência é dada à coluna na cláusula `GROUP BY`.
 
-* Do not use `HAVING` for items that should be in the `WHERE` clause. For example, do not write the following:
+* Não use `HAVING` para itens que deveriam estar na cláusula `WHERE`. Por exemplo, não escreva o seguinte:
 
   ```sql
   SELECT col_name FROM tbl_name HAVING col_name > 0;
   ```
 
-  Write this instead:
+  Escreva isto em vez disso:
 
   ```sql
   SELECT col_name FROM tbl_name WHERE col_name > 0;
   ```
 
-* The `HAVING` clause can refer to aggregate functions, which the `WHERE` clause cannot:
+* A cláusula `HAVING` pode referenciar Funções de Agregação, o que a cláusula `WHERE` não pode:
 
   ```sql
   SELECT user, MAX(salary) FROM users
     GROUP BY user HAVING MAX(salary) > 10;
   ```
 
-  (This did not work in some older versions of MySQL.)
+  (Isso não funcionava em algumas versões mais antigas do MySQL.)
 
-* MySQL permits duplicate column names. That is, there can be more than one *`select_expr`* with the same name. This is an extension to standard SQL. Because MySQL also permits `GROUP BY` and `HAVING` to refer to *`select_expr`* values, this can result in an ambiguity:
+* O MySQL permite nomes de coluna duplicados. Ou seja, pode haver mais de um *`select_expr`* com o mesmo nome. Esta é uma extensão ao padrão SQL. Como o MySQL também permite que `GROUP BY` e `HAVING` referenciem valores *`select_expr`*, isso pode resultar em uma ambiguidade:
 
   ```sql
   SELECT 12 AS a, a FROM t GROUP BY a;
   ```
 
-  In that statement, both columns have the name `a`. To ensure that the correct column is used for grouping, use different names for each *`select_expr`*.
+  Nessa declaração, ambas as colunas têm o nome `a`. Para garantir que a coluna correta seja usada para agrupamento, use nomes diferentes para cada *`select_expr`*.
 
-* MySQL resolves unqualified column or alias references in `ORDER BY` clauses by searching in the *`select_expr`* values, then in the columns of the tables in the `FROM` clause. For `GROUP BY` or `HAVING` clauses, it searches the `FROM` clause before searching in the *`select_expr`* values. (For `GROUP BY` and `HAVING`, this differs from the pre-MySQL 5.0 behavior that used the same rules as for `ORDER BY`.)
+* O MySQL resolve referências não qualificadas de coluna ou alias em cláusulas `ORDER BY` pesquisando nos valores *`select_expr`*, e depois nas colunas das tabelas na cláusula `FROM`. Para cláusulas `GROUP BY` ou `HAVING`, ele pesquisa a cláusula `FROM` antes de pesquisar nos valores *`select_expr`*. (Para `GROUP BY` e `HAVING`, isso difere do comportamento pré-MySQL 5.0 que usava as mesmas regras que para `ORDER BY`.)
 
-* The `LIMIT` clause can be used to constrain the number of rows returned by the [`SELECT`](select.html "13.2.9 SELECT Statement") statement. `LIMIT` takes one or two numeric arguments, which must both be nonnegative integer constants, with these exceptions:
+* A cláusula `LIMIT` pode ser usada para restringir o número de linhas retornadas pela declaração [`SELECT`](select.html "13.2.9 SELECT Statement"). `LIMIT` aceita um ou dois argumentos numéricos, os quais devem ser constantes inteiras não negativas, com estas exceções:
 
-  + Within prepared statements, `LIMIT` parameters can be specified using `?` placeholder markers.
+  + Dentro de Prepared Statements, os parâmetros `LIMIT` podem ser especificados usando marcadores de placeholder `?`.
 
-  + Within stored programs, `LIMIT` parameters can be specified using integer-valued routine parameters or local variables.
+  + Dentro de stored programs, os parâmetros `LIMIT` podem ser especificados usando parâmetros de rotina ou variáveis locais com valor inteiro.
 
-  With two arguments, the first argument specifies the offset of the first row to return, and the second specifies the maximum number of rows to return. The offset of the initial row is 0 (not 1):
+  Com dois argumentos, o primeiro argumento especifica o Offset da primeira linha a retornar, e o segundo especifica o número máximo de linhas a retornar. O Offset da linha inicial é 0 (não 1):
 
   ```sql
   SELECT * FROM tbl LIMIT 5,10;  # Retrieve rows 6-15
   ```
 
-  To retrieve all rows from a certain offset up to the end of the result set, you can use some large number for the second parameter. This statement retrieves all rows from the 96th row to the last:
+  Para recuperar todas as linhas a partir de um certo Offset até o final do Result Set, você pode usar um número grande para o segundo parâmetro. Esta declaração recupera todas as linhas da 96ª linha até a última:
 
   ```sql
   SELECT * FROM tbl LIMIT 95,18446744073709551615;
   ```
 
-  With one argument, the value specifies the number of rows to return from the beginning of the result set:
+  Com um argumento, o valor especifica o número de linhas a retornar a partir do início do Result Set:
 
   ```sql
   SELECT * FROM tbl LIMIT 5;     # Retrieve first 5 rows
   ```
 
-  In other words, `LIMIT row_count` is equivalent to `LIMIT 0, row_count`.
+  Em outras palavras, `LIMIT row_count` é equivalente a `LIMIT 0, row_count`.
 
-  For prepared statements, you can use placeholders. The following statements return one row from the `tbl` table:
+  Para Prepared Statements, você pode usar placeholders. As seguintes declarações retornam uma linha da tabela `tbl`:
 
   ```sql
   SET @a=1;
@@ -280,7 +280,7 @@ The following list provides additional information about other `SELECT` clauses:
   EXECUTE STMT USING @a;
   ```
 
-  The following statements return the second to sixth row from the `tbl` table:
+  As seguintes declarações retornam da segunda à sexta linha da tabela `tbl`:
 
   ```sql
   SET @skip=1; SET @numrows=5;
@@ -288,50 +288,50 @@ The following list provides additional information about other `SELECT` clauses:
   EXECUTE STMT USING @skip, @numrows;
   ```
 
-  For compatibility with PostgreSQL, MySQL also supports the `LIMIT row_count OFFSET offset` syntax.
+  Para compatibilidade com PostgreSQL, o MySQL também suporta a sintaxe `LIMIT row_count OFFSET offset`.
 
-  If `LIMIT` occurs within a parenthesized query expression and also is applied in the outer query, the results are undefined and may change in a future MySQL version.
+  Se `LIMIT` ocorrer dentro de uma Query Expression entre parênteses e também for aplicado na Query externa, os resultados são indefinidos e podem mudar em uma futura versão do MySQL.
 
-* A `PROCEDURE` clause names a procedure that should process the data in the result set. For an example, see [Section 8.4.2.4, “Using PROCEDURE ANALYSE”](procedure-analyse.html "8.4.2.4 Using PROCEDURE ANALYSE"), which describes `ANALYSE`, a procedure that can be used to obtain suggestions for optimal column data types that may help reduce table sizes.
+* Uma cláusula `PROCEDURE` nomeia uma procedure que deve processar os dados no Result Set. Para um exemplo, consulte [Seção 8.4.2.4, “Usando PROCEDURE ANALYSE”](procedure-analyse.html "8.4.2.4 Using PROCEDURE ANALYSE"), que descreve `ANALYSE`, uma procedure que pode ser usada para obter sugestões para tipos de dados de coluna ideais que podem ajudar a reduzir o tamanho das tabelas.
 
-  A `PROCEDURE` clause is not permitted in a [`UNION`](union.html "13.2.9.3 UNION Clause") statement.
-
-  Note
-
-  `PROCEDURE` syntax is deprecated as of MySQL 5.7.18, and is removed in MySQL 8.0.
-
-* The [`SELECT ... INTO`](select-into.html "13.2.9.1 SELECT ... INTO Statement") form of [`SELECT`](select.html "13.2.9 SELECT Statement") enables the query result to be written to a file or stored in variables. For more information, see [Section 13.2.9.1, “SELECT ... INTO Statement”](select-into.html "13.2.9.1 SELECT ... INTO Statement").
-
-* If you use `FOR UPDATE` with a storage engine that uses page or row locks, rows examined by the query are write-locked until the end of the current transaction. Using `LOCK IN SHARE MODE` sets a shared lock that permits other transactions to read the examined rows but not to update or delete them. See [Section 14.7.2.4, “Locking Reads”](innodb-locking-reads.html "14.7.2.4 Locking Reads").
-
-  In addition, you cannot use `FOR UPDATE` as part of the [`SELECT`](select.html "13.2.9 SELECT Statement") in a statement such as [`CREATE TABLE new_table SELECT ... FROM old_table ...`](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement"). (If you attempt to do so, the statement is rejected with the error Can't update table '*`old_table`*' while '*`new_table`*' is being created.) This is a change in behavior from MySQL 5.5 and earlier, which permitted [`CREATE TABLE ... SELECT`](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement") statements to make changes in tables other than the table being created.
-
-Following the [`SELECT`](select.html "13.2.9 SELECT Statement") keyword, you can use a number of modifiers that affect the operation of the statement. `HIGH_PRIORITY`, `STRAIGHT_JOIN`, and modifiers beginning with `SQL_` are MySQL extensions to standard SQL.
-
-* The `ALL` and `DISTINCT` modifiers specify whether duplicate rows should be returned. `ALL` (the default) specifies that all matching rows should be returned, including duplicates. `DISTINCT` specifies removal of duplicate rows from the result set. It is an error to specify both modifiers. `DISTINCTROW` is a synonym for `DISTINCT`.
-
-* `HIGH_PRIORITY` gives the [`SELECT`](select.html "13.2.9 SELECT Statement") higher priority than a statement that updates a table. You should use this only for queries that are very fast and must be done at once. A `SELECT HIGH_PRIORITY` query that is issued while the table is locked for reading runs even if there is an update statement waiting for the table to be free. This affects only storage engines that use only table-level locking (such as `MyISAM`, `MEMORY`, and `MERGE`).
-
-  `HIGH_PRIORITY` cannot be used with [`SELECT`](select.html "13.2.9 SELECT Statement") statements that are part of a [`UNION`](union.html "13.2.9.3 UNION Clause").
-
-* `STRAIGHT_JOIN` forces the optimizer to join the tables in the order in which they are listed in the `FROM` clause. You can use this to speed up a query if the optimizer joins the tables in nonoptimal order. `STRAIGHT_JOIN` also can be used in the *`table_references`* list. See [Section 13.2.9.2, “JOIN Clause”](join.html "13.2.9.2 JOIN Clause").
-
-  `STRAIGHT_JOIN` does not apply to any table that the optimizer treats as a [`const`](explain-output.html#jointype_const) or [`system`](explain-output.html#jointype_system) table. Such a table produces a single row, is read during the optimization phase of query execution, and references to its columns are replaced with the appropriate column values before query execution proceeds. These tables appear first in the query plan displayed by [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement"). See [Section 8.8.1, “Optimizing Queries with EXPLAIN”](using-explain.html "8.8.1 Optimizing Queries with EXPLAIN"). This exception may not apply to [`const`](explain-output.html#jointype_const) or [`system`](explain-output.html#jointype_system) tables that are used on the `NULL`-complemented side of an outer join (that is, the right-side table of a `LEFT JOIN` or the left-side table of a `RIGHT JOIN`.
-
-* `SQL_BIG_RESULT` or `SQL_SMALL_RESULT` can be used with `GROUP BY` or `DISTINCT` to tell the optimizer that the result set has many rows or is small, respectively. For `SQL_BIG_RESULT`, MySQL directly uses disk-based temporary tables if they are created, and prefers sorting to using a temporary table with a key on the `GROUP BY` elements. For `SQL_SMALL_RESULT`, MySQL uses in-memory temporary tables to store the resulting table instead of using sorting. This should not normally be needed.
-
-* `SQL_BUFFER_RESULT` forces the result to be put into a temporary table. This helps MySQL free the table locks early and helps in cases where it takes a long time to send the result set to the client. This modifier can be used only for top-level [`SELECT`](select.html "13.2.9 SELECT Statement") statements, not for subqueries or following [`UNION`](union.html "13.2.9.3 UNION Clause").
-
-* `SQL_CALC_FOUND_ROWS` tells MySQL to calculate how many rows there would be in the result set, disregarding any `LIMIT` clause. The number of rows can then be retrieved with `SELECT FOUND_ROWS()`. See [Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions").
-
-* The `SQL_CACHE` and `SQL_NO_CACHE` modifiers affect caching of query results in the query cache (see [Section 8.10.3, “The MySQL Query Cache”](query-cache.html "8.10.3 The MySQL Query Cache")). `SQL_CACHE` tells MySQL to store the result in the query cache if it is cacheable and the value of the [`query_cache_type`](server-system-variables.html#sysvar_query_cache_type) system variable is `2` or `DEMAND`. With `SQL_NO_CACHE`, the server does not use the query cache. It neither checks the query cache to see whether the result is already cached, nor does it cache the query result.
-
-  These two modifiers are mutually exclusive and an error occurs if they are both specified. Also, these modifiers are not permitted in subqueries (including subqueries in the `FROM` clause), and [`SELECT`](select.html "13.2.9 SELECT Statement") statements in unions other than the first [`SELECT`](select.html "13.2.9 SELECT Statement").
-
-  For views, `SQL_NO_CACHE` applies if it appears in any [`SELECT`](select.html "13.2.9 SELECT Statement") in the query. For a cacheable query, `SQL_CACHE` applies if it appears in the first [`SELECT`](select.html "13.2.9 SELECT Statement") of a view referred to by the query.
+  Uma cláusula `PROCEDURE` não é permitida em uma declaração [`UNION`](union.html "13.2.9.3 UNION Clause").
 
   Note
 
-  The query cache is deprecated as of MySQL 5.7.20, and is removed in MySQL 8.0. Deprecation includes `SQL_CACHE` and `SQL_NO_CACHE`.
+  A sintaxe `PROCEDURE` está deprecated a partir do MySQL 5.7.18, e foi removida no MySQL 8.0.
 
-A `SELECT` from a partitioned table using a storage engine such as [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") that employs table-level locks locks only those partitions containing rows that match the `SELECT` statement `WHERE` clause. (This does not occur with storage engines such as [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") that employ row-level locking.) For more information, see [Section 22.6.4, “Partitioning and Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking").
+* A forma [`SELECT ... INTO`](select-into.html "13.2.9.1 SELECT ... INTO Statement") de [`SELECT`](select.html "13.2.9.1 SELECT ... INTO Statement") permite que o resultado da Query seja escrito em um arquivo ou armazenado em variáveis. Para mais informações, consulte [Seção 13.2.9.1, “Declaração SELECT ... INTO”](select-into.html "13.2.9.1 SELECT ... INTO Statement").
+
+* Se você usar `FOR UPDATE` com um Storage Engine que utiliza Page ou Row Locks, as linhas examinadas pela Query são write-locked até o final da transação atual. Usar `LOCK IN SHARE MODE` define um Shared Lock que permite que outras transações leiam as linhas examinadas, mas não as atualizem ou excluam. Consulte [Seção 14.7.2.4, “Locking Reads”](innodb-locking-reads.html "14.7.2.4 Locking Reads").
+
+  Além disso, você não pode usar `FOR UPDATE` como parte do [`SELECT`](select.html "13.2.9 SELECT Statement") em uma declaração como [`CREATE TABLE new_table SELECT ... FROM old_table ...`](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement"). (Se você tentar fazê-lo, a declaração é rejeitada com o erro Não é possível atualizar a tabela '*`old_table`*' enquanto '*`new_table`*' está sendo criada.) Esta é uma mudança de comportamento em relação ao MySQL 5.5 e anteriores, que permitiam que as declarações [`CREATE TABLE ... SELECT`](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement") fizessem alterações em tabelas diferentes da tabela que estava sendo criada.
+
+Após o keyword [`SELECT`](select.html "13.2.9 SELECT Statement"), você pode usar uma série de Modifiers que afetam a operação da declaração. `HIGH_PRIORITY`, `STRAIGHT_JOIN` e modificadores que começam com `SQL_` são extensões do MySQL ao padrão SQL.
+
+* Os Modifiers `ALL` e `DISTINCT` especificam se linhas duplicadas devem ser retornadas. `ALL` (o padrão) especifica que todas as linhas correspondentes devem ser retornadas, incluindo duplicatas. `DISTINCT` especifica a remoção de linhas duplicadas do Result Set. É um erro especificar ambos os Modifiers. `DISTINCTROW` é um sinônimo de `DISTINCT`.
+
+* `HIGH_PRIORITY` dá ao [`SELECT`](select.html "13.2.9 SELECT Statement") prioridade maior do que uma declaração que atualiza uma tabela. Você deve usar isso apenas para Queries muito rápidas e que devem ser executadas imediatamente. Uma Query `SELECT HIGH_PRIORITY` emitida enquanto a tabela está Locked para leitura é executada mesmo que haja uma declaração de Update esperando que a tabela seja liberada. Isso afeta apenas Storage Engines que usam apenas Locking de nível de tabela (como `MyISAM`, `MEMORY` e `MERGE`).
+
+  `HIGH_PRIORITY` não pode ser usado com declarações [`SELECT`](select.html "13.2.9 SELECT Statement") que fazem parte de uma [`UNION`](union.html "13.2.9.3 UNION Clause").
+
+* `STRAIGHT_JOIN` força o optimizer a unir (JOIN) as tabelas na ordem em que estão listadas na cláusula `FROM`. Você pode usar isso para acelerar uma Query se o optimizer estiver unindo as tabelas em uma ordem não ideal. `STRAIGHT_JOIN` também pode ser usado na lista *`table_references`*. Consulte [Seção 13.2.9.2, “Cláusula JOIN”](join.html "13.2.9.2 JOIN Clause").
+
+  `STRAIGHT_JOIN` não se aplica a nenhuma tabela que o optimizer trate como uma tabela [`const`](explain-output.html#jointype_const) ou [`system`](explain-output.html#jointype_system). Uma tabela desse tipo produz uma única linha, é lida durante a fase de otimização da execução da Query e as referências às suas colunas são substituídas pelos valores de coluna apropriados antes que a execução da Query prossiga. Essas tabelas aparecem primeiro no Query Plan exibido por [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement"). Consulte [Seção 8.8.1, “Otimizando Queries com EXPLAIN”](using-explain.html "8.8.1 Optimizing Queries with EXPLAIN"). Esta exceção pode não se aplicar a tabelas [`const`](explain-output.html#jointype_const) ou [`system`](explain-output.html#jointype_system) que são usadas no lado complementado por `NULL` de um Outer Join (ou seja, a tabela do lado direito de um `LEFT JOIN` ou a tabela do lado esquerdo de um `RIGHT JOIN`).
+
+* `SQL_BIG_RESULT` ou `SQL_SMALL_RESULT` podem ser usados com `GROUP BY` ou `DISTINCT` para informar ao optimizer que o Result Set tem muitas linhas ou é pequeno, respectivamente. Para `SQL_BIG_RESULT`, o MySQL usa diretamente Temporary Tables baseadas em disco, se forem criadas, e prefere ordenação em vez de usar uma Temporary Table com uma Key nos elementos `GROUP BY`. Para `SQL_SMALL_RESULT`, o MySQL usa Temporary Tables in-memory para armazenar a tabela resultante em vez de usar ordenação. Isso normalmente não deveria ser necessário.
+
+* `SQL_BUFFER_RESULT` força o resultado a ser colocado em uma Temporary Table. Isso ajuda o MySQL a liberar os Table Locks mais cedo e é útil em casos em que leva muito tempo para enviar o Result Set ao cliente. Este Modifier pode ser usado apenas para declarações [`SELECT`](select.html "13.2.9 SELECT Statement") de nível superior, não para Subqueries ou após uma [`UNION`](union.html "13.2.9.3 UNION Clause").
+
+* `SQL_CALC_FOUND_ROWS` instrui o MySQL a calcular quantas linhas haveria no Result Set, desconsiderando qualquer cláusula `LIMIT`. O número de linhas pode então ser recuperado com `SELECT FOUND_ROWS()`. Consulte [Seção 12.15, “Funções de Informação”](information-functions.html "12.15 Information Functions").
+
+* Os Modifiers `SQL_CACHE` e `SQL_NO_CACHE` afetam o caching dos resultados da Query no Query Cache (consulte [Seção 8.10.3, “O Query Cache do MySQL”](query-cache.html "8.10.3 The MySQL Query Cache")). `SQL_CACHE` instrui o MySQL a armazenar o resultado no Query Cache se for cacheável e o valor da variável de sistema [`query_cache_type`](server-system-variables.html#sysvar_query_cache_type) for `2` ou `DEMAND`. Com `SQL_NO_CACHE`, o servidor não usa o Query Cache. Ele nem verifica o Query Cache para ver se o resultado já está armazenado, nem armazena em cache o resultado da Query.
+
+  Esses dois Modifiers são mutuamente exclusivos e um erro ocorre se ambos forem especificados. Além disso, esses Modifiers não são permitidos em Subqueries (incluindo Subqueries na cláusula `FROM`), e em declarações [`SELECT`](select.html "13.2.9 SELECT Statement") em Unions que não sejam o primeiro [`SELECT`](select.html "13.2.9 SELECT Statement").
+
+  Para Views, `SQL_NO_CACHE` se aplica se aparecer em qualquer [`SELECT`](select.html "13.2.9 SELECT Statement") na Query. Para uma Query cacheável, `SQL_CACHE` se aplica se aparecer no primeiro [`SELECT`](select.html "13.2.9 SELECT Statement") de uma View referenciada pela Query.
+
+  Note
+
+  O Query Cache está deprecated a partir do MySQL 5.7.20 e foi removido no MySQL 8.0. A depreciação inclui `SQL_CACHE` e `SQL_NO_CACHE`.
+
+Uma declaração `SELECT` de uma tabela partitioned que usa um Storage Engine como [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine"), que emprega Locks de nível de tabela, bloqueia apenas as Partitions que contêm linhas que correspondem à cláusula `WHERE` da declaração `SELECT`. (Isso não ocorre com Storage Engines como [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") que empregam Row-Level Locking.) Para mais informações, consulte [Seção 22.6.4, “Partitioning e Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking").

@@ -1,3 +1,3 @@
-## 27.13 MySQL Eiffel Wrapper
+## 27.13 Wrapper Eiffel para MySQL
 
-Eiffel MySQL is an interface to the MySQL database server using the [Eiffel programming language](http://en.wikipedia.org/wiki/Eiffel_(programming_language)), written by Michael Ravits. It can be found at <http://efsa.sourceforge.net/archive/ravits/mysql.htm>.
+O Eiffel MySQL é uma interface para o servidor de Database MySQL utilizando a [linguagem de programação Eiffel](http://en.wikipedia.org/wiki/Eiffel_(programming_language)), escrito por Michael Ravits. Ele pode ser encontrado em <http://efsa.sourceforge.net/archive/ravits/mysql.htm>.

@@ -1,19 +1,19 @@
-### 25.12.10 Performance Schema User-Defined Variable Tables
+### 25.12.10 Tabelas de Variáveis Definidas pelo Usuário do Performance Schema
 
-The Performance Schema provides a [`user_variables_by_thread`](performance-schema-user-variable-tables.html "25.12.10 Performance Schema User-Defined Variable Tables") table that exposes user-defined variables. These are variables defined within a specific session and include a `@` character preceding the name; see [Section 9.4, “User-Defined Variables”](user-variables.html "9.4 User-Defined Variables").
+O Performance Schema fornece a Table [`user_variables_by_thread`](performance-schema-user-variable-tables.html "25.12.10 Performance Schema User-Defined Variable Tables") que expõe variáveis definidas pelo usuário. Essas são variáveis definidas dentro de uma Session específica e incluem o caractere `@` precedendo o nome; veja [Seção 9.4, “Variáveis Definidas pelo Usuário”](user-variables.html "9.4 User-Defined Variables").
 
-The [`user_variables_by_thread`](performance-schema-user-variable-tables.html "25.12.10 Performance Schema User-Defined Variable Tables") table has these columns:
+A Table [`user_variables_by_thread`](performance-schema-user-variable-tables.html "25.12.10 Performance Schema User-Defined Variable Tables") possui as seguintes colunas:
 
 * `THREAD_ID`
 
-  The thread identifier of the session in which the variable is defined.
+  O identificador do Thread da Session na qual a variável é definida.
 
 * `VARIABLE_NAME`
 
-  The variable name, without the leading `@` character.
+  O nome da variável, sem o caractere `@` inicial.
 
 * `VARIABLE_VALUE`
 
-  The variable value.
+  O valor da variável.
 
-[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not permitted for the [`user_variables_by_thread`](performance-schema-user-variable-tables.html "25.12.10 Performance Schema User-Defined Variable Tables") table.
+O uso de [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") não é permitido para a Table [`user_variables_by_thread`](performance-schema-user-variable-tables.html "25.12.10 Performance Schema User-Defined Variable Tables").

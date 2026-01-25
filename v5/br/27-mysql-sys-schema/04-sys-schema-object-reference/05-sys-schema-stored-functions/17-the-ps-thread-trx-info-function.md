@@ -1,32 +1,32 @@
-#### 26.4.5.17 The ps_thread_trx_info() Function
+#### 26.4.5.17 A Função ps_thread_trx_info()
 
-Returns a JSON object containing information about a given thread. The information includes the current transaction, and the statements it has already executed, derived from the Performance Schema `events_transactions_current` and `events_statements_history` tables. (The consumers for those tables must be enabled to obtain full data in the JSON object.)
+Retorna um objeto JSON contendo informações sobre um determinado Thread. As informações incluem a Transaction atual e os Statements que ele já executou, derivadas das tabelas `events_transactions_current` e `events_statements_history` do Performance Schema. (Os *consumers* dessas tabelas devem estar habilitados para obter dados completos no objeto JSON.)
 
-If the output exceeds the truncation length (65535 by default), a JSON error object is returned, such as:
+Se a saída exceder o comprimento de truncamento (65535 por padrão), um objeto de erro JSON é retornado, como:
 
 ```sql
 { "error": "Trx info truncated: Row 6 was cut by GROUP_CONCAT()" }
 ```
 
-Similar error objects are returned for other warnings and exceptions raised during function execution.
+Objetos de erro semelhantes são retornados para outros *warnings* e exceções gerados durante a execução da função.
 
-##### Parameters
+##### Parâmetros
 
-* `in_thread_id BIGINT UNSIGNED`: The thread ID for which to return transaction information. The value should match the `THREAD_ID` column from some Performance Schema `threads` table row.
+* `in_thread_id BIGINT UNSIGNED`: O ID do Thread para o qual retornar informações da Transaction. O valor deve corresponder à coluna `THREAD_ID` de alguma linha da tabela `threads` do Performance Schema.
 
-##### Configuration Options
+##### Opções de Configuração
 
-`ps_thread_trx_info()` Function") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 26.4.2.1, “The sys_config Table”):
+A operação da Função `ps_thread_trx_info()` pode ser modificada usando as seguintes opções de configuração ou suas variáveis definidas pelo usuário correspondentes (consulte a Seção 26.4.2.1, “The sys_config Table”):
 
 * `ps_thread_trx_info.max_length`, `@sys.ps_thread_trx_info.max_length`
 
-  The maximum length of the output. The default is 65535.
+  O comprimento máximo da saída. O padrão é 65535.
 
-##### Return Value
+##### Valor de Retorno
 
-A `LONGTEXT` value.
+Um valor `LONGTEXT`.
 
-##### Example
+##### Exemplo
 
 ```sql
 mysql> SELECT sys.ps_thread_trx_info(48)\G

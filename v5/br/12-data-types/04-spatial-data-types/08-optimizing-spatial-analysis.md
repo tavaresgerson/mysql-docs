@@ -1,13 +1,12 @@
-### 11.4.8 Optimizing Spatial Analysis
+### 11.4.8 Otimizando Análise Espacial
 
-For `MyISAM` and `InnoDB` tables, search operations in columns containing spatial data can be optimized using `SPATIAL` indexes. The most typical operations are:
+Para tabelas `MyISAM` e `InnoDB`, as operações de busca em colunas contendo dados espaciais podem ser otimizadas usando `SPATIAL` indexes. As operações mais típicas são:
 
-* Point queries that search for all objects that contain a given point
+*   `Point queries` que buscam por todos os objetos que contêm um dado `point`
+*   `Region queries` que buscam por todos os objetos que se sobrepõem a uma dada região
 
-* Region queries that search for all objects that overlap a given region
+O MySQL utiliza **R-Trees with quadratic splitting** para `SPATIAL` indexes em colunas espaciais. Um `SPATIAL` index é construído usando o `minimum bounding rectangle` (MBR) de uma geometria. Para a maioria das geometrias, o MBR é um retângulo mínimo que envolve as geometrias. Para um `linestring` horizontal ou vertical, o MBR é um retângulo degenerado no `linestring`. Para um `point`, o MBR é um retângulo degenerado no `point`.
 
-MySQL uses **R-Trees with quadratic splitting** for `SPATIAL` indexes on spatial columns. A `SPATIAL` index is built using the minimum bounding rectangle (MBR) of a geometry. For most geometries, the MBR is a minimum rectangle that surrounds the geometries. For a horizontal or a vertical linestring, the MBR is a rectangle degenerated into the linestring. For a point, the MBR is a rectangle degenerated into the point.
+Também é possível criar `indexes` normais em colunas espaciais. Em um `index` não-`SPATIAL`, você deve declarar um prefixo para qualquer coluna espacial, exceto para colunas `POINT`.
 
-It is also possible to create normal indexes on spatial columns. In a non-`SPATIAL` index, you must declare a prefix for any spatial column except for `POINT` columns.
-
-`MyISAM` and `InnoDB` support both `SPATIAL` and non-`SPATIAL` indexes. Other storage engines support non-`SPATIAL` indexes, as described in Section 13.1.14, “CREATE INDEX Statement”.
+`MyISAM` e `InnoDB` suportam tanto `SPATIAL` quanto `non-SPATIAL` indexes. Outras `storage engines` suportam `non-SPATIAL` indexes, conforme descrito na Seção 13.1.14, “CREATE INDEX Statement”.

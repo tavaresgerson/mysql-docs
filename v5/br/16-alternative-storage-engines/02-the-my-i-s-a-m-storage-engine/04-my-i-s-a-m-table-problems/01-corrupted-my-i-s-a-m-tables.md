@@ -1,26 +1,26 @@
-#### 15.2.4.1 Corrupted MyISAM Tables
+#### 15.2.4.1 Tabelas MyISAM Corrompidas
 
-Even though the `MyISAM` table format is very reliable (all changes to a table made by an SQL statement are written before the statement returns), you can still get corrupted tables if any of the following events occur:
+Embora o formato de tabela `MyISAM` seja muito confiável (todas as alterações em uma tabela feitas por uma instrução SQL são gravadas antes que a instrução retorne), você ainda pode ter tabelas corrompidas se algum dos seguintes eventos ocorrer:
 
-* The **mysqld** process is killed in the middle of a write.
+* O processo **mysqld** é encerrado (killed) no meio de uma operação de escrita (write).
 
-* An unexpected computer shutdown occurs (for example, the computer is turned off).
+* Ocorre um desligamento inesperado do computador (por exemplo, o computador é desligado).
 
-* Hardware failures.
-* You are using an external program (such as **myisamchk**) to modify a table that is being modified by the server at the same time.
+* Falhas de Hardware.
+* Você está usando um programa externo (como o **myisamchk**) para modificar uma tabela que está sendo modificada pelo server ao mesmo tempo.
 
-* A software bug in the MySQL or `MyISAM` code.
+* Um bug de software no código MySQL ou `MyISAM`.
 
-Typical symptoms of a corrupt table are:
+Sintomas típicos de uma tabela corrompida são:
 
-* You get the following error while selecting data from the table:
+* Você recebe o seguinte erro ao selecionar dados da tabela:
 
   ```sql
   Incorrect key file for table: '...'. Try to repair it
   ```
 
-* Queries don't find rows in the table or return incomplete results.
+* Queries não encontram rows na tabela ou retornam resultados incompletos.
 
-You can check the health of a `MyISAM` table using the `CHECK TABLE` statement, and repair a corrupted `MyISAM` table with `REPAIR TABLE`. When **mysqld** is not running, you can also check or repair a table with the **myisamchk** command. See Section 13.7.2.2, “CHECK TABLE Statement”, Section 13.7.2.5, “REPAIR TABLE Statement”, and Section 4.6.3, “myisamchk — MyISAM Table-Maintenance Utility”.
+Você pode verificar a integridade de uma tabela `MyISAM` usando a instrução `CHECK TABLE` e reparar uma tabela `MyISAM` corrompida com `REPAIR TABLE`. Quando o **mysqld** não estiver em execução, você também pode verificar ou reparar uma tabela com o comando **myisamchk**. Consulte a Seção 13.7.2.2, “Instrução CHECK TABLE”, Seção 13.7.2.5, “Instrução REPAIR TABLE” e Seção 4.6.3, “myisamchk — Utilitário de Manutenção de Tabela MyISAM”.
 
-If your tables become corrupted frequently, you should try to determine why this is happening. The most important thing to know is whether the table became corrupted as a result of an unexpected server exit. You can verify this easily by looking for a recent `restarted mysqld` message in the error log. If there is such a message, it is likely that table corruption is a result of the server dying. Otherwise, corruption may have occurred during normal operation. This is a bug. You should try to create a reproducible test case that demonstrates the problem. See Section B.3.3.3, “What to Do If MySQL Keeps Crashing”, and Section 5.8, “Debugging MySQL”.
+Se suas tabelas forem corrompidas com frequência, você deve tentar determinar por que isso está acontecendo. A coisa mais importante a saber é se a tabela foi corrompida como resultado de uma saída inesperada do server. Você pode verificar isso facilmente procurando por uma mensagem recente de `restarted mysqld` no error log. Se houver tal mensagem, é provável que a corrupção da tabela seja resultado da falha do server (server dying). Caso contrário, a corrupção pode ter ocorrido durante a operação normal. Isso é um bug. Você deve tentar criar um caso de teste reproduzível que demonstre o problema. Consulte a Seção B.3.3.3, “O que Fazer se o MySQL Continuar a Falhar (Crashing)”, e a Seção 5.8, “Debugging MySQL”.

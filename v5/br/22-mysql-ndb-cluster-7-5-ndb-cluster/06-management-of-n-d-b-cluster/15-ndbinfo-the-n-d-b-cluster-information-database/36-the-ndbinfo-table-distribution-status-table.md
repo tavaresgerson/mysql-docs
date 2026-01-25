@@ -1,57 +1,57 @@
-#### 21.6.15.36 The ndbinfo table_distribution_status Table
+#### 21.6.15.36 A Tabela ndbinfo table_distribution_status
 
-The `table_distribution_status` table provides information about the progress of table distribution for `NDB` tables.
+A tabela `table_distribution_status` fornece informações sobre o progresso da distribuição de tabelas para tabelas `NDB`.
 
-The `table_distribution_status` table contains the following columns:
+A tabela `table_distribution_status` contém as seguintes colunas:
 
 * `node_id`
 
-  Node id
+  ID do Node
 
 * `table_id`
 
-  Table ID
+  ID da Tabela (Table ID)
 
 * `tab_copy_status`
 
-  Status of copying of table distribution data to disk; one of `IDLE`, `SR_PHASE1_READ_PAGES`, `SR_PHASE2_READ_TABLE`, `SR_PHASE3_COPY_TABLE`, `REMOVE_NODE`, `LCP_READ_TABLE`, `COPY_TAB_REQ`, `COPY_NODE_STATE`, `ADD_TABLE_MASTER`, `ADD_TABLE_SLAVE`, `INVALIDATE_NODE_LCP`, `ALTER_TABLE`, `COPY_TO_SAVE`, or `GET_TABINFO`
+  Status da cópia dos dados de distribuição da tabela para o disco; um de `IDLE`, `SR_PHASE1_READ_PAGES`, `SR_PHASE2_READ_TABLE`, `SR_PHASE3_COPY_TABLE`, `REMOVE_NODE`, `LCP_READ_TABLE`, `COPY_TAB_REQ`, `COPY_NODE_STATE`, `ADD_TABLE_MASTER`, `ADD_TABLE_SLAVE`, `INVALIDATE_NODE_LCP`, `ALTER_TABLE`, `COPY_TO_SAVE`, ou `GET_TABINFO`
 
 * `tab_update_status`
 
-  Status of updating of table distribution data; one of `IDLE`, `LOCAL_CHECKPOINT`, `LOCAL_CHECKPOINT_QUEUED`, `REMOVE_NODE`, `COPY_TAB_REQ`, `ADD_TABLE_MASTER`, `ADD_TABLE_SLAVE`, `INVALIDATE_NODE_LCP`, or `CALLBACK`
+  Status da atualização dos dados de distribuição da tabela; um de `IDLE`, `LOCAL_CHECKPOINT`, `LOCAL_CHECKPOINT_QUEUED`, `REMOVE_NODE`, `COPY_TAB_REQ`, `ADD_TABLE_MASTER`, `ADD_TABLE_SLAVE`, `INVALIDATE_NODE_LCP`, ou `CALLBACK`
 
 * `tab_lcp_status`
 
-  Status of table LCP; one of `ACTIVE` (waiting for local checkpoint to be performed), `WRITING_TO_FILE` (checkpoint performed but not yet written to disk), or `COMPLETED` (checkpoint performed and persisted to disk)
+  Status do LCP da tabela; um de `ACTIVE` (aguardando a execução do local checkpoint), `WRITING_TO_FILE` (checkpoint executado, mas ainda não escrito no disco), ou `COMPLETED` (checkpoint executado e persistido no disco)
 
 * `tab_status`
 
-  Table internal status; one of `ACTIVE` (table exists), `CREATING` (table is being created), or `DROPPING` (table is being dropped)
+  Status interno da tabela; um de `ACTIVE` (a tabela existe), `CREATING` (a tabela está sendo criada), ou `DROPPING` (a tabela está sendo descartada)
 
 * `tab_storage`
 
-  Table recoverability; one of `NORMAL` (fully recoverable with redo logging and checkpointing), `NOLOGGING` (recoverable from node crash, empty following cluster crash), or `TEMPORARY` (not recoverable)
+  Recuperabilidade da tabela; um de `NORMAL` (totalmente recuperável com redo logging e checkpointing), `NOLOGGING` (recuperável de falha de Node, vazia após falha do Cluster), ou `TEMPORARY` (não recuperável)
 
 * `tab_partitions`
 
-  Number of partitions in table
+  Número de Partitions na tabela
 
 * `tab_fragments`
 
-  Number of fragments in table; normally same as `tab_partitions`; for fully replicated tables equal to `tab_partitions * [number of node groups]`
+  Número de fragments na tabela; normalmente igual a `tab_partitions`; para tabelas totalmente replicadas, igual a `tab_partitions * [número de grupos de Node]`
 
 * `current_scan_count`
 
-  Current number of active scans
+  Número atual de Scans ativos
 
 * `scan_count_wait`
 
-  Current number of scans waiting to be performed before `ALTER TABLE` can complete.
+  Número atual de Scans aguardando para serem executados antes que o `ALTER TABLE` possa ser concluído.
 
 * `is_reorg_ongoing`
 
-  Whether table is currently being reorganized (1 if true)
+  Indica se a tabela está atualmente sendo reorganizada (1 se verdadeiro)
 
-##### Notes
+##### Notas
 
-The `table_distribution_status` table was added in NDB 7.5.4.
+A tabela `table_distribution_status` foi adicionada no NDB 7.5.4.

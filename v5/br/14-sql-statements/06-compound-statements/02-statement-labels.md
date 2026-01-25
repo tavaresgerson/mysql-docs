@@ -1,4 +1,4 @@
-### 13.6.2 Statement Labels
+### 13.6.2 Rótulos de Statement
 
 ```sql
 [begin_label:] BEGIN
@@ -19,18 +19,18 @@ END REPEAT [end_label]
 END WHILE [end_label]
 ```
 
-Labels are permitted for [`BEGIN ... END`](begin-end.html "13.6.1 BEGIN ... END Compound Statement") blocks and for the [`LOOP`](loop.html "13.6.5.5 LOOP Statement"), [`REPEAT`](repeat.html "13.6.5.6 REPEAT Statement"), and [`WHILE`](while.html "13.6.5.8 WHILE Statement") statements. Label use for those statements follows these rules:
+Rótulos são permitidos para blocos [`BEGIN ... END`](begin-end.html "13.6.1 BEGIN ... END Compound Statement") e para os statements [`LOOP`](loop.html "13.6.5.5 LOOP Statement"), [`REPEAT`](repeat.html "13.6.5.6 REPEAT Statement") e [`WHILE`](while.html "13.6.5.8 WHILE Statement"). O uso de rótulos para esses statements segue as seguintes regras:
 
-* *`begin_label`* must be followed by a colon.
+* *`begin_label`* deve ser seguido por dois pontos.
 
-* *`begin_label`* can be given without *`end_label`*. If *`end_label`* is present, it must be the same as *`begin_label`*.
+* *`begin_label`* pode ser fornecido sem *`end_label`*. Se *`end_label`* estiver presente, ele deve ser o mesmo que *`begin_label`*.
 
-* *`end_label`* cannot be given without *`begin_label`*.
+* *`end_label`* não pode ser fornecido sem *`begin_label`*.
 
-* Labels at the same nesting level must be distinct.
-* Labels can be up to 16 characters long.
+* Rótulos no mesmo nível de aninhamento devem ser distintos.
+* Rótulos podem ter até 16 caracteres de comprimento.
 
-To refer to a label within the labeled construct, use an [`ITERATE`](iterate.html "13.6.5.3 ITERATE Statement") or [`LEAVE`](leave.html "13.6.5.4 LEAVE Statement") statement. The following example uses those statements to continue iterating or terminate the loop:
+Para referenciar um rótulo dentro da construção rotulada, use um statement [`ITERATE`](iterate.html "13.6.5.3 ITERATE Statement") ou [`LEAVE`](leave.html "13.6.5.4 LEAVE Statement"). O exemplo a seguir usa esses statements para continuar a iteração ou encerrar o loop:
 
 ```sql
 CREATE PROCEDURE doiterate(p1 INT)
@@ -43,4 +43,4 @@ BEGIN
 END;
 ```
 
-The scope of a block label does not include the code for handlers declared within the block. For details, see [Section 13.6.7.2, “DECLARE ... HANDLER Statement”](declare-handler.html "13.6.7.2 DECLARE ... HANDLER Statement").
+O escopo de um rótulo de bloco não inclui o código para os handlers declarados dentro do bloco. Para detalhes, consulte [Section 13.6.7.2, “DECLARE ... HANDLER Statement”](declare-handler.html "13.6.7.2 DECLARE ... HANDLER Statement").

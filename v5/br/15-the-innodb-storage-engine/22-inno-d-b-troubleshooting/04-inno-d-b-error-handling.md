@@ -1,19 +1,19 @@
-### 14.22.4 InnoDB Error Handling
+### 14.22.4 Tratamento de Erros do InnoDB
 
-The following items describe how `InnoDB` performs error handling. `InnoDB` sometimes rolls back only the statement that failed, other times it rolls back the entire transaction.
+Os itens a seguir descrevem como o `InnoDB` executa o tratamento de erros. Às vezes, o `InnoDB` faz o *rollback* apenas do *statement* que falhou; em outras, ele faz o *rollback* da *transaction* inteira.
 
-* If you run out of file space in a tablespace, a MySQL `Table is full` error occurs and `InnoDB` rolls back the SQL statement.
+* Se você ficar sem espaço em disco em um *tablespace*, ocorre um erro do MySQL (`Table is full`) e o `InnoDB` faz o *rollback* do *SQL statement*.
 
-* A transaction deadlock causes `InnoDB` to roll back the entire transaction. Retry the entire transaction when this happens.
+* Um *deadlock* de *transaction* faz com que o `InnoDB` realize o *rollback* da *transaction* inteira. Tente novamente (*Retry*) a *transaction* inteira quando isso acontecer.
 
-  A lock wait timeout causes `InnoDB` to roll back the current statement (the statement that was waiting for the lock and encountered the timeout). To have the entire transaction roll back, start the server with `--innodb-rollback-on-timeout` enabled. Retry the statement if using the default behavior, or the entire transaction if `--innodb-rollback-on-timeout` is enabled.
+  Um *lock wait timeout* (tempo limite de espera por *lock*) faz com que o `InnoDB` realize o *rollback* do *statement* atual (o *statement* que estava esperando pelo *lock* e encontrou o tempo limite). Para que o *rollback* seja feito na *transaction* inteira, inicie o servidor com a opção `--innodb-rollback-on-timeout` habilitada. Tente novamente o *statement* se estiver usando o comportamento padrão, ou a *transaction* inteira se `--innodb-rollback-on-timeout` estiver habilitada.
 
-  Both deadlocks and lock wait timeouts are normal on busy servers and it is necessary for applications to be aware that they may happen and handle them by retrying. You can make them less likely by doing as little work as possible between the first change to data during a transaction and the commit, so the locks are held for the shortest possible time and for the smallest possible number of rows. Sometimes splitting work between different transactions may be practical and helpful.
+  Tanto *deadlocks* quanto *lock wait timeouts* são normais em servidores ocupados, e é necessário que as aplicações estejam cientes de que eles podem ocorrer e os tratem realizando novas tentativas (*retrying*). Você pode torná-los menos prováveis realizando o mínimo de trabalho possível entre a primeira alteração de dados durante uma *transaction* e o *commit*, para que os *locks* sejam mantidos pelo menor tempo possível e para o menor número possível de linhas. Às vezes, dividir o trabalho entre diferentes *transactions* pode ser prático e útil.
 
-* A duplicate-key error rolls back the SQL statement, if you have not specified the `IGNORE` option in your statement.
+* Um erro de *duplicate-key* faz o *rollback* do *SQL statement*, caso você não tenha especificado a opção `IGNORE` em seu *statement*.
 
-* A `row too long error` rolls back the SQL statement.
+* Um erro de `row too long error` faz o *rollback* do *SQL statement*.
 
-* Other errors are mostly detected by the MySQL layer of code (above the `InnoDB` storage engine level), and they roll back the corresponding SQL statement. Locks are not released in a rollback of a single SQL statement.
+* Outros erros são em grande parte detectados pela camada de código do MySQL (acima do nível do *storage engine* `InnoDB`), e eles fazem o *rollback* do *SQL statement* correspondente. *Locks* não são liberados em um *rollback* de um único *SQL statement*.
 
-During implicit rollbacks, as well as during the execution of an explicit `ROLLBACK` SQL statement, `SHOW PROCESSLIST` displays `Rolling back` in the `State` column for the relevant connection.
+Durante *rollbacks* implícitos, bem como durante a execução de um *SQL statement* `ROLLBACK` explícito, o comando `SHOW PROCESSLIST` exibe `Rolling back` na coluna `State` para a conexão relevante.

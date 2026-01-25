@@ -1,33 +1,33 @@
-#### 26.4.3.17 The memory_by_thread_by_current_bytes and x$memory_by_thread_by_current_bytes Views
+#### 26.4.3.17 As Views memory_by_thread_by_current_bytes e x$memory_by_thread_by_current_bytes
 
-These views summarize memory use, grouped by thread. By default, rows are sorted by descending amount of memory used.
+Essas Views resumem o uso de memory, agrupado por Thread. Por padrão, as linhas são ordenadas pela quantidade decrescente de memory utilizada.
 
-The `memory_by_thread_by_current_bytes` and `x$memory_by_thread_by_current_bytes` views have these columns:
+As Views `memory_by_thread_by_current_bytes` e `x$memory_by_thread_by_current_bytes` possuem estas colunas:
 
 * `thread_id`
 
-  The thread ID.
+  O ID da Thread.
 
 * `user`
 
-  The thread user or thread name.
+  O user da Thread ou nome da Thread.
 
 * `current_count_used`
 
-  The current number of allocated memory blocks that have not been freed yet for the thread.
+  O número atual de memory blocks allocated que ainda não foram liberados para a Thread.
 
 * `current_allocated`
 
-  The current number of allocated bytes that have not been freed yet for the thread.
+  O número atual de bytes allocated que ainda não foram liberados para a Thread.
 
 * `current_avg_alloc`
 
-  The current number of allocated bytes per memory block for the thread.
+  O número atual de bytes allocated por memory block para a Thread.
 
 * `current_max_alloc`
 
-  The largest single current memory allocation in bytes for the thread.
+  A maior alocação única de memory atual, em bytes, para a Thread.
 
 * `total_allocated`
 
-  The total memory allocation in bytes for the thread.
+  A alocação total de memory, em bytes, para a Thread.

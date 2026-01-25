@@ -1,119 +1,119 @@
-#### 26.4.3.22 The processlist and x$processlist Views
+#### 26.4.3.22 As Views processlist e x$processlist
 
-The MySQL process list indicates the operations currently being performed by the set of threads executing within the server. The `processlist` and `x$processlist` views summarize process information. They provide more complete information than the `SHOW PROCESSLIST` statement and the `INFORMATION_SCHEMA` `PROCESSLIST` table, and are also nonblocking. By default, rows are sorted by descending process time and descending wait time. For a comparison of process information sources, see Sources of Process Information.
+A lista de processos do MySQL indica as operações que estão sendo executadas atualmente pelo conjunto de Threads em execução no servidor. As views `processlist` e `x$processlist` resumem as informações do processo. Elas fornecem informações mais completas do que a instrução `SHOW PROCESSLIST` e a tabela `PROCESSLIST` do `INFORMATION_SCHEMA`, e também são não bloqueantes. Por padrão, as linhas são ordenadas pelo tempo de processo decrescente e pelo tempo de espera (wait time) decrescente. Para uma comparação das fontes de informação de processo, consulte Sources of Process Information.
 
-The column descriptions here are brief. For additional information, see the description of the Performance Schema `threads` table at Section 25.12.16.4, “The threads Table”.
+As descrições das colunas aqui são breves. Para informações adicionais, consulte a descrição da tabela `threads` do Performance Schema na Seção 25.12.16.4, “A Tabela threads”.
 
-The `processlist` and `x$processlist` views have these columns:
+As views `processlist` e `x$processlist` possuem as seguintes colunas:
 
 * `thd_id`
 
-  The thread ID.
+  O ID da Thread.
 
 * `conn_id`
 
-  The connection ID.
+  O ID da conexão.
 
 * `user`
 
-  The thread user or thread name.
+  O usuário da Thread ou o nome da Thread.
 
 * `db`
 
-  The default database for the thread, or `NULL` if there is none.
+  O Database padrão para a Thread, ou `NULL` se não houver nenhum.
 
 * `command`
 
-  For foreground threads, the type of command the thread is executing on behalf of the client, or `Sleep` if the session is idle.
+  Para Threads de primeiro plano, o tipo de comando que a Thread está executando em nome do cliente, ou `Sleep` se a sessão estiver ociosa.
 
 * `state`
 
-  An action, event, or state that indicates what the thread is doing.
+  Uma ação, evento ou estado que indica o que a Thread está fazendo.
 
 * `time`
 
-  The time in seconds that the thread has been in its current state.
+  O tempo em segundos que a Thread permaneceu em seu estado atual.
 
 * `current_statement`
 
-  The statement the thread is executing, or `NULL` if it is not executing any statement.
+  O statement que a Thread está executando, ou `NULL` se não estiver executando nenhum statement.
 
 * `statement_latency`
 
-  How long the statement has been executing.
+  Há quanto tempo o statement está sendo executado.
 
 * `progress`
 
-  The percentage of work completed for stages that support progress reporting. See Section 26.3, “sys Schema Progress Reporting”.
+  A porcentagem de trabalho concluída para estágios que suportam relatórios de progresso. Consulte a Seção 26.3, “sys Schema Progress Reporting”.
 
 * `lock_latency`
 
-  The time spent waiting for locks by the current statement.
+  O tempo gasto esperando por Locks pelo statement atual.
 
 * `rows_examined`
 
-  The number of rows read from storage engines by the current statement.
+  O número de linhas lidas dos storage engines pelo statement atual.
 
 * `rows_sent`
 
-  The number of rows returned by the current statement.
+  O número de linhas retornadas pelo statement atual.
 
 * `rows_affected`
 
-  The number of rows affected by the current statement.
+  O número de linhas afetadas pelo statement atual.
 
 * `tmp_tables`
 
-  The number of internal in-memory temporary tables created by the current statement.
+  O número de tabelas temporárias internas na memória (in-memory) criadas pelo statement atual.
 
 * `tmp_disk_tables`
 
-  The number of internal on-disk temporary tables created by the current statement.
+  O número de tabelas temporárias internas em disco (on-disk) criadas pelo statement atual.
 
 * `full_scan`
 
-  The number of full table scans performed by the current statement.
+  O número de varreduras completas de tabela (full table scans) realizadas pelo statement atual.
 
 * `last_statement`
 
-  The last statement executed by the thread, if there is no currently executing statement or wait.
+  O último statement executado pela Thread, se não houver nenhum statement ou espera (wait) em execução no momento.
 
 * `last_statement_latency`
 
-  How long the last statement executed.
+  Há quanto tempo o último statement foi executado.
 
 * `current_memory`
 
-  The number of bytes allocated by the thread.
+  O número de bytes alocados pela Thread.
 
 * `last_wait`
 
-  The name of the most recent wait event for the thread.
+  O nome do evento de espera (wait event) mais recente para a Thread.
 
 * `last_wait_latency`
 
-  The wait time of the most recent wait event for the thread.
+  O tempo de espera (wait time) do evento de espera mais recente para a Thread.
 
 * `source`
 
-  The source file and line number containing the instrumented code that produced the event.
+  O arquivo fonte e o número da linha contendo o código instrumentado que produziu o evento.
 
 * `trx_latency`
 
-  The wait time of the current transaction for the thread.
+  O tempo de espera (wait time) da transação atual para a Thread.
 
 * `trx_state`
 
-  The state for the current transaction for the thread.
+  O estado da transação atual para a Thread.
 
 * `trx_autocommit`
 
-  Whether autocommit mode was enabled when the current transaction started.
+  Se o modo autocommit estava habilitado quando a transação atual começou.
 
 * `pid`
 
-  The client process ID.
+  O ID do processo do cliente (client process ID).
 
 * `program_name`
 
-  The client program name.
+  O nome do programa do cliente.

@@ -1,13 +1,13 @@
-## 28.3 MySQL Enterprise Encryption Overview
+## 28.3 Visão Geral do MySQL Enterprise Encryption
 
-MySQL Enterprise Edition includes a set of encryption functions based on the OpenSSL library that expose OpenSSL capabilities at the SQL level. These functions enable Enterprise applications to perform the following operations:
+O MySQL Enterprise Edition inclui um conjunto de funções de criptografia baseado na biblioteca OpenSSL que expõe as capacidades do OpenSSL no nível SQL. Essas funções permitem que aplicações Enterprise realizem as seguintes operações:
 
-* Implement added data protection using public-key asymmetric cryptography
+* Implementar proteção de dados adicional usando criptografia assimétrica de chave pública
 
-* Create public and private keys and digital signatures
-* Perform asymmetric encryption and decryption
-* Use cryptographic hashing for digital signing and data verification and validation
+* Criar chaves públicas e privadas e assinaturas digitais
+* Executar criptografia e decriptografia assimétricas
+* Usar hashing criptográfico para assinatura digital e verificação e validação de dados
 
-For more information, see Section 6.6, “MySQL Enterprise Encryption”.
+Para mais informações, consulte a Seção 6.6, “MySQL Enterprise Encryption”.
 
-For other related Enterprise security features, see Section 28.2, “MySQL Enterprise Security Overview”.
+Para outras funcionalidades de segurança Enterprise relacionadas, consulte a Seção 28.2, “Visão Geral do MySQL Enterprise Security”.

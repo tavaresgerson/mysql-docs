@@ -1,46 +1,46 @@
-### 25.12.8 Performance Schema Connection Tables
+### 25.12.8 Tabelas de Connection do Performance Schema
 
-[25.12.8.1 The accounts Table](performance-schema-accounts-table.html)
+[25.12.8.1 A Tabela accounts](performance-schema-accounts-table.html)
 
-[25.12.8.2 The hosts Table](performance-schema-hosts-table.html)
+[25.12.8.2 A Tabela hosts](performance-schema-hosts-table.html)
 
-[25.12.8.3 The users Table](performance-schema-users-table.html)
+[25.12.8.3 A Tabela users](performance-schema-users-table.html)
 
-When a client connects to the MySQL server, it does so under a particular user name and from a particular host. The Performance Schema provides statistics about these connections, tracking them per account (user and host combination) as well as separately per user name and host name, using these tables:
+Quando um cliente se conecta ao servidor MySQL, ele o faz sob um nome de user específico e a partir de um host específico. O Performance Schema fornece estatísticas sobre essas Connections, rastreando-as por account (combinação de user e host), bem como separadamente por nome de user e nome de host, usando estas tabelas:
 
-* [`accounts`](performance-schema-accounts-table.html "25.12.8.1 The accounts Table"): Connection statistics per client account
+* [`accounts`](performance-schema-accounts-table.html "25.12.8.1 A Tabela accounts"): Estatísticas de Connection por account do cliente
 
-* [`hosts`](performance-schema-hosts-table.html "25.12.8.2 The hosts Table"): Connection statistics per client host name
+* [`hosts`](performance-schema-hosts-table.html "25.12.8.2 A Tabela hosts"): Estatísticas de Connection por nome de host do cliente
 
-* [`users`](performance-schema-users-table.html "25.12.8.3 The users Table"): Connection statistics per client user name
+* [`users`](performance-schema-users-table.html "25.12.8.3 A Tabela users"): Estatísticas de Connection por nome de user do cliente
 
-The meaning of “account” in the connection tables is similar to its meaning in the MySQL grant tables in the `mysql` system database, in the sense that the term refers to a combination of user and host values. They differ in that, for grant tables, the host part of an account can be a pattern, whereas for Performance Schema tables, the host value is always a specific nonpattern host name.
+O significado de "account" nas tabelas de Connection é semelhante ao seu significado nas grant tables do MySQL no Database de sistema `mysql`, no sentido de que o termo se refere a uma combinação de valores de user e host. Eles diferem no fato de que, para as grant tables, a parte host de um account pode ser um padrão (pattern), enquanto para as tabelas do Performance Schema, o valor do host é sempre um nome de host específico sem padrão (nonpattern).
 
-Each connection table has `CURRENT_CONNECTIONS` and `TOTAL_CONNECTIONS` columns to track the current and total number of connections per “tracking value” on which its statistics are based. The tables differ in what they use for the tracking value. The [`accounts`](performance-schema-accounts-table.html "25.12.8.1 The accounts Table") table has `USER` and `HOST` columns to track connections per user and host combination. The [`users`](performance-schema-users-table.html "25.12.8.3 The users Table") and [`hosts`](performance-schema-hosts-table.html "25.12.8.2 The hosts Table") tables have a `USER` and `HOST` column, respectively, to track connections per user name and host name.
+Cada tabela de Connection possui as colunas `CURRENT_CONNECTIONS` e `TOTAL_CONNECTIONS` para rastrear o número atual e total de Connections por "valor de rastreamento" (tracking value) no qual suas estatísticas são baseadas. As tabelas diferem no que usam para o valor de rastreamento. A tabela [`accounts`](performance-schema-accounts-table.html "25.12.8.1 A Tabela accounts") possui as colunas `USER` e `HOST` para rastrear Connections por combinação de user e host. As tabelas [`users`](performance-schema-users-table.html "25.12.8.3 A Tabela users") e [`hosts`](performance-schema-hosts-table.html "25.12.8.2 A Tabela hosts") possuem uma coluna `USER` e `HOST`, respectivamente, para rastrear Connections por nome de user e nome de host.
 
-The Performance Schema also counts internal threads and threads for user sessions that failed to authenticate, using rows with `USER` and `HOST` column values of `NULL`.
+O Performance Schema também contabiliza Threads internos e Threads para sessões de user que falharam na autenticação, usando linhas com valores `NULL` nas colunas `USER` e `HOST`.
 
-Suppose that clients named `user1` and `user2` each connect one time from `hosta` and `hostb`. The Performance Schema tracks the connections as follows:
+Suponha que clientes chamados `user1` e `user2` se conectem uma vez cada, a partir de `hosta` e `hostb`. O Performance Schema rastreia as Connections da seguinte forma:
 
-* The [`accounts`](performance-schema-accounts-table.html "25.12.8.1 The accounts Table") table has four rows, for the `user1`/`hosta`, `user1`/`hostb`, `user2`/`hosta`, and `user2`/`hostb` account values, each row counting one connection per account.
+* A tabela [`accounts`](performance-schema-accounts-table.html "25.12.8.1 A Tabela accounts") tem quatro linhas, para os valores de account `user1`/`hosta`, `user1`/`hostb`, `user2`/`hosta` e `user2`/`hostb`, com cada linha contando uma Connection por account.
 
-* The [`hosts`](performance-schema-hosts-table.html "25.12.8.2 The hosts Table") table has two rows, for `hosta` and `hostb`, each row counting two connections per host name.
+* A tabela [`hosts`](performance-schema-hosts-table.html "25.12.8.2 A Tabela hosts") tem duas linhas, para `hosta` e `hostb`, com cada linha contando duas Connections por nome de host.
 
-* The [`users`](performance-schema-users-table.html "25.12.8.3 The users Table") table has two rows, for `user1` and `user2`, each row counting two connections per user name.
+* A tabela [`users`](performance-schema-users-table.html "25.12.8.3 A Tabela users") tem duas linhas, para `user1` e `user2`, com cada linha contando duas Connections por nome de user.
 
-When a client connects, the Performance Schema determines which row in each connection table applies, using the tracking value appropriate to each table. If there is no such row, one is added. Then the Performance Schema increments by one the `CURRENT_CONNECTIONS` and `TOTAL_CONNECTIONS` columns in that row.
+Quando um cliente se conecta, o Performance Schema determina qual linha em cada tabela de Connection se aplica, usando o valor de rastreamento apropriado para cada tabela. Se não houver tal linha, uma é adicionada. Em seguida, o Performance Schema incrementa em um as colunas `CURRENT_CONNECTIONS` e `TOTAL_CONNECTIONS` nessa linha.
 
-When a client disconnects, the Performance Schema decrements by one the `CURRENT_CONNECTIONS` column in the row and leaves the `TOTAL_CONNECTIONS` column unchanged.
+Quando um cliente se desconecta, o Performance Schema decrementa em um a coluna `CURRENT_CONNECTIONS` na linha e mantém a coluna `TOTAL_CONNECTIONS` inalterada.
 
-[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is permitted for connection tables. It has these effects:
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") é permitido para tabelas de Connection. Ele tem os seguintes efeitos:
 
-* Rows are removed for accounts, hosts, or users that have no current connections (rows with `CURRENT_CONNECTIONS = 0`).
+* Linhas são removidas para accounts, hosts ou users que não possuem Connections atuais (linhas com `CURRENT_CONNECTIONS = 0`).
 
-* Nonremoved rows are reset to count only current connections: For rows with `CURRENT_CONNECTIONS > 0`, `TOTAL_CONNECTIONS` is reset to `CURRENT_CONNECTIONS`.
+* Linhas não removidas são redefinidas para contar apenas Connections atuais: Para linhas com `CURRENT_CONNECTIONS > 0`, `TOTAL_CONNECTIONS` é redefinido para `CURRENT_CONNECTIONS`.
 
-* Summary tables that depend on the connection table are implicitly truncated, as described later in this section.
+* Tabelas de resumo (summary tables) que dependem da tabela de Connection são implicitamente truncadas, conforme descrito posteriormente nesta seção.
 
-The Performance Schema maintains summary tables that aggregate connection statistics for various event types by account, host, or user. These tables have `_summary_by_account`, `_summary_by_host`, or `_summary_by_user` in the name. To identify them, use this query:
+O Performance Schema mantém summary tables que agregam estatísticas de Connection para vários tipos de eventos por account, host ou user. Essas tabelas têm `_summary_by_account`, `_summary_by_host` ou `_summary_by_user` no nome. Para identificá-las, use esta Query:
 
 ```sql
 mysql> SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES
@@ -68,22 +68,26 @@ mysql> SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES
 +------------------------------------------------------+
 ```
 
-For details about individual connection summary tables, consult the section that describes tables for the summarized event type:
+Para obter detalhes sobre summary tables de Connection individuais, consulte a seção que descreve as tabelas para o tipo de evento resumido:
 
-* Wait event summaries: [Section 25.12.15.1, “Wait Event Summary Tables”](performance-schema-wait-summary-tables.html "25.12.15.1 Wait Event Summary Tables")
+* Resumos de eventos Wait: [Section 25.12.15.1, “Wait Event Summary Tables”](performance-schema-wait-summary-tables.html "25.12.15.1 Wait Event Summary Tables")
 
-* Stage event summaries: [Section 25.12.15.2, “Stage Summary Tables”](performance-schema-stage-summary-tables.html "25.12.15.2 Stage Summary Tables")
+* Resumos de eventos Stage: [Section 25.12.15.2, “Stage Summary Tables”](performance-schema-stage-summary-tables.html "25.12.15.2 Stage Summary Tables")
 
-* Statement event summaries: [Section 25.12.15.3, “Statement Summary Tables”](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables")
+* Resumos de eventos Statement: [Section 25.12.15.3, “Statement Summary Tables”](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables")
 
-* Transaction event summaries: [Section 25.12.15.4, “Transaction Summary Tables”](performance-schema-transaction-summary-tables.html "25.12.15.4 Transaction Summary Tables")
+* Resumos de eventos Transaction: [Section 25.12.15.4, “Transaction Summary Tables”](performance-schema-transaction-summary-tables.html "25.12.15.4 Transaction Summary Tables")
 
-* Memory event summaries: [Section 25.12.15.9, “Memory Summary Tables”](performance-schema-memory-summary-tables.html "25.12.15.9 Memory Summary Tables")
+* Resumos de eventos Memory: [Section 25.12.15.9, “Memory Summary Tables”](performance-schema-memory-summary-tables.html "25.12.15.9 Memory Summary Tables")
 
-[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is permitted for connection summary tables. It removes rows for accounts, hosts, or users with no connections, and resets the summary columns to zero for the remaining rows. In addition, each summary table that is aggregated by account, host, user, or thread is implicitly truncated by truncation of the connection table on which it depends. The following table describes the relationship between connection table truncation and implicitly truncated tables.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") é permitido para as summary tables de Connection. Ele remove linhas para accounts, hosts ou users sem Connections, e redefine as colunas de resumo para zero nas linhas restantes. Além disso, cada summary table que é agregada por account, host, user ou Thread é implicitamente truncada pelo truncamento da tabela de Connection da qual ela depende. A tabela a seguir descreve a relação entre o truncamento da tabela de Connection e as tabelas implicitamente truncadas.
 
-**Table 25.2 Implicit Effects of Connection Table Truncation**
+**Tabela 25.2 Efeitos Implícitos do Truncamento de Tabelas de Connection**
 
-<table summary="Which Performance Schema summary tables are implicity truncated by connection table truncation."><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>Truncated Connection Table</th> <th>Implicitly Truncated Summary Tables</th> </tr></thead><tbody><tr> <td><code>accounts</code></td> <td>Tables with names containing <code>_summary_by_account</code>, <code>_summary_by_thread</code></td> </tr><tr> <td><code>hosts</code></td> <td>Tables with names containing <code>_summary_by_account</code>, <code>_summary_by_host</code>, <code>_summary_by_thread</code></td> </tr><tr> <td><code>users</code></td> <td>Tables with names containing <code>_summary_by_account</code>, <code>_summary_by_user</code>, <code>_summary_by_thread</code></td> </tr></tbody></table>
+| Tabela de Connection Truncada | Summary Tables Implicitamente Truncadas |
+|---|---|
+| `accounts` | Tabelas com nomes contendo `_summary_by_account`, `_summary_by_thread` |
+| `hosts` | Tabelas com nomes contendo `_summary_by_account`, `_summary_by_host`, `_summary_by_thread` |
+| `users` | Tabelas com nomes contendo `_summary_by_account`, `_summary_by_user`, `_summary_by_thread` |
 
-Truncating a `_summary_global` summary table also implicitly truncates its corresponding connection and thread summary tables. For example, truncating [`events_waits_summary_global_by_event_name`](performance-schema-wait-summary-tables.html "25.12.15.1 Wait Event Summary Tables") implicitly truncates the wait event summary tables that are aggregated by account, host, user, or thread.
+Truncar uma summary table `_summary_global` também trunca implicitamente suas summary tables de Connection e Thread correspondentes. Por exemplo, truncar [`events_waits_summary_global_by_event_name`](performance-schema-wait-summary-tables.html "25.12.15.1 Wait Event Summary Tables") trunca implicitamente as summary tables de eventos Wait que são agregadas por account, host, user ou Thread.

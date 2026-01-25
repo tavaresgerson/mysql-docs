@@ -1,14 +1,14 @@
-### 11.4.5 Creating Spatial Columns
+### 11.4.5 Criação de Colunas Espaciais
 
-MySQL provides a standard way of creating spatial columns for geometry types, for example, with `CREATE TABLE` or `ALTER TABLE`. Spatial columns are supported for `MyISAM`, `InnoDB`, `NDB`, and `ARCHIVE` tables. See also the notes about spatial indexes under Section 11.4.9, “Creating Spatial Indexes”.
+O MySQL fornece uma maneira padrão de criar colunas espaciais para *geometry types* (tipos de geometria), por exemplo, usando `CREATE TABLE` ou `ALTER TABLE`. Colunas espaciais são suportadas para tabelas `MyISAM`, `InnoDB`, `NDB` e `ARCHIVE`. Consulte também as notas sobre *spatial indexes* na Seção 11.4.9, “Criação de Indexes Espaciais”.
 
-* Use the `CREATE TABLE` statement to create a table with a spatial column:
+* Use a instrução `CREATE TABLE` para criar uma tabela com uma coluna espacial:
 
   ```sql
   CREATE TABLE geom (g GEOMETRY);
   ```
 
-* Use the `ALTER TABLE` statement to add or drop a spatial column to or from an existing table:
+* Use a instrução `ALTER TABLE` para adicionar ou remover (*drop*) uma coluna espacial a ou de uma tabela existente:
 
   ```sql
   ALTER TABLE geom ADD pt POINT;

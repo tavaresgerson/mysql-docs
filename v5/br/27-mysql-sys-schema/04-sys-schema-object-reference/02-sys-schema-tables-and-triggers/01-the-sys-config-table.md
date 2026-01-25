@@ -1,28 +1,28 @@
-#### 26.4.2.1 The sys_config Table
+#### 26.4.2.1 A Tabela sys_config
 
-This table contains `sys` schema configuration options, one row per option. Configuration changes made by updating this table persist across client sessions and server restarts.
+Esta tabela contém opções de configuração do `sys` schema, uma linha por opção. As alterações de configuração feitas ao atualizar esta tabela persistem entre as SESSIONS de cliente e reinicializações do servidor.
 
-The `sys_config` table has these columns:
+A tabela `sys_config` possui as seguintes colunas:
 
 * `variable`
 
-  The configuration option name.
+  O nome da opção de configuração.
 
 * `value`
 
-  The configuration option value.
+  O valor da opção de configuração.
 
 * `set_time`
 
-  The timestamp of the most recent modification to the row.
+  O TIMESTAMP da modificação mais recente na linha.
 
 * `set_by`
 
-  The account that made the most recent modification to the row. The value is `NULL` if the row has not been changed since the `sys` schema was installed.
+  A conta que fez a modificação mais recente na linha. O valor é `NULL` se a linha não foi alterada desde que o `sys` schema foi instalado.
 
-As an efficiency measure to minimize the number of direct reads from the `sys_config` table, `sys` schema functions that use a value from this table check for a user-defined variable with a corresponding name, which is the user-defined variable having the same name plus a `@sys.` prefix. (For example, the variable corresponding to the `diagnostics.include_raw` option is `@sys.diagnostics.include_raw`.) If the user-defined variable exists in the current session and is non-`NULL`, the function uses its value in preference to the value in the `sys_config` table. Otherwise, the function reads and uses the value from the table. In the latter case, the calling function conventionally also sets the corresponding user-defined variable to the table value so that further references to the configuration option within the same session use the variable and need not read the table again.
+Como medida de eficiência para minimizar o número de leituras diretas da tabela `sys_config`, as Functions do `sys` schema que utilizam um valor desta tabela verificam a existência de uma *user-defined variable* (variável definida pelo usuário) com um nome correspondente, que é a *user-defined variable* tendo o mesmo nome acrescido do prefixo `@sys.`. (Por exemplo, a Variable correspondente à opção `diagnostics.include_raw` é `@sys.diagnostics.include_raw`.) Se a *user-defined variable* existir na SESSION atual e for diferente de `NULL`, a Function utiliza seu valor em preferência ao valor na tabela `sys_config`. Caso contrário, a Function lê e utiliza o valor da tabela. Neste último caso, a Function chamadora define convencionalmente a *user-defined variable* correspondente para o valor da tabela, de modo que referências futuras à opção de configuração dentro da mesma SESSION utilizem a Variable e não precisem ler a tabela novamente.
 
-For example, the `statement_truncate_len` option controls the maximum length of statements returned by the `format_statement()` Function") function. The default is 64. To temporarily change the value to 32 for your current session, set the corresponding `@sys.statement_truncate_len` user-defined variable:
+Por exemplo, a opção `statement_truncate_len` controla o comprimento máximo de *Statements* retornados pela Function `format_statement()` Function"). O padrão é 64. Para alterar temporariamente o valor para 32 para sua SESSION atual, defina a *user-defined variable* `@sys.statement_truncate_len` correspondente:
 
 ```sql
 mysql> SET @stmt = 'SELECT variable, value, set_time, set_by FROM sys_config';
@@ -41,9 +41,9 @@ mysql> SELECT sys.format_statement(@stmt);
 +-----------------------------------+
 ```
 
-Subsequent invocations of `format_statement()` Function") within the session continue to use the user-defined variable value (32), rather than the value stored in the table (64).
+Invocações subsequentes de `format_statement()` Function") dentro da SESSION continuarão a usar o valor da *user-defined variable* (32), em vez do valor armazenado na tabela (64).
 
-To stop using the user-defined variable and revert to using the value in the table, set the variable to `NULL` within your session:
+Para parar de usar a *user-defined variable* e reverter para usar o valor na tabela, defina a Variable como `NULL` dentro da sua SESSION:
 
 ```sql
 mysql> SET @sys.statement_truncate_len = NULL;
@@ -55,43 +55,43 @@ mysql> SELECT sys.format_statement(@stmt);
 +----------------------------------------------------------+
 ```
 
-Alternatively, end your current session (causing the user-defined variable to no longer exist) and begin a new session.
+Alternativamente, encerre sua SESSION atual (fazendo com que a *user-defined variable* deixe de existir) e inicie uma nova SESSION.
 
-The conventional relationship just described between options in the `sys_config` table and user-defined variables can be exploited to make temporary configuration changes that end when your session ends. However, if you set a user-defined variable and then subsequently change the corresponding table value within the same session, the changed table value is not used in that session as long as the user-defined variable exists and is not `NULL`. (The changed table value *is* used in other sessions that do not have the user-defined variable assigned.)
+O relacionamento convencional recém-descrito entre as opções na tabela `sys_config` e as *user-defined variables* pode ser explorado para fazer alterações temporárias de configuração que terminam quando sua SESSION termina. No entanto, se você definir uma *user-defined variable* e subsequentemente alterar o valor da tabela correspondente dentro da mesma SESSION, o valor alterado da tabela não será usado nessa SESSION, desde que a *user-defined variable* exista e não seja `NULL`. (O valor alterado da tabela *é* usado em outras SESSIONS que não têm a *user-defined variable* atribuída.)
 
-The following list describes the options in the `sys_config` table and the corresponding user-defined variables:
+A lista a seguir descreve as opções na tabela `sys_config` e as *user-defined variables* correspondentes:
 
 * `diagnostics.allow_i_s_tables`, `@sys.diagnostics.allow_i_s_tables`
 
-  If this option is `ON`, the `diagnostics()` Procedure") procedure is permitted to perform table scans on the Information Schema `TABLES` table. This can be expensive if there are many tables. The default is `OFF`.
+  Se esta opção estiver `ON`, o Procedure `diagnostics()` Procedure") tem permissão para realizar *table scans* na tabela `TABLES` do Information Schema. Isso pode ser custoso se houver muitas tabelas. O padrão é `OFF`.
 
 * `diagnostics.include_raw`, `@sys.diagnostics.include_raw`
 
-  If this option is `ON`, the `diagnostics()` Procedure") procedure includes the raw output from querying the `metrics` view. The default is `OFF`.
+  Se esta opção estiver `ON`, o Procedure `diagnostics()` Procedure") inclui a saída "raw" (bruta) da Query à View `metrics`. O padrão é `OFF`.
 
 * `ps_thread_trx_info.max_length`, `@sys.ps_thread_trx_info.max_length`
 
-  The maximum length for JSON output produced by the `ps_thread_trx_info()` Function") function. The default is 65535.
+  O comprimento máximo para a saída JSON produzida pela Function `ps_thread_trx_info()` Function"). O padrão é 65535.
 
 * `statement_performance_analyzer.limit`, `@sys.statement_performance_analyzer.limit`
 
-  The maximum number of rows to return for views that have no built-in limit. (For example, the `statements_with_runtimes_in_95th_percentile` view has a built-in limit in the sense that it returns only statements with average execution time in the 95th percentile.) The default is 100.
+  O número máximo de linhas a serem retornadas para Views que não possuem um LIMIT interno. (Por exemplo, a View `statements_with_runtimes_in_95th_percentile` tem um LIMIT interno no sentido de que retorna apenas *Statements* com tempo médio de execução no percentil 95.) O padrão é 100.
 
 * `statement_performance_analyzer.view`, `@sys.statement_performance_analyzer.view`
 
-  The custom query or view to be used by the `statement_performance_analyzer()` Procedure") procedure (which is itself invoked by the `diagnostics()` Procedure") procedure). If the option value contains a space, it is interpreted as a query. Otherwise, it must be the name of an existing view that queries the Performance Schema `events_statements_summary_by_digest` table. There cannot be any `LIMIT` clause in the query or view definition if the `statement_performance_analyzer.limit` configuration option is greater than 0. The default is `NULL` (no custom view defined).
+  A Query customizada ou View a ser usada pelo Procedure `statement_performance_analyzer()` Procedure") (que é invocado pelo Procedure `diagnostics()` Procedure")). Se o valor da opção contiver um espaço, ele será interpretado como uma Query. Caso contrário, deve ser o nome de uma View existente que faça Query na tabela `events_statements_summary_by_digest` do Performance Schema. Não pode haver nenhuma cláusula `LIMIT` na definição da Query ou View se a opção de configuração `statement_performance_analyzer.limit` for maior que 0. O padrão é `NULL` (nenhuma View customizada definida).
 
 * `statement_truncate_len`, `@sys.statement_truncate_len`
 
-  The maximum length of statements returned by the `format_statement()` Function") function. Longer statements are truncated to this length. The default is 64.
+  O comprimento máximo de *Statements* retornados pela Function `format_statement()` Function"). *Statements* mais longos são truncados para este comprimento. O padrão é 64.
 
-Other options can be added to the `sys_config` table. For example, the `diagnostics()` Procedure") and `execute_prepared_stmt()` Procedure") procedures use the `debug` option if it exists, but this option is not part of the `sys_config` table by default because debug output normally is enabled only temporarily, by setting the corresponding `@sys.debug` user-defined variable. To enable debug output without having to set that variable in individual sessions, add the option to the table:
+Outras opções podem ser adicionadas à tabela `sys_config`. Por exemplo, os Procedures `diagnostics()` Procedure") e `execute_prepared_stmt()` Procedure") usam a opção `debug` se ela existir, mas esta opção não faz parte da tabela `sys_config` por padrão, pois a saída de debug normalmente é habilitada apenas temporariamente, definindo a *user-defined variable* `@sys.debug` correspondente. Para habilitar a saída de debug sem ter que definir essa Variable em SESSIONS individuais, adicione a opção à tabela:
 
 ```sql
 mysql> INSERT INTO sys.sys_config (variable, value) VALUES('debug', 'ON');
 ```
 
-To change the debug setting in the table, do two things. First, modify the value in the table itself:
+Para alterar a configuração de debug na tabela, faça duas coisas. Primeiro, modifique o valor na própria tabela:
 
 ```sql
 mysql> UPDATE sys.sys_config
@@ -99,7 +99,7 @@ mysql> UPDATE sys.sys_config
        WHERE variable = 'debug';
 ```
 
-Second, to also ensure that procedure invocations within the current session use the changed value from the table, set the corresponding user-defined variable to `NULL`:
+Segundo, para também garantir que as invocações de Procedures dentro da SESSION atual usem o valor alterado da tabela, defina a *user-defined variable* correspondente como `NULL`:
 
 ```sql
 mysql> SET @sys.debug = NULL;

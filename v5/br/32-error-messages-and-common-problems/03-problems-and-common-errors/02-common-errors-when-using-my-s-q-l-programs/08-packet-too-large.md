@@ -1,34 +1,34 @@
 #### B.3.2.8 Packet Too Large
 
-A communication packet is a single SQL statement sent to the MySQL server, a single row that is sent to the client, or a binary log event sent from a replication source server to a replica.
+Um communication Packet é uma única instrução SQL enviada ao servidor MySQL, uma única row que é enviada ao client, ou um evento de binary log enviado de um servidor de replicação de origem para uma réplica.
 
-The largest possible packet that can be transmitted to or from a MySQL 5.7 server or client is 1GB.
+O maior Packet possível que pode ser transmitido para ou de um servidor ou client MySQL 5.7 é 1GB.
 
-When a MySQL client or the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server receives a packet bigger than [`max_allowed_packet`](server-system-variables.html#sysvar_max_allowed_packet) bytes, it issues an [`ER_NET_PACKET_TOO_LARGE`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_net_packet_too_large) error and closes the connection. With some clients, you may also get a `Lost connection to MySQL server during query` error if the communication packet is too large.
+Quando um client MySQL ou o servidor [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") recebe um Packet maior que [`max_allowed_packet`](server-system-variables.html#sysvar_max_allowed_packet) bytes, ele emite um erro [`ER_NET_PACKET_TOO_LARGE`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_net_packet_too_large) e fecha a connection. Com alguns clients, você também pode receber o erro `Lost connection to MySQL server during query` se o communication Packet for muito grande.
 
-Both the client and the server have their own [`max_allowed_packet`](server-system-variables.html#sysvar_max_allowed_packet) variable, so if you want to handle big packets, you must increase this variable both in the client and in the server.
+Tanto o client quanto o server possuem sua própria variável [`max_allowed_packet`](server-system-variables.html#sysvar_max_allowed_packet), então se você deseja lidar com Packets grandes, você deve aumentar esta variável tanto no client quanto no server.
 
-If you are using the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client program, its default [`max_allowed_packet`](server-system-variables.html#sysvar_max_allowed_packet) variable is 16MB. To set a larger value, start [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") like this:
+Se você estiver usando o programa client [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"), sua variável [`max_allowed_packet`](server-system-variables.html#sysvar_max_allowed_packet) padrão é 16MB. Para definir um valor maior, inicie o [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") desta forma:
 
 ```sql
 $> mysql --max_allowed_packet=32M
 ```
 
-That sets the packet size to 32MB.
+Isso define o tamanho do Packet para 32MB.
 
-The server's default [`max_allowed_packet`](server-system-variables.html#sysvar_max_allowed_packet) value is 4MB. You can increase this if the server needs to handle big queries (for example, if you are working with big [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") columns). For example, to set the variable to 16MB, start the server like this:
+O valor padrão [`max_allowed_packet`](server-system-variables.html#sysvar_max_allowed_packet) do server é 4MB. Você pode aumentar este valor se o server precisar lidar com Queries grandes (por exemplo, se você estiver trabalhando com colunas [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") grandes). Por exemplo, para definir a variável como 16MB, inicie o server desta forma:
 
 ```sql
 $> mysqld --max_allowed_packet=16M
 ```
 
-You can also use an option file to set [`max_allowed_packet`](server-system-variables.html#sysvar_max_allowed_packet). For example, to set the size for the server to 16MB, add the following lines in an option file:
+Você também pode usar um arquivo de option para definir [`max_allowed_packet`](server-system-variables.html#sysvar_max_allowed_packet). Por exemplo, para definir o tamanho para o server como 16MB, adicione as seguintes linhas em um arquivo de option:
 
 ```sql
 [mysqld]
 max_allowed_packet=16M
 ```
 
-It is safe to increase the value of this variable because the extra memory is allocated only when needed. For example, [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") allocates more memory only when you issue a long query or when [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") must return a large result row. The small default value of the variable is a precaution to catch incorrect packets between the client and server and also to ensure that you do not run out of memory by using large packets accidentally.
+É seguro aumentar o valor desta variável porque a memória extra é alocada apenas quando necessário. Por exemplo, o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") aloca mais memória somente quando você emite uma Query longa ou quando o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") deve retornar uma result row grande. O pequeno valor padrão da variável é uma precaução para detectar Packets incorretos entre o client e o server e também para garantir que você não esgote a memória utilizando Packets grandes acidentalmente.
 
-You can also get strange problems with large packets if you are using large [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") values but have not given [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") access to enough memory to handle the query. If you suspect this is the case, try adding **ulimit -d 256000** to the beginning of the [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") script and restarting [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
+Você também pode encontrar problemas estranhos com Packets grandes se estiver usando valores [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") grandes, mas não tiver fornecido acesso a memória suficiente para o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") lidar com a Query. Se você suspeitar que este é o caso, tente adicionar **ulimit -d 256000** no início do script [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") e reinicie o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").

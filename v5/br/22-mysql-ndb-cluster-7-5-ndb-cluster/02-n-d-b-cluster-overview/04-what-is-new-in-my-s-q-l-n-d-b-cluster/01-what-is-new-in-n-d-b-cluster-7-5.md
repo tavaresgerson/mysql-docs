@@ -1,14 +1,14 @@
-#### 21.2.4.1 What is New in NDB Cluster 7.5
+#### 21.2.4.1 Novidades no NDB Cluster 7.5
 
-Major changes and new features in NDB Cluster 7.5 which are likely to be of interest are shown in the following list:
+As principais alterações e novos recursos do NDB Cluster 7.5 que provavelmente serão de interesse estão listados a seguir:
 
-* **ndbinfo Enhancements.** A number of changes are made in the [`ndbinfo`](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database") database, chief of which is that it now provides detailed information about NDB Cluster node configuration parameters.
+* **Melhorias no ndbinfo.** Uma série de alterações foram feitas no Database [`ndbinfo`](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database"), sendo a principal delas que agora ele fornece informações detalhadas sobre os parâmetros de configuração do Node do NDB Cluster.
 
-  The [`config_params`](mysql-cluster-ndbinfo-config-params.html "21.6.15.8 The ndbinfo config_params Table") table has been made read-only, and has been enhanced with additional columns providing information about each configuration parameter, including the parameter's type, default value, maximum and minimum values (where applicable), a brief description of the parameter, and whether the parameter is required. This table also provides each parameter with a unique `param_number`.
+  A tabela [`config_params`](mysql-cluster-ndbinfo-config-params.html "21.6.15.8 The ndbinfo config_params Table") foi tornada somente leitura e aprimorada com colunas adicionais que fornecem informações sobre cada parâmetro de configuração, incluindo o tipo do parâmetro, valor padrão, valores máximo e mínimo (quando aplicável), uma breve descrição do parâmetro e se o parâmetro é obrigatório. Esta tabela também fornece a cada parâmetro um `param_number` exclusivo.
 
-  A row in the [`config_values`](mysql-cluster-ndbinfo-config-values.html "21.6.15.9 The ndbinfo config_values Table") table shows the current value of a given parameter on the node having a specified ID. The parameter is identified by the value of the `config_param` column, which maps to the `config_params` table's `param_number`.
+  Uma linha na tabela [`config_values`](mysql-cluster-ndbinfo-config-values.html "21.6.15.9 The ndbinfo config_values Table") mostra o valor atual de um determinado parâmetro no Node que possui um ID especificado. O parâmetro é identificado pelo valor da coluna `config_param`, que se mapeia para o `param_number` da tabela `config_params`.
 
-  Using this relationship you can write a join on these two tables to obtain the default, maximum, minimum, and current values for one or more NDB Cluster configuration parameters by name. An example SQL statement using such a join is shown here:
+  Usando este relacionamento, você pode escrever um JOIN nessas duas tabelas para obter os valores padrão, máximo, mínimo e atual de um ou mais parâmetros de configuração do NDB Cluster por nome. Um exemplo de instrução SQL usando tal JOIN é mostrado aqui:
 
   ```sql
   SELECT  p.param_name AS Name,
@@ -25,59 +25,59 @@ Major changes and new features in NDB Cluster 7.5 which are likely to be of inte
   WHERE   p. param_name IN ('NodeId', 'HostName','DataMemory', 'IndexMemory');
   ```
 
-  For more information about these changes, see [Section 21.6.15.8, “The ndbinfo config_params Table”](mysql-cluster-ndbinfo-config-params.html "21.6.15.8 The ndbinfo config_params Table"). See [Section 21.6.15.9, “The ndbinfo config_values Table”](mysql-cluster-ndbinfo-config-values.html "21.6.15.9 The ndbinfo config_values Table"), for further information and examples.
+  Para obter mais informações sobre estas alterações, consulte [Seção 21.6.15.8, “The ndbinfo config_params Table”](mysql-cluster-ndbinfo-config-params.html "21.6.15.8 The ndbinfo config_params Table”). Consulte [Seção 21.6.15.9, “The ndbinfo config_values Table”](mysql-cluster-ndbinfo-config-values.html "21.6.15.9 The ndbinfo config_values Table”), para obter informações e exemplos adicionais.
 
-  In addition, the `ndbinfo` database no longer depends on the `MyISAM` storage engine. All `ndbinfo` tables and views now use `NDB` (shown as `NDBINFO`).
+  Além disso, o Database `ndbinfo` não depende mais do storage engine `MyISAM`. Todas as tabelas e views `ndbinfo` agora usam `NDB` (mostrado como `NDBINFO`).
 
-  Several new `ndbinfo` tables were introduced in NDB 7.5.4. These tables are listed here, with brief descriptions:
+  Várias novas tabelas `ndbinfo` foram introduzidas no NDB 7.5.4. Estas tabelas estão listadas aqui, com breves descrições:
 
-  + [`dict_obj_info`](mysql-cluster-ndbinfo-dict-obj-info.html "21.6.15.15 The ndbinfo dict_obj_info Table") provides the names and types of database objects in `NDB`, as well as information about parent obejcts where applicable
+  + [`dict_obj_info`](mysql-cluster-ndbinfo-dict-obj-info.html "21.6.15.15 The ndbinfo dict_obj_info Table") fornece os nomes e tipos de objetos de Database em `NDB`, bem como informações sobre objetos pai (parent objects), quando aplicável
 
-  + [`table_distribution_status`](mysql-cluster-ndbinfo-table-distribution-status.html "21.6.15.36 The ndbinfo table_distribution_status Table") provides `NDB` table distribution status information
+  + [`table_distribution_status`](mysql-cluster-ndbinfo-table-distribution-status.html "21.6.15.36 The ndbinfo table_distribution_status Table") fornece informações de Status de distribuição da tabela `NDB`
 
-  + [`table_fragments`](mysql-cluster-ndbinfo-table-fragments.html "21.6.15.37 The ndbinfo table_fragments Table") provides information about the distribution of `NDB` table fragments
+  + [`table_fragments`](mysql-cluster-ndbinfo-table-fragments.html "21.6.15.37 The ndbinfo table_fragments Table") fornece informações sobre a distribuição de fragmentos de tabela `NDB`
 
-  + [`table_info`](mysql-cluster-ndbinfo-table-info.html "21.6.15.38 The ndbinfo table_info Table") provides information about logging, checkpointing, storage, and other options in force for each `NDB` table
+  + [`table_info`](mysql-cluster-ndbinfo-table-info.html "21.6.15.38 The ndbinfo table_info Table") fornece informações sobre Logging, Checkpointing, storage e outras opções em vigor para cada tabela `NDB`
 
-  + [`table_replicas`](mysql-cluster-ndbinfo-table-replicas.html "21.6.15.39 The ndbinfo table_replicas Table") provides information about fragment replicas
+  + [`table_replicas`](mysql-cluster-ndbinfo-table-replicas.html "21.6.15.39 The ndbinfo table_replicas Table") fornece informações sobre réplicas de fragmentos
 
-  See the descriptions of the individual tables for more information.
+  Consulte as descrições das tabelas individuais para obter mais informações.
 
-* **Default row and column format changes.** Starting with NDB 7.5.1, the default value for both the `ROW_FORMAT` option and the `COLUMN_FORMAT` option for [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") can be set to `DYNAMIC` rather than `FIXED`, using a new MySQL server variable [`ndb_default_column_format`](mysql-cluster-options-variables.html#sysvar_ndb_default_column_format) is added as part of this change; set this to `FIXED` or `DYNAMIC` (or start [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with the equivalent option [`--ndb-default-column-format=FIXED`](mysql-cluster-options-variables.html#option_mysqld_ndb-default-column-format)) to force this value to be used for `COLUMN_FORMAT` and `ROW_FORMAT`. Prior to NDB 7.5.4, the default for this variable was `DYNAMIC`; in this and later versions, the default is `FIXED`, which provides backwards compatibility with prior releases (Bug #24487363).
+* **Alterações no formato padrão de linha e coluna.** A partir do NDB 7.5.1, o valor padrão para a opção `ROW_FORMAT` e a opção `COLUMN_FORMAT` para [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") pode ser definido como `DYNAMIC` em vez de `FIXED`, usando uma nova variável do MySQL Server. A variável [`ndb_default_column_format`](mysql-cluster-options-variables.html#sysvar_ndb_default_column_format) é adicionada como parte desta alteração; defina-a como `FIXED` ou `DYNAMIC` (ou inicie [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") com a opção equivalente [`--ndb-default-column-format=FIXED`](mysql-cluster-options-variables.html#option_mysqld_ndb-default-column-format)) para forçar que este valor seja usado para `COLUMN_FORMAT` e `ROW_FORMAT`. Antes do NDB 7.5.4, o padrão para esta variável era `DYNAMIC`; nesta e em versões posteriores, o padrão é `FIXED`, o que oferece compatibilidade com versões anteriores (Bug #24487363).
 
-  The row format and column format used by existing table columns are unaffected by this change. New columns added to such tables use the new defaults for these (possibly overridden by `ndb_default_column_format`), and existing columns are changed to use these as well, provided that the [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement performing this operation specifies `ALGORITHM=COPY`.
+  O row format e o column format usados pelas colunas de tabelas existentes não são afetados por esta alteração. Novas colunas adicionadas a essas tabelas usam os novos padrões para estas (possivelmente sobrescritos por `ndb_default_column_format`), e as colunas existentes são alteradas para usar estes também, desde que a instrução [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") que executa esta operação especifique `ALGORITHM=COPY`.
 
-  Note
+  Nota
 
-  A copying `ALTER TABLE` cannot be done implicitly if [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") is run with [`--ndb-allow-copying-alter-table=FALSE`](mysql-cluster-options-variables.html#option_mysqld_ndb-allow-copying-alter-table).
+  Um `ALTER TABLE` de cópia (copying `ALTER TABLE`) não pode ser feito implicitamente se [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") for executado com [`--ndb-allow-copying-alter-table=FALSE`](mysql-cluster-options-variables.html#option_mysqld_ndb-allow-copying-alter-table).
 
-* **ndb_binlog_index no longer dependent on MyISAM.** As of NDB 7.5.2, the `ndb_binlog_index` table employed in NDB Cluster Replication now uses the [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") storage engine instead of `MyISAM`. When upgrading, you can run [**mysql_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables") with [`--force`](mysql-upgrade.html#option_mysql_upgrade_force) [`--upgrade-system-tables`](mysql-upgrade.html#option_mysql_upgrade_upgrade-system-tables) to cause it to execute [`ALTER TABLE ... ENGINE=INNODB`](alter-table.html "13.1.8 ALTER TABLE Statement") on this table. Use of `MyISAM` for this table remains supported for backward compatibility.
+* **ndb_binlog_index não depende mais do MyISAM.** A partir do NDB 7.5.2, a tabela `ndb_binlog_index` empregada na NDB Cluster Replication agora usa o storage engine [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") em vez de `MyISAM`. Ao fazer o Upgrade, você pode executar [**mysql_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables") com [`--force`](mysql-upgrade.html#option_mysql_upgrade_force) [`--upgrade-system-tables`](mysql-upgrade.html#option_mysql_upgrade_upgrade-system-tables) para que ele execute [`ALTER TABLE ... ENGINE=INNODB`](alter-table.html "13.1.8 ALTER TABLE Statement") nesta tabela. O uso de `MyISAM` para esta tabela continua sendo suportado para compatibilidade com versões anteriores.
 
-  A benefit of this change is that it makes it possible to depend on transactional behavior and lock-free reads for this table, which can help alleviate concurrency issues during purge operations and log rotation, and improve the availability of this table.
+  Um benefício desta alteração é que torna possível depender do comportamento transacional e de leituras sem Lock (lock-free reads) para esta tabela, o que pode ajudar a aliviar problemas de concorrência durante operações de purge e rotação de log, e melhorar a disponibilidade desta tabela.
 
-* **ALTER TABLE changes.** NDB Cluster formerly supported an alternative syntax for online [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"). This is no longer supported in NDB Cluster 7.5, which makes exclusive use of `ALGORITHM = DEFAULT|COPY|INPLACE` for table DDL, as in the standard MySQL Server.
+* **Alterações no ALTER TABLE.** O NDB Cluster anteriormente suportava uma sintaxe alternativa para [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") online. Isso não é mais suportado no NDB Cluster 7.5, que utiliza exclusivamente `ALGORITHM = DEFAULT|COPY|INPLACE` para DDL de tabela, assim como no MySQL Server padrão.
 
-  Another change affecting the use of this statement is that `ALTER TABLE ... ALGORITHM=INPLACE RENAME` may now contain DDL operations in addition to the renaming.
+  Outra alteração que afeta o uso desta instrução é que `ALTER TABLE ... ALGORITHM=INPLACE RENAME` agora pode conter operações DDL além da renomeação.
 
-* **ExecuteOnComputer parameter deprecated.** The `ExecuteOnComputer` configuration parameter for [management nodes](mysql-cluster-mgm-definition.html#ndbparam-mgmd-executeoncomputer), [data nodes](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-executeoncomputer), and [API nodes](mysql-cluster-api-definition.html#ndbparam-api-executeoncomputer) has been deprecated and is now subject to removal in a future release of NDB Cluster. You should use the equivalent `HostName` parameter for all three types of nodes.
+* **Parâmetro ExecuteOnComputer descontinuado (deprecated).** O parâmetro de configuração `ExecuteOnComputer` para [nodes de gerenciamento](mysql-cluster-mgm-definition.html#ndbparam-mgmd-executeoncomputer), [nodes de dados](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-executeoncomputer) e [nodes API](mysql-cluster-api-definition.html#ndbparam-api-executeoncomputer) foi descontinuado (deprecated) e agora está sujeito à remoção em uma versão futura do NDB Cluster. Você deve usar o parâmetro equivalente `HostName` para todos os três tipos de nodes.
 
-* **records-per-key optimization.** The NDB handler now uses the records-per-key interface for index statistics implemented for the optimizer in MySQL 5.7.5. Some of the benefits from this change include those listed here:
+* **Otimização records-per-key.** O handler NDB agora usa a interface records-per-key para estatísticas de Index implementada para o Optimizer no MySQL 5.7.5. Alguns dos benefícios desta alteração incluem os listados aqui:
 
-  + The optimizer now chooses better execution plans in many cases where a less optimal join index or table join order would previously have been chosen
+  + O Optimizer agora escolhe planos de execução melhores em muitos casos em que um Index JOIN ou ordem de JOIN de tabela menos otimizados teriam sido escolhidos anteriormente.
 
-  + Row estimates shown by [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") are more accurate
+  + As estimativas de linhas mostradas por [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") são mais precisas.
 
-  + Cardinality estimates shown by [`SHOW INDEX`](show-index.html "13.7.5.22 SHOW INDEX Statement") are improved
+  + As estimativas de Cardinality mostradas por [`SHOW INDEX`](show-index.html "13.7.5.22 SHOW INDEX Statement") são aprimoradas.
 
-* **Connection pool node IDs.** NDB 7.5.0 adds the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") [`--ndb-cluster-connection-pool-nodeids`](mysql-cluster-options-variables.html#option_mysqld_ndb-cluster-connection-pool-nodeids) option, which allows a set of node IDs to be set for the connection pool. This setting overrides [`--ndb-nodeid`](mysql-cluster-options-variables.html#option_mysqld_ndb-nodeid), which means that it also overrides both the [`--ndb-connectstring`](mysql-cluster-options-variables.html#option_mysqld_ndb-connectstring) option and the `NDB_CONNECTSTRING` environment variable.
+* **IDs de Node do Connection Pool.** O NDB 7.5.0 adiciona a opção [`--ndb-cluster-connection-pool-nodeids`](mysql-cluster-options-variables.html#option_mysqld_ndb-cluster-connection-pool-nodeids) do [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), que permite definir um conjunto de IDs de Node para o Connection Pool. Esta configuração sobrescreve [`--ndb-nodeid`](mysql-cluster-options-variables.html#option_mysqld_ndb-nodeid), o que significa que também sobrescreve a opção [`--ndb-connectstring`](mysql-cluster-options-variables.html#option_mysqld_ndb-connectstring) e a variável de ambiente `NDB_CONNECTSTRING`.
 
-  Note
+  Nota
 
-  You can set the size for the connection pool using the [`--ndb-cluster-connection-pool`](mysql-cluster-options-variables.html#option_mysqld_ndb-cluster-connection-pool) option for [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
+  Você pode definir o tamanho do Connection Pool usando a opção [`--ndb-cluster-connection-pool`](mysql-cluster-options-variables.html#option_mysqld_ndb-cluster-connection-pool) para [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-* **create_old_temporals removed.** The `create_old_temporals` system variable was deprecated in NDB Cluster 7.4, and has now been removed.
+* **create_old_temporals removido.** A system variable `create_old_temporals` foi descontinuada no NDB Cluster 7.4 e agora foi removida.
 
-* **ndb_mgm Client PROMPT command.** NDB Cluster 7.5 adds a new command for setting the client's command-line prompt. The following example illustrates the use of the [`PROMPT`](mysql-cluster-mgm-client-commands.html#ndbclient-prompt) command:
+* **Comando PROMPT do Cliente ndb_mgm.** O NDB Cluster 7.5 adiciona um novo comando para definir o prompt de linha de comando do cliente. O exemplo a seguir ilustra o uso do comando [`PROMPT`](mysql-cluster-mgm-client-commands.html#ndbclient-prompt):
 
   ```sql
   ndb_mgm> PROMPT mgm#1:
@@ -102,114 +102,114 @@ Major changes and new features in NDB Cluster 7.5 which are likely to be of inte
   jon@valhaj:/usr/local/mysql/bin>
   ```
 
-  For additional information and examples, see [Section 21.6.1, “Commands in the NDB Cluster Management Client”](mysql-cluster-mgm-client-commands.html "21.6.1 Commands in the NDB Cluster Management Client").
+  Para obter informações e exemplos adicionais, consulte [Seção 21.6.1, “Commands in the NDB Cluster Management Client”](mysql-cluster-mgm-client-commands.html "21.6.1 Commands in the NDB Cluster Management Client").
 
-* **Increased FIXED column storage per fragment.** NDB Cluster 7.5 and later supports a maximum of 128 TB per fragment of data in `FIXED` columns. In NDB Cluster 7.4 and earlier, this was 16 GB per fragment.
+* **Aumento do armazenamento de colunas FIXED por fragmento.** O NDB Cluster 7.5 e posterior suporta um máximo de 128 TB por fragmento de dados em colunas `FIXED`. No NDB Cluster 7.4 e anterior, este limite era de 16 GB por fragmento.
 
-* **Deprecated parameters removed.** The following NDB Cluster data node configuration parameters were deprecated in previous releases of NDB Cluster, and were removed in NDB 7.5.0:
+* **Parâmetros descontinuados removidos.** Os seguintes parâmetros de configuração de Node de dados do NDB Cluster foram descontinuados em versões anteriores do NDB Cluster e foram removidos no NDB 7.5.0:
 
-  + `Id`: deprecated in NDB 7.1.9; replaced by [`NodeId`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-nodeid).
+  + `Id`: descontinuado no NDB 7.1.9; substituído por [`NodeId`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-nodeid).
 
-  + `NoOfDiskPagesToDiskDuringRestartTUP`, `NoOfDiskPagesToDiskDuringRestartACC`: both deprecated, had no effect; replaced in MySQL 5.1.6 by `DiskCheckpointSpeedInRestart`, which itself was later deprecated (in NDB 7.4.1) and is now also removed.
+  + `NoOfDiskPagesToDiskDuringRestartTUP`, `NoOfDiskPagesToDiskDuringRestartACC`: ambos descontinuados, não tinham efeito; substituídos no MySQL 5.1.6 por `DiskCheckpointSpeedInRestart`, que por sua vez foi descontinuado posteriormente (no NDB 7.4.1) e agora também foi removido.
 
-  + `NoOfDiskPagesToDiskAfterRestartACC`, `NoOfDiskPagesToDiskAfterRestartTUP`: both deprecated, and had no effect; replaced in MySQL 5.1.6 by `DiskCheckpointSpeed`, which itself was later deprecated (in NDB 7.4.1) and is now also removed.
+  + `NoOfDiskPagesToDiskAfterRestartACC`, `NoOfDiskPagesToDiskAfterRestartTUP`: ambos descontinuados e não tinham efeito; substituídos no MySQL 5.1.6 por `DiskCheckpointSpeed`, que por sua vez foi descontinuado posteriormente (no NDB 7.4.1) e agora também foi removido.
 
-  + `ReservedSendBufferMemory`: Deprecated; no longer had any effect.
+  + `ReservedSendBufferMemory`: Descontinuado; não tinha mais nenhum efeito.
 
-  + `MaxNoOfIndexes`: archaic (pre-MySQL 4.1), had no effect; long since replaced by [`MaxNoOfOrderedIndexes`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooforderedindexes) or [`MaxNoOfUniqueHashIndexes`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofuniquehashindexes).
+  + `MaxNoOfIndexes`: arcaico (pré-MySQL 4.1), não tinha efeito; há muito tempo substituído por [`MaxNoOfOrderedIndexes`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooforderedindexes) ou [`MaxNoOfUniqueHashIndexes`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofuniquehashindexes).
 
-  + `Discless`: archaic (pre-MySQL 4.1) synonym for and long since replaced by [`Diskless`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskless).
+  + `Discless`: sinônimo arcaico (pré-MySQL 4.1) de e há muito tempo substituído por [`Diskless`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskless).
 
-  The archaic and unused (and for this reason also previously undocumented) `ByteOrder` computer configuration parameter was also removed in NDB 7.5.0.
+  O parâmetro de configuração de computador `ByteOrder` arcaico e não utilizado (e por isso também não documentado anteriormente) também foi removido no NDB 7.5.0.
 
-  The parameters just described are not supported in NDB 7.5. Attempting to use any of these parameters in an NDB Cluster configuration file now results in an error.
+  Os parâmetros descritos acima não são suportados no NDB 7.5. A tentativa de usar qualquer um destes parâmetros em um arquivo de configuração do NDB Cluster agora resulta em um erro.
 
-* **DBTC scan enhancements.** Scans have been improved by reducing the number of signals used for communication between the [`DBTC`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbtc.html) and [`DBDIH`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbdih.html) kernel blocks in [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"), enabling higher scalability of data nodes when used for scan operations by decreasing the use of CPU resources for scan operations, in some cases by an estimated five percent.
+* **Melhorias no DBTC scan.** Os Scans foram melhorados reduzindo o número de sinais usados para comunicação entre os Kernel Blocks [`DBTC`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbtc.html) e [`DBDIH`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbdih.html) no [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"), permitindo maior escalabilidade dos Nodes de dados quando usados para operações de Scan, diminuindo o uso de recursos de CPU para estas operações, em alguns casos em uma estimativa de cinco por cento.
 
-  Also as result of these changes response times should be greatly improved, which could help prevent issues with overload of the main threads. In addition, scans made in the [`BACKUP`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-backup.html) kernel block have also been improved and made more efficient than in previous releases.
+  Também como resultado destas alterações, os tempos de resposta devem ser bastante melhorados, o que pode ajudar a prevenir problemas de sobrecarga dos Threads principais. Além disso, os Scans realizados no Kernel Block [`BACKUP`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-backup.html) também foram melhorados e tornados mais eficientes do que em versões anteriores.
 
-* **JSON column support.** NDB 7.5.2 and later supports the [`JSON`](json.html "11.5 The JSON Data Type") column type for `NDB` tables and the JSON functions found in the MySQL Server, subject to the limitation that an `NDB` table can have at most 3 `JSON` columns.
+* **Suporte à coluna JSON.** O NDB 7.5.2 e posterior suporta o tipo de coluna [`JSON`](json.html "11.5 The JSON Data Type") para tabelas `NDB` e as funções JSON encontradas no MySQL Server, sujeito à limitação de que uma tabela `NDB` pode ter no máximo 3 colunas `JSON`.
 
-* **Read from any fragment replica; specify number of hashmap partition fragments.** Previously, all reads were directed towards the primary fragment replica except for simple reads. (A simple read is a read that locks the row while reading it.) Beginning with NDB 7.5.2, it is possible to enable reads from any fragment replica. This is disabled by default but can be enabled for a given SQL node using the [`ndb_read_backup`](mysql-cluster-options-variables.html#sysvar_ndb_read_backup) system variable added in this release.
+* **Leitura de qualquer réplica de fragmento; especificação do número de fragmentos de partition do hashmap.** Anteriormente, todas as leituras eram direcionadas para a réplica primária do fragmento, exceto por leituras simples. (Uma leitura simples é uma leitura que bloqueia a linha enquanto a lê.) A partir do NDB 7.5.2, é possível habilitar leituras a partir de qualquer réplica de fragmento. Esta opção está desabilitada por padrão, mas pode ser habilitada para um determinado SQL node usando a system variable [`ndb_read_backup`](mysql-cluster-options-variables.html#sysvar_ndb_read_backup) adicionada nesta versão.
 
-  Previously, it was possible to define tables with only one type of partition mapping, with one primary partition on each LDM in each node, but in NDB 7.5.2 it becomes possible to be more flexible about the assignment of partitions by setting a partition balance (fragment count type). Possible balance schemes are one per node, one per node group, one per LDM per node, and one per LDM per node group.
+  Anteriormente, era possível definir tabelas com apenas um tipo de mapeamento de Partition, com uma Partition primária em cada LDM em cada Node, mas no NDB 7.5.2 torna-se possível ser mais flexível quanto à atribuição de Partitions, definindo um balanceamento de Partition (tipo de contagem de fragmentos). Os esquemas de balanceamento possíveis são um por Node, um por grupo de Node, um por LDM por Node e um por LDM por grupo de Node.
 
-  This setting can be controlled for individual tables by means of a `PARTITION_BALANCE` option (renamed from `FRAGMENT_COUNT_TYPE` in NDB 7.5.4) embedded in `NDB_TABLE` comments in [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") or [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statements. Settings for table-level `READ_BACKUP` are also supported using this syntax. For more information and examples, see [Section 13.1.18.9, “Setting NDB Comment Options”](create-table-ndb-comment-options.html "13.1.18.9 Setting NDB Comment Options").
+  Esta configuração pode ser controlada para tabelas individuais por meio de uma opção `PARTITION_BALANCE` (renomeada de `FRAGMENT_COUNT_TYPE` no NDB 7.5.4) incorporada em comentários `NDB_TABLE` nas instruções [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") ou [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"). As configurações de `READ_BACKUP` em nível de tabela também são suportadas usando esta sintaxe. Para obter mais informações e exemplos, consulte [Seção 13.1.18.9, “Setting NDB Comment Options”](create-table-ndb-comment-options.html "13.1.18.9 Setting NDB Comment Options").
 
-  In NDB API applications, a table's partition balance can also be get and set using methods supplied for this purpose; see [Table::getPartitionBalance()](/doc/ndbapi/en/ndb-table.html#ndb-table-getpartitionbalance), and [Table::setPartitionBalance()](/doc/ndbapi/en/ndb-table.html#ndb-table-setpartitionbalance), as well as [Object::PartitionBalance](/doc/ndbapi/en/ndb-object.html#ndb-object-partitionbalance), for more information about these.
+  Em aplicações API NDB, o balanceamento de Partition de uma tabela também pode ser obtido e definido usando métodos fornecidos para esta finalidade; consulte [Table::getPartitionBalance()](/doc/ndbapi/en/ndb-table.html#ndb-table-getpartitionbalance) e [Table::setPartitionBalance()](/doc/ndbapi/en/ndb-table.html#ndb-table-setpartitionbalance), bem como [Object::PartitionBalance](/doc/ndbapi/en/ndb-object.html#ndb-object-partitionbalance), para obter mais informações sobre estes.
 
-  As part of this work, NDB 7.5.2 also introduces the [`ndb_data_node_neighbour`](mysql-cluster-options-variables.html#sysvar_ndb_data_node_neighbour) system variable. This is intended for use, in transaction hinting, to provide a “nearby” data node to this SQL node.
+  Como parte deste trabalho, o NDB 7.5.2 também introduz a system variable [`ndb_data_node_neighbour`](mysql-cluster-options-variables.html#sysvar_ndb_data_node_neighbour). Isso se destina ao uso, em transaction hinting, para fornecer um Node de dados “próximo” (nearby) a este SQL node.
 
-  In addition, when restoring table schemas, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") [`--restore-meta`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_restore-meta) now uses the target cluster's default partitioning, rather than using the same number of partitions as the original cluster from which the backup was taken. See [Section 21.5.24.2.2, “Restoring to More Nodes Than the Original”](ndb-restore-different-number-nodes.html#ndb-restore-to-more-nodes "21.5.24.2.2 Restoring to More Nodes Than the Original"), for more information and an example.
+  Além disso, ao restaurar schemas de tabela, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") [`--restore-meta`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_restore-meta) agora usa o particionamento padrão do Cluster de destino, em vez de usar o mesmo número de Partitions do Cluster original do qual o backup foi feito. Consulte [Seção 21.5.24.2.2, “Restoring to More Nodes Than the Original”](ndb-restore-different-number-nodes.html#ndb-restore-to-more-nodes "21.5.24.2.2 Restoring to More Nodes Than the Original"), para obter mais informações e um exemplo.
 
-  NDB 7.5.3 adds a further enhancement to `READ_BACKUP`: In this and later versions, it is possible to set `READ_BACKUP` for a given table online as part of [`ALTER TABLE ... ALGORITHM=INPLACE ...`](mysql-cluster-online-operations.html "21.6.12 Online Operations with ALTER TABLE in NDB Cluster").
+  O NDB 7.5.3 adiciona um aprimoramento adicional ao `READ_BACKUP`: nesta e em versões posteriores, é possível definir `READ_BACKUP` para uma determinada tabela online como parte de [`ALTER TABLE ... ALGORITHM=INPLACE ...`](mysql-cluster-online-operations.html "21.6.12 Online Operations with ALTER TABLE in NDB Cluster").
 
-* **ThreadConfig improvements.** A number of enhancements and feature additions are implemented in NDB 7.5.2 for the `ThreadConfig` multithreaded data node ([**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)")) configuration parameter, including support for an increased number of platforms. These changes are described in the next few paragraphs.
+* **Melhorias no ThreadConfig.** Uma série de aprimoramentos e adições de recursos são implementados no NDB 7.5.2 para o parâmetro de configuração `ThreadConfig` do Node de dados multi-Thread ([**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)")), incluindo suporte para um número maior de plataformas. Estas alterações são descritas nos próximos parágrafos.
 
-  Non-exclusive CPU locking is now supported on FreeBSD and Windows, using `cpubind` and `cpuset`. Exclusive CPU locking is now supported on Solaris (only) using the `cpubind_exclusive` and `cpuset_exclusive` parameters which are introduced in this release.
+  O Lock não exclusivo de CPU agora é suportado no FreeBSD e Windows, usando `cpubind` e `cpuset`. O Lock exclusivo de CPU agora é suportado apenas no Solaris, usando os parâmetros `cpubind_exclusive` e `cpuset_exclusive`, que são introduzidos nesta versão.
 
-  Thread prioritzation is now available, controlled by the new `thread_prio` parameter. `thread_prio` is supported on Linux, FreeBSD, Windows, and Solaris, and varies somewhat by platform. For more information, see the description of [`ThreadConfig`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-threadconfig).
+  A priorização de Thread agora está disponível, controlada pelo novo parâmetro `thread_prio`. `thread_prio` é suportado em Linux, FreeBSD, Windows e Solaris, e varia um pouco de acordo com a plataforma. Para obter mais informações, consulte a descrição de [`ThreadConfig`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-threadconfig).
 
-  The `realtime` parameter is now supported on Windows platforms.
+  O parâmetro `realtime` agora é suportado em plataformas Windows.
 
-* **Partitions larger than 16 GB.** Due to an improvement in the hash index implementation used by NDB Cluster data nodes, partitions of `NDB` tables may now contain more than 16 GB of data for fixed columns, and the maximum partition size for fixed columns is now raised to 128 TB. The previous limitation was due to the fact that the [`DBACC`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbacc.html) block in the `NDB` kernel used only 32-bit references to the fixed-size part of a row in the [`DBTUP`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbtup.html) block, although 45-bit references to this data are used in [`DBTUP`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbtup.html) itself and elsewhere in the kernel outside `DBACC`; all such references in to the data handled in the `DBACC` block now use 45 bits instead.
+* **Partitions maiores que 16 GB.** Devido a um aprimoramento na implementação do Hash Index usado pelos Nodes de dados do NDB Cluster, as Partitions das tabelas `NDB` agora podem conter mais de 16 GB de dados para colunas fixed, e o tamanho máximo de Partition para colunas fixed agora é elevado para 128 TB. A limitação anterior era devido ao fato de o Block [`DBACC`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbtc.html) no Kernel `NDB` usar apenas referências de 32 bits para a parte de tamanho fixed de uma linha no Block [`DBTUP`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbtup.html), embora referências de 45 bits para estes dados sejam usadas no próprio [`DBTUP`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbtup.html) e em outras partes do Kernel fora do `DBACC`; todas essas referências aos dados tratados no Block `DBACC` agora usam 45 bits.
 
-* **Print SQL statements from ndb_restore.** NDB 7.5.4 adds the [`--print-sql-log`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_print-sql-log) option for the [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") utility provided with the NDB Cluster distribution. This option enables SQL logging to `stdout`. **Important**: Every table to be restored using this option must have an explicitly defined primary key.
+* **Imprimir instruções SQL do ndb_restore.** O NDB 7.5.4 adiciona a opção [`--print-sql-log`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_print-sql-log) para o utilitário [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") fornecido com a distribuição NDB Cluster. Esta opção permite o SQL Logging para `stdout`. **Importante**: Cada tabela a ser restaurada usando esta opção deve ter uma Primary Key explicitamente definida.
 
-  See [Section 21.5.24, “ndb_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"), for more information.
+  Consulte [Seção 21.5.24, “ndb_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"), para obter mais informações.
 
-* **Organization of RPM packages.** Beginning with NDB 7.5.4, the naming and organization of RPM packages provided for NDB Cluster align more closely with those released for the MySQL server. The names of all NDB Cluster RPMs are now prefixed with `mysql-cluster`. Data nodes are now installed using the `data-node` package; management nodes are now installed from the `management-server` package; and SQL nodes require the `server` and `common` packages. MySQL and `NDB` client programs, including the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client and the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") management client, are now included in the `client` RPM.
+* **Organização dos pacotes RPM.** A partir do NDB 7.5.4, a nomenclatura e a organização dos pacotes RPM fornecidos para o NDB Cluster se alinham mais estreitamente com aqueles lançados para o MySQL Server. Os nomes de todos os RPMs do NDB Cluster agora são prefixados com `mysql-cluster`. Os Nodes de dados agora são instalados usando o pacote `data-node`; os Nodes de gerenciamento agora são instalados a partir do pacote `management-server`; e os SQL nodes exigem os pacotes `server` e `common`. Os programas cliente MySQL e `NDB`, incluindo o cliente [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") e o cliente de gerenciamento [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client"), agora estão incluídos no RPM `client`.
 
-  For a detailed listing of NDB Cluster RPMs and other information, see [Section 21.3.1.2, “Installing NDB Cluster from RPM”](mysql-cluster-install-linux-rpm.html "21.3.1.2 Installing NDB Cluster from RPM").
+  Para uma lista detalhada dos RPMs do NDB Cluster e outras informações, consulte [Seção 21.3.1.2, “Installing NDB Cluster from RPM”](mysql-cluster-install-linux-rpm.html "21.3.1.2 Installing NDB Cluster from RPM").
 
-* **ndbinfo processes and config_nodes tables.** NDB 7.5.7 adds two tables to the [`ndbinfo`](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database") information database to provide information about cluster nodes; these tables are listed here:
+* **Tabelas ndbinfo processes e config_nodes.** O NDB 7.5.7 adiciona duas tabelas ao Database de informações [`ndbinfo`](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database") para fornecer informações sobre os Nodes do Cluster; estas tabelas estão listadas aqui:
 
-  + [`config_nodes`](mysql-cluster-ndbinfo-config-nodes.html "21.6.15.7 The ndbinfo config_nodes Table"): This table provides the node ID, process type, and host name for each node listed in an NDB cluster's configuration file.
+  + [`config_nodes`](mysql-cluster-ndbinfo-config-nodes.html "21.6.15.7 The ndbinfo config_nodes Table"): Esta tabela fornece o Node ID, o tipo de processo e o nome do host (host name) para cada Node listado em um arquivo de configuração do Cluster NDB.
 
-  + The [`processes`](mysql-cluster-ndbinfo-processes.html "21.6.15.30 The ndbinfo processes Table") shows information about nodes currently connected to the cluster; this information includes the process name and system process ID; for each data node and SQL node, it also shows the process ID of the node's angel process. In addition, the table shows a service address for each connected node; this address can be set in NDB API applications using the [`Ndb_cluster_connection::set_service_uri()`](/doc/ndbapi/en/ndb-ndb-cluster-connection.html#ndb-ndb-cluster-connection-set-service-uri) method, which is also added in NDB 7.5.7.
+  + A tabela [`processes`](mysql-cluster-ndbinfo-processes.html "21.6.15.30 The ndbinfo processes Table") mostra informações sobre os Nodes atualmente conectados ao Cluster; estas informações incluem o nome do processo e o ID do processo do sistema; para cada Node de dados e SQL node, ela também mostra o ID do processo do processo angel do Node. Além disso, a tabela mostra um service address para cada Node conectado; este address pode ser definido em aplicações API NDB usando o método [`Ndb_cluster_connection::set_service_uri()`](/doc/ndbapi/en/ndb-ndb-cluster-connection.html#ndb-ndb-cluster-connection-set-service-uri), que também é adicionado no NDB 7.5.7.
 
-* **System name.** The system name of an NDB cluster can be used to identify a specific cluster. Beginning with NDB 7.5.7, the MySQL Server shows this name as the value of the [`Ndb_system_name`](mysql-cluster-options-variables.html#statvar_Ndb_system_name) status variable; NDB API applications can use the [`Ndb_cluster_connection::get_system_name()`](/doc/ndbapi/en/ndb-ndb-cluster-connection.html#ndb-ndb-cluster-connection-get-system-name) method which is added in the same release.
+* **System name.** O system name de um NDB Cluster pode ser usado para identificar um Cluster específico. A partir do NDB 7.5.7, o MySQL Server mostra este nome como o valor da Status Variable [`Ndb_system_name`](mysql-cluster-options-variables.html#statvar_Ndb_system_name); as aplicações API NDB podem usar o método [`Ndb_cluster_connection::get_system_name()`](/doc/ndbapi/en/ndb-ndb-cluster-connection.html#ndb-ndb-cluster-connection-get-system-name) que é adicionado na mesma versão.
 
-  A system name based on the time the management server was started is generated automatically; you can override this value by adding a `[system]` section to the cluster's configuration file and setting the `Name` parameter to a value of your choice in this section, prior to starting the management server.
+  Um system name baseado no horário em que o Management Server foi iniciado é gerado automaticamente; você pode sobrescrever este valor adicionando uma seção `[system]` ao arquivo de configuração do Cluster e definindo o parâmetro `Name` com um valor de sua escolha nesta seção, antes de iniciar o Management Server.
 
-* **ndb_restore options.** Beginning with NDB 7.5.13, the [`--nodeid`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_nodeid) and [`--backupid`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_backupid) options are both required when invoking [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup").
+* **Opções do ndb_restore.** A partir do NDB 7.5.13, as opções [`--nodeid`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_nodeid) e [`--backupid`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_backupid) são ambas obrigatórias ao invocar [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup").
 
-* **ndb_blob_tool enhancements.** Beginning with NDB 7.5.18, the [**ndb_blob_tool**](mysql-cluster-programs-ndb-blob-tool.html "21.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables") utility can detect missing blob parts for which inline parts exist and replace these with placeholder blob parts (consisting of space characters) of the correct length. To check whether there are missing blob parts, use the [`--check-missing`](mysql-cluster-programs-ndb-blob-tool.html#option_ndb_blob_tool_check-missing) option with this program. To replace any missing blob parts with placeholders, use the [`--add-missing`](mysql-cluster-programs-ndb-blob-tool.html#option_ndb_blob_tool_add-missing) option.
+* **Melhorias no ndb_blob_tool.** A partir do NDB 7.5.18, o utilitário [**ndb_blob_tool**](mysql-cluster-programs-ndb-blob-tool.html "21.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables") pode detectar partes BLOB ausentes para as quais existem partes inline e substituí-las por partes BLOB placeholder (consistindo em caracteres de espaço) do tamanho correto. Para verificar se há partes BLOB ausentes, use a opção [`--check-missing`](mysql-cluster-programs-ndb-blob-tool.html#option_ndb_blob_tool_check-missing) com este programa. Para substituir quaisquer partes BLOB ausentes por placeholders, use a opção [`--add-missing`](mysql-cluster-programs-ndb-blob-tool.html#option_ndb_blob_tool_add-missing).
 
-  For more information, see [Section 21.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "21.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables").
+  Para obter mais informações, consulte [Seção 21.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "21.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables").
 
-* **--ndb-log-fail-terminate option.** Beginning with NDB 7.5.18, you can cause the SQL node to terminate whenever it is unable to log all row events fully. This can be done by starting [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with the [`--ndb-log-fail-terminate`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-fail-terminate) option.
+* **Opção --ndb-log-fail-terminate.** A partir do NDB 7.5.18, você pode fazer com que o SQL node encerre sempre que não conseguir fazer o Logging de todos os row events completamente. Isso pode ser feito iniciando [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") com a opção [`--ndb-log-fail-terminate`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-fail-terminate).
 
-* **NDB programs—NDBT dependency removal.** The dependency of a number of `NDB` utility programs on the `NDBT` library has been removed. This library is used internally for development, and is not required for normal use; its inclusion in these programs could lead to unwanted issues when testing.
+* **Programas NDB — Remoção da dependência NDBT.** A dependência de vários programas utilitários `NDB` da biblioteca `NDBT` foi removida. Esta biblioteca é usada internamente para desenvolvimento e não é necessária para uso normal; sua inclusão nestes programas pode levar a problemas indesejados durante os testes.
 
-  Affected programs are listed here, along with the `NDB` versions in which the dependency was removed:
+  Os programas afetados estão listados aqui, juntamente com as versões NDB nas quais a dependência foi removida:
 
-  + [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"), in NDB 7.5.15
-  + [**ndb_show_tables**](mysql-cluster-programs-ndb-show-tables.html "21.5.27 ndb_show_tables — Display List of NDB Tables"), in NDB 7.5.18
-  + [**ndb_waiter**](mysql-cluster-programs-ndb-waiter.html "21.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status"), in NDB 7.5.18
+  + [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"), no NDB 7.5.15
+  + [**ndb_show_tables**](mysql-cluster-programs-ndb-show-tables.html "21.5.27 ndb_show_tables — Display List of NDB Tables"), no NDB 7.5.18
+  + [**ndb_waiter**](mysql-cluster-programs-ndb-waiter.html "21.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status"), no NDB 7.5.18
 
-  The principal effect of this change for users is that these programs no longer print `NDBT_ProgramExit - status` following completion of a run. Applications that depend upon such behavior should be updated to reflect the change when upgrading to the indicated versions.
+  O principal efeito desta alteração para os usuários é que esses programas não imprimem mais `NDBT_ProgramExit - status` após a conclusão de uma execução (run). Aplicações que dependem de tal comportamento devem ser atualizadas para refletir a alteração ao fazer o Upgrade para as versões indicadas.
 
-* **Auto-Installer deprecation and removal.** The MySQL NDB Cluster Auto-Installer web-based installation tool (**ndb_setup.py**) is deprecated in NDB 7.5.20, and is removed in NDB 7.5.21 and later. It is no longer supported.
+* **Descontinuação e remoção do Auto-Installer.** A ferramenta de instalação baseada na web MySQL NDB Cluster Auto-Installer (**ndb_setup.py**) está descontinuada (deprecated) no NDB 7.5.20 e é removida no NDB 7.5.21 e posteriores. Não é mais suportada.
 
-* **ndbmemcache deprecation and removal.** `ndbmemcache` is no longer supported. `ndbmemcache` was deprecated in NDB 7.5.20, and removed in NDB 7.5.21.
+* **Descontinuação e remoção do ndbmemcache.** `ndbmemcache` não é mais suportado. `ndbmemcache` foi descontinuado no NDB 7.5.20 e removido no NDB 7.5.21.
 
-* **Node.js support removed.** Beginning with the NDB Cluster 7.5.20 release, support for Node.js by NDB 7.5 has been removed.
+* **Suporte a Node.js removido.** A partir da versão NDB Cluster 7.5.20, o suporte ao Node.js pelo NDB 7.5 foi removido.
 
-  Support for Node.js by NDB Cluster is maintained in NDB 8.0 only.
+  O suporte ao Node.js pelo NDB Cluster é mantido apenas no NDB 8.0.
 
-* **Conversion between NULL and NOT NULL during restore operations.** Beginning with NDB 7.5.23, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") can support restoring of `NULL` columns as `NOT NULL` and the reverse, using the options listed here:
+* **Conversão entre NULL e NOT NULL durante operações de restauração.** A partir do NDB 7.5.23, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") pode suportar a restauração de colunas `NULL` como `NOT NULL` e o inverso, usando as opções listadas aqui:
 
-  + To restore a `NULL` column as `NOT NULL`, use the [`--lossy-conversions`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_lossy-conversions) option.
+  + Para restaurar uma coluna `NULL` como `NOT NULL`, use a opção [`--lossy-conversions`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_lossy-conversions).
 
-    The column originally declared as `NULL` must not contain any `NULL` rows; if it does, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") exits with an error.
+    A coluna originalmente declarada como `NULL` não deve conter nenhuma linha `NULL`; caso contenha, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") é encerrado com um erro.
 
-  + To restore a `NOT NULL` column as `NULL`, use the [`--promote-attributes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_promote-attributes) option.
+  + Para restaurar uma coluna `NOT NULL` como `NULL`, use a opção [`--promote-attributes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_promote-attributes).
 
-  For more information, see the descriptions of the indicated [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") options.
+  Para obter mais informações, consulte as descrições das opções indicadas do [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup").
 
-* **OpenSSL 3.0 support.** Beginning with NDB 7.5.31, all MySQL server and client binaries included in the `NDB` distribution are compiled with support for Open SSL 3.0
+* **Suporte a OpenSSL 3.0.** A partir do NDB 7.5.31, todos os binários do MySQL Server e cliente incluídos na distribuição `NDB` são compilados com suporte para OpenSSL 3.0.
 
-ClusterJPA is no longer supported beginning with NDB 7.5.7; its source code and binary have been removed from the NDB Cluster distribution.
+O ClusterJPA não é mais suportado a partir do NDB 7.5.7; seu código-fonte e binário foram removidos da distribuição NDB Cluster.
 
-NDB Cluster 7.5 is also supported by MySQL Cluster Manager, which provides an advanced command-line interface that can simplify many complex NDB Cluster management tasks. See [MySQL Cluster Manager 1.4.8 User Manual](/doc/mysql-cluster-manager/1.4/en/), for more information.
+O NDB Cluster 7.5 também é suportado pelo MySQL Cluster Manager, que fornece uma interface de linha de comando avançada que pode simplificar muitas tarefas complexas de gerenciamento do NDB Cluster. Consulte [MySQL Cluster Manager 1.4.8 User Manual](/doc/mysql-cluster-manager/1.4/en/), para obter mais informações.

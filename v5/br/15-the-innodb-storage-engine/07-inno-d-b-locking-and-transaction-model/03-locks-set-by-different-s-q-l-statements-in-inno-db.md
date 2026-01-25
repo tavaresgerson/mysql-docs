@@ -1,127 +1,127 @@
-### 14.7.3 Locks Set by Different SQL Statements in InnoDB
+### 14.7.3 Locks Definidos por Diferentes Instruções SQL no InnoDB
 
-A locking read, an `UPDATE`, or a `DELETE` generally set record locks on every index record that is scanned in the processing of an SQL statement. It does not matter whether there are `WHERE` conditions in the statement that would exclude the row. `InnoDB` does not remember the exact `WHERE` condition, but only knows which index ranges were scanned. The locks are normally next-key locks that also block inserts into the “gap” immediately before the record. However, gap locking can be disabled explicitly, which causes next-key locking not to be used. For more information, see Section 14.7.1, “InnoDB Locking”. The transaction isolation level can also affect which locks are set; see Section 14.7.2.1, “Transaction Isolation Levels”.
+Uma *locking read*, um `UPDATE`, ou um `DELETE` geralmente definem *record locks* em todo *index record* que é escaneado no processamento de uma instrução SQL. Não importa se existem condições `WHERE` na instrução que excluiriam a linha. O `InnoDB` não lembra a condição `WHERE` exata, mas apenas sabe quais *index ranges* foram escaneados. Os *locks* são normalmente *next-key locks* que também bloqueiam *inserts* no “gap” imediatamente antes do registro. No entanto, o *gap locking* pode ser desabilitado explicitamente, o que faz com que o *next-key locking* não seja usado. Para mais informações, consulte a Seção 14.7.1, “InnoDB Locking”. O *transaction isolation level* também pode afetar quais *locks* são definidos; consulte a Seção 14.7.2.1, “Transaction Isolation Levels”.
 
-If a secondary index is used in a search and the index record locks to be set are exclusive, `InnoDB` also retrieves the corresponding clustered index records and sets locks on them.
+Se um *secondary index* for usado em uma busca e os *index record locks* a serem definidos forem exclusivos, o `InnoDB` também recupera os *clustered index records* correspondentes e define *locks* neles.
 
-If you have no indexes suitable for your statement and MySQL must scan the entire table to process the statement, every row of the table becomes locked, which in turn blocks all inserts by other users to the table. It is important to create good indexes so that your queries do not scan more rows than necessary.
+Se você não tiver *indexes* adequados para sua instrução e o MySQL tiver que escanear a tabela inteira para processar a instrução, cada linha da tabela fica bloqueada, o que por sua vez bloqueia todos os *inserts* de outros usuários na tabela. É importante criar bons *indexes* para que seus *queries* não escaneiem mais linhas do que o necessário.
 
-`InnoDB` sets specific types of locks as follows.
+O `InnoDB` define tipos específicos de *locks* da seguinte forma:
 
-* `SELECT ... FROM` is a consistent read, reading a snapshot of the database and setting no locks unless the transaction isolation level is set to `SERIALIZABLE`. For `SERIALIZABLE` level, the search sets shared next-key locks on the index records it encounters. However, only an index record lock is required for statements that lock rows using a unique index to search for a unique row.
+*   `SELECT ... FROM` é uma *consistent read*, lendo um *snapshot* do *database* e não definindo *locks*, a menos que o *transaction isolation level* esteja definido como `SERIALIZABLE`. Para o nível `SERIALIZABLE`, a busca define *shared next-key locks* nos *index records* que encontra. No entanto, apenas um *index record lock* é necessário para instruções que bloqueiam linhas usando um *unique index* para buscar uma linha única.
 
-* For `SELECT ... FOR UPDATE` or `SELECT ... LOCK IN SHARE MODE`, locks are acquired for scanned rows, and expected to be released for rows that do not qualify for inclusion in the result set (for example, if they do not meet the criteria given in the `WHERE` clause). However, in some cases, rows might not be unlocked immediately because the relationship between a result row and its original source is lost during query execution. For example, in a `UNION`, scanned (and locked) rows from a table might be inserted into a temporary table before evaluating whether they qualify for the result set. In this circumstance, the relationship of the rows in the temporary table to the rows in the original table is lost and the latter rows are not unlocked until the end of query execution.
+*   Para `SELECT ... FOR UPDATE` ou `SELECT ... LOCK IN SHARE MODE`, *locks* são adquiridos para linhas escaneadas, e espera-se que sejam liberados para linhas que não se qualificam para inclusão no conjunto de resultados (por exemplo, se não atenderem aos critérios fornecidos na cláusula `WHERE`). No entanto, em alguns casos, as linhas podem não ser desbloqueadas imediatamente porque a relação entre uma linha de resultado e sua fonte original é perdida durante a execução do *query*. Por exemplo, em uma `UNION`, linhas escaneadas (e bloqueadas) de uma tabela podem ser inseridas em uma *temporary table* antes de avaliar se elas se qualificam para o conjunto de resultados. Nesta circunstância, a relação das linhas na *temporary table* com as linhas na tabela original é perdida e as últimas linhas não são desbloqueadas até o final da execução do *query*.
 
-* `SELECT ... LOCK IN SHARE MODE` sets shared next-key locks on all index records the search encounters. However, only an index record lock is required for statements that lock rows using a unique index to search for a unique row.
+*   `SELECT ... LOCK IN SHARE MODE` define *shared next-key locks* em todos os *index records* que a busca encontra. No entanto, apenas um *index record lock* é necessário para instruções que bloqueiam linhas usando um *unique index* para buscar uma linha única.
 
-* `SELECT ... FOR UPDATE` sets an exclusive next-key lock on every record the search encounters. However, only an index record lock is required for statements that lock rows using a unique index to search for a unique row.
+*   `SELECT ... FOR UPDATE` define um *exclusive next-key lock* em cada registro que a busca encontra. No entanto, apenas um *index record lock* é necessário para instruções que bloqueiam linhas usando um *unique index* para buscar uma linha única.
 
-  For index records the search encounters, `SELECT ... FOR UPDATE` blocks other sessions from doing `SELECT ... LOCK IN SHARE MODE` or from reading in certain transaction isolation levels. Consistent reads ignore any locks set on the records that exist in the read view.
+    Para os *index records* que a busca encontra, `SELECT ... FOR UPDATE` bloqueia outras sessões de realizar `SELECT ... LOCK IN SHARE MODE` ou de ler em certos *transaction isolation levels*. *Consistent reads* ignoram quaisquer *locks* definidos nos registros que existem na *read view*.
 
-* `UPDATE ... WHERE ...` sets an exclusive next-key lock on every record the search encounters. However, only an index record lock is required for statements that lock rows using a unique index to search for a unique row.
+*   `UPDATE ... WHERE ...` define um *exclusive next-key lock* em cada registro que a busca encontra. No entanto, apenas um *index record lock* é necessário para instruções que bloqueiam linhas usando um *unique index* para buscar uma linha única.
 
-* When `UPDATE` modifies a clustered index record, implicit locks are taken on affected secondary index records. The `UPDATE` operation also takes shared locks on affected secondary index records when performing duplicate check scans prior to inserting new secondary index records, and when inserting new secondary index records.
+*   Quando um `UPDATE` modifica um *clustered index record*, *locks* implícitos são tomados nos *secondary index records* afetados. A operação `UPDATE` também toma *shared locks* nos *secondary index records* afetados ao realizar *scans* de verificação de duplicidade antes de inserir novos *secondary index records*, e ao inserir novos *secondary index records*.
 
-* `DELETE FROM ... WHERE ...` sets an exclusive next-key lock on every record the search encounters. However, only an index record lock is required for statements that lock rows using a unique index to search for a unique row.
+*   `DELETE FROM ... WHERE ...` define um *exclusive next-key lock* em cada registro que a busca encontra. No entanto, apenas um *index record lock* é necessário para instruções que bloqueiam linhas usando um *unique index* para buscar uma linha única.
 
-* `INSERT` sets an exclusive lock on the inserted row. This lock is an index-record lock, not a next-key lock (that is, there is no gap lock) and does not prevent other sessions from inserting into the gap before the inserted row.
+*   `INSERT` define um *exclusive lock* na linha inserida. Este *lock* é um *index-record lock*, não um *next-key lock* (ou seja, não há *gap lock*) e não impede que outras sessões insiram no *gap* antes da linha inserida.
 
-  Prior to inserting the row, a type of gap lock called an insert intention gap lock is set. This lock signals the intent to insert in such a way that multiple transactions inserting into the same index gap need not wait for each other if they are not inserting at the same position within the gap. Suppose that there are index records with values of 4 and 7. Separate transactions that attempt to insert values of 5 and 6 each lock the gap between 4 and 7 with insert intention locks prior to obtaining the exclusive lock on the inserted row, but do not block each other because the rows are nonconflicting.
+    Antes de inserir a linha, é definido um tipo de *gap lock* chamado *insert intention gap lock*. Este *lock* sinaliza a intenção de inserir de tal forma que múltiplas *transactions* inserindo no mesmo *index gap* não precisam esperar umas pelas outras se não estiverem inserindo na mesma posição dentro do *gap*. Suponha que existam *index records* com valores 4 e 7. *Transactions* separadas que tentam inserir os valores 5 e 6 bloqueiam o *gap* entre 4 e 7 com *insert intention locks* antes de obter o *exclusive lock* na linha inserida, mas não se bloqueiam mutuamente porque as linhas não estão em conflito.
 
-  If a duplicate-key error occurs, a shared lock on the duplicate index record is set. This use of a shared lock can result in deadlock should there be multiple sessions trying to insert the same row if another session already has an exclusive lock. This can occur if another session deletes the row. Suppose that an `InnoDB` table `t1` has the following structure:
+    Se ocorrer um erro de chave duplicada (*duplicate-key error*), um *shared lock* no *duplicate index record* é definido. Este uso de um *shared lock* pode resultar em *deadlock* caso haja múltiplas sessões tentando inserir a mesma linha se outra sessão já tiver um *exclusive lock*. Isso pode ocorrer se outra sessão excluir a linha. Suponha que uma tabela `t1` do `InnoDB` tenha a seguinte estrutura:
 
-  ```sql
+    ```sql
   CREATE TABLE t1 (i INT, PRIMARY KEY (i)) ENGINE = InnoDB;
   ```
 
-  Now suppose that three sessions perform the following operations in order:
+    Agora suponha que três sessões executem as seguintes operações em ordem:
 
-  Session 1:
+    Sessão 1:
 
-  ```sql
+    ```sql
   START TRANSACTION;
   INSERT INTO t1 VALUES(1);
   ```
 
-  Session 2:
+    Sessão 2:
 
-  ```sql
+    ```sql
   START TRANSACTION;
   INSERT INTO t1 VALUES(1);
   ```
 
-  Session 3:
+    Sessão 3:
 
-  ```sql
+    ```sql
   START TRANSACTION;
   INSERT INTO t1 VALUES(1);
   ```
 
-  Session 1:
+    Sessão 1:
 
-  ```sql
+    ```sql
   ROLLBACK;
   ```
 
-  The first operation by session 1 acquires an exclusive lock for the row. The operations by sessions 2 and 3 both result in a duplicate-key error and they both request a shared lock for the row. When session 1 rolls back, it releases its exclusive lock on the row and the queued shared lock requests for sessions 2 and 3 are granted. At this point, sessions 2 and 3 deadlock: Neither can acquire an exclusive lock for the row because of the shared lock held by the other.
+    A primeira operação pela Sessão 1 adquire um *exclusive lock* para a linha. As operações pelas Sessões 2 e 3 resultam em um *duplicate-key error* e ambas solicitam um *shared lock* para a linha. Quando a Sessão 1 realiza *rollback*, ela libera seu *exclusive lock* na linha e as solicitações de *shared lock* enfileiradas para as Sessões 2 e 3 são concedidas. Neste ponto, as Sessões 2 e 3 entram em *deadlock*: Nenhuma pode adquirir um *exclusive lock* para a linha devido ao *shared lock* mantido pela outra.
 
-  A similar situation occurs if the table already contains a row with key value 1 and three sessions perform the following operations in order:
+    Uma situação semelhante ocorre se a tabela já contiver uma linha com valor de chave 1 e três sessões executarem as seguintes operações em ordem:
 
-  Session 1:
+    Sessão 1:
 
-  ```sql
+    ```sql
   START TRANSACTION;
   DELETE FROM t1 WHERE i = 1;
   ```
 
-  Session 2:
+    Sessão 2:
 
-  ```sql
+    ```sql
   START TRANSACTION;
   INSERT INTO t1 VALUES(1);
   ```
 
-  Session 3:
+    Sessão 3:
 
-  ```sql
+    ```sql
   START TRANSACTION;
   INSERT INTO t1 VALUES(1);
   ```
 
-  Session 1:
+    Sessão 1:
 
-  ```sql
+    ```sql
   COMMIT;
   ```
 
-  The first operation by session 1 acquires an exclusive lock for the row. The operations by sessions 2 and 3 both result in a duplicate-key error and they both request a shared lock for the row. When session 1 commits, it releases its exclusive lock on the row and the queued shared lock requests for sessions 2 and 3 are granted. At this point, sessions 2 and 3 deadlock: Neither can acquire an exclusive lock for the row because of the shared lock held by the other.
+    A primeira operação pela Sessão 1 adquire um *exclusive lock* para a linha. As operações pelas Sessões 2 e 3 resultam em um *duplicate-key error* e ambas solicitam um *shared lock* para a linha. Quando a Sessão 1 realiza *commit*, ela libera seu *exclusive lock* na linha e as solicitações de *shared lock* enfileiradas para as Sessões 2 e 3 são concedidas. Neste ponto, as Sessões 2 e 3 entram em *deadlock*: Nenhuma pode adquirir um *exclusive lock* para a linha devido ao *shared lock* mantido pela outra.
 
-* `INSERT ... ON DUPLICATE KEY UPDATE` differs from a simple `INSERT` in that an exclusive lock rather than a shared lock is placed on the row to be updated when a duplicate-key error occurs. An exclusive index-record lock is taken for a duplicate primary key value. An exclusive next-key lock is taken for a duplicate unique key value.
+*   `INSERT ... ON DUPLICATE KEY UPDATE` difere de um `INSERT` simples, pois um *exclusive lock*, em vez de um *shared lock*, é colocado na linha a ser atualizada quando ocorre um *duplicate-key error*. Um *exclusive index-record lock* é tomado para um valor de chave primária duplicado. Um *exclusive next-key lock* é tomado para um valor de chave única duplicado.
 
-* `REPLACE` is done like an `INSERT` if there is no collision on a unique key. Otherwise, an exclusive next-key lock is placed on the row to be replaced.
+*   `REPLACE` é feito como um `INSERT` se não houver colisão em uma chave única. Caso contrário, um *exclusive next-key lock* é colocado na linha a ser substituída.
 
-* `INSERT INTO T SELECT ... FROM S WHERE ...` sets an exclusive index record lock (without a gap lock) on each row inserted into `T`. If the transaction isolation level is `READ COMMITTED`, or `innodb_locks_unsafe_for_binlog` is enabled and the transaction isolation level is not `SERIALIZABLE`, `InnoDB` does the search on `S` as a consistent read (no locks). Otherwise, `InnoDB` sets shared next-key locks on rows from `S`. `InnoDB` has to set locks in the latter case: During roll-forward recovery using a statement-based binary log, every SQL statement must be executed in exactly the same way it was done originally.
+*   `INSERT INTO T SELECT ... FROM S WHERE ...` define um *exclusive index record lock* (sem um *gap lock*) em cada linha inserida em `T`. Se o *transaction isolation level* for `READ COMMITTED`, ou se `innodb_locks_unsafe_for_binlog` estiver habilitado e o *transaction isolation level* não for `SERIALIZABLE`, o `InnoDB` faz a busca em `S` como uma *consistent read* (sem *locks*). Caso contrário, o `InnoDB` define *shared next-key locks* nas linhas de `S`. O `InnoDB` tem que definir *locks* neste último caso: Durante a recuperação *roll-forward* usando um *binary log* baseado em instrução, cada instrução SQL deve ser executada exatamente da mesma maneira que foi feita originalmente.
 
-  `CREATE TABLE ... SELECT ...` performs the `SELECT` with shared next-key locks or as a consistent read, as for `INSERT ... SELECT`.
+    `CREATE TABLE ... SELECT ...` executa o `SELECT` com *shared next-key locks* ou como uma *consistent read*, assim como em `INSERT ... SELECT`.
 
-  When a `SELECT` is used in the constructs `REPLACE INTO t SELECT ... FROM s WHERE ...` or `UPDATE t ... WHERE col IN (SELECT ... FROM s ...)`, `InnoDB` sets shared next-key locks on rows from table `s`.
+    Quando um `SELECT` é usado nas construções `REPLACE INTO t SELECT ... FROM s WHERE ...` ou `UPDATE t ... WHERE col IN (SELECT ... FROM s ...)`, o `InnoDB` define *shared next-key locks* nas linhas da tabela `s`.
 
-* `InnoDB` sets an exclusive lock on the end of the index associated with the `AUTO_INCREMENT` column while initializing a previously specified `AUTO_INCREMENT` column on a table.
+*   O `InnoDB` define um *exclusive lock* no final do *index* associado à coluna `AUTO_INCREMENT` ao inicializar uma coluna `AUTO_INCREMENT` previamente especificada em uma tabela.
 
-  With `innodb_autoinc_lock_mode=0`, `InnoDB` uses a special `AUTO-INC` table lock mode where the lock is obtained and held to the end of the current SQL statement (not to the end of the entire transaction) while accessing the auto-increment counter. Other clients cannot insert into the table while the `AUTO-INC` table lock is held. The same behavior occurs for “bulk inserts” with `innodb_autoinc_lock_mode=1`. Table-level `AUTO-INC` locks are not used with `innodb_autoinc_lock_mode=2`. For more information, See Section 14.6.1.6, “AUTO_INCREMENT Handling in InnoDB”.
+    Com `innodb_autoinc_lock_mode=0`, o `InnoDB` usa um modo especial de *AUTO-INC table lock* onde o *lock* é obtido e mantido até o final da instrução SQL atual (não até o final da *transaction* inteira) enquanto acessa o contador de *auto-increment*. Outros clientes não podem inserir na tabela enquanto o *AUTO-INC table lock* estiver sendo mantido. O mesmo comportamento ocorre para “*bulk inserts*” com `innodb_autoinc_lock_mode=1`. *Table-level AUTO-INC locks* não são usados com `innodb_autoinc_lock_mode=2`. Para mais informações, consulte a Seção 14.6.1.6, “AUTO_INCREMENT Handling in InnoDB”.
 
-  `InnoDB` fetches the value of a previously initialized `AUTO_INCREMENT` column without setting any locks.
+    O `InnoDB` busca o valor de uma coluna `AUTO_INCREMENT` previamente inicializada sem definir *locks*.
 
-* If a `FOREIGN KEY` constraint is defined on a table, any insert, update, or delete that requires the constraint condition to be checked sets shared record-level locks on the records that it looks at to check the constraint. `InnoDB` also sets these locks in the case where the constraint fails.
+*   Se uma restrição `FOREIGN KEY` for definida em uma tabela, qualquer *insert*, *update* ou *delete* que exija a verificação da condição de restrição define *shared record-level locks* nos registros que examina para verificar a restrição. O `InnoDB` também define esses *locks* no caso em que a restrição falha.
 
-* `LOCK TABLES` sets table locks, but it is the higher MySQL layer above the `InnoDB` layer that sets these locks. `InnoDB` is aware of table locks if `innodb_table_locks = 1` (the default) and `autocommit = 0`, and the MySQL layer above `InnoDB` knows about row-level locks.
+*   `LOCK TABLES` define *table locks*, mas é a camada superior do MySQL, acima da camada `InnoDB`, que define esses *locks*. O `InnoDB` está ciente dos *table locks* se `innodb_table_locks = 1` (o padrão) e `autocommit = 0`, e a camada do MySQL acima do `InnoDB` souber sobre os *row-level locks*.
 
-  Otherwise, `InnoDB`'s automatic deadlock detection cannot detect deadlocks where such table locks are involved. Also, because in this case the higher MySQL layer does not know about row-level locks, it is possible to get a table lock on a table where another session currently has row-level locks. However, this does not endanger transaction integrity, as discussed in Section 14.7.5.2, “Deadlock Detection”.
+    Caso contrário, a detecção automática de *deadlocks* do `InnoDB` não pode detectar *deadlocks* onde tais *table locks* estão envolvidos. Além disso, como neste caso a camada superior do MySQL não sabe sobre *row-level locks*, é possível obter um *table lock* em uma tabela onde outra sessão atualmente possui *row-level locks*. No entanto, isso não coloca em risco a integridade da *transaction*, conforme discutido na Seção 14.7.5.2, “Deadlock Detection”.
 
-* `LOCK TABLES` acquires two locks on each table if `innodb_table_locks=1` (the default). In addition to a table lock on the MySQL layer, it also acquires an `InnoDB` table lock. To avoid acquiring `InnoDB` table locks, set `innodb_table_locks=0`. If no `InnoDB` table lock is acquired, `LOCK TABLES` completes even if some records of the tables are being locked by other transactions.
+*   `LOCK TABLES` adquire dois *locks* em cada tabela se `innodb_table_locks=1` (o padrão). Além de um *table lock* na camada MySQL, ele também adquire um *InnoDB table lock*. Para evitar a aquisição de *InnoDB table locks*, defina `innodb_table_locks=0`. Se nenhum *InnoDB table lock* for adquirido, `LOCK TABLES` é concluído mesmo se alguns registros das tabelas estiverem sendo bloqueados por outras *transactions*.
 
-  In MySQL 5.7, `innodb_table_locks=0` has no effect for tables locked explicitly with `LOCK TABLES ... WRITE`. It does have an effect for tables locked for read or write by `LOCK TABLES ... WRITE` implicitly (for example, through triggers) or by `LOCK TABLES ... READ`.
+    No MySQL 5.7, `innodb_table_locks=0` não tem efeito para tabelas bloqueadas explicitamente com `LOCK TABLES ... WRITE`. Tem efeito para tabelas bloqueadas para leitura ou escrita por `LOCK TABLES ... WRITE` implicitamente (por exemplo, através de *triggers*) ou por `LOCK TABLES ... READ`.
 
-* All `InnoDB` locks held by a transaction are released when the transaction is committed or aborted. Thus, it does not make much sense to invoke `LOCK TABLES` on `InnoDB` tables in `autocommit=1` mode because the acquired `InnoDB` table locks would be released immediately.
+*   Todos os *InnoDB locks* mantidos por uma *transaction* são liberados quando a *transaction* é *committed* ou abortada. Assim, não faz muito sentido invocar `LOCK TABLES` em tabelas `InnoDB` no modo `autocommit=1`, pois os *InnoDB table locks* adquiridos seriam liberados imediatamente.
 
-* You cannot lock additional tables in the middle of a transaction because `LOCK TABLES` performs an implicit `COMMIT` and `UNLOCK TABLES`.
+*   Você não pode bloquear tabelas adicionais no meio de uma *transaction* porque `LOCK TABLES` executa um `COMMIT` implícito e `UNLOCK TABLES`.

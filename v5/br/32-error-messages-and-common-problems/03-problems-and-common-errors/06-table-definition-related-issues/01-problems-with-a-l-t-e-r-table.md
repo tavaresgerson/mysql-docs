@@ -1,28 +1,24 @@
-#### B.3.6.1 Problems with ALTER TABLE
+#### B.3.6.1 Problemas com ALTER TABLE
 
-If you get a duplicate-key error when using [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") to change the character set or collation of a character column, the cause is either that the new column collation maps two keys to the same value or that the table is corrupted. In the latter case, you should run [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") on the table. [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") works for `MyISAM`, `ARCHIVE`, and `CSV` tables.
+Se você receber um erro de chave duplicada (`duplicate-key error`) ao usar [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") para alterar o *character set* ou a *collation* de uma coluna de caracteres, a causa é que a nova *collation* da coluna mapeia duas chaves para o mesmo valor, ou que a tabela está corrompida. Neste último caso, você deve executar [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") na tabela. [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") funciona para tabelas `MyISAM`, `ARCHIVE` e `CSV`.
 
-If [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") dies with the following error, the problem may be that MySQL crashed during an earlier [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") operation and there is an old table named `A-xxx` or `B-xxx` lying around:
+Se [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") falhar com o seguinte erro, o problema pode ser que o MySQL travou durante uma operação anterior de [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") e há uma tabela antiga chamada `A-xxx` ou `B-xxx` abandonada:
 
 ```sql
 Error on rename of './database/name.frm'
 to './database/B-xxx.frm' (Errcode: 17)
 ```
 
-In this case, go to the MySQL data directory and delete all files that have names starting with `A-` or `B-`. (You may want to move them elsewhere instead of deleting them.)
+Neste caso, vá para o diretório de dados do MySQL e exclua todos os arquivos cujos nomes comecem com `A-` ou `B-`. (Você pode querer movê-los para outro lugar em vez de excluí-los.)
 
-[`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") works in the following way:
+[`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") funciona da seguinte maneira:
 
-* Create a new table named `A-xxx` with the requested structural changes.
+* Cria uma nova tabela chamada `A-xxx` com as alterações estruturais solicitadas.
+* Copia todas as linhas da tabela original para `A-xxx`.
+* Renomeia a tabela original para `B-xxx`.
+* Renomeia `A-xxx` para o nome da sua tabela original.
+* Exclui `B-xxx`.
 
-* Copy all rows from the original table to `A-xxx`.
+Se algo der errado com a operação de renomeação, o MySQL tenta desfazer as alterações. Se algo der gravemente errado (embora isso não deva acontecer), o MySQL pode deixar a tabela antiga como `B-xxx`. Uma simples renomeação dos arquivos da tabela no nível do sistema deve recuperar seus dados.
 
-* Rename the original table to `B-xxx`.
-
-* Rename `A-xxx` to your original table name.
-
-* Delete `B-xxx`.
-
-If something goes wrong with the renaming operation, MySQL tries to undo the changes. If something goes seriously wrong (although this shouldn't happen), MySQL may leave the old table as `B-xxx`. A simple rename of the table files at the system level should get your data back.
-
-If you use [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") on a transactional table or if you are using Windows, [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") unlocks the table if you had done a [`LOCK TABLE`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") on it. This is done because `InnoDB` and these operating systems cannot drop a table that is in use.
+Se você usar [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") em uma tabela transacional ou se estiver usando Windows, [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") desbloqueia a tabela se você tiver executado um [`LOCK TABLE`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") nela. Isso é feito porque o `InnoDB` e esses sistemas operacionais não podem descartar (drop) uma tabela que está em uso.

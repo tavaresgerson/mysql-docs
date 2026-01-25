@@ -1,30 +1,30 @@
-#### 19.2.1.1 Installing MySQL Shell on Microsoft Windows
+#### 19.2.1.1 Instalando o MySQL Shell no Microsoft Windows
 
-Important
+Importante
 
-The Community version of MySQL Shell requires the Visual C++ Redistributable for Visual Studio 2013 (available at the Microsoft Download Center) to work; make sure that is installed on your Windows system before installing MySQL Shell.
+A versão Community do MySQL Shell requer o Visual C++ Redistributable for Visual Studio 2013 (disponível no Microsoft Download Center) para funcionar; certifique-se de que ele esteja instalado no seu sistema Windows antes de instalar o MySQL Shell.
 
-Note
+Nota
 
-MySQL Shell is currently not supplied with an MSI Installer. See Installing MySQL Shell Binaries for the manual install procedure.
+O MySQL Shell atualmente não é fornecido com um MSI Installer. Consulte Instalando os Binaries do MySQL Shell para o procedimento de instalação manual.
 
-To install MySQL Shell on Microsoft Windows using the MSI Installer, do the following:
+Para instalar o MySQL Shell no Microsoft Windows usando o MSI Installer, faça o seguinte:
 
-1. Download the **Windows (x86, 64-bit), MSI Installer** package from <http://dev.mysql.com/downloads/shell/>.
+1. Faça o download do pacote **Windows (x86, 64-bit), MSI Installer** em <http://dev.mysql.com/downloads/shell/>.
 
-2. When prompted, click Run.
-3. Follow the steps in the Setup Wizard.
+2. Quando solicitado, clique em Run (Executar).
+3. Siga os passos no Assistente de Configuração (Setup Wizard).
 
-   **Figure 19.1 Installation of MySQL Shell on Windows**
+   **Figura 19.1 Instalação do MySQL Shell no Windows**
 
    ![Installation of MySQL Shell on Windows](images/x-installation-mysql-shell-win.png)
 
-If you have installed MySQL without enabling the X Plugin, then later on decide you want to install the X Plugin, or if you are installing MySQL *without* using MySQL Installer, see Installing the X Plugin.
+Se você instalou o MySQL sem habilitar o X Plugin, e depois decidir que deseja instalar o X Plugin, ou se você estiver instalando o MySQL *sem* usar o MySQL Installer, consulte Instalando o X Plugin.
 
-##### Installing MySQL Shell Binaries
+##### Instalando os Binaries do MySQL Shell
 
-To install MySQL Shell binaries:
+Para instalar os binaries do MySQL Shell:
 
-1. Unzip the content of the Zip file to the MySQL products directory, for example `C:\Program Files\MySQL\`.
+1. Descompacte o conteúdo do arquivo Zip para o diretório de produtos MySQL, por exemplo `C:\Program Files\MySQL\`.
 
-2. To be able to start MySQL Shell from a command prompt add the bin directory `C:\Program Files\MySQL\mysql-shell-1.0.8-rc-windows-x86-64bit\bin` to the `PATH` system variable.
+2. Para poder iniciar o MySQL Shell a partir de um prompt de comando, adicione o diretório `bin`, por exemplo `C:\Program Files\MySQL\mysql-shell-1.0.8-rc-windows-x86-64bit\bin`, à variável de sistema `PATH`.

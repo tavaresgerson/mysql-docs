@@ -1,88 +1,88 @@
-#### 16.2.5.2 Evaluation of Table-Level Replication Options
+#### 16.2.5.2 Avaliação de Opções de Replication em Nível de Tabela
 
-The replica checks for and evaluates table options only if either of the following two conditions is true:
+A réplica verifica e avalia as opções de tabela somente se uma das duas condições a seguir for verdadeira:
 
-* No matching database options were found.
-* One or more database options were found, and were evaluated to arrive at an “execute” condition according to the rules described in the previous section (see [Section 16.2.5.1, “Evaluation of Database-Level Replication and Binary Logging Options”](replication-rules-db-options.html "16.2.5.1 Evaluation of Database-Level Replication and Binary Logging Options")).
+*   Nenhuma opção de Database correspondente foi encontrada.
+*   Uma ou mais opções de Database foram encontradas e foram avaliadas para chegar a uma condição de “execute” de acordo com as regras descritas na seção anterior (consulte [Section 16.2.5.1, “Evaluation of Database-Level Replication and Binary Logging Options”](replication-rules-db-options.html "16.2.5.1 Evaluation of Database-Level Replication and Binary Logging Options")).
 
-First, as a preliminary condition, the replica checks whether statement-based replication is enabled. If so, and the statement occurs within a stored function, the replica executes the statement and exits. If row-based replication is enabled, the replica does not know whether a statement occurred within a stored function on the source, so this condition does not apply.
+Primeiro, como condição preliminar, a réplica verifica se a Replication baseada em Statement está habilitada. Se estiver, e o Statement ocorrer dentro de uma stored function, a réplica executa o Statement e sai. Se a Replication baseada em Row estiver habilitada, a réplica não sabe se um Statement ocorreu dentro de uma stored function na source, portanto, esta condição não se aplica.
 
 Note
 
-For statement-based replication, replication events represent statements (all changes making up a given event are associated with a single SQL statement); for row-based replication, each event represents a change in a single table row (thus a single statement such as `UPDATE mytable SET mycol = 1` may yield many row-based events). When viewed in terms of events, the process of checking table options is the same for both row-based and statement-based replication.
+Para a Replication baseada em Statement, os Events de Replication representam Statements (todas as alterações que compõem um determinado Evento estão associadas a um único Statement SQL); para a Replication baseada em Row, cada Evento representa uma alteração em um único Row da tabela (portanto, um único Statement, como `UPDATE mytable SET mycol = 1`, pode gerar muitos Events baseados em Row). Quando vista em termos de Events, o processo de verificação de opções de tabela é o mesmo tanto para a Replication baseada em Row quanto para a baseada em Statement.
 
-Having reached this point, if there are no table options, the replica simply executes all events. If there are any [`--replicate-do-table`](replication-options-replica.html#option_mysqld_replicate-do-table) or [`--replicate-wild-do-table`](replication-options-replica.html#option_mysqld_replicate-wild-do-table) options, the event must match one of these if it is to be executed; otherwise, it is ignored. If there are any [`--replicate-ignore-table`](replication-options-replica.html#option_mysqld_replicate-ignore-table) or [`--replicate-wild-ignore-table`](replication-options-replica.html#option_mysqld_replicate-wild-ignore-table) options, all events are executed except those that match any of these options.
+Tendo chegado a este ponto, se não houver opções de tabela, a réplica simplesmente executa todos os Events. Se houver alguma opção [`--replicate-do-table`](replication-options-replica.html#option_mysqld_replicate-do-table) ou [`--replicate-wild-do-table`](replication-options-replica.html#option_mysqld_replicate-wild-do-table), o Evento deve corresponder a uma delas para ser executado; caso contrário, é ignorado. Se houver alguma opção [`--replicate-ignore-table`](replication-options-replica.html#option_mysqld_replicate-ignore-table) ou [`--replicate-wild-ignore-table`](replication-options-replica.html#option_mysqld_replicate-wild-ignore-table), todos os Events são executados, exceto aqueles que correspondem a qualquer uma dessas opções.
 
 Important
 
-Table-level replication filters are only applied to tables that are explicitly mentioned and operated on in the query. They do not apply to tables that are implicitly updated by the query. For example, a [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statement, which updates the `mysql.user` system table but does not mention that table, is not affected by a filter that specifies `mysql.%` as the wildcard pattern.
+Os filtros de Replication em nível de tabela são aplicados apenas às tabelas que são explicitamente mencionadas e operadas na Query. Eles não se aplicam a tabelas que são implicitamente atualizadas pela Query. Por exemplo, um Statement [`GRANT`](grant.html "13.7.1.4 GRANT Statement"), que atualiza a tabela de sistema `mysql.user`, mas não menciona essa tabela, não é afetado por um filtro que especifica `mysql.%` como o padrão wildcard.
 
-The following steps describe this evaluation in more detail. The starting point is the end of the evaluation of the database-level options, as described in [Section 16.2.5.1, “Evaluation of Database-Level Replication and Binary Logging Options”](replication-rules-db-options.html "16.2.5.1 Evaluation of Database-Level Replication and Binary Logging Options").
+As etapas a seguir descrevem esta avaliação em mais detalhes. O ponto de partida é o final da avaliação das opções em nível de Database, conforme descrito em [Section 16.2.5.1, “Evaluation of Database-Level Replication and Binary Logging Options”](replication-rules-db-options.html "16.2.5.1 Evaluation of Database-Level Replication and Binary Logging Options").
 
-1. Are there any table replication options?
+1.  Existem opções de Replication de tabela?
 
-   * **Yes.** Continue to step 2.
+    *   **Sim.** Continue para a etapa 2.
 
-   * **No.** Execute the update and exit.
+    *   **Não.** Executa o update e sai.
 
-2. Which logging format is used?
+2.  Qual formato de logging é usado?
 
-   * **STATEMENT.** Carry out the remaining steps for each statement that performs an update.
+    *   **STATEMENT.** Realiza os passos restantes para cada Statement que executa um update.
 
-   * **ROW.** Carry out the remaining steps for each update of a table row.
+    *   **ROW.** Realiza os passos restantes para cada update de um Row da tabela.
 
-3. Are there any [`--replicate-do-table`](replication-options-replica.html#option_mysqld_replicate-do-table) options?
+3.  Existem opções [`--replicate-do-table`](replication-options-replica.html#option_mysqld_replicate-do-table)?
 
-   * **Yes.** Does the table match any of them?
+    *   **Sim.** A tabela corresponde a alguma delas?
 
-     + **Yes.** Execute the update and exit.
+        +   **Sim.** Executa o update e sai.
 
-     + **No.** Continue to step 4.
+        +   **Não.** Continue para a etapa 4.
 
-   * **No.** Continue to step 4.
+    *   **Não.** Continue para a etapa 4.
 
-4. Are there any [`--replicate-ignore-table`](replication-options-replica.html#option_mysqld_replicate-ignore-table) options?
+4.  Existem opções [`--replicate-ignore-table`](replication-options-replica.html#option_mysqld_replicate-ignore-table)?
 
-   * **Yes.** Does the table match any of them?
+    *   **Sim.** A tabela corresponde a alguma delas?
 
-     + **Yes.** Ignore the update and exit.
+        +   **Sim.** Ignora o update e sai.
 
-     + **No.** Continue to step 5.
+        +   **Não.** Continue para a etapa 5.
 
-   * **No.** Continue to step 5.
+    *   **Não.** Continue para a etapa 5.
 
-5. Are there any [`--replicate-wild-do-table`](replication-options-replica.html#option_mysqld_replicate-wild-do-table) options?
+5.  Existem opções [`--replicate-wild-do-table`](replication-options-replica.html#option_mysqld_replicate-wild-do-table)?
 
-   * **Yes.** Does the table match any of them?
+    *   **Sim.** A tabela corresponde a alguma delas?
 
-     + **Yes.** Execute the update and exit.
+        +   **Sim.** Executa o update e sai.
 
-     + **No.** Continue to step 6.
+        +   **Não.** Continue para a etapa 6.
 
-   * **No.** Continue to step 6.
+    *   **Não.** Continue para a etapa 6.
 
-6. Are there any [`--replicate-wild-ignore-table`](replication-options-replica.html#option_mysqld_replicate-wild-ignore-table) options?
+6.  Existem opções [`--replicate-wild-ignore-table`](replication-options-replica.html#option_mysqld_replicate-wild-ignore-table)?
 
-   * **Yes.** Does the table match any of them?
+    *   **Sim.** A tabela corresponde a alguma delas?
 
-     + **Yes.** Ignore the update and exit.
+        +   **Sim.** Ignora o update e sai.
 
-     + **No.** Continue to step 7.
+        +   **Não.** Continue para a etapa 7.
 
-   * **No.** Continue to step 7.
+    *   **Não.** Continue para a etapa 7.
 
-7. Is there another table to be tested?
+7.  Existe outra tabela a ser testada?
 
-   * **Yes.** Go back to step 3.
+    *   **Sim.** Volta para a etapa 3.
 
-   * **No.** Continue to step 8.
+    *   **Não.** Continue para a etapa 8.
 
-8. Are there any [`--replicate-do-table`](replication-options-replica.html#option_mysqld_replicate-do-table) or [`--replicate-wild-do-table`](replication-options-replica.html#option_mysqld_replicate-wild-do-table) options?
+8.  Existem opções [`--replicate-do-table`](replication-options-replica.html#option_mysqld_replicate-do-table) ou [`--replicate-wild-do-table`](replication-options-replica.html#option_mysqld_replicate-wild-do-table)?
 
-   * **Yes.** Ignore the update and exit.
+    *   **Sim.** Ignora o update e sai.
 
-   * **No.** Execute the update and exit.
+    *   **Não.** Executa o update e sai.
 
 Note
 
-Statement-based replication stops if a single SQL statement operates on both a table that is included by a [`--replicate-do-table`](replication-options-replica.html#option_mysqld_replicate-do-table) or [`--replicate-wild-do-table`](replication-options-replica.html#option_mysqld_replicate-wild-do-table) option, and another table that is ignored by a [`--replicate-ignore-table`](replication-options-replica.html#option_mysqld_replicate-ignore-table) or [`--replicate-wild-ignore-table`](replication-options-replica.html#option_mysqld_replicate-wild-ignore-table) option. The replica must either execute or ignore the complete statement (which forms a replication event), and it cannot logically do this. This also applies to row-based replication for DDL statements, because DDL statements are always logged as statements, without regard to the logging format in effect. The only type of statement that can update both an included and an ignored table and still be replicated successfully is a DML statement that has been logged with [`binlog_format=ROW`](replication-options-binary-log.html#sysvar_binlog_format).
+A Replication baseada em Statement é interrompida se um único Statement SQL operar em uma tabela incluída por uma opção [`--replicate-do-table`](replication-options-replica.html#option_mysqld_replicate-do-table) ou [`--replicate-wild-do-table`](replication-options-replica.html#option_mysqld_replicate-wild-do-table) e em outra tabela que é ignorada por uma opção [`--replicate-ignore-table`](replication-options-replica.html#option_mysqld_replicate-ignore-table) ou [`--replicate-wild-ignore-table`](replication-options-replica.html#option_mysqld_replicate-wild-ignore-table). A réplica deve executar ou ignorar o Statement completo (que forma um Evento de Replication) e não pode fazer isso logicamente. Isso também se aplica à Replication baseada em Row para Statements DDL, pois Statements DDL são sempre logados como Statements, independentemente do formato de logging em vigor. O único tipo de Statement que pode atualizar uma tabela incluída e uma ignorada e ainda ser replicado com sucesso é um Statement DML que tenha sido logado com [`binlog_format=ROW`](replication-options-binary-log.html#sysvar_binlog_format).

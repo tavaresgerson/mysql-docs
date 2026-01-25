@@ -1,144 +1,144 @@
-## 12.13 Encryption and Compression Functions
+## 12.13 Funções de Criptografia e Compressão
 
-**Table 12.18 Encryption Functions**
+**Tabela 12.18 Funções de Criptografia**
 
-<table frame="box" rules="all" summary="A reference that lists encryption functions."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Name</th> <th>Description</th> <th>Deprecated</th> </tr></thead><tbody><tr><th><code>AES_DECRYPT()</code></th> <td> Decrypt using AES </td> <td></td> </tr><tr><th><code>AES_ENCRYPT()</code></th> <td> Encrypt using AES </td> <td></td> </tr><tr><th><code>COMPRESS()</code></th> <td> Return result as a binary string </td> <td></td> </tr><tr><th><code>DECODE()</code></th> <td> Decode a string encrypted using ENCODE() </td> <td>Yes</td> </tr><tr><th><code>DES_DECRYPT()</code></th> <td> Decrypt a string </td> <td>Yes</td> </tr><tr><th><code>DES_ENCRYPT()</code></th> <td> Encrypt a string </td> <td>Yes</td> </tr><tr><th><code>ENCODE()</code></th> <td> Encode a string </td> <td>Yes</td> </tr><tr><th><code>ENCRYPT()</code></th> <td> Encrypt a string </td> <td>Yes</td> </tr><tr><th><code>MD5()</code></th> <td> Calculate MD5 checksum </td> <td></td> </tr><tr><th><code>PASSWORD()</code></th> <td> Calculate and return a password string </td> <td>Yes</td> </tr><tr><th><code>RANDOM_BYTES()</code></th> <td> Return a random byte vector </td> <td></td> </tr><tr><th><code>SHA1()</code>, <code>SHA()</code></th> <td> Calculate an SHA-1 160-bit checksum </td> <td></td> </tr><tr><th><code>SHA2()</code></th> <td> Calculate an SHA-2 checksum </td> <td></td> </tr><tr><th><code>UNCOMPRESS()</code></th> <td> Uncompress a string compressed </td> <td></td> </tr><tr><th><code>UNCOMPRESSED_LENGTH()</code></th> <td> Return the length of a string before compression </td> <td></td> </tr><tr><th><code>VALIDATE_PASSWORD_STRENGTH()</code></th> <td> Determine strength of password </td> <td></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista funções de criptografia."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Nome</th> <th>Descrição</th> <th>Obsoleta</th> </tr></thead><tbody><tr><th><code>AES_DECRYPT()</code></th> <td> Descriptografa usando AES </td> <td></td> </tr><tr><th><code>AES_ENCRYPT()</code></th> <td> Criptografa usando AES </td> <td></td> </tr><tr><th><code>COMPRESS()</code></th> <td> Retorna o resultado como uma string binária </td> <td></td> </tr><tr><th><code>DECODE()</code></th> <td> Decodifica uma string criptografada usando ENCODE() </td> <td>Sim</td> </tr><tr><th><code>DES_DECRYPT()</code></th> <td> Descriptografa uma string </td> <td>Sim</td> </tr><tr><th><code>DES_ENCRYPT()</code></th> <td> Criptografa uma string </td> <td>Sim</td> </tr><tr><th><code>ENCODE()</code></th> <td> Codifica uma string </td> <td>Sim</td> </tr><tr><th><code>ENCRYPT()</code></th> <td> Criptografa uma string </td> <td>Sim</td> </tr><tr><th><code>MD5()</code></th> <td> Calcula o checksum MD5 </td> <td></td> </tr><tr><th><code>PASSWORD()</code></th> <td> Calcula e retorna uma string de senha </td> <td>Sim</td> </tr><tr><th><code>RANDOM_BYTES()</code></th> <td> Retorna um vetor de bytes aleatórios </td> <td></td> </tr><tr><th><code>SHA1()</code>, <code>SHA()</code></th> <td> Calcula um checksum SHA-1 de 160 bits </td> <td></td> </tr><tr><th><code>SHA2()</code></th> <td> Calcula um checksum SHA-2 </td> <td></td> </tr><tr><th><code>UNCOMPRESS()</code></th> <td> Descomprime uma string compactada </td> <td></td> </tr><tr><th><code>UNCOMPRESSED_LENGTH()</code></th> <td> Retorna o comprimento de uma string antes da compressão </td> <td></td> </tr><tr><th><code>VALIDATE_PASSWORD_STRENGTH()</code></th> <td> Determina a força da senha </td> <td></td> </tr> </tbody></table>
 
-Many encryption and compression functions return strings for which the result might contain arbitrary byte values. If you want to store these results, use a column with a `VARBINARY` or `BLOB` binary string data type. This avoids potential problems with trailing space removal or character set conversion that would change data values, such as may occur if you use a nonbinary string data type (`CHAR`, `VARCHAR`, `TEXT`).
+Muitas funções de criptografia e compressão retornam strings cujo resultado pode conter valores de byte arbitrários. Se você deseja armazenar esses resultados, use uma coluna com um tipo de dado de string binária `VARBINARY` ou `BLOB`. Isso evita problemas potenciais com a remoção de espaços finais ou conversão de conjunto de caracteres que alterariam os valores dos dados, o que pode ocorrer se você usar um tipo de dado de string não binária (`CHAR`, `VARCHAR`, `TEXT`).
 
-Some encryption functions return strings of ASCII characters: `MD5()`, `PASSWORD()`, `SHA()`, `SHA1()`, `SHA2()`. Their return value is a string that has a character set and collation determined by the `character_set_connection` and `collation_connection` system variables. This is a nonbinary string unless the character set is `binary`.
+Algumas funções de criptografia retornam strings de caracteres ASCII: `MD5()`, `PASSWORD()`, `SHA()`, `SHA1()`, `SHA2()`. Seu valor de retorno é uma string que possui um conjunto de caracteres e collation determinados pelas variáveis de sistema `character_set_connection` e `collation_connection`. Esta é uma string não binária, a menos que o conjunto de caracteres seja `binary`.
 
-If an application stores values from a function such as `MD5()` or `SHA1()` that returns a string of hex digits, more efficient storage and comparisons can be obtained by converting the hex representation to binary using `UNHEX()` and storing the result in a `BINARY(N)` column. Each pair of hexadecimal digits requires one byte in binary form, so the value of *`N`* depends on the length of the hex string. *`N`* is 16 for an `MD5()` value and 20 for a `SHA1()` value. For `SHA2()`, *`N`* ranges from 28 to 32 depending on the argument specifying the desired bit length of the result.
+Se uma aplicação armazena valores de uma função como `MD5()` ou `SHA1()` que retorna uma string de dígitos hexadecimais, um armazenamento e comparações mais eficientes podem ser obtidos convertendo a representação hexadecimal para binária usando `UNHEX()` e armazenando o resultado em uma coluna `BINARY(N)`. Cada par de dígitos hexadecimais requer um byte na forma binária, então o valor de *`N`* depende do comprimento da string hexadecimal. *`N`* é 16 para um valor `MD5()` e 20 para um valor `SHA1()`. Para `SHA2()`, *`N`* varia de 28 a 32, dependendo do argumento que especifica o comprimento de bit desejado do resultado.
 
-The size penalty for storing the hex string in a `CHAR` column is at least two times, up to eight times if the value is stored in a column that uses the `utf8` character set (where each character uses 4 bytes). Storing the string also results in slower comparisons because of the larger values and the need to take character set collation rules into account.
+A penalidade de tamanho por armazenar a string hexadecimal em uma coluna `CHAR` é de pelo menos duas vezes, até oito vezes se o valor for armazenado em uma coluna que usa o conjunto de caracteres `utf8` (onde cada caractere usa 4 bytes). Armazenar a string também resulta em comparações mais lentas devido aos valores maiores e à necessidade de levar em conta as regras de collation do conjunto de caracteres.
 
-Suppose that an application stores `MD5()` string values in a `CHAR(32)` column:
+Suponha que uma aplicação armazene valores de string `MD5()` em uma coluna `CHAR(32)`:
 
 ```sql
 CREATE TABLE md5_tbl (md5_val CHAR(32), ...);
 INSERT INTO md5_tbl (md5_val, ...) VALUES(MD5('abcdef'), ...);
 ```
 
-To convert hex strings to more compact form, modify the application to use `UNHEX()` and `BINARY(16)` instead as follows:
+Para converter strings hexadecimais para uma forma mais compacta, modifique a aplicação para usar `UNHEX()` e `BINARY(16)` em vez disso, conforme segue:
 
 ```sql
 CREATE TABLE md5_tbl (md5_val BINARY(16), ...);
 INSERT INTO md5_tbl (md5_val, ...) VALUES(UNHEX(MD5('abcdef')), ...);
 ```
 
-Applications should be prepared to handle the very rare case that a hashing function produces the same value for two different input values. One way to make collisions detectable is to make the hash column a primary key.
+As aplicações devem estar preparadas para lidar com o caso muito raro de uma função de hashing produzir o mesmo valor para dois valores de entrada diferentes. Uma maneira de tornar as colisões detectáveis é transformar a coluna hash em uma Primary Key.
 
-Note
+Nota
 
-Exploits for the MD5 and SHA-1 algorithms have become known. You may wish to consider using another one-way encryption function described in this section instead, such as `SHA2()`.
+Exploits para os algoritmos MD5 e SHA-1 tornaram-se conhecidos. Você pode considerar o uso de outra função de criptografia unidirecional descrita nesta seção, como `SHA2()`.
 
-Caution
+Cuidado
 
-Passwords or other sensitive values supplied as arguments to encryption functions are sent as cleartext to the MySQL server unless an SSL connection is used. Also, such values appear in any MySQL logs to which they are written. To avoid these types of exposure, applications can encrypt sensitive values on the client side before sending them to the server. The same considerations apply to encryption keys. To avoid exposing these, applications can use stored procedures to encrypt and decrypt values on the server side.
+Senhas ou outros valores sensíveis fornecidos como argumentos para funções de criptografia são enviados como texto não criptografado (cleartext) para o servidor MySQL, a menos que uma conexão SSL seja utilizada. Além disso, esses valores aparecem em quaisquer logs do MySQL para os quais são escritos. Para evitar esses tipos de exposição, as aplicações podem criptografar valores sensíveis no lado do cliente antes de enviá-los ao servidor. As mesmas considerações se aplicam às chaves de criptografia. Para evitar expô-las, as aplicações podem usar stored procedures para criptografar e descriptografar valores no lado do servidor.
 
 * `AES_DECRYPT(crypt_str,key_str[,init_vector][,kdf_name][,salt][,info | iterations])`
 
-  This function decrypts data using the official AES (Advanced Encryption Standard) algorithm. For more information, see the description of `AES_ENCRYPT()`.
+  Esta função descriptografa dados usando o algoritmo oficial AES (Advanced Encryption Standard). Para mais informações, consulte a descrição de `AES_ENCRYPT()`.
 
-  Statements that use `AES_DECRYPT()` are unsafe for statement-based replication.
+  Statements que usam `AES_DECRYPT()` são inseguras para replicação baseada em statement.
 
 * `AES_ENCRYPT(str,key_str[,init_vector][,kdf_name][,salt][,info | iterations])`
 
-  `AES_ENCRYPT()` and `AES_DECRYPT()` implement encryption and decryption of data using the official AES (Advanced Encryption Standard) algorithm, previously known as “Rijndael.” The AES standard permits various key lengths. By default these functions implement AES with a 128-bit key length. Key lengths of 196 or 256 bits can be used, as described later. The key length is a trade off between performance and security.
+  `AES_ENCRYPT()` e `AES_DECRYPT()` implementam a criptografia e descriptografia de dados usando o algoritmo oficial AES (Advanced Encryption Standard), anteriormente conhecido como “Rijndael.” O padrão AES permite vários comprimentos de chave. Por padrão, essas funções implementam AES com um comprimento de chave de 128 bits. Comprimentos de chave de 196 ou 256 bits podem ser usados, conforme descrito adiante. O comprimento da chave é uma compensação entre desempenho e segurança.
 
-  `AES_ENCRYPT()` encrypts the string *`str`* using the key string *`key_str`*, and returns a binary string containing the encrypted output. `AES_DECRYPT()` decrypts the encrypted string *`crypt_str`* using the key string *`key_str`*, and returns the original plaintext string. If either function argument is `NULL`, the function returns `NULL`. If `AES_DECRYPT()` detects invalid data or incorrect padding, it returns `NULL`. However, it is possible for `AES_DECRYPT()` to return a non-`NULL` value (possibly garbage) if the input data or the key is invalid.
+  `AES_ENCRYPT()` criptografa a string *`str`* usando a string chave *`key_str`* e retorna uma string binária contendo a saída criptografada. `AES_DECRYPT()` descriptografa a string criptografada *`crypt_str`* usando a string chave *`key_str`* e retorna a string de texto simples (plaintext) original. Se qualquer um dos argumentos da função for `NULL`, a função retorna `NULL`. Se `AES_DECRYPT()` detectar dados inválidos ou preenchimento incorreto (padding), ela retorna `NULL`. No entanto, é possível que `AES_DECRYPT()` retorne um valor não-`NULL` (possivelmente lixo) se os dados de entrada ou a chave forem inválidos.
 
-  As of MySQL 5.7.40, these functions support the use of a key derivation function (KDF) to create a cryptographically strong secret key from the information passed in *`key_str`*. The derived key is used to encrypt and decrypt the data, and it remains in the MySQL Server instance and is not accessible to users. Using a KDF is highly recommended, as it provides better security than specifying your own premade key or deriving it by a simpler method as you use the function. The functions support HKDF (available from OpenSSL 1.1.0), for which you can specify an optional salt and context-specific information to include in the keying material, and PBKDF2 (available from OpenSSL 1.0.2), for which you can specify an optional salt and set the number of iterations used to produce the key.
+  A partir do MySQL 5.7.40, essas funções suportam o uso de uma função de derivação de chave (KDF, Key Derivation Function) para criar uma chave secreta criptograficamente forte a partir das informações passadas em *`key_str`*. A chave derivada é usada para criptografar e descriptografar os dados, e permanece na instância do Servidor MySQL, não sendo acessível aos usuários. Usar uma KDF é altamente recomendado, pois fornece melhor segurança do que especificar sua própria chave pré-fabricada ou derivá-la por um método mais simples ao usar a função. As funções suportam HKDF (disponível a partir do OpenSSL 1.1.0), para o qual você pode especificar um salt opcional e informações específicas de contexto a serem incluídas no material de chave, e PBKDF2 (disponível a partir do OpenSSL 1.0.2), para o qual você pode especificar um salt opcional e definir o número de iterations usadas para produzir a chave.
 
-  `AES_ENCRYPT()` and `AES_DECRYPT()` permit control of the block encryption mode. The `block_encryption_mode` system variable controls the mode for block-based encryption algorithms. Its default value is `aes-128-ecb`, which signifies encryption using a key length of 128 bits and ECB mode. For a description of the permitted values of this variable, see Section 5.1.7, “Server System Variables”. The optional *`init_vector`* argument is used to provide an initialization vector for block encryption modes that require it.
+  `AES_ENCRYPT()` e `AES_DECRYPT()` permitem o controle do modo de criptografia de bloco (block encryption mode). A variável de sistema `block_encryption_mode` controla o modo para algoritmos de criptografia baseados em bloco. Seu valor padrão é `aes-128-ecb`, o que significa criptografia usando um comprimento de chave de 128 bits e modo ECB. Para uma descrição dos valores permitidos desta variável, consulte Seção 5.1.7, “Server System Variables”. O argumento opcional *`init_vector`* é usado para fornecer um initialization vector para os modos de criptografia de bloco que o exigem.
 
-  Statements that use `AES_ENCRYPT()` or `AES_DECRYPT()` are unsafe for statement-based replication.
+  Statements que usam `AES_ENCRYPT()` ou `AES_DECRYPT()` são inseguras para replicação baseada em statement.
 
-  If `AES_ENCRYPT()` is invoked from within the **mysql** client, binary strings display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see Section 4.5.1, “mysql — The MySQL Command-Line Client”.
+  Se `AES_ENCRYPT()` for invocada a partir do cliente **mysql**, as strings binárias serão exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte Seção 4.5.1, “mysql — The MySQL Command-Line Client”.
 
-  The arguments for the `AES_ENCRYPT()` and `AES_DECRYPT()` functions are as follows:
+  Os argumentos para as funções `AES_ENCRYPT()` e `AES_DECRYPT()` são os seguintes:
 
-  *`str`* :   The string for `AES_ENCRYPT()` to encrypt using the key string *`key_str`*, or (as of MySQL 5.7.40) the key derived from it by the specified KDF. The string can be any length. Padding is automatically added to *`str`* so it is a multiple of a block as required by block-based algorithms such as AES. This padding is automatically removed by the `AES_DECRYPT()` function.
+  *`str`* : A string para `AES_ENCRYPT()` criptografar usando a string chave *`key_str`*, ou (a partir do MySQL 5.7.40) a chave derivada dela pela KDF especificada. A string pode ter qualquer comprimento. O padding é adicionado automaticamente a *`str`* para que seja um múltiplo de um bloco, conforme exigido por algoritmos baseados em bloco, como AES. Este padding é removido automaticamente pela função `AES_DECRYPT()`.
 
-  *`crypt_str`* :   The encrypted string for `AES_DECRYPT()` to decrypt using the key string *`key_str`*, or (from MySQL 5.7.40) the key derived from it by the specified KDF. The string can be any length. The length of *`crypt_str`* can be calculated from the length of the original string using this formula:
+  *`crypt_str`* : A string criptografada para `AES_DECRYPT()` descriptografar usando a string chave *`key_str`*, ou (a partir do MySQL 5.7.40) a chave derivada dela pela KDF especificada. A string pode ter qualquer comprimento. O comprimento de *`crypt_str`* pode ser calculado a partir do comprimento da string original usando esta fórmula:
 
       ```sql
       16 * (trunc(string_length / 16) + 1)
       ```
 
-  *`key_str`* :   The encryption key, or the input keying material that is used as the basis for deriving a key using a key derivation function (KDF). For the same instance of data, use the same value of *`key_str`* for encryption with `AES_ENCRYPT()` and decryption with `AES_DECRYPT()`.
+  *`key_str`* : A chave de criptografia, ou o material de chave de entrada (input keying material) que é usado como base para derivar uma chave usando uma função de derivação de chave (KDF). Para a mesma instância de dados, use o mesmo valor de *`key_str`* para criptografia com `AES_ENCRYPT()` e descriptografia com `AES_DECRYPT()`.
 
-      If you are using a KDF, which you can from MySQL 5.7.40, *`key_str`* can be any arbitrary information such as a password or passphrase. In the further arguments for the function, you specify the KDF name, then add further options to increase the security as appropriate for the KDF.
+      Se você estiver usando uma KDF, o que é possível a partir do MySQL 5.7.40, *`key_str`* pode ser qualquer informação arbitrária, como uma senha ou passphrase. Nos argumentos adicionais para a função, você especifica o nome da KDF e, em seguida, adiciona outras opções para aumentar a segurança, conforme apropriado para a KDF.
 
-      When you use a KDF, the function creates a cryptographically strong secret key from the information passed in *`key_str`* and any salt or additional information that you provide in the other arguments. The derived key is used to encrypt and decrypt the data, and it remains in the MySQL Server instance and is not accessible to users. Using a KDF is highly recommended, as it provides better security than specifying your own premade key or deriving it by a simpler method as you use the function.
+      Ao usar uma KDF, a função cria uma chave secreta criptograficamente forte a partir das informações passadas em *`key_str`* e qualquer salt ou informação adicional que você forneça nos outros argumentos. A chave derivada é usada para criptografar e descriptografar os dados, e permanece na instância do Servidor MySQL, não sendo acessível aos usuários. Usar uma KDF é altamente recomendado, pois fornece melhor segurança do que especificar sua própria chave pré-fabricada ou derivá-la por um método mais simples ao usar a função.
 
-      If you are not using a KDF, for a key length of 128 bits, the most secure way to pass a key to the *`key_str`* argument is to create a truly random 128-bit value and pass it as a binary value. For example:
+      Se você não estiver usando uma KDF, para um comprimento de chave de 128 bits, a maneira mais segura de passar uma chave para o argumento *`key_str`* é criar um valor de 128 bits verdadeiramente aleatório e passá-lo como um valor binário. Por exemplo:
 
       ```sql
       INSERT INTO t
       VALUES (1,AES_ENCRYPT('text',UNHEX('F3229A0B371ED2D9441B830D21A390C3')));
       ```
 
-      A passphrase can be used to generate an AES key by hashing the passphrase. For example:
+      Uma passphrase pode ser usada para gerar uma chave AES aplicando hashing na passphrase. Por exemplo:
 
       ```sql
       INSERT INTO t
       VALUES (1,AES_ENCRYPT('text', UNHEX(SHA2('My secret passphrase',512))));
       ```
 
-      If you exceed the maximum key length of 128 bits, a warning is returned. If you are not using a KDF, do not pass a password or passphrase directly to *`key_str`*, hash it first. Previous versions of this documentation suggested the former approach, but it is no longer recommended as the examples shown here are more secure.
+      Se você exceder o comprimento máximo de chave de 128 bits, um warning será retornado. Se você não estiver usando uma KDF, não passe uma senha ou passphrase diretamente para *`key_str`*, aplique hash nela primeiro. Versões anteriores desta documentação sugeriam a abordagem anterior, mas ela não é mais recomendada, pois os exemplos mostrados aqui são mais seguros.
 
-  *`init_vector`* :   An initialization vector, for block encryption modes that require it. The `block_encryption_mode` system variable controls the mode. For the same instance of data, use the same value of *`init_vector`* for encryption with `AES_ENCRYPT()` and decryption with `AES_DECRYPT()`.
+  *`init_vector`* : Um initialization vector, para modos de criptografia de bloco que o exigem. A variável de sistema `block_encryption_mode` controla o modo. Para a mesma instância de dados, use o mesmo valor de *`init_vector`* para criptografia com `AES_ENCRYPT()` e descriptografia com `AES_DECRYPT()`.
 
-      Note
+      Nota
 
-      If you are using a KDF, you must specify an initialization vector or a null string for this argument, in order to access the later arguments to define the KDF.
+      Se você estiver usando uma KDF, você deve especificar um initialization vector ou uma string nula para este argumento, a fim de acessar os argumentos posteriores para definir a KDF.
 
-      For modes that require an initialization vector, it must be 16 bytes or longer (bytes in excess of 16 are ignored). An error occurs if *`init_vector`* is missing. For modes that do not require an initialization vector, it is ignored and a warning is generated if *`init_vector`* is specified, unless you are using a KDF.
+      Para os modos que exigem um initialization vector, ele deve ter 16 bytes ou mais (bytes em excesso de 16 são ignorados). Ocorre um erro se *`init_vector`* estiver faltando. Para os modos que não exigem um initialization vector, ele é ignorado e um warning é gerado se *`init_vector`* for especificado, a menos que você esteja usando uma KDF.
 
-      The default value for the `block_encryption_mode` system variable is `aes-128-ecb`, or ECB mode, which does not require an initialization vector. The alternative permitted block encryption modes CBC, CFB1, CFB8, CFB128, and OFB all require an initialization vector.
+      O valor padrão para a variável de sistema `block_encryption_mode` é `aes-128-ecb`, ou modo ECB, que não requer um initialization vector. Os modos alternativos de criptografia de bloco permitidos CBC, CFB1, CFB8, CFB128 e OFB exigem um initialization vector.
 
-      A random string of bytes to use for the initialization vector can be produced by calling `RANDOM_BYTES(16)`.
+      Uma string aleatória de bytes para usar no initialization vector pode ser produzida chamando `RANDOM_BYTES(16)`.
 
-  *`kdf_name`* :   The name of the key derivation function (KDF) to create a key from the input keying material passed in *`key_str`*, and other arguments as appropriate for the KDF. This optional argument is available from MySQL 5.7.40.
+  *`kdf_name`* : O nome da função de derivação de chave (KDF) para criar uma chave a partir do material de chave de entrada passado em *`key_str`*, e outros argumentos conforme apropriado para a KDF. Este argumento opcional está disponível a partir do MySQL 5.7.40.
 
-      For the same instance of data, use the same value of *`kdf_name`* for encryption with `AES_ENCRYPT()` and decryption with `AES_DECRYPT()`. When you specify *`kdf_name`*, you must specify *`init_vector`*, using either a valid initialization vector, or a null string if the encryption mode does not require an initialization vector.
+      Para a mesma instância de dados, use o mesmo valor de *`kdf_name`* para criptografia com `AES_ENCRYPT()` e descriptografia com `AES_DECRYPT()`. Ao especificar *`kdf_name`*, você deve especificar *`init_vector`*, usando um initialization vector válido ou uma string nula se o modo de criptografia não exigir um initialization vector.
 
-      The following values are supported:
+      Os seguintes valores são suportados:
 
-      `hkdf` :   HKDF, which is available from OpenSSL 1.1.0. HKDF extracts a pseudorandom key from the keying material then expands it into additional keys. With HKDF, you can specify an optional salt (*`salt`*) and context-specific information such as application details (*`info`*) to include in the keying material.
+      `hkdf` : HKDF, que está disponível a partir do OpenSSL 1.1.0. HKDF extrai uma chave pseudoaleatória do material de chave e, em seguida, a expande em chaves adicionais. Com HKDF, você pode especificar um salt opcional (*`salt`*) e informações específicas de contexto, como detalhes da aplicação (*`info`*), para incluir no material de chave.
 
-      `pbkdf2_hmac` :   PBKDF2, which is available from OpenSSL 1.0.2. PBKDF2 applies a pseudorandom function to the keying material, and repeats this process a large number of times to produce the key. With PBKDF2, you can specify an optional salt (*`salt`*) to include in the keying material, and set the number of iterations used to produce the key (*`iterations`*).
+      `pbkdf2_hmac` : PBKDF2, que está disponível a partir do OpenSSL 1.0.2. PBKDF2 aplica uma função pseudoaleatória ao material de chave e repete este processo um grande número de vezes para produzir a chave. Com PBKDF2, você pode especificar um salt opcional (*`salt`*) para incluir no material de chave e definir o número de iterations usadas para produzir a chave (*`iterations`*).
 
-      In this example, HKDF is specified as the key derivation function, and a salt and context information are provided. The argument for the initialization vector is included but is the empty string:
+      Neste exemplo, HKDF é especificado como a função de derivação de chave, e um salt e informações de contexto são fornecidos. O argumento para o initialization vector é incluído, mas é uma string vazia:
 
       ```sql
       SELECT AES_ENCRYPT('mytext','mykeystring', '', 'hkdf', 'salt', 'info');
       ```
 
-      In this example, PBKDF2 is specified as the key derivation function, a salt is provided, and the number of iterations is doubled from the recommended minimum:
+      Neste exemplo, PBKDF2 é especificado como a função de derivação de chave, um salt é fornecido e o número de iterations é dobrado em relação ao mínimo recomendado:
 
       ```sql
       SELECT AES_ENCRYPT('mytext','mykeystring', '', 'pbkdf2_hmac','salt', '2000');
       ```
 
-  *`salt`* :   A salt to be passed to the key derivation function (KDF). This optional argument is available from MySQL 5.7.40. Both HKDF and PBKDF2 can use salts, and their use is recommended to help prevent attacks based on dictionaries of common passwords or rainbow tables.
+  *`salt`* : Um salt a ser passado para a função de derivação de chave (KDF). Este argumento opcional está disponível a partir do MySQL 5.7.40. Tanto HKDF quanto PBKDF2 podem usar salts, e seu uso é recomendado para ajudar a prevenir ataques baseados em dicionários de senhas comuns ou rainbow tables.
 
-      A salt consists of random data, which for security must be different for each encryption operation. A random string of bytes to use for the salt can be produced by calling `RANDOM_BYTES()`. This example produces a 64-bit salt:
+      Um salt consiste em dados aleatórios, que, por segurança, devem ser diferentes para cada operação de criptografia. Uma string aleatória de bytes para usar como salt pode ser produzida chamando `RANDOM_BYTES()`. Este exemplo produz um salt de 64 bits:
 
       ```sql
       SET @salt = RANDOM_BYTES(8);
       ```
 
-      For the same instance of data, use the same value of *`salt`* for encryption with `AES_ENCRYPT()` and decryption with `AES_DECRYPT()`. The salt can safely be stored along with the encrypted data.
+      Para a mesma instância de dados, use o mesmo valor de *`salt`* para criptografia com `AES_ENCRYPT()` e descriptografia com `AES_DECRYPT()`. O salt pode ser armazenado com segurança junto com os dados criptografados.
 
-  *`info`* :   Context-specific information for HKDF to include in the keying material, such as information about the application. This optional argument is available from MySQL 5.7.40 when you specify `hkdf` as the KDF name. HKDF adds this information to the keying material specified in *`key_str`* and the salt specified in *`salt`* to produce the key.
+  *`info`* : Informações específicas de contexto para HKDF incluir no material de chave, como informações sobre a aplicação. Este argumento opcional está disponível a partir do MySQL 5.7.40 quando você especifica `hkdf` como o nome da KDF. HKDF adiciona esta informação ao material de chave especificado em *`key_str`* e ao salt especificado em *`salt`* para produzir a chave.
 
-      For the same instance of data, use the same value of *`info`* for encryption with `AES_ENCRYPT()` and decryption with `AES_DECRYPT()`.
+      Para a mesma instância de dados, use o mesmo valor de *`info`* para criptografia com `AES_ENCRYPT()` e descriptografia com `AES_DECRYPT()`.
 
-  *`iterations`* :   The iteration count for PBKDF2 to use when producing the key. This optional argument is available from MySQL 5.7.40 when you specify `pbkdf2_hmac` as the KDF name. A higher count gives greater resistance to brute-force attacks because it has a greater computational cost for the attacker, but the same is necessarily true for the key derivation process. The default if you do not specify this argument is 1000, which is the minimum recommended by the OpenSSL standard.
+  *`iterations`* : A contagem de iterations para PBKDF2 usar ao produzir a chave. Este argumento opcional está disponível a partir do MySQL 5.7.40 quando você especifica `pbkdf2_hmac` como o nome da KDF. Uma contagem maior oferece maior resistência a ataques de força bruta, pois tem um custo computacional maior para o atacante, mas o mesmo é necessariamente verdade para o processo de derivação de chave. O padrão, se você não especificar este argumento, é 1000, que é o mínimo recomendado pelo padrão OpenSSL.
 
-      For the same instance of data, use the same value of *`iterations`* for encryption with `AES_ENCRYPT()` and decryption with `AES_DECRYPT()`.
+      Para a mesma instância de dados, use o mesmo valor de *`iterations`* para criptografia com `AES_ENCRYPT()` e descriptografia com `AES_DECRYPT()`.
 
   ```sql
   mysql> SET block_encryption_mode = 'aes-256-cbc';
@@ -155,7 +155,7 @@ Passwords or other sensitive values supplied as arguments to encryption function
 
 * `COMPRESS(string_to_compress)`
 
-  Compresses a string and returns the result as a binary string. This function requires MySQL to have been compiled with a compression library such as `zlib`. Otherwise, the return value is always `NULL`. The compressed string can be uncompressed with `UNCOMPRESS()`.
+  Comprime uma string e retorna o resultado como uma string binária. Esta função exige que o MySQL tenha sido compilado com uma biblioteca de compressão, como `zlib`. Caso contrário, o valor de retorno é sempre `NULL`. A string comprimida pode ser descomprimida com `UNCOMPRESS()`.
 
   ```sql
   mysql> SELECT LENGTH(COMPRESS(REPEAT('a',1000)));
@@ -168,201 +168,201 @@ Passwords or other sensitive values supplied as arguments to encryption function
           -> 15
   ```
 
-  The compressed string contents are stored the following way:
+  O conteúdo da string comprimida é armazenado da seguinte forma:
 
-  + Empty strings are stored as empty strings.
-  + Nonempty strings are stored as a 4-byte length of the uncompressed string (low byte first), followed by the compressed string. If the string ends with space, an extra `.` character is added to avoid problems with endspace trimming should the result be stored in a `CHAR` or `VARCHAR` column. (However, use of nonbinary string data types such as `CHAR` or `VARCHAR` to store compressed strings is not recommended anyway because character set conversion may occur. Use a `VARBINARY` or `BLOB` binary string column instead.)
+  + Strings vazias são armazenadas como strings vazias.
+  + Strings não vazias são armazenadas como um comprimento de 4 bytes da string não compactada (byte baixo primeiro), seguido pela string compactada. Se a string terminar com espaço, um caractere `.` extra é adicionado para evitar problemas com o corte de espaço final (endspace trimming), caso o resultado seja armazenado em uma coluna `CHAR` ou `VARCHAR`. (No entanto, o uso de tipos de dados de string não binários, como `CHAR` ou `VARCHAR`, para armazenar strings compactadas não é recomendado de qualquer forma, pois pode ocorrer conversão de conjunto de caracteres. Use uma coluna de string binária `VARBINARY` ou `BLOB` em vez disso.)
 
-  If `COMPRESS()` is invoked from within the **mysql** client, binary strings display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see Section 4.5.1, “mysql — The MySQL Command-Line Client”.
+  Se `COMPRESS()` for invocado a partir do cliente **mysql**, as strings binárias serão exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte Seção 4.5.1, “mysql — The MySQL Command-Line Client”.
 
 * `DECODE(crypt_str,pass_str)`
 
-  `DECODE()` decrypts the encrypted string *`crypt_str`* using *`pass_str`* as the password. *`crypt_str`* should be a string returned from `ENCODE()`.
+  `DECODE()` descriptografa a string criptografada *`crypt_str`* usando *`pass_str`* como a senha. *`crypt_str`* deve ser uma string retornada de `ENCODE()`.
 
-  Note
+  Nota
 
-  The `ENCODE()` and `DECODE()` functions are deprecated in MySQL 5.7, and should no longer be used. Expect them to be removed in a future MySQL release. Consider using `AES_ENCRYPT()` and `AES_DECRYPT()` instead.
+  As funções `ENCODE()` e `DECODE()` estão obsoletas no MySQL 5.7 e não devem mais ser usadas. Espere que sejam removidas em uma futura versão do MySQL. Considere usar `AES_ENCRYPT()` e `AES_DECRYPT()` em vez disso.
 
 * `DES_DECRYPT(crypt_str[,key_str])`
 
-  Decrypts a string encrypted with `DES_ENCRYPT()`. If an error occurs, this function returns `NULL`.
+  Descriptografa uma string criptografada com `DES_ENCRYPT()`. Se ocorrer um erro, esta função retorna `NULL`.
 
-  This function works only if MySQL has been configured with SSL support. See Section 6.3, “Using Encrypted Connections”.
+  Esta função só funciona se o MySQL tiver sido configurado com suporte a SSL. Consulte Seção 6.3, “Using Encrypted Connections”.
 
-  If no *`key_str`* argument is given, `DES_DECRYPT()` examines the first byte of the encrypted string to determine the DES key number that was used to encrypt the original string, and then reads the key from the DES key file to decrypt the message. For this to work, the user must have the `SUPER` privilege. The key file can be specified with the `--des-key-file` server option.
+  Se nenhum argumento *`key_str`* for fornecido, `DES_DECRYPT()` examina o primeiro byte da string criptografada para determinar o número da chave DES que foi usado para criptografar a string original e, em seguida, lê a chave do arquivo de chaves DES para descriptografar a mensagem. Para que isso funcione, o usuário deve ter o privilégio `SUPER`. O arquivo de chave pode ser especificado com a opção de servidor `--des-key-file`.
 
-  If you pass this function a *`key_str`* argument, that string is used as the key for decrypting the message.
+  Se você passar um argumento *`key_str`* para esta função, essa string será usada como chave para descriptografar a mensagem.
 
-  If the *`crypt_str`* argument does not appear to be an encrypted string, MySQL returns the given *`crypt_str`*.
+  Se o argumento *`crypt_str`* não parecer ser uma string criptografada, o MySQL retorna o *`crypt_str`* fornecido.
 
-  Note
+  Nota
 
-  The `DES_ENCRYPT()` and `DES_DECRYPT()` functions are deprecated in MySQL 5.7, are removed in MySQL 8.0, and should no longer be used. Consider using `AES_ENCRYPT()` and `AES_DECRYPT()` instead.
+  As funções `DES_ENCRYPT()` e `DES_DECRYPT()` estão obsoletas no MySQL 5.7, foram removidas no MySQL 8.0 e não devem mais ser usadas. Considere usar `AES_ENCRYPT()` e `AES_DECRYPT()` em vez disso.
 
 * `DES_ENCRYPT(str[,{key_num|key_str}])`
 
-  Encrypts the string with the given key using the Triple-DES algorithm.
+  Criptografa a string com a chave fornecida usando o algoritmo Triple-DES.
 
-  This function works only if MySQL has been configured with SSL support. See Section 6.3, “Using Encrypted Connections”.
+  Esta função só funciona se o MySQL tiver sido configurado com suporte a SSL. Consulte Seção 6.3, “Using Encrypted Connections”.
 
-  The encryption key to use is chosen based on the second argument to `DES_ENCRYPT()`, if one was given. With no argument, the first key from the DES key file is used. With a *`key_num`* argument, the given key number (0 to 9) from the DES key file is used. With a *`key_str`* argument, the given key string is used to encrypt *`str`*.
+  A chave de criptografia a ser usada é escolhida com base no segundo argumento de `DES_ENCRYPT()`, se um tiver sido fornecido. Sem argumento, a primeira chave do arquivo de chaves DES é usada. Com um argumento *`key_num`*, o número da chave fornecido (0 a 9) do arquivo de chaves DES é usado. Com um argumento *`key_str`*, a string chave fornecida é usada para criptografar *`str`*.
 
-  The key file can be specified with the `--des-key-file` server option.
+  O arquivo de chave pode ser especificado com a opção de servidor `--des-key-file`.
 
-  The return string is a binary string where the first character is `CHAR(128 | key_num)`. If an error occurs, `DES_ENCRYPT()` returns `NULL`.
+  A string de retorno é uma string binária onde o primeiro caractere é `CHAR(128 | key_num)`. Se ocorrer um erro, `DES_ENCRYPT()` retorna `NULL`.
 
-  The 128 is added to make it easier to recognize an encrypted key. If you use a string key, *`key_num`* is 127.
+  O 128 é adicionado para facilitar o reconhecimento de uma chave criptografada. Se você usar uma string como chave, *`key_num`* é 127.
 
-  The string length for the result is given by this formula:
+  O comprimento da string para o resultado é dado por esta fórmula:
 
   ```sql
   new_len = orig_len + (8 - (orig_len % 8)) + 1
   ```
 
-  Each line in the DES key file has the following format:
+  Cada linha no arquivo de chaves DES tem o seguinte formato:
 
   ```sql
   key_num des_key_str
   ```
 
-  Each *`key_num`* value must be a number in the range from `0` to `9`. Lines in the file may be in any order. *`des_key_str`* is the string that is used to encrypt the message. There should be at least one space between the number and the key. The first key is the default key that is used if you do not specify any key argument to `DES_ENCRYPT()`.
+  Cada valor *`key_num`* deve ser um número no intervalo de `0` a `9`. As linhas no arquivo podem estar em qualquer ordem. *`des_key_str`* é a string que é usada para criptografar a mensagem. Deve haver pelo menos um espaço entre o número e a chave. A primeira chave é a chave padrão que é usada se você não especificar nenhum argumento de chave para `DES_ENCRYPT()`.
 
-  You can tell MySQL to read new key values from the key file with the `FLUSH DES_KEY_FILE` statement. This requires the `RELOAD` privilege.
+  Você pode instruir o MySQL a ler novos valores de chave do arquivo de chave com o statement `FLUSH DES_KEY_FILE`. Isso requer o privilégio `RELOAD`.
 
-  One benefit of having a set of default keys is that it gives applications a way to check for the existence of encrypted column values, without giving the end user the right to decrypt those values.
+  Um benefício de ter um conjunto de chaves padrão é que ele oferece às aplicações uma maneira de verificar a existência de valores de coluna criptografados, sem dar ao usuário final o direito de descriptografar esses valores.
 
-  Note
+  Nota
 
-  The `DES_ENCRYPT()` and `DES_DECRYPT()` functions are deprecated in MySQL 5.7, are removed in MySQL 8.0, and should no longer be used. Consider using `AES_ENCRYPT()` and `AES_DECRYPT()` instead.
+  As funções `DES_ENCRYPT()` e `DES_DECRYPT()` estão obsoletas no MySQL 5.7, foram removidas no MySQL 8.0 e não devem mais ser usadas. Considere usar `AES_ENCRYPT()` e `AES_DECRYPT()` em vez disso.
 
   ```sql
   mysql> SELECT customer_address FROM customer_table
        > WHERE crypted_credit_card = DES_ENCRYPT('credit_card_number');
   ```
 
-  If `DES_ENCRYPT()` is invoked from within the **mysql** client, binary strings display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see Section 4.5.1, “mysql — The MySQL Command-Line Client”.
+  Se `DES_ENCRYPT()` for invocada a partir do cliente **mysql**, as strings binárias serão exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte Seção 4.5.1, “mysql — The MySQL Command-Line Client”.
 
 * `ENCODE(str,pass_str)`
 
-  `ENCODE()` encrypts *`str`* using *`pass_str`* as the password. The result is a binary string of the same length as *`str`*. To decrypt the result, use `DECODE()`.
+  `ENCODE()` criptografa *`str`* usando *`pass_str`* como a senha. O resultado é uma string binária do mesmo comprimento que *`str`*. Para descriptografar o resultado, use `DECODE()`.
 
-  Note
+  Nota
 
-  The `ENCODE()` and `DECODE()` functions are deprecated in MySQL 5.7, and should no longer be used. Expect them to be removed in a future MySQL release.
+  As funções `ENCODE()` e `DECODE()` estão obsoletas no MySQL 5.7 e não devem mais ser usadas. Espere que sejam removidas em uma futura versão do MySQL.
 
-  If you still need to use `ENCODE()`, a salt value must be used with it to reduce risk. For example:
+  Se você ainda precisar usar `ENCODE()`, um valor salt deve ser usado com ela para reduzir o risco. Por exemplo:
 
   ```sql
   ENCODE('cleartext', CONCAT('my_random_salt','my_secret_password'))
   ```
 
-  A new random salt value must be used whenever a password is updated.
+  Um novo valor salt aleatório deve ser usado sempre que uma senha for atualizada.
 
-  If `ENCODE()` is invoked from within the **mysql** client, binary strings display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see Section 4.5.1, “mysql — The MySQL Command-Line Client”.
+  Se `ENCODE()` for invocado a partir do cliente **mysql**, as strings binárias serão exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte Seção 4.5.1, “mysql — The MySQL Command-Line Client”.
 
 * `ENCRYPT(str[,salt])`
 
-  Encrypts *`str`* using the Unix `crypt()` system call and returns a binary string. The *`salt`* argument must be a string with at least two characters or else the result is `NULL`. If no *`salt`* argument is given, a random value is used.
+  Criptografa *`str`* usando a chamada de sistema Unix `crypt()` e retorna uma string binária. O argumento *`salt`* deve ser uma string com pelo menos dois caracteres, caso contrário, o resultado é `NULL`. Se nenhum argumento *`salt`* for fornecido, um valor aleatório é usado.
 
-  Note
+  Nota
 
-  The `ENCRYPT()` function is deprecated in MySQL 5.7, are removed in MySQL 8.0, and should no longer be used. For one-way hashing, consider using `SHA2()` instead.
+  A função `ENCRYPT()` está obsoleta no MySQL 5.7, foi removida no MySQL 8.0 e não deve mais ser usada. Para hashing unidirecional, considere usar `SHA2()` em vez disso.
 
   ```sql
   mysql> SELECT ENCRYPT('hello');
           -> 'VxuFAJXVARROc'
   ```
 
-  `ENCRYPT()` ignores all but the first eight characters of *`str`*, at least on some systems. This behavior is determined by the implementation of the underlying `crypt()` system call.
+  `ENCRYPT()` ignora todos os caracteres, exceto os primeiros oito de *`str`*, pelo menos em alguns sistemas. Este comportamento é determinado pela implementação da chamada de sistema `crypt()` subjacente.
 
-  The use of `ENCRYPT()` with the `ucs2`, `utf16`, `utf16le`, or `utf32` multibyte character sets is not recommended because the system call expects a string terminated by a zero byte.
+  O uso de `ENCRYPT()` com os conjuntos de caracteres multibyte `ucs2`, `utf16`, `utf16le` ou `utf32` não é recomendado, pois a chamada de sistema espera uma string terminada por um byte zero.
 
-  If `crypt()` is not available on your system (as is the case with Windows), `ENCRYPT()` always returns `NULL`.
+  Se `crypt()` não estiver disponível em seu sistema (como é o caso do Windows), `ENCRYPT()` sempre retorna `NULL`.
 
-  If `ENCRYPT()` is invoked from within the **mysql** client, binary strings display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see Section 4.5.1, “mysql — The MySQL Command-Line Client”.
+  Se `ENCRYPT()` for invocado a partir do cliente **mysql**, as strings binárias serão exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte Seção 4.5.1, “mysql — The MySQL Command-Line Client”.
 
 * `MD5(str)`
 
-  Calculates an MD5 128-bit checksum for the string. The value is returned as a string of 32 hexadecimal digits, or `NULL` if the argument was `NULL`. The return value can, for example, be used as a hash key. See the notes at the beginning of this section about storing hash values efficiently.
+  Calcula um checksum MD5 de 128 bits para a string. O valor é retornado como uma string de 32 dígitos hexadecimais, ou `NULL` se o argumento for `NULL`. O valor de retorno pode, por exemplo, ser usado como uma hash key. Consulte as notas no início desta seção sobre o armazenamento eficiente de valores hash.
 
-  The return value is a string in the connection character set.
+  O valor de retorno é uma string no conjunto de caracteres da conexão.
 
   ```sql
   mysql> SELECT MD5('testing');
           -> 'ae2b1fca515949e5d54fb22b8ed95575'
   ```
 
-  This is the “RSA Data Security, Inc. MD5 Message-Digest Algorithm.”
+  Este é o “RSA Data Security, Inc. MD5 Message-Digest Algorithm.”
 
-  See the note regarding the MD5 algorithm at the beginning this section.
+  Consulte a nota referente ao algoritmo MD5 no início desta seção.
 
 * `PASSWORD(str)`
 
-  Note
+  Nota
 
-  This function is deprecated in MySQL 5.7 and is removed in MySQL 8.0.
+  Esta função está obsoleta no MySQL 5.7 e foi removida no MySQL 8.0.
 
-  Returns a hashed password string calculated from the cleartext password *`str`*. The return value is a string in the connection character set, or `NULL` if the argument is `NULL`. This function is the SQL interface to the algorithm used by the server to encrypt MySQL passwords for storage in the `mysql.user` grant table.
+  Retorna uma string de senha hashed calculada a partir da senha em texto simples (cleartext) *`str`*. O valor de retorno é uma string no conjunto de caracteres da conexão, ou `NULL` se o argumento for `NULL`. Esta função é a interface SQL para o algoritmo usado pelo servidor para criptografar senhas do MySQL para armazenamento na grant table `mysql.user`.
 
-  The `old_passwords` system variable controls the password hashing method used by the `PASSWORD()` function. It also influences password hashing performed by `CREATE USER` and `GRANT` statements that specify a password using an `IDENTIFIED BY` clause.
+  A variável de sistema `old_passwords` controla o método de hashing de senha usado pela função `PASSWORD()`. Ela também influencia o hashing de senha realizado pelos statements `CREATE USER` e `GRANT` que especificam uma senha usando uma cláusula `IDENTIFIED BY`.
 
-  The following table shows, for each password hashing method, the permitted value of `old_passwords` and which authentication plugins use the hashing method.
+  A tabela a seguir mostra, para cada método de hashing de senha, o valor permitido de `old_passwords` e quais plugins de autenticação usam o método de hashing.
 
-  <table summary="For each password hashing method, the permitted value of old_passwords and which authentication plugins use the hashing method"><col style="width: 40%"/><col style="width: 20%"/><col style="width: 40%"/><thead><tr> <th>Password Hashing Method</th> <th>old_passwords Value</th> <th>Associated Authentication Plugin</th> </tr></thead><tbody><tr> <th>MySQL 4.1 native hashing</th> <td>0</td> <td><code>mysql_native_password</code></td> </tr><tr> <th>SHA-256 hashing</th> <td>2</td> <td><code>sha256_password</code></td> </tr></tbody></table>
+  <table summary="Para cada método de hashing de senha, o valor permitido de old_passwords e quais plugins de autenticação usam o método de hashing"><col style="width: 40%"/><col style="width: 20%"/><col style="width: 40%"/><thead><tr> <th>Método de Hashing de Senha</th> <th>Valor de old_passwords</th> <th>Plugin de Autenticação Associado</th> </tr></thead><tbody><tr> <th>Hashing nativo do MySQL 4.1</th> <td>0</td> <td><code>mysql_native_password</code></td> </tr><tr> <th>Hashing SHA-256</th> <td>2</td> <td><code>sha256_password</code></td> </tr></tbody></table>
 
-  SHA-256 password hashing (`old_passwords=2`) uses a random salt value, which makes the result from `PASSWORD()` nondeterministic. Consequently, statements that use this function are not safe for statement-based replication and cannot be stored in the query cache.
+  O hashing de senha SHA-256 (`old_passwords=2`) usa um valor salt aleatório, o que torna o resultado de `PASSWORD()` não determinístico. Consequentemente, statements que usam esta função não são seguros para replicação baseada em statement e não podem ser armazenados no Query Cache.
 
-  Encryption performed by `PASSWORD()` is one-way (not reversible), but it is not the same type of encryption used for Unix passwords.
+  A criptografia realizada por `PASSWORD()` é unidirecional (não reversível), mas não é o mesmo tipo de criptografia usado para senhas Unix.
 
-  Note
+  Nota
 
-  `PASSWORD()` is used by the authentication system in MySQL Server; you should *not* use it in your own applications. For that purpose, consider a more secure function such as `SHA2()` instead. Also see RFC 2195, section 2 (Challenge-Response Authentication Mechanism (CRAM)), for more information about handling passwords and authentication securely in your applications.
+  `PASSWORD()` é usada pelo sistema de autenticação no MySQL Server; você *não* deve usá-la em suas próprias aplicações. Para esse propósito, considere uma função mais segura como `SHA2()` em vez disso. Consulte também RFC 2195, seção 2 (Challenge-Response Authentication Mechanism (CRAM)), para mais informações sobre o tratamento seguro de senhas e autenticação em suas aplicações.
 
-  Caution
+  Cuidado
 
-  Under some circumstances, statements that invoke `PASSWORD()` may be recorded in server logs or on the client side in a history file such as `~/.mysql_history`, which means that cleartext passwords may be read by anyone having read access to that information. For information about the conditions under which this occurs for the server logs and how to control it, see Section 6.1.2.3, “Passwords and Logging”. For similar information about client-side logging, see Section 4.5.1.3, “mysql Client Logging”.
+  Em algumas circunstâncias, statements que invocam `PASSWORD()` podem ser registrados nos logs do servidor ou no lado do cliente em um arquivo de histórico como `~/.mysql_history`, o que significa que senhas em texto simples (cleartext) podem ser lidas por qualquer pessoa que tenha acesso de leitura a essa informação. Para obter informações sobre as condições sob as quais isso ocorre para os logs do servidor e como controlá-lo, consulte Seção 6.1.2.3, “Passwords and Logging”. Para informações semelhantes sobre o log do lado do cliente, consulte Seção 4.5.1.3, “mysql Client Logging”.
 
 * `RANDOM_BYTES(len)`
 
-  This function returns a binary string of *`len`* random bytes generated using the random number generator of the SSL library. Permitted values of *`len`* range from 1 to 1024. For values outside that range, an error occurs.
+  Esta função retorna uma string binária de *`len`* bytes aleatórios gerados usando o gerador de números aleatórios da biblioteca SSL. Os valores permitidos de *`len`* variam de 1 a 1024. Para valores fora desse intervalo, ocorre um erro.
 
-  `RANDOM_BYTES()` can be used to provide the initialization vector for the `AES_DECRYPT()` and `AES_ENCRYPT()` functions. For use in that context, *`len`* must be at least 16. Larger values are permitted, but bytes in excess of 16 are ignored.
+  `RANDOM_BYTES()` pode ser usada para fornecer o initialization vector para as funções `AES_DECRYPT()` e `AES_ENCRYPT()`. Para uso nesse contexto, *`len`* deve ser de pelo menos 16. Valores maiores são permitidos, mas bytes em excesso de 16 são ignorados.
 
-  `RANDOM_BYTES()` generates a random value, which makes its result nondeterministic. Consequently, statements that use this function are unsafe for statement-based replication and cannot be stored in the query cache.
+  `RANDOM_BYTES()` gera um valor aleatório, o que torna seu resultado não determinístico. Consequentemente, statements que usam esta função são inseguras para replicação baseada em statement e não podem ser armazenadas no Query Cache.
 
-  If `RANDOM_BYTES()` is invoked from within the **mysql** client, binary strings display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see Section 4.5.1, “mysql — The MySQL Command-Line Client”.
+  Se `RANDOM_BYTES()` for invocada a partir do cliente **mysql**, as strings binárias serão exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte Seção 4.5.1, “mysql — The MySQL Command-Line Client”.
 
 * `SHA1(str)`, `SHA(str)`
 
-  Calculates an SHA-1 160-bit checksum for the string, as described in RFC 3174 (Secure Hash Algorithm). The value is returned as a string of 40 hexadecimal digits, or `NULL` if the argument was `NULL`. One of the possible uses for this function is as a hash key. See the notes at the beginning of this section about storing hash values efficiently. `SHA()` is synonymous with `SHA1()`.
+  Calcula um checksum SHA-1 de 160 bits para a string, conforme descrito na RFC 3174 (Secure Hash Algorithm). O valor é retornado como uma string de 40 dígitos hexadecimais, ou `NULL` se o argumento for `NULL`. Um dos possíveis usos para esta função é como uma hash key. Consulte as notas no início desta seção sobre o armazenamento eficiente de valores hash.
 
-  The return value is a string in the connection character set.
+  O valor de retorno é uma string no conjunto de caracteres da conexão.
 
   ```sql
   mysql> SELECT SHA1('abc');
           -> 'a9993e364706816aba3e25717850c26c9cd0d89d'
   ```
 
-  `SHA1()` can be considered a cryptographically more secure equivalent of `MD5()`. However, see the note regarding the MD5 and SHA-1 algorithms at the beginning this section.
+  `SHA1()` pode ser considerada um equivalente criptograficamente mais seguro de `MD5()`. No entanto, consulte a nota referente aos algoritmos MD5 e SHA-1 no início desta seção.
 
 * `SHA2(str, hash_length)`
 
-  Calculates the SHA-2 family of hash functions (SHA-224, SHA-256, SHA-384, and SHA-512). The first argument is the plaintext string to be hashed. The second argument indicates the desired bit length of the result, which must have a value of 224, 256, 384, 512, or 0 (which is equivalent to 256). If either argument is `NULL` or the hash length is not one of the permitted values, the return value is `NULL`. Otherwise, the function result is a hash value containing the desired number of bits. See the notes at the beginning of this section about storing hash values efficiently.
+  Calcula a família SHA-2 de hash functions (SHA-224, SHA-256, SHA-384 e SHA-512). O primeiro argumento é a string de texto simples (plaintext) a ser hashed. O segundo argumento indica o comprimento de bit desejado do resultado, que deve ter um valor de 224, 256, 384, 512 ou 0 (que é equivalente a 256). Se qualquer um dos argumentos for `NULL` ou o comprimento do hash não for um dos valores permitidos, o valor de retorno é `NULL`. Caso contrário, o resultado da função é um valor hash contendo o número desejado de bits. Consulte as notas no início desta seção sobre o armazenamento eficiente de valores hash.
 
-  The return value is a string in the connection character set.
+  O valor de retorno é uma string no conjunto de caracteres da conexão.
 
   ```sql
   mysql> SELECT SHA2('abc', 224);
           -> '23097d223405d8228642a477bda255b32aadbce4bda0b3f7e36c9da7'
   ```
 
-  This function works only if MySQL has been configured with SSL support. See Section 6.3, “Using Encrypted Connections”.
+  Esta função só funciona se o MySQL tiver sido configurado com suporte a SSL. Consulte Seção 6.3, “Using Encrypted Connections”.
 
-  `SHA2()` can be considered cryptographically more secure than `MD5()` or `SHA1()`.
+  `SHA2()` pode ser considerada criptograficamente mais segura do que `MD5()` ou `SHA1()`.
 
 * `UNCOMPRESS(string_to_uncompress)`
 
-  Uncompresses a string compressed by the `COMPRESS()` function. If the argument is not a compressed value, the result is `NULL`. This function requires MySQL to have been compiled with a compression library such as `zlib`. Otherwise, the return value is always `NULL`.
+  Descomprime uma string compactada pela função `COMPRESS()`. Se o argumento não for um valor compactado, o resultado é `NULL`. Esta função exige que o MySQL tenha sido compilado com uma biblioteca de compressão como `zlib`. Caso contrário, o valor de retorno é sempre `NULL`.
 
   ```sql
   mysql> SELECT UNCOMPRESS(COMPRESS('any string'));
@@ -373,7 +373,7 @@ Passwords or other sensitive values supplied as arguments to encryption function
 
 * `UNCOMPRESSED_LENGTH(compressed_string)`
 
-  Returns the length that the compressed string had before being compressed.
+  Retorna o comprimento que a string compactada tinha antes de ser compactada.
 
   ```sql
   mysql> SELECT UNCOMPRESSED_LENGTH(COMPRESS(REPEAT('a',30)));
@@ -382,10 +382,10 @@ Passwords or other sensitive values supplied as arguments to encryption function
 
 * `VALIDATE_PASSWORD_STRENGTH(str)`
 
-  Given an argument representing a plaintext password, this function returns an integer to indicate how strong the password is. The return value ranges from 0 (weak) to 100 (strong).
+  Dado um argumento que representa uma senha em texto simples (plaintext), esta função retorna um inteiro para indicar o quão forte é a senha. O valor de retorno varia de 0 (fraca) a 100 (forte).
 
-  Password assessment by `VALIDATE_PASSWORD_STRENGTH()` is done by the `validate_password` plugin. If that plugin is not installed, the function always returns 0. For information about installing `validate_password`, see Section 6.4.3, “The Password Validation Plugin”. To examine or configure the parameters that affect password testing, check or set the system variables implemented by `validate_password`. See Section 6.4.3.2, “Password Validation Plugin Options and Variables”.
+  A avaliação de senha por `VALIDATE_PASSWORD_STRENGTH()` é feita pelo plugin `validate_password`. Se esse plugin não estiver instalado, a função sempre retorna 0. Para obter informações sobre a instalação de `validate_password`, consulte Seção 6.4.3, “The Password Validation Plugin”. Para examinar ou configurar os parâmetros que afetam o teste de senha, verifique ou defina as variáveis de sistema implementadas por `validate_password`. Consulte Seção 6.4.3.2, “Password Validation Plugin Options and Variables”.
 
-  The password is subjected to increasingly strict tests and the return value reflects which tests were satisfied, as shown in the following table. In addition, if the `validate_password_check_user_name` system variable is enabled and the password matches the user name, `VALIDATE_PASSWORD_STRENGTH()` returns 0 regardless of how other `validate_password` system variables are set.
+  A senha é submetida a testes cada vez mais rigorosos e o valor de retorno reflete quais testes foram satisfeitos, conforme mostrado na tabela a seguir. Além disso, se a variável de sistema `validate_password_check_user_name` estiver habilitada e a senha corresponder ao user name, `VALIDATE_PASSWORD_STRENGTH()` retorna 0, independentemente de como outras variáveis de sistema `validate_password` estiverem configuradas.
 
-  <table summary="Password tests of the VALIDATE_PASSWORD_STRENGTH() function and the values returned by each password test."><col style="width: 60%"/><col style="width: 20%"/><thead><tr> <th>Password Test</th> <th>Return Value</th> </tr></thead><tbody><tr> <td>Length &lt; 4</td> <td>0</td> </tr><tr> <td>Length ≥ 4 and &lt; <code>validate_password_length</code></td> <td>25</td> </tr><tr> <td>Satisfies policy 1 (<code>LOW</code>)</td> <td>50</td> </tr><tr> <td>Satisfies policy 2 (<code>MEDIUM</code>)</td> <td>75</td> </tr><tr> <td>Satisfies policy 3 (<code>STRONG</code>)</td> <td>100</td> </tr></tbody></table>
+  <table summary="Testes de senha da função VALIDATE_PASSWORD_STRENGTH() e os valores retornados por cada teste de senha."><col style="width: 60%"/><col style="width: 20%"/><thead><tr> <th>Teste de Senha</th> <th>Valor de Retorno</th> </tr></thead><tbody><tr> <td>Comprimento &lt; 4</td> <td>0</td> </tr><tr> <td>Comprimento ≥ 4 e &lt; <code>validate_password_length</code></td> <td>25</td> </tr><tr> <td>Satisfaz política 1 (BAIXA)</td> <td>50</td> </tr><tr> <td>Satisfaz política 2 (MÉDIA)</td> <td>75</td> </tr><tr> <td>Satisfaz política 3 (FORTE)</td> <td>100</td> </tr></tbody></table>

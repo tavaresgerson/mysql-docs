@@ -1,3 +1,3 @@
-## 27.12 MySQL Tcl API
+## 27.12 MySQL Tcl API
 
-`MySQLtcl` is a simple API for accessing a MySQL database server from the [Tcl programming language](http://en.wikipedia.org/wiki/Tcl). It can be found at <http://www.xdobry.de/mysqltcl/>.
+`MySQLtcl` é uma API simples para acessar um servidor MySQL Database a partir da [linguagem de programação Tcl](http://en.wikipedia.org/wiki/Tcl). Pode ser encontrada em <http://www.xdobry.de/mysqltcl/>.

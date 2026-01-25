@@ -1,29 +1,29 @@
-### 16.2.3 Replication Threads
+### 16.2.3 Threads de Replication
 
-[16.2.3.1 Monitoring Replication Main Threads](replication-threads-monitor-main.html)
+[16.2.3.1 Monitorando os Threads Principais de Replication](replication-threads-monitor-main.html)
 
-[16.2.3.2 Monitoring Replication Applier Worker Threads](replication-threads-monitor-worker.html)
+[16.2.3.2 Monitorando os Worker Threads de Aplicação de Replication](replication-threads-monitor-worker.html)
 
-MySQL replication capabilities are implemented using three main threads, one on the source server and two on the replica:
+As funcionalidades de Replication do MySQL são implementadas usando três threads principais, um no servidor source e dois na replica:
 
-* **Binary log dump thread.** The source creates a thread to send the binary log contents to a replica when the replica connects. This thread can be identified in the output of [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") on the source as the `Binlog Dump` thread.
+* **Binary log dump thread.** O source cria um thread para enviar o conteúdo do binary log para uma replica quando a replica se conecta. Este thread pode ser identificado na saída de [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") no source como o thread `Binlog Dump`.
 
-  The binary log dump thread acquires a lock on the source's binary log for reading each event that is to be sent to the replica. As soon as the event has been read, the lock is released, even before the event is sent to the replica.
+  O binary log dump thread adquire um Lock no binary log do source para ler cada event que deve ser enviado para a replica. Assim que o event é lido, o Lock é liberado, mesmo antes de o event ser enviado para a replica.
 
-* **Replication I/O thread.** When a [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement") statement is issued on a replica server, the replica creates an I/O thread, which connects to the source and asks it to send the updates recorded in its binary logs.
+* **Replication I/O thread.** Quando uma instrução [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement") é emitida em um servidor replica, a replica cria um I/O thread, que se conecta ao source e solicita que ele envie as atualizações registradas em seus binary logs.
 
-  The replication I/O thread reads the updates that the source's `Binlog Dump` thread sends (see previous item) and copies them to local files that comprise the replica's relay log.
+  O replication I/O thread lê as atualizações que o thread `Binlog Dump` do source envia (veja o item anterior) e as copia para arquivos locais que compõem o relay log da replica.
 
-  The state of this thread is shown as `Slave_IO_running` in the output of [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement").
+  O estado deste thread é exibido como `Slave_IO_running` na saída de [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement").
 
-* **Replication SQL thread.** The replica creates an SQL thread to read the relay log that is written by the replication I/O thread and execute the transactions contained in it.
+* **Replication SQL thread.** A replica cria um SQL thread para ler o relay log que é escrito pelo replication I/O thread e executar as transactions contidas nele.
 
-There are three main threads for each source/replica connection. A source that has multiple replicas creates one binary log dump thread for each currently connected replica, and each replica has its own replication I/O and SQL threads.
+Existem três threads principais para cada conexão source/replica. Um source que possui múltiplas replicas cria um binary log dump thread para cada replica conectada no momento, e cada replica tem seus próprios replication I/O e SQL threads.
 
-A replica uses two threads to separate reading updates from the source and executing them into independent tasks. Thus, the task of reading transactions is not slowed down if the process of applying them is slow. For example, if the replica server has not been running for a while, its I/O thread can quickly fetch all the binary log contents from the source when the replica starts, even if the SQL thread lags far behind. If the replica stops before the SQL thread has executed all the fetched statements, the I/O thread has at least fetched everything so that a safe copy of the transactions is stored locally in the replica's relay logs, ready for execution the next time that the replica starts.
+Uma replica usa dois threads para separar a leitura das atualizações do source e a execução delas em tarefas independentes. Assim, a tarefa de ler transactions não é desacelerada se o processo de aplicação for lento. Por exemplo, se o servidor replica não estiver rodando por um tempo, seu I/O thread pode buscar rapidamente todo o conteúdo do binary log do source quando a replica inicia, mesmo que o SQL thread esteja muito atrasado. Se a replica parar antes que o SQL thread tenha executado todas as instruções buscadas, o I/O thread pelo menos buscou tudo, de modo que uma cópia segura das transactions seja armazenada localmente nos relay logs da replica, pronta para execução na próxima vez que a replica iniciar.
 
-You can enable further parallelization for tasks on a replica by setting the [`slave_parallel_workers`](replication-options-replica.html#sysvar_slave_parallel_workers) system variable to a value greater than 0 (the default). When this system variable is set, the replica creates the specified number of worker threads to apply transactions, plus a coordinator thread to manage them. If you are using multiple replication channels, each channel has this number of threads. A replica with [`slave_parallel_workers`](replication-options-replica.html#sysvar_slave_parallel_workers) set to a value greater than 0 is called a multithreaded replica. With this setup, transactions that fail can be retried.
+Você pode habilitar uma paralelização adicional para tarefas em uma replica definindo a variável de sistema [`slave_parallel_workers`](replication-options-replica.html#sysvar_slave_parallel_workers) para um valor maior que 0 (o padrão). Quando esta variável de sistema é definida, a replica cria o número especificado de worker threads para aplicar transactions, mais um coordinator thread para gerenciá-los. Se você estiver usando múltiplos replication channels, cada channel tem este número de threads. Uma replica com [`slave_parallel_workers`](replication-options-replica.html#sysvar_slave_parallel_workers) definido para um valor maior que 0 é chamada de multithreaded replica. Com essa configuração, transactions que falham podem ser tentadas novamente.
 
-Note
+Nota
 
-Multithreaded replicas are not currently supported by NDB Cluster, which silently ignores the setting for this variable. See [Section 21.7.3, “Known Issues in NDB Cluster Replication”](mysql-cluster-replication-issues.html "21.7.3 Known Issues in NDB Cluster Replication") for more information.
+Multithreaded replicas não são suportadas atualmente pelo NDB Cluster, que ignora silenciosamente a configuração desta variável. Veja [Seção 21.7.3, “Known Issues in NDB Cluster Replication”](mysql-cluster-replication-issues.html "21.7.3 Known Issues in NDB Cluster Replication") para mais informações.

@@ -1,16 +1,16 @@
-#### 26.4.4.9 The ps_setup_enable_consumer() Procedure
+#### 26.4.4.9 O Procedure ps_setup_enable_consumer()
 
-Enables Performance Schema consumers with names that contain the argument. Produces a result set indicating how many consumers were enabled. Already enabled consumers do not count.
+Habilita os *consumers* do Performance Schema com nomes que contenham o argumento. Produz um *result set* indicando quantos *consumers* foram habilitados. *Consumers* já habilitados não são contabilizados.
 
-##### Parameters
+##### Parâmetros
 
-* `consumer VARCHAR(128)`: The value used to match consumer names, which are identified by using `%consumer%` as an operand for a `LIKE` pattern match.
+* `consumer VARCHAR(128)`: O valor usado para corresponder aos nomes dos *consumers*, que são identificados pelo uso de `%consumer%` como um operando para uma correspondência de padrão (`pattern match`) `LIKE`.
 
-  A value of `''` matches all consumers.
+  Um valor de `''` corresponde a todos os *consumers*.
 
-##### Example
+##### Exemplo
 
-Enable all statement consumers:
+Habilita todos os *statement consumers*:
 
 ```sql
 mysql> CALL sys.ps_setup_enable_consumer('statement');

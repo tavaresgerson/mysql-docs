@@ -1,77 +1,77 @@
-## 11.4 Spatial Data Types
+## 11.4 Tipos de Dados Spatial
 
-11.4.1 Spatial Data Types
+11.4.1 Tipos de Dados Spatial
 
-11.4.2 The OpenGIS Geometry Model
+11.4.2 O Modelo Geometry OpenGIS
 
-11.4.3 Supported Spatial Data Formats
+11.4.3 Formatos de Dados Spatial Suportados
 
-11.4.4 Geometry Well-Formedness and Validity
+11.4.4 Boa Formação e Validade de Geometry
 
-11.4.5 Creating Spatial Columns
+11.4.5 Criando Colunas Spatial
 
-11.4.6 Populating Spatial Columns
+11.4.6 Preenchendo Colunas Spatial
 
-11.4.7 Fetching Spatial Data
+11.4.7 Obtendo Dados Spatial
 
-11.4.8 Optimizing Spatial Analysis
+11.4.8 Otimizando Análises Spatial
 
-11.4.9 Creating Spatial Indexes
+11.4.9 Criando Spatial Indexes
 
-11.4.10 Using Spatial Indexes
+11.4.10 Usando Spatial Indexes
 
-The Open Geospatial Consortium (OGC) is an international consortium of more than 250 companies, agencies, and universities participating in the development of publicly available conceptual solutions that can be useful with all kinds of applications that manage spatial data.
+O Open Geospatial Consortium (OGC) é um consórcio internacional de mais de 250 empresas, agências e universidades que participam do desenvolvimento de soluções conceituais disponíveis publicamente que podem ser úteis em todos os tipos de aplicações que gerenciam dados spatial.
 
-The Open Geospatial Consortium publishes the *OpenGIS® Implementation Standard for Geographic information - Simple Feature Access - Part 2: SQL Option*, a document that proposes several conceptual ways for extending an SQL RDBMS to support spatial data. This specification is available from the OGC website at <http://www.opengeospatial.org/standards/sfs>.
+O Open Geospatial Consortium publica o *OpenGIS® Implementation Standard for Geographic information - Simple Feature Access - Part 2: SQL Option*, um documento que propõe várias maneiras conceituais de estender um SQL RDBMS para suportar dados spatial. Esta especificação está disponível no website do OGC em <http://www.opengeospatial.org/standards/sfs>.
 
-Following the OGC specification, MySQL implements spatial extensions as a subset of the **SQL with Geometry Types** environment. This term refers to an SQL environment that has been extended with a set of geometry types. A geometry-valued SQL column is implemented as a column that has a geometry type. The specification describes a set of SQL geometry types, as well as functions on those types to create and analyze geometry values.
+Seguindo a especificação do OGC, o MySQL implementa extensões spatial como um subconjunto do ambiente **SQL with Geometry Types**. Este termo se refere a um ambiente SQL que foi estendido com um conjunto de tipos de geometry. Uma coluna SQL com valor geometry é implementada como uma coluna que possui um tipo geometry. A especificação descreve um conjunto de tipos de geometry SQL, bem como funções nesses tipos para criar e analisar valores geometry.
 
-MySQL spatial extensions enable the generation, storage, and analysis of geographic features:
+As extensões spatial do MySQL permitem a geração, armazenamento e análise de geographic features:
 
-* Data types for representing spatial values
-* Functions for manipulating spatial values
-* Spatial indexing for improved access times to spatial columns
+* Tipos de dados para representar valores spatial
+* Funções para manipular valores spatial
+* Spatial indexing para tempos de acesso aprimorados a colunas spatial
 
-The spatial data types and functions are available for `MyISAM`, `InnoDB`, `NDB`, and `ARCHIVE` tables. For indexing spatial columns, `MyISAM` and `InnoDB` support both `SPATIAL` and non-`SPATIAL` indexes. The other storage engines support non-`SPATIAL` indexes, as described in Section 13.1.14, “CREATE INDEX Statement”.
+Os tipos de dados e funções spatial estão disponíveis para tabelas `MyISAM`, `InnoDB`, `NDB` e `ARCHIVE`. Para indexar colunas spatial, `MyISAM` e `InnoDB` suportam tanto indexes `SPATIAL` quanto não-`SPATIAL`. Os outros storage engines suportam indexes não-`SPATIAL`, conforme descrito na Seção 13.1.14, “CREATE INDEX Statement”.
 
-A **geographic feature** is anything in the world that has a location. A feature can be:
+Um **geographic feature** é qualquer coisa no mundo que tem uma localização. Um feature pode ser:
 
-* An entity. For example, a mountain, a pond, a city.
-* A space. For example, town district, the tropics.
-* A definable location. For example, a crossroad, as a particular place where two streets intersect.
+* Uma entidade. Por exemplo, uma montanha, um lago, uma cidade.
+* Um espaço. Por exemplo, um distrito municipal, os trópicos.
+* Uma localização definível. Por exemplo, um cruzamento, como um lugar particular onde duas ruas se cruzam.
 
-Some documents use the term **geospatial feature** to refer to geographic features.
+Alguns documentos usam o termo **geospatial feature** para se referir a geographic features.
 
-**Geometry** is another word that denotes a geographic feature. Originally the word **geometry** meant measurement of the earth. Another meaning comes from cartography, referring to the geometric features that cartographers use to map the world.
+**Geometry** é outra palavra que denota um geographic feature. Originalmente, a palavra **geometry** significava medição da terra. Outro significado vem da cartografia, referindo-se aos geometric features que os cartógrafos usam para mapear o mundo.
 
-The discussion here considers these terms synonymous: **geographic feature**, **geospatial feature**, **feature**, or **geometry**. The term most commonly used is **geometry**, defined as *a point or an aggregate of points representing anything in the world that has a location*.
+A discussão aqui considera estes termos sinônimos: **geographic feature**, **geospatial feature**, **feature** ou **geometry**. O termo mais comumente usado é **geometry**, definido como *um ponto ou um agregado de pontos representando qualquer coisa no mundo que tem uma localização*.
 
-The following material covers these topics:
+O material a seguir aborda estes tópicos:
 
-* The spatial data types implemented in MySQL model
-* The basis of the spatial extensions in the OpenGIS geometry model
+* O modelo de tipos de dados spatial implementado no MySQL
+* A base das extensões spatial no modelo OpenGIS geometry
 
-* Data formats for representing spatial data
-* How to use spatial data in MySQL
-* Use of indexing for spatial data
-* MySQL differences from the OpenGIS specification
+* Formatos de dados para representar dados spatial
+* Como usar dados spatial no MySQL
+* Uso de indexing para dados spatial
+* Diferenças do MySQL em relação à especificação OpenGIS
 
-For information about functions that operate on spatial data, see Section 12.16, “Spatial Analysis Functions”.
+Para informações sobre funções que operam em dados spatial, veja a Seção 12.16, “Spatial Analysis Functions”.
 
-### MySQL GIS Conformance and Compatibility
+### Conformidade e Compatibilidade GIS do MySQL
 
-MySQL does not implement the following GIS features:
+O MySQL não implementa os seguintes GIS features:
 
 * Additional Metadata Views
 
-  OpenGIS specifications propose several additional metadata views. For example, a system view named `GEOMETRY_COLUMNS` contains a description of geometry columns, one row for each geometry column in the database.
+  As especificações OpenGIS propõem vários additional metadata views. Por exemplo, uma system view chamada `GEOMETRY_COLUMNS` contém uma descrição de colunas geometry, uma linha para cada coluna geometry no Database.
 
-* The OpenGIS function `Length()` on `LineString` and `MultiLineString` should be called in MySQL as `ST_Length()`
+* A função OpenGIS `Length()` em `LineString` e `MultiLineString` deve ser chamada no MySQL como `ST_Length()`
 
-  The problem is that there is an existing SQL function `Length()` that calculates the length of string values, and sometimes it is not possible to distinguish whether the function is called in a textual or spatial context.
+  O problema é que existe uma função SQL `Length()` que calcula o comprimento de valores string, e às vezes não é possível distinguir se a função é chamada em um contexto textual ou spatial.
 
-### Additional Resources
+### Recursos Adicionais
 
-The Open Geospatial Consortium publishes the *OpenGIS® Implementation Standard for Geographic information - Simple feature access - Part 2: SQL option*, a document that proposes several conceptual ways for extending an SQL RDBMS to support spatial data. The Open Geospatial Consortium (OGC) maintains a website at <http://www.opengeospatial.org/>. The specification is available there at <http://www.opengeospatial.org/standards/sfs>. It contains additional information relevant to the material here.
+O Open Geospatial Consortium publica o *OpenGIS® Implementation Standard for Geographic information - Simple feature access - Part 2: SQL option*, um documento que propõe várias maneiras conceituais de estender um SQL RDBMS para suportar dados spatial. O Open Geospatial Consortium (OGC) mantém um website em <http://www.opengeospatial.org/>. A especificação está disponível lá em <http://www.opengeospatial.org/standards/sfs>. Ela contém informações adicionais relevantes ao material aqui.
 
-If you have questions or concerns about the use of the spatial extensions to MySQL, you can discuss them in the GIS forum: <https://forums.mysql.com/list.php?23>.
+Se você tiver perguntas ou preocupações sobre o uso das extensões spatial para MySQL, você pode discuti-las no fórum GIS: <https://forums.mysql.com/list.php?23>.

@@ -1,6 +1,6 @@
-#### 16.4.1.37 Replication and Variables
+#### 16.4.1.37 Replication e Variáveis
 
-System variables are not replicated correctly when using `STATEMENT` mode, except for the following variables when they are used with session scope:
+Variáveis de sistema não são replicadas corretamente ao usar o modo `STATEMENT`, exceto pelas seguintes variáveis quando usadas com escopo de sessão (session scope):
 
 * [`auto_increment_increment`](replication-options-source.html#sysvar_auto_increment_increment)
 * [`auto_increment_offset`](replication-options-source.html#sysvar_auto_increment_offset)
@@ -21,35 +21,35 @@ System variables are not replicated correctly when using `STATEMENT` mode, excep
 * [`timestamp`](server-system-variables.html#sysvar_timestamp)
 * [`unique_checks`](server-system-variables.html#sysvar_unique_checks)
 
-When `MIXED` mode is used, the variables in the preceding list, when used with session scope, cause a switch from statement-based to row-based logging. See [Section 5.4.4.3, “Mixed Binary Logging Format”](binary-log-mixed.html "5.4.4.3 Mixed Binary Logging Format").
+Quando o modo `MIXED` é usado, as variáveis na lista anterior, quando utilizadas com escopo de sessão, causam uma mudança do log baseado em statement (statement-based logging) para o log baseado em linha (row-based logging). Consulte [Seção 5.4.4.3, “Mixed Binary Logging Format”](binary-log-mixed.html "5.4.4.3 Mixed Binary Logging Format").
 
-[`sql_mode`](server-system-variables.html#sysvar_sql_mode) is also replicated except for the [`NO_DIR_IN_CREATE`](sql-mode.html#sqlmode_no_dir_in_create) mode; the replica always preserves its own value for [`NO_DIR_IN_CREATE`](sql-mode.html#sqlmode_no_dir_in_create), regardless of changes to it on the source. This is true for all replication formats.
+[`sql_mode` ](server-system-variables.html#sysvar_sql_mode) também é replicado, exceto pelo modo [`NO_DIR_IN_CREATE`](sql-mode.html#sqlmode_no_dir_in_create); a replica sempre preserva seu próprio valor para [`NO_DIR_IN_CREATE`](sql-mode.html#sqlmode_no_dir_in_create), independentemente das alterações feitas no source. Isso é válido para todos os formatos de Replication.
 
-However, when [**mysqlbinlog**](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files") parses a `SET @@sql_mode = mode` statement, the full *`mode`* value, including [`NO_DIR_IN_CREATE`](sql-mode.html#sqlmode_no_dir_in_create), is passed to the receiving server. For this reason, replication of such a statement may not be safe when `STATEMENT` mode is in use.
+No entanto, quando o [**mysqlbinlog**](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files") analisa um statement `SET @@sql_mode = mode`, o valor *`mode`* completo, incluindo [`NO_DIR_IN_CREATE`](sql-mode.html#sqlmode_no_dir_in_create), é passado para o servidor receptor. Por esse motivo, a Replication de tal statement pode não ser segura quando o modo `STATEMENT` está em uso.
 
-The [`default_storage_engine`](server-system-variables.html#sysvar_default_storage_engine) system variable is not replicated, regardless of the logging mode; this is intended to facilitate replication between different storage engines.
+A variável de sistema [`default_storage_engine`](server-system-variables.html#sysvar_default_storage_engine) não é replicada, independentemente do modo de logging; isso se destina a facilitar a Replication entre diferentes Storage Engines.
 
-The [`read_only`](server-system-variables.html#sysvar_read_only) system variable is not replicated. In addition, the enabling this variable has different effects with regard to temporary tables, table locking, and the [`SET PASSWORD`](set-password.html "13.7.1.7 SET PASSWORD Statement") statement in different MySQL versions.
+A variável de sistema [`read_only`](server-system-variables.html#sysvar_read_only) não é replicada. Além disso, a habilitação desta variável tem efeitos diferentes em relação a Temporary Tables, Lock de tabelas e ao statement [`SET PASSWORD`](set-password.html "13.7.1.7 SET PASSWORD Statement") em diferentes versões do MySQL.
 
-The [`max_heap_table_size`](server-system-variables.html#sysvar_max_heap_table_size) system variable is not replicated. Increasing the value of this variable on the source without doing so on the replica can lead eventually to Table is full errors on the replica when trying to execute [`INSERT`](insert.html "13.2.5 INSERT Statement") statements on a [`MEMORY`](memory-storage-engine.html "15.3 The MEMORY Storage Engine") table on the source that is thus permitted to grow larger than its counterpart on the replica. For more information, see [Section 16.4.1.20, “Replication and MEMORY Tables”](replication-features-memory.html "16.4.1.20 Replication and MEMORY Tables").
+A variável de sistema [`max_heap_table_size`](server-system-variables.html#sysvar_max_heap_table_size) não é replicada. Aumentar o valor desta variável no source sem fazer o mesmo na replica pode eventualmente levar a erros de *Table is full* na replica ao tentar executar statements [`INSERT`](insert.html "13.2.5 INSERT Statement") em uma tabela [`MEMORY`](memory-storage-engine.html "15.3 The MEMORY Storage Engine") no source que é, portanto, permitido crescer mais do que sua contraparte na replica. Para mais informações, consulte [Seção 16.4.1.20, “Replication and MEMORY Tables”](replication-features-memory.html "16.4.1.20 Replication and MEMORY Tables").
 
-In statement-based replication, session variables are not replicated properly when used in statements that update tables. For example, the following sequence of statements do not insert the same data on the source and the replica:
+Em Replication baseada em statement, as variáveis de sessão não são replicadas corretamente quando usadas em statements que atualizam tabelas. Por exemplo, a seguinte sequência de statements não insere os mesmos dados no source e na replica:
 
 ```sql
 SET max_join_size=1000;
 INSERT INTO mytable VALUES(@@max_join_size);
 ```
 
-This does not apply to the common sequence:
+Isso não se aplica à sequência comum:
 
 ```sql
 SET time_zone=...;
 INSERT INTO mytable VALUES(CONVERT_TZ(..., ..., @@time_zone));
 ```
 
-Replication of session variables is not a problem when row-based replication is being used, in which case, session variables are always replicated safely. See [Section 16.2.1, “Replication Formats”](replication-formats.html "16.2.1 Replication Formats").
+A Replication de variáveis de sessão não é um problema quando a Replication baseada em linha (row-based replication) está sendo usada, caso em que as variáveis de sessão são sempre replicadas com segurança. Consulte [Seção 16.2.1, “Replication Formats”](replication-formats.html "16.2.1 Replication Formats").
 
-The following session variables are written to the binary log and honored by the replica when parsing the binary log, regardless of the logging format:
+As seguintes variáveis de sessão são gravadas no Binary Log e respeitadas pela replica ao analisar o Binary Log, independentemente do formato de logging:
 
 * [`sql_mode`](server-system-variables.html#sysvar_sql_mode)
 * [`foreign_key_checks`](server-system-variables.html#sysvar_foreign_key_checks)
@@ -60,8 +60,8 @@ The following session variables are written to the binary log and honored by the
 * [`collation_server`](server-system-variables.html#sysvar_collation_server)
 * [`sql_auto_is_null`](server-system-variables.html#sysvar_sql_auto_is_null)
 
-Important
+> Importante
+>
+> Embora as variáveis de sessão relacionadas a Character Sets e Collations sejam gravadas no Binary Log, a Replication entre diferentes Character Sets não é suportada.
 
-Even though session variables relating to character sets and collations are written to the binary log, replication between different character sets is not supported.
-
-To help reduce possible confusion, we recommend that you always use the same setting for the [`lower_case_table_names`](server-system-variables.html#sysvar_lower_case_table_names) system variable on both source and replica, especially when you are running MySQL on platforms with case-sensitive file systems.
+Para ajudar a reduzir a possível confusão, recomendamos que você sempre use a mesma configuração para a variável de sistema [`lower_case_table_names`](server-system-variables.html#sysvar_lower_case_table_names) tanto no source quanto na replica, especialmente quando estiver executando o MySQL em plataformas com sistemas de arquivos que diferenciam maiúsculas de minúsculas (case-sensitive).

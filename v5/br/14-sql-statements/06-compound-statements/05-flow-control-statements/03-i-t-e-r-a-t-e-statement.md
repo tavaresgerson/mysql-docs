@@ -1,9 +1,9 @@
-#### 13.6.5.3 ITERATE Statement
+#### 13.6.5.3 Instrução ITERATE
 
 ```sql
 ITERATE label
 ```
 
-[`ITERATE`](iterate.html "13.6.5.3 ITERATE Statement") can appear only within [`LOOP`](loop.html "13.6.5.5 LOOP Statement"), [`REPEAT`](repeat.html "13.6.5.6 REPEAT Statement"), and [`WHILE`](while.html "13.6.5.8 WHILE Statement") statements. [`ITERATE`](iterate.html "13.6.5.3 ITERATE Statement") means “start the loop again.”
+[`ITERATE`](iterate.html "13.6.5.3 Instrução ITERATE") pode aparecer apenas dentro das instruções [`LOOP`](loop.html "13.6.5.5 Instrução LOOP"), [`REPEAT`](repeat.html "13.6.5.6 Instrução REPEAT") e [`WHILE`](while.html "13.6.5.8 Instrução WHILE"). [`ITERATE`](iterate.html "13.6.5.3 Instrução ITERATE") significa “começar o loop novamente.”
 
-For an example, see [Section 13.6.5.5, “LOOP Statement”](loop.html "13.6.5.5 LOOP Statement").
+Para um exemplo, consulte [Seção 13.6.5.5, “Instrução LOOP”](loop.html "13.6.5.5 Instrução LOOP").

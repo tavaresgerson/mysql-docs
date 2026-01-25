@@ -1,313 +1,313 @@
-#### 21.4.2.1 NDB Cluster Data Node Configuration Parameters
+#### 21.4.2.1 Parâmetros de Configuração do Node de Dados do NDB Cluster
 
-The listings in this section provide information about parameters used in the `[ndbd]` or `[ndbd default]` sections of a `config.ini` file for configuring NDB Cluster data nodes. For detailed descriptions and other additional information about each of these parameters, see [Section 21.4.3.6, “Defining NDB Cluster Data Nodes”](mysql-cluster-ndbd-definition.html "21.4.3.6 Defining NDB Cluster Data Nodes").
+As listagens nesta seção fornecem informações sobre os parâmetros usados nas seções `[ndbd]` ou `[ndbd default]` de um arquivo `config.ini` para configurar os Data Nodes do NDB Cluster. Para descrições detalhadas e outras informações adicionais sobre cada um desses parâmetros, consulte [Seção 21.4.3.6, “Definindo NDB Cluster Data Nodes”](mysql-cluster-ndbd-definition.html "21.4.3.6 Definindo NDB Cluster Data Nodes”).
 
-These parameters also apply to [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)"), the multithreaded version of [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon"). A separate listing of parameters specific to [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") follows.
+Esses parâmetros também se aplicam ao [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — O Daemon de Data Node do NDB Cluster (Multi-Threaded)"), a versão multi-threaded do [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — O Daemon de Data Node do NDB Cluster"). Uma listagem separada de parâmetros específicos ao [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — O Daemon de Data Node do NDB Cluster (Multi-Threaded)") segue abaixo.
 
-* `ApiFailureHandlingTimeout`: Maximum time for API node failure handling before escalating. 0 means no time limit; minimum usable value is 10.
+* `ApiFailureHandlingTimeout`: Tempo máximo para o tratamento de falha do Node API antes do escalonamento. 0 significa sem limite de tempo; o valor mínimo utilizável é 10.
 
-* `Arbitration`: How arbitration should be performed to avoid split-brain issues in event of node failure.
+* `Arbitration`: Como a Arbitration deve ser executada para evitar problemas de split-brain em caso de falha do Node.
 
-* `ArbitrationTimeout`: Maximum time (milliseconds) database partition waits for arbitration signal.
+* `ArbitrationTimeout`: Tempo máximo (em milissegundos) que a partição do Database espera pelo sinal de Arbitration.
 
-* `BackupDataBufferSize`: Default size of databuffer for backup (in bytes).
+* `BackupDataBufferSize`: Tamanho padrão do databuffer para o backup (em bytes).
 
-* `BackupDataDir`: Path to where to store backups. Note that string '/BACKUP' is always appended to this setting, so that \*effective\* default is FileSystemPath/BACKUP.
+* `BackupDataDir`: Path onde os backups devem ser armazenados. Note que a string '/BACKUP' é sempre anexada a esta configuração, de modo que o padrão \*efetivo\* é FileSystemPath/BACKUP.
 
-* `BackupDiskWriteSpeedPct`: Sets percentage of data node's allocated maximum write speed (MaxDiskWriteSpeed) to reserve for LCPs when starting backup.
+* `BackupDiskWriteSpeedPct`: Define a porcentagem da velocidade máxima de gravação alocada (MaxDiskWriteSpeed) do Node de dados a ser reservada para LCPs ao iniciar o backup.
 
-* `BackupLogBufferSize`: Default size of log buffer for backup (in bytes).
+* `BackupLogBufferSize`: Tamanho padrão do log buffer para o backup (em bytes).
 
-* `BackupMaxWriteSize`: Maximum size of file system writes made by backup (in bytes).
+* `BackupMaxWriteSize`: Tamanho máximo das gravações do sistema de arquivos feitas pelo backup (em bytes).
 
-* `BackupMemory`: Total memory allocated for backups per node (in bytes).
+* `BackupMemory`: Memória total alocada para backups por Node (em bytes).
 
-* `BackupReportFrequency`: Frequency of backup status reports during backup in seconds.
+* `BackupReportFrequency`: Frequência em segundos dos relatórios de status de backup durante o backup.
 
-* `BackupWriteSize`: Default size of file system writes made by backup (in bytes).
+* `BackupWriteSize`: Tamanho padrão das gravações do sistema de arquivos feitas pelo backup (em bytes).
 
-* `BatchSizePerLocalScan`: Used to calculate number of lock records for scan with hold lock.
+* `BatchSizePerLocalScan`: Usado para calcular o número de registros de Lock para scan com hold Lock.
 
-* `BuildIndexThreads`: Number of threads to use for building ordered indexes during system or node restart. Also applies when running ndb_restore --rebuild-indexes. Setting this parameter to 0 disables multithreaded building of ordered indexes.
+* `BuildIndexThreads`: Número de Threads a serem usados para construir Indexes ordenados durante a reinicialização do sistema ou Node. Também se aplica ao executar ndb_restore --rebuild-indexes. Definir este parâmetro como 0 desabilita a construção multi-threaded de Indexes ordenados.
 
-* `CompressedBackup`: Use zlib to compress backups as they are written.
+* `CompressedBackup`: Usa zlib para compactar backups à medida que são gravados.
 
-* `CompressedLCP`: Write compressed LCPs using zlib.
+* `CompressedLCP`: Grava LCPs compactados usando zlib.
 
-* `ConnectCheckIntervalDelay`: Time between data node connectivity check stages. Data node is considered suspect after 1 interval and dead after 2 intervals with no response.
+* `ConnectCheckIntervalDelay`: Tempo entre os estágios de verificação de conectividade do Data Node. O Data Node é considerado suspeito após 1 intervalo e inativo após 2 intervalos sem resposta.
 
-* `CrashOnCorruptedTuple`: When enabled, forces node to shut down whenever it detects corrupted tuple.
+* `CrashOnCorruptedTuple`: Quando habilitado, força o Node a encerrar sempre que detectar uma tuple corrompida.
 
-* `DataDir`: Data directory for this node.
+* `DataDir`: Diretório de dados para este Node.
 
-* `DataMemory`: Number of bytes on each data node allocated for storing data; subject to available system RAM and size of IndexMemory.
+* `DataMemory`: Número de bytes em cada Data Node alocado para armazenar dados; sujeito à RAM disponível do sistema e ao tamanho do IndexMemory.
 
-* `DefaultHashMapSize`: Set size (in buckets) to use for table hash maps. Three values are supported: 0, 240, and 3840.
+* `DefaultHashMapSize`: Define o tamanho (em buckets) a ser usado para hash maps de tabela. Três valores são suportados: 0, 240 e 3840.
 
-* `DictTrace`: Enable DBDICT debugging; for NDB development.
+* `DictTrace`: Habilita o debugging do DBDICT; para desenvolvimento NDB.
 
-* `DiskIOThreadPool`: Number of unbound threads for file access, applies to disk data only.
+* `DiskIOThreadPool`: Número de Threads não vinculados para acesso a arquivos, aplica-se apenas a dados em Disk.
 
-* `Diskless`: Run without using disk.
+* `Diskless`: Executar sem usar Disk.
 
-* `DiskPageBufferEntries`: Memory to allocate in DiskPageBufferMemory; very large disk transactions may require increasing this value.
+* `DiskPageBufferEntries`: Memória a ser alocada no DiskPageBufferMemory; transações em Disk muito grandes podem exigir o aumento deste valor.
 
-* `DiskPageBufferMemory`: Number of bytes on each data node allocated for disk page buffer cache.
+* `DiskPageBufferMemory`: Número de bytes em cada Data Node alocado para o cache do Disk Page Buffer.
 
-* `DiskSyncSize`: Amount of data written to file before synch is forced.
+* `DiskSyncSize`: Quantidade de dados gravados no arquivo antes que o synch seja forçado.
 
-* `EnablePartialLcp`: Enable partial LCP (true); if this is disabled (false), all LCPs write full checkpoints.
+* `EnablePartialLcp`: Habilita LCP parcial (true); se desabilitado (false), todos os LCPs gravam checkpoints completos.
 
-* `EnableRedoControl`: Enable adaptive checkpointing speed for controlling redo log usage.
+* `EnableRedoControl`: Habilita a velocidade de checkpointing adaptável para controlar o uso do redo log.
 
-* `EventLogBufferSize`: Size of circular buffer for NDB log events within data nodes.
+* `EventLogBufferSize`: Tamanho do circular buffer para eventos de log NDB dentro dos Data Nodes.
 
-* `ExecuteOnComputer`: String referencing earlier defined COMPUTER.
+* `ExecuteOnComputer`: String que faz referência a um COMPUTER definido anteriormente.
 
-* `ExtraSendBufferMemory`: Memory to use for send buffers in addition to any allocated by TotalSendBufferMemory or SendBufferMemory. Default (0) allows up to 16MB.
+* `ExtraSendBufferMemory`: Memória a ser usada para send buffers, além de qualquer memória alocada por TotalSendBufferMemory ou SendBufferMemory. O padrão (0) permite até 16MB.
 
-* `FileSystemPath`: Path to directory where data node stores its data (directory must exist).
+* `FileSystemPath`: Path para o diretório onde o Data Node armazena seus dados (o diretório deve existir).
 
-* `FileSystemPathDataFiles`: Path to directory where data node stores its Disk Data files. Default value is FilesystemPathDD, if set; otherwise, FilesystemPath is used if it is set; otherwise, value of DataDir is used.
+* `FileSystemPathDataFiles`: Path para o diretório onde o Data Node armazena seus arquivos de Disk Data. O valor padrão é FilesystemPathDD, se configurado; caso contrário, FilesystemPath é usado se estiver configurado; caso contrário, o valor de DataDir é usado.
 
-* `FileSystemPathDD`: Path to directory where data node stores its Disk Data and undo files. Default value is FileSystemPath, if set; otherwise, value of DataDir is used.
+* `FileSystemPathDD`: Path para o diretório onde o Data Node armazena seus arquivos de Disk Data e undo. O valor padrão é FileSystemPath, se configurado; caso contrário, o valor de DataDir é usado.
 
-* `FileSystemPathUndoFiles`: Path to directory where data node stores its undo files for Disk Data. Default value is FilesystemPathDD, if set; otherwise, FilesystemPath is used if it is set; otherwise, value of DataDir is used.
+* `FileSystemPathUndoFiles`: Path para o diretório onde o Data Node armazena seus undo files para Disk Data. O valor padrão é FilesystemPathDD, se configurado; caso contrário, FilesystemPath é usado se estiver configurado; caso contrário, o valor de DataDir é usado.
 
-* `FragmentLogFileSize`: Size of each redo log file.
+* `FragmentLogFileSize`: Tamanho de cada arquivo de redo log.
 
-* `HeartbeatIntervalDbApi`: Time between API node-data node heartbeats. (API connection closed after 3 missed heartbeats).
+* `HeartbeatIntervalDbApi`: Tempo entre os heartbeats do Node API e do Data Node. (A conexão API é fechada após 3 heartbeats perdidos).
 
-* `HeartbeatIntervalDbDb`: Time between data node-to-data node heartbeats; data node considered dead after 3 missed heartbeats.
+* `HeartbeatIntervalDbDb`: Tempo entre os heartbeats de Data Node para Data Node; o Data Node é considerado inativo após 3 heartbeats perdidos.
 
-* `HeartbeatOrder`: Sets order in which data nodes check each others' heartbeats for determining whether given node is still active and connected to cluster. Must be zero for all data nodes or distinct nonzero values for all data nodes; see documentation for further guidance.
+* `HeartbeatOrder`: Define a ordem em que os Data Nodes verificam os heartbeats uns dos outros para determinar se um determinado Node ainda está ativo e conectado ao Cluster. Deve ser zero para todos os Data Nodes ou valores não zero distintos para todos os Data Nodes; consulte a documentação para mais orientações.
 
-* `HostName`: Host name or IP address for this data node.
+* `HostName`: Nome do Host ou endereço IP para este Data Node.
 
-* `IndexMemory`: Number of bytes on each data node allocated for storing indexes; subject to available system RAM and size of DataMemory.
+* `IndexMemory`: Número de bytes em cada Data Node alocado para armazenar Indexes; sujeito à RAM disponível do sistema e ao tamanho do DataMemory.
 
-* `IndexStatAutoCreate`: Enable/disable automatic statistics collection when indexes are created.
+* `IndexStatAutoCreate`: Habilita/desabilita a coleta automática de estatísticas quando Indexes são criados.
 
-* `IndexStatAutoUpdate`: Monitor indexes for changes and trigger automatic statistics updates.
+* `IndexStatAutoUpdate`: Monitora Indexes quanto a alterações e aciona atualizações automáticas de estatísticas.
 
-* `IndexStatSaveScale`: Scaling factor used in determining size of stored index statistics.
+* `IndexStatSaveScale`: Fator de escalonamento usado para determinar o tamanho das estatísticas de Index armazenadas.
 
-* `IndexStatSaveSize`: Maximum size in bytes for saved statistics per index.
+* `IndexStatSaveSize`: Tamanho máximo em bytes para estatísticas salvas por Index.
 
-* `IndexStatTriggerPct`: Threshold percent change in DML operations for index statistics updates. Value is scaled down by IndexStatTriggerScale.
+* `IndexStatTriggerPct`: Limiar percentual de alteração nas operações DML para atualizações de estatísticas de Index. O valor é reduzido pela IndexStatTriggerScale.
 
-* `IndexStatTriggerScale`: Scale down IndexStatTriggerPct by this amount, multiplied by base 2 logarithm of index size, for large index. Set to 0 to disable scaling.
+* `IndexStatTriggerScale`: Reduz IndexStatTriggerPct por esta quantidade, multiplicada pelo logaritmo de base 2 do tamanho do Index, para Index grande. Defina como 0 para desabilitar o escalonamento.
 
-* `IndexStatUpdateDelay`: Minimum delay between automatic index statistics updates for given index. 0 means no delay.
+* `IndexStatUpdateDelay`: Atraso mínimo entre as atualizações automáticas de estatísticas de Index para um determinado Index. 0 significa sem atraso.
 
-* `InitFragmentLogFiles`: Initialize fragment log files, using sparse or full format.
+* `InitFragmentLogFiles`: Inicializa os arquivos de log de fragmento, usando formato sparse ou full.
 
-* `InitialLogFileGroup`: Describes log file group that is created during initial start. See documentation for format.
+* `InitialLogFileGroup`: Descreve o grupo de log file que é criado durante a inicialização inicial. Consulte a documentação para o formato.
 
-* `InitialNoOfOpenFiles`: Initial number of files open per data node. (One thread is created per file).
+* `InitialNoOfOpenFiles`: Número inicial de arquivos abertos por Data Node. (Um Thread é criado por arquivo).
 
-* `InitialTablespace`: Describes tablespace that is created during initial start. See documentation for format.
+* `InitialTablespace`: Descreve o tablespace que é criado durante a inicialização inicial. Consulte a documentação para o formato.
 
-* `InsertRecoveryWork`: Percentage of RecoveryWork used for inserted rows; has no effect unless partial local checkpoints are in use.
+* `InsertRecoveryWork`: Porcentagem de RecoveryWork usada para linhas inseridas; não tem efeito a menos que checkpoints locais parciais estejam em uso.
 
-* `LateAlloc`: Allocate memory after connection to management server has been established.
+* `LateAlloc`: Aloca memória após a conexão com o servidor Management ter sido estabelecida.
 
-* `LcpScanProgressTimeout`: Maximum time that local checkpoint fragment scan can be stalled before node is shut down to ensure systemwide LCP progress. Use 0 to disable.
+* `LcpScanProgressTimeout`: Tempo máximo que o scan de fragmento do checkpoint local pode ficar paralisado antes que o Node seja encerrado para garantir o progresso do LCP em todo o sistema. Use 0 para desabilitar.
 
-* `LocationDomainId`: Assign this data node to specific availability domain or zone. 0 (default) leaves this unset.
+* `LocationDomainId`: Atribui este Data Node a um domínio ou zone de disponibilidade específico. 0 (padrão) deixa-o não configurado.
 
-* `LockExecuteThreadToCPU`: Comma-delimited list of CPU IDs.
+* `LockExecuteThreadToCPU`: Lista de IDs de CPU delimitada por vírgulas.
 
-* `LockMaintThreadsToCPU`: CPU ID indicating which CPU runs maintenance threads.
+* `LockMaintThreadsToCPU`: ID de CPU que indica qual CPU executa Threads de manutenção.
 
-* `LockPagesInMainMemory`: 0=disable locking, 1=lock after memory allocation, 2=lock before memory allocation.
+* `LockPagesInMainMemory`: 0=desabilitar Locking, 1=Lock após a alocação de memória, 2=Lock antes da alocação de memória.
 
-* `LogLevelCheckpoint`: Log level of local and global checkpoint information printed to stdout.
+* `LogLevelCheckpoint`: Log level das informações de checkpoint local e global impressas no stdout.
 
-* `LogLevelCongestion`: Level of congestion information printed to stdout.
+* `LogLevelCongestion`: Level de informações de congestionamento impressas no stdout.
 
-* `LogLevelConnection`: Level of node connect/disconnect information printed to stdout.
+* `LogLevelConnection`: Level de informações de conexão/desconexão de Node impressas no stdout.
 
-* `LogLevelError`: Transporter, heartbeat errors printed to stdout.
+* `LogLevelError`: Erros de Transporter e heartbeat impressos no stdout.
 
-* `LogLevelInfo`: Heartbeat and log information printed to stdout.
+* `LogLevelInfo`: Informações de Heartbeat e log impressas no stdout.
 
-* `LogLevelNodeRestart`: Level of node restart and node failure information printed to stdout.
+* `LogLevelNodeRestart`: Level de informações de reinicialização e falha de Node impressas no stdout.
 
-* `LogLevelShutdown`: Level of node shutdown information printed to stdout.
+* `LogLevelShutdown`: Level de informações de encerramento de Node impressas no stdout.
 
-* `LogLevelStartup`: Level of node startup information printed to stdout.
+* `LogLevelStartup`: Level de informações de inicialização de Node impressas no stdout.
 
-* `LogLevelStatistic`: Level of transaction, operation, and transporter information printed to stdout.
+* `LogLevelStatistic`: Level de informações de transaction, operation e transporter impressas no stdout.
 
-* `LongMessageBuffer`: Number of bytes allocated on each data node for internal long messages.
+* `LongMessageBuffer`: Número de bytes alocados em cada Data Node para mensagens longas internas.
 
-* `MaxAllocate`: No longer used; has no effect.
+* `MaxAllocate`: Não é mais usado; não tem efeito.
 
-* `MaxBufferedEpochs`: Allowed numbered of epochs that subscribing node can lag behind (unprocessed epochs). Exceeding causes lagging subscribers to be disconnected.
+* `MaxBufferedEpochs`: Número permitido de epochs que o Node subscriber pode atrasar (epochs não processados). Exceder este valor faz com que os subscribers atrasados sejam desconectados.
 
-* `MaxBufferedEpochBytes`: Total number of bytes allocated for buffering epochs.
+* `MaxBufferedEpochBytes`: Número total de bytes alocados para o buffering de epochs.
 
-* `MaxDiskWriteSpeed`: Maximum number of bytes per second that can be written by LCP and backup when no restarts are ongoing.
+* `MaxDiskWriteSpeed`: Número máximo de bytes por segundo que podem ser gravados por LCP e backup quando não há reinicializações em andamento.
 
-* `MaxDiskWriteSpeedOtherNodeRestart`: Maximum number of bytes per second that can be written by LCP and backup when another node is restarting.
+* `MaxDiskWriteSpeedOtherNodeRestart`: Número máximo de bytes por segundo que podem ser gravados por LCP e backup quando outro Node está reiniciando.
 
-* `MaxDiskWriteSpeedOwnRestart`: Maximum number of bytes per second that can be written by LCP and backup when this node is restarting.
+* `MaxDiskWriteSpeedOwnRestart`: Número máximo de bytes por segundo que podem ser gravados por LCP e backup quando este Node está reiniciando.
 
-* `MaxFKBuildBatchSize`: Maximum scan batch size to use for building foreign keys. Increasing this value may speed up builds of foreign keys but impacts ongoing traffic as well.
+* `MaxFKBuildBatchSize`: Tamanho máximo do scan batch a ser usado para construir foreign keys. Aumentar este valor pode acelerar a construção de foreign keys, mas também impacta o tráfego em andamento.
 
-* `MaxDMLOperationsPerTransaction`: Limit size of transaction; aborts transaction if it requires more than this many DML operations.
+* `MaxDMLOperationsPerTransaction`: Limita o tamanho da transaction; aborta a transaction se ela exigir mais do que esta quantidade de operações DML.
 
-* `MaxLCPStartDelay`: Time in seconds that LCP polls for checkpoint mutex (to allow other data nodes to complete metadata synchronization), before putting itself in lock queue for parallel recovery of table data.
+* `MaxLCPStartDelay`: Tempo em segundos que o LCP pesquisa o mutex do checkpoint (para permitir que outros Data Nodes concluam a sincronização de metadados), antes de se colocar na fila de Lock para recuperação paralela de dados de tabela.
 
-* `MaxNoOfAttributes`: Suggests total number of attributes stored in database (sum over all tables).
+* `MaxNoOfAttributes`: Sugere o número total de attributes armazenados no Database (soma de todas as tabelas).
 
-* `MaxNoOfConcurrentIndexOperations`: Total number of index operations that can execute simultaneously on one data node.
+* `MaxNoOfConcurrentIndexOperations`: Número total de operações de Index que podem ser executadas simultaneamente em um Data Node.
 
-* `MaxNoOfConcurrentOperations`: Maximum number of operation records in transaction coordinator.
+* `MaxNoOfConcurrentOperations`: Número máximo de registros de operation no transaction coordinator.
 
-* `MaxNoOfConcurrentScans`: Maximum number of scans executing concurrently on data node.
+* `MaxNoOfConcurrentScans`: Número máximo de scans sendo executados concorrentemente no Data Node.
 
-* `MaxNoOfConcurrentSubOperations`: Maximum number of concurrent subscriber operations.
+* `MaxNoOfConcurrentSubOperations`: Número máximo de operações de subscriber concorrentes.
 
-* `MaxNoOfConcurrentTransactions`: Maximum number of transactions executing concurrently on this data node, total number of transactions that can be executed concurrently is this value times number of data nodes in cluster.
+* `MaxNoOfConcurrentTransactions`: Número máximo de transactions sendo executadas concorrentemente neste Data Node; o número total de transactions que podem ser executadas concorrentemente é este valor vezes o número de Data Nodes no Cluster.
 
-* `MaxNoOfFiredTriggers`: Total number of triggers that can fire simultaneously on one data node.
+* `MaxNoOfFiredTriggers`: Número total de triggers que podem disparar simultaneamente em um Data Node.
 
-* `MaxNoOfLocalOperations`: Maximum number of operation records defined on this data node.
+* `MaxNoOfLocalOperations`: Número máximo de registros de operation definidos neste Data Node.
 
-* `MaxNoOfLocalScans`: Maximum number of fragment scans in parallel on this data node.
+* `MaxNoOfLocalScans`: Número máximo de scans de fragmento em paralelo neste Data Node.
 
-* `MaxNoOfOpenFiles`: Maximum number of files open per data node.(One thread is created per file).
+* `MaxNoOfOpenFiles`: Número máximo de arquivos abertos por Data Node. (Um Thread é criado por arquivo).
 
-* `MaxNoOfOrderedIndexes`: Total number of ordered indexes that can be defined in system.
+* `MaxNoOfOrderedIndexes`: Número total de Indexes ordenados que podem ser definidos no sistema.
 
-* `MaxNoOfSavedMessages`: Maximum number of error messages to write in error log and maximum number of trace files to retain.
+* `MaxNoOfSavedMessages`: Número máximo de mensagens de erro a serem gravadas no log de erro e número máximo de arquivos de trace a serem retidos.
 
-* `MaxNoOfSubscribers`: Maximum number of subscribers.
+* `MaxNoOfSubscribers`: Número máximo de subscribers.
 
-* `MaxNoOfSubscriptions`: Maximum number of subscriptions (default 0 = MaxNoOfTables).
+* `MaxNoOfSubscriptions`: Número máximo de subscriptions (padrão 0 = MaxNoOfTables).
 
-* `MaxNoOfTables`: Suggests total number of NDB tables stored in database.
+* `MaxNoOfTables`: Sugere o número total de tabelas NDB armazenadas no Database.
 
-* `MaxNoOfTriggers`: Total number of triggers that can be defined in system.
+* `MaxNoOfTriggers`: Número total de triggers que podem ser definidos no sistema.
 
-* `MaxNoOfUniqueHashIndexes`: Total number of unique hash indexes that can be defined in system.
+* `MaxNoOfUniqueHashIndexes`: Número total de Unique Hash Indexes que podem ser definidos no sistema.
 
-* `MaxParallelCopyInstances`: Number of parallel copies during node restarts. Default is 0, which uses number of LDMs on both nodes, to maximum of 16.
+* `MaxParallelCopyInstances`: Número de cópias paralelas durante as reinicializações de Node. O padrão é 0, que usa o número de LDMs em ambos os Nodes, até um máximo de 16.
 
-* `MaxParallelScansPerFragment`: Maximum number of parallel scans per fragment. Once this limit is reached, scans are serialized.
+* `MaxParallelScansPerFragment`: Número máximo de scans paralelos por fragmento. Uma vez atingido este limite, os scans são serializados.
 
-* `MaxReorgBuildBatchSize`: Maximum scan batch size to use for reorganization of table partitions. Increasing this value may speed up table partition reorganization but impacts ongoing traffic as well.
+* `MaxReorgBuildBatchSize`: Tamanho máximo do scan batch a ser usado para a reorganização de partições de tabela. Aumentar este valor pode acelerar a reorganização de partições de tabela, mas também impacta o tráfego em andamento.
 
-* `MaxStartFailRetries`: Maximum retries when data node fails on startup, requires StopOnError = 0. Setting to 0 causes start attempts to continue indefinitely.
+* `MaxStartFailRetries`: Tentativas máximas quando o Data Node falha na inicialização, requer StopOnError = 0. Definir como 0 faz com que as tentativas de inicialização continuem indefinidamente.
 
-* `MaxUIBuildBatchSize`: Maximum scan batch size to use for building unique keys. Increasing this value may speed up builds of unique keys but impacts ongoing traffic as well.
+* `MaxUIBuildBatchSize`: Tamanho máximo do scan batch a ser usado para construir Unique Keys. Aumentar este valor pode acelerar a construção de Unique Keys, mas também impacta o tráfego em andamento.
 
-* `MemReportFrequency`: Frequency of memory reports in seconds; 0 = report only when exceeding percentage limits.
+* `MemReportFrequency`: Frequência de relatórios de memória em segundos; 0 = relatar apenas quando exceder os limites percentuais.
 
-* `MinDiskWriteSpeed`: Minimum number of bytes per second that can be written by LCP and backup.
+* `MinDiskWriteSpeed`: Número mínimo de bytes por segundo que podem ser gravados por LCP e backup.
 
-* `MinFreePct`: Percentage of memory resources to keep in reserve for restarts.
+* `MinFreePct`: Porcentagem de recursos de memória a serem mantidos em reserva para reinicializações.
 
-* `NodeGroup`: Node group to which data node belongs; used only during initial start of cluster.
+* `NodeGroup`: Grupo de Node ao qual o Data Node pertence; usado apenas durante a inicialização inicial do Cluster.
 
-* `NodeId`: Number uniquely identifying data node among all nodes in cluster.
+* `NodeId`: Número que identifica o Data Node de forma única entre todos os Nodes no Cluster.
 
-* `NoOfFragmentLogFiles`: Number of 16 MB redo log files in each of 4 file sets belonging to data node.
+* `NoOfFragmentLogFiles`: Número de arquivos de redo log de 16 MB em cada um dos 4 conjuntos de arquivos pertencentes ao Data Node.
 
-* `NoOfReplicas`: Number of copies of all data in database.
+* `NoOfReplicas`: Número de cópias de todos os dados no Database.
 
-* `Numa`: (Linux only; requires libnuma) Controls NUMA support. Setting to 0 permits system to determine use of interleaving by data node process; 1 means that it is determined by data node.
+* `Numa`: (Apenas Linux; requer libnuma) Controla o suporte NUMA. Definir como 0 permite que o sistema determine o uso de interleaving pelo processo Data Node; 1 significa que é determinado pelo Data Node.
 
-* `ODirect`: Use O_DIRECT file reads and writes when possible.
+* `ODirect`: Usa leituras e gravações de arquivo O_DIRECT quando possível.
 
-* `ODirectSyncFlag`: O_DIRECT writes are treated as synchronized writes; ignored when ODirect is not enabled, InitFragmentLogFiles is set to SPARSE, or both.
+* `ODirectSyncFlag`: Gravações O_DIRECT são tratadas como gravações sincronizadas; ignorado quando ODirect não está habilitado, InitFragmentLogFiles está definido como SPARSE, ou ambos.
 
-* `RealtimeScheduler`: When true, data node threads are scheduled as real-time threads. Default is false.
+* `RealtimeScheduler`: Quando true, os Threads do Data Node são escalonados como Threads de tempo real. O padrão é false.
 
-* `RecoveryWork`: Percentage of storage overhead for LCP files: greater value means less work in normal operations, more work during recovery.
+* `RecoveryWork`: Porcentagem de overhead de armazenamento para arquivos LCP: valor maior significa menos trabalho em operações normais, mais trabalho durante a recovery.
 
-* `RedoBuffer`: Number of bytes on each data node allocated for writing redo logs.
+* `RedoBuffer`: Número de bytes em cada Data Node alocado para gravar redo logs.
 
-* `RedoOverCommitCounter`: When RedoOverCommitLimit has been exceeded this many times, transactions are aborted, and operations are handled as specified by DefaultOperationRedoProblemAction.
+* `RedoOverCommitCounter`: Quando o RedoOverCommitLimit for excedido este número de vezes, as transactions são abortadas, e as operations são tratadas conforme especificado por DefaultOperationRedoProblemAction.
 
-* `RedoOverCommitLimit`: Each time that flushing current redo buffer takes longer than this many seconds, number of times that this has happened is compared to RedoOverCommitCounter.
+* `RedoOverCommitLimit`: Cada vez que o flushing do redo buffer atual levar mais do que este número de segundos, o número de vezes que isso ocorreu é comparado ao RedoOverCommitCounter.
 
-* `ReservedSendBufferMemory`: This parameter is present in NDB code but is not enabled.
+* `ReservedSendBufferMemory`: Este parâmetro está presente no código NDB, mas não está habilitado.
 
-* `RestartOnErrorInsert`: Control type of restart caused by inserting error (when StopOnError is enabled).
+* `RestartOnErrorInsert`: Controla o tipo de restart causado por erro de inserção (quando StopOnError está habilitado).
 
-* `RestartSubscriberConnectTimeout`: Amount of time for data node to wait for subscribing API nodes to connect. Set to 0 to disable timeout, which is always resolved to nearest full second.
+* `RestartSubscriberConnectTimeout`: Quantidade de tempo que o Data Node deve esperar pelos Nodes API subscribers para se conectar. Defina como 0 para desabilitar o timeout, que é sempre resolvido para o segundo completo mais próximo.
 
-* `SchedulerExecutionTimer`: Number of microseconds to execute in scheduler before sending.
+* `SchedulerExecutionTimer`: Número de microssegundos a serem executados no scheduler antes de enviar.
 
-* `SchedulerResponsiveness`: Set NDB scheduler response optimization 0-10; higher values provide better response time but lower throughput.
+* `SchedulerResponsiveness`: Define a otimização de resposta do scheduler NDB de 0 a 10; valores mais altos fornecem melhor tempo de resposta, mas menor throughput.
 
-* `SchedulerSpinTimer`: Number of microseconds to execute in scheduler before sleeping.
+* `SchedulerSpinTimer`: Número de microssegundos a serem executados no scheduler antes de hibernar.
 
-* `ServerPort`: Port used to set up transporter for incoming connections from API nodes.
+* `ServerPort`: Porta usada para configurar o transporter para conexões de entrada de Nodes API.
 
-* `SharedGlobalMemory`: Total number of bytes on each data node allocated for any use.
+* `SharedGlobalMemory`: Número total de bytes em cada Data Node alocado para qualquer uso.
 
-* `StartFailRetryDelay`: Delay in seconds after start failure prior to retry; requires StopOnError = 0.
+* `StartFailRetryDelay`: Atraso em segundos após a falha de inicialização antes da repetição; requer StopOnError = 0.
 
-* `StartFailureTimeout`: Milliseconds to wait before terminating. (0=Wait forever).
+* `StartFailureTimeout`: Milissegundos a aguardar antes de encerrar. (0=Esperar indefinidamente).
 
-* `StartNoNodeGroupTimeout`: Time to wait for nodes without nodegroup before trying to start (0=forever).
+* `StartNoNodeGroupTimeout`: Tempo de espera por Nodes sem nodegroup antes de tentar iniciar (0=indefinidamente).
 
-* `StartPartialTimeout`: Milliseconds to wait before trying to start without all nodes. (0=Wait forever).
+* `StartPartialTimeout`: Milissegundos a aguardar antes de tentar iniciar sem todos os Nodes. (0=Esperar indefinidamente).
 
-* `StartPartitionedTimeout`: Milliseconds to wait before trying to start partitioned. (0=Wait forever).
+* `StartPartitionedTimeout`: Milissegundos a aguardar antes de tentar iniciar particionado. (0=Esperar indefinidamente).
 
-* `StartupStatusReportFrequency`: Frequency of status reports during startup.
+* `StartupStatusReportFrequency`: Frequência de relatórios de status durante a inicialização.
 
-* `StopOnError`: When set to 0, data node automatically restarts and recovers following node failures.
+* `StopOnError`: Quando definido como 0, o Data Node reinicia e se recupera automaticamente após falhas de Node.
 
-* `StringMemory`: Default size of string memory (0 to 100 = % of maximum, 101+ = actual bytes).
+* `StringMemory`: Tamanho padrão da string memory (0 a 100 = % do máximo, 101+ = bytes reais).
 
-* `TcpBind_INADDR_ANY`: Bind IP_ADDR_ANY so that connections can be made from anywhere (for autogenerated connections).
+* `TcpBind_INADDR_ANY`: Faz Bind de IP_ADDR_ANY para que as conexões possam ser feitas de qualquer lugar (para conexões autogeradas).
 
-* `TimeBetweenEpochs`: Time between epochs (synchronization used for replication).
+* `TimeBetweenEpochs`: Tempo entre epochs (sincronização usada para Replication).
 
-* `TimeBetweenEpochsTimeout`: Timeout for time between epochs. Exceeding causes node shutdown.
+* `TimeBetweenEpochsTimeout`: Timeout para o tempo entre epochs. Exceder causa o encerramento do Node.
 
-* `TimeBetweenGlobalCheckpoints`: Time between group commits of transactions to disk.
+* `TimeBetweenGlobalCheckpoints`: Tempo entre os group commits de transactions para o Disk.
 
-* `TimeBetweenGlobalCheckpointsTimeout`: Minimum timeout for group commit of transactions to disk.
+* `TimeBetweenGlobalCheckpointsTimeout`: Timeout mínimo para group commit de transactions para o Disk.
 
-* `TimeBetweenInactiveTransactionAbortCheck`: Time between checks for inactive transactions.
+* `TimeBetweenInactiveTransactionAbortCheck`: Tempo entre as verificações de transactions inativas.
 
-* `TimeBetweenLocalCheckpoints`: Time between taking snapshots of database (expressed in base-2 logarithm of bytes).
+* `TimeBetweenLocalCheckpoints`: Tempo entre a captura de snapshots do Database (expresso no logaritmo de base 2 de bytes).
 
-* `TimeBetweenWatchDogCheck`: Time between execution checks inside data node.
+* `TimeBetweenWatchDogCheck`: Tempo entre as verificações de execução dentro do Data Node.
 
-* `TimeBetweenWatchDogCheckInitial`: Time between execution checks inside data node (early start phases when memory is allocated).
+* `TimeBetweenWatchDogCheckInitial`: Tempo entre as verificações de execução dentro do Data Node (fases iniciais de start quando a memória é alocada).
 
-* `TotalSendBufferMemory`: Total memory to use for all transporter send buffers..
+* `TotalSendBufferMemory`: Memória total a ser usada para todos os send buffers do transporter.
 
-* `TransactionBufferMemory`: Dynamic buffer space (in bytes) for key and attribute data allocated for each data node.
+* `TransactionBufferMemory`: Espaço de Buffer dinâmico (em bytes) para dados de Key e attribute alocados para cada Data Node.
 
-* `TransactionDeadlockDetectionTimeout`: Time transaction can spend executing within data node. This is time that transaction coordinator waits for each data node participating in transaction to execute request. If data node takes more than this amount of time, transaction is aborted.
+* `TransactionDeadlockDetectionTimeout`: Tempo que a transaction pode gastar executando dentro do Data Node. Este é o tempo que o transaction coordinator espera que cada Data Node participante da transaction execute a solicitação. Se o Data Node demorar mais do que este tempo, a transaction é abortada.
 
-* `TransactionInactiveTimeout`: Milliseconds that application waits before executing another part of transaction. This is time transaction coordinator waits for application to execute or send another part (query, statement) of transaction. If application takes too much time, then transaction is aborted. Timeout = 0 means that application never times out.
+* `TransactionInactiveTimeout`: Milissegundos que o aplicativo espera antes de executar outra parte da transaction. Este é o tempo que o transaction coordinator espera que o aplicativo execute ou envie outra parte (Query, statement) da transaction. Se o aplicativo demorar muito, a transaction é abortada. Timeout = 0 significa que o aplicativo nunca atinge o Timeout.
 
-* `TwoPassInitialNodeRestartCopy`: Copy data in 2 passes during initial node restart, which enables multithreaded building of ordered indexes for such restarts.
+* `TwoPassInitialNodeRestartCopy`: Copia dados em 2 passes durante a reinicialização inicial do Node, o que permite a construção multi-threaded de Indexes ordenados para tais reinicializações.
 
-* `UndoDataBuffer`: Unused; has no effect.
+* `UndoDataBuffer`: Não usado; não tem efeito.
 
-* `UndoIndexBuffer`: Unused; has no effect.
+* `UndoIndexBuffer`: Não usado; não tem efeito.
 
-* `UseShm`: Use shared memory connections between this data node and API node also running on this host.
+* `UseShm`: Usa conexões de shared memory entre este Data Node e o Node API também em execução neste Host.
 
-* `WatchDogImmediateKill`: When true, threads are immediately killed whenever watchdog issues occur; used for testing and debugging.
+* `WatchDogImmediateKill`: Quando true, Threads são imediatamente encerrados sempre que ocorrerem problemas de watchdog; usado para teste e debugging.
 
-The following parameters are specific to [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)"):
+Os seguintes parâmetros são específicos do [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — O Daemon de Data Node do NDB Cluster (Multi-Threaded)"):
 
-* `MaxNoOfExecutionThreads`: For ndbmtd only, specify maximum number of execution threads.
+* `MaxNoOfExecutionThreads`: Apenas para ndbmtd, especifica o número máximo de Execution Threads.
 
-* `MaxSendDelay`: Maximum number of microseconds to delay sending by ndbmtd.
+* `MaxSendDelay`: Número máximo de microssegundos para atrasar o envio pelo ndbmtd.
 
-* `NoOfFragmentLogParts`: Number of redo log file groups belonging to this data node.
+* `NoOfFragmentLogParts`: Número de grupos de redo log file pertencentes a este Data Node.
 
-* `ThreadConfig`: Used for configuration of multithreaded data nodes (ndbmtd). Default is empty string; see documentation for syntax and other information.
+* `ThreadConfig`: Usado para configuração de Data Nodes multi-threaded (ndbmtd). O padrão é uma string vazia; consulte a documentação para sintaxe e outras informações.

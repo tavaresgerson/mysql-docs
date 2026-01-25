@@ -1,12 +1,12 @@
-#### 26.4.4.17 The ps_setup_show_disabled_instruments() Procedure
+#### 26.4.4.17 O Procedimento ps_setup_show_disabled_instruments()
 
-Displays all currently disabled Performance Schema instruments. This might be a long list.
+Exibe todos os *instruments* do Performance Schema que estão atualmente desabilitados. Esta pode ser uma lista longa.
 
-##### Parameters
+##### Parâmetros
 
-None.
+Nenhum.
 
-##### Example
+##### Exemplo
 
 ```sql
 mysql> CALL sys.ps_setup_show_disabled_instruments()\G

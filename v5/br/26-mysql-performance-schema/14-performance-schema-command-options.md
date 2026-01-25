@@ -1,75 +1,75 @@
-## 25.14 Performance Schema Command Options
+## 25.14 Opções de Comando do Performance Schema
 
-Performance Schema parameters can be specified at server startup on the command line or in option files to configure Performance Schema instruments and consumers. Runtime configuration is also possible in many cases (see [Section 25.4, “Performance Schema Runtime Configuration”](performance-schema-runtime-configuration.html "25.4 Performance Schema Runtime Configuration")), but startup configuration must be used when runtime configuration is too late to affect instruments that have already been initialized during the startup process.
+Os parâmetros do Performance Schema podem ser especificados na inicialização do servidor (startup), na linha de comando ou em arquivos de opções, para configurar os instruments e consumers do Performance Schema. A configuração em tempo de execução (runtime) também é possível em muitos casos (veja [Seção 25.4, “Configuração em Runtime do Performance Schema”](performance-schema-runtime-configuration.html "25.4 Configuração em Runtime do Performance Schema")), mas a configuração de startup deve ser usada quando a configuração em runtime for tardia demais para afetar instruments que já foram inicializados durante o processo de startup.
 
-Performance Schema consumers and instruments can be configured at startup using the following syntax. For additional details, see [Section 25.3, “Performance Schema Startup Configuration”](performance-schema-startup-configuration.html "25.3 Performance Schema Startup Configuration").
+Os consumers e instruments do Performance Schema podem ser configurados no startup usando a seguinte sintaxe. Para detalhes adicionais, veja [Seção 25.3, “Configuração de Startup do Performance Schema”](performance-schema-startup-configuration.html "25.3 Configuração de Startup do Performance Schema").
 
 * [`--performance-schema-consumer-consumer_name=value`](performance-schema-options.html#option_mysqld_performance-schema-consumer-xxx)
 
-  Configure a Performance Schema consumer. Consumer names in the [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table use underscores, but for consumers set at startup, dashes and underscores within the name are equivalent. Options for configuring individual consumers are detailed later in this section.
+  Configura um consumer do Performance Schema. Os nomes dos consumers na tabela [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 A Tabela setup_consumers") usam underscores (sublinhados), mas para consumers definidos no startup, hifens (dashes) e underscores dentro do nome são equivalentes. As opções para configurar consumers individuais são detalhadas posteriormente nesta seção.
 
 * [`--performance-schema-instrument=instrument_name=value`](performance-schema-options.html#option_mysqld_performance-schema-instrument)
 
-  Configure a Performance Schema instrument. The name may be given as a pattern to configure instruments that match the pattern.
+  Configura um instrument do Performance Schema. O nome pode ser fornecido como um pattern (padrão) para configurar instruments que correspondam a esse pattern.
 
-The following items configure individual consumers:
+Os seguintes itens configuram consumers individuais:
 
 * [`--performance-schema-consumer-events-stages-current=value`](performance-schema-options.html#option_mysqld_performance-schema-consumer-events-stages-current)
 
-  Configure the `events-stages-current` consumer.
+  Configura o consumer `events-stages-current`.
 
 * [`--performance-schema-consumer-events-stages-history=value`](performance-schema-options.html#option_mysqld_performance-schema-consumer-events-stages-history)
 
-  Configure the `events-stages-history` consumer.
+  Configura o consumer `events-stages-history`.
 
 * [`--performance-schema-consumer-events-stages-history-long=value`](performance-schema-options.html#option_mysqld_performance-schema-consumer-events-stages-history-long)
 
-  Configure the `events-stages-history-long` consumer.
+  Configura o consumer `events-stages-history-long`.
 
 * [`--performance-schema-consumer-events-statements-current=value`](performance-schema-options.html#option_mysqld_performance-schema-consumer-events-statements-current)
 
-  Configure the `events-statements-current` consumer.
+  Configura o consumer `events-statements-current`.
 
 * [`--performance-schema-consumer-events-statements-history=value`](performance-schema-options.html#option_mysqld_performance-schema-consumer-events-statements-history)
 
-  Configure the `events-statements-history` consumer.
+  Configura o consumer `events-statements-history`.
 
 * [`--performance-schema-consumer-events-statements-history-long=value`](performance-schema-options.html#option_mysqld_performance-schema-consumer-events-statements-history-long)
 
-  Configure the `events-statements-history-long` consumer.
+  Configura o consumer `events-statements-history-long`.
 
 * [`--performance-schema-consumer-events-transactions-current=value`](performance-schema-options.html#option_mysqld_performance-schema-consumer-events-transactions-current)
 
-  Configure the Performance Schema `events-transactions-current` consumer.
+  Configura o consumer `events-transactions-current` do Performance Schema.
 
 * [`--performance-schema-consumer-events-transactions-history=value`](performance-schema-options.html#option_mysqld_performance-schema-consumer-events-transactions-history)
 
-  Configure the Performance Schema `events-transactions-history` consumer.
+  Configura o consumer `events-transactions-history` do Performance Schema.
 
 * [`--performance-schema-consumer-events-transactions-history-long=value`](performance-schema-options.html#option_mysqld_performance-schema-consumer-events-transactions-history-long)
 
-  Configure the Performance Schema `events-transactions-history-long` consumer.
+  Configura o consumer `events-transactions-history-long` do Performance Schema.
 
 * [`--performance-schema-consumer-events-waits-current=value`](performance-schema-options.html#option_mysqld_performance-schema-consumer-events-waits-current)
 
-  Configure the `events-waits-current` consumer.
+  Configura o consumer `events-waits-current`.
 
 * [`--performance-schema-consumer-events-waits-history=value`](performance-schema-options.html#option_mysqld_performance-schema-consumer-events-waits-history)
 
-  Configure the `events-waits-history` consumer.
+  Configura o consumer `events-waits-history`.
 
 * [`--performance-schema-consumer-events-waits-history-long=value`](performance-schema-options.html#option_mysqld_performance-schema-consumer-events-waits-history-long)
 
-  Configure the `events-waits-history-long` consumer.
+  Configura o consumer `events-waits-history-long`.
 
 * [`--performance-schema-consumer-global-instrumentation=value`](performance-schema-options.html#option_mysqld_performance-schema-consumer-global-instrumentation)
 
-  Configure the `global-instrumentation` consumer.
+  Configura o consumer `global-instrumentation`.
 
 * [`--performance-schema-consumer-statements-digest=value`](performance-schema-options.html#option_mysqld_performance-schema-consumer-statements-digest)
 
-  Configure the `statements-digest` consumer.
+  Configura o consumer `statements-digest`.
 
 * [`--performance-schema-consumer-thread-instrumentation=value`](performance-schema-options.html#option_mysqld_performance-schema-consumer-thread-instrumentation)
 
-  Configure the `thread-instrumentation` consumer.
+  Configura o consumer `thread-instrumentation`.

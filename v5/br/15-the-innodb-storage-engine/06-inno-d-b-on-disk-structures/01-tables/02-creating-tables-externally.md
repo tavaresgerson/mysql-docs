@@ -1,22 +1,22 @@
-#### 14.6.1.2 Creating Tables Externally
+#### 14.6.1.2 Criação de Tabelas Externamente
 
-There are different reasons for creating `InnoDB` tables externally; that is, creating tables outside of the data directory. Those reasons might include space management, I/O optimization, or placing tables on a storage device with particular performance or capacity characteristics, for example.
+Existem diferentes razões para criar tabelas `InnoDB` externamente; ou seja, criar tabelas fora do `data directory`. Essas razões podem incluir gerenciamento de espaço, otimização de I/O, ou a colocação de tabelas em um dispositivo de armazenamento com características específicas de desempenho ou capacidade, por exemplo.
 
-`InnoDB` supports the following methods for creating tables externally:
+O `InnoDB` suporta os seguintes métodos para criar tabelas externamente:
 
-* Using the DATA DIRECTORY Clause
-* Using CREATE TABLE ... TABLESPACE Syntax
-* Creating a Table in an External General Tablespace
+* Uso da Cláusula DATA DIRECTORY
+* Uso da Sintaxe CREATE TABLE ... TABLESPACE
+* Criação de uma Tabela em um General Tablespace Externo
 
-##### Using the DATA DIRECTORY Clause
+##### Uso da Cláusula DATA DIRECTORY
 
-You can create an `InnoDB` table in an external directory by specifying a `DATA DIRECTORY` clause in the `CREATE TABLE` statement.
+Você pode criar uma tabela `InnoDB` em um diretório externo especificando uma cláusula `DATA DIRECTORY` na instrução `CREATE TABLE`.
 
 ```sql
 CREATE TABLE t1 (c1 INT PRIMARY KEY) DATA DIRECTORY = '/external/directory';
 ```
 
-The `DATA DIRECTORY` clause is supported for tables created in file-per-table tablespaces. Tables are implicitly created in file-per-table tablespaces when the `innodb_file_per_table` variable is enabled, which it is by default.
+A cláusula `DATA DIRECTORY` é suportada para tabelas criadas em `file-per-table tablespaces`. As tabelas são criadas implicitamente em `file-per-table tablespaces` quando a variável `innodb_file_per_table` está habilitada, o que ocorre por padrão.
 
 ```sql
 mysql> SELECT @@innodb_file_per_table;
@@ -27,13 +27,13 @@ mysql> SELECT @@innodb_file_per_table;
 +-------------------------+
 ```
 
-For more information about file-per-table tablespaces, see Section 14.6.3.2, “File-Per-Table Tablespaces”.
+Para mais informações sobre `file-per-table tablespaces`, consulte a Seção 14.6.3.2, “File-Per-Table Tablespaces”.
 
-Be sure of the directory location you choose, as the `DATA DIRECTORY` clause cannot be used with `ALTER TABLE` to change the location later.
+Certifique-se da localização do diretório escolhido, pois a cláusula `DATA DIRECTORY` não pode ser usada com `ALTER TABLE` para alterar o local posteriormente.
 
-When you specify a `DATA DIRECTORY` clause in a `CREATE TABLE` statement, the table's data file (`table_name.ibd`) is created in a schema directory under the specified directory, and an `.isl` file (`table_name.isl`) that contains the data file path is created in the schema directory under the MySQL data directory. An `.isl` file is similar in function to a symbolic link. (Actual symbolic links are not supported for use with `InnoDB` data files.)
+Ao especificar uma cláusula `DATA DIRECTORY` em uma instrução `CREATE TABLE`, o arquivo de dados da tabela (`table_name.ibd`) é criado em um diretório de schema sob o diretório especificado, e um arquivo `.isl` (`table_name.isl`) que contém o caminho do arquivo de dados é criado no diretório de schema sob o `data directory` do MySQL. Um arquivo `.isl` é semelhante em função a um `symbolic link`. (`Symbolic links` reais não são suportados para uso com arquivos de dados `InnoDB`.)
 
-The following example demonstrates creating a table in an external directory using the `DATA DIRECTORY` clause. It is assumed that the `innodb_file_per_table` variable is enabled.
+O exemplo a seguir demonstra a criação de uma tabela em um diretório externo usando a cláusula `DATA DIRECTORY`. Presume-se que a variável `innodb_file_per_table` esteja habilitada.
 
 ```sql
 mysql> USE test;
@@ -56,35 +56,35 @@ $> ls
 db.opt  t1.frm  t1.isl
 ```
 
-###### Usage Notes:
+###### Notas de Uso:
 
-* MySQL initially holds the tablespace data file open, preventing you from dismounting the device, but might eventually close the file if the server is busy. Be careful not to accidentally dismount an external device while MySQL is running, or start MySQL while the device is disconnected. Attempting to access a table when the associated data file is missing causes a serious error that requires a server restart.
+* O MySQL inicialmente mantém o arquivo de dados do `tablespace` aberto, impedindo a desmontagem (dismount) do dispositivo, mas pode eventualmente fechar o arquivo se o servidor estiver ocupado. Tenha cuidado para não desmontar acidentalmente um dispositivo externo enquanto o MySQL estiver em execução, ou iniciar o MySQL enquanto o dispositivo estiver desconectado. A tentativa de acessar uma tabela quando o arquivo de dados associado está faltando causa um erro grave que requer o reinício do servidor (server restart).
 
-  A server restart might fail if the data file is not found at the expected path. In this case, manually remove the `.isl` file from the schema directory. After restarting, drop the table to remove the `.frm` file and the information about the table from the data dictionary.
+  Um `server restart` pode falhar se o arquivo de dados não for encontrado no caminho esperado. Neste caso, remova manualmente o arquivo `.isl` do diretório do schema. Após a reinicialização, execute `drop the table` para remover o arquivo `.frm` e as informações sobre a tabela do `data dictionary`.
 
-* Before placing a table on an NFS-mounted volume, review potential issues outlined in Using NFS with MySQL.
+* Antes de colocar uma tabela em um volume montado via NFS, revise os problemas potenciais descritos em Using NFS with MySQL.
 
-* If using an LVM snapshot, file copy, or other file-based mechanism to back up the table's data file, always use the `FLUSH TABLES ... FOR EXPORT` statement first to ensure that all changes buffered in memory are flushed to disk before the backup occurs.
+* Se estiver usando um `LVM snapshot`, cópia de arquivo, ou outro mecanismo baseado em arquivo para fazer `backup` do arquivo de dados da tabela, sempre use a instrução `FLUSH TABLES ... FOR EXPORT` primeiro para garantir que todas as alterações armazenadas em `memory` sejam descarregadas para o `disk` antes que o `backup` ocorra.
 
-* Using the `DATA DIRECTORY` clause to create a table in an external directory is an alternative to using symbolic links, which `InnoDB` does not support.
+* Usar a cláusula `DATA DIRECTORY` para criar uma tabela em um diretório externo é uma alternativa ao uso de `symbolic links`, os quais o `InnoDB` não suporta.
 
-* The `DATA DIRECTORY` clause is not supported in a replication environment where the source and replica reside on the same host. The `DATA DIRECTORY` clause requires a full directory path. Replicating the path in this case would cause the source and replica to create the table in same location.
+* A cláusula `DATA DIRECTORY` não é suportada em um ambiente de `replication` onde o `source` e a `replica` residem no mesmo `host`. A cláusula `DATA DIRECTORY` requer um caminho de diretório completo. A `replication` do caminho, neste caso, faria com que o `source` e a `replica` criassem a tabela no mesmo local.
 
-##### Using CREATE TABLE ... TABLESPACE Syntax
+##### Uso da Sintaxe CREATE TABLE ... TABLESPACE
 
-`CREATE TABLE ... TABLESPACE` syntax can be used in combination with the `DATA DIRECTORY` clause to create a table in an external directory. To do so, specify `innodb_file_per_table` as the tablespace name.
+A sintaxe `CREATE TABLE ... TABLESPACE` pode ser usada em combinação com a cláusula `DATA DIRECTORY` para criar uma tabela em um diretório externo. Para fazer isso, especifique `innodb_file_per_table` como o nome do `tablespace`.
 
 ```sql
 mysql> CREATE TABLE t2 (c1 INT PRIMARY KEY) TABLESPACE = innodb_file_per_table
        DATA DIRECTORY = '/external/directory';
 ```
 
-This method is supported only for tables created in file-per-table tablespaces, but does not require the `innodb_file_per_table` variable to be enabled. In all other respects, this method is equivalent to the `CREATE TABLE ... DATA DIRECTORY` method described above. The same usage notes apply.
+Este método é suportado apenas para tabelas criadas em `file-per-table tablespaces`, mas não requer que a variável `innodb_file_per_table` esteja habilitada. Em todos os outros aspectos, este método é equivalente ao método `CREATE TABLE ... DATA DIRECTORY` descrito acima. As mesmas notas de uso se aplicam.
 
-##### Creating a Table in an External General Tablespace
+##### Criação de uma Tabela em um General Tablespace Externo
 
-You can create a table in a general tablespace that resides in an external directory.
+Você pode criar uma tabela em um `general tablespace` que reside em um diretório externo.
 
-* For information about creating a general tablespace in an external directory, see Creating a General Tablespace.
+* Para informações sobre a criação de um `general tablespace` em um diretório externo, consulte Creating a General Tablespace.
 
-* For information about creating a table in a general tablespace, see Adding Tables to a General Tablespace.
+* Para informações sobre a criação de uma tabela em um `general tablespace`, consulte Adding Tables to a General Tablespace.

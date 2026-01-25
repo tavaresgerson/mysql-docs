@@ -1,61 +1,61 @@
-#### 26.4.3.14 The io_global_by_wait_by_latency and x$io_global_by_wait_by_latency Views
+#### 26.4.3.14 As Views io_global_by_wait_by_latency e x$io_global_by_wait_by_latency
 
-These views summarize global I/O consumers to display amount of I/O and time waiting for I/O, grouped by event. By default, rows are sorted by descending total latency.
+Essas Views resumem os consumidores globais de I/O para exibir a quantidade de I/O e o tempo de espera por I/O, agrupados por evento. Por padrão, as linhas são ordenadas pela Latency total descendente.
 
-The `io_global_by_wait_by_latency` and `x$io_global_by_wait_by_latency` views have these columns:
+As Views `io_global_by_wait_by_latency` e `x$io_global_by_wait_by_latency` possuem as seguintes colunas:
 
 * `event_name`
 
-  The I/O event name, with the `wait/io/file/` prefix stripped.
+  O nome do evento de I/O, com o prefixo `wait/io/file/` removido.
 
 * `total`
 
-  The total number of occurrences of the I/O event.
+  O número total de ocorrências do evento de I/O.
 
 * `total_latency`
 
-  The total wait time of timed occurrences of the I/O event.
+  O tempo total de espera de ocorrências cronometradas do evento de I/O.
 
 * `avg_latency`
 
-  The average wait time per timed occurrence of the I/O event.
+  O tempo médio de espera por ocorrência cronometrada do evento de I/O.
 
 * `max_latency`
 
-  The maximum single wait time of timed occurrences of the I/O event.
+  O tempo máximo de espera única de ocorrências cronometradas do evento de I/O.
 
 * `read_latency`
 
-  The total wait time of timed read occurrences of the I/O event.
+  O tempo total de espera de ocorrências de leitura (read) cronometradas do evento de I/O.
 
 * `write_latency`
 
-  The total wait time of timed write occurrences of the I/O event.
+  O tempo total de espera de ocorrências de escrita (write) cronometradas do evento de I/O.
 
 * `misc_latency`
 
-  The total wait time of timed other occurrences of the I/O event.
+  O tempo total de espera de outras ocorrências cronometradas do evento de I/O.
 
 * `count_read`
 
-  The number of read requests for the I/O event.
+  O número de requisições de leitura (read) para o evento de I/O.
 
 * `total_read`
 
-  The number of bytes read for the I/O event.
+  O número de bytes lidos (read) para o evento de I/O.
 
 * `avg_read`
 
-  The average number of bytes per read for the I/O event.
+  O número médio de bytes por leitura (read) para o evento de I/O.
 
 * `count_write`
 
-  The number of write requests for the I/O event.
+  O número de requisições de escrita (write) para o evento de I/O.
 
 * `total_written`
 
-  The number of bytes written for the I/O event.
+  O número de bytes escritos (written) para o evento de I/O.
 
 * `avg_written`
 
-  The average number of bytes per write for the I/O event.
+  O número médio de bytes por escrita (write) para o evento de I/O.

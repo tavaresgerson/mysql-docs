@@ -1,30 +1,30 @@
-## 22.3 Partition Management
+## 22.3 Gerenciamento de Partições
 
-[22.3.1 Management of RANGE and LIST Partitions](partitioning-management-range-list.html)
+[22.3.1 Gerenciamento de Partições RANGE e LIST](partitioning-management-range-list.html)
 
-[22.3.2 Management of HASH and KEY Partitions](partitioning-management-hash-key.html)
+[22.3.2 Gerenciamento de Partições HASH e KEY](partitioning-management-hash-key.html)
 
-[22.3.3 Exchanging Partitions and Subpartitions with Tables](partitioning-management-exchange.html)
+[22.3.3 Troca de Partições e Subpartições com Tabelas](partitioning-management-exchange.html)
 
-[22.3.4 Maintenance of Partitions](partitioning-maintenance.html)
+[22.3.4 Manutenção de Partições](partitioning-maintenance.html)
 
-[22.3.5 Obtaining Information About Partitions](partitioning-info.html)
+[22.3.5 Obtendo Informações Sobre Partições](partitioning-info.html)
 
-MySQL 5.7 provides a number of ways to modify partitioned tables. It is possible to add, drop, redefine, merge, or split existing partitions. All of these actions can be carried out using the partitioning extensions to the [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") statement. There are also ways to obtain information about partitioned tables and partitions. We discuss these topics in the sections that follow.
+O MySQL 5.7 oferece diversas maneiras de modificar tabelas particionadas. É possível adicionar, remover, redefinir, mesclar ou dividir partições existentes. Todas essas ações podem ser realizadas usando as extensões de particionamento da instrução [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations"). Existem também formas de obter informações sobre tabelas e partições particionadas. Discutiremos esses tópicos nas seções a seguir.
 
-* For information about partition management in tables partitioned by `RANGE` or `LIST`, see [Section 22.3.1, “Management of RANGE and LIST Partitions”](partitioning-management-range-list.html "22.3.1 Management of RANGE and LIST Partitions").
+* Para obter informações sobre o gerenciamento de partições em tabelas particionadas por `RANGE` ou `LIST`, consulte [Seção 22.3.1, “Gerenciamento de Partições RANGE e LIST”](partitioning-management-range-list.html "22.3.1 Management of RANGE and LIST Partitions").
 
-* For a discussion of managing `HASH` and `KEY` partitions, see [Section 22.3.2, “Management of HASH and KEY Partitions”](partitioning-management-hash-key.html "22.3.2 Management of HASH and KEY Partitions").
+* Para uma discussão sobre o gerenciamento de partições `HASH` e `KEY`, consulte [Seção 22.3.2, “Gerenciamento de Partições HASH e KEY”](partitioning-management-hash-key.html "22.3.2 Management of HASH and KEY Partitions").
 
-* See [Section 22.3.5, “Obtaining Information About Partitions”](partitioning-info.html "22.3.5 Obtaining Information About Partitions"), for a discussion of mechanisms provided in MySQL 5.7 for obtaining information about partitioned tables and partitions.
+* Consulte [Seção 22.3.5, “Obtendo Informações Sobre Partições”](partitioning-info.html "22.3.5 Obtaining Information About Partitions"), para uma discussão sobre os mecanismos fornecidos no MySQL 5.7 para obter informações sobre tabelas e partições particionadas.
 
-* For a discussion of performing maintenance operations on partitions, see [Section 22.3.4, “Maintenance of Partitions”](partitioning-maintenance.html "22.3.4 Maintenance of Partitions").
+* Para uma discussão sobre a realização de operações de manutenção em partições, consulte [Seção 22.3.4, “Manutenção de Partições”](partitioning-maintenance.html "22.3.4 Maintenance of Partitions").
 
-Note
+Nota
 
-In MySQL 5.7, all partitions of a partitioned table must have the same number of subpartitions, and it is not possible to change the subpartitioning once the table has been created.
+No MySQL 5.7, todas as partições de uma tabela particionada devem ter o mesmo número de subpartições, e não é possível alterar o subparticionamento uma vez que a tabela tenha sido criada.
 
-To change a table's partitioning scheme, it is necessary only to use the [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") statement with a *`partition_options`* clause. This clause has the same syntax as that as used with [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") for creating a partitioned table, and always begins with the keywords `PARTITION BY`. Suppose that you have a table partitioned by range using the following [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement:
+Para alterar o esquema de particionamento de uma tabela, é necessário apenas usar a instrução [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") com uma cláusula *`partition_options`*. Essa cláusula tem a mesma sintaxe usada com [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") para criar uma tabela particionada, e sempre começa com as palavras-chave `PARTITION BY`. Suponha que você tenha uma tabela particionada por range usando a seguinte instrução [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement"):
 
 ```sql
 CREATE TABLE trb3 (id INT, name VARCHAR(50), purchased DATE)
@@ -36,18 +36,18 @@ CREATE TABLE trb3 (id INT, name VARCHAR(50), purchased DATE)
     );
 ```
 
-To repartition this table so that it is partitioned by key into two partitions using the `id` column value as the basis for the key, you can use this statement:
+Para reparticionar esta tabela de forma que ela seja particionada por key em duas partições usando o valor da coluna `id` como base para a key, você pode usar esta instrução:
 
 ```sql
 ALTER TABLE trb3 PARTITION BY KEY(id) PARTITIONS 2;
 ```
 
-This has the same effect on the structure of the table as dropping the table and re-creating it using `CREATE TABLE trb3 PARTITION BY KEY(id) PARTITIONS 2;`.
+Isso tem o mesmo efeito na estrutura da tabela que remover a tabela e recriá-la usando `CREATE TABLE trb3 PARTITION BY KEY(id) PARTITIONS 2;`.
 
-`ALTER TABLE ... ENGINE = ...` changes only the storage engine used by the table, and leaves the table's partitioning scheme intact. Use `ALTER TABLE ... REMOVE PARTITIONING` to remove a table's partitioning. See [Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement").
+`ALTER TABLE ... ENGINE = ...` altera apenas o storage engine usado pela tabela e mantém intacto o esquema de particionamento da tabela. Use `ALTER TABLE ... REMOVE PARTITIONING` para remover o particionamento de uma tabela. Consulte [Seção 13.1.8, “Instrução ALTER TABLE”](alter-table.html "13.1.8 ALTER TABLE Statement").
 
-Important
+Importante
 
-Only a single `PARTITION BY`, `ADD PARTITION`, `DROP PARTITION`, `REORGANIZE PARTITION`, or `COALESCE PARTITION` clause can be used in a given [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") statement. If you (for example) wish to drop a partition and reorganize a table's remaining partitions, you must do so in two separate [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") statements (one using `DROP PARTITION` and then a second one using `REORGANIZE PARTITION`).
+Apenas uma única cláusula `PARTITION BY`, `ADD PARTITION`, `DROP PARTITION`, `REORGANIZE PARTITION` ou `COALESCE PARTITION` pode ser usada em uma determinada instrução [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations"). Se você (por exemplo) deseja remover uma partition e reorganizar as partições restantes de uma tabela, você deve fazê-lo em duas instruções [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") separadas (uma usando `DROP PARTITION` e depois uma segunda usando `REORGANIZE PARTITION`).
 
-In MySQL 5.7, it is possible to delete all rows from one or more selected partitions using [`ALTER TABLE ... TRUNCATE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement").
+No MySQL 5.7, é possível excluir todas as linhas de uma ou mais partições selecionadas usando [`ALTER TABLE ... TRUNCATE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement").

@@ -1,13 +1,13 @@
-### 21.3.2 Installing NDB Cluster on Windows
+### 21.3.2 Instalando o NDB Cluster no Windows
 
-[21.3.2.1 Installing NDB Cluster on Windows from a Binary Release](mysql-cluster-install-windows-binary.html)
+[21.3.2.1 Instalando o NDB Cluster no Windows a partir de um Binário](mysql-cluster-install-windows-binary.html)
 
-[21.3.2.2 Compiling and Installing NDB Cluster from Source on Windows](mysql-cluster-install-windows-source.html)
+[21.3.2.2 Compilando e Instalando o NDB Cluster a partir do Código-Fonte no Windows](mysql-cluster-install-windows-source.html)
 
-[21.3.2.3 Initial Startup of NDB Cluster on Windows](mysql-cluster-install-windows-initial-start.html)
+[21.3.2.3 Inicialização Inicial do NDB Cluster no Windows](mysql-cluster-install-windows-initial-start.html)
 
-[21.3.2.4 Installing NDB Cluster Processes as Windows Services](mysql-cluster-install-windows-service.html)
+[21.3.2.4 Instalando Processos do NDB Cluster como Windows Services](mysql-cluster-install-windows-service.html)
 
-This section describes installation procedures for NDB Cluster on Windows hosts. NDB Cluster 7.5 and 7.6 binaries for Windows can be obtained from <https://dev.mysql.com/downloads/cluster/>. For information about installing NDB Cluster on Windows from a binary release provided by Oracle, see [Section 21.3.2.1, “Installing NDB Cluster on Windows from a Binary Release”](mysql-cluster-install-windows-binary.html "21.3.2.1 Installing NDB Cluster on Windows from a Binary Release").
+Esta seção descreve os procedimentos de instalação para o NDB Cluster em hosts Windows. Os binários do NDB Cluster 7.5 e 7.6 para Windows podem ser obtidos em <https://dev.mysql.com/downloads/cluster/>. Para obter informações sobre a instalação do NDB Cluster no Windows a partir de um binário fornecido pela Oracle, consulte [Section 21.3.2.1, “Instalando o NDB Cluster no Windows a partir de um Binário”](mysql-cluster-install-windows-binary.html "21.3.2.1 Instalando o NDB Cluster no Windows a partir de um Binário").
 
-It is also possible to compile and install NDB Cluster from source on Windows using Microsoft Visual Studio. For more information, see [Section 21.3.2.2, “Compiling and Installing NDB Cluster from Source on Windows”](mysql-cluster-install-windows-source.html "21.3.2.2 Compiling and Installing NDB Cluster from Source on Windows").
+Também é possível compilar e instalar o NDB Cluster a partir do código-fonte no Windows usando o Microsoft Visual Studio. Para mais informações, consulte [Section 21.3.2.2, “Compilando e Instalando o NDB Cluster a partir do Código-Fonte no Windows”](mysql-cluster-install-windows-source.html "21.3.2.2 Compilando e Instalando o NDB Cluster a partir do Código-Fonte no Windows").

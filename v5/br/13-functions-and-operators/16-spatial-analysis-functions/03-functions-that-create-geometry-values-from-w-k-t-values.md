@@ -1,64 +1,64 @@
-### 12.16.3 Functions That Create Geometry Values from WKT Values
+### 12.16.3 Funções Que Criam Valores Geometry a Partir de Valores WKT
 
-These functions take as arguments a Well-Known Text (WKT) representation and, optionally, a spatial reference system identifier (SRID). They return the corresponding geometry.
+Estas funções aceitam como argumentos uma representação Well-Known Text (WKT) e, opcionalmente, um identificador de sistema de referência espacial (SRID). Elas retornam a Geometry correspondente.
 
-`ST_GeomFromText()` accepts a WKT value of any geometry type as its first argument. Other functions provide type-specific construction functions for construction of geometry values of each geometry type.
+`ST_GeomFromText()` aceita um valor WKT de qualquer tipo de Geometry como seu primeiro argumento. Outras funções fornecem funções de construção específicas de tipo para a construção de valores Geometry de cada tipo de Geometry.
 
-For a description of WKT format, see Well-Known Text (WKT) Format Format").
+Para uma descrição do formato WKT, consulte Formato Well-Known Text (WKT)".
 
 * `GeomCollFromText(wkt [, srid])`, `GeometryCollectionFromText(wkt [, srid])`
 
-  `ST_GeomCollFromText()`, `ST_GeometryCollectionFromText()`, `ST_GeomCollFromTxt()`, `GeomCollFromText()`, and `GeometryCollectionFromText()` are synonyms. For more information, see the description of `ST_GeomCollFromText()`.
+  `ST_GeomCollFromText()`, `ST_GeometryCollectionFromText()`, `ST_GeomCollFromTxt()`, `GeomCollFromText()` e `GeometryCollectionFromText()` são sinônimos. Para mais informações, consulte a descrição de `ST_GeomCollFromText()`.
 
-  `GeomCollFromText()` and `GeometryCollectionFromText()` are deprecated; expect them to be removed in a future MySQL release. Use `ST_GeomCollFromText()` and `ST_GeometryCollectionFromText()` instead.
+  `GeomCollFromText()` e `GeometryCollectionFromText()` estão obsoletas (deprecated); espere que elas sejam removidas em um futuro release do MySQL. Use `ST_GeomCollFromText()` e `ST_GeometryCollectionFromText()` em vez disso.
 
 * `GeomFromText(wkt [, srid])`, `GeometryFromText(wkt [, srid])`
 
-  `ST_GeomFromText()`, `ST_GeometryFromText()`, `GeomFromText()`, and `GeometryFromText()` are synonyms. For more information, see the description of `ST_GeomFromText()`.
+  `ST_GeomFromText()`, `ST_GeometryFromText()`, `GeomFromText()` e `GeometryFromText()` são sinônimos. Para mais informações, consulte a descrição de `ST_GeomFromText()`.
 
-  `GeomFromText()` and `GeometryFromText()` are deprecated; expect them to be removed in a future MySQL release. Use `ST_GeomFromText()` and `ST_GeometryFromText()` instead.
+  `GeomFromText()` e `GeometryFromText()` estão obsoletas (deprecated); espere que elas sejam removidas em um futuro release do MySQL. Use `ST_GeomFromText()` e `ST_GeometryFromText()` em vez disso.
 
 * `LineFromText(wkt [, srid])`, `LineStringFromText(wkt [, srid])`
 
-  `ST_LineFromText()`, `ST_LineStringFromText()`, `LineFromText()`, and `LineStringFromText()` are synonyms. For more information, see the description of `ST_LineFromText()`.
+  `ST_LineFromText()`, `ST_LineStringFromText()`, `LineFromText()` e `LineStringFromText()` são sinônimos. Para mais informações, consulte a descrição de `ST_LineFromText()`.
 
-  `LineFromText()` and `LineStringFromText()` are deprecated; expect them to be removed in a future MySQL release. Use `ST_LineFromText()` and `ST_LineStringFromText()` instead.
+  `LineFromText()` e `LineStringFromText()` estão obsoletas (deprecated); espere que elas sejam removidas em um futuro release do MySQL. Use `ST_LineFromText()` e `ST_LineStringFromText()` em vez disso.
 
 * `MLineFromText(wkt [, srid])`, `MultiLineStringFromText(wkt [, srid])`
 
-  `ST_MLineFromText()`, `ST_MultiLineStringFromText()`, `MLineFromText()`, and `MultiLineStringFromText()` are synonyms. For more information, see the description of `ST_MLineFromText()`.
+  `ST_MLineFromText()`, `ST_MultiLineStringFromText()`, `MLineFromText()` e `MultiLineStringFromText()` são sinônimos. Para mais informações, consulte a descrição de `ST_MLineFromText()`.
 
-  `MLineFromText()` and `MultiLineStringFromText()` are deprecated; expect them to be removed in a future MySQL release. Use `ST_MLineFromText()` and `ST_MultiLineStringFromText()` instead.
+  `MLineFromText()` e `MultiLineStringFromText()` estão obsoletas (deprecated); espere que elas sejam removidas em um futuro release do MySQL. Use `ST_MLineFromText()` e `ST_MultiLineStringFromText()` em vez disso.
 
 * `MPointFromText(wkt [, srid])`, `MultiPointFromText(wkt [, srid])`
 
-  `ST_MPointFromText()`, `ST_MultiPointFromText()`, `MPointFromText()`, and `MultiPointFromText()` are synonyms. For more information, see the description of `ST_MPointFromText()`.
+  `ST_MPointFromText()`, `ST_MultiPointFromText()`, `MPointFromText()` e `MultiPointFromText()` são sinônimos. Para mais informações, consulte a descrição de `ST_MPointFromText()`.
 
-  `MPointFromText()` and `MultiPointFromText()` are deprecated; expect them to be removed in a future MySQL release. Use `ST_MPointFromText()` and `ST_MultiPointFromText()` instead.
+  `MPointFromText()` e `MultiPointFromText()` estão obsoletas (deprecated); espere que elas sejam removidas em um futuro release do MySQL. Use `ST_MPointFromText()` e `ST_MultiPointFromText()` em vez disso.
 
 * `MPolyFromText(wkt [, srid])`, `MultiPolygonFromText(wkt [, srid])`
 
-  `ST_MPolyFromText()`, `ST_MultiPolygonFromText()`, `MPolyFromText()`, and `MultiPolygonFromText()` are synonyms. For more information, see the description of `ST_MPolyFromText()`.
+  `ST_MPolyFromText()`, `ST_MultiPolygonFromText()`, `MPolyFromText()` e `MultiPolygonFromText()` são sinônimos. Para mais informações, consulte a descrição de `ST_MPolyFromText()`.
 
-  `MPolyFromText()` and `MultiPolygonFromText()` are deprecated; expect them to be removed in a future MySQL release. Use `ST_MPolyFromText()` and `ST_MultiPolygonFromText()` instead.
+  `MPolyFromText()` e `MultiPolygonFromText()` estão obsoletas (deprecated); espere que elas sejam removidas em um futuro release do MySQL. Use `ST_MPolyFromText()` e `ST_MultiPolygonFromText()` em vez disso.
 
 * `PointFromText(wkt [, srid])`
 
-  `ST_PointFromText()` and `PointFromText()` are synonyms. For more information, see the description of `ST_PointFromText()`.
+  `ST_PointFromText()` e `PointFromText()` são sinônimos. Para mais informações, consulte a descrição de `ST_PointFromText()`.
 
-  `PointFromText()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_PointFromText()` instead.
+  `PointFromText()` está obsoleta (deprecated); espere que ela seja removida em um futuro release do MySQL. Use `ST_PointFromText()` em vez disso.
 
 * `PolyFromText(wkt [, srid])`, `PolygonFromText(wkt [, srid])`
 
-  `ST_PolyFromText()`, `ST_PolygonFromText()`, `PolyFromText()`, and `PolygonFromText()` are synonyms. For more information, see the description of `ST_PolyFromText()`.
+  `ST_PolyFromText()`, `ST_PolygonFromText()`, `PolyFromText()` e `PolygonFromText()` são sinônimos. Para mais informações, consulte a descrição de `ST_PolyFromText()`.
 
-  `PolyFromText()` and `PolygonFromText()` are deprecated; expect them to be removed in a future MySQL release. Use `ST_PolyFromText()` and `ST_PolygonFromText()` instead.
+  `PolyFromText()` e `PolygonFromText()` estão obsoletas (deprecated); espere que elas sejam removidas em um futuro release do MySQL. Use `ST_PolyFromText()` e `ST_PolygonFromText()` em vez disso.
 
 * `ST_GeomCollFromText(wkt [, srid])`, `ST_GeometryCollectionFromText(wkt [, srid])`, `ST_GeomCollFromTxt(wkt [, srid])`
 
-  Constructs a `GeometryCollection` value using its WKT representation and SRID.
+  Constrói um valor `GeometryCollection` usando sua representação WKT e SRID.
 
-  If the geometry argument is `NULL` or not a syntactically well-formed geometry, or if the SRID argument is `NULL`, the return value is `NULL`.
+  Se o argumento Geometry for `NULL` ou não for uma Geometry sintaticamente bem formada, ou se o argumento SRID for `NULL`, o valor de retorno é `NULL`.
 
   ```sql
   mysql> SET @g = "MULTILINESTRING((10 10, 11 11), (9 9, 10 10))";
@@ -70,67 +70,67 @@ For a description of WKT format, see Well-Known Text (WKT) Format Format").
   +--------------------------------------------+
   ```
 
-  `ST_GeomCollFromText()`, `ST_GeometryCollectionFromText()`, `ST_GeomCollFromTxt()`, `GeomCollFromText()`, and `GeometryCollectionFromText()` are synonyms.
+  `ST_GeomCollFromText()`, `ST_GeometryCollectionFromText()`, `ST_GeomCollFromTxt()`, `GeomCollFromText()` e `GeometryCollectionFromText()` são sinônimos.
 
 * `ST_GeomFromText(wkt [, srid])`, `ST_GeometryFromText(wkt [, srid])`
 
-  Constructs a geometry value of any type using its WKT representation and SRID.
+  Constrói um valor Geometry de qualquer tipo usando sua representação WKT e SRID.
 
-  If the geometry argument is `NULL` or not a syntactically well-formed geometry, or if the SRID argument is `NULL`, the return value is `NULL`.
+  Se o argumento Geometry for `NULL` ou não for uma Geometry sintaticamente bem formada, ou se o argumento SRID for `NULL`, o valor de retorno é `NULL`.
 
-  `ST_GeomFromText()`, `ST_GeometryFromText()`, `GeomFromText()`, and `GeometryFromText()` are synonyms.
+  `ST_GeomFromText()`, `ST_GeometryFromText()`, `GeomFromText()` e `GeometryFromText()` são sinônimos.
 
 * `ST_LineFromText(wkt [, srid])`, `ST_LineStringFromText(wkt [, srid])`
 
-  Constructs a `LineString` value using its WKT representation and SRID.
+  Constrói um valor `LineString` usando sua representação WKT e SRID.
 
-  If the geometry argument is `NULL` or not a syntactically well-formed geometry, or if the SRID argument is `NULL`, the return value is `NULL`.
+  Se o argumento Geometry for `NULL` ou não for uma Geometry sintaticamente bem formada, ou se o argumento SRID for `NULL`, o valor de retorno é `NULL`.
 
-  `ST_LineFromText()`, `ST_LineStringFromText()`, `LineFromText()`, and `LineStringFromText()` are synonyms.
+  `ST_LineFromText()`, `ST_LineStringFromText()`, `LineFromText()` e `LineStringFromText()` são sinônimos.
 
 * `ST_MLineFromText(wkt [, srid])`, `ST_MultiLineStringFromText(wkt [, srid])`
 
-  Constructs a `MultiLineString` value using its WKT representation and SRID.
+  Constrói um valor `MultiLineString` usando sua representação WKT e SRID.
 
-  If the geometry argument is `NULL` or not a syntactically well-formed geometry, or if the SRID argument is `NULL`, the return value is `NULL`.
+  Se o argumento Geometry for `NULL` ou não for uma Geometry sintaticamente bem formada, ou se o argumento SRID for `NULL`, o valor de retorno é `NULL`.
 
-  `ST_MLineFromText()`, `ST_MultiLineStringFromText()`, `MLineFromText()`, and `MultiLineStringFromText()` are synonyms.
+  `ST_MLineFromText()`, `ST_MultiLineStringFromText()`, `MLineFromText()` e `MultiLineStringFromText()` são sinônimos.
 
 * `ST_MPointFromText(wkt [, srid])`, `ST_MultiPointFromText(wkt [, srid])`
 
-  Constructs a `MultiPoint` value using its WKT representation and SRID.
+  Constrói um valor `MultiPoint` usando sua representação WKT e SRID.
 
-  If the geometry argument is `NULL` or not a syntactically well-formed geometry, or if the SRID argument is `NULL`, the return value is `NULL`.
+  Se o argumento Geometry for `NULL` ou não for uma Geometry sintaticamente bem formada, ou se o argumento SRID for `NULL`, o valor de retorno é `NULL`.
 
-  Functions such as `ST_MPointFromText()` and `ST_GeomFromText()` that accept WKT-format representations of `MultiPoint` values permit individual points within values to be surrounded by parentheses. For example, both of the following function calls are valid:
+  Funções como `ST_MPointFromText()` e `ST_GeomFromText()` que aceitam representações em formato WKT de valores `MultiPoint` permitem que pontos individuais dentro dos valores sejam cercados por parênteses. Por exemplo, ambas as seguintes chamadas de função são válidas:
 
   ```sql
   ST_MPointFromText('MULTIPOINT (1 1, 2 2, 3 3)')
   ST_MPointFromText('MULTIPOINT ((1 1), (2 2), (3 3))')
   ```
 
-  `ST_MPointFromText()`, `ST_MultiPointFromText()`, `MPointFromText()`, and `MultiPointFromText()` are synonyms.
+  `ST_MPointFromText()`, `ST_MultiPointFromText()`, `MPointFromText()` e `MultiPointFromText()` são sinônimos.
 
 * `ST_MPolyFromText(wkt [, srid])`, `ST_MultiPolygonFromText(wkt [, srid])`
 
-  Constructs a `MultiPolygon` value using its WKT representation and SRID.
+  Constrói um valor `MultiPolygon` usando sua representação WKT e SRID.
 
-  If the geometry argument is `NULL` or not a syntactically well-formed geometry, or if the SRID argument is `NULL`, the return value is `NULL`.
+  Se o argumento Geometry for `NULL` ou não for uma Geometry sintaticamente bem formada, ou se o argumento SRID for `NULL`, o valor de retorno é `NULL`.
 
-  `ST_MPolyFromText()`, `ST_MultiPolygonFromText()`, `MPolyFromText()`, and `MultiPolygonFromText()` are synonyms.
+  `ST_MPolyFromText()`, `ST_MultiPolygonFromText()`, `MPolyFromText()` e `MultiPolygonFromText()` são sinônimos.
 
 * `ST_PointFromText(wkt [, srid])`
 
-  Constructs a `Point` value using its WKT representation and SRID.
+  Constrói um valor `Point` usando sua representação WKT e SRID.
 
-  If the geometry argument is `NULL` or not a syntactically well-formed geometry, or if the SRID argument is `NULL`, the return value is `NULL`.
+  Se o argumento Geometry for `NULL` ou não for uma Geometry sintaticamente bem formada, ou se o argumento SRID for `NULL`, o valor de retorno é `NULL`.
 
-  `ST_PointFromText()` and `PointFromText()` are synonyms.
+  `ST_PointFromText()` e `PointFromText()` são sinônimos.
 
 * `ST_PolyFromText(wkt [, srid])`, `ST_PolygonFromText(wkt [, srid])`
 
-  Constructs a `Polygon` value using its WKT representation and SRID.
+  Constrói um valor `Polygon` usando sua representação WKT e SRID.
 
-  If the geometry argument is `NULL` or not a syntactically well-formed geometry, or if the SRID argument is `NULL`, the return value is `NULL`.
+  Se o argumento Geometry for `NULL` ou não for uma Geometry sintaticamente bem formada, ou se o argumento SRID for `NULL`, o valor de retorno é `NULL`.
 
-  `ST_PolyFromText()`, `ST_PolygonFromText()`, `PolyFromText()`, and `PolygonFromText()` are synonyms.
+  `ST_PolyFromText()`, `ST_PolygonFromText()`, `PolyFromText()` e `PolygonFromText()` são sinônimos.

@@ -1,16 +1,16 @@
-#### 19.2.1.3 Installing MySQL Shell on macOS
+#### 19.2.1.3 Instalando o MySQL Shell no macOS
 
-To install MySQL Shell on macOS, do the following:
+Para instalar o MySQL Shell no macOS, faça o seguinte:
 
-1. Download the package from <http://dev.mysql.com/downloads/shell/>.
+1. Baixe o pacote em <http://dev.mysql.com/downloads/shell/>.
 
-2. Double-click the downloaded DMG to mount it. Finder opens.
-3. Double-click the `.pkg` file shown in the Finder window.
+2. Dê um clique duplo no arquivo DMG baixado para montá-lo. O Finder será aberto.
+3. Dê um clique duplo no arquivo `.pkg` mostrado na janela do Finder.
 
-4. Follow the steps in the installation wizard.
+4. Siga as etapas no assistente de instalação.
 
-   **Figure 19.2 Installation of MySQL Shell on macOS**
+   **Figura 19.2 Instalação do MySQL Shell no macOS**
 
-   ![Installation of MySQL Shell on macOS](images/x-installation-mysql-shell-macos-1.png)
+   ![Instalação do MySQL Shell no macOS](images/x-installation-mysql-shell-macos-1.png)
 
-5. When the installer finishes, eject the DMG. (It can be deleted.)
+5. Quando o instalador concluir, ejetar o DMG. (Ele pode ser excluído.)

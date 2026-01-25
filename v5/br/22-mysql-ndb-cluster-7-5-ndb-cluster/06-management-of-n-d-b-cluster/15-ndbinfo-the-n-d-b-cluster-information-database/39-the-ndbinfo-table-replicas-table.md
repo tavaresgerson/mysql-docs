@@ -1,73 +1,73 @@
-#### 21.6.15.39 The ndbinfo table_replicas Table
+#### 21.6.15.39 A Tabela ndbinfo table_replicas
 
-The `table_replicas` table provides information about the copying, distribution, and checkpointing of `NDB` table fragments and fragment replicas.
+A tabela `table_replicas` fornece informações sobre a cópia, distribuição e checkpointing de fragmentos de tabela `NDB` e réplicas de fragmentos.
 
-The `table_replicas` table contains the following columns:
+A tabela `table_replicas` contém as seguintes colunas:
 
 * `node_id`
 
-  ID of the node from which data is fetched ([`DIH`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbdih.html) master)
+  ID do node do qual os dados são buscados (master do [`DIH`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbdih.html))
 
 * `table_id`
 
-  Table ID
+  ID da Tabela
 
 * `fragment_id`
 
-  Fragment ID
+  ID do Fragmento
 
 * `initial_gci`
 
-  Initial GCI for table
+  GCI Inicial para a tabela
 
 * `replica_node_id`
 
-  ID of node where fragment replica is stored
+  ID do node onde a réplica do fragmento está armazenada
 
 * `is_lcp_ongoing`
 
-  Is 1 if LCP is ongoing on this fragment, 0 otherwise
+  É 1 se um LCP estiver em andamento neste fragmento, 0 caso contrário
 
 * `num_crashed_replicas`
 
-  Number of crashed fragment replica instances
+  Número de instâncias de réplica de fragmento que falharam (crashed)
 
 * `last_max_gci_started`
 
-  Highest GCI started in most recent LCP
+  GCI mais alto iniciado no LCP mais recente
 
 * `last_max_gci_completed`
 
-  Highest GCI completed in most recent LCP
+  GCI mais alto concluído no LCP mais recente
 
 * `last_lcp_id`
 
-  ID of most recent LCP
+  ID do LCP mais recente
 
 * `prev_lcp_id`
 
-  ID of previous LCP
+  ID do LCP anterior
 
 * `prev_max_gci_started`
 
-  Highest GCI started in previous LCP
+  GCI mais alto iniciado no LCP anterior
 
 * `prev_max_gci_completed`
 
-  Highest GCI completed in previous LCP
+  GCI mais alto concluído no LCP anterior
 
 * `last_create_gci`
 
-  Last Create GCI of last crashed fragment replica instance
+  Último GCI de Criação (Create GCI) da última instância de réplica de fragmento que falhou (crashed)
 
 * `last_replica_gci`
 
-  Last GCI of last crashed fragment replica instance
+  Último GCI da última instância de réplica de fragmento que falhou (crashed)
 
 * `is_replica_alive`
 
-  1 if this fragment replica is alive, 0 otherwise
+  1 se esta réplica de fragmento estiver ativa (alive), 0 caso contrário
 
-##### Notes
+##### Notas
 
-The `table_replicas` table was added in NDB 7.5.4.
+A tabela `table_replicas` foi adicionada no NDB 7.5.4.

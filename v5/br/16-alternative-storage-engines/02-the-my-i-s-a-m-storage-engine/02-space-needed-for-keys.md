@@ -1,7 +1,7 @@
-### 15.2.2 Space Needed for Keys
+### 15.2.2 Espaço Necessário para Keys
 
-`MyISAM` tables use B-tree indexes. You can roughly calculate the size for the index file as `(key_length+4)/0.67`, summed over all keys. This is for the worst case when all keys are inserted in sorted order and the table does not have any compressed keys.
+Tabelas `MyISAM` usam indexes B-tree. Você pode calcular aproximadamente o tamanho do arquivo de Index como `(key_length+4)/0.67`, somado sobre todas as Keys. Este é o pior caso, quando todas as Keys são inseridas em ordem ordenada e a tabela não possui Keys compactadas.
 
-String indexes are space compressed. If the first index part is a string, it is also prefix compressed. Space compression makes the index file smaller than the worst-case figure if a string column has a lot of trailing space or is a `VARCHAR` column that is not always used to the full length. Prefix compression is used on keys that start with a string. Prefix compression helps if there are many strings with an identical prefix.
+Indexes de string são compactados em espaço. Se a primeira parte do Index for uma string, ela também é compactada por prefixo. A compactação de espaço torna o arquivo de Index menor do que o valor do pior caso se uma coluna de string tiver muito espaço final (trailing space) ou for uma coluna `VARCHAR` que nem sempre é usada em seu comprimento total. A compactação por prefixo é usada em Keys que começam com uma string. A compactação por prefixo ajuda se houver muitas strings com um prefixo idêntico.
 
-In `MyISAM` tables, you can also prefix compress numbers by specifying the `PACK_KEYS=1` table option when you create the table. Numbers are stored with the high byte first, so this helps when you have many integer keys that have an identical prefix.
+Em tabelas `MyISAM`, você também pode compactar prefixos de números especificando a opção de tabela `PACK_KEYS=1` ao criar a tabela. Números são armazenados com o byte alto primeiro (high byte first), o que ajuda quando você tem muitas Keys inteiras que possuem um prefixo idêntico.

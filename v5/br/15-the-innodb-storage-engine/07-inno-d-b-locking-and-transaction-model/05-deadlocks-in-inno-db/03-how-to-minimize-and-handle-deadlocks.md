@@ -1,32 +1,32 @@
-#### 14.7.5.3 How to Minimize and Handle Deadlocks
+#### 14.7.5.3 Como Minimizar e Lidar com Deadlocks
 
-This section builds on the conceptual information about deadlocks in Section 14.7.5.2, “Deadlock Detection”. It explains how to organize database operations to minimize deadlocks and the subsequent error handling required in applications.
+Esta seção se baseia nas informações conceituais sobre Deadlocks na Seção 14.7.5.2, “Detecção de Deadlock”. Ela explica como organizar operações de Database para minimizar Deadlocks e o subsequente tratamento de erro exigido em aplicações.
 
-Deadlocks are a classic problem in transactional databases, but they are not dangerous unless they are so frequent that you cannot run certain transactions at all. Normally, you must write your applications so that they are always prepared to re-issue a transaction if it gets rolled back because of a deadlock.
+Deadlocks são um problema clássico em Databases transacionais, mas não são perigosos, a menos que sejam tão frequentes que impeçam a execução de certas Transactions. Normalmente, você deve escrever suas aplicações para que estejam sempre preparadas para re-emitir uma Transaction caso ela sofra Rollback devido a um Deadlock.
 
-`InnoDB` uses automatic row-level locking. You can get deadlocks even in the case of transactions that just insert or delete a single row. That is because these operations are not really “atomic”; they automatically set locks on the (possibly several) index records of the row inserted or deleted.
+`InnoDB` usa Locking automático em nível de linha (row-level locking). Você pode ter Deadlocks mesmo no caso de Transactions que apenas inserem ou deletam uma única linha. Isso ocorre porque essas operações não são realmente "atômicas"; elas definem automaticamente Locks nos (possivelmente vários) registros de Index da linha inserida ou deletada.
 
-You can cope with deadlocks and reduce the likelihood of their occurrence with the following techniques:
+Você pode lidar com Deadlocks e reduzir a probabilidade de sua ocorrência com as seguintes técnicas:
 
-* At any time, issue `SHOW ENGINE INNODB STATUS` to determine the cause of the most recent deadlock. That can help you to tune your application to avoid deadlocks.
+* A qualquer momento, execute `SHOW ENGINE INNODB STATUS` para determinar a causa do Deadlock mais recente. Isso pode ajudar você a ajustar (tune) sua aplicação para evitar Deadlocks.
 
-* If frequent deadlock warnings cause concern, collect more extensive debugging information by enabling the `innodb_print_all_deadlocks` variable. Information about each deadlock, not just the latest one, is recorded in the MySQL error log. Disable this option when you are finished debugging.
+* Se avisos frequentes de Deadlock causarem preocupação, colete informações de debugging mais extensas habilitando a variável `innodb_print_all_deadlocks`. As informações sobre cada Deadlock, e não apenas o mais recente, são registradas no log de erro do MySQL. Desabilite esta opção quando terminar o debugging.
 
-* Always be prepared to re-issue a transaction if it fails due to deadlock. Deadlocks are not dangerous. Just try again.
+* Esteja sempre preparado para re-emitir uma Transaction se ela falhar devido a um Deadlock. Deadlocks não são perigosos. Apenas tente novamente.
 
-* Keep transactions small and short in duration to make them less prone to collision.
+* Mantenha as Transactions pequenas e de curta duração para torná-las menos propensas a colisões.
 
-* Commit transactions immediately after making a set of related changes to make them less prone to collision. In particular, do not leave an interactive **mysql** session open for a long time with an uncommitted transaction.
+* Execute Commit nas Transactions imediatamente após fazer um conjunto de alterações relacionadas para torná-las menos propensas a colisões. Em particular, não deixe uma sessão interativa do **mysql** aberta por um longo período com uma Transaction não confirmada (uncommitted).
 
-* If you use locking reads (`SELECT ... FOR UPDATE` or `SELECT ... LOCK IN SHARE MODE`), try using a lower isolation level such as `READ COMMITTED`.
+* Se você usar locking reads (`SELECT ... FOR UPDATE` ou `SELECT ... LOCK IN SHARE MODE`), tente usar um Isolation Level mais baixo, como `READ COMMITTED`.
 
-* When modifying multiple tables within a transaction, or different sets of rows in the same table, do those operations in a consistent order each time. Then transactions form well-defined queues and do not deadlock. For example, organize database operations into functions within your application, or call stored routines, rather than coding multiple similar sequences of `INSERT`, `UPDATE`, and `DELETE` statements in different places.
+* Ao modificar múltiplas Tables dentro de uma Transaction, ou diferentes conjuntos de linhas na mesma Table, execute essas operações sempre em uma ordem consistente. Dessa forma, as Transactions formam filas bem definidas e não entram em Deadlock. Por exemplo, organize operações de Database em funções dentro de sua aplicação, ou chame stored routines, em vez de codificar múltiplas sequências semelhantes de comandos `INSERT`, `UPDATE` e `DELETE` em lugares diferentes.
 
-* Add well-chosen indexes to your tables so that your queries scan fewer index records and set fewer locks. Use `EXPLAIN SELECT` to determine which indexes the MySQL server regards as the most appropriate for your queries.
+* Adicione Indexes bem escolhidos às suas Tables para que suas Queries escaneiem menos registros de Index e definam menos Locks. Use `EXPLAIN SELECT` para determinar quais Indexes o servidor MySQL considera mais apropriados para suas Queries.
 
-* Use less locking. If you can afford to permit a `SELECT` to return data from an old snapshot, do not add a `FOR UPDATE` or `LOCK IN SHARE MODE` clause to it. Using the `READ COMMITTED` isolation level is good here, because each consistent read within the same transaction reads from its own fresh snapshot.
+* Use menos Locking. Se você puder permitir que um `SELECT` retorne dados de um snapshot antigo, não adicione uma cláusula `FOR UPDATE` ou `LOCK IN SHARE MODE` a ele. Usar o Isolation Level `READ COMMITTED` é uma boa prática aqui, porque cada consistent read dentro da mesma Transaction lê a partir de seu próprio snapshot atualizado (fresh).
 
-* If nothing else helps, serialize your transactions with table-level locks. The correct way to use `LOCK TABLES` with transactional tables, such as `InnoDB` tables, is to begin a transaction with `SET autocommit = 0` (not `START TRANSACTION`) followed by `LOCK TABLES`, and to not call `UNLOCK TABLES` until you commit the transaction explicitly. For example, if you need to write to table `t1` and read from table `t2`, you can do this:
+* Se nada mais ajudar, serialize suas Transactions com Locks em nível de Table (table-level locks). A maneira correta de usar `LOCK TABLES` com Tables transacionais, como as Tables `InnoDB`, é iniciar uma Transaction com `SET autocommit = 0` (não `START TRANSACTION`) seguido por `LOCK TABLES`, e não chamar `UNLOCK TABLES` até que você faça o Commit da Transaction explicitamente. Por exemplo, se você precisar escrever na Table `t1` e ler da Table `t2`, você pode fazer isso:
 
   ```sql
   SET autocommit=0;
@@ -36,6 +36,6 @@ You can cope with deadlocks and reduce the likelihood of their occurrence with t
   UNLOCK TABLES;
   ```
 
-  Table-level locks prevent concurrent updates to the table, avoiding deadlocks at the expense of less responsiveness for a busy system.
+  Locks em nível de Table impedem atualizações concorrentes na Table, evitando Deadlocks ao custo de menor responsividade para um sistema ocupado.
 
-* Another way to serialize transactions is to create an auxiliary “semaphore” table that contains just a single row. Have each transaction update that row before accessing other tables. In that way, all transactions happen in a serial fashion. Note that the `InnoDB` instant deadlock detection algorithm also works in this case, because the serializing lock is a row-level lock. With MySQL table-level locks, the timeout method must be used to resolve deadlocks.
+* Outra forma de serializar Transactions é criar uma Table auxiliar de “semáforo” que contenha apenas uma única linha. Faça com que cada Transaction atualize essa linha antes de acessar outras Tables. Dessa forma, todas as Transactions ocorrem de maneira serial. Note que o algoritmo de detecção instantânea de Deadlock do `InnoDB` também funciona neste caso, porque o Lock de serialização é um row-level lock. Com os table-level locks do MySQL, o método de timeout deve ser usado para resolver Deadlocks.

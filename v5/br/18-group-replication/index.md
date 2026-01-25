@@ -1,87 +1,87 @@
-# Chapter 17 Group Replication
+# Capítulo 17 Group Replication
 
-**Table of Contents**
+**Índice**
 
-[17.1 Group Replication Background](group-replication-background.html) :   [17.1.1 Replication Technologies](group-replication-replication-technologies.html)
+[17.1 Histórico do Group Replication](group-replication-background.html) :   [17.1.1 Tecnologias de Replication](group-replication-replication-technologies.html)
 
-    [17.1.2 Group Replication Use Cases](group-replication-use-cases.html)
+    [17.1.2 Casos de Uso do Group Replication](group-replication-use-cases.html)
 
-    [17.1.3 Group Replication Details](group-replication-details.html)
+    [17.1.3 Detalhes do Group Replication](group-replication-details.html)
 
-[17.2 Getting Started](group-replication-getting-started.html) :   [17.2.1 Deploying Group Replication in Single-Primary Mode](group-replication-deploying-in-single-primary-mode.html)
+[17.2 Primeiros Passos](group-replication-getting-started.html) :   [17.2.1 Implantando Group Replication no Modo Single-Primary](group-replication-deploying-in-single-primary-mode.html)
 
-    [17.2.2 Deploying Group Replication Locally](group-replication-deploying-locally.html)
+    [17.2.2 Implantando Group Replication Localmente](group-replication-deploying-locally.html)
 
-[17.3 Requirements and Limitations](group-replication-requirements-and-limitations.html) :   [17.3.1 Group Replication Requirements](group-replication-requirements.html)
+[17.3 Requisitos e Limitações](group-replication-requirements-and-limitations.html) :   [17.3.1 Requisitos do Group Replication](group-replication-requirements.html)
 
-    [17.3.2 Group Replication Limitations](group-replication-limitations.html)
+    [17.3.2 Limitações do Group Replication](group-replication-limitations.html)
 
-[17.4 Monitoring Group Replication](group-replication-monitoring.html) :   [17.4.1 Group Replication Server States](group-replication-server-states.html)
+[17.4 Monitoramento do Group Replication](group-replication-monitoring.html) :   [17.4.1 Estados do Server do Group Replication](group-replication-server-states.html)
 
-    [17.4.2 The replication_group_members Table](group-replication-replication-group-members.html)
+    [17.4.2 A Tabela replication_group_members](group-replication-replication-group-members.html)
 
-    [17.4.3 The replication_group_member_stats Table](group-replication-replication-group-member-stats.html)
+    [17.4.3 A Tabela replication_group_member_stats](group-replication-replication-group-member-stats.html)
 
-[17.5 Group Replication Operations](group-replication-operations.html) :   [17.5.1 Deploying in Multi-Primary or Single-Primary Mode](group-replication-deploying-in-multi-primary-or-single-primary-mode.html)
+[17.5 Operações do Group Replication](group-replication-operations.html) :   [17.5.1 Implantando nos Modos Multi-Primary ou Single-Primary](group-replication-deploying-in-multi-primary-or-single-primary-mode.html)
 
-    [17.5.2 Tuning Recovery](group-replication-tuning-recovery.html)
+    [17.5.2 Ajustando o Recovery](group-replication-tuning-recovery.html)
 
-    [17.5.3 Network Partitioning](group-replication-network-partitioning.html)
+    [17.5.3 Particionamento de Rede](group-replication-network-partitioning.html)
 
-    [17.5.4 Restarting a Group](group-replication-restarting-group.html)
+    [17.5.4 Reiniciando um Grupo](group-replication-restarting-group.html)
 
-    [17.5.5 Using MySQL Enterprise Backup with Group Replication](group-replication-enterprise-backup.html)
+    [17.5.5 Usando MySQL Enterprise Backup com Group Replication](group-replication-enterprise-backup.html)
 
-[17.6 Group Replication Security](group-replication-security.html) :   [17.6.1 Group Replication IP Address Allowlisting](group-replication-ip-address-permissions.html)
+[17.6 Segurança do Group Replication](group-replication-security.html) :   [17.6.1 Permissões de Endereço IP (Allowlisting) do Group Replication](group-replication-ip-address-permissions.html)
 
-    [17.6.2 Group Replication Secure Socket Layer (SSL) Support](group-replication-secure-socket-layer-support-ssl.html)
+    [17.6.2 Suporte a Secure Socket Layer (SSL) do Group Replication](group-replication-secure-socket-layer-support-ssl.html)
 
-    [17.6.3 Group Replication and Virtual Private Networks (VPNs)](group-replication-virtual-private-networks-vpn.html)
+    [17.6.3 Group Replication e Virtual Private Networks (VPNs)](group-replication-virtual-private-networks-vpn.html)
 
-[17.7 Group Replication Variables](group-replication-options.html) :   [17.7.1 Group Replication System Variables](group-replication-system-variables.html)
+[17.7 Variáveis do Group Replication](group-replication-options.html) :   [17.7.1 Variáveis de Sistema do Group Replication](group-replication-system-variables.html)
 
-    [17.7.2 Group Replication Status Variables](group-replication-status-variables.html)
+    [17.7.2 Variáveis de Status do Group Replication](group-replication-status-variables.html)
 
-[17.8 Frequently Asked Questions](group-replication-frequently-asked-questions.html)
+[17.8 Perguntas Frequentes](group-replication-frequently-asked-questions.html)
 
-[17.9 Group Replication Technical Details](group-replication-technical-details.html) :   [17.9.1 Group Replication Plugin Architecture](group-replication-plugin-architecture.html)
+[17.9 Detalhes Técnicos do Group Replication](group-replication-technical-details.html) :   [17.9.1 Arquitetura do Plugin Group Replication](group-replication-plugin-architecture.html)
 
-    [17.9.2 The Group](group-replication-the-group.html)
+    [17.9.2 O Grupo](group-replication-the-group.html)
 
-    [17.9.3 Data Manipulation Statements](group-replication-data-manipulation-statements.html)
+    [17.9.3 Declarações de Manipulação de Dados](group-replication-data-manipulation-statements.html)
 
-    [17.9.4 Data Definition Statements](group-replication-data-definition-statements.html)
+    [17.9.4 Declarações de Definição de Dados](group-replication-data-definition-statements.html)
 
-    [17.9.5 Distributed Recovery](group-replication-distributed-recovery.html)
+    [17.9.5 Recovery Distribuído](group-replication-distributed-recovery.html)
 
-    [17.9.6 Observability](group-replication-observability.html)
+    [17.9.6 Observabilidade](group-replication-observability.html)
 
-    [17.9.7 Group Replication Performance](group-replication-performance.html)
+    [17.9.7 Performance do Group Replication](group-replication-performance.html)
 
-This chapter explains MySQL Group Replication and how to install, configure and monitor groups. MySQL Group Replication is a MySQL Server plugin that enables you to create elastic, highly-available, fault-tolerant replication topologies.
+Este capítulo explica o MySQL Group Replication e como instalar, configurar e monitorar grupos. O MySQL Group Replication é um plugin do MySQL Server que permite criar topologias de replication elásticas, de alta disponibilidade e tolerantes a falhas.
 
-Groups can operate in a single-primary mode with automatic primary election, where only one server accepts updates at a time. Alternatively, for more advanced users, groups can be deployed in multi-primary mode, where all servers can accept updates, even if they are issued concurrently.
+Grupos podem operar no modo single-primary com eleição automática do Primary, onde apenas um server aceita atualizações por vez. Alternativamente, para usuários mais avançados, os grupos podem ser implantados no modo multi-primary, onde todos os servers podem aceitar atualizações, mesmo que sejam emitidas concorrentemente.
 
-There is a built-in group membership service that keeps the view of the group consistent and available for all servers at any given point in time. Servers can leave and join the group and the view is updated accordingly. Sometimes servers can leave the group unexpectedly, in which case the failure detection mechanism detects this and notifies the group that the view has changed. This is all automatic.
+Existe um serviço de associação de grupo integrado que mantém a visualização do grupo consistente e disponível para todos os servers em qualquer momento. Servers podem sair e entrar no grupo e a visualização é atualizada correspondentemente. Às vezes, servers podem sair do grupo inesperadamente, caso em que o mecanismo de detecção de falhas detecta isso e notifica o grupo de que a visualização mudou. Isso é totalmente automático.
 
-The chapter is structured as follows:
+O capítulo está estruturado da seguinte forma:
 
-* [Section 17.1, “Group Replication Background”](group-replication-background.html "17.1 Group Replication Background") provides an introduction to groups and how Group Replication works.
+* [Seção 17.1, “Histórico do Group Replication”](group-replication-background.html "17.1 Group Replication Background") fornece uma introdução aos grupos e como o Group Replication funciona.
 
-* [Section 17.2, “Getting Started”](group-replication-getting-started.html "17.2 Getting Started") explains how to configure multiple MySQL Server instances to create a group.
+* [Seção 17.2, “Primeiros Passos”](group-replication-getting-started.html "17.2 Getting Started") explica como configurar múltiplas instâncias do MySQL Server para criar um grupo.
 
-* [Section 17.3, “Requirements and Limitations”](group-replication-requirements-and-limitations.html "17.3 Requirements and Limitations") explains architecture and setup requirements and limitations for Group Replication.
+* [Seção 17.3, “Requisitos e Limitações”](group-replication-requirements-and-limitations.html "17.3 Requirements and Limitations") explica a arquitetura, os requisitos de setup e as limitações para o Group Replication.
 
-* [Section 17.4, “Monitoring Group Replication”](group-replication-monitoring.html "17.4 Monitoring Group Replication") explains how to monitor a group.
+* [Seção 17.4, “Monitoramento do Group Replication”](group-replication-monitoring.html "17.4 Monitoring Group Replication") explica como monitorar um grupo.
 
-* [Section 17.5, “Group Replication Operations”](group-replication-operations.html "17.5 Group Replication Operations") explains how to work with a group.
+* [Seção 17.5, “Operações do Group Replication”](group-replication-operations.html "17.5 Group Replication Operations") explica como trabalhar com um grupo.
 
-* [Section 17.6, “Group Replication Security”](group-replication-security.html "17.6 Group Replication Security") explains how to secure a group.
+* [Seção 17.6, “Segurança do Group Replication”](group-replication-security.html "17.6 Group Replication Security") explica como proteger um grupo.
 
-* [Upgrading Group Replication](/doc/refman/8.0/en/group-replication-upgrade.html) explains how to upgrade a group.
+* [Atualizando Group Replication](/doc/refman/8.0/en/group-replication-upgrade.html) explica como atualizar um grupo.
 
-* [Section 17.7, “Group Replication Variables”](group-replication-options.html "17.7 Group Replication Variables") is a reference for the system variables specific to Group Replication.
+* [Seção 17.7, “Variáveis do Group Replication”](group-replication-options.html "17.7 Group Replication Variables") é uma referência para as variáveis de sistema específicas do Group Replication.
 
-* [Section 17.8, “Frequently Asked Questions”](group-replication-frequently-asked-questions.html "17.8 Frequently Asked Questions") provides answers to some technical questions about deploying and operating Group Replication.
+* [Seção 17.8, “Perguntas Frequentes”](group-replication-frequently-asked-questions.html "17.8 Frequently Asked Questions") fornece respostas para algumas perguntas técnicas sobre a implantação e operação do Group Replication.
 
-* [Section 17.9, “Group Replication Technical Details”](group-replication-technical-details.html "17.9 Group Replication Technical Details") provides in-depth information about how Group Replication works.
+* [Seção 17.9, “Detalhes Técnicos do Group Replication”](group-replication-technical-details.html "17.9 Group Replication Technical Details") fornece informações detalhadas sobre como o Group Replication funciona.

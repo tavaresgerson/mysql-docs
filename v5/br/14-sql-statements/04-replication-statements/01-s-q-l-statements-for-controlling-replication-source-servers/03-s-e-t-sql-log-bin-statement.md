@@ -1,17 +1,17 @@
-#### 13.4.1.3 SET sql_log_bin Statement
+#### 13.4.1.3 Declaração SET sql_log_bin
 
 ```sql
 SET sql_log_bin = {OFF|ON}
 ```
 
-The [`sql_log_bin`](replication-options-binary-log.html#sysvar_sql_log_bin) variable controls whether logging to the binary log is enabled for the current session (assuming that the binary log itself is enabled). The default value is `ON`. To disable or enable binary logging for the current session, set the session [`sql_log_bin`](replication-options-binary-log.html#sysvar_sql_log_bin) variable to `OFF` or `ON`.
+A variável [`sql_log_bin`](replication-options-binary-log.html#sysvar_sql_log_bin) controla se o logging para o Binary Log está habilitado para a `Session` atual (assumindo que o Binary Log em si esteja habilitado). O valor padrão é `ON`. Para desabilitar ou habilitar o Binary Logging para a `Session` atual, defina a variável de `Session` [`sql_log_bin`](replication-options-binary-log.html#sysvar_sql_log_bin) como `OFF` ou `ON`.
 
-Set this variable to `OFF` for a session to temporarily disable binary logging while making changes to the source you do not want replicated to the replica.
+Defina esta variável como `OFF` para uma `Session` a fim de desabilitar temporariamente o Binary Logging enquanto realiza alterações no `Source` que você não deseja que sejam replicadas para a `Replica`.
 
-Setting the session value of this system variable is a restricted operation. The session user must have privileges sufficient to set restricted session variables. See [Section 5.1.8.1, “System Variable Privileges”](system-variable-privileges.html "5.1.8.1 System Variable Privileges").
+Definir o valor de `Session` desta variável de sistema é uma operação restrita. O usuário da `Session` deve ter privilégios suficientes para definir variáveis de `Session` restritas. Veja [Seção 5.1.8.1, “Privilégios de Variáveis de Sistema”](system-variable-privileges.html "5.1.8.1 System Variable Privileges").
 
-It is not possible to set the session value of [`sql_log_bin`](replication-options-binary-log.html#sysvar_sql_log_bin) within a transaction or subquery.
+Não é possível definir o valor de `Session` de [`sql_log_bin`](replication-options-binary-log.html#sysvar_sql_log_bin) dentro de uma `Transaction` ou `Subquery`.
 
-*Setting this variable to `OFF` prevents GTIDs from being assigned to transactions in the binary log*. If you are using GTIDs for replication, this means that even when binary logging is later enabled again, the GTIDs written into the log from this point do not account for any transactions that occurred in the meantime, so in effect those transactions are lost.
+*Definir esta variável como `OFF` impede que GTIDs sejam atribuídos a `Transactions` no Binary Log*. Se você estiver usando GTIDs para replicação, isso significa que, mesmo quando o Binary Logging for habilitado novamente, os GTIDs gravados no `Log` a partir deste ponto não contabilizarão nenhuma `Transaction` que ocorreu nesse ínterim; portanto, na prática, essas `Transactions` serão perdidas.
 
-The global [`sql_log_bin`](replication-options-binary-log.html#sysvar_sql_log_bin) variable is read only and cannot be modified. The global scope is deprecated; expect it to be removed in a future MySQL release.
+A variável global [`sql_log_bin`](replication-options-binary-log.html#sysvar_sql_log_bin) é somente leitura (`read only`) e não pode ser modificada. O escopo global está obsoleto (`deprecated`); espere que ele seja removido em uma futura versão do MySQL.

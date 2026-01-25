@@ -1,19 +1,19 @@
-#### 16.4.1.6 Replication of CREATE TABLE ... SELECT Statements
+#### 16.4.1.6 Replicação de Comandos CREATE TABLE ... SELECT
 
-This section discusses how MySQL replicates [`CREATE TABLE ... SELECT`](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement") statements.
+Esta seção discute como o MySQL replica comandos [`CREATE TABLE ... SELECT`](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement").
 
-MySQL 5.7 does not allow a [`CREATE TABLE ... SELECT`](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement") statement to make any changes in tables other than the table that is created by the statement. Some older versions of MySQL permitted these statements to do so; this means that, when using replication between a MySQL 5.6 or later replica and a source running a previous version of MySQL, a [`CREATE TABLE ... SELECT`](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement") statement causing changes in other tables on the source fails on the replica, causing replication to stop. To prevent this from happening, you should use row-based replication, rewrite the offending statement before running it on the source, or upgrade the source to MySQL 5.7. (If you choose to upgrade the source, keep in mind that such a [`CREATE TABLE ... SELECT`](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement") statement fails following the upgrade unless it is rewritten to remove any side effects on other tables.)
+O MySQL 5.7 não permite que um comando [`CREATE TABLE ... SELECT`](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement") faça alterações em tabelas diferentes daquela que está sendo criada pelo comando. Algumas versões mais antigas do MySQL permitiam que esses comandos fizessem isso; isso significa que, ao usar Replication entre uma Replica MySQL 5.6 ou posterior e uma Source executando uma versão anterior do MySQL, um comando [`CREATE TABLE ... SELECT`](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement") que cause alterações em outras tabelas na Source falhará na Replica, fazendo com que a Replication seja interrompida. Para evitar que isso aconteça, você deve usar *row-based replication* (replicação baseada em linha), reescrever o comando problemático antes de executá-lo na Source, ou fazer upgrade da Source para o MySQL 5.7. (Se você optar por fazer upgrade da Source, lembre-se de que tal comando [`CREATE TABLE ... SELECT`](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement") falhará após o upgrade, a menos que seja reescrito para remover quaisquer efeitos colaterais em outras tabelas.)
 
-These behaviors are not dependent on MySQL version:
+Estes comportamentos não dependem da versão do MySQL:
 
-* [`CREATE TABLE ... SELECT`](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement") always performs an implicit commit ([Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")).
+* [`CREATE TABLE ... SELECT`](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement") sempre executa um *implicit commit* (commit implícito) ([Seção 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")).
 
-* If destination table does not exist, logging occurs as follows. It does not matter whether `IF NOT EXISTS` is present.
+* Se a tabela de destino não existir, o log ocorre da seguinte forma. Não importa se `IF NOT EXISTS` está presente.
 
-  + `STATEMENT` or `MIXED` format: The statement is logged as written.
+  + Formato `STATEMENT` ou `MIXED`: O comando é registrado no log conforme escrito.
 
-  + `ROW` format: The statement is logged as a [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement followed by a series of insert-row events.
+  + Formato `ROW`: O comando é registrado no log como um comando [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") seguido por uma série de eventos *insert-row*.
 
-* If the statement fails, nothing is logged. This includes the case that the destination table exists and `IF NOT EXISTS` is not given.
+* Se o comando falhar, nada é registrado no log. Isso inclui o caso em que a tabela de destino existe e `IF NOT EXISTS` não é fornecido.
 
-When the destination table exists and `IF NOT EXISTS` is given, MySQL 5.7 ignores the statement completely; nothing is inserted or logged.
+Quando a tabela de destino existe e `IF NOT EXISTS` é fornecido, o MySQL 5.7 ignora o comando completamente; nada é inserido ou registrado no log.

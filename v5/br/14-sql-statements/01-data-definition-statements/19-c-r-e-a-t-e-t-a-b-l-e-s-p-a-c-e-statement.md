@@ -1,4 +1,4 @@
-### 13.1.19 CREATE TABLESPACE Statement
+### 13.1.19 Instrução CREATE TABLESPACE
 
 ```sql
 CREATE TABLESPACE tablespace_name
@@ -23,151 +23,151 @@ CREATE TABLESPACE tablespace_name
     [ENGINE [=] engine_name]
 ```
 
-This statement is used to create a tablespace. The precise syntax and semantics depend on the storage engine used. In standard MySQL 5.7 releases, this is always an [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") tablespace. MySQL NDB Cluster 7.5 also supports tablespaces using the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine in addition to those using `InnoDB`.
+Esta instrução é usada para criar um tablespace. A sintaxe e semântica precisas dependem do storage engine utilizado. Nas versões padrão do MySQL 5.7, este é sempre um tablespace [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"). O MySQL NDB Cluster 7.5 também suporta tablespaces que utilizam o storage engine [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") além daqueles que usam `InnoDB`.
 
-* [Considerations for InnoDB](create-tablespace.html#create-tablespace-innodb "Considerations for InnoDB")
-* [Considerations for NDB Cluster](create-tablespace.html#create-tablespace-ndb "Considerations for NDB Cluster")
-* [Options](create-tablespace.html#create-tablespace-options "Options")
-* [Notes](create-tablespace.html#create-tablespace-notes "Notes")
-* [InnoDB Examples](create-tablespace.html#create-tablespace-innodb-examples "InnoDB Examples")
-* [NDB Example](create-tablespace.html#create-tablespace-ndb-examples "NDB Example")
+* [Considerações para InnoDB](create-tablespace.html#create-tablespace-innodb "Considerations for InnoDB")
+* [Considerações para NDB Cluster](create-tablespace.html#create-tablespace-ndb "Considerations for NDB Cluster")
+* [Opções](create-tablespace.html#create-tablespace-options "Options")
+* [Notas](create-tablespace.html#create-tablespace-notes "Notes")
+* [Exemplos de InnoDB](create-tablespace.html#create-tablespace-innodb-examples "InnoDB Examples")
+* [Exemplo de NDB](create-tablespace.html#create-tablespace-ndb-examples "NDB Example")
 
-#### Considerations for InnoDB
+#### Considerações para InnoDB
 
-[`CREATE TABLESPACE`](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement") syntax is used to create general tablespaces. A general tablespace is a shared tablespace. It can hold multiple tables, and supports all table row formats. General tablespaces can be created in a location relative to or independent of the data directory.
+A sintaxe [`CREATE TABLESPACE`](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement") é usada para criar tablespaces gerais. Um tablespace geral é um tablespace compartilhado. Ele pode conter múltiplas tabelas e suporta todos os row formats de tabela. Tablespaces gerais podem ser criados em um local relativo ou independente do data directory.
 
-After creating an `InnoDB` general tablespace, you can use [`CREATE TABLE tbl_name ... TABLESPACE [=] tablespace_name`](create-table.html "13.1.18 CREATE TABLE Statement") or [`ALTER TABLE tbl_name TABLESPACE [=] tablespace_name`](alter-table.html "13.1.8 ALTER TABLE Statement") to add tables to the tablespace. For more information, see [Section 14.6.3.3, “General Tablespaces”](general-tablespaces.html "14.6.3.3 General Tablespaces").
+Após criar um tablespace geral `InnoDB`, você pode usar [`CREATE TABLE tbl_name ... TABLESPACE [=] tablespace_name`](create-table.html "13.1.18 CREATE TABLE Statement") ou [`ALTER TABLE tbl_name TABLESPACE [=] tablespace_name`](alter-table.html "13.1.8 ALTER TABLE Statement") para adicionar tabelas ao tablespace. Para mais informações, veja [Seção 14.6.3.3, “General Tablespaces”](general-tablespaces.html "14.6.3.3 General Tablespaces").
 
-#### Considerations for NDB Cluster
+#### Considerações para NDB Cluster
 
-This statement is used to create a tablespace, which can contain one or more data files, providing storage space for NDB Cluster Disk Data tables (see [Section 21.6.11, “NDB Cluster Disk Data Tables”](mysql-cluster-disk-data.html "21.6.11 NDB Cluster Disk Data Tables")). One data file is created and added to the tablespace using this statement. Additional data files may be added to the tablespace by using the [`ALTER TABLESPACE`](alter-tablespace.html "13.1.9 ALTER TABLESPACE Statement") statement (see [Section 13.1.9, “ALTER TABLESPACE Statement”](alter-tablespace.html "13.1.9 ALTER TABLESPACE Statement")).
-
-Note
-
-All NDB Cluster Disk Data objects share the same namespace. This means that *each Disk Data object* must be uniquely named (and not merely each Disk Data object of a given type). For example, you cannot have a tablespace and a log file group with the same name, or a tablespace and a data file with the same name.
-
-A log file group of one or more `UNDO` log files must be assigned to the tablespace to be created with the `USE LOGFILE GROUP` clause. *`logfile_group`* must be an existing log file group created with [`CREATE LOGFILE GROUP`](create-logfile-group.html "13.1.15 CREATE LOGFILE GROUP Statement") (see [Section 13.1.15, “CREATE LOGFILE GROUP Statement”](create-logfile-group.html "13.1.15 CREATE LOGFILE GROUP Statement")). Multiple tablespaces may use the same log file group for `UNDO` logging.
-
-When setting `EXTENT_SIZE` or `INITIAL_SIZE`, you may optionally follow the number with a one-letter abbreviation for an order of magnitude, similar to those used in `my.cnf`. Generally, this is one of the letters `M` (for megabytes) or `G` (for gigabytes).
-
-`INITIAL_SIZE` and `EXTENT_SIZE` are subject to rounding as follows:
-
-* `EXTENT_SIZE` is rounded up to the nearest whole multiple of 32K.
-
-* `INITIAL_SIZE` is rounded *down* to the nearest whole multiple of 32K; this result is rounded up to the nearest whole multiple of `EXTENT_SIZE` (after any rounding).
+Esta instrução é usada para criar um tablespace, que pode conter um ou mais data files, fornecendo espaço de armazenamento para tabelas NDB Cluster Disk Data (veja [Seção 21.6.11, “NDB Cluster Disk Data Tables”](mysql-cluster-disk-data.html "21.6.11 NDB Cluster Disk Data Tables")). Um data file é criado e adicionado ao tablespace usando esta instrução. Data files adicionais podem ser adicionados ao tablespace usando a instrução [`ALTER TABLESPACE`](alter-tablespace.html "13.1.9 ALTER TABLESPACE Statement") (veja [Seção 13.1.9, “ALTER TABLESPACE Statement”](alter-tablespace.html "13.1.9 ALTER TABLESPACE Statement")).
 
 Note
 
-[`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") reserves 4% of a tablespace for data node restart operations. This reserved space cannot be used for data storage. This restriction applies beginning with NDB 7.6.
+Todos os objetos NDB Cluster Disk Data compartilham o mesmo namespace. Isso significa que *cada objeto Disk Data* deve ter um nome exclusivo (e não apenas cada objeto Disk Data de um determinado tipo). Por exemplo, você não pode ter um tablespace e um log file group com o mesmo nome, ou um tablespace e um data file com o mesmo nome.
 
-The rounding just described is done explicitly, and a warning is issued by the MySQL Server when any such rounding is performed. The rounded values are also used by the NDB kernel for calculating Information Schema [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") column values and other purposes. However, to avoid an unexpected result, we suggest that you always use whole multiples of 32K in specifying these options.
+Um log file group de um ou mais arquivos de log `UNDO` deve ser atribuído ao tablespace a ser criado com a cláusula `USE LOGFILE GROUP`. *`logfile_group`* deve ser um log file group existente criado com [`CREATE LOGFILE GROUP`](create-logfile-group.html "13.1.15 CREATE LOGFILE GROUP Statement") (veja [Seção 13.1.15, “CREATE LOGFILE GROUP Statement”](create-logfile-group.html "13.1.15 CREATE LOGFILE GROUP Statement")). Múltiplos tablespaces podem usar o mesmo log file group para logging `UNDO`.
 
-When [`CREATE TABLESPACE`](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement") is used with `ENGINE [=] NDB`, a tablespace and associated data file are created on each Cluster data node. You can verify that the data files were created and obtain information about them by querying the Information Schema [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") table. (See the example later in this section.)
+Ao definir `EXTENT_SIZE` ou `INITIAL_SIZE`, você pode opcionalmente seguir o número com uma abreviação de uma letra para uma ordem de magnitude, semelhante às usadas em `my.cnf`. Geralmente, esta é uma das letras `M` (para megabytes) ou `G` (para gigabytes).
 
-(See [Section 24.3.9, “The INFORMATION_SCHEMA FILES Table”](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table").)
+`INITIAL_SIZE` e `EXTENT_SIZE` estão sujeitos ao arredondamento da seguinte forma:
 
-#### Options
+* `EXTENT_SIZE` é arredondado para o múltiplo inteiro mais próximo de 32K.
 
-* `ADD DATAFILE`: Defines the name of a tablespace data file; this option is always required. The `file_name`, including any specified path, must be quoted with single or double quotation marks. File names (not counting the file extension) and directory names must be at least one byte in length. Zero length file names and directory names are not supported.
+* `INITIAL_SIZE` é arredondado *para baixo* para o múltiplo inteiro mais próximo de 32K; este resultado é arredondado para o múltiplo inteiro mais próximo de `EXTENT_SIZE` (após qualquer arredondamento).
 
-  Because there are considerable differences in how `InnoDB` and `NDB` treat data files, the two storage engines are covered separately in the discussion that follows.
+Note
 
-  **InnoDB data files.** An `InnoDB` tablespace supports only a single data file, whose name must include a `.ibd` extension.
+[`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") reserva 4% de um tablespace para operações de reinicialização do node de dados. Este espaço reservado não pode ser usado para armazenamento de dados. Esta restrição se aplica a partir do NDB 7.6.
 
-  For an `InnoDB` tablespace, the data file is created by default in the MySQL data directory ([`datadir`](server-system-variables.html#sysvar_datadir)). To place the data file in a location other than the default, include an absolute directory path or a path relative to the default location.
+O arredondamento que acabamos de descrever é feito explicitamente, e um aviso é emitido pelo MySQL Server quando tal arredondamento é realizado. Os valores arredondados também são usados pelo kernel NDB para calcular os valores da coluna [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") do Information Schema e para outros propósitos. No entanto, para evitar um resultado inesperado, sugerimos que você sempre use múltiplos inteiros de 32K ao especificar estas opções.
 
-  When an `InnoDB` tablespace is created outside of the data directory, an [isl](glossary.html#glos_isl_file ".isl file") file is created in the data directory. To avoid conflicts with implicitly created file-per-table tablespaces, creating an `InnoDB` general tablespace in a subdirectory under the data directory is not supported. When creating an `InnoDB` general tablespace outside of the data directory, the directory must exist prior to creating the tablespace.
+Quando [`CREATE TABLESPACE`](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement") é usado com `ENGINE [=] NDB`, um tablespace e um data file associado são criados em cada node de dados do Cluster. Você pode verificar se os data files foram criados e obter informações sobre eles consultando a tabela [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") do Information Schema. (Veja o exemplo mais adiante nesta seção.)
+
+(Veja [Seção 24.3.9, “The INFORMATION_SCHEMA FILES Table”](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table").)
+
+#### Opções
+
+* `ADD DATAFILE`: Define o nome de um data file do tablespace; esta opção é sempre obrigatória. O `file_name`, incluindo qualquer path especificado, deve ser citado com aspas simples ou duplas. Nomes de arquivos (sem contar a extensão do arquivo) e nomes de diretórios devem ter pelo menos um byte de comprimento. Nomes de arquivos e diretórios de comprimento zero não são suportados.
+
+  Como há diferenças consideráveis na forma como `InnoDB` e `NDB` tratam os data files, os dois storage engines são abordados separadamente na discussão a seguir.
+
+  **Data files InnoDB.** Um tablespace `InnoDB` suporta apenas um único data file, cujo nome deve incluir a extensão `.ibd`.
+
+  Para um tablespace `InnoDB`, o data file é criado por padrão no data directory do MySQL ([`datadir`](server-system-variables.html#sysvar_datadir)). Para colocar o data file em um local diferente do padrão, inclua um path de diretório absoluto ou um path relativo ao local padrão.
+
+  Quando um tablespace `InnoDB` é criado fora do data directory, um arquivo [isl](glossary.html#glos_isl_file ".isl file") é criado no data directory. Para evitar conflitos com tablespaces file-per-table criados implicitamente, não é suportada a criação de um tablespace geral `InnoDB` em um subdiretório sob o data directory. Ao criar um tablespace geral `InnoDB` fora do data directory, o diretório deve existir antes de criar o tablespace.
 
   Note
 
-  In MySQL 5.7, `ALTER TABLESPACE` is not supported by `InnoDB`.
+  No MySQL 5.7, `ALTER TABLESPACE` não é suportado por `InnoDB`.
 
-  **NDB data files.** An `NDB` tablespace supports multiple data files which can have any legal file names; more data files can be added to an NDB Cluster tablespace following its creation by using an [`ALTER TABLESPACE`](alter-tablespace.html "13.1.9 ALTER TABLESPACE Statement") statement.
+  **Data files NDB.** Um tablespace `NDB` suporta múltiplos data files que podem ter qualquer nome de arquivo legal; mais data files podem ser adicionados a um tablespace NDB Cluster após sua criação, usando uma instrução [`ALTER TABLESPACE`](alter-tablespace.html "13.1.9 ALTER TABLESPACE Statement").
 
-  An `NDB` tablespace data file is created by default in the data node file system directory—that is, the directory named `ndb_nodeid_fs/TS` under the data node's data directory ([`DataDir`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datadir)), where *`nodeid`* is the data node's [`NodeId`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-nodeid). To place the data file in a location other than the default, include an absolute directory path or a path relative to the default location. If the directory specified does not exist, `NDB` attempts to create it; the system user account under which the data node process is running must have the appropriate permissions to do so.
+  Um data file de tablespace `NDB` é criado por padrão no diretório do sistema de arquivos do node de dados – isto é, o diretório nomeado `ndb_nodeid_fs/TS` sob o data directory do node de dados ([`DataDir`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datadir)), onde *`nodeid`* é o [`NodeId`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-nodeid) do node de dados. Para colocar o data file em um local diferente do padrão, inclua um path de diretório absoluto ou um path relativo ao local padrão. Se o diretório especificado não existir, `NDB` tenta criá-lo; a conta de usuário do sistema sob a qual o processo do node de dados está em execução deve ter as permissões apropriadas para fazê-lo.
 
   Note
 
-  When determining the path used for a data file, `NDB` does not expand the `~` (tilde) character.
+  Ao determinar o path usado para um data file, `NDB` não expande o caractere `~` (til).
 
-  When multiple data nodes are run on the same physical host, the following considerations apply:
+  Quando múltiplos nodes de dados são executados no mesmo host físico, as seguintes considerações se aplicam:
 
-  + You cannot specify an absolute path when creating a data file.
+  + Você não pode especificar um path absoluto ao criar um data file.
 
-  + It is not possible to create tablespace data files outside the data node file system directory, unless each data node has a separate data directory.
+  + Não é possível criar data files de tablespace fora do diretório do sistema de arquivos do node de dados, a menos que cada node de dados tenha um data directory separado.
 
-  + If each data node has its own data directory, data files can be created anywhere within this directory.
+  + Se cada node de dados tiver seu próprio data directory, os data files poderão ser criados em qualquer lugar dentro deste diretório.
 
-  + If each data node has its own data directory, it may also be possible to create a data file outside the node's data directory using a relative path, as long as this path resolves to a unique location on the host file system for each data node running on that host.
+  + Se cada node de dados tiver seu próprio data directory, também pode ser possível criar um data file fora do data directory do node usando um path relativo, desde que este path se resolva para um local exclusivo no sistema de arquivos do host para cada node de dados em execução nesse host.
 
-* `FILE_BLOCK_SIZE`: This option—which is specific to `InnoDB`, and is ignored by `NDB`—defines the block size for the tablespace data file. Values can be specified in bytes or kilobytes. For example, an 8 kilobyte file block size can be specified as 8192 or 8K. If you do not specify this option, `FILE_BLOCK_SIZE` defaults to the [`innodb_page_size`](innodb-parameters.html#sysvar_innodb_page_size) value. `FILE_BLOCK_SIZE` is required when you intend to use the tablespace for storing compressed `InnoDB` tables (`ROW_FORMAT=COMPRESSED`). In this case, you must define the tablespace `FILE_BLOCK_SIZE` when creating the tablespace.
+* `FILE_BLOCK_SIZE`: Esta opção – que é específica para `InnoDB` e é ignorada por `NDB` – define o block size para o data file do tablespace. Os valores podem ser especificados em bytes ou kilobytes. Por exemplo, um block size de arquivo de 8 kilobytes pode ser especificado como 8192 ou 8K. Se você não especificar esta opção, `FILE_BLOCK_SIZE` assume o valor padrão de [`innodb_page_size`](innodb-parameters.html#sysvar_innodb_page_size). `FILE_BLOCK_SIZE` é obrigatório quando você pretende usar o tablespace para armazenar tabelas `InnoDB` compactadas (`ROW_FORMAT=COMPRESSED`). Neste caso, você deve definir o `FILE_BLOCK_SIZE` do tablespace ao criar o tablespace.
 
-  If `FILE_BLOCK_SIZE` is equal the [`innodb_page_size`](innodb-parameters.html#sysvar_innodb_page_size) value, the tablespace can contain only tables having an uncompressed row format (`COMPACT`, `REDUNDANT`, and `DYNAMIC`). Tables with a `COMPRESSED` row format have a different physical page size than uncompressed tables. Therefore, compressed tables cannot coexist in the same tablespace as uncompressed tables.
+  Se `FILE_BLOCK_SIZE` for igual ao valor de [`innodb_page_size`](innodb-parameters.html#sysvar_innodb_page_size), o tablespace pode conter apenas tabelas com um row format descompactado (`COMPACT`, `REDUNDANT` e `DYNAMIC`). Tabelas com um row format `COMPRESSED` têm um physical page size diferente das tabelas descompactadas. Portanto, tabelas compactadas não podem coexistir no mesmo tablespace que tabelas descompactadas.
 
-  For a general tablespace to contain compressed tables, `FILE_BLOCK_SIZE` must be specified, and the `FILE_BLOCK_SIZE` value must be a valid compressed page size in relation to the [`innodb_page_size`](innodb-parameters.html#sysvar_innodb_page_size) value. Also, the physical page size of the compressed table (`KEY_BLOCK_SIZE`) must be equal to `FILE_BLOCK_SIZE/1024`. For example, if [`innodb_page_size=16K`](innodb-parameters.html#sysvar_innodb_page_size), and `FILE_BLOCK_SIZE=8K`, the `KEY_BLOCK_SIZE` of the table must be 8. For more information, see [Section 14.6.3.3, “General Tablespaces”](general-tablespaces.html "14.6.3.3 General Tablespaces").
+  Para que um tablespace geral contenha tabelas compactadas, `FILE_BLOCK_SIZE` deve ser especificado, e o valor `FILE_BLOCK_SIZE` deve ser um page size compactado válido em relação ao valor de [`innodb_page_size`](innodb-parameters.html#sysvar_innodb_page_size). Além disso, o physical page size da tabela compactada (`KEY_BLOCK_SIZE`) deve ser igual a `FILE_BLOCK_SIZE/1024`. Por exemplo, se [`innodb_page_size=16K`](innodb-parameters.html#sysvar_innodb_page_size), e `FILE_BLOCK_SIZE=8K`, o `KEY_BLOCK_SIZE` da tabela deve ser 8. Para mais informações, veja [Seção 14.6.3.3, “General Tablespaces”](general-tablespaces.html "14.6.3.3 General Tablespaces").
 
-* `USE LOGFILE GROUP`: Required for `NDB`, this is the name of a log file group previously created using [`CREATE LOGFILE GROUP`](create-logfile-group.html "13.1.15 CREATE LOGFILE GROUP Statement"). Not supported for `InnoDB`, where it fails with an error.
+* `USE LOGFILE GROUP`: Obrigatório para `NDB`, este é o nome de um log file group criado anteriormente usando [`CREATE LOGFILE GROUP`](create-logfile-group.html "13.1.15 CREATE LOGFILE GROUP Statement"). Não suportado para `InnoDB`, onde resulta em erro.
 
-* `EXTENT_SIZE`: This option is specific to NDB, and is not supported by InnoDB, where it fails with an error. `EXTENT_SIZE` sets the size, in bytes, of the extents used by any files belonging to the tablespace. The default value is 1M. The minimum size is 32K, and theoretical maximum is 2G, although the practical maximum size depends on a number of factors. In most cases, changing the extent size does not have any measurable effect on performance, and the default value is recommended for all but the most unusual situations.
+* `EXTENT_SIZE`: Esta opção é específica para NDB e não é suportada por InnoDB, onde resulta em erro. `EXTENT_SIZE` define o tamanho, em bytes, dos extents usados por quaisquer arquivos pertencentes ao tablespace. O valor padrão é 1M. O tamanho mínimo é 32K, e o máximo teórico é 2G, embora o tamanho máximo prático dependa de vários fatores. Na maioria dos casos, alterar o extent size não tem nenhum efeito mensurável no desempenho, e o valor padrão é recomendado para todas as situações, exceto as mais incomuns.
 
-  An extent is a unit of disk space allocation. One extent is filled with as much data as that extent can contain before another extent is used. In theory, up to 65,535 (64K) extents may used per data file; however, the recommended maximum is 32,768 (32K). The recommended maximum size for a single data file is 32G—that is, 32K extents × 1 MB per extent. In addition, once an extent is allocated to a given partition, it cannot be used to store data from a different partition; an extent cannot store data from more than one partition. This means, for example that a tablespace having a single datafile whose `INITIAL_SIZE` (described in the following item) is 256 MB and whose `EXTENT_SIZE` is 128M has just two extents, and so can be used to store data from at most two different disk data table partitions.
+  Um extent é uma unidade de alocação de espaço em disco. Um extent é preenchido com a maior quantidade de dados que esse extent pode conter antes que outro extent seja usado. Em teoria, até 65.535 (64K) extents podem ser usados por data file; no entanto, o máximo recomendado é 32.768 (32K). O tamanho máximo recomendado para um único data file é 32G – ou seja, 32K extents × 1 MB por extent. Além disso, uma vez que um extent é alocado a uma determinada partition, ele não pode ser usado para armazenar dados de uma partition diferente; um extent não pode armazenar dados de mais de uma partition. Isso significa, por exemplo, que um tablespace com um único datafile cujo `INITIAL_SIZE` (descrito no item a seguir) é de 256 MB e cujo `EXTENT_SIZE` é de 128M tem apenas dois extents, e pode ser usado para armazenar dados de no máximo duas partitions de tabela Disk Data diferentes.
 
-  You can see how many extents remain free in a given data file by querying the Information Schema [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") table, and so derive an estimate for how much space remains free in the file. For further discussion and examples, see [Section 24.3.9, “The INFORMATION_SCHEMA FILES Table”](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table").
+  Você pode ver quantos extents permanecem livres em um determinado data file consultando a tabela [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") do Information Schema, e assim derivar uma estimativa de quanto espaço livre permanece no arquivo. Para mais discussões e exemplos, veja [Seção 24.3.9, “The INFORMATION_SCHEMA FILES Table”](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table").
 
-* `INITIAL_SIZE`: This option is specific to `NDB`, and is not supported by `InnoDB`, where it fails with an error.
+* `INITIAL_SIZE`: Esta opção é específica para `NDB` e não é suportada por `InnoDB`, onde resulta em erro.
 
-  The `INITIAL_SIZE` parameter sets the total size in bytes of the data file that was specific using `ADD DATATFILE`. Once this file has been created, its size cannot be changed; however, you can add more data files to the tablespace using [`ALTER TABLESPACE ... ADD DATAFILE`](alter-tablespace.html "13.1.9 ALTER TABLESPACE Statement").
+  O parâmetro `INITIAL_SIZE` define o tamanho total em bytes do data file que foi especificado usando `ADD DATATFILE`. Uma vez que este arquivo tenha sido criado, seu tamanho não pode ser alterado; no entanto, você pode adicionar mais data files ao tablespace usando [`ALTER TABLESPACE ... ADD DATAFILE`](alter-tablespace.html "13.1.9 ALTER TABLESPACE Statement").
 
-  `INITIAL_SIZE` is optional; its default value is 134217728 (128 MB).
+  `INITIAL_SIZE` é opcional; seu valor padrão é 134217728 (128 MB).
 
-  On 32-bit systems, the maximum supported value for `INITIAL_SIZE` is 4294967296 (4 GB).
+  Em sistemas de 32 bits, o valor máximo suportado para `INITIAL_SIZE` é 4294967296 (4 GB).
 
-* `AUTOEXTEND_SIZE`: Currently ignored by MySQL; reserved for possible future use. Has no effect in any release of MySQL 5.7 or MySQL NDB Cluster 7.5, regardless of the storage engine used.
+* `AUTOEXTEND_SIZE`: Atualmente ignorado pelo MySQL; reservado para possível uso futuro. Não tem efeito em nenhuma versão do MySQL 5.7 ou MySQL NDB Cluster 7.5, independentemente do storage engine usado.
 
-* `MAX_SIZE`: Currently ignored by MySQL; reserved for possible future use. Has no effect in any release of MySQL 5.7 or MySQL NDB Cluster 7.5, regardless of the storage engine used.
+* `MAX_SIZE`: Atualmente ignorado pelo MySQL; reservado para possível uso futuro. Não tem efeito em nenhuma versão do MySQL 5.7 ou MySQL NDB Cluster 7.5, independentemente do storage engine usado.
 
-* `NODEGROUP`: Currently ignored by MySQL; reserved for possible future use. Has no effect in any release of MySQL 5.7 or MySQL NDB Cluster 7.5, regardless of the storage engine used.
+* `NODEGROUP`: Atualmente ignorado pelo MySQL; reservado para possível uso futuro. Não tem efeito em nenhuma versão do MySQL 5.7 ou MySQL NDB Cluster 7.5, independentemente do storage engine usado.
 
-* `WAIT`: Currently ignored by MySQL; reserved for possible future use. Has no effect in any release of MySQL 5.7 or MySQL NDB Cluster 7.5, regardless of the storage engine used.
+* `WAIT`: Atualmente ignorado pelo MySQL; reservado para possível uso futuro. Não tem efeito em nenhuma versão do MySQL 5.7 ou MySQL NDB Cluster 7.5, independentemente do storage engine usado.
 
-* `COMMENT`: Currently ignored by MySQL; reserved for possible future use. Has no effect in any release of MySQL 5.7 or MySQL NDB Cluster 7.5, regardless of the storage engine used.
+* `COMMENT`: Atualmente ignorado pelo MySQL; reservado para possível uso futuro. Não tem efeito em nenhuma versão do MySQL 5.7 ou MySQL NDB Cluster 7.5, independentemente do storage engine usado.
 
-* `ENGINE`: Defines the storage engine which uses the tablespace, where *`engine_name`* is the name of the storage engine. Currently, only the `InnoDB` storage engine is supported by standard MySQL 5.7 releases. MySQL NDB Cluster 7.5 supports both `NDB` and `InnoDB` tablespaces. The value of the [`default_storage_engine`](server-system-variables.html#sysvar_default_storage_engine) system variable is used for `ENGINE` if the option is not specified.
+* `ENGINE`: Define o storage engine que usa o tablespace, onde *`engine_name`* é o nome do storage engine. Atualmente, apenas o storage engine `InnoDB` é suportado pelas versões padrão do MySQL 5.7. O MySQL NDB Cluster 7.5 suporta tablespaces `NDB` e `InnoDB`. O valor da variável de sistema [`default_storage_engine`](server-system-variables.html#sysvar_default_storage_engine) é usado para `ENGINE` se a opção não for especificada.
 
-#### Notes
+#### Notas
 
-* For the rules covering the naming of MySQL tablespaces, see [Section 9.2, “Schema Object Names”](identifiers.html "9.2 Schema Object Names"). In addition to these rules, the slash character (“/”) is not permitted, nor can you use names beginning with `innodb_`, as this prefix is reserved for system use.
+* Para as regras que cobrem a nomeação de tablespaces do MySQL, veja [Seção 9.2, “Schema Object Names”](identifiers.html "9.2 Schema Object Names"). Além dessas regras, o caractere barra (“/”) não é permitido, nem você pode usar nomes que começam com `innodb_`, pois este prefixo é reservado para uso do sistema.
 
-* Tablespaces do not support temporary tables.
-* [`innodb_file_per_table`](innodb-parameters.html#sysvar_innodb_file_per_table), [`innodb_file_format`](innodb-parameters.html#sysvar_innodb_file_format), and [`innodb_file_format_max`](innodb-parameters.html#sysvar_innodb_file_format_max) settings have no influence on `CREATE TABLESPACE` operations. [`innodb_file_per_table`](innodb-parameters.html#sysvar_innodb_file_per_table) does not need to be enabled. General tablespaces support all table row formats regardless of file format settings. Likewise, general tablespaces support the addition of tables of any row format using [`CREATE TABLE ... TABLESPACE`](create-table.html "13.1.18 CREATE TABLE Statement"), regardless of file format settings.
+* Tablespaces não suportam tabelas temporárias.
+* As configurações [`innodb_file_per_table`](innodb-parameters.html#sysvar_innodb_file_per_table), [`innodb_file_format`](innodb-parameters.html#sysvar_innodb_file_format) e [`innodb_file_format_max`](innodb-parameters.html#sysvar_innodb_file_format_max) não têm influência nas operações `CREATE TABLESPACE`. [`innodb_file_per_table`](innodb-parameters.html#sysvar_innodb_file_per_table) não precisa ser habilitado. Tablespaces gerais suportam todos os row formats de tabela, independentemente das configurações de file format. Da mesma forma, tablespaces gerais suportam a adição de tabelas de qualquer row format usando [`CREATE TABLE ... TABLESPACE`](create-table.html "13.1.18 CREATE TABLE Statement"), independentemente das configurações de file format.
 
-* [`innodb_strict_mode`](innodb-parameters.html#sysvar_innodb_strict_mode) is not applicable to general tablespaces. Tablespace management rules are strictly enforced independently of [`innodb_strict_mode`](innodb-parameters.html#sysvar_innodb_strict_mode). If `CREATE TABLESPACE` parameters are incorrect or incompatible, the operation fails regardless of the [`innodb_strict_mode`](innodb-parameters.html#sysvar_innodb_strict_mode) setting. When a table is added to a general tablespace using [`CREATE TABLE ... TABLESPACE`](create-table.html "13.1.18 CREATE TABLE Statement") or [`ALTER TABLE ... TABLESPACE`](alter-table.html "13.1.8 ALTER TABLE Statement"), [`innodb_strict_mode`](innodb-parameters.html#sysvar_innodb_strict_mode) is ignored but the statement is evaluated as if [`innodb_strict_mode`](innodb-parameters.html#sysvar_innodb_strict_mode) is enabled.
+* [`innodb_strict_mode`](innodb-parameters.html#sysvar_innodb_strict_mode) não é aplicável a tablespaces gerais. As regras de gerenciamento de tablespace são estritamente aplicadas independentemente de [`innodb_strict_mode`](innodb-parameters.html#sysvar_innodb_strict_mode). Se os parâmetros `CREATE TABLESPACE` estiverem incorretos ou incompatíveis, a operação falha independentemente da configuração de [`innodb_strict_mode`](innodb-parameters.html#sysvar_innodb_strict_mode). Quando uma tabela é adicionada a um tablespace geral usando [`CREATE TABLE ... TABLESPACE`](create-table.html "13.1.18 CREATE TABLE Statement") ou [`ALTER TABLE ... TABLESPACE`](alter-table.html "13.1.8 ALTER TABLE Statement"), [`innodb_strict_mode`](innodb-parameters.html#sysvar_innodb_strict_mode) é ignorado, mas a instrução é avaliada como se [`innodb_strict_mode`](innodb-parameters.html#sysvar_innodb_strict_mode) estivesse habilitado.
 
-* Use `DROP TABLESPACE` to remove a tablespace. All tables must be dropped from a tablespace using [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") prior to dropping the tablespace. Before dropping an NDB Cluster tablespace you must also remove all its data files using one or more [`ALTER TABLESPACE ... DROP DATATFILE`](alter-tablespace.html "13.1.9 ALTER TABLESPACE Statement") statements. See [Section 21.6.11.1, “NDB Cluster Disk Data Objects”](mysql-cluster-disk-data-objects.html "21.6.11.1 NDB Cluster Disk Data Objects").
+* Use `DROP TABLESPACE` para remover um tablespace. Todas as tabelas devem ser removidas de um tablespace usando [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") antes de remover o tablespace. Antes de remover um tablespace NDB Cluster, você também deve remover todos os seus data files usando uma ou mais instruções [`ALTER TABLESPACE ... DROP DATATFILE`](alter-tablespace.html "13.1.9 ALTER TABLESPACE Statement"). Veja [Seção 21.6.11.1, “NDB Cluster Disk Data Objects”](mysql-cluster-disk-data-objects.html "21.6.11.1 NDB Cluster Disk Data Objects").
 
-* All parts of an `InnoDB` table added to an `InnoDB` general tablespace reside in the general tablespace, including indexes and [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") pages.
+* Todas as partes de uma tabela `InnoDB` adicionada a um tablespace geral `InnoDB` residem no tablespace geral, incluindo Indexes e páginas [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types").
 
-  For an `NDB` table assigned to a tablespace, only those columns which are not indexed are stored on disk, and actually use the tablespace data files. Indexes and indexed columns for all `NDB` tables are always kept in memory.
+  Para uma tabela `NDB` atribuída a um tablespace, apenas as colunas que não são indexadas são armazenadas em disco e realmente usam os data files do tablespace. Indexes e colunas indexadas para todas as tabelas `NDB` são sempre mantidas em memória.
 
-* Similar to the system tablespace, truncating or dropping tables stored in a general tablespace creates free space internally in the general tablespace [.ibd data file](glossary.html#glos_ibd_file ".ibd file") which can only be used for new `InnoDB` data. Space is not released back to the operating system as it is for file-per-table tablespaces.
+* Semelhante ao system tablespace, truncar ou remover tabelas armazenadas em um tablespace geral cria espaço livre internamente no data file [.ibd](glossary.html#glos_ibd_file ".ibd file") do tablespace geral, que só pode ser usado para novos dados `InnoDB`. O espaço não é liberado de volta para o sistema operacional, como acontece com tablespaces file-per-table.
 
-* A general tablespace is not associated with any database or schema.
+* Um tablespace geral não está associado a nenhum Database ou schema.
 
-* [`ALTER TABLE ... DISCARD TABLESPACE`](alter-table.html "13.1.8 ALTER TABLE Statement") and [`ALTER TABLE ...IMPORT TABLESPACE`](alter-table.html "13.1.8 ALTER TABLE Statement") are not supported for tables that belong to a general tablespace.
+* [`ALTER TABLE ... DISCARD TABLESPACE`](alter-table.html "13.1.8 ALTER TABLE Statement") e [`ALTER TABLE ...IMPORT TABLESPACE`](alter-table.html "13.1.8 ALTER TABLE Statement") não são suportados para tabelas que pertencem a um tablespace geral.
 
-* The server uses tablespace-level metadata locking for DDL that references general tablespaces. By comparison, the server uses table-level metadata locking for DDL that references file-per-table tablespaces.
+* O servidor usa metadata locking em nível de tablespace para DDL que faz referência a tablespaces gerais. Em comparação, o servidor usa metadata locking em nível de tabela para DDL que faz referência a tablespaces file-per-table.
 
-* A generated or existing tablespace cannot be changed to a general tablespace.
+* Um tablespace gerado ou existente não pode ser alterado para um tablespace geral.
 
-* Tables stored in a general tablespace can only be opened in MySQL 5.7.6 or later due to the addition of new table flags.
+* Tabelas armazenadas em um tablespace geral só podem ser abertas no MySQL 5.7.6 ou posterior devido à adição de novos table flags.
 
-* There is no conflict between general tablespace names and file-per-table tablespace names. The “/” character, which is present in file-per-table tablespace names, is not permitted in general tablespace names.
+* Não há conflito entre nomes de tablespaces gerais e nomes de tablespaces file-per-table. O caractere “/”, presente nos nomes de tablespaces file-per-table, não é permitido em nomes de tablespaces gerais.
 
-* [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") and [**mysqlpump**](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program") do not dump `InnoDB` [`CREATE TABLESPACE`](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement") statements.
+* [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") e [**mysqlpump**](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program") não fazem dump de instruções `CREATE TABLESPACE` do `InnoDB`.
 
-#### InnoDB Examples
+#### Exemplos de InnoDB
 
-This example demonstrates creating a general tablespace and adding three uncompressed tables of different row formats.
+Este exemplo demonstra a criação de um tablespace geral e a adição de três tabelas descompactadas de diferentes row formats.
 
 ```sql
 mysql> CREATE TABLESPACE `ts1` ADD DATAFILE 'ts1.ibd' ENGINE=INNODB;
@@ -179,7 +179,7 @@ mysql> CREATE TABLE t2 (c1 INT PRIMARY KEY) TABLESPACE ts1 ROW_FORMAT=COMPACT;
 mysql> CREATE TABLE t3 (c1 INT PRIMARY KEY) TABLESPACE ts1 ROW_FORMAT=DYNAMIC;
 ```
 
-This example demonstrates creating a general tablespace and adding a compressed table. The example assumes a default [`innodb_page_size`](innodb-parameters.html#sysvar_innodb_page_size) value of 16K. The `FILE_BLOCK_SIZE` of 8192 requires that the compressed table have a `KEY_BLOCK_SIZE` of 8.
+Este exemplo demonstra a criação de um tablespace geral e a adição de uma tabela compactada. O exemplo assume um valor padrão de [`innodb_page_size`](innodb-parameters.html#sysvar_innodb_page_size) de 16K. O `FILE_BLOCK_SIZE` de 8192 exige que a tabela compactada tenha um `KEY_BLOCK_SIZE` de 8.
 
 ```sql
 mysql> CREATE TABLESPACE `ts2` ADD DATAFILE 'ts2.ibd' FILE_BLOCK_SIZE = 8192 Engine=InnoDB;
@@ -187,9 +187,9 @@ mysql> CREATE TABLESPACE `ts2` ADD DATAFILE 'ts2.ibd' FILE_BLOCK_SIZE = 8192 Eng
 mysql> CREATE TABLE t4 (c1 INT PRIMARY KEY) TABLESPACE ts2 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
 ```
 
-#### NDB Example
+#### Exemplo de NDB
 
-Suppose that you wish to create an NDB Cluster Disk Data tablespace named `myts` using a datafile named `mydata-1.dat`. An `NDB` tablespace always requires the use of a log file group consisting of one or more undo log files. For this example, we first create a log file group named `mylg` that contains one undo long file named `myundo-1.dat`, using the [`CREATE LOGFILE GROUP`](create-logfile-group.html "13.1.15 CREATE LOGFILE GROUP Statement") statement shown here:
+Suponha que você deseje criar um tablespace NDB Cluster Disk Data chamado `myts` usando um datafile chamado `mydata-1.dat`. Um tablespace `NDB` sempre requer o uso de um log file group que consiste em um ou mais arquivos de log undo. Para este exemplo, primeiro criamos um log file group chamado `mylg` que contém um arquivo de log undo chamado `myundo-1.dat`, usando a instrução [`CREATE LOGFILE GROUP`](create-logfile-group.html "13.1.15 CREATE LOGFILE GROUP Statement") mostrada aqui:
 
 ```sql
 mysql> CREATE LOGFILE GROUP myg1
@@ -198,7 +198,7 @@ mysql> CREATE LOGFILE GROUP myg1
 Query OK, 0 rows affected (3.29 sec)
 ```
 
-Now you can create the tablespace previously described using the following statement:
+Agora você pode criar o tablespace descrito anteriormente usando a seguinte instrução:
 
 ```sql
 mysql> CREATE TABLESPACE myts
@@ -208,7 +208,7 @@ mysql> CREATE TABLESPACE myts
 Query OK, 0 rows affected (2.98 sec)
 ```
 
-You can now create a Disk Data table using a [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement with the `TABLESPACE` and `STORAGE DISK` options, similar to what is shown here:
+Agora você pode criar uma tabela Disk Data usando uma instrução [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") com as opções `TABLESPACE` e `STORAGE DISK`, semelhante ao que é mostrado aqui:
 
 ```sql
 mysql> CREATE TABLE mytable (
@@ -224,9 +224,9 @@ mysql> CREATE TABLE mytable (
 Query OK, 0 rows affected (1.41 sec)
 ```
 
-It is important to note that only the `dob` and `joined` columns from `mytable` are actually stored on disk, due to the fact that the `id`, `lname`, and `fname` columns are all indexed.
+É importante notar que apenas as colunas `dob` e `joined` de `mytable` são realmente armazenadas em disco, devido ao fato de que as colunas `id`, `lname` e `fname` são todas indexadas.
 
-As mentioned previously, when `CREATE TABLESPACE` is used with `ENGINE [=] NDB`, a tablespace and associated data file are created on each NDB Cluster data node. You can verify that the data files were created and obtain information about them by querying the Information Schema [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") table, as shown here:
+Como mencionado anteriormente, quando `CREATE TABLESPACE` é usado com `ENGINE [=] NDB`, um tablespace e um data file associado são criados em cada node de dados do NDB Cluster. Você pode verificar se os data files foram criados e obter informações sobre eles consultando a tabela [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") do Information Schema, conforme mostrado aqui:
 
 ```sql
 mysql> SELECT FILE_NAME, FILE_TYPE, LOGFILE_GROUP_NAME, STATUS, EXTRA
@@ -243,4 +243,4 @@ mysql> SELECT FILE_NAME, FILE_TYPE, LOGFILE_GROUP_NAME, STATUS, EXTRA
 3 rows in set (0.01 sec)
 ```
 
-For additional information and examples, see [Section 21.6.11.1, “NDB Cluster Disk Data Objects”](mysql-cluster-disk-data-objects.html "21.6.11.1 NDB Cluster Disk Data Objects").
+Para informações e exemplos adicionais, veja [Seção 21.6.11.1, “NDB Cluster Disk Data Objects”](mysql-cluster-disk-data-objects.html "21.6.11.1 NDB Cluster Disk Data Objects").

@@ -1,21 +1,21 @@
-#### 13.6.6.5 Restrictions on Server-Side Cursors
+#### 13.6.6.5 Restrições em Cursors do Lado do Servidor
 
-Server-side cursors are implemented in the C API using the [`mysql_stmt_attr_set()`](/doc/c-api/5.7/en/mysql-stmt-attr-set.html) function. The same implementation is used for cursors in stored routines. A server-side cursor enables a result set to be generated on the server side, but not transferred to the client except for those rows that the client requests. For example, if a client executes a query but is only interested in the first row, the remaining rows are not transferred.
+Cursors do lado do servidor (Server-Side Cursors) são implementados na C API usando a função [`mysql_stmt_attr_set()`](/doc/c-api/5.7/en/mysql-stmt-attr-set.html). A mesma implementação é usada para cursors em Stored Routines. Um Server-Side Cursor permite que um Result Set seja gerado no lado do servidor, mas não transferido para o cliente, exceto pelas linhas que o cliente solicita. Por exemplo, se um cliente executa uma Query, mas está interessado apenas na primeira linha, as linhas restantes não são transferidas.
 
-In MySQL, a server-side cursor is materialized into an internal temporary table. Initially, this is a `MEMORY` table, but is converted to a `MyISAM` table when its size exceeds the minimum value of the [`max_heap_table_size`](server-system-variables.html#sysvar_max_heap_table_size) and [`tmp_table_size`](server-system-variables.html#sysvar_tmp_table_size) system variables. The same restrictions apply to internal temporary tables created to hold the result set for a cursor as for other uses of internal temporary tables. See [Section 8.4.4, “Internal Temporary Table Use in MySQL”](internal-temporary-tables.html "8.4.4 Internal Temporary Table Use in MySQL"). One limitation of the implementation is that for a large result set, retrieving its rows through a cursor might be slow.
+No MySQL, um Server-Side Cursor é materializado em uma Internal Temporary Table. Inicialmente, esta é uma tabela `MEMORY`, mas é convertida para uma tabela `MyISAM` quando seu tamanho excede o valor mínimo das variáveis de sistema [`max_heap_table_size`](server-system-variables.html#sysvar_max_heap_table_size) e [`tmp_table_size`](server-system-variables.html#sysvar_tmp_table_size). As mesmas restrições aplicam-se às Internal Temporary Tables criadas para armazenar o Result Set de um Cursor, assim como para outros usos de Internal Temporary Tables. Consulte [Seção 8.4.4, “Uso de Internal Temporary Table no MySQL”](internal-temporary-tables.html "8.4.4 Internal Temporary Table Use in MySQL"). Uma limitação da implementação é que, para um Result Set grande, recuperar suas linhas através de um Cursor pode ser lento.
 
-Cursors are read only; you cannot use a cursor to update rows.
+Cursors são somente leitura (*read only*); você não pode usar um Cursor para atualizar linhas.
 
-`UPDATE WHERE CURRENT OF` and `DELETE WHERE CURRENT OF` are not implemented, because updatable cursors are not supported.
+`UPDATE WHERE CURRENT OF` e `DELETE WHERE CURRENT OF` não são implementados, pois cursors atualizáveis não são suportados.
 
-Cursors are nonholdable (not held open after a commit).
+Cursors são *nonholdable* (não permanecem abertos após um Commit).
 
-Cursors are asensitive.
+Cursors são *asensitive*.
 
-Cursors are nonscrollable.
+Cursors são *nonscrollable*.
 
-Cursors are not named. The statement handler acts as the cursor ID.
+Cursors não são nomeados. O *statement handler* atua como o ID do Cursor.
 
-You can have open only a single cursor per prepared statement. If you need several cursors, you must prepare several statements.
+Você pode ter apenas um único Cursor aberto por *prepared statement*. Se você precisar de vários Cursors, deve preparar vários *statements*.
 
-You cannot use a cursor for a statement that generates a result set if the statement is not supported in prepared mode. This includes statements such as [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement"), `HANDLER READ`, and [`SHOW BINLOG EVENTS`](show-binlog-events.html "13.7.5.2 SHOW BINLOG EVENTS Statement").
+Você não pode usar um Cursor para um *statement* que gera um Result Set se o *statement* não for suportado no modo *prepared*. Isso inclui *statements* como [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement"), `HANDLER READ`, e [`SHOW BINLOG EVENTS`](show-binlog-events.html "13.7.5.2 SHOW BINLOG EVENTS Statement").

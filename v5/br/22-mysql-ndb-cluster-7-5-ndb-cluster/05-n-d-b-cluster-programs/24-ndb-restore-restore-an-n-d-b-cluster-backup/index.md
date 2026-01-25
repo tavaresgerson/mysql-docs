@@ -1,229 +1,229 @@
-### 21.5.24 ndb_restore — Restore an NDB Cluster Backup
+### 21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster
 
-[21.5.24.1 Restoring an NDB Backup to a Different Version of NDB Cluster](ndb-restore-to-different-version.html)
+[21.5.24.1 Restaurando um Backup NDB para uma Versão Diferente do NDB Cluster](ndb-restore-to-different-version.html)
 
-[21.5.24.2 Restoring to a different number of data nodes](ndb-restore-different-number-nodes.html)
+[21.5.24.2 Restaurando para um número diferente de nós de dados](ndb-restore-different-number-nodes.html)
 
-The NDB Cluster restoration program is implemented as a separate command-line utility [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"), which can normally be found in the MySQL `bin` directory. This program reads the files created as a result of the backup and inserts the stored information into the database.
+O programa de restauração do NDB Cluster é implementado como um utilitário de linha de comando separado [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster"), que normalmente pode ser encontrado no diretório `bin` do MySQL. Este programa lê os arquivos criados como resultado do backup e insere as informações armazenadas no Database.
 
-Note
+Nota
 
-Beginning with NDB 7.5.15 and 7.6.11, this program no longer prints `NDBT_ProgramExit: ...` when it finishes its run. Applications depending on this behavior should be modified accordingly when upgrading from earlier releases.
+A partir do NDB 7.5.15 e 7.6.11, este programa não imprime mais `NDBT_ProgramExit: ...` ao finalizar sua execução. Aplicações que dependem deste comportamento devem ser modificadas adequadamente ao fazer o upgrade de releases anteriores.
 
-[**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") must be executed once for each of the backup files that were created by the [`START BACKUP`](mysql-cluster-backup-using-management-client.html "21.6.8.2 Using The NDB Cluster Management Client to Create a Backup") command used to create the backup (see [Section 21.6.8.2, “Using The NDB Cluster Management Client to Create a Backup”](mysql-cluster-backup-using-management-client.html "21.6.8.2 Using The NDB Cluster Management Client to Create a Backup")). This is equal to the number of data nodes in the cluster at the time that the backup was created.
+[**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") deve ser executado uma vez para cada um dos arquivos de backup que foram criados pelo comando [`START BACKUP`](mysql-cluster-backup-using-management-client.html "21.6.8.2 Using The NDB Cluster Management Client to Create a Backup") usado para criar o backup (veja [Seção 21.6.8.2, “Usando o Cliente de Gerenciamento do NDB Cluster para Criar um Backup”](mysql-cluster-backup-using-management-client.html "21.6.8.2 Using The NDB Cluster Management Client to Create a Backup")). Isso é igual ao número de nós de dados no cluster no momento em que o backup foi criado.
 
-Note
+Nota
 
-Before using [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"), it is recommended that the cluster be running in single user mode, unless you are restoring multiple data nodes in parallel. See [Section 21.6.6, “NDB Cluster Single User Mode”](mysql-cluster-single-user-mode.html "21.6.6 NDB Cluster Single User Mode"), for more information.
+Antes de usar [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster"), é recomendado que o cluster esteja rodando em modo single user, a menos que você esteja restaurando múltiplos nós de dados em paralelo. Veja [Seção 21.6.6, “Modo Single User do NDB Cluster”](mysql-cluster-single-user-mode.html "21.6.6 NDB Cluster Single User Mode"), para mais informações.
 
-Options that can be used with [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") are shown in the following table. Additional descriptions follow the table.
+As opções que podem ser usadas com [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") são mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
-**Table 21.38 Command-line options used with the program ndb_restore**
+**Tabela 21.38 Opções de Linha de Comando Usadas com o Programa ndb_restore**
 
-<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code> --allow-pk-changes[=0|1] </code> </p></th> <td>Allow changes to set of columns making up table's primary key</td> <td><p> ADDED: NDB 7.6.14 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --append </code> </p></th> <td>Append data to tab-delimited file</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --backup-path=path </code> </p></th> <td>Path to backup files directory</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--backupid=#</code>, </p><p> <code> <a class="link" href="mysql-cluster-programs-ndb-restore.html#option_ndb_restore_backupid">-b
-                #</a> </code> </p></th> <td>Restore from backup having this ID</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --character-sets-dir=path </code> </p></th> <td>Directory containing character sets</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Alias for --connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retries=# </code> </p></th> <td>Number of times to retry connection before giving up</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retry-delay=# </code> </p></th> <td>Number of seconds to wait between attempts to contact management server</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Same as --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --core-file </code> </p></th> <td>Write core file on error; used in debugging</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-extra-file=path </code> </p></th> <td>Read given file after global files are read</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-file=path </code> </p></th> <td>Read default options from given file only</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-group-suffix=string </code> </p></th> <td>Also read groups with concat(group, suffix)</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --disable-indexes </code> </p></th> <td>Causes indexes from backup to be ignored; may decrease time needed to restore data</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--dont-ignore-systab-0</code>, </p><p> <code> -f </code> </p></th> <td>Do not ignore system table during restore; experimental only; not for production use</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --exclude-databases=list </code> </p></th> <td>List of one or more databases to exclude (includes those not named)</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --exclude-intermediate-sql-tables[=TRUE|FALSE] </code> </p></th> <td>Do not restore any intermediate tables (having names prefixed with '#sql-') that were left over from copying ALTER TABLE operations; specify FALSE to restore such tables</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --exclude-missing-columns </code> </p></th> <td>Causes columns from backup version of table that are missing from version of table in database to be ignored</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --exclude-missing-tables </code> </p></th> <td>Causes tables from backup that are missing from database to be ignored</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --exclude-tables=list </code> </p></th> <td>List of one or more tables to exclude (includes those in same database that are not named); each table reference must include database name</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --fields-enclosed-by=char </code> </p></th> <td>Fields are enclosed by this character</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --fields-optionally-enclosed-by </code> </p></th> <td>Fields are optionally enclosed by this character</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --fields-terminated-by=char </code> </p></th> <td>Fields are terminated by this character</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>, </p><p> <code> -? </code> </p></th> <td>Display help text and exit</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --hex </code> </p></th> <td>Print binary types in hexadecimal format</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ignore-extended-pk-updates[=0|1] </code> </p></th> <td>Ignore log entries containing updates to columns now included in extended primary key</td> <td><p> ADDED: NDB 7.6.14 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --include-databases=list </code> </p></th> <td>List of one or more databases to restore (excludes those not named)</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --include-tables=list </code> </p></th> <td>List of one or more tables to restore (excludes those in same database that are not named); each table reference must include database name</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --lines-terminated-by=char </code> </p></th> <td>Lines are terminated by this character</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --login-path=path </code> </p></th> <td>Read given path from login file</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--lossy-conversions</code>, </p><p> <code> -L </code> </p></th> <td>Allow lossy conversions of column values (type demotions or changes in sign) when restoring data from backup</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --no-binlog </code> </p></th> <td>If mysqld is connected and using binary logging, do not log restored data</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --no-defaults </code> </p></th> <td>Do not read default options from any option file other than login file</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--no-restore-disk-objects</code>, </p><p> <code> -d </code> </p></th> <td>Do not restore objects relating to Disk Data</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--no-upgrade</code>, </p><p> <code> -u </code> </p></th> <td>Do not upgrade array type for varsize attributes which do not already resize VAR data, and do not change column attributes</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Set connect string for connecting to ndb_mgmd. Syntax: "[nodeid=id;][host=]hostname[:port]". Overrides entries in NDB_CONNECTSTRING and my.cnf</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Same as --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-nodegroup-map=map</code>, </p><p> <code> -z </code> </p></th> <td>Specify node group map; unused, unsupported</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb-nodeid=# </code> </p></th> <td>Set node ID for this node, overriding any ID set by --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb-optimized-node-selection </code> </p></th> <td>Enable optimizations for selection of nodes for transactions. Enabled by default; use --skip-ndb-optimized-node-selection to disable</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--nodeid=#</code>, </p><p> <code> <a class="link" href="mysql-cluster-programs-ndb-restore.html#option_ndb_restore_nodeid">-n
-                #</a> </code> </p></th> <td>ID of node where backup was taken</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --num-slices=# </code> </p></th> <td>Number of slices to apply when restoring by slice</td> <td><p> ADDED: NDB 7.6.13 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--parallelism=#</code>, </p><p> <code> <a class="link" href="mysql-cluster-programs-ndb-restore.html#option_ndb_restore_parallelism">-p
-                #</a> </code> </p></th> <td>Number of parallel transactions to use while restoring data</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--preserve-trailing-spaces</code>, </p><p> <code> -P </code> </p></th> <td>Allow preservation of trailing spaces (including padding) when promoting fixed-width string types to variable-width types</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --print </code> </p></th> <td>Print metadata, data, and log to stdout (equivalent to --print-meta --print-data --print-log)</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --print-data </code> </p></th> <td>Print data to stdout</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --print-defaults </code> </p></th> <td>Print program argument list and exit</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --print-log </code> </p></th> <td>Print log to stdout</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --print-meta </code> </p></th> <td>Print metadata to stdout</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --print-sql-log </code> </p></th> <td>Write SQL log to stdout</td> <td><p> ADDED: NDB 7.5.4 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --progress-frequency=# </code> </p></th> <td>Print status of restore each given number of seconds</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--promote-attributes</code>, </p><p> <code> -A </code> </p></th> <td>Allow attributes to be promoted when restoring data from backup</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --rebuild-indexes </code> </p></th> <td>Causes multithreaded rebuilding of ordered indexes found in backup; number of threads used is determined by setting BuildIndexThreads</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --remap-column=string </code> </p></th> <td>Apply offset to value of specified column using indicated function and arguments. Format is [db].[tbl].[col]:[fn]:[args]; see documentation for details</td> <td><p> ADDED: NDB 7.6.14 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--restore-data</code>, </p><p> <code> -r </code> </p></th> <td>Restore table data and logs into NDB Cluster using NDB API</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--restore-epoch</code>, </p><p> <code> -e </code> </p></th> <td>Restore epoch info into status table; useful on replica cluster for starting replication; updates or inserts row in mysql.ndb_apply_status with ID 0</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--restore-meta</code>, </p><p> <code> -m </code> </p></th> <td>Restore metadata to NDB Cluster using NDB API</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --restore-privilege-tables </code> </p></th> <td>Restore MySQL privilege tables that were previously moved to NDB</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --rewrite-database=string </code> </p></th> <td>Restore to differently named database; format is olddb,newdb</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --skip-broken-objects </code> </p></th> <td>Ignore missing blob tables in backup file</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--skip-table-check</code>, </p><p> <code> -s </code> </p></th> <td>Skip table structure check during restore</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --skip-unknown-objects </code> </p></th> <td>Causes schema objects not recognized by ndb_restore to be ignored when restoring backup made from newer NDB version to older version</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --slice-id=# </code> </p></th> <td>Slice ID, when restoring by slices</td> <td><p> ADDED: NDB 7.6.13 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--tab=path</code>, </p><p> <code> -T path </code> </p></th> <td>Creates a tab-separated .txt file for each table in path provided</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --timestamp-printouts{=true|false} </code> </p></th> <td>Prefix all info, error, and debug log messages with timestamps</td> <td><p> ADDED: NDB 7.5.30, 5.7.41-ndb-7.6.26 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>, </p><p> <code> -? </code> </p></th> <td>Display help text and exit; same as --help</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --verbose=# </code> </p></th> <td>Level of verbosity in output</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>, </p><p> <code> -V </code> </p></th> <td>Display version information and exit</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody></table>
+<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Formato</th> <th>Descrição</th> <th>Adicionado, Descontinuado ou Removido</th> </tr></thead><tbody><tr> <th><p> <code> --allow-pk-changes[=0|1] </code> </p></th> <td>Permite alterações no conjunto de colunas que compõem a Primary Key da tabela</td> <td><p> ADICIONADO: NDB 7.6.14 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --append </code> </p></th> <td>Anexa dados a um arquivo delimitado por tabulação</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --backup-path=path </code> </p></th> <td>Caminho para o diretório de arquivos de backup</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--backupid=#</code>, </p><p> <code> <a class="link" href="mysql-cluster-programs-ndb-restore.html#option_ndb_restore_backupid">-b
+                #</a> </code> </p></th> <td>Restaura a partir do backup que possui este ID</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --character-sets-dir=path </code> </p></th> <td>Diretório contendo os Character Sets</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Alias para --connectstring</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retries=# </code> </p></th> <td>Número de vezes para tentar a reconexão antes de desistir</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retry-delay=# </code> </p></th> <td>Número de segundos a esperar entre as tentativas de contato com o management server</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --core-file </code> </p></th> <td>Escreve core file em caso de erro; usado em debug</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-extra-file=path </code> </p></th> <td>Lê o arquivo fornecido após a leitura dos arquivos globais</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-file=path </code> </p></th> <td>Lê opções default apenas do arquivo fornecido</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-group-suffix=string </code> </p></th> <td>Também lê grupos com concat(grupo, suffix)</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --disable-indexes </code> </p></th> <td>Faz com que os Indexes do backup sejam ignorados; pode diminuir o tempo necessário para restaurar os dados</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--dont-ignore-systab-0</code>, </p><p> <code> -f </code> </p></th> <td>Não ignora a tabela de sistema durante a restauração; apenas experimental; não para uso em produção</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --exclude-databases=list </code> </p></th> <td>Lista de um ou mais Databases a excluir (inclui aqueles que não foram nomeados)</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --exclude-intermediate-sql-tables[=TRUE|FALSE] </code> </p></th> <td>Não restaura quaisquer tabelas intermediárias (com nomes prefixados com '#sql-') que sobraram das operações ALTER TABLE de cópia; especifique FALSE para restaurar essas tabelas</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --exclude-missing-columns </code> </p></th> <td>Faz com que as colunas do backup que estão faltando na versão da tabela no Database sejam ignoradas</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --exclude-missing-tables </code> </p></th> <td>Faz com que as tabelas do backup que estão faltando no Database sejam ignoradas</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --exclude-tables=list </code> </p></th> <td>Lista de uma ou mais tabelas a excluir (inclui aquelas no mesmo Database que não foram nomeadas); cada referência de tabela deve incluir o nome do Database</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --fields-enclosed-by=char </code> </p></th> <td>Os campos são delimitados por este caractere</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --fields-optionally-enclosed-by </code> </p></th> <td>Os campos são opcionalmente delimitados por este caractere</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --fields-terminated-by=char </code> </p></th> <td>Os campos são terminados por este caractere</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>, </p><p> <code> -? </code> </p></th> <td>Exibe o texto de ajuda e sai</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --hex </code> </p></th> <td>Imprime tipos binários em formato hexadecimal</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ignore-extended-pk-updates[=0|1] </code> </p></th> <td>Ignora entradas de log contendo Updates para colunas agora incluídas na Primary Key estendida</td> <td><p> ADICIONADO: NDB 7.6.14 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --include-databases=list </code> </p></th> <td>Lista de um ou mais Databases a restaurar (exclui aqueles que não foram nomeados)</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --include-tables=list </code> </p></th> <td>Lista de uma ou mais tabelas a restaurar (exclui aquelas no mesmo Database que não foram nomeadas); cada referência de tabela deve incluir o nome do Database</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --lines-terminated-by=char </code> </p></th> <td>As linhas são terminadas por este caractere</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --login-path=path </code> </p></th> <td>Lê o caminho fornecido a partir do login file</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--lossy-conversions</code>, </p><p> <code> -L </code> </p></th> <td>Permite conversões com perda de valor de colunas (diminuições de tipo ou mudanças de sinal) ao restaurar dados do backup</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --no-binlog </code> </p></th> <td>Se mysqld estiver conectado e usando binary logging, não registra os dados restaurados</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --no-defaults </code> </p></th> <td>Não lê opções default de nenhum arquivo de opção, exceto o login file</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--no-restore-disk-objects</code>, </p><p> <code> -d </code> </p></th> <td>Não restaura objetos relacionados a Disk Data</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--no-upgrade</code>, </p><p> <code> -u </code> </p></th> <td>Não faz upgrade do tipo array para atributos varsize que ainda não redimensionam dados VAR, e não altera atributos de coluna</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Define a connection string para conexão com ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Sobrescreve entradas em NDB_CONNECTSTRING e my.cnf</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-nodegroup-map=map</code>, </p><p> <code> -z </code> </p></th> <td>Especifica o mapeamento do node group; não utilizado, sem suporte</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb-nodeid=# </code> </p></th> <td>Define o ID do nó para este nó, sobrescrevendo qualquer ID definido por --ndb-connectstring</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb-optimized-node-selection </code> </p></th> <td>Habilita otimizações para seleção de nós para Transactions. Habilitado por default; use --skip-ndb-optimized-node-selection para desabilitar</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--nodeid=#</code>, </p><p> <code> <a class="link" href="mysql-cluster-programs-ndb-restore.html#option_ndb_restore_nodeid">-n
+                #</a> </code> </p></th> <td>ID do nó onde o backup foi realizado</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --num-slices=# </code> </p></th> <td>Número de slices a aplicar ao restaurar por slice</td> <td><p> ADICIONADO: NDB 7.6.13 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--parallelism=#</code>, </p><p> <code> <a class="link" href="mysql-cluster-programs-ndb-restore.html#option_ndb_restore_parallelism">-p
+                #</a> </code> </p></th> <td>Número de Transactions paralelas a usar durante a restauração de dados</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--preserve-trailing-spaces</code>, </p><p> <code> -P </code> </p></th> <td>Permite a preservação de espaços em branco finais (incluindo padding) ao promover tipos de string de largura fixa para tipos de largura variável</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --print </code> </p></th> <td>Imprime metadata, data e log para stdout (equivalente a --print-meta --print-data --print-log)</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --print-data </code> </p></th> <td>Imprime dados para stdout</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --print-defaults </code> </p></th> <td>Imprime a lista de argumentos do programa e sai</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --print-log </code> </p></th> <td>Imprime log para stdout</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --print-meta </code> </p></th> <td>Imprime metadata para stdout</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --print-sql-log </code> </p></th> <td>Escreve SQL log para stdout</td> <td><p> ADICIONADO: NDB 7.5.4 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --progress-frequency=# </code> </p></th> <td>Imprime o status da restauração a cada número de segundos fornecido</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--promote-attributes</code>, </p><p> <code> -A </code> </p></th> <td>Permite que atributos sejam promovidos ao restaurar dados do backup</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --rebuild-indexes </code> </p></th> <td>Faz a reconstrução multithreaded de Ordered Indexes encontrados no backup; o número de Threads usados é determinado pela configuração BuildIndexThreads</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --remap-column=string </code> </p></th> <td>Aplica offset ao valor da coluna especificada usando a função e argumentos indicados. O formato é [db].[tbl].[col]:[fn]:[args]; veja a documentação para detalhes</td> <td><p> ADICIONADO: NDB 7.6.14 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--restore-data</code>, </p><p> <code> -r </code> </p></th> <td>Restaura dados de tabela e logs no NDB Cluster usando NDB API</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--restore-epoch</code>, </p><p> <code> -e </code> </p></th> <td>Restaura informações de epoch na tabela de status; útil em Replica Cluster para iniciar Replication; atualiza ou insere linha em mysql.ndb_apply_status com ID 0</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--restore-meta</code>, </p><p> <code> -m </code> </p></th> <td>Restaura metadata no NDB Cluster usando NDB API</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --restore-privilege-tables </code> </p></th> <td>Restaura tabelas de privilégios do MySQL que foram previamente movidas para NDB</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --rewrite-database=string </code> </p></th> <td>Restaura para um Database com nome diferente; o formato é olddb,newdb</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --skip-broken-objects </code> </p></th> <td>Ignora tabelas BLOB ausentes no arquivo de backup</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--skip-table-check</code>, </p><p> <code> -s </code> </p></th> <td>Pula a verificação da estrutura da tabela durante a restauração</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --skip-unknown-objects </code> </p></th> <td>Faz com que os objetos de schema não reconhecidos por ndb_restore sejam ignorados ao restaurar backup feito de uma versão NDB mais nova para uma versão mais antiga</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --slice-id=# </code> </p></th> <td>ID do Slice, ao restaurar por slices</td> <td><p> ADICIONADO: NDB 7.6.13 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--tab=path</code>, </p><p> <code> -T path </code> </p></th> <td>Cria um arquivo .txt separado por tabulação para cada tabela no caminho fornecido</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --timestamp-printouts{=true|false} </code> </p></th> <td>Prefixa todas as mensagens de log de informação, erro e debug com Timestamps</td> <td><p> ADICIONADO: NDB 7.5.30, 5.7.41-ndb-7.6.26 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>, </p><p> <code> -? </code> </p></th> <td>Exibe o texto de ajuda e sai; o mesmo que --help</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --verbose=# </code> </p></th> <td>Nível de verbosidade na saída</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>, </p><p> <code> -V </code> </p></th> <td>Exibe informações de versão e sai</td> <td><p> (Suportado em todos os releases NDB baseados no MySQL 5.7) </p></td> </tr></tbody></table>
 
 * `--allow-pk-changes`
 
-  <table frame="box" rules="all" summary="Properties for allow-pk-changes"><tbody><tr><th>Command-Line Format</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduced</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>1</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for allow-pk-changes"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>0</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1</code></td> </tr></tbody></table>
 
-  When this option is set to `1`, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") allows the primary keys in a table definition to differ from that of the same table in the backup. This may be desirable when backing up and restoring between different schema versions with primary key changes on one or more tables, and it appears that performing the restore operation using ndb_restore is simpler or mor efficient than issuing many [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statements after restoring table schemas and data.
+  Quando esta opção é definida como `1`, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") permite que as Primary Keys em uma definição de tabela sejam diferentes da mesma tabela no backup. Isso pode ser desejável ao fazer backup e restaurar entre diferentes versões de schema com alterações na Primary Key em uma ou mais tabelas, e parece que realizar a operação de restauração usando ndb_restore é mais simples ou mais eficiente do que emitir muitas instruções [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") após restaurar os schemas e dados da tabela.
 
-  The following changes in primary key definitions are supported by `--allow-pk-changes`:
+  As seguintes alterações nas definições de Primary Key são suportadas por `--allow-pk-changes`:
 
-  + **Extending the primary key**: A non-nullable column that exists in the table schema in the backup becomes part of the table's primary key in the database.
+  + **Estender a Primary Key**: Uma coluna não-nula que existe no schema da tabela no backup torna-se parte da Primary Key da tabela no Database.
 
-    Important
+    Importante
 
-    When extending a table's primary key, any columns which become part of primary key must not be updated while the backup is being taken; any such updates discovered by [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") cause the restore operation to fail, even when no change in value takes place. In some cases, it may be possible to override this behavior using the [`--ignore-extended-pk-updates`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_ignore-extended-pk-updates) option; see the description of this option for more information.
+    Ao estender a Primary Key de uma tabela, quaisquer colunas que se tornarem parte da Primary Key não devem ser atualizadas enquanto o backup estiver sendo realizado; quaisquer Updates descobertos por [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") causam a falha da operação de restauração, mesmo que não ocorra nenhuma alteração de valor. Em alguns casos, pode ser possível anular este comportamento usando a opção [`--ignore-extended-pk-updates`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_ignore-extended-pk-updates); veja a descrição desta opção para mais informações.
 
-  + **Contracting the primary key (1)**: A column that is already part of the table's primary key in the backup schema is no longer part of the primary key, but remains in the table.
+  + **Contrair a Primary Key (1)**: Uma coluna que já faz parte da Primary Key da tabela no schema de backup não é mais parte da Primary Key, mas permanece na tabela.
 
-  + **Contracting the primary key (2)**: A column that is already part of the table's primary key in the backup schema is removed from the table entirely.
+  + **Contrair a Primary Key (2)**: Uma coluna que já faz parte da Primary Key da tabela no schema de backup é removida inteiramente da tabela.
 
-  These differences can be combined with other schema differences supported by [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"), including changes to blob and text columns requiring the use of staging tables.
+  Essas diferenças podem ser combinadas com outras diferenças de schema suportadas por [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster"), incluindo alterações em colunas BLOB e TEXT que exigem o uso de tabelas de staging.
 
-  Basic steps in a typical scenario using primary key schema changes are listed here:
+  As etapas básicas em um cenário típico usando alterações de schema de Primary Key estão listadas aqui:
 
-  1. Restore table schemas using [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") [`--restore-meta`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_restore-meta)
+  1. Restaure os schemas das tabelas usando [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") [`--restore-meta`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_restore-meta)
 
-  2. Alter schema to that desired, or create it
-  3. Back up the desired schema
-  4. Run [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") [`--disable-indexes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_disable-indexes) using the backup from the previous step, to drop indexes and constraints
+  2. Altere o schema para o desejado ou crie-o
+  3. Faça backup do schema desejado
+  4. Execute [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") [`--disable-indexes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_disable-indexes) usando o backup da etapa anterior, para remover Indexes e constraints
 
-  5. Run [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") [`--allow-pk-changes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_allow-pk-changes) (possibly along with [`--ignore-extended-pk-updates`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_ignore-extended-pk-updates), [`--disable-indexes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_disable-indexes), and possibly other options as needed) to restore all data
+  5. Execute [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") [`--allow-pk-changes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_allow-pk-changes) (possivelmente junto com [`--ignore-extended-pk-updates`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_ignore-extended-pk-updates), [`--disable-indexes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_disable-indexes), e possivelmente outras opções conforme necessário) para restaurar todos os dados
 
-  6. Run [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") [`--rebuild-indexes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_rebuild-indexes) using the backup made with the desired schema, to rebuild indexes and constraints
+  6. Execute [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") [`--rebuild-indexes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_rebuild-indexes) usando o backup feito com o schema desejado, para reconstruir Indexes e constraints
 
-  When extending the primary key, it may be necessary for [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") to use a temporary secondary unique index during the restore operation to map from the old primary key to the new one. Such an index is created only when necessary to apply events from the backup log to a table which has an extended primary key. This index is named `NDB$RESTORE_PK_MAPPING`, and is created on each table requiring it; it can be shared, if necessary, by multiple instances of [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") instances running in parallel. (Running [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") [`--rebuild-indexes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_rebuild-indexes) at the end of the restore process causes this index to be dropped.)
+  Ao estender a Primary Key, pode ser necessário que [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") use um Secondary Unique Index temporário durante a operação de restauração para mapear da Primary Key antiga para a nova. Tal Index é criado apenas quando necessário para aplicar eventos do log de backup a uma tabela que tenha uma Primary Key estendida. Este Index é nomeado `NDB$RESTORE_PK_MAPPING` e é criado em cada tabela que o requer; ele pode ser compartilhado, se necessário, por múltiplas instâncias de [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") rodando em paralelo. (A execução de [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") [`--rebuild-indexes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_rebuild-indexes) no final do processo de restauração faz com que este Index seja descartado.)
 
 * `--append`
 
-  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code>--append</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--append</code></td> </tr></tbody></table>
 
-  When used with the [`--tab`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_tab) and [`--print-data`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_print-data) options, this causes the data to be appended to any existing files having the same names.
+  Quando usado com as opções [`--tab`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_tab) e [`--print-data`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_print-data), faz com que os dados sejam anexados a quaisquer arquivos existentes com os mesmos nomes.
 
 * `--backup-path`=*`dir_name`*
 
-  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>./</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Tipo</th> <td>Nome de Diretório</td> </tr><tr><th>Valor Default</th> <td><code>./</code></td> </tr></tbody></table>
 
-  The path to the backup directory is required; this is supplied to [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") using the `--backup-path` option, and must include the subdirectory corresponding to the ID backup of the backup to be restored. For example, if the data node's [`DataDir`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datadir) is `/var/lib/mysql-cluster`, then the backup directory is `/var/lib/mysql-cluster/BACKUP`, and the backup files for the backup with the ID 3 can be found in `/var/lib/mysql-cluster/BACKUP/BACKUP-3`. The path may be absolute or relative to the directory in which the [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") executable is located, and may be optionally prefixed with `backup-path=`.
+  O caminho para o diretório de backup é obrigatório; ele é fornecido a [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") usando a opção `--backup-path` e deve incluir o subdiretório correspondente ao ID do backup a ser restaurado. Por exemplo, se o [`DataDir`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datadir) do nó de dados for `/var/lib/mysql-cluster`, então o diretório de backup é `/var/lib/mysql-cluster/BACKUP`, e os arquivos de backup para o backup com ID 3 podem ser encontrados em `/var/lib/mysql-cluster/BACKUP/BACKUP-3`. O caminho pode ser absoluto ou relativo ao diretório onde o executável [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") está localizado, e pode ser opcionalmente prefixado com `backup-path=`.
 
-  It is possible to restore a backup to a database with a different configuration than it was created from. For example, suppose that a backup with backup ID `12`, created in a cluster with two storage nodes having the node IDs `2` and `3`, is to be restored to a cluster with four nodes. Then [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") must be run twice—once for each storage node in the cluster where the backup was taken. However, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") cannot always restore backups made from a cluster running one version of MySQL to a cluster running a different MySQL version. See [Section 21.3.7, “Upgrading and Downgrading NDB Cluster”](mysql-cluster-upgrade-downgrade.html "21.3.7 Upgrading and Downgrading NDB Cluster"), for more information.
+  É possível restaurar um backup para um Database com uma configuração diferente daquela de onde foi criado. Por exemplo, suponha que um backup com ID de backup `12`, criado em um cluster com dois nós de armazenamento tendo os IDs de nó `2` e `3`, deve ser restaurado para um cluster com quatro nós. Então, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") deve ser executado duas vezes – uma para cada nó de armazenamento no cluster onde o backup foi realizado. No entanto, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") nem sempre pode restaurar backups feitos de um cluster rodando uma versão do MySQL para um cluster rodando uma versão diferente do MySQL. Veja [Seção 21.3.7, “Upgrade e Downgrade do NDB Cluster”](mysql-cluster-upgrade-downgrade.html "21.3.7 Upgrading and Downgrading NDB Cluster"), para mais informações.
 
-  Important
+  Importante
 
-  It is not possible to restore a backup made from a newer version of NDB Cluster using an older version of [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"). You can restore a backup made from a newer version of MySQL to an older cluster, but you must use a copy of [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") from the newer NDB Cluster version to do so.
+  Não é possível restaurar um backup feito a partir de uma versão mais nova do NDB Cluster usando uma versão mais antiga do [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster"). Você pode restaurar um backup feito de uma versão mais nova do MySQL para um cluster mais antigo, mas deve usar uma cópia do [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") da versão mais nova do NDB Cluster para fazê-lo.
 
-  For example, to restore a cluster backup taken from a cluster running NDB Cluster 7.6.36 to a cluster running NDB Cluster 7.5.36, you must use the [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") that comes with the NDB Cluster 7.6.36 distribution.
+  Por exemplo, para restaurar um backup de cluster feito de um cluster rodando NDB Cluster 7.6.36 para um cluster rodando NDB Cluster 7.5.36, você deve usar o [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") que acompanha a distribuição NDB Cluster 7.6.36.
 
-  For more rapid restoration, the data may be restored in parallel, provided that there is a sufficient number of cluster connections available. That is, when restoring to multiple nodes in parallel, you must have an `[api]` or `[mysqld]` section in the cluster `config.ini` file available for each concurrent [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") process. However, the data files must always be applied before the logs.
+  Para uma restauração mais rápida, os dados podem ser restaurados em paralelo, desde que haja um número suficiente de conexões de cluster disponíveis. Ou seja, ao restaurar para múltiplos nós em paralelo, você deve ter uma seção `[api]` ou `[mysqld]` no arquivo `config.ini` do cluster disponível para cada processo [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") concorrente. No entanto, os arquivos de dados devem ser sempre aplicados antes dos logs.
 
 * `--backupid`=*`#`*, `-b`
 
-  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--backupid=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Default</th> <td><code>none</code></td> </tr></tbody></table>
 
-  This option is used to specify the ID or sequence number of the backup, and is the same number shown by the management client in the `Backup backup_id completed` message displayed upon completion of a backup. (See [Section 21.6.8.2, “Using The NDB Cluster Management Client to Create a Backup”](mysql-cluster-backup-using-management-client.html "21.6.8.2 Using The NDB Cluster Management Client to Create a Backup").)
+  Esta opção é usada para especificar o ID ou número de sequência do backup, e é o mesmo número mostrado pelo management client na mensagem `Backup backup_id completed` exibida após a conclusão de um backup. (Veja [Seção 21.6.8.2, “Usando o Cliente de Gerenciamento do NDB Cluster para Criar um Backup”](mysql-cluster-backup-using-management-client.html "21.6.8.2 Using The NDB Cluster Management Client to Create a Backup").)
 
-  Important
+  Importante
 
-  When restoring cluster backups, you must be sure to restore all data nodes from backups having the same backup ID. Using files from different backups can at best result in restoring the cluster to an inconsistent state, and may fail altogether.
+  Ao restaurar backups de cluster, você deve se certificar de restaurar todos os nós de dados a partir de backups que tenham o mesmo Backup ID. Usar arquivos de backups diferentes pode, na melhor das hipóteses, resultar na restauração do cluster para um estado inconsistente e pode falhar completamente.
 
-  In NDB 7.5.13 and later, and in NDB 7.6.9 and later, this option is required.
+  No NDB 7.5.13 e posterior, e no NDB 7.6.9 e posterior, esta opção é obrigatória.
 
 * `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Directory containing character sets.
+  Diretório contendo os Character Sets.
 
 * `--connect`, `-c`
 
-  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Default</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
 
-  Alias for [`--ndb-connectstring`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_ndb-connectstring).
+  Alias para [`--ndb-connectstring`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_ndb-connectstring).
 
 * `--connect-retries`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>12</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Number of times to retry connection before giving up.
+  Número de vezes para tentar a conexão antes de desistir.
 
 * `--connect-retry-delay`
 
-  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>5</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>5</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>5</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>5</code></td> </tr></tbody></table>
 
-  Number of seconds to wait between attempts to contact management server.
+  Número de segundos a esperar entre as tentativas de contato com o management server.
 
 * `--connect-string`
 
-  <table frame="box" rules="all" summary="Properties for connect-string"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-string=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-string"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connect-string=connection_string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Default</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Same as [`--ndb-connectstring`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_ndb-connectstring).
+  O mesmo que [`--ndb-connectstring`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_ndb-connectstring).
 
 * `--core-file`
 
-  <table frame="box" rules="all" summary="Properties for allow-pk-changes"><tbody><tr><th>Command-Line Format</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduced</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>1</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for allow-pk-changes"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>0</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1</code></td> </tr></tbody></table>
 
-  Write core file on error; used in debugging.
+  Escreve core file em caso de erro; usado em debug.
 
 * `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Properties for allow-pk-changes"><tbody><tr><th>Command-Line Format</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduced</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>1</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for allow-pk-changes"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>0</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1</code></td> </tr></tbody></table>
 
-  Read given file after global files are read.
+  Lê o arquivo fornecido após a leitura dos arquivos globais.
 
 * `--defaults-file`
 
-  <table frame="box" rules="all" summary="Properties for allow-pk-changes"><tbody><tr><th>Command-Line Format</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduced</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>1</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for allow-pk-changes"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>0</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1</code></td> </tr></tbody></table>
 
-  Read default options from given file only.
+  Lê opções default apenas do arquivo fornecido.
 
 * `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Properties for allow-pk-changes"><tbody><tr><th>Command-Line Format</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduced</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>1</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for allow-pk-changes"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>0</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1</code></td> </tr></tbody></table>
 
-  Also read groups with concat(group, suffix).
+  Também lê grupos com concat(group, suffix).
 
 * `--disable-indexes`
 
-  <table frame="box" rules="all" summary="Properties for allow-pk-changes"><tbody><tr><th>Command-Line Format</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduced</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>1</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for allow-pk-changes"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>0</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1</code></td> </tr></tbody></table>
 
-  Disable restoration of indexes during restoration of the data from a native `NDB` backup. Afterwards, you can restore indexes for all tables at once with multithreaded building of indexes using [`--rebuild-indexes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_rebuild-indexes), which should be faster than rebuilding indexes concurrently for very large tables.
+  Desabilita a restauração de Indexes durante a restauração dos dados de um backup `NDB` nativo. Depois, você pode restaurar Indexes para todas as tabelas de uma só vez com a construção multithreaded de Indexes usando [`--rebuild-indexes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_rebuild-indexes), o que deve ser mais rápido do que reconstruir Indexes concorrentemente para tabelas muito grandes.
 
-  Beginning with NDB 7.5.24 and NDB 7.6.20, this option also drops any foreign keys specified in the backup.
+  A partir do NDB 7.5.24 e NDB 7.6.20, esta opção também descarta quaisquer Foreign Keys especificadas no backup.
 
 * `--dont-ignore-systab-0`, `-f`
 
-  <table frame="box" rules="all" summary="Properties for allow-pk-changes"><tbody><tr><th>Command-Line Format</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduced</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>1</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for allow-pk-changes"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>0</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1</code></td> </tr></tbody></table>
 
-  Normally, when restoring table data and metadata, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") ignores the copy of the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") system table that is present in the backup. `--dont-ignore-systab-0` causes the system table to be restored. *This option is intended for experimental and development use only, and is not recommended in a production environment*.
+  Normalmente, ao restaurar dados e metadata de tabelas, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") ignora a cópia da tabela de sistema [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") que está presente no backup. `--dont-ignore-systab-0` faz com que a tabela de sistema seja restaurada. *Esta opção destina-se apenas a uso experimental e de desenvolvimento, e não é recomendada em um ambiente de produção*.
 
 * `--exclude-databases`=*`db-list`*
 
-  <table frame="box" rules="all" summary="Properties for allow-pk-changes"><tbody><tr><th>Command-Line Format</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduced</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>1</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for allow-pk-changes"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>0</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1</code></td> </tr></tbody></table>
 
-  Comma-delimited list of one or more databases which should not be restored.
+  Lista delimitada por vírgulas de um ou mais Databases que não devem ser restaurados.
 
-  This option is often used in combination with [`--exclude-tables`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_exclude-tables); see that option's description for further information and examples.
+  Esta opção é frequentemente usada em combinação com [`--exclude-tables`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_exclude-tables); veja a descrição dessa opção para mais informações e exemplos.
 
 * `--exclude-intermediate-sql-tables[`=*`TRUE|FALSE]`*
 
-  <table frame="box" rules="all" summary="Properties for allow-pk-changes"><tbody><tr><th>Command-Line Format</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduced</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>1</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for allow-pk-changes"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>0</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1</code></td> </tr></tbody></table>
 
-  When performing copying [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") operations, [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") creates intermediate tables (whose names are prefixed with `#sql-`). When `TRUE`, the `--exclude-intermediate-sql-tables` option keeps [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") from restoring such tables that may have been left over from these operations. This option is `TRUE` by default.
+  Ao realizar operações [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") de cópia, [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") cria tabelas intermediárias (cujos nomes são prefixados com `#sql-`). Quando `TRUE`, a opção `--exclude-intermediate-sql-tables` impede que [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") restaure tais tabelas que possam ter sobrado dessas operações. Esta opção é `TRUE` por default.
 
 * `--exclude-missing-columns`
 
-  <table frame="box" rules="all" summary="Properties for allow-pk-changes"><tbody><tr><th>Command-Line Format</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduced</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>1</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for allow-pk-changes"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>0</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1</code></td> </tr></tbody></table>
 
-  It is possible to restore only selected table columns using this option, which causes [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") to ignore any columns missing from tables being restored as compared to the versions of those tables found in the backup. This option applies to all tables being restored. If you wish to apply this option only to selected tables or databases, you can use it in combination with one or more of the `--include-*` or `--exclude-*` options described elsewhere in this section to do so, then restore data to the remaining tables using a complementary set of these options.
+  É possível restaurar apenas colunas de tabela selecionadas usando esta opção, o que faz com que [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") ignore quaisquer colunas ausentes nas tabelas sendo restauradas em comparação com as versões dessas tabelas encontradas no backup. Esta opção se aplica a todas as tabelas sendo restauradas. Se você deseja aplicar esta opção apenas a tabelas ou Databases selecionados, você pode usá-la em combinação com uma ou mais das opções `--include-*` ou `--exclude-*` descritas em outro lugar nesta seção para fazer isso, e então restaurar os dados para as tabelas restantes usando um conjunto complementar dessas opções.
 
 * `--exclude-missing-tables`
 
-  <table frame="box" rules="all" summary="Properties for allow-pk-changes"><tbody><tr><th>Command-Line Format</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduced</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>1</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for allow-pk-changes"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>0</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1</code></td> </tr></tbody></table>
 
-  It is possible to restore only selected tables using this option, which causes [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") to ignore any tables from the backup that are not found in the target database.
+  É possível restaurar apenas tabelas selecionadas usando esta opção, o que faz com que [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") ignore quaisquer tabelas do backup que não sejam encontradas no Database de destino.
 
 * `--exclude-tables`=*`table-list`*
 
-  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code>--append</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--append</code></td> </tr></tbody></table>
 
-  List of one or more tables to exclude; each table reference must include the database name. Often used together with [`--exclude-databases`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_exclude-databases).
+  Lista de uma ou mais tabelas para excluir; cada referência de tabela deve incluir o nome do Database. Frequentemente usada junto com [`--exclude-databases`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_exclude-databases).
 
-  When `--exclude-databases` or `--exclude-tables` is used, only those databases or tables named by the option are excluded; all other databases and tables are restored by [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup").
+  Quando `--exclude-databases` ou `--exclude-tables` é usado, apenas os Databases ou tabelas nomeados pela opção são excluídos; todos os outros Databases e tabelas são restaurados por [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster").
 
-  This table shows several invocations of [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") usng `--exclude-*` options (other options possibly required have been omitted for clarity), and the effects these options have on restoring from an NDB Cluster backup:
+  Esta tabela mostra várias invocações de [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") usando opções `--exclude-*` (outras opções possivelmente necessárias foram omitidas por clareza), e os efeitos que estas opções têm na restauração de um backup do NDB Cluster:
 
-  **Table 21.39 Several invocations of ndb_restore using --exclude-\* options, and the effects these options have on restoring from an NDB Cluster backup.**
+  **Tabela 21.39 Várias invocações de ndb_restore usando opções --exclude-\*, e os efeitos que estas opções têm na restauração de um backup do NDB Cluster.**
 
-  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code>--append</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--append</code></td> </tr></tbody></table>
 
-  You can use these two options together. For example, the following causes all tables in all databases *except for* databases `db1` and `db2`, and tables `t1` and `t2` in database `db3`, to be restored:
+  Você pode usar estas duas opções juntas. Por exemplo, o seguinte faz com que todas as tabelas em todos os Databases *exceto* os Databases `db1` e `db2`, e as tabelas `t1` e `t2` no Database `db3`, sejam restauradas:
 
   ```sql
   $> ndb_restore [...] --exclude-databases=db1,db2 --exclude-tables=db3.t1,db3.t2
   ```
 
-  (Again, we have omitted other possibly necessary options in the interest of clarity and brevity from the example just shown.)
+  (Novamente, omitimos outras opções possivelmente necessárias no interesse de clareza e brevidade do exemplo recém-mostrado.)
 
-  You can use `--include-*` and `--exclude-*` options together, subject to the following rules:
+  Você pode usar as opções `--include-*` e `--exclude-*` juntas, sujeitas às seguintes regras:
 
-  + The actions of all `--include-*` and `--exclude-*` options are cumulative.
+  + As ações de todas as opções `--include-*` e `--exclude-*` são cumulativas.
 
-  + All `--include-*` and `--exclude-*` options are evaluated in the order passed to ndb_restore, from right to left.
+  + Todas as opções `--include-*` e `--exclude-*` são avaliadas na ordem em que são passadas para ndb_restore, da direita para a esquerda.
 
-  + In the event of conflicting options, the first (rightmost) option takes precedence. In other words, the first option (going from right to left) that matches against a given database or table “wins”.
+  + Em caso de opções conflitantes, a primeira opção (mais à direita) tem precedência. Em outras palavras, a primeira opção (indo da direita para a esquerda) que corresponde a um determinado Database ou tabela "ganha".
 
-  For example, the following set of options causes [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") to restore all tables from database `db1` except `db1.t1`, while restoring no other tables from any other databases:
+  Por exemplo, o seguinte conjunto de opções faz com que [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") restaure todas as tabelas do Database `db1`, exceto `db1.t1`, enquanto não restaura nenhuma outra tabela de qualquer outro Database:
 
   ```sql
   --include-databases=db1 --exclude-tables=db1.t1
   ```
 
-  However, reversing the order of the options just given simply causes all tables from database `db1` to be restored (including `db1.t1`, but no tables from any other database), because the [`--include-databases`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_include-databases) option, being farthest to the right, is the first match against database `db1` and thus takes precedence over any other option that matches `db1` or any tables in `db1`:
+  No entanto, inverter a ordem das opções recém-fornecidas simplesmente faz com que todas as tabelas do Database `db1` sejam restauradas (incluindo `db1.t1`, mas nenhuma tabela de qualquer outro Database), porque a opção [`--include-databases`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_include-databases), estando mais à direita, é a primeira correspondência contra o Database `db1` e, portanto, tem precedência sobre qualquer outra opção que corresponda a `db1` ou a qualquer tabela em `db1`:
 
   ```sql
   --exclude-tables=db1.t1 --include-databases=db1
@@ -231,472 +231,472 @@ Options that can be used with [**ndb_restore**](mysql-cluster-programs-ndb-resto
 
 * `--fields-enclosed-by`=*`char`*
 
-  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code>--append</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--append</code></td> </tr></tbody></table>
 
-  Each column value is enclosed by the string passed to this option (regardless of data type; see the description of [`--fields-optionally-enclosed-by`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_fields-optionally-enclosed-by)).
+  Cada valor de coluna é delimitado pela string passada para esta opção (independentemente do tipo de dado; veja a descrição de [`--fields-optionally-enclosed-by`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_fields-optionally-enclosed-by)).
 
 * `--fields-optionally-enclosed-by`
 
-  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code>--append</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--append</code></td> </tr></tbody></table>
 
-  The string passed to this option is used to enclose column values containing character data (such as [`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), [`BINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"), [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types"), or [`ENUM`](enum.html "11.3.5 The ENUM Type")).
+  A string passada para esta opção é usada para delimitar valores de coluna que contêm dados de caracteres (como [`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), [`BINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"), [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types"), ou [`ENUM`](enum.html "11.3.5 The ENUM Type")).
 
 * `--fields-terminated-by`=*`char`*
 
-  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code>--append</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--append</code></td> </tr></tbody></table>
 
-  The string passed to this option is used to separate column values. The default value is a tab character (`\t`).
+  A string passada para esta opção é usada para separar os valores das colunas. O valor default é um caractere de tabulação (`\t`).
 
 * `--help`
 
-  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code>--append</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--append</code></td> </tr></tbody></table>
 
-  Display help text and exit.
+  Exibe o texto de ajuda e sai.
 
 * `--hex`
 
-  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code>--append</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--append</code></td> </tr></tbody></table>
 
-  If this option is used, all binary values are output in hexadecimal format.
+  Se esta opção for usada, todos os valores binários são exibidos em formato hexadecimal.
 
 * `--ignore-extended-pk-updates`
 
-  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code>--append</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--append</code></td> </tr></tbody></table>
 
-  When using the [`--allow-pk-changes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_allow-pk-changes) option, columns which become part of a table's primary key must not be updated while the backup is being taken; such columns should keep the same values from the time values are inserted into them until the rows containing the values are deleted. If [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") encounters updates to these columns when restoring a backup, the restore fails. Because some applications may set values for all columns when updating a row, even when some column values are not changed, the backup may include log events appearing to update columns which are not in fact modified. In such cases you can set `--ignore-extended-pk-updates` to `1`, forcing [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") to ignore such updates.
+  Ao usar a opção [`--allow-pk-changes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_allow-pk-changes), as colunas que se tornam parte da Primary Key de uma tabela não devem ser atualizadas enquanto o backup estiver sendo realizado; tais colunas devem manter os mesmos valores desde o momento em que os valores são inseridos nelas até que as linhas contendo os valores sejam excluídas. Se [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") encontrar Updates para essas colunas ao restaurar um backup, a restauração falhará. Como alguns aplicativos podem definir valores para todas as colunas ao atualizar uma linha, mesmo quando alguns valores de coluna não são alterados, o backup pode incluir eventos de log que parecem atualizar colunas que na verdade não são modificadas. Nesses casos, você pode definir `--ignore-extended-pk-updates` como `1`, forçando [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") a ignorar tais Updates.
 
-  Important
+  Importante
 
-  When causing these updates to be ignored, the user is responsible for ensuring that there are no updates to the values of any columns that become part of the primary key.
+  Ao fazer com que esses Updates sejam ignorados, o usuário é responsável por garantir que não haja Updates nos valores de quaisquer colunas que se tornem parte da Primary Key.
 
-  For more information, see the description of [`--allow-pk-changes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_allow-pk-changes).
+  Para mais informações, veja a descrição de [`--allow-pk-changes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_allow-pk-changes).
 
 * `--include-databases`=*`db-list`*
 
-  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code>--append</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--append</code></td> </tr></tbody></table>
 
-  Comma-delimited list of one or more databases to restore. Often used together with [`--include-tables`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_include-tables); see the description of that option for further information and examples.
+  Lista delimitada por vírgulas de um ou mais Databases a serem restaurados. Frequentemente usada junto com [`--include-tables`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_include-tables); veja a descrição dessa opção para mais informações e exemplos.
 
 * `--include-tables`=*`table-list`*
 
-  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code>--append</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--append</code></td> </tr></tbody></table>
 
-  Comma-delimited list of tables to restore; each table reference must include the database name.
+  Lista delimitada por vírgulas de tabelas a serem restauradas; cada referência de tabela deve incluir o nome do Database.
 
-  When `--include-databases` or `--include-tables` is used, only those databases or tables named by the option are restored; all other databases and tables are excluded by [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"), and are not restored.
+  Quando `--include-databases` ou `--include-tables` é usado, apenas os Databases ou tabelas nomeados pela opção são restaurados; todos os outros Databases e tabelas são excluídos por [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") e não são restaurados.
 
-  The following table shows several invocations of [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") using `--include-*` options (other options possibly required have been omitted for clarity), and the effects these have on restoring from an NDB Cluster backup:
+  A tabela a seguir mostra várias invocações de [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") usando opções `--include-*` (outras opções possivelmente necessárias foram omitidas por clareza), e os efeitos que elas têm na restauração de um backup do NDB Cluster:
 
-  **Table 21.40 Several invocations of ndb_restore using --include-\* options, and their effects on restoring from an NDB Cluster backup.**
+  **Tabela 21.40 Várias invocações de ndb_restore usando opções --include-\*, e seus efeitos na restauração de um backup do NDB Cluster.**
 
-  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>./</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Tipo</th> <td>Nome de Diretório</td> </tr><tr><th>Valor Default</th> <td><code>./</code></td> </tr></tbody></table>
 
-  You can also use these two options together. For example, the following causes all tables in databases `db1` and `db2`, together with the tables `t1` and `t2` in database `db3`, to be restored (and no other databases or tables):
+  Você também pode usar estas duas opções juntas. Por exemplo, o seguinte faz com que todas as tabelas nos Databases `db1` e `db2`, juntamente com as tabelas `t1` e `t2` no Database `db3`, sejam restauradas (e nenhum outro Database ou tabela):
 
   ```sql
   $> ndb_restore [...] --include-databases=db1,db2 --include-tables=db3.t1,db3.t2
   ```
 
-  (Again we have omitted other, possibly required, options in the example just shown.)
+  (Novamente, omitimos outras opções, possivelmente necessárias, no exemplo recém-mostrado.)
 
-  It also possible to restore only selected databases, or selected tables from a single database, without any `--include-*` (or `--exclude-*`) options, using the syntax shown here:
+  Também é possível restaurar apenas Databases selecionados, ou tabelas selecionadas de um único Database, sem quaisquer opções `--include-*` (ou `--exclude-*`), usando a sintaxe mostrada aqui:
 
   ```sql
   ndb_restore other_options db_name,[db_name[,...] | tbl_name[,tbl_name][,...
   ```
 
-  In other words, you can specify either of the following to be restored:
+  Em outras palavras, você pode especificar qualquer um dos seguintes para ser restaurado:
 
-  + All tables from one or more databases
-  + One or more tables from a single database
+  + Todas as tabelas de um ou mais Databases
+  + Uma ou mais tabelas de um único Database
 * `--lines-terminated-by`=*`char`*
 
-  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>./</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Tipo</th> <td>Nome de Diretório</td> </tr><tr><th>Valor Default</th> <td><code>./</code></td> </tr></tbody></table>
 
-  Specifies the string used to end each line of output. The default is a linefeed character (`\n`).
+  Especifica a string usada para finalizar cada linha de saída. O default é um caractere de quebra de linha (`\n`).
 
 * `--login-path`
 
-  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>./</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Tipo</th> <td>Nome de Diretório</td> </tr><tr><th>Valor Default</th> <td><code>./</code></td> </tr></tbody></table>
 
-  Read given path from login file.
+  Lê o caminho fornecido a partir do login file.
 
 * `--lossy-conversions`, `-L`
 
-  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>./</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Tipo</th> <td>Nome de Diretório</td> </tr><tr><th>Valor Default</th> <td><code>./</code></td> </tr></tbody></table>
 
-  This option is intended to complement the [`--promote-attributes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_promote-attributes) option. Using `--lossy-conversions` allows lossy conversions of column values (type demotions or changes in sign) when restoring data from backup. With some exceptions, the rules governing demotion are the same as for MySQL replication; see [Section 16.4.1.10.2, “Replication of Columns Having Different Data Types”](replication-features-differing-tables.html#replication-features-different-data-types "16.4.1.10.2 Replication of Columns Having Different Data Types"), for information about specific type conversions currently supported by attribute demotion.
+  Esta opção se destina a complementar a opção [`--promote-attributes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_promote-attributes). Usar `--lossy-conversions` permite conversões com perda de valor de colunas (diminuições de tipo ou mudanças de sinal) ao restaurar dados do backup. Com algumas exceções, as regras que regem a diminuição são as mesmas que para o MySQL Replication; veja [Seção 16.4.1.10.2, “Replication de Colunas com Tipos de Dados Diferentes”](replication-features-differing-tables.html#replication-features-different-data-types "16.4.1.10.2 Replication of Columns Having Different Data Types"), para informações sobre conversões de tipo específicas atualmente suportadas pela diminuição de atributos.
 
-  Beginning with NDB 7.5.23 and NDB 7.6.19, this option also makes it possible to restore a `NULL` column as `NOT NULL`. The column must not contain any `NULL` entries; otherwise [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") stops with an error.
+  A partir do NDB 7.5.23 e NDB 7.6.19, esta opção também torna possível restaurar uma coluna `NULL` como `NOT NULL`. A coluna não deve conter nenhuma entrada `NULL`; caso contrário, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") para com um erro.
 
-  [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") reports any truncation of data that it performs during lossy conversions once per attribute and column.
+  [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") relata qualquer truncamento de dados que realiza durante conversões com perda de valor uma vez por atributo e coluna.
 
 * `--ndb-connectstring`
 
-  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>./</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Tipo</th> <td>Nome de Diretório</td> </tr><tr><th>Valor Default</th> <td><code>./</code></td> </tr></tbody></table>
 
-  Set connect string for connecting to ndb_mgmd. Syntax: "[nodeid=id;][host=]hostname[:port]". Overrides entries in NDB_CONNECTSTRING and my.cnf.
+  Define a connect string para conexão com ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Sobrescreve entradas em NDB_CONNECTSTRING e my.cnf.
 
 * `--ndb-mgmd-host`
 
-  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>./</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Tipo</th> <td>Nome de Diretório</td> </tr><tr><th>Valor Default</th> <td><code>./</code></td> </tr></tbody></table>
 
-  Same as [`--ndb-connectstring`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_ndb-connectstring).
+  O mesmo que [`--ndb-connectstring`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_ndb-connectstring).
 
 * `--ndb-nodegroup-map`=*`map`*, `-z`
 
-  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>./</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Tipo</th> <td>Nome de Diretório</td> </tr><tr><th>Valor Default</th> <td><code>./</code></td> </tr></tbody></table>
 
-  Intended for restoring a backup taken from one node group to a different node group, but never completely implemented; unsupported.
+  Destinado a restaurar um backup feito de um node group para um node group diferente, mas nunca totalmente implementado; sem suporte.
 
 * `--ndb-nodeid`
 
-  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>./</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Tipo</th> <td>Nome de Diretório</td> </tr><tr><th>Valor Default</th> <td><code>./</code></td> </tr></tbody></table>
 
-  Set node ID for this node, overriding any ID set by [`--ndb-connectstring`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_ndb-connectstring).
+  Define o ID do nó para este nó, sobrescrevendo qualquer ID definido por [`--ndb-connectstring`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_ndb-connectstring).
 
 * `--ndb-optimized-node-selection`
 
-  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>./</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Tipo</th> <td>Nome de Diretório</td> </tr><tr><th>Valor Default</th> <td><code>./</code></td> </tr></tbody></table>
 
-  Enable optimizations for selection of nodes for transactions. Enabled by default; use `--skip-ndb-optimized-node-selection` to disable.
+  Habilita otimizações para seleção de nós para Transactions. Habilitado por default; use `--skip-ndb-optimized-node-selection` para desabilitar.
 
 * `--no-binlog`
 
-  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>./</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Tipo</th> <td>Nome de Diretório</td> </tr><tr><th>Valor Default</th> <td><code>./</code></td> </tr></tbody></table>
 
-  This option prevents any connected SQL nodes from writing data restored by [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") to their binary logs.
+  Esta opção impede que quaisquer SQL nodes conectados escrevam dados restaurados por [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") em seus Binary Logs.
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--backupid=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Default</th> <td><code>none</code></td> </tr></tbody></table>
 
-  Do not read default options from any option file other than login file.
+  Não lê opções default de nenhum arquivo de opção além do login file.
 
 * `--no-restore-disk-objects`, `-d`
 
-  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--backupid=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Default</th> <td><code>none</code></td> </tr></tbody></table>
 
-  This option stops [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") from restoring any NDB Cluster Disk Data objects, such as tablespaces and log file groups; see [Section 21.6.11, “NDB Cluster Disk Data Tables”](mysql-cluster-disk-data.html "21.6.11 NDB Cluster Disk Data Tables"), for more information about these.
+  Esta opção impede que [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") restaure quaisquer objetos NDB Cluster Disk Data, como tablespaces e log file groups; veja [Seção 21.6.11, “Tabelas Disk Data do NDB Cluster”](mysql-cluster-disk-data.html "21.6.11 NDB Cluster Disk Data Tables"), para mais informações sobre estes.
 
 * `--no-upgrade`, `-u`
 
-  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--backupid=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Default</th> <td><code>none</code></td> </tr></tbody></table>
 
-  When using [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") to restore a backup, [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") columns created using the old fixed format are resized and recreated using the variable-width format now employed. This behavior can be overridden by specifying `--no-upgrade`.
+  Ao usar [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") para restaurar um backup, as colunas [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") criadas usando o formato fixo antigo são redimensionadas e recriadas usando o formato de largura variável agora empregado. Este comportamento pode ser anulado especificando `--no-upgrade`.
 
 * `--nodeid`=*`#`*, `-n`
 
-  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--backupid=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Default</th> <td><code>none</code></td> </tr></tbody></table>
 
-  Specify the node ID of the data node on which the backup was taken.
+  Especifica o ID do nó de dados no qual o backup foi realizado.
 
-  When restoring to a cluster with different number of data nodes from that where the backup was taken, this information helps identify the correct set or sets of files to be restored to a given node. (In such cases, multiple files usually need to be restored to a single data node.) See [Section 21.5.24.2, “Restoring to a different number of data nodes”](ndb-restore-different-number-nodes.html "21.5.24.2 Restoring to a different number of data nodes"), for additional information and examples.
+  Ao restaurar para um cluster com número diferente de nós de dados daquele onde o backup foi realizado, esta informação ajuda a identificar o conjunto correto de arquivos a serem restaurados para um determinado nó. (Nesses casos, múltiplos arquivos geralmente precisam ser restaurados para um único nó de dados.) Veja [Seção 21.5.24.2, “Restaurando para um número diferente de nós de dados”](ndb-restore-different-number-nodes.html "21.5.24.2 Restoring to a different number of data nodes"), para informações adicionais e exemplos.
 
-  In NDB 7.5.13 and later, and in NDB 7.6.9 and later, this option is required.
+  No NDB 7.5.13 e posterior, e no NDB 7.6.9 e posterior, esta opção é obrigatória.
 
 * `--num-slices`=*`#`*
 
-  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--backupid=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Default</th> <td><code>none</code></td> </tr></tbody></table>
 
-  When restoring a backup by slices, this option sets the number of slices into which to divide the backup. This allows multiple instances of [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") to restore disjoint subsets in parallel, potentially reducing the amount of time required to perform the restore operation.
+  Ao restaurar um backup por slices, esta opção define o número de slices em que o backup deve ser dividido. Isso permite que múltiplas instâncias de [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") restaurem subconjuntos disjuntos em paralelo, potencialmente reduzindo o tempo necessário para realizar a operação de restauração.
 
-  A *slice* is a subset of the data in a given backup; that is, it is a set of fragments having the same slice ID, specified using the [`--slice-id`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_slice-id) option. The two options must always be used together, and the value set by `--slice-id` must always be less than the number of slices.
+  Um *slice* é um subconjunto dos dados em um determinado backup; ou seja, é um conjunto de fragments que possuem o mesmo ID de slice, especificado usando a opção [`--slice-id`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_slice-id). As duas opções devem ser sempre usadas juntas, e o valor definido por `--slice-id` deve ser sempre menor que o número de slices.
 
-  [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") encounters fragments and assigns each one a fragment counter. When restoring by slices, a slice ID is assigned to each fragment; this slice ID is in the range 0 to 1 less than the number of slices. For a table that is not a [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") table, the slice to which a given fragment belongs is determined using the formula shown here:
+  [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") encontra fragments e atribui a cada um um contador de fragment. Ao restaurar por slices, um ID de slice é atribuído a cada fragment; este ID de slice está no intervalo de 0 a 1 a menos que o número de slices. Para uma tabela que não é uma tabela [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types"), o slice ao qual um determinado fragment pertence é determinado usando a fórmula mostrada aqui:
 
   ```sql
   [slice_ID] = [fragment_counter] % [number_of_slices]
   ```
 
-  For a [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") table, a fragment counter is not used; the fragment number is used instead, along with the ID of the main table for the `BLOB` table (recall that `NDB` stores *`BLOB`* values in a separate table internally). In this case, the slice ID for a given fragment is calculated as shown here:
+  Para uma tabela [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types"), um contador de fragment não é usado; o número do fragment é usado em vez disso, juntamente com o ID da tabela principal para a tabela `BLOB` (lembre-se que `NDB` armazena valores *`BLOB`* em uma tabela separada internamente). Neste caso, o ID do slice para um determinado fragment é calculado conforme mostrado aqui:
 
   ```sql
   [slice_ID] =
   ([main_table_ID] + [fragment_ID]) % [number_of_slices]
   ```
 
-  Thus, restoring by *`N`* slices means running *`N`* instances of [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"), all with `--num-slices=N` (along with any other necessary options) and one each with [`--slice-id=1`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_slice-id), `--slice-id=2`, `--slice-id=3`, and so on through `slice-id=N-1`.
+  Assim, restaurar por *`N`* slices significa rodar *`N`* instâncias de [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster"), todas com `--num-slices=N` (juntamente com quaisquer outras opções necessárias) e uma com [`--slice-id=1`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_slice-id), `--slice-id=2`, `--slice-id=3`, e assim por diante até `slice-id=N-1`.
 
 * `--parallelism`=*`#`*, `-p`
 
-  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--backupid=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Default</th> <td><code>none</code></td> </tr></tbody></table>
 
-  [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") uses single-row transactions to apply many rows concurrently. This parameter determines the number of parallel transactions (concurrent rows) that an instance of [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") tries to use. By default, this is 128; the minimum is 1, and the maximum is 1024.
+  [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") usa Transactions de linha única para aplicar muitas linhas concorrentemente. Este parâmetro determina o número de Transactions paralelas (linhas concorrentes) que uma instância de [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") tenta usar. Por default, este é 128; o mínimo é 1 e o máximo é 1024.
 
-  The work of performing the inserts is parallelized across the threads in the data nodes involved. This mechanism is employed for restoring bulk data from the `.Data` file—that is, the fuzzy snapshot of the data; it is not used for building or rebuilding indexes. The change log is applied serially; index drops and builds are DDL operations and handled separately. There is no thread-level parallelism on the client side of the restore.
+  O trabalho de realizar as inserções é paralelizado entre os Threads nos nós de dados envolvidos. Este mecanismo é empregado para restaurar dados em massa do arquivo `.Data` — ou seja, o fuzzy snapshot dos dados; não é usado para construir ou reconstruir Indexes. O Change Log é aplicado serialmente; os Index Drops e Builds são operações DDL e tratadas separadamente. Não há paralelismo em nível de Thread no lado do Client da restauração.
 
 * `--preserve-trailing-spaces`, `-P`
 
-  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--backupid=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Default</th> <td><code>none</code></td> </tr></tbody></table>
 
-  Cause trailing spaces to be preserved when promoting a fixed-width character data type to its variable-width equivalent—that is, when promoting a [`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") column value to [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), or a `BINARY` column value to [`VARBINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"). Otherwise, any trailing spaces are dropped from such column values when they are inserted into the new columns.
+  Faz com que os espaços em branco finais sejam preservados ao promover um tipo de dado de caractere de largura fixa para seu equivalente de largura variável — ou seja, ao promover um valor de coluna [`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") para [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), ou um valor de coluna `BINARY` para [`VARBINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"). Caso contrário, quaisquer espaços em branco finais são descartados de tais valores de coluna quando são inseridos nas novas colunas.
 
-  Note
+  Nota
 
-  Although you can promote [`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") columns to [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") and `BINARY` columns to [`VARBINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"), you cannot promote [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") columns to [`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") or [`VARBINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types") columns to `BINARY`.
+  Embora você possa promover colunas [`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") para [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") e colunas `BINARY` para [`VARBINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"), você não pode promover colunas [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") para [`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") ou colunas [`VARBINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types") para `BINARY`.
 
 * `--print`
 
-  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--backupid=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Default</th> <td><code>none</code></td> </tr></tbody></table>
 
-  Causes [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") to print all data, metadata, and logs to `stdout`. Equivalent to using the [`--print-data`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_print-data), [`--print-meta`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_print-meta), and [`--print-log`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_print-log) options together.
+  Faz com que [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") imprima todos os dados, metadata e logs para `stdout`. Equivalente a usar as opções [`--print-data`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_print-data), [`--print-meta`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_print-meta) e [`--print-log`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_print-log) juntas.
 
-  Note
+  Nota
 
-  Use of `--print` or any of the `--print_*` options is in effect performing a dry run. Including one or more of these options causes any output to be redirected to `stdout`; in such cases, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") makes no attempt to restore data or metadata to an NDB Cluster.
+  O uso de `--print` ou de qualquer uma das opções `--print_*` é, na verdade, realizar um dry run. Incluir uma ou mais destas opções faz com que qualquer saída seja redirecionada para `stdout`; em tais casos, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") não faz nenhuma tentativa de restaurar dados ou metadata para um NDB Cluster.
 
 * `--print-data`
 
-  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--backupid=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Default</th> <td><code>none</code></td> </tr></tbody></table>
 
-  Cause [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") to direct its output to `stdout`. Often used together with one or more of [`--tab`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_tab), [`--fields-enclosed-by`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_fields-enclosed-by), [`--fields-optionally-enclosed-by`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_fields-optionally-enclosed-by), [`--fields-terminated-by`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_fields-terminated-by), [`--hex`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_hex), and [`--append`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_append).
+  Faz com que [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") direcione sua saída para `stdout`. Frequentemente usado junto com uma ou mais das opções [`--tab`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_tab), [`--fields-enclosed-by`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_fields-enclosed-by), [`--fields-optionally-enclosed-by`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_fields-optionally-enclosed-by), [`--fields-terminated-by`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_fields-terminated-by), [`--hex`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_hex) e [`--append`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_append).
 
-  [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") and [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") column values are always truncated. Such values are truncated to the first 256 bytes in the output. This cannot currently be overridden when using `--print-data`.
+  Valores de coluna [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") e [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") são sempre truncados. Tais valores são truncados para os primeiros 256 bytes na saída. Atualmente, isso não pode ser anulado ao usar `--print-data`.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--backupid=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Default</th> <td><code>none</code></td> </tr></tbody></table>
 
-  Print program argument list and exit.
+  Imprime a lista de argumentos do programa e sai.
 
 * `--print-log`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Cause [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") to output its log to `stdout`.
+  Faz com que [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") gere seu log para `stdout`.
 
 * `--print-meta`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Print all metadata to `stdout`.
+  Imprime todos os metadata para `stdout`.
 
 * `print-sql-log`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Log SQL statements to `stdout`. Use the option to enable; normally this behavior is disabled. The option checks before attempting to log whether all the tables being restored have explicitly defined primary keys; queries on a table having only the hidden primary key implemented by `NDB` cannot be converted to valid SQL.
+  Registra instruções SQL em `stdout`. Use a opção para habilitar; normalmente, este comportamento é desabilitado. A opção verifica antes de tentar registrar se todas as tabelas sendo restauradas têm Primary Keys explicitamente definidas; Queries em uma tabela que possui apenas a Primary Key oculta implementada pelo `NDB` não podem ser convertidas em SQL válido.
 
-  This option does not work with tables having [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") columns.
+  Esta opção não funciona com tabelas que possuem colunas [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types").
 
-  The [`--print-sql-log`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_print-sql-log) option was added in NDB 7.5.4. (Bug #13511949)
+  A opção [`--print-sql-log`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_print-sql-log) foi adicionada no NDB 7.5.4. (Bug #13511949)
 
 * `--progress-frequency`=*`N`*
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Print a status report each *`N`* seconds while the backup is in progress. 0 (the default) causes no status reports to be printed. The maximum is 65535.
+  Imprime um relatório de status a cada *`N`* segundos enquanto o backup está em andamento. 0 (o default) faz com que nenhum relatório de status seja impresso. O máximo é 65535.
 
 * `--promote-attributes`, `-A`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") supports limited attribute promotion in much the same way that it is supported by MySQL replication; that is, data backed up from a column of a given type can generally be restored to a column using a “larger, similar” type. For example, data from a `CHAR(20)` column can be restored to a column declared as `VARCHAR(20)`, `VARCHAR(30)`, or `CHAR(30)`; data from a [`MEDIUMINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") column can be restored to a column of type [`INT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") or [`BIGINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"). See [Section 16.4.1.10.2, “Replication of Columns Having Different Data Types”](replication-features-differing-tables.html#replication-features-different-data-types "16.4.1.10.2 Replication of Columns Having Different Data Types"), for a table of type conversions currently supported by attribute promotion.
+  [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") suporta a promoção limitada de atributos da mesma forma que é suportada pelo MySQL Replication; ou seja, dados submetidos a backup de uma coluna de um determinado tipo podem geralmente ser restaurados para uma coluna usando um tipo "similar e maior". Por exemplo, dados de uma coluna `CHAR(20)` podem ser restaurados para uma coluna declarada como `VARCHAR(20)`, `VARCHAR(30)` ou `CHAR(30)`; dados de uma coluna [`MEDIUMINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") podem ser restaurados para uma coluna do tipo [`INT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") ou [`BIGINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"). Veja [Seção 16.4.1.10.2, “Replication de Colunas com Tipos de Dados Diferentes”](replication-features-differing-tables.html#replication-features-different-data-types "16.4.1.10.2 Replication of Columns Having Different Data Types"), para uma tabela de conversões de tipo atualmente suportadas pela promoção de atributos.
 
-  Beginning with NDB 7.5.23 and NDB 7.6.19, this option also makes it possible to restore a `NOT NULL` column as `NULL`.
+  A partir do NDB 7.5.23 e NDB 7.6.19, esta opção também torna possível restaurar uma coluna `NOT NULL` como `NULL`.
 
-  Attribute promotion by [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") must be enabled explicitly, as follows:
+  A promoção de atributos por [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") deve ser habilitada explicitamente, da seguinte forma:
 
-  1. Prepare the table to which the backup is to be restored. [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") cannot be used to re-create the table with a different definition from the original; this means that you must either create the table manually, or alter the columns which you wish to promote using [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") after restoring the table metadata but before restoring the data.
+  1. Prepare a tabela para a qual o backup será restaurado. [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") não pode ser usado para recriar a tabela com uma definição diferente da original; isso significa que você deve criar a tabela manualmente ou alterar as colunas que deseja promover usando [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") após restaurar o metadata da tabela, mas antes de restaurar os dados.
 
-  2. Invoke [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") with the [`--promote-attributes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_promote-attributes) option (short form `-A`) when restoring the table data. Attribute promotion does not occur if this option is not used; instead, the restore operation fails with an error.
+  2. Invoque [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") com a opção [`--promote-attributes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_promote-attributes) (forma curta `-A`) ao restaurar os dados da tabela. A promoção de atributos não ocorre se esta opção não for usada; em vez disso, a operação de restauração falha com um erro.
 
-  When converting between character data types and `TEXT` or `BLOB`, only conversions between character types ([`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") and [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types")) and binary types ([`BINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types") and [`VARBINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types")) can be performed at the same time. For example, you cannot promote an [`INT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") column to [`BIGINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") while promoting a `VARCHAR` column to `TEXT` in the same invocation of [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup").
+  Ao converter entre tipos de dados de caracteres e `TEXT` ou `BLOB`, apenas conversões entre tipos de caracteres ([`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") e [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types")) e tipos binários ([`BINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types") e [`VARBINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types")) podem ser realizadas ao mesmo tempo. Por exemplo, você não pode promover uma coluna [`INT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") para [`BIGINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") enquanto promove uma coluna `VARCHAR` para `TEXT` na mesma invocação de [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster").
 
-  Converting between [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") columns using different character sets is not supported, and is expressly disallowed.
+  A conversão entre colunas [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") usando diferentes Character Sets não é suportada e é expressamente proibida.
 
-  When performing conversions of character or binary types to `TEXT` or `BLOB` with [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"), you may notice that it creates and uses one or more staging tables named `table_name$STnode_id`. These tables are not needed afterwards, and are normally deleted by [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") following a successful restoration.
+  Ao realizar conversões de tipos de caracteres ou binários para `TEXT` ou `BLOB` com [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster"), você pode notar que ele cria e usa uma ou mais tabelas de staging nomeadas `table_name$STnode_id`. Essas tabelas não são necessárias depois e são normalmente excluídas por [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") após uma restauração bem-sucedida.
 
 * `--rebuild-indexes`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Enable multithreaded rebuilding of the ordered indexes while restoring a native `NDB` backup. The number of threads used for building ordered indexes by [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") with this option is controlled by the [`BuildIndexThreads`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-buildindexthreads) data node configuration parameter and the number of LDMs.
+  Habilita a reconstrução multithreaded dos Ordered Indexes ao restaurar um backup `NDB` nativo. O número de Threads usados para construir Ordered Indexes por [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") com esta opção é controlado pelo parâmetro de configuração do nó de dados [`BuildIndexThreads`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-buildindexthreads) e o número de LDMs.
 
-  It is necessary to use this option only for the first run of [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"); this causes all ordered indexes to be rebuilt without using `--rebuild-indexes` again when restoring subsequent nodes. You should use this option prior to inserting new rows into the database; otherwise, it is possible for a row to be inserted that later causes a unique constraint violation when trying to rebuild the indexes.
+  É necessário usar esta opção apenas para a primeira execução de [**ndb_restore**](mysql-cluster-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster"); isso faz com que todos os Ordered Indexes sejam reconstruídos sem usar `--rebuild-indexes` novamente ao restaurar nós subsequentes. Você deve usar esta opção antes de inserir novas linhas no Database; caso contrário, é possível que uma linha seja inserida e posteriormente cause uma violação de Unique Constraint ao tentar reconstruir os Indexes.
 
-  Building of ordered indices is parallelized with the number of LDMs by default. Offline index builds performed during node and system restarts can be made faster using the [`BuildIndexThreads`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-buildindexthreads) data node configuration parameter; this parameter has no effect on dropping and rebuilding of indexes by [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"), which is performed online.
+  A construção de Ordered Indexes é paralelizada com o número de LDMs por default. As Index Builds offline realizadas durante reinicializações de nó e sistema podem ser aceleradas usando o parâmetro de configuração do nó de dados [`BuildIndexThreads`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-buildindexthreads); este parâmetro não tem efeito sobre a remoção e reconstrução de Indexes por [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster"), que é realizada online.
 
-  Rebuilding of unique indexes uses disk write bandwidth for redo logging and local checkpointing. An insufficient amount of this bandwith can lead to redo buffer overload or log overload errors. In such cases you can run [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") `--rebuild-indexes` again; the process resumes at the point where the error occurred. You can also do this when you have encountered temporary errors. You can repeat execution of [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") `--rebuild-indexes` indefinitely; you may be able to stop such errors by reducing the value of [`--parallelism`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_parallelism). If the problem is insufficient space, you can increase the size of the redo log ([`FragmentLogFileSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-fragmentlogfilesize) node configuration parameter), or you can increase the speed at which LCPs are performed ([`MaxDiskWriteSpeed`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxdiskwritespeed) and related parameters), in order to free space more quickly.
+  A reconstrução de Unique Indexes usa a largura de banda de escrita em disco para redo logging e Local Checkpointing (LCP). Uma quantidade insuficiente dessa largura de banda pode levar a sobrecarga do Buffer de Redo Log ou erros de sobrecarga de Log. Nesses casos, você pode executar [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") `--rebuild-indexes` novamente; o processo será retomado no ponto onde o erro ocorreu. Você também pode fazer isso quando tiver encontrado erros temporários. Você pode repetir a execução de [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") `--rebuild-indexes` indefinidamente; você pode ser capaz de interromper tais erros reduzindo o valor de [`--parallelism`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_parallelism). Se o problema for espaço insuficiente, você pode aumentar o tamanho do Redo Log ([`FragmentLogFileSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-fragmentlogfilesize) parâmetro de configuração do nó), ou você pode aumentar a velocidade com que os LCPs são realizados ([`MaxDiskWriteSpeed`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxdiskwritespeed) e parâmetros relacionados), a fim de liberar espaço mais rapidamente.
 
 * `--remap-column=db.tbl.col:fn:args`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  When used together with [`--restore-data`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_restore-data), this option applies a function to the value of the indicated column. Values in the argument string are listed here:
+  Quando usada juntamente com [`--restore-data`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_restore-data), esta opção aplica uma função ao valor da coluna indicada. Os valores na string de argumento estão listados aqui:
 
-  + *`db`*: Database name, following any renames performed by [`--rewrite-database`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_rewrite-database).
+  + *`db`*: Nome do Database, após quaisquer renomeações realizadas por [`--rewrite-database`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_rewrite-database).
 
-  + *`tbl`*: Table name.
-  + *`col`*: Name of the column to be updated. This column must be of type [`INT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") or [`BIGINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"). The column can also be but is not required to be `UNSIGNED`.
+  + *`tbl`*: Nome da tabela.
+  + *`col`*: Nome da coluna a ser atualizada. Esta coluna deve ser do tipo [`INT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") ou [`BIGINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"). A coluna também pode ser, mas não é obrigatório, `UNSIGNED`.
 
-  + *`fn`*: Function name; currently, the only supported name is `offset`.
+  + *`fn`*: Nome da função; atualmente, o único nome suportado é `offset`.
 
-  + *`args`*: Arguments supplied to the function. Currently, only a single argument, the size of the offset to be added by the `offset` function, is supported. Negative values are supported. The size of the argument cannot exceed that of the signed variant of the column's type; for example, if *`col`* is an `INT` column, then the allowed range of the argument passed to the `offset` function is `-2147483648` to `2147483647` (see [Section 11.1.2, “Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT”](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")).
+  + *`args`*: Argumentos fornecidos à função. Atualmente, apenas um único argumento, o tamanho do offset a ser adicionado pela função `offset`, é suportado. Valores negativos são suportados. O tamanho do argumento não pode exceder o da variante com sinal do tipo da coluna; por exemplo, se *`col`* é uma coluna `INT`, então o intervalo permitido do argumento passado para a função `offset` é de `-2147483648` a `2147483647` (veja [Seção 11.1.2, “Tipos de Inteiros (Valor Exato) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT”](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")).
 
-    If applying the offset value to the column would cause an overflow or underflow, the restore operation fails. This could happen, for example, if the column is a `BIGINT`, and the option attempts to apply an offset value of 8 on a row in which the column value is 4294967291, since `4294967291 + 8 = 4294967299 > 4294967295`.
+    Se a aplicação do valor de offset à coluna causar um overflow ou underflow, a operação de restauração falhará. Isso pode acontecer, por exemplo, se a coluna for um `BIGINT`, e a opção tentar aplicar um valor de offset de 8 em uma linha na qual o valor da coluna é 4294967291, já que `4294967291 + 8 = 4294967299 > 4294967295`.
 
-  This option can be useful when you wish to merge data stored in multiple source instances of NDB Cluster (all using the same schema) into a single destination NDB Cluster, using NDB native backup (see [Section 21.6.8.2, “Using The NDB Cluster Management Client to Create a Backup”](mysql-cluster-backup-using-management-client.html "21.6.8.2 Using The NDB Cluster Management Client to Create a Backup")) and [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") to merge the data, where primary and unique key values are overlapping between source clusters, and it is necessary as part of the process to remap these values to ranges that do not overlap. It may also be necessary to preserve other relationships between tables. To fulfill such requirements, it is possible to use the option multiple times in the same invocation of [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") to remap columns of different tables, as shown here:
+  Esta opção pode ser útil quando você deseja mesclar dados armazenados em múltiplas instâncias de origem do NDB Cluster (todas usando o mesmo schema) em um único NDB Cluster de destino, usando backup nativo NDB (veja [Seção 21.6.8.2, “Usando o Cliente de Gerenciamento do NDB Cluster para Criar um Backup”](mysql-cluster-backup-using-management-client.html "21.6.8.2 Using The NDB Cluster Management Client to Create a Backup")) e [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") para mesclar os dados, onde os valores de Primary e Unique Key se sobrepõem entre os clusters de origem, e é necessário como parte do processo remapear esses valores para intervalos que não se sobreponham. Também pode ser necessário preservar outras relações entre tabelas. Para atender a tais requisitos, é possível usar a opção várias vezes na mesma invocação de [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") para remapear colunas de diferentes tabelas, conforme mostrado aqui:
 
   ```sql
   $> ndb_restore --restore-data --remap-column=hr.employee.id:offset:1000 \
       --remap-column=hr.manager.id:offset:1000 --remap-column=hr.firstaiders.id:offset:1000
   ```
 
-  (Other options not shown here may also be used.)
+  (Outras opções não mostradas aqui também podem ser usadas.)
 
-  `--remap-column` can also be used to update multiple columns of the same table. Combinations of multiple tables and columns are possible. Different offset values can also be used for different columns of the same table, like this:
+  `--remap-column` também pode ser usado para atualizar múltiplas colunas da mesma tabela. Combinações de múltiplas tabelas e colunas são possíveis. Diferentes valores de offset também podem ser usados para diferentes colunas da mesma tabela, assim:
 
   ```sql
   $> ndb_restore --restore-data --remap-column=hr.employee.salary:offset:10000 \
       --remap-column=hr.employee.hours:offset:-10
   ```
 
-  When source backups contain duplicate tables which should not be merged, you can handle this by using [`--exclude-tables`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_exclude-tables), [`--exclude-databases`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_exclude-databases), or by some other means in your application.
+  Quando os backups de origem contêm tabelas duplicadas que não devem ser mescladas, você pode lidar com isso usando [`--exclude-tables`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_exclude-tables), [`--exclude-databases`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_exclude-databases), ou por algum outro meio em sua aplicação.
 
-  Information about the structure and other characteristics of tables to be merged can obtained using [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement"); the [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") tool; and [`MAX()`](aggregate-functions.html#function_max), [`MIN()`](aggregate-functions.html#function_min), [`LAST_INSERT_ID()`](information-functions.html#function_last-insert-id), and other MySQL functions.
+  Informações sobre a estrutura e outras características das tabelas a serem mescladas podem ser obtidas usando [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement"); a ferramenta [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables"); e [`MAX()`](aggregate-functions.html#function_max), [`MIN()`](aggregate-functions.html#function_min), [`LAST_INSERT_ID()`](information-functions.html#function_last-insert-id) e outras funções MySQL.
 
-  Replication of changes from merged to unmerged tables, or from unmerged to merged tables, in separate instances of NDB Cluster is not supported.
+  A Replication de alterações de tabelas mescladas para não mescladas, ou de não mescladas para mescladas, em instâncias separadas do NDB Cluster não é suportada.
 
 * `--restore-data`, `-r`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Output [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table data and logs.
+  Exibe dados e logs da tabela [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6").
 
 * `--restore-epoch`, `-e`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Add (or restore) epoch information to the cluster replication status table. This is useful for starting replication on an NDB replica cluster. When this option is used, the row in the `mysql.ndb_apply_status` having `0` in the `id` column is updated if it already exists; such a row is inserted if it does not already exist. (See [Section 21.7.9, “NDB Cluster Backups With NDB Cluster Replication”](mysql-cluster-replication-backups.html "21.7.9 NDB Cluster Backups With NDB Cluster Replication").)
+  Adiciona (ou restaura) informações de epoch à tabela de status da Replication do cluster. Isso é útil para iniciar a Replication em um NDB Replica Cluster. Quando esta opção é usada, a linha em `mysql.ndb_apply_status` que tem `0` na coluna `id` é atualizada se já existir; tal linha é inserida se ainda não existir. (Veja [Seção 21.7.9, “Backups do NDB Cluster com NDB Cluster Replication”](mysql-cluster-replication-backups.html "21.7.9 NDB Cluster Backups With NDB Cluster Replication").)
 
 * `--restore-meta`, `-m`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  This option causes [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") to print [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table metadata.
+  Esta opção faz com que [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") imprima o metadata da tabela [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6").
 
-  The first time you run the [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") restoration program, you also need to restore the metadata. In other words, you must re-create the database tables—this can be done by running it with the `--restore-meta` (`-m`) option. Restoring the metadata need be done only on a single data node; this is sufficient to restore it to the entire cluster.
+  Na primeira vez que você executa o programa de restauração [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster"), você também precisa restaurar o metadata. Em outras palavras, você deve recriar as tabelas do Database — isso pode ser feito executando-o com a opção `--restore-meta` (`-m`). A restauração do metadata precisa ser feita apenas em um único nó de dados; isso é suficiente para restaurá-lo em todo o cluster.
 
-  In older versions of NDB Cluster, tables whose schemas were restored using this option used the same number of partitions as they did on the original cluster, even if it had a differing number of data nodes from the new cluster. In NDB 7.5.2 and later, when restoring metadata, this is no longer an issue; [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") now uses the default number of partitions for the target cluster, unless the number of local data manager threads is also changed from what it was for data nodes in the original cluster.
+  Em versões mais antigas do NDB Cluster, as tabelas cujos schemas foram restaurados usando esta opção usavam o mesmo número de partitions que tinham no cluster original, mesmo que tivesse um número diferente de nós de dados do novo cluster. No NDB 7.5.2 e posterior, ao restaurar o metadata, isso não é mais um problema; [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") agora usa o número default de partitions para o cluster de destino, a menos que o número de Local Data Manager Threads também seja alterado em relação ao que era para os nós de dados no cluster original.
 
-  Note
+  Nota
 
-  The cluster should have an empty database when starting to restore a backup. (In other words, you should start the data nodes with [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial) prior to performing the restore.)
+  O cluster deve ter um Database vazio ao iniciar a restauração de um backup. (Em outras palavras, você deve iniciar os nós de dados com [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial) antes de realizar a restauração.)
 
 * `--restore-privilege-tables`
 
-  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Default</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
 
-  [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") does not by default restore distributed MySQL privilege tables. This option causes [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") to restore the privilege tables.
+  [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") não restaura as tabelas de privilégios distribuídas do MySQL por default. Esta opção faz com que [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") restaure as tabelas de privilégios.
 
-  This works only if the privilege tables were converted to [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") before the backup was taken. For more information, see [Section 21.6.13, “Distributed Privileges Using Shared Grant Tables”](mysql-cluster-privilege-distribution.html "21.6.13 Distributed Privileges Using Shared Grant Tables").
+  Isso funciona apenas se as tabelas de privilégios foram convertidas para [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") antes que o backup fosse realizado. Para mais informações, veja [Seção 21.6.13, “Privilégios Distribuídos Usando Tabelas de Concessão Compartilhadas”](mysql-cluster-privilege-distribution.html "21.6.13 Distributed Privileges Using Shared Grant Tables").
 
 * `--rewrite-database`=*`olddb,newdb`*
 
-  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Default</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
 
-  This option makes it possible to restore to a database having a different name from that used in the backup. For example, if a backup is made of a database named `products`, you can restore the data it contains to a database named `inventory`, use this option as shown here (omitting any other options that might be required):
+  Esta opção torna possível restaurar para um Database com um nome diferente do usado no backup. Por exemplo, se um backup for feito de um Database chamado `products`, você pode restaurar os dados que ele contém para um Database chamado `inventory`, use esta opção conforme mostrado aqui (omitindo quaisquer outras opções que possam ser necessárias):
 
   ```sql
   $> ndb_restore --rewrite-database=product,inventory
   ```
 
-  The option can be employed multiple times in a single invocation of [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"). Thus it is possible to restore simultaneously from a database named `db1` to a database named `db2` and from a database named `db3` to one named `db4` using `--rewrite-database=db1,db2 --rewrite-database=db3,db4`. Other [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") options may be used between multiple occurrences of `--rewrite-database`.
+  A opção pode ser empregada várias vezes em uma única invocação de [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster"). Assim, é possível restaurar simultaneamente de um Database chamado `db1` para um Database chamado `db2` e de um Database chamado `db3` para um chamado `db4` usando `--rewrite-database=db1,db2 --rewrite-database=db3,db4`. Outras opções de [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") podem ser usadas entre múltiplas ocorrências de `--rewrite-database`.
 
-  In the event of conflicts between multiple `--rewrite-database` options, the last `--rewrite-database` option used, reading from left to right, is the one that takes effect. For example, if `--rewrite-database=db1,db2 --rewrite-database=db1,db3` is used, only `--rewrite-database=db1,db3` is honored, and `--rewrite-database=db1,db2` is ignored. It is also possible to restore from multiple databases to a single database, so that `--rewrite-database=db1,db3 --rewrite-database=db2,db3` restores all tables and data from databases `db1` and `db2` into database `db3`.
+  Em caso de conflitos entre múltiplas opções `--rewrite-database`, a última opção `--rewrite-database` usada, lendo da esquerda para a direita, é a que entra em vigor. Por exemplo, se `--rewrite-database=db1,db2 --rewrite-database=db1,db3` for usado, apenas `--rewrite-database=db1,db3` será honrado, e `--rewrite-database=db1,db2` será ignorado. Também é possível restaurar de múltiplos Databases para um único Database, de modo que `--rewrite-database=db1,db3 --rewrite-database=db2,db3` restaure todas as tabelas e dados dos Databases `db1` e `db2` para o Database `db3`.
 
-  Important
+  Importante
 
-  When restoring from multiple backup databases into a single target database using `--rewrite-database`, no check is made for collisions between table or other object names, and the order in which rows are restored is not guaranteed. This means that it is possible in such cases for rows to be overwritten and updates to be lost.
+  Ao restaurar de múltiplos Databases de backup para um único Database de destino usando `--rewrite-database`, nenhuma verificação é feita para colisões entre nomes de tabela ou outros objetos, e a ordem em que as linhas são restauradas não é garantida. Isso significa que é possível em tais casos que as linhas sejam sobrescritas e os Updates sejam perdidos.
 
 * `--skip-broken-objects`
 
-  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Default</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
 
-  This option causes [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") to ignore corrupt tables while reading a native [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") backup, and to continue restoring any remaining tables (that are not also corrupted). Currently, the `--skip-broken-objects` option works only in the case of missing blob parts tables.
+  Esta opção faz com que [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") ignore tabelas corrompidas ao ler um backup [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") nativo, e continue restaurando quaisquer tabelas restantes (que não estejam também corrompidas). Atualmente, a opção `--skip-broken-objects` funciona apenas no caso de tabelas de partes BLOB ausentes.
 
 * `--skip-table-check`, `-s`
 
-  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Default</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
 
-  It is possible to restore data without restoring table metadata. By default when doing this, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") fails with an error if a mismatch is found between the table data and the table schema; this option overrides that behavior.
+  É possível restaurar dados sem restaurar o metadata da tabela. Por default, ao fazer isso, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") falha com um erro se for encontrada uma incompatibilidade entre os dados da tabela e o schema da tabela; esta opção anula esse comportamento.
 
-  Some of the restrictions on mismatches in column definitions when restoring data using [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") are relaxed; when one of these types of mismatches is encountered, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") does not stop with an error as it did previously, but rather accepts the data and inserts it into the target table while issuing a warning to the user that this is being done. This behavior occurs whether or not either of the options `--skip-table-check` or [`--promote-attributes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_promote-attributes) is in use. These differences in column definitions are of the following types:
+  Algumas das restrições sobre incompatibilidades nas definições de coluna ao restaurar dados usando [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") são relaxadas; quando um destes tipos de incompatibilidades é encontrado, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") não para com um erro como fazia anteriormente, mas sim aceita os dados e os insere na tabela de destino, emitindo um aviso ao usuário de que isso está sendo feito. Este comportamento ocorre independentemente de qualquer uma das opções `--skip-table-check` ou [`--promote-attributes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_promote-attributes) estar em uso. Essas diferenças nas definições de coluna são dos seguintes tipos:
 
-  + Different `COLUMN_FORMAT` settings (`FIXED`, `DYNAMIC`, `DEFAULT`)
+  + Configurações `COLUMN_FORMAT` diferentes (`FIXED`, `DYNAMIC`, `DEFAULT`)
 
-  + Different `STORAGE` settings (`MEMORY`, `DISK`)
+  + Configurações `STORAGE` diferentes (`MEMORY`, `DISK`)
 
-  + Different default values
-  + Different distribution key settings
+  + Valores default diferentes
+  + Configurações de chave de distribuição diferentes
 * `--skip-unknown-objects`
 
-  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Default</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
 
-  This option causes [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") to ignore any schema objects it does not recognize while reading a native [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") backup. This can be used for restoring a backup made from a cluster running (for example) NDB 7.6 to a cluster running NDB Cluster 7.5.
+  Esta opção faz com que [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") ignore quaisquer objetos de schema que não reconheça ao ler um backup [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") nativo. Isso pode ser usado para restaurar um backup feito de um cluster rodando (por exemplo) NDB 7.6 para um cluster rodando NDB Cluster 7.5.
 
 * `--slice-id`=*`#`*
 
-  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Default</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
 
-  When restoring by slices, this is the ID of the slice to restore. This option is always used together with [`--num-slices`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_num-slices), and its value must be always less than that of `--num-slices`.
+  Ao restaurar por slices, este é o ID do slice a ser restaurado. Esta opção é sempre usada juntamente com [`--num-slices`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_num-slices), e seu valor deve ser sempre menor que o de `--num-slices`.
 
-  For more information, see the description of the [`--num-slices`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_num-slices) elsewhere in this section.
+  Para mais informações, veja a descrição de [`--num-slices`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_num-slices) em outro lugar nesta seção.
 
 * `--tab`=*`dir_name`*, `-T` *`dir_name`*
 
-  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Default</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
 
-  Causes [`--print-data`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_print-data) to create dump files, one per table, each named `tbl_name.txt`. It requires as its argument the path to the directory where the files should be saved; use `.` for the current directory.
+  Faz com que [`--print-data`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_print-data) crie dump files, um por tabela, cada um nomeado `tbl_name.txt`. Requer como argumento o caminho para o diretório onde os arquivos devem ser salvos; use `.` para o diretório atual.
 
 * `--timestamp-printouts`
 
-  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Default</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
 
-  Causes info, error, and debug log messages to be prefixed with timestamps.
+  Faz com que as mensagens de log de info, error e debug sejam prefixadas com Timestamps.
 
-  This option is disabled by default in NDB 7.5 and NDB 7.6. Set it explicitly to `true` to enable.
+  Esta opção é desabilitada por default no NDB 7.5 e NDB 7.6. Defina-a explicitamente como `true` para habilitar.
 
 * `--usage`
 
-  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Default</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
 
-  Display help text and exit; same as [`--help`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_help).
+  Exibe o texto de ajuda e sai; o mesmo que [`--help`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_help).
 
 * `--verbose`=*`#`*
 
-  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Default</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
 
-  Sets the level for the verbosity of the output. The minimum is 0; the maximum is 255. The default value is 1.
+  Define o nível de verbosidade da saída. O mínimo é 0; o máximo é 255. O valor default é 1.
 
 * `--version`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Default</th> <td><code>12</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Display version information and exit.
+  Exibe informações de versão e sai.
 
-Typical options for this utility are shown here:
+Opções típicas para este utilitário são mostradas aqui:
 
 ```sql
 ndb_restore [-c connection_string] -n node_id -b backup_id \
       [-m] -r --backup-path=/path/to/backup/files
 ```
 
-Normally, when restoring from an NDB Cluster backup, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") requires at a minimum the [`--nodeid`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_nodeid) (short form: `-n`), [`--backupid`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_backupid) (short form: `-b`), and [`--backup-path`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_backup-path) options. In addition, when [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") is used to restore any tables containing unique indexes, you must include [`--disable-indexes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_disable-indexes) or [`--rebuild-indexes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_rebuild-indexes). (Bug
+Normalmente, ao restaurar de um backup do NDB Cluster, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") requer no mínimo as opções [`--nodeid`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_nodeid) (forma curta: `-n`), [`--backupid`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_backupid) (forma curta: `-b`) e [`--backup-path`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_backup-path). Além disso, quando [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") é usado para restaurar quaisquer tabelas contendo Unique Indexes, você deve incluir [`--disable-indexes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_disable-indexes) ou [`--rebuild-indexes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_rebuild-indexes). (Bug
 #57782, Bug #11764893)
 
-The `-c` option is used to specify a connection string which tells `ndb_restore` where to locate the cluster management server (see [Section 21.4.3.3, “NDB Cluster Connection Strings”](mysql-cluster-connection-strings.html "21.4.3.3 NDB Cluster Connection Strings")). If this option is not used, then [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") attempts to connect to a management server on `localhost:1186`. This utility acts as a cluster API node, and so requires a free connection “slot” to connect to the cluster management server. This means that there must be at least one `[api]` or `[mysqld]` section that can be used by it in the cluster `config.ini` file. It is a good idea to keep at least one empty `[api]` or `[mysqld]` section in `config.ini` that is not being used for a MySQL server or other application for this reason (see [Section 21.4.3.7, “Defining SQL and Other API Nodes in an NDB Cluster”](mysql-cluster-api-definition.html "21.4.3.7 Defining SQL and Other API Nodes in an NDB Cluster")).
+A opção `-c` é usada para especificar uma connection string que informa ao `ndb_restore` onde localizar o cluster management server (veja [Seção 21.4.3.3, “Connection Strings do NDB Cluster”](mysql-cluster-connection-strings.html "21.4.3.3 NDB Cluster Connection Strings")). Se esta opção não for usada, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") tenta conectar-se a um management server em `localhost:1186`. Este utilitário atua como um Cluster API Node e, portanto, requer um "slot" de conexão livre para se conectar ao cluster management server. Isso significa que deve haver pelo menos uma seção `[api]` ou `[mysqld]` que possa ser usada por ele no arquivo `config.ini` do cluster. É uma boa ideia manter pelo menos uma seção `[api]` ou `[mysqld]` vazia em `config.ini` que não esteja sendo usada por um MySQL server ou outro aplicativo por este motivo (veja [Seção 21.4.3.7, “Definindo Nós SQL e Outros API Nodes em um NDB Cluster”](mysql-cluster-api-definition.html "21.4.3.7 Defining SQL and Other API Nodes in an NDB Cluster")).
 
-You can verify that [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") is connected to the cluster by using the [`SHOW`](mysql-cluster-mgm-client-commands.html#ndbclient-show) command in the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") management client. You can also accomplish this from a system shell, as shown here:
+Você pode verificar se [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") está conectado ao cluster usando o comando [`SHOW`](mysql-cluster-mgm-client-commands.html#ndbclient-show) no management client [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client"). Você também pode realizar isso a partir de um shell do sistema, conforme mostrado aqui:
 
 ```sql
 $> ndb_mgm -e "SHOW"
 ```
 
-**Error reporting.** [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") reports both temporary and permanent errors. In the case of temporary errors, it may able to recover from them, and reports `Restore successful, but encountered temporary error, please look at configuration` in such cases.
+**Relatório de erros.** [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") relata erros temporários e permanentes. No caso de erros temporários, ele pode ser capaz de se recuperar, e relata `Restore successful, but encountered temporary error, please look at configuration` (Restauração bem-sucedida, mas encontrou erro temporário, por favor verifique a configuração) em tais casos.
 
-Important
+Importante
 
-After using [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") to initialize an NDB Cluster for use in circular replication, binary logs on the SQL node acting as the replica are not automatically created, and you must cause them to be created manually. To cause the binary logs to be created, issue a [`SHOW TABLES`](show-tables.html "13.7.5.37 SHOW TABLES Statement") statement on that SQL node before running [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement"). This is a known issue in NDB Cluster.
+Após usar [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restauração de um Backup do NDB Cluster") para inicializar um NDB Cluster para uso em Circular Replication, os Binary Logs no SQL node que atua como a replica não são criados automaticamente, e você deve fazê-los ser criados manualmente. Para fazer com que os Binary Logs sejam criados, emita uma instrução [`SHOW TABLES`](show-tables.html "13.7.5.37 SHOW TABLES Statement") nesse SQL node antes de executar [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement"). Este é um problema conhecido no NDB Cluster.

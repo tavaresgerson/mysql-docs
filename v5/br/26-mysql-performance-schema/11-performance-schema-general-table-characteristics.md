@@ -1,27 +1,27 @@
-## 25.11 Performance Schema General Table Characteristics
+## 25.11 Características Gerais das Tabelas do Performance Schema
 
-The name of the `performance_schema` database is lowercase, as are the names of tables within it. Queries should specify the names in lowercase.
+O nome do Database `performance_schema` está em letras minúsculas, assim como os nomes das tabelas dentro dele. As Querys devem especificar os nomes em letras minúsculas.
 
-Many tables in the `performance_schema` database are read only and cannot be modified:
+Muitas tabelas no Database `performance_schema` são somente leitura e não podem ser modificadas:
 
 ```sql
 mysql> TRUNCATE TABLE performance_schema.setup_instruments;
 ERROR 1683 (HY000): Invalid performance_schema usage.
 ```
 
-Some of the setup tables have columns that can be modified to affect Performance Schema operation; some also permit rows to be inserted or deleted. Truncation is permitted to clear collected events, so [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") can be used on tables containing those kinds of information, such as tables named with a prefix of `events_waits_`.
+Algumas das tabelas de configuração (setup tables) possuem colunas que podem ser modificadas para afetar a operação do Performance Schema; algumas também permitem que linhas sejam inseridas ou excluídas. O truncamento é permitido para limpar eventos coletados, de modo que [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") pode ser usado em tabelas que contêm esses tipos de informação, como aquelas nomeadas com o prefixo `events_waits_`.
 
-Summary tables can be truncated with [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement"). Generally, the effect is to reset the summary columns to 0 or `NULL`, not to remove rows. This enables you to clear collected values and restart aggregation. That might be useful, for example, after you have made a runtime configuration change. Exceptions to this truncation behavior are noted in individual summary table sections.
+As tabelas de resumo (Summary tables) podem ser truncadas com [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement"). Geralmente, o efeito é redefinir as colunas de resumo para 0 ou `NULL`, e não remover linhas. Isso permite limpar os valores coletados e reiniciar a agregação. Isso pode ser útil, por exemplo, após você ter feito uma alteração na configuração em tempo de execução (runtime). Exceções a este comportamento de truncamento são observadas nas seções individuais das summary tables.
 
-Privileges are as for other databases and tables:
+Os Privileges são os mesmos que para outros Databases e tabelas:
 
-* To retrieve from `performance_schema` tables, you must have the [`SELECT`](privileges-provided.html#priv_select) privilege.
+* Para recuperar dados das tabelas do `performance_schema`, você deve ter o Privilege [`SELECT`](privileges-provided.html#priv_select).
 
-* To change those columns that can be modified, you must have the [`UPDATE`](privileges-provided.html#priv_update) privilege.
+* Para alterar as colunas que podem ser modificadas, você deve ter o Privilege [`UPDATE`](privileges-provided.html#priv_update).
 
-* To truncate tables that can be truncated, you must have the [`DROP`](privileges-provided.html#priv_drop) privilege.
+* Para truncar tabelas que podem ser truncadas, você deve ter o Privilege [`DROP`](privileges-provided.html#priv_drop).
 
-Because only a limited set of privileges apply to Performance Schema tables, attempts to use `GRANT ALL` as shorthand for granting privileges at the database or table leval fail with an error:
+Como apenas um conjunto limitado de Privileges se aplica às tabelas do Performance Schema, tentativas de usar `GRANT ALL` como atalho para conceder Privileges no nível do Database ou da tabela falham com um erro:
 
 ```sql
 mysql> GRANT ALL ON performance_schema.*
@@ -34,7 +34,7 @@ ERROR 1044 (42000): Access denied for user 'root'@'localhost'
 to database 'performance_schema'
 ```
 
-Instead, grant exactly the desired privileges:
+Em vez disso, conceda exatamente os Privileges desejados:
 
 ```sql
 mysql> GRANT SELECT ON performance_schema.*

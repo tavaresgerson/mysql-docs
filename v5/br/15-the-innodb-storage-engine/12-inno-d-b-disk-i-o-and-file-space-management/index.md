@@ -1,25 +1,21 @@
-## 14.12 InnoDB Disk I/O and File Space Management
+## 14.12 I/O de Disco e Gerenciamento de Espaço de Arquivo do InnoDB
 
-14.12.1 InnoDB Disk I/O
+14.12.1 I/O de Disco do InnoDB
 
-14.12.2 File Space Management
+14.12.2 Gerenciamento de Espaço de Arquivo
 
-14.12.3 InnoDB Checkpoints
+14.12.3 Checkpoints do InnoDB
 
-14.12.4 Defragmenting a Table
+14.12.4 Desfragmentando uma Tabela
 
-14.12.5 Reclaiming Disk Space with TRUNCATE TABLE
+14.12.5 Recuperando Espaço em Disco com TRUNCATE TABLE
 
-As a DBA, you must manage disk I/O to keep the I/O subsystem from becoming saturated, and manage disk space to avoid filling up storage devices. The ACID design model requires a certain amount of I/O that might seem redundant, but helps to ensure data reliability. Within these constraints, `InnoDB` tries to optimize the database work and the organization of disk files to minimize the amount of disk I/O. Sometimes, I/O is postponed until the database is not busy, or until everything needs to be brought to a consistent state, such as during a database restart after a fast shutdown.
+Como um DBA, você deve gerenciar o I/O de disco para evitar que o subsistema de I/O fique saturado, e gerenciar o espaço em disco para evitar que os dispositivos de armazenamento fiquem cheios. O modelo de design ACID requer uma certa quantidade de I/O que pode parecer redundante, mas ajuda a garantir a confiabilidade dos dados. Dentro dessas restrições, o `InnoDB` tenta otimizar o trabalho do Database e a organização dos arquivos de disco para minimizar a quantidade de I/O de disco. Às vezes, o I/O é adiado até que o Database não esteja ocupado, ou até que tudo precise ser levado a um estado consistente, como durante um restart do Database após um *shutdown* rápido.
 
-This section discusses the main considerations for I/O and disk space with the default kind of MySQL tables (also known as `InnoDB` tables):
+Esta seção discute as principais considerações para I/O e espaço em disco com o tipo padrão de tabelas MySQL (também conhecidas como tabelas `InnoDB`):
 
-* Controlling the amount of background I/O used to improve query performance.
-
-* Enabling or disabling features that provide extra durability at the expense of additional I/O.
-
-* Organizing tables into many small files, a few larger files, or a combination of both.
-
-* Balancing the size of redo log files against the I/O activity that occurs when the log files become full.
-
-* How to reorganize a table for optimal query performance.
+* Controlar a quantidade de I/O de background usada para melhorar a performance de Querys.
+* Habilitar ou desabilitar funcionalidades que fornecem durabilidade extra, às custas de I/O adicional.
+* Organizar tabelas em vários arquivos pequenos, alguns arquivos maiores ou uma combinação de ambos.
+* Balancear o tamanho dos arquivos de *redo log* contra a atividade de I/O que ocorre quando os arquivos de *log* ficam cheios.
+* Como reorganizar uma tabela para uma performance de Query ideal.

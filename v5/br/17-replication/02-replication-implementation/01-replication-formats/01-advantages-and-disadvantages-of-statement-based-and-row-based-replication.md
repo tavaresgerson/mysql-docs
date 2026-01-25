@@ -1,40 +1,40 @@
-#### 16.2.1.1 Advantages and Disadvantages of Statement-Based and Row-Based Replication
+#### 16.2.1.1 Vantagens e Desvantagens da Replication Baseada em Statement e Baseada em Row
 
-Each binary logging format has advantages and disadvantages. For most users, the mixed replication format should provide the best combination of data integrity and performance. If, however, you want to take advantage of the features specific to the statement-based or row-based replication format when performing certain tasks, you can use the information in this section, which provides a summary of their relative advantages and disadvantages, to determine which is best for your needs.
+Cada formato de binary logging possui vantagens e desvantagens. Para a maioria dos usuários, o formato de Replication mista deve fornecer a melhor combinação de integridade de dados e performance. No entanto, se você deseja aproveitar os recursos específicos dos formatos de Replication baseada em Statement ou baseada em Row ao executar certas tarefas, você pode usar as informações desta seção, que fornece um resumo de suas vantagens e desvantagens relativas, para determinar qual é o melhor para suas necessidades.
 
-* [Advantages of statement-based replication](replication-sbr-rbr.html#replication-sbr-rbr-sbr-advantages "Advantages of statement-based replication")
+* [Vantagens da Replication baseada em Statement](replication-sbr-rbr.html#replication-sbr-rbr-sbr-advantages "Vantagens da Replication baseada em Statement")
 
-* [Disadvantages of statement-based replication](replication-sbr-rbr.html#replication-sbr-rbr-sbr-disadvantages "Disadvantages of statement-based replication")
+* [Desvantagens da Replication baseada em Statement](replication-sbr-rbr.html#replication-sbr-rbr-sbr-disadvantages "Desvantagens da Replication baseada em Statement")
 
-* [Advantages of row-based replication](replication-sbr-rbr.html#replication-sbr-rbr-rbr-advantages "Advantages of row-based replication")
+* [Vantagens da Replication baseada em Row](replication-sbr-rbr.html#replication-sbr-rbr-rbr-advantages "Vantagens da Replication baseada em Row")
 
-* [Disadvantages of row-based replication](replication-sbr-rbr.html#replication-sbr-rbr-rbr-disadvantages "Disadvantages of row-based replication")
+* [Desvantagens da Replication baseada em Row](replication-sbr-rbr.html#replication-sbr-rbr-rbr-disadvantages "Desvantagens da Replication baseada em Row")
 
-##### Advantages of statement-based replication
+##### Vantagens da Replication baseada em Statement
 
-* Proven technology.
-* Less data written to log files. When updates or deletes affect many rows, this results in *much* less storage space required for log files. This also means that taking and restoring from backups can be accomplished more quickly.
+* Tecnologia comprovada.
+* Menos dados gravados nos arquivos de log. Quando updates ou deletes afetam muitas rows, isso resulta em *muito* menos espaço de armazenamento necessário para os arquivos de log. Isso também significa que a realização e restauração de backups podem ser concluídas mais rapidamente.
 
-* Log files contain all statements that made any changes, so they can be used to audit the database.
+* Os arquivos de log contêm todos os Statements que fizeram qualquer alteração, portanto, podem ser usados para auditar o Database.
 
-##### Disadvantages of statement-based replication
+##### Desvantagens da Replication baseada em Statement
 
-* **Statements that are unsafe for SBR.** Not all statements which modify data (such as [`INSERT`](insert.html "13.2.5 INSERT Statement") [`DELETE`](delete.html "13.2.2 DELETE Statement"), [`UPDATE`](update.html "13.2.11 UPDATE Statement"), and [`REPLACE`](replace.html "13.2.8 REPLACE Statement") statements) can be replicated using statement-based replication. Any nondeterministic behavior is difficult to replicate when using statement-based replication. Examples of such Data Modification Language (DML) statements include the following:
+* **Statements que não são seguros para SBR.** Nem todos os Statements que modificam dados (como [`INSERT`], [`DELETE`], [`UPDATE`] e [`REPLACE`]) podem ser replicados usando Replication baseada em Statement. Qualquer comportamento não determinístico é difícil de replicar ao usar Replication baseada em Statement. Exemplos de tais Statements DML (Data Modification Language) incluem o seguinte:
 
-  + A statement that depends on a loadable function or stored program that is nondeterministic, since the value returned by such a function or stored program depends on factors other than the parameters supplied to it. (Row-based replication, however, simply replicates the value returned by the function or stored program, so its effect on table rows and data is the same on both the source and replica.) See [Section 16.4.1.16, “Replication of Invoked Features”](replication-features-invoked.html "16.4.1.16 Replication of Invoked Features"), for more information.
+  + Um Statement que depende de uma função carregável ou stored program que é não determinístico, visto que o valor retornado por essa função ou stored program depende de fatores além dos parâmetros fornecidos a ele. (A Replication baseada em Row, no entanto, simplesmente replica o valor retornado pela função ou stored program, de modo que seu efeito nas rows da Table e nos dados seja o mesmo tanto na source quanto na replica.) Veja [Seção 16.4.1.16, “Replication de Recursos Invocados”](replication-features-invoked.html "16.4.1.16 Replication of Invoked Features"), para mais informações.
 
-  + [`DELETE`](delete.html "13.2.2 DELETE Statement") and [`UPDATE`](update.html "13.2.11 UPDATE Statement") statements that use a `LIMIT` clause without an `ORDER BY` are nondeterministic. See [Section 16.4.1.17, “Replication and LIMIT”](replication-features-limit.html "16.4.1.17 Replication and LIMIT").
+  + Statements [`DELETE`] e [`UPDATE`] que usam uma cláusula `LIMIT` sem um `ORDER BY` não são determinísticos. Veja [Seção 16.4.1.17, “Replication e LIMIT”](replication-features-limit.html "16.4.1.17 Replication and LIMIT").
 
-  + Deterministic loadable functions must be applied on the replicas.
+  + Funções carregáveis determinísticas devem ser aplicadas nas replicas.
 
-  + Statements using any of the following functions cannot be replicated properly using statement-based replication:
+  + Statements que usam qualquer uma das seguintes funções não podem ser replicados corretamente usando Replication baseada em Statement:
 
     - [`LOAD_FILE()`](string-functions.html#function_load-file)
     - [`UUID()`](miscellaneous-functions.html#function_uuid), [`UUID_SHORT()`](miscellaneous-functions.html#function_uuid-short)
 
     - [`USER()`](information-functions.html#function_user)
     - [`FOUND_ROWS()`](information-functions.html#function_found-rows)
-    - [`SYSDATE()`](date-and-time-functions.html#function_sysdate) (unless both the source and the replica are started with the [`--sysdate-is-now`](server-options.html#option_mysqld_sysdate-is-now) option)
+    - [`SYSDATE()`](date-and-time-functions.html#function_sysdate) (a menos que tanto a source quanto a replica sejam iniciadas com a opção [`--sysdate-is-now`])
 
     - [`GET_LOCK()`](locking-functions.html#function_get-lock)
     - [`IS_FREE_LOCK()`](locking-functions.html#function_is-free-lock)
@@ -45,60 +45,60 @@ Each binary logging format has advantages and disadvantages. For most users, the
     - [`SLEEP()`](miscellaneous-functions.html#function_sleep)
     - [`VERSION()`](information-functions.html#function_version)
 
-    However, all other functions are replicated correctly using statement-based replication, including [`NOW()`](date-and-time-functions.html#function_now) and so forth.
+    No entanto, todas as outras funções são replicadas corretamente usando Replication baseada em Statement, incluindo [`NOW()`] e assim por diante.
 
-    For more information, see [Section 16.4.1.15, “Replication and System Functions”](replication-features-functions.html "16.4.1.15 Replication and System Functions").
+    Para mais informações, veja [Seção 16.4.1.15, “Replication e Funções do Sistema”](replication-features-functions.html "16.4.1.15 Replication and System Functions").
 
-  Statements that cannot be replicated correctly using statement-based replication are logged with a warning like the one shown here:
+  Statements que não podem ser replicados corretamente usando Replication baseada em Statement são logados com um warning como o mostrado aqui:
 
   ```sql
   [Warning] Statement is not safe to log in statement format.
   ```
 
-  A similar warning is also issued to the client in such cases. The client can display it using [`SHOW WARNINGS`](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement").
+  Um warning semelhante também é emitido para o client nesses casos. O client pode exibi-lo usando [`SHOW WARNINGS`].
 
-* [`INSERT ... SELECT`](insert.html "13.2.5 INSERT Statement") requires a greater number of row-level locks than with row-based replication.
+* [`INSERT ... SELECT`] requer um número maior de row-level Locks do que com Replication baseada em Row.
 
-* [`UPDATE`](update.html "13.2.11 UPDATE Statement") statements that require a table scan (because no index is used in the `WHERE` clause) must lock a greater number of rows than with row-based replication.
+* Statements [`UPDATE`] que requerem um table scan (porque nenhum Index é usado na cláusula `WHERE`) devem bloquear um número maior de rows do que com Replication baseada em Row.
 
-* For [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"): An [`INSERT`](insert.html "13.2.5 INSERT Statement") statement that uses `AUTO_INCREMENT` blocks other nonconflicting [`INSERT`](insert.html "13.2.5 INSERT Statement") statements.
+* Para [`InnoDB`]: Um Statement [`INSERT`] que usa `AUTO_INCREMENT` bloqueia outros Statements [`INSERT`] não conflitantes.
 
-* For complex statements, the statement must be evaluated and executed on the replica before the rows are updated or inserted. With row-based replication, the replica only has to modify the affected rows, not execute the full statement.
+* Para Statements complexos, o Statement deve ser avaliado e executado na replica antes que as rows sejam atualizadas ou inseridas. Com Replication baseada em Row, a replica só precisa modificar as rows afetadas, e não executar o Statement completo.
 
-* If there is an error in evaluation on the replica, particularly when executing complex statements, statement-based replication may slowly increase the margin of error across the affected rows over time. See [Section 16.4.1.27, “Replica Errors During Replication”](replication-features-errors.html "16.4.1.27 Replica Errors During Replication").
+* Se houver um erro na avaliação na replica, particularmente ao executar Statements complexos, a Replication baseada em Statement pode aumentar lentamente a margem de erro nas rows afetadas ao longo do tempo. Veja [Seção 16.4.1.27, “Erros da Replica Durante a Replication”](replication-features-errors.html "16.4.1.27 Replica Errors During Replication").
 
-* Stored functions execute with the same [`NOW()`](date-and-time-functions.html#function_now) value as the calling statement. However, this is not true of stored procedures.
+* Stored functions são executadas com o mesmo valor de [`NOW()`] que o Statement de chamada. No entanto, isso não é verdade para stored procedures.
 
-* Table definitions must be (nearly) identical on source and replica. See [Section 16.4.1.10, “Replication with Differing Table Definitions on Source and Replica”](replication-features-differing-tables.html "16.4.1.10 Replication with Differing Table Definitions on Source and Replica"), for more information.
+* As definições de Table devem ser (quase) idênticas na source e na replica. Veja [Seção 16.4.1.10, “Replication com Definições de Table Diferentes na Source e na Replica”](replication-features-differing-tables.html "16.4.1.10 Replication with Differing Table Definitions on Source and Replica"), para mais informações.
 
-##### Advantages of row-based replication
+##### Vantagens da Replication baseada em Row
 
-* All changes can be replicated. This is the safest form of replication.
+* Todas as alterações podem ser replicadas. Esta é a forma mais segura de Replication.
 
   Note
 
-  Statements that update the information in the `mysql` system database, such as [`GRANT`](grant.html "13.7.1.4 GRANT Statement"), [`REVOKE`](revoke.html "13.7.1.6 REVOKE Statement") and the manipulation of triggers, stored routines (including stored procedures), and views, are all replicated to replicas using statement-based replication.
+  Statements que atualizam as informações no Database do sistema `mysql`, como [`GRANT`], [`REVOKE`] e a manipulação de triggers, stored routines (incluindo stored procedures) e views, são todos replicados para as replicas usando Replication baseada em Statement.
 
-  For statements such as [`CREATE TABLE ... SELECT`](create-table.html "13.1.18 CREATE TABLE Statement"), a `CREATE` statement is generated from the table definition and replicated using statement-based format, while the row insertions are replicated using row-based format.
+  Para Statements como [`CREATE TABLE ... SELECT`], um Statement `CREATE` é gerado a partir da definição da Table e replicado usando o formato baseado em Statement, enquanto as inserções de row são replicadas usando o formato baseado em Row.
 
-* Fewer row locks are required on the source, which thus achieves higher concurrency, for the following types of statements:
+* Menos row Locks são necessários na source, o que, portanto, alcança maior concurrency, para os seguintes tipos de Statements:
 
-  + [`INSERT ... SELECT`](insert-select.html "13.2.5.1 INSERT ... SELECT Statement")
+  + [`INSERT ... SELECT`]
 
-  + [`INSERT`](insert.html "13.2.5 INSERT Statement") statements with `AUTO_INCREMENT`
+  + Statements [`INSERT`] com `AUTO_INCREMENT`
 
-  + [`UPDATE`](update.html "13.2.11 UPDATE Statement") or [`DELETE`](delete.html "13.2.2 DELETE Statement") statements with `WHERE` clauses that do not use keys or do not change most of the examined rows.
+  + Statements [`UPDATE`] ou [`DELETE`] com cláusulas `WHERE` que não usam Keys ou não alteram a maioria das rows examinadas.
 
-* Fewer row locks are required on the replica for any [`INSERT`](insert.html "13.2.5 INSERT Statement"), [`UPDATE`](update.html "13.2.11 UPDATE Statement"), or [`DELETE`](delete.html "13.2.2 DELETE Statement") statement.
+* Menos row Locks são necessários na replica para qualquer Statement [`INSERT`], [`UPDATE`] ou [`DELETE`].
 
-##### Disadvantages of row-based replication
+##### Desvantagens da Replication baseada em Row
 
-* RBR can generate more data that must be logged. To replicate a DML statement (such as an [`UPDATE`](update.html "13.2.11 UPDATE Statement") or [`DELETE`](delete.html "13.2.2 DELETE Statement") statement), statement-based replication writes only the statement to the binary log. By contrast, row-based replication writes each changed row to the binary log. If the statement changes many rows, row-based replication may write significantly more data to the binary log; this is true even for statements that are rolled back. This also means that making and restoring a backup can require more time. In addition, the binary log is locked for a longer time to write the data, which may cause concurrency problems. Use [`binlog_row_image=minimal`](replication-options-binary-log.html#sysvar_binlog_row_image) to reduce the disadvantage considerably.
+* A RBR (Row-Based Replication) pode gerar mais dados que devem ser logados. Para replicar um Statement DML (como um Statement [`UPDATE`] ou [`DELETE`]), a Replication baseada em Statement escreve apenas o Statement no Binary Log. Por outro lado, a Replication baseada em Row escreve cada row alterada no Binary Log. Se o Statement alterar muitas rows, a Replication baseada em Row pode escrever significativamente mais dados no Binary Log; isso é verdade mesmo para Statements que são revertidos (rolled back). Isso também significa que fazer e restaurar um backup pode exigir mais tempo. Além disso, o Binary Log é locked por um tempo maior para gravar os dados, o que pode causar problemas de concurrency. Use [`binlog_row_image=minimal`] para reduzir consideravelmente essa desvantagem.
 
-* Deterministic loadable functions that generate large [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") values take longer to replicate with row-based replication than with statement-based replication. This is because the [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") column value is logged, rather than the statement generating the data.
+* Funções carregáveis determinísticas que geram valores [`BLOB`] grandes demoram mais para replicar com Replication baseada em Row do que com Replication baseada em Statement. Isso ocorre porque o valor da coluna [`BLOB`] é logado, em vez do Statement que gera os dados.
 
-* You cannot see on the replica what statements were received from the source and executed. However, you can see what data was changed using [**mysqlbinlog**](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files") with the options [`--base64-output=DECODE-ROWS`](mysqlbinlog.html#option_mysqlbinlog_base64-output) and [`--verbose`](mysqlbinlog.html#option_mysqlbinlog_verbose).
+* Você não pode ver na replica quais Statements foram recebidos da source e executados. No entanto, você pode ver quais dados foram alterados usando [**mysqlbinlog**] com as opções [`--base64-output=DECODE-ROWS`] e [`--verbose`].
 
-  Alternatively, use the [`binlog_rows_query_log_events`](replication-options-binary-log.html#sysvar_binlog_rows_query_log_events) variable, which if enabled adds a `Rows_query` event with the statement to [**mysqlbinlog**](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files") output when the `-vv` option is used.
+  Alternativamente, use a variável [`binlog_rows_query_log_events`], que, se ativada, adiciona um evento `Rows_query` com o Statement à saída do [**mysqlbinlog**] quando a opção `-vv` é usada.
 
-* For tables using the [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") storage engine, a stronger lock is required on the replica for [`INSERT`](insert.html "13.2.5 INSERT Statement") statements when applying them as row-based events to the binary log than when applying them as statements. This means that concurrent inserts on [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") tables are not supported when using row-based replication.
+* Para Tables que usam o storage engine [`MyISAM`], um Lock mais forte é necessário na replica para Statements [`INSERT`] ao aplicá-los como eventos baseados em Row ao Binary Log do que ao aplicá-los como Statements. Isso significa que Inserts concorrentes em Tables [`MyISAM`] não são suportados ao usar Replication baseada em Row.

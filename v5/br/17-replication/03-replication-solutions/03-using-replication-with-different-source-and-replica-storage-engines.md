@@ -1,54 +1,54 @@
-### 16.3.3 Using Replication with Different Source and Replica Storage Engines
+### 16.3.3 Usando Replication com Diferentes Storage Engines no Source e na Replica
 
-It does not matter for the replication process whether the source table on the source and the replicated table on the replica use different engine types. In fact, the [`default_storage_engine`](server-system-variables.html#sysvar_default_storage_engine) system variable is not replicated.
+Para o processo de Replication, não importa se a tabela Source no Source e a tabela replicada na Replica usam diferentes tipos de engine. De fato, a variável de sistema [`default_storage_engine`](server-system-variables.html#sysvar_default_storage_engine) não é replicada.
 
-This provides a number of benefits in the replication process in that you can take advantage of different engine types for different replication scenarios. For example, in a typical scale-out scenario (see [Section 16.3.4, “Using Replication for Scale-Out”](replication-solutions-scaleout.html "16.3.4 Using Replication for Scale-Out")), you want to use `InnoDB` tables on the source to take advantage of the transactional functionality, but use `MyISAM` on the replicas where transaction support is not required because the data is only read. When using replication in a data-logging environment you may want to use the `Archive` storage engine on the replica.
+Isso oferece uma série de benefícios no processo de Replication, permitindo que você aproveite diferentes tipos de engine para diferentes cenários de Replication. Por exemplo, em um cenário típico de Scale-Out (consulte [Section 16.3.4, “Using Replication for Scale-Out”](replication-solutions-scaleout.html "16.3.4 Usando Replication para Scale-Out")), você pode querer usar tabelas `InnoDB` no Source para tirar proveito da funcionalidade transacional, mas usar `MyISAM` nas Replicas onde o suporte a transaction não é necessário porque os dados são apenas lidos. Ao usar Replication em um ambiente de registro de dados (data-logging), você pode querer usar o Storage Engine `Archive` na Replica.
 
-Configuring different engines on the source and replica depends on how you set up the initial replication process:
+A configuração de diferentes engines no Source e na Replica depende de como você configurou o processo inicial de Replication:
 
-* If you used [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") to create the database snapshot on your source, you could edit the dump file text to change the engine type used on each table.
+*   Se você usou [**mysqldump**](mysqldump.html "4.5.4 mysqldump — Um Programa de Backup de Database") para criar o snapshot da Database no seu Source, você pode editar o texto do arquivo dump para alterar o tipo de engine usado em cada tabela.
 
-  Another alternative for [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") is to disable engine types that you do not want to use on the replica before using the dump to build the data on the replica. For example, you can add the [`--skip-federated`](innodb-parameters.html#option_mysqld_innodb) option on your replica to disable the `FEDERATED` engine. If a specific engine does not exist for a table to be created, MySQL uses the default engine type, usually `MyISAM`. (This requires that the [`NO_ENGINE_SUBSTITUTION`](sql-mode.html#sqlmode_no_engine_substitution) SQL mode is not enabled.) If you want to disable additional engines in this way, you may want to consider building a special binary to be used on the replica that supports only the engines you want.
+    Outra alternativa para o [**mysqldump**](mysqldump.html "4.5.4 mysqldump — Um Programa de Backup de Database") é desabilitar os tipos de engine que você não deseja usar na Replica antes de usar o dump para construir os dados na Replica. Por exemplo, você pode adicionar a opção [`--skip-federated`](innodb-parameters.html#option_mysqld_innodb) na sua Replica para desabilitar o engine `FEDERATED`. Se um engine específico não existir para uma tabela a ser criada, o MySQL usará o tipo de engine padrão, geralmente `MyISAM`. (Isso exige que o SQL mode [`NO_ENGINE_SUBSTITUTION`](sql-mode.html#sqlmode_no_engine_substitution) não esteja habilitado.) Se você quiser desabilitar engines adicionais dessa forma, você pode considerar a construção de um binário especial a ser usado na Replica que suporte apenas os engines que você deseja.
 
-* If you are using raw data files (a binary backup) to set up the replica, you cannot change the initial table format. Instead, use [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") to change the table types after the replica has been started.
+*   Se você estiver usando arquivos de dados brutos (um backup binário) para configurar a Replica, você não pode alterar o formato inicial da tabela. Em vez disso, use [`ALTER TABLE`](alter-table.html "13.1.8 Instrução ALTER TABLE") para alterar os tipos de tabela depois que a Replica for iniciada.
 
-* For new source/replica replication setups where there are currently no tables on the source, avoid specifying the engine type when creating new tables.
+*   Para novas configurações de Replication Source/Replica onde atualmente não há tabelas no Source, evite especificar o tipo de engine ao criar novas tabelas.
 
-If you are already running a replication solution and want to convert your existing tables to another engine type, follow these steps:
+Se você já está executando uma solução de Replication e deseja converter suas tabelas existentes para outro tipo de engine, siga estas etapas:
 
-1. Stop the replica from running replication updates:
+1.  Pare a Replica de executar as atualizações de Replication:
 
-   ```sql
+    ```sql
    mysql> STOP SLAVE;
    ```
 
-   This enables you to change engine types without interruptions.
+    Isso permite que você altere os tipos de engine sem interrupções.
 
-2. Execute an `ALTER TABLE ... ENGINE='engine_type'` for each table to be changed.
+2.  Execute um `ALTER TABLE ... ENGINE='engine_type'` para cada tabela a ser alterada.
 
-3. Start the replication process again:
+3.  Inicie o processo de Replication novamente:
 
-   ```sql
+    ```sql
    mysql> START SLAVE;
    ```
 
-Although the [`default_storage_engine`](server-system-variables.html#sysvar_default_storage_engine) variable is not replicated, be aware that [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") and [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statements that include the engine specification are correctly replicated to the replica. For example, if you have a CSV table and you execute:
+Embora a variável [`default_storage_engine`](server-system-variables.html#sysvar_default_storage_engine) não seja replicada, esteja ciente de que as instruções [`CREATE TABLE`](create-table.html "13.1.18 Instrução CREATE TABLE") e [`ALTER TABLE`](alter-table.html "13.1.8 Instrução ALTER TABLE") que incluem a especificação do engine são replicadas corretamente para a Replica. Por exemplo, se você tiver uma tabela CSV e executar:
 
 ```sql
 mysql> ALTER TABLE csvtable Engine='MyISAM';
 ```
 
-The previous statement is replicated to the replica and the engine type on the replica is converted to `MyISAM`, even if you have previously changed the table type on the replica to an engine other than CSV. If you want to retain engine differences on the source and replica, you should be careful to use the [`default_storage_engine`](server-system-variables.html#sysvar_default_storage_engine) variable on the source when creating a new table. For example, instead of:
+A instrução anterior é replicada para a Replica e o tipo de engine na Replica é convertido para `MyISAM`, mesmo que você tenha alterado anteriormente o tipo de tabela na Replica para um engine diferente de CSV. Se você deseja manter diferenças de engine entre Source e Replica, você deve ter cuidado ao usar a variável [`default_storage_engine`](server-system-variables.html#sysvar_default_storage_engine) no Source ao criar uma nova tabela. Por exemplo, em vez de:
 
 ```sql
 mysql> CREATE TABLE tablea (columna int) Engine=MyISAM;
 ```
 
-Use this format:
+Use este formato:
 
 ```sql
 mysql> SET default_storage_engine=MyISAM;
 mysql> CREATE TABLE tablea (columna int);
 ```
 
-When replicated, the [`default_storage_engine`](server-system-variables.html#sysvar_default_storage_engine) variable will be ignored, and the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement executes on the replica using the replica's default engine.
+Quando replicada, a variável [`default_storage_engine`](server-system-variables.html#sysvar_default_storage_engine) será ignorada, e a instrução [`CREATE TABLE`](create-table.html "13.1.18 Instrução CREATE TABLE") será executada na Replica usando o engine padrão da Replica.

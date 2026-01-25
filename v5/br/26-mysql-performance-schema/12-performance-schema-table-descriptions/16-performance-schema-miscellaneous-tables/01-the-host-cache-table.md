@@ -1,131 +1,131 @@
-#### 25.12.16.1 The host_cache Table
+#### 25.12.16.1 A Tabela host_cache
 
-The MySQL server maintains an in-memory host cache that contains client host name and IP address information and is used to avoid Domain Name System (DNS) lookups. The [`host_cache`](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table") table exposes the contents of this cache. The [`host_cache_size`](server-system-variables.html#sysvar_host_cache_size) system variable controls the size of the host cache, as well as the size of the [`host_cache`](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table") table. For operational and configuration information about the host cache, see [Section 5.1.11.2, “DNS Lookups and the Host Cache”](host-cache.html "5.1.11.2 DNS Lookups and the Host Cache").
+O servidor MySQL mantém um *host cache* (cache de host) na memória que contém informações de nome de host e endereço IP do cliente e é usado para evitar buscas no Domain Name System (DNS) (*DNS lookups*). A tabela [`host_cache`](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table") expõe o conteúdo deste cache. A variável de sistema [`host_cache_size`](server-system-variables.html#sysvar_host_cache_size) controla o tamanho do *host cache*, bem como o tamanho da tabela [`host_cache`](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table"). Para informações operacionais e de configuração sobre o *host cache*, consulte [Seção 5.1.11.2, “DNS Lookups and the Host Cache”](host-cache.html "5.1.11.2 DNS Lookups and the Host Cache").
 
-Because the [`host_cache`](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table") table exposes the contents of the host cache, it can be examined using [`SELECT`](select.html "13.2.9 SELECT Statement") statements. This may help you diagnose the causes of connection problems. The Performance Schema must be enabled or this table is empty.
+Como a tabela [`host_cache`](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table") expõe o conteúdo do *host cache*, ela pode ser examinada usando comandos [`SELECT`](select.html "13.2.9 SELECT Statement"). Isso pode ajudar a diagnosticar as causas de problemas de conexão. O Performance Schema deve estar habilitado ou esta tabela estará vazia.
 
-The [`host_cache`](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table") table has these columns:
+A tabela [`host_cache`](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table") possui as seguintes colunas:
 
 * `IP`
 
-  The IP address of the client that connected to the server, expressed as a string.
+  O endereço IP do cliente que se conectou ao servidor, expresso como uma string.
 
 * `HOST`
 
-  The resolved DNS host name for that client IP, or `NULL` if the name is unknown.
+  O nome de host DNS resolvido para aquele IP de cliente, ou `NULL` se o nome for desconhecido.
 
 * `HOST_VALIDATED`
 
-  Whether the IP-to-host name-to-IP DNS resolution was performed successfully for the client IP. If `HOST_VALIDATED` is `YES`, the `HOST` column is used as the host name corresponding to the IP so that additional calls to DNS can be avoided. While `HOST_VALIDATED` is `NO`, DNS resolution is attempted for each connection attempt, until it eventually completes with either a valid result or a permanent error. This information enables the server to avoid caching bad or missing host names during temporary DNS failures, which would negatively affect clients forever.
+  Se a resolução DNS de IP para nome de host para IP foi realizada com sucesso para o IP do cliente. Se `HOST_VALIDATED` for `YES`, a coluna `HOST` é usada como o nome de host correspondente ao IP para que chamadas adicionais ao DNS possam ser evitadas. Enquanto `HOST_VALIDATED` for `NO`, a resolução DNS é tentada para cada tentativa de conexão, até que ela finalmente seja concluída com um resultado válido ou um erro permanente. Esta informação permite que o servidor evite armazenar em cache nomes de host ruins ou ausentes durante falhas temporárias de DNS, o que afetaria negativamente os clientes para sempre.
 
 * `SUM_CONNECT_ERRORS`
 
-  The number of connection errors that are deemed “blocking” (assessed against the [`max_connect_errors`](server-system-variables.html#sysvar_max_connect_errors) system variable). Only protocol handshake errors are counted, and only for hosts that passed validation (`HOST_VALIDATED = YES`).
+  O número de erros de conexão que são considerados "bloqueadores" (avaliados em relação à variável de sistema [`max_connect_errors`](server-system-variables.html#sysvar_max_connect_errors)). Apenas erros de *handshake* de protocolo são contados, e apenas para hosts que passaram na validação (`HOST_VALIDATED = YES`).
 
-  Once `SUM_CONNECT_ERRORS` for a given host reaches the value of [`max_connect_errors`](server-system-variables.html#sysvar_max_connect_errors), new connections from that host are blocked. The `SUM_CONNECT_ERRORS` value can exceed the [`max_connect_errors`](server-system-variables.html#sysvar_max_connect_errors) value because multiple connection attempts from a host can occur simultaneously while the host is not blocked. Any or all of them can fail, independently incrementing `SUM_CONNECT_ERRORS`, possibly beyond the value of [`max_connect_errors`](server-system-variables.html#sysvar_max_connect_errors).
+  Uma vez que `SUM_CONNECT_ERRORS` para um determinado host atinge o valor de [`max_connect_errors`](server-system-variables.html#sysvar_max_connect_errors), novas conexões desse host são bloqueadas. O valor de `SUM_CONNECT_ERRORS` pode exceder o valor de [`max_connect_errors`](server-system-variables.html#sysvar_max_connect_errors) porque múltiplas tentativas de conexão de um host podem ocorrer simultaneamente enquanto o host não está bloqueado. Qualquer uma ou todas elas podem falhar, incrementando `SUM_CONNECT_ERRORS` independentemente, possivelmente além do valor de [`max_connect_errors`](server-system-variables.html#sysvar_max_connect_errors).
 
-  Suppose that [`max_connect_errors`](server-system-variables.html#sysvar_max_connect_errors) is 200 and `SUM_CONNECT_ERRORS` for a given host is 199. If 10 clients attempt to connect from that host simultaneously, none of them are blocked because `SUM_CONNECT_ERRORS` has not reached 200. If blocking errors occur for five of the clients, `SUM_CONNECT_ERRORS` is increased by one for each client, for a resulting `SUM_CONNECT_ERRORS` value of 204. The other five clients succeed and are not blocked because the value of `SUM_CONNECT_ERRORS` when their connection attempts began had not reached 200. New connections from the host that begin after `SUM_CONNECT_ERRORS` reaches 200 are blocked.
+  Suponha que [`max_connect_errors`](server-system-variables.html#sysvar_max_connect_errors) seja 200 e `SUM_CONNECT_ERRORS` para um determinado host seja 199. Se 10 clientes tentarem se conectar a partir desse host simultaneamente, nenhum deles será bloqueado porque `SUM_CONNECT_ERRORS` não atingiu 200. Se ocorrerem erros de bloqueio para cinco dos clientes, `SUM_CONNECT_ERRORS` é aumentado em um para cada cliente, resultando em um valor de `SUM_CONNECT_ERRORS` de 204. Os outros cinco clientes são bem-sucedidos e não são bloqueados porque o valor de `SUM_CONNECT_ERRORS` quando suas tentativas de conexão começaram não havia atingido 200. Novas conexões do host que começam depois que `SUM_CONNECT_ERRORS` atinge 200 são bloqueadas.
 
 * `COUNT_HOST_BLOCKED_ERRORS`
 
-  The number of connections that were blocked because `SUM_CONNECT_ERRORS` exceeded the value of the [`max_connect_errors`](server-system-variables.html#sysvar_max_connect_errors) system variable.
+  O número de conexões que foram bloqueadas porque `SUM_CONNECT_ERRORS` excedeu o valor da variável de sistema [`max_connect_errors`](server-system-variables.html#sysvar_max_connect_errors).
 
 * `COUNT_NAMEINFO_TRANSIENT_ERRORS`
 
-  The number of transient errors during IP-to-host name DNS resolution.
+  O número de erros transitórios durante a resolução DNS de IP para nome de host.
 
 * `COUNT_NAMEINFO_PERMANENT_ERRORS`
 
-  The number of permanent errors during IP-to-host name DNS resolution.
+  O número de erros permanentes durante a resolução DNS de IP para nome de host.
 
 * `COUNT_FORMAT_ERRORS`
 
-  The number of host name format errors. MySQL does not perform matching of `Host` column values in the `mysql.user` system table against host names for which one or more of the initial components of the name are entirely numeric, such as `1.2.example.com`. The client IP address is used instead. For the rationale why this type of matching does not occur, see [Section 6.2.4, “Specifying Account Names”](account-names.html "6.2.4 Specifying Account Names").
+  O número de erros de formato de nome de host. O MySQL não realiza a correspondência de valores da coluna `Host` na tabela de sistema `mysql.user` com nomes de host para os quais um ou mais dos componentes iniciais do nome são inteiramente numéricos, como `1.2.example.com`. O endereço IP do cliente é usado em vez disso. Para a justificativa pela qual este tipo de correspondência não ocorre, consulte [Seção 6.2.4, “Specifying Account Names”](account-names.html "6.2.4 Specifying Account Names").
 
 * `COUNT_ADDRINFO_TRANSIENT_ERRORS`
 
-  The number of transient errors during host name-to-IP reverse DNS resolution.
+  O número de erros transitórios durante a resolução DNS reversa de nome de host para IP.
 
 * `COUNT_ADDRINFO_PERMANENT_ERRORS`
 
-  The number of permanent errors during host name-to-IP reverse DNS resolution.
+  O número de erros permanentes durante a resolução DNS reversa de nome de host para IP.
 
 * `COUNT_FCRDNS_ERRORS`
 
-  The number of forward-confirmed reverse DNS errors. These errors occur when IP-to-host name-to-IP DNS resolution produces an IP address that does not match the client originating IP address.
+  O número de erros de DNS reverso confirmado para frente (*forward-confirmed reverse DNS*). Esses erros ocorrem quando a resolução DNS de IP para nome de host para IP produz um endereço IP que não corresponde ao endereço IP de origem do cliente.
 
 * `COUNT_HOST_ACL_ERRORS`
 
-  The number of errors that occur because no users are permitted to connect from the client host. In such cases, the server returns [`ER_HOST_NOT_PRIVILEGED`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_host_not_privileged) and does not even ask for a user name or password.
+  O número de erros que ocorrem porque nenhum usuário tem permissão para se conectar a partir do host cliente. Nesses casos, o servidor retorna [`ER_HOST_NOT_PRIVILEGED`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_host_not_privileged) e nem mesmo solicita um nome de usuário ou senha.
 
 * `COUNT_NO_AUTH_PLUGIN_ERRORS`
 
-  The number of errors due to requests for an unavailable authentication plugin. A plugin can be unavailable if, for example, it was never loaded or a load attempt failed.
+  O número de erros devido a solicitações de um *plugin* de autenticação indisponível. Um *plugin* pode estar indisponível se, por exemplo, nunca foi carregado ou uma tentativa de carregamento falhou.
 
 * `COUNT_AUTH_PLUGIN_ERRORS`
 
-  The number of errors reported by authentication plugins.
+  O número de erros reportados por *plugins* de autenticação.
 
-  An authentication plugin can report different error codes to indicate the root cause of a failure. Depending on the type of error, one of these columns is incremented: `COUNT_AUTHENTICATION_ERRORS`, `COUNT_AUTH_PLUGIN_ERRORS`, `COUNT_HANDSHAKE_ERRORS`. New return codes are an optional extension to the existing plugin API. Unknown or unexpected plugin errors are counted in the `COUNT_AUTH_PLUGIN_ERRORS` column.
+  Um *plugin* de autenticação pode reportar diferentes códigos de erro para indicar a causa raiz de uma falha. Dependendo do tipo de erro, uma destas colunas é incrementada: `COUNT_AUTHENTICATION_ERRORS`, `COUNT_AUTH_PLUGIN_ERRORS`, `COUNT_HANDSHAKE_ERRORS`. Novos códigos de retorno são uma extensão opcional para a API de *plugin* existente. Erros de *plugin* desconhecidos ou inesperados são contados na coluna `COUNT_AUTH_PLUGIN_ERRORS`.
 
 * `COUNT_HANDSHAKE_ERRORS`
 
-  The number of errors detected at the wire protocol level.
+  O número de erros detectados no nível do protocolo de rede (*wire protocol*).
 
 * `COUNT_PROXY_USER_ERRORS`
 
-  The number of errors detected when proxy user A is proxied to another user B who does not exist.
+  O número de erros detectados quando o usuário *proxy* A é *proxied* para outro usuário B que não existe.
 
 * `COUNT_PROXY_USER_ACL_ERRORS`
 
-  The number of errors detected when proxy user A is proxied to another user B who does exist but for whom A does not have the [`PROXY`](privileges-provided.html#priv_proxy) privilege.
+  O número de erros detectados quando o usuário *proxy* A é *proxied* para outro usuário B que existe, mas para o qual A não possui o privilégio [`PROXY`](privileges-provided.html#priv_proxy).
 
 * `COUNT_AUTHENTICATION_ERRORS`
 
-  The number of errors caused by failed authentication.
+  O número de erros causados por falha na autenticação.
 
 * `COUNT_SSL_ERRORS`
 
-  The number of errors due to SSL problems.
+  O número de erros devido a problemas de SSL.
 
 * `COUNT_MAX_USER_CONNECTIONS_ERRORS`
 
-  The number of errors caused by exceeding per-user connection quotas. See [Section 6.2.16, “Setting Account Resource Limits”](user-resources.html "6.2.16 Setting Account Resource Limits").
+  O número de erros causados por exceder as cotas de conexão por usuário. Consulte [Seção 6.2.16, “Setting Account Resource Limits”](user-resources.html "6.2.16 Setting Account Resource Limits").
 
 * `COUNT_MAX_USER_CONNECTIONS_PER_HOUR_ERRORS`
 
-  The number of errors caused by exceeding per-user connections-per-hour quotas. See [Section 6.2.16, “Setting Account Resource Limits”](user-resources.html "6.2.16 Setting Account Resource Limits").
+  O número de erros causados por exceder as cotas de conexões por hora por usuário. Consulte [Seção 6.2.16, “Setting Account Resource Limits”](user-resources.html "6.2.16 Setting Account Resource Limits").
 
 * `COUNT_DEFAULT_DATABASE_ERRORS`
 
-  The number of errors related to the default database. For example, the database does not exist or the user has no privileges to access it.
+  O número de erros relacionados ao Database padrão. Por exemplo, o Database não existe ou o usuário não tem privilégios para acessá-lo.
 
 * `COUNT_INIT_CONNECT_ERRORS`
 
-  The number of errors caused by execution failures of statements in the [`init_connect`](server-system-variables.html#sysvar_init_connect) system variable value.
+  O número de erros causados por falhas de execução de comandos no valor da variável de sistema [`init_connect`](server-system-variables.html#sysvar_init_connect).
 
 * `COUNT_LOCAL_ERRORS`
 
-  The number of errors local to the server implementation and not related to the network, authentication, or authorization. For example, out-of-memory conditions fall into this category.
+  O número de erros locais à implementação do servidor e não relacionados à rede, autenticação ou autorização. Por exemplo, condições de falta de memória (*out-of-memory*) se enquadram nesta categoria.
 
 * `COUNT_UNKNOWN_ERRORS`
 
-  The number of other, unknown errors not accounted for by other columns in this table. This column is reserved for future use, in case new error conditions must be reported, and if preserving the backward compatibility and structure of the [`host_cache`](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table") table is required.
+  O número de outros erros desconhecidos não contabilizados por outras colunas nesta tabela. Esta coluna é reservada para uso futuro, caso novas condições de erro precisem ser relatadas, e se a preservação da compatibilidade reversa e da estrutura da tabela [`host_cache`](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table") for necessária.
 
 * `FIRST_SEEN`
 
-  The timestamp of the first connection attempt seen from the client in the `IP` column.
+  O timestamp da primeira tentativa de conexão vista do cliente na coluna `IP`.
 
 * `LAST_SEEN`
 
-  The timestamp of the most recent connection attempt seen from the client in the `IP` column.
+  O timestamp da tentativa de conexão mais recente vista do cliente na coluna `IP`.
 
 * `FIRST_ERROR_SEEN`
 
-  The timestamp of the first error seen from the client in the `IP` column.
+  O timestamp do primeiro erro visto do cliente na coluna `IP`.
 
 * `LAST_ERROR_SEEN`
 
-  The timestamp of the most recent error seen from the client in the `IP` column.
+  O timestamp do erro mais recente visto do cliente na coluna `IP`.
 
-[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is permitted for the [`host_cache`](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table") table. It requires the [`DROP`](privileges-provided.html#priv_drop) privilege for the table. Truncating the table flushes the host cache, which has the effects described in [Flushing the Host Cache](host-cache.html#host-cache-flushing "Flushing the Host Cache").
+O comando [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") é permitido para a tabela [`host_cache`](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table"). Ele requer o privilégio [`DROP`](privileges-provided.html#priv_drop) para a tabela. Truncar a tabela limpa o *host cache* (*flushes*), o que tem os efeitos descritos em [Flushing the Host Cache](host-cache.html#host-cache-flushing "Flushing the Host Cache").

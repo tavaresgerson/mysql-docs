@@ -1,15 +1,15 @@
-#### 11.4.2.10 MultiCurve Class
+#### 11.4.2.10 Classe MultiCurve
 
-A `MultiCurve` is a geometry collection composed of `Curve` elements. `MultiCurve` is a noninstantiable class.
+Um `MultiCurve` é uma *geometry collection* composta por elementos `Curve`. `MultiCurve` é uma classe não instanciável.
 
-**`MultiCurve` Properties**
+**Propriedades de MultiCurve**
 
-* A `MultiCurve` is a one-dimensional geometry.
+* Um `MultiCurve` é uma *geometry* unidimensional.
 
-* A `MultiCurve` is simple if and only if all of its elements are simple; the only intersections between any two elements occur at points that are on the boundaries of both elements.
+* Um `MultiCurve` é simples se e somente se todos os seus elementos forem simples; as únicas interseções entre quaisquer dois elementos ocorrem em pontos que estão nos limites de ambos os elementos.
 
-* A `MultiCurve` boundary is obtained by applying the “mod 2 union rule” (also known as the “odd-even rule”): A point is in the boundary of a `MultiCurve` if it is in the boundaries of an odd number of `Curve` elements.
+* O limite de um `MultiCurve` é obtido aplicando a "regra de união mod 2" (também conhecida como "regra ímpar-par"): Um ponto está no limite de um `MultiCurve` se estiver nos limites de um número ímpar de elementos `Curve`.
 
-* A `MultiCurve` is closed if all of its elements are closed.
+* Um `MultiCurve` é fechado se todos os seus elementos forem fechados.
 
-* The boundary of a closed `MultiCurve` is always empty.
+* O limite de um `MultiCurve` fechado está sempre vazio.

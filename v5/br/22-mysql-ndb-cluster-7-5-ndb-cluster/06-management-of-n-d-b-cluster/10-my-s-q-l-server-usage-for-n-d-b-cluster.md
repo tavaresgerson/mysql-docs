@@ -1,40 +1,40 @@
-### 21.6.10 MySQL Server Usage for NDB Cluster
+### 21.6.10 Uso do MySQL Server para NDB Cluster
 
-[**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") is the traditional MySQL server process. To be used with NDB Cluster, [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") needs to be built with support for the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine, as it is in the precompiled binaries available from <https://dev.mysql.com/downloads/>. If you build MySQL from source, you must invoke **CMake** with the [`-DWITH_NDBCLUSTER=1`](source-configuration-options.html#option_cmake_with_ndbcluster) option to include support for `NDB`.
+[**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") é o processo tradicional do MySQL Server. Para ser usado com o NDB Cluster, o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") precisa ser construído com suporte para a storage engine [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"), como ocorre nos binários pré-compilados disponíveis em <https://dev.mysql.com/downloads/>. Se você construir o MySQL a partir do código fonte, você deve invocar o **CMake** com a opção [`-DWITH_NDBCLUSTER=1`](source-configuration-options.html#option_cmake_with_ndbcluster) para incluir o suporte ao `NDB`.
 
-For more information about compiling NDB Cluster from source, see [Section 21.3.1.4, “Building NDB Cluster from Source on Linux”](mysql-cluster-install-linux-source.html "21.3.1.4 Building NDB Cluster from Source on Linux"), and [Section 21.3.2.2, “Compiling and Installing NDB Cluster from Source on Windows”](mysql-cluster-install-windows-source.html "21.3.2.2 Compiling and Installing NDB Cluster from Source on Windows").
+Para mais informações sobre a compilação do NDB Cluster a partir do código fonte, consulte [Section 21.3.1.4, “Construindo o NDB Cluster a Partir do Código Fonte no Linux”](mysql-cluster-install-linux-source.html "21.3.1.4 Building NDB Cluster from Source on Linux"), e [Section 21.3.2.2, “Compilando e Instalando o NDB Cluster a Partir do Código Fonte no Windows”](mysql-cluster-install-windows-source.html "21.3.2.2 Compiling and Installing NDB Cluster from Source on Windows").
 
-(For information about [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") options and variables, in addition to those discussed in this section, which are relevant to NDB Cluster, see [Section 21.4.3.9, “MySQL Server Options and Variables for NDB Cluster”](mysql-cluster-options-variables.html "21.4.3.9 MySQL Server Options and Variables for NDB Cluster").)
+(Para informações sobre opções e variáveis do [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), além daquelas discutidas nesta seção, que são relevantes para o NDB Cluster, consulte [Section 21.4.3.9, “Opções e Variáveis do MySQL Server para NDB Cluster”](mysql-cluster-options-variables.html "21.4.3.9 MySQL Server Options and Variables for NDB Cluster").)
 
-If the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") binary has been built with Cluster support, the [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine is still disabled by default. You can use either of two possible options to enable this engine:
+Se o binário do [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") foi construído com suporte a Cluster, a storage engine [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") ainda está desabilitada por padrão. Você pode usar uma destas duas opções possíveis para habilitar esta engine:
 
-* Use [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster) as a startup option on the command line when starting [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
+* Use [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster) como uma opção de startup na linha de comando ao iniciar o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-* Insert a line containing `ndbcluster` in the `[mysqld]` section of your `my.cnf` file.
+* Insira uma linha contendo `ndbcluster` na seção `[mysqld]` do seu arquivo `my.cnf`.
 
-An easy way to verify that your server is running with the [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine enabled is to issue the [`SHOW ENGINES`](show-engines.html "13.7.5.16 SHOW ENGINES Statement") statement in the MySQL Monitor ([**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client")). You should see the value `YES` as the `Support` value in the row for [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"). If you see `NO` in this row or if there is no such row displayed in the output, you are not running an [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6")-enabled version of MySQL. If you see `DISABLED` in this row, you need to enable it in either one of the two ways just described.
+Uma maneira fácil de verificar se o seu Server está rodando com a storage engine [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") habilitada é executar a instrução [`SHOW ENGINES`](show-engines.html "13.7.5.16 SHOW ENGINES Statement") no MySQL Monitor ([**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client")). Você deve ver o valor `YES` como o valor de `Support` na linha para [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"). Se você vir `NO` nesta linha ou se nenhuma linha desse tipo for exibida na saída (output), você não está executando uma versão do MySQL habilitada para [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"). Se você vir `DISABLED` nesta linha, você precisa habilitá-la de uma das duas maneiras acabadas de descrever.
 
-To read cluster configuration data, the MySQL server requires at a minimum three pieces of information:
+Para ler dados de configuração do Cluster, o MySQL Server requer no mínimo três informações:
 
-* The MySQL server's own cluster node ID
-* The host name or IP address for the management server
-* The number of the TCP/IP port on which it can connect to the management server
+* O próprio Cluster Node ID do MySQL Server
+* O host name ou IP address para o management server
+* O número da porta TCP/IP na qual ele pode se conectar ao management server
 
-Node IDs can be allocated dynamically, so it is not strictly necessary to specify them explicitly.
+Os Node IDs podem ser alocados dinamicamente, portanto não é estritamente necessário especificá-los explicitamente.
 
-The [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") parameter `ndb-connectstring` is used to specify the connection string either on the command line when starting [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") or in `my.cnf`. The connection string contains the host name or IP address where the management server can be found, as well as the TCP/IP port it uses.
+O parâmetro [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") `ndb-connectstring` é usado para especificar a connection string, seja na linha de comando ao iniciar o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), ou no `my.cnf`. A connection string contém o host name ou IP address onde o management server pode ser encontrado, assim como a porta TCP/IP que ele utiliza.
 
-In the following example, `ndb_mgmd.mysql.com` is the host where the management server resides, and the management server listens for cluster messages on port 1186:
+No exemplo a seguir, `ndb_mgmd.mysql.com` é o host onde o management server reside, e o management server escuta por mensagens do Cluster na porta 1186:
 
 ```sql
 $> mysqld --ndbcluster --ndb-connectstring=ndb_mgmd.mysql.com:1186
 ```
 
-See [Section 21.4.3.3, “NDB Cluster Connection Strings”](mysql-cluster-connection-strings.html "21.4.3.3 NDB Cluster Connection Strings"), for more information on connection strings.
+Consulte [Section 21.4.3.3, “NDB Cluster Connection Strings”](mysql-cluster-connection-strings.html "21.4.3.3 NDB Cluster Connection Strings"), para mais informações sobre connection strings.
 
-Given this information, the MySQL server can act as a full participant in the cluster. (We often refer to a [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") process running in this manner as an SQL node.) It is fully aware of all cluster data nodes as well as their status, and establishes connections to all data nodes. In this case, it is able to use any data node as a transaction coordinator and to read and update node data.
+Dadas estas informações, o MySQL Server pode atuar como um participante completo no Cluster. (Frequentemente nos referimos a um processo [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") rodando desta maneira como um SQL node.) Ele está totalmente ciente de todos os data nodes do Cluster, bem como de seu status, e estabelece conexões com todos os data nodes. Neste caso, ele é capaz de usar qualquer data node como um transaction coordinator e para ler e atualizar dados do node.
 
-You can see in the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client whether a MySQL server is connected to the cluster using [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement"). If the MySQL server is connected to the cluster, and you have the [`PROCESS`](privileges-provided.html#priv_process) privilege, then the first row of the output is as shown here:
+Você pode ver no client [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") se um MySQL Server está conectado ao Cluster usando [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement"). Se o MySQL Server estiver conectado ao Cluster, e você tiver o privilege [`PROCESS`](privileges-provided.html#priv_process), a primeira linha da saída (output) será mostrada aqui:
 
 ```sql
 mysql> SHOW PROCESSLIST \G
@@ -49,6 +49,6 @@ Command: Daemon
    Info: NULL
 ```
 
-Important
+Importante
 
-To participate in an NDB Cluster, the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") process must be started with *both* the options [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster) and [`--ndb-connectstring`](mysql-cluster-options-variables.html#option_mysqld_ndb-connectstring) (or their equivalents in `my.cnf`). If [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") is started with only the [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster) option, or if it is unable to contact the cluster, it is not possible to work with [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables, *nor is it possible to create any new tables regardless of storage engine*. The latter restriction is a safety measure intended to prevent the creation of tables having the same names as [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables while the SQL node is not connected to the cluster. If you wish to create tables using a different storage engine while the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") process is not participating in an NDB Cluster, you must restart the server *without* the [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster) option.
+Para participar de um NDB Cluster, o processo [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") deve ser iniciado com *ambas* as opções [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster) e [`--ndb-connectstring`](mysql-cluster-options-variables.html#option_mysqld_ndb-connectstring) (ou seus equivalentes em `my.cnf`). Se o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") for iniciado apenas com a opção [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster), ou se ele não conseguir contatar o Cluster, não será possível trabalhar com tabelas [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"), *nem será possível criar novas tabelas, independentemente da storage engine*. Esta última restrição é uma medida de segurança destinada a evitar a criação de tabelas com os mesmos nomes que tabelas [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") enquanto o SQL node não estiver conectado ao Cluster. Se você deseja criar tabelas usando uma storage engine diferente enquanto o processo [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") não estiver participando de um NDB Cluster, você deve reiniciar o Server *sem* a opção [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster).

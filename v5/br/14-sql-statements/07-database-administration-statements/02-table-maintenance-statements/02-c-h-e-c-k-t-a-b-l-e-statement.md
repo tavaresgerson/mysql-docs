@@ -1,4 +1,4 @@
-#### 13.7.2.2 CHECK TABLE Statement
+#### 13.7.2.2 Instrução CHECK TABLE
 
 ```sql
 CHECK TABLE tbl_name [, tbl_name] ... [option] ...
@@ -13,130 +13,130 @@ option: {
 }
 ```
 
-[`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") checks a table or tables for errors. For `MyISAM` tables, the key statistics are updated as well. [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") can also check views for problems, such as tables that are referenced in the view definition that no longer exist.
+A [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") verifica uma ou mais tables em busca de erros. Para tables `MyISAM`, as estatísticas de Key também são atualizadas. A [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") também pode verificar views em busca de problemas, como tables referenciadas na definição da view que não existem mais.
 
-To check a table, you must have some privilege for it.
+Para verificar uma table, você deve ter algum privilégio sobre ela.
 
-[`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") works for [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"), [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine"), [`ARCHIVE`](archive-storage-engine.html "15.5 The ARCHIVE Storage Engine"), and [`CSV`](csv-storage-engine.html "15.4 The CSV Storage Engine") tables.
+A [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") funciona para tables [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"), [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine"), [`ARCHIVE`](archive-storage-engine.html "15.5 The ARCHIVE Storage Engine") e [`CSV`](csv-storage-engine.html "15.4 The CSV Storage Engine").
 
-Before running [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") on `InnoDB` tables, see [CHECK TABLE Usage Notes for InnoDB Tables](check-table.html#check-table-innodb "CHECK TABLE Usage Notes for InnoDB Tables").
+Antes de executar [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") em tables `InnoDB`, consulte [Notas de Uso de CHECK TABLE para Tables InnoDB](check-table.html#check-table-innodb "CHECK TABLE Usage Notes for InnoDB Tables").
 
-[`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") is supported for partitioned tables, and you can use `ALTER TABLE ... CHECK PARTITION` to check one or more partitions; for more information, see [Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement"), and [Section 22.3.4, “Maintenance of Partitions”](partitioning-maintenance.html "22.3.4 Maintenance of Partitions").
+A [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") é suportada para tables particionadas, e você pode usar `ALTER TABLE ... CHECK PARTITION` para verificar uma ou mais Partitions; para mais informações, consulte [Seção 13.1.8, “Instrução ALTER TABLE”](alter-table.html "13.1.8 ALTER TABLE Statement"), e [Seção 22.3.4, “Manutenção de Partitions”](partitioning-maintenance.html "22.3.4 Maintenance of Partitions").
 
-[`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") ignores virtual generated columns that are not indexed.
+A [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") ignora colunas geradas virtuais que não estão indexadas.
 
-* [CHECK TABLE Output](check-table.html#check-table-output "CHECK TABLE Output")
-* [Checking Version Compatibility](check-table.html#check-table-version-compatibility "Checking Version Compatibility")
-* [Checking Data Consistency](check-table.html#check-table-data-consistency "Checking Data Consistency")
-* [CHECK TABLE Usage Notes for InnoDB Tables](check-table.html#check-table-innodb "CHECK TABLE Usage Notes for InnoDB Tables")
-* [CHECK TABLE Usage Notes for MyISAM Tables](check-table.html#check-table-myisam "CHECK TABLE Usage Notes for MyISAM Tables")
+* [Saída de CHECK TABLE](check-table.html#check-table-output "CHECK TABLE Output")
+* [Verificando Compatibilidade de Versão](check-table.html#check-table-version-compatibility "Checking Version Compatibility")
+* [Verificando Consistência de Dados](check-table.html#check-table-data-consistency "Checking Data Consistency")
+* [Notas de Uso de CHECK TABLE para Tables InnoDB](check-table.html#check-table-innodb "CHECK TABLE Usage Notes for InnoDB Tables")
+* [Notas de Uso de CHECK TABLE para Tables MyISAM](check-table.html#check-table-myisam "CHECK TABLE Usage Notes for MyISAM Tables")
 
-##### CHECK TABLE Output
+##### Saída de CHECK TABLE
 
-[`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") returns a result set with the columns shown in the following table.
+A [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") retorna um result set com as colunas mostradas na tabela a seguir.
 
-<table summary="Columns of the CHECK TABLE result set."><col style="width: 15%"/><col style="width: 60%"/><thead><tr> <th>Column</th> <th>Value</th> </tr></thead><tbody><tr> <td><code>Table</code></td> <td>The table name</td> </tr><tr> <td><code>Op</code></td> <td>Always <code>check</code></td> </tr><tr> <td><code>Msg_type</code></td> <td><code>status</code>, <code>error</code>, <code>info</code>, <code>note</code>, or <code>warning</code></td> </tr><tr> <td><code>Msg_text</code></td> <td>An informational message</td> </tr></tbody></table>
+<table summary="Colunas do result set de CHECK TABLE."><col style="width: 15%"/><col style="width: 60%"/><thead><tr> <th>Coluna</th> <th>Valor</th> </tr></thead><tbody><tr> <td><code>Table</code></td> <td>O nome da table</td> </tr><tr> <td><code>Op</code></td> <td>Sempre <code>check</code></td> </tr><tr> <td><code>Msg_type</code></td> <td><code>status</code>, <code>error</code>, <code>info</code>, <code>note</code>, ou <code>warning</code></td> </tr><tr> <td><code>Msg_text</code></td> <td>Uma mensagem informativa</td> </tr> </tbody></table>
 
-The statement might produce many rows of information for each checked table. The last row has a `Msg_type` value of `status` and the `Msg_text` normally should be `OK`. For a `MyISAM` table, if you don't get `OK` or `Table is already up to date`, you should normally run a repair of the table. See [Section 7.6, “MyISAM Table Maintenance and Crash Recovery”](myisam-table-maintenance.html "7.6 MyISAM Table Maintenance and Crash Recovery"). `Table is already up to date` means that the storage engine for the table indicated that there was no need to check the table.
+A instrução pode produzir muitas linhas de informação para cada table verificada. A última linha tem um valor `Msg_type` de `status` e o `Msg_text` normalmente deve ser `OK`. Para uma table `MyISAM`, se você não receber `OK` ou `Table is already up to date`, você deve normalmente executar um repair na table. Consulte [Seção 7.6, “Manutenção de Table MyISAM e Recuperação de Falhas”](myisam-table-maintenance.html "7.6 MyISAM Table Maintenance and Crash Recovery"). `Table is already up to date` significa que o storage engine para a table indicou que não havia necessidade de verificar a table.
 
-##### Checking Version Compatibility
+##### Verificando Compatibilidade de Versão
 
-The `FOR UPGRADE` option checks whether the named tables are compatible with the current version of MySQL. With `FOR UPGRADE`, the server checks each table to determine whether there have been any incompatible changes in any of the table's data types or indexes since the table was created. If not, the check succeeds. Otherwise, if there is a possible incompatibility, the server runs a full check on the table (which might take some time). If the full check succeeds, the server marks the table's `.frm` file with the current MySQL version number. Marking the `.frm` file ensures that further checks for the table with the same version of the server are fast.
+A opção `FOR UPGRADE` verifica se as tables nomeadas são compatíveis com a versão atual do MySQL. Com `FOR UPGRADE`, o servidor verifica cada table para determinar se houve quaisquer alterações incompatíveis em qualquer um dos data types ou Indexes da table desde que ela foi criada. Caso não haja, a verificação é bem-sucedida. Caso contrário, se houver uma possível incompatibilidade, o servidor executa uma verificação completa na table (o que pode levar algum tempo). Se a verificação completa for bem-sucedida, o servidor marca o arquivo `.frm` da table com o número da versão atual do MySQL. Marcar o arquivo `.frm` garante que verificações futuras para a table com a mesma versão do servidor sejam rápidas.
 
-Incompatibilities might occur because the storage format for a data type has changed or because its sort order has changed. Our aim is to avoid these changes, but occasionally they are necessary to correct problems that would be worse than an incompatibility between releases.
+Incompatibilidades podem ocorrer porque o formato de armazenamento para um data type foi alterado ou porque sua ordem de classificação foi alterada. Nosso objetivo é evitar essas alterações, mas ocasionalmente elas são necessárias para corrigir problemas que seriam piores do que uma incompatibilidade entre releases.
 
-`FOR UPGRADE` discovers these incompatibilities:
+`FOR UPGRADE` descobre estas incompatibilidades:
 
-* The indexing order for end-space in [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") columns for `InnoDB` and `MyISAM` tables changed between MySQL 4.1 and 5.0.
+* A ordem de Indexing para espaço final em colunas [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") para tables `InnoDB` e `MyISAM` mudou entre MySQL 4.1 e 5.0.
 
-* The storage method of the new [`DECIMAL`](fixed-point-types.html "11.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC") data type changed between MySQL 5.0.3 and 5.0.5.
+* O método de armazenamento do novo data type [`DECIMAL`](fixed-point-types.html "11.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC") mudou entre MySQL 5.0.3 e 5.0.5.
 
-* If your table was created by a different version of the MySQL server than the one you are currently running, `FOR UPGRADE` indicates that the table has an `.frm` file with an incompatible version. In this case, the result set returned by [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") contains a line with a `Msg_type` value of `error` and a `Msg_text` value of `` Table upgrade required. Please do "REPAIR TABLE `tbl_name`" to fix it! ``
+* Se sua table foi criada por uma versão do servidor MySQL diferente daquela que você está executando atualmente, `FOR UPGRADE` indica que a table possui um arquivo `.frm` com uma versão incompatível. Neste caso, o result set retornado por [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") contém uma linha com um valor `Msg_type` de `error` e um valor `Msg_text` de `` Table upgrade required. Please do "REPAIR TABLE `tbl_name`" to fix it! `` (Upgrade da table necessário. Por favor, execute "REPAIR TABLE `tbl_name`" para corrigi-la!)
 
-* Changes are sometimes made to character sets or collations that require table indexes to be rebuilt. For details about such changes, see [Section 2.10.3, “Changes in MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Changes in MySQL 5.7"). For information about rebuilding tables, see [Section 2.10.12, “Rebuilding or Repairing Tables or Indexes”](rebuilding-tables.html "2.10.12 Rebuilding or Repairing Tables or Indexes").
+* Alterações são, por vezes, feitas em character sets ou collations que exigem que os Indexes da table sejam reconstruídos. Para detalhes sobre tais alterações, consulte [Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Changes in MySQL 5.7"). Para informações sobre a reconstrução de tables, consulte [Seção 2.10.12, “Reconstruindo ou Reparando Tables ou Indexes”](rebuilding-tables.html "2.10.12 Rebuilding or Repairing Tables or Indexes").
 
-* The [`YEAR(2)`](year.html "11.2.4 The YEAR Type") data type is deprecated and support for it is removed in MySQL 5.7.5. For tables containing [`YEAR(2)`](year.html "11.2.4 The YEAR Type") columns, [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") recommends [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement"), which converts 2-digit [`YEAR(2)`](year.html "11.2.4 The YEAR Type") columns to 4-digit [`YEAR`](year.html "11.2.4 The YEAR Type") columns.
+* O data type [`YEAR(2)`](year.html "11.2.4 The YEAR Type") está obsoleto e seu suporte foi removido no MySQL 5.7.5. Para tables que contêm colunas [`YEAR(2)`](year.html "11.2.4 The YEAR Type"), [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") recomenda [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement"), que converte colunas [`YEAR(2)`](year.html "11.2.4 The YEAR Type") de 2 dígitos para colunas [`YEAR`](year.html "11.2.4 The YEAR Type") de 4 dígitos.
 
-* As of MySQL 5.7.2, trigger creation time is maintained. If run against a table that has triggers, [`CHECK TABLE ... FOR UPGRADE`](check-table.html "13.7.2.2 CHECK TABLE Statement") displays this warning for each trigger created before MySQL 5.7.2:
+* A partir do MySQL 5.7.2, o tempo de criação de Trigger é mantido. Se executado em uma table que possui Triggers, [`CHECK TABLE ... FOR UPGRADE`](check-table.html "13.7.2.2 CHECK TABLE Statement") exibe este aviso para cada Trigger criado antes do MySQL 5.7.2:
 
   ```sql
   Trigger db_name.tbl_name.trigger_name does not have CREATED attribute.
   ```
 
-  The warning is informational only. No change is made to the trigger.
+  O aviso é apenas informativo. Nenhuma alteração é feita no Trigger.
 
-* As of MySQL 5.7.7, a table is reported as needing a rebuild if it contains old temporal columns in pre-5.6.4 format ([`TIME`](time.html "11.2.3 The TIME Type"), [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"), and [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") columns without support for fractional seconds precision) and the [`avoid_temporal_upgrade`](server-system-variables.html#sysvar_avoid_temporal_upgrade) system variable is disabled. This helps the MySQL upgrade procedure detect and upgrade tables containing old temporal columns. If [`avoid_temporal_upgrade`](server-system-variables.html#sysvar_avoid_temporal_upgrade) is enabled, `FOR UPGRADE` ignores the old temporal columns present in the table; consequently, the upgrade procedure does not upgrade them.
+* A partir do MySQL 5.7.7, uma table é relatada como precisando de reconstrução se contiver colunas temporais antigas no formato pré-5.6.4 (colunas [`TIME`](time.html "11.2.3 The TIME Type"), [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") e [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") sem suporte para precisão de segundos fracionários) e a system variable [`avoid_temporal_upgrade`](server-system-variables.html#sysvar_avoid_temporal_upgrade) estiver desabilitada. Isso ajuda o procedimento de upgrade do MySQL a detectar e atualizar tables contendo colunas temporais antigas. Se [`avoid_temporal_upgrade`](server-system-variables.html#sysvar_avoid_temporal_upgrade) estiver habilitada, `FOR UPGRADE` ignora as colunas temporais antigas presentes na table; consequentemente, o procedimento de upgrade não as atualiza.
 
-  To check for tables that contain such temporal columns and need a rebuild, disable [`avoid_temporal_upgrade`](server-system-variables.html#sysvar_avoid_temporal_upgrade) before executing [`CHECK TABLE ... FOR UPGRADE`](check-table.html "13.7.2.2 CHECK TABLE Statement").
+  Para verificar tables que contenham tais colunas temporais e precisem de uma reconstrução, desabilite [`avoid_temporal_upgrade`](server-system-variables.html#sysvar_avoid_temporal_upgrade) antes de executar [`CHECK TABLE ... FOR UPGRADE`](check-table.html "13.7.2.2 CHECK TABLE Statement").
 
-* Warnings are issued for tables that use nonnative partitioning because nonnative partitioning is deprecated in MySQL 5.7 and removed in MySQL 8.0. See [Chapter 22, *Partitioning*](partitioning.html "Chapter 22 Partitioning").
+* Avisos são emitidos para tables que usam particionamento não-nativo porque o particionamento não-nativo está obsoleto no MySQL 5.7 e foi removido no MySQL 8.0. Consulte [Capítulo 22, *Particionamento*](partitioning.html "Chapter 22 Partitioning").
 
-##### Checking Data Consistency
+##### Verificando Consistência de Dados
 
-The following table shows the other check options that can be given. These options are passed to the storage engine, which may use or ignore them.
+A tabela a seguir mostra as outras opções de verificação que podem ser fornecidas. Essas opções são passadas para o storage engine, que pode usá-las ou ignorá-las.
 
-<table summary="Other CHECK TABLE options."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Type</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><code>QUICK</code></td> <td>Do not scan the rows to check for incorrect links. Applies to <code>InnoDB</code> and <code>MyISAM</code> tables and views.</td> </tr><tr> <td><code>FAST</code></td> <td>Check only tables that have not been closed properly. Ignored for <code>InnoDB</code>; applies only to <code>MyISAM</code> tables and views.</td> </tr><tr> <td><code>CHANGED</code></td> <td>Check only tables that have been changed since the last check or that have not been closed properly. Ignored for <code>InnoDB</code>; applies only to <code>MyISAM</code> tables and views.</td> </tr><tr> <td><code>MEDIUM</code></td> <td>Scan rows to verify that deleted links are valid. This also calculates a key checksum for the rows and verifies this with a calculated checksum for the keys. Ignored for <code>InnoDB</code>; applies only to <code>MyISAM</code> tables and views.</td> </tr><tr> <td><code>EXTENDED</code></td> <td>Do a full key lookup for all keys for each row. This ensures that the table is 100% consistent, but takes a long time. Ignored for <code>InnoDB</code>; applies only to <code>MyISAM</code> tables and views.</td> </tr></tbody></table>
+<table summary="Outras opções de CHECK TABLE."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Tipo</th> <th>Significado</th> </tr></thead><tbody><tr> <td><code>QUICK</code></td> <td>Não faz o scan das linhas para verificar links incorretos. Aplica-se a tables e views <code>InnoDB</code> e <code>MyISAM</code>.</td> </tr><tr> <td><code>FAST</code></td> <td>Verifica apenas tables que não foram fechadas corretamente. Ignorado para <code>InnoDB</code>; aplica-se apenas a tables e views <code>MyISAM</code>.</td> </tr><tr> <td><code>CHANGED</code></td> <td>Verifica apenas tables que foram alteradas desde a última verificação ou que não foram fechadas corretamente. Ignorado para <code>InnoDB</code>; aplica-se apenas a tables e views <code>MyISAM</code>.</td> </tr><tr> <td><code>MEDIUM</code></td> <td>Faz o scan das linhas para verificar se os links excluídos são válidos. Isso também calcula um Key checksum para as linhas e o verifica com um checksum calculado para os Keys. Ignorado para <code>InnoDB</code>; aplica-se apenas a tables e views <code>MyISAM</code>.</td> </tr><tr> <td><code>EXTENDED</code></td> <td>Faz uma Key lookup completa para todos os Keys de cada linha. Isso garante que a table esteja 100% consistente, mas leva muito tempo. Ignorado para <code>InnoDB</code>; aplica-se apenas a tables e views <code>MyISAM</code>.</td> </tr></tbody></table>
 
-If none of the options `QUICK`, `MEDIUM`, or `EXTENDED` are specified, the default check type for dynamic-format `MyISAM` tables is `MEDIUM`. This has the same result as running [**myisamchk --medium-check *`tbl_name`***](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility") on the table. The default check type also is `MEDIUM` for static-format `MyISAM` tables, unless `CHANGED` or `FAST` is specified. In that case, the default is `QUICK`. The row scan is skipped for `CHANGED` and `FAST` because the rows are very seldom corrupted.
+Se nenhuma das opções `QUICK`, `MEDIUM` ou `EXTENDED` for especificada, o tipo de verificação padrão para tables `MyISAM` de formato dinâmico é `MEDIUM`. Isso tem o mesmo resultado que executar [**myisamchk --medium-check *`tbl_name`***](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility") na table. O tipo de verificação padrão também é `MEDIUM` para tables `MyISAM` de formato estático, a menos que `CHANGED` ou `FAST` seja especificado. Nesse caso, o padrão é `QUICK`. O scan de linhas é ignorado para `CHANGED` e `FAST` porque as linhas raramente são corrompidas.
 
-You can combine check options, as in the following example that does a quick check on the table to determine whether it was closed properly:
+Você pode combinar opções de verificação, como no exemplo a seguir que faz uma verificação rápida na table para determinar se ela foi fechada corretamente:
 
 ```sql
 CHECK TABLE test_table FAST QUICK;
 ```
 
-Note
+Nota
 
-If [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") finds no problems with a table that is marked as “corrupted” or “not closed properly”, [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") may remove the mark.
+Se [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") não encontrar problemas com uma table que está marcada como “corrompida” ou “não fechada corretamente”, a [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") pode remover a marcação.
 
-If a table is corrupted, the problem is most likely in the indexes and not in the data part. All of the preceding check types check the indexes thoroughly and should thus find most errors.
+Se uma table estiver corrompida, o problema provavelmente está nos Indexes e não na parte dos dados. Todos os tipos de verificação anteriores verificam os Indexes minuciosamente e, portanto, devem encontrar a maioria dos erros.
 
-To check a table that you assume is okay, use no check options or the `QUICK` option. The latter should be used when you are in a hurry and can take the very small risk that `QUICK` does not find an error in the data file. (In most cases, under normal usage, MySQL should find any error in the data file. If this happens, the table is marked as “corrupted” and cannot be used until it is repaired.)
+Para verificar uma table que você assume estar OK, não use opções de verificação ou use a opção `QUICK`. Esta última deve ser usada quando você está com pressa e pode correr o risco muito pequeno de que `QUICK` não encontre um erro no arquivo de dados. (Na maioria dos casos, sob uso normal, o MySQL deve encontrar qualquer erro no arquivo de dados. Se isso acontecer, a table é marcada como “corrompida” e não pode ser usada até ser reparada.)
 
-`FAST` and `CHANGED` are mostly intended to be used from a script (for example, to be executed from **cron**) to check tables periodically. In most cases, `FAST` is to be preferred over `CHANGED`. (The only case when it is not preferred is when you suspect that you have found a bug in the `MyISAM` code.)
+`FAST` e `CHANGED` destinam-se principalmente a serem usados a partir de um script (por exemplo, para serem executados via **cron**) para verificar tables periodicamente. Na maioria dos casos, `FAST` é preferível a `CHANGED`. (O único caso em que não é preferível é quando você suspeita que encontrou um bug no código `MyISAM`.)
 
-`EXTENDED` is to be used only after you have run a normal check but still get errors from a table when MySQL tries to update a row or find a row by key. This is very unlikely if a normal check has succeeded.
+`EXTENDED` deve ser usado somente após você ter executado uma verificação normal, mas ainda receber erros de uma table quando o MySQL tenta atualizar uma linha ou encontrar uma linha por Key. Isso é muito improvável se uma verificação normal tiver sido bem-sucedida.
 
-Use of [`CHECK TABLE ... EXTENDED`](check-table.html "13.7.2.2 CHECK TABLE Statement") might influence execution plans generated by the query optimizer.
+O uso de [`CHECK TABLE ... EXTENDED`](check-table.html "13.7.2.2 CHECK TABLE Statement") pode influenciar os planos de execução gerados pelo otimizador de Query.
 
-Some problems reported by [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") cannot be corrected automatically:
+Alguns problemas relatados por [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") não podem ser corrigidos automaticamente:
 
-* `Found row where the auto_increment column has the value 0`.
+* `Found row where the auto_increment column has the value 0` (Linha encontrada onde a coluna auto_increment tem o valor 0).
 
-  This means that you have a row in the table where the `AUTO_INCREMENT` index column contains the value 0. (It is possible to create a row where the `AUTO_INCREMENT` column is 0 by explicitly setting the column to 0 with an [`UPDATE`](update.html "13.2.11 UPDATE Statement") statement.)
+  Isso significa que você tem uma linha na table onde a coluna Index `AUTO_INCREMENT` contém o valor 0. (É possível criar uma linha onde a coluna `AUTO_INCREMENT` é 0 configurando explicitamente a coluna para 0 com uma instrução [`UPDATE`](update.html "13.2.11 UPDATE Statement").)
 
-  This is not an error in itself, but could cause trouble if you decide to dump the table and restore it or do an [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") on the table. In this case, the `AUTO_INCREMENT` column changes value according to the rules of `AUTO_INCREMENT` columns, which could cause problems such as a duplicate-key error.
+  Isso não é um erro em si, mas pode causar problemas se você decidir fazer dump da table e restaurá-la ou executar um [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") na table. Neste caso, a coluna `AUTO_INCREMENT` muda de valor de acordo com as regras das colunas `AUTO_INCREMENT`, o que pode causar problemas como um erro de Key duplicado.
 
-  To get rid of the warning, execute an [`UPDATE`](update.html "13.2.11 UPDATE Statement") statement to set the column to some value other than 0.
+  Para se livrar do aviso, execute uma instrução [`UPDATE`](update.html "13.2.11 UPDATE Statement") para definir a coluna para algum valor diferente de 0.
 
-##### CHECK TABLE Usage Notes for InnoDB Tables
+##### Notas de Uso de CHECK TABLE para Tables InnoDB
 
-The following notes apply to [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") tables:
+As notas a seguir se aplicam a tables [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"):
 
-* If [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") encounters a corrupt page, the server exits to prevent error propagation (Bug #10132). If the corruption occurs in a secondary index but table data is readable, running [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") can still cause a server exit.
+* Se [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") encontrar uma page corrompida, o servidor é encerrado para evitar a propagação de erros (Bug #10132). Se a corrupção ocorrer em um Secondary Index, mas os dados da table forem legíveis, a execução de [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") ainda pode causar o encerramento do servidor.
 
-* If [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") encounters a corrupted `DB_TRX_ID` or `DB_ROLL_PTR` field in a clustered index, [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") can cause `InnoDB` to access an invalid undo log record, resulting in an [MVCC](glossary.html#glos_mvcc "MVCC")-related server exit.
+* Se [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") encontrar um campo `DB_TRX_ID` ou `DB_ROLL_PTR` corrompido em um clustered Index, a [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") pode fazer com que o `InnoDB` acesse um registro de undo log inválido, resultando em um encerramento do servidor relacionado a [MVCC](glossary.html#glos_mvcc "MVCC").
 
-* If [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") encounters errors in `InnoDB` tables or indexes, it reports an error, and usually marks the index and sometimes marks the table as corrupted, preventing further use of the index or table. Such errors include an incorrect number of entries in a secondary index or incorrect links.
+* Se [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") encontrar erros em tables ou Indexes `InnoDB`, ela relata um erro e geralmente marca o Index e, às vezes, marca a table como corrompida, impedindo o uso posterior do Index ou da table. Tais erros incluem um número incorreto de entradas em um Secondary Index ou links incorretos.
 
-* If [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") finds an incorrect number of entries in a secondary index, it reports an error but does not cause a server exit or prevent access to the file.
+* Se [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") encontrar um número incorreto de entradas em um Secondary Index, ela relata um erro, mas não causa o encerramento do servidor nem impede o acesso ao arquivo.
 
-* [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") surveys the index page structure, then surveys each key entry. It does not validate the key pointer to a clustered record or follow the path for [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") pointers.
+* A [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") inspeciona a estrutura da Index page e, em seguida, inspeciona cada Key entry. Ela não valida o Key pointer para um registro agrupado (clustered record) nem segue o caminho para os pointers [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types").
 
-* When an `InnoDB` table is stored in its own [`.ibd` file](glossary.html#glos_ibd_file ".ibd file"), the first 3 [pages](glossary.html#glos_page "page") of the `.ibd` file contain header information rather than table or index data. The [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") statement does not detect inconsistencies that affect only the header data. To verify the entire contents of an `InnoDB` `.ibd` file, use the [**innochecksum**](innochecksum.html "4.6.1 innochecksum — Offline InnoDB File Checksum Utility") command.
+* Quando uma table `InnoDB` é armazenada em seu próprio [arquivo `.ibd`](glossary.html#glos_ibd_file ".ibd file"), as 3 primeiras [pages](glossary.html#glos_page "page") do arquivo `.ibd` contêm informações de cabeçalho (header) em vez de dados de table ou Index. A instrução [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") não detecta inconsistências que afetam apenas os dados do cabeçalho. Para verificar todo o conteúdo de um arquivo `.ibd` do `InnoDB`, use o comando [**innochecksum**](innochecksum.html "4.6.1 innochecksum — Offline InnoDB File Checksum Utility").
 
-* When running [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") on large `InnoDB` tables, other threads may be blocked during [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") execution. To avoid timeouts, the semaphore wait threshold (600 seconds) is extended by 2 hours (7200 seconds) for [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") operations. If `InnoDB` detects semaphore waits of 240 seconds or more, it starts printing `InnoDB` monitor output to the error log. If a lock request extends beyond the semaphore wait threshold, `InnoDB` aborts the process. To avoid the possibility of a semaphore wait timeout entirely, run [`CHECK TABLE QUICK`](check-table.html "13.7.2.2 CHECK TABLE Statement") instead of [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement").
+* Ao executar [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") em tables `InnoDB` grandes, outros Threads podem ser bloqueados durante a execução de [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement"). Para evitar timeouts, o threshold de espera de semáforo (600 segundos) é estendido em 2 horas (7200 segundos) para operações de [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement"). Se o `InnoDB` detectar esperas de semáforo de 240 segundos ou mais, ele começa a imprimir a saída do monitor `InnoDB` no error log. Se uma solicitação de Lock se estender além do threshold de espera de semáforo, o `InnoDB` aborta o processo. Para evitar totalmente a possibilidade de um timeout de espera de semáforo, execute [`CHECK TABLE QUICK`](check-table.html "13.7.2.2 CHECK TABLE Statement") em vez de [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement").
 
-* [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") functionality for `InnoDB` `SPATIAL` indexes includes an R-tree validity check and a check to ensure that the R-tree row count matches the clustered index.
+* A funcionalidade de [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") para Indexes `SPATIAL` do `InnoDB` inclui uma verificação de validade R-tree e uma verificação para garantir que a contagem de linhas R-tree corresponda ao clustered Index.
 
-* [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") supports secondary indexes on virtual generated columns, which are supported by `InnoDB`.
+* A [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") suporta Secondary Indexes em colunas geradas virtuais, que são suportadas pelo `InnoDB`.
 
-##### CHECK TABLE Usage Notes for MyISAM Tables
+##### Notas de Uso de CHECK TABLE para Tables MyISAM
 
-The following notes apply to [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") tables:
+As notas a seguir se aplicam a tables [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine"):
 
-* [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") updates key statistics for `MyISAM` tables.
+* A [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") atualiza as Key statistics para tables `MyISAM`.
 
-* If [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") output does not return `OK` or `Table is already up to date`, you should normally run a repair of the table. See [Section 7.6, “MyISAM Table Maintenance and Crash Recovery”](myisam-table-maintenance.html "7.6 MyISAM Table Maintenance and Crash Recovery").
+* Se a saída de [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") não retornar `OK` ou `Table is already up to date`, você deve normalmente executar um repair na table. Consulte [Seção 7.6, “Manutenção de Table MyISAM e Recuperação de Falhas”](myisam-table-maintenance.html "7.6 MyISAM Table Maintenance and Crash Recovery").
 
-* If none of the [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") options `QUICK`, `MEDIUM`, or `EXTENDED` are specified, the default check type for dynamic-format `MyISAM` tables is `MEDIUM`. This has the same result as running [**myisamchk --medium-check *`tbl_name`***](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility") on the table. The default check type also is `MEDIUM` for static-format `MyISAM` tables, unless `CHANGED` or `FAST` is specified. In that case, the default is `QUICK`. The row scan is skipped for `CHANGED` and `FAST` because the rows are very seldom corrupted.
+* Se nenhuma das opções de [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") (`QUICK`, `MEDIUM` ou `EXTENDED`) for especificada, o tipo de verificação padrão para tables `MyISAM` de formato dinâmico é `MEDIUM`. Isso tem o mesmo resultado que executar [**myisamchk --medium-check *`tbl_name`***](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility") na table. O tipo de verificação padrão também é `MEDIUM` para tables `MyISAM` de formato estático, a menos que `CHANGED` ou `FAST` seja especificado. Nesse caso, o padrão é `QUICK`. O scan de linhas é ignorado para `CHANGED` e `FAST` porque as linhas raramente são corrompidas.

@@ -1,5 +1,5 @@
-### 15.8.4 FEDERATED Storage Engine Resources
+### 15.8.4 Recursos do Storage Engine FEDERATED
 
-The following additional resources are available for the `FEDERATED` storage engine:
+Os seguintes recursos adicionais estão disponíveis para o storage engine `FEDERATED`:
 
-* A forum dedicated to the `FEDERATED` storage engine is available at <https://forums.mysql.com/list.php?105>.
+* Um fórum dedicado ao storage engine `FEDERATED` está disponível em <https://forums.mysql.com/list.php?105>.

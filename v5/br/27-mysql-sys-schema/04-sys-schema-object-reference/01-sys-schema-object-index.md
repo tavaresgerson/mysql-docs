@@ -1,19 +1,130 @@
-### 26.4.1 sys Schema Object Index
+### 26.4.1 Índice de Objetos do Schema sys
 
-The following tables list `sys` schema objects and provide a short description of each one.
+As tabelas a seguir listam os objetos do schema `sys` e fornecem uma breve descrição de cada um.
 
-**Table 26.1 sys Schema Tables and Triggers**
+**Tabela 26.1 Tabelas e Triggers do Schema sys**
 
-<table frame="box" rules="all" summary="Tables and triggers used in the sys schema implementation."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table or Trigger Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>sys_config</code></td> <td>sys schema configuration options table</td> </tr><tr><td><code>sys_config_insert_set_user</code></td> <td>sys_config insert trigger</td> </tr><tr><td><code>sys_config_update_set_user</code></td> <td>sys_config update trigger</td> </tr></tbody></table>
+| Nome da Tabela ou Trigger | Descrição |
+| :--- | :--- |
+| `sys_config` | Tabela de opções de configuração do schema sys |
+| `sys_config_insert_set_user` | Trigger de INSERT para `sys_config` |
+| `sys_config_update_set_user` | Trigger de UPDATE para `sys_config` |
 
-**Table 26.2 sys Schema Views**
+**Tabela 26.2 Views do Schema sys**
 
-<table frame="box" rules="all" summary="Views used in the sys schema implementation."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>View Name</th> <th>Description</th> <th>Deprecated</th> </tr></thead><tbody><tr><th><code>host_summary</code>, <code>x$host_summary</code></th> <td>Statement activity, file I/O, and connections, grouped by host</td> <td></td> </tr><tr><th><code>host_summary_by_file_io</code>, <code>x$host_summary_by_file_io</code></th> <td>File I/O, grouped by host</td> <td></td> </tr><tr><th><code>host_summary_by_file_io_type</code>, <code>x$host_summary_by_file_io_type</code></th> <td>File I/O, grouped by host and event type</td> <td></td> </tr><tr><th><code>host_summary_by_stages</code>, <code>x$host_summary_by_stages</code></th> <td>Statement stages, grouped by host</td> <td></td> </tr><tr><th><code>host_summary_by_statement_latency</code>, <code>x$host_summary_by_statement_latency</code></th> <td>Statement statistics, grouped by host</td> <td></td> </tr><tr><th><code>host_summary_by_statement_type</code>, <code>x$host_summary_by_statement_type</code></th> <td>Statements executed, grouped by host and statement</td> <td></td> </tr><tr><th><code>innodb_buffer_stats_by_schema</code>, <code>x$innodb_buffer_stats_by_schema</code></th> <td>InnoDB buffer information, grouped by schema</td> <td></td> </tr><tr><th><code>innodb_buffer_stats_by_table</code>, <code>x$innodb_buffer_stats_by_table</code></th> <td>InnoDB buffer information, grouped by schema and table</td> <td></td> </tr><tr><th><code>innodb_lock_waits</code>, <code>x$innodb_lock_waits</code></th> <td>InnoDB lock information</td> <td></td> </tr><tr><th><code>io_by_thread_by_latency</code>, <code>x$io_by_thread_by_latency</code></th> <td>I/O consumers, grouped by thread</td> <td></td> </tr><tr><th><code>io_global_by_file_by_bytes</code>, <code>x$io_global_by_file_by_bytes</code></th> <td>Global I/O consumers, grouped by file and bytes</td> <td></td> </tr><tr><th><code>io_global_by_file_by_latency</code>, <code>x$io_global_by_file_by_latency</code></th> <td>Global I/O consumers, grouped by file and latency</td> <td></td> </tr><tr><th><code>io_global_by_wait_by_bytes</code>, <code>x$io_global_by_wait_by_bytes</code></th> <td>Global I/O consumers, grouped by bytes</td> <td></td> </tr><tr><th><code>io_global_by_wait_by_latency</code>, <code>x$io_global_by_wait_by_latency</code></th> <td>Global I/O consumers, grouped by latency</td> <td></td> </tr><tr><th><code>latest_file_io</code>, <code>x$latest_file_io</code></th> <td>Most recent I/O, grouped by file and thread</td> <td></td> </tr><tr><th><code>memory_by_host_by_current_bytes</code>, <code>x$memory_by_host_by_current_bytes</code></th> <td>Memory use, grouped by host</td> <td></td> </tr><tr><th><code>memory_by_thread_by_current_bytes</code>, <code>x$memory_by_thread_by_current_bytes</code></th> <td>Memory use, grouped by thread</td> <td></td> </tr><tr><th><code>memory_by_user_by_current_bytes</code>, <code>x$memory_by_user_by_current_bytes</code></th> <td>Memory use, grouped by user</td> <td></td> </tr><tr><th><code>memory_global_by_current_bytes</code>, <code>x$memory_global_by_current_bytes</code></th> <td>Memory use, grouped by allocation type</td> <td></td> </tr><tr><th><code>memory_global_total</code>, <code>x$memory_global_total</code></th> <td>Total memory use</td> <td></td> </tr><tr><th><code>metrics</code></th> <td>Server metrics</td> <td></td> </tr><tr><th><code>processlist</code>, <code>x$processlist</code></th> <td>Processlist information</td> <td></td> </tr><tr><th><code>ps_check_lost_instrumentation</code></th> <td>Variables that have lost instruments</td> <td></td> </tr><tr><th><code>schema_auto_increment_columns</code></th> <td>AUTO_INCREMENT column information</td> <td></td> </tr><tr><th><code>schema_index_statistics</code>, <code>x$schema_index_statistics</code></th> <td>Index statistics</td> <td></td> </tr><tr><th><code>schema_object_overview</code></th> <td>Types of objects within each schema</td> <td></td> </tr><tr><th><code>schema_redundant_indexes</code></th> <td>Duplicate or redundant indexes</td> <td></td> </tr><tr><th><code>schema_table_lock_waits</code>, <code>x$schema_table_lock_waits</code></th> <td>Sessions waiting for metadata locks</td> <td></td> </tr><tr><th><code>schema_table_statistics</code>, <code>x$schema_table_statistics</code></th> <td>Table statistics</td> <td></td> </tr><tr><th><code>schema_table_statistics_with_buffer</code>, <code>x$schema_table_statistics_with_buffer</code></th> <td>Table statistics, including InnoDB buffer pool statistics</td> <td></td> </tr><tr><th><code>schema_tables_with_full_table_scans</code>, <code>x$schema_tables_with_full_table_scans</code></th> <td>Tables being accessed with full scans</td> <td></td> </tr><tr><th><code>schema_unused_indexes</code></th> <td>Indexes not in active use</td> <td></td> </tr><tr><th><code>session</code>, <code>x$session</code></th> <td>Processlist information for user sessions</td> <td></td> </tr><tr><th><code>session_ssl_status</code></th> <td>Connection SSL information</td> <td></td> </tr><tr><th><code>statement_analysis</code>, <code>x$statement_analysis</code></th> <td>Statement aggregate statistics</td> <td></td> </tr><tr><th><code>statements_with_errors_or_warnings</code>, <code>x$statements_with_errors_or_warnings</code></th> <td>Statements that have produced errors or warnings</td> <td></td> </tr><tr><th><code>statements_with_full_table_scans</code>, <code>x$statements_with_full_table_scans</code></th> <td>Statements that have done full table scans</td> <td></td> </tr><tr><th><code>statements_with_runtimes_in_95th_percentile</code>, <code>x$statements_with_runtimes_in_95th_percentile</code></th> <td>Statements with highest average runtime</td> <td></td> </tr><tr><th><code>statements_with_sorting</code>, <code>x$statements_with_sorting</code></th> <td>Statements that performed sorts</td> <td></td> </tr><tr><th><code>statements_with_temp_tables</code>, <code>x$statements_with_temp_tables</code></th> <td>Statements that used temporary tables</td> <td></td> </tr><tr><th><code>user_summary</code>, <code>x$user_summary</code></th> <td>User statement and connection activity</td> <td></td> </tr><tr><th><code>user_summary_by_file_io</code>, <code>x$user_summary_by_file_io</code></th> <td>File I/O, grouped by user</td> <td></td> </tr><tr><th><code>user_summary_by_file_io_type</code>, <code>x$user_summary_by_file_io_type</code></th> <td>File I/O, grouped by user and event</td> <td></td> </tr><tr><th><code>user_summary_by_stages</code>, <code>x$user_summary_by_stages</code></th> <td>Stage events, grouped by user</td> <td></td> </tr><tr><th><code>user_summary_by_statement_latency</code>, <code>x$user_summary_by_statement_latency</code></th> <td>Statement statistics, grouped by user</td> <td></td> </tr><tr><th><code>user_summary_by_statement_type</code>, <code>x$user_summary_by_statement_type</code></th> <td>Statements executed, grouped by user and statement</td> <td></td> </tr><tr><th><code>version</code></th> <td>Current sys schema and MySQL server versions</td> <td>5.7.28</td> </tr><tr><th><code>wait_classes_global_by_avg_latency</code>, <code>x$wait_classes_global_by_avg_latency</code></th> <td>Wait class average latency, grouped by event class</td> <td></td> </tr><tr><th><code>wait_classes_global_by_latency</code>, <code>x$wait_classes_global_by_latency</code></th> <td>Wait class total latency, grouped by event class</td> <td></td> </tr><tr><th><code>waits_by_host_by_latency</code>, <code>x$waits_by_host_by_latency</code></th> <td>Wait events, grouped by host and event</td> <td></td> </tr><tr><th><code>waits_by_user_by_latency</code>, <code>x$waits_by_user_by_latency</code></th> <td>Wait events, grouped by user and event</td> <td></td> </tr><tr><th><code>waits_global_by_latency</code>, <code>x$waits_global_by_latency</code></th> <td>Wait events, grouped by event</td> <td></td> </tr><tr><th><code>x$ps_digest_95th_percentile_by_avg_us</code></th> <td>Helper view for 95th-percentile views</td> <td></td> </tr><tr><th><code>x$ps_digest_avg_latency_distribution</code></th> <td>Helper view for 95th-percentile views</td> <td></td> </tr><tr><th><code>x$ps_schema_table_statistics_io</code></th> <td>Helper view for table-statistics views</td> <td></td> </tr><tr><th><code>x$schema_flattened_keys</code></th> <td>Helper view for schema_redundant_indexes</td> <td></td> </tr></tbody></table>
+| Nome da View | Descrição | Descontinuado |
+| :--- | :--- | :--- |
+| `host_summary`, `x$host_summary` | Atividade de Statement, I/O de arquivo e conexões, agrupadas por host | |
+| `host_summary_by_file_io`, `x$host_summary_by_file_io` | I/O de arquivo, agrupadas por host | |
+| `host_summary_by_file_io_type`, `x$host_summary_by_file_io_type` | I/O de arquivo, agrupadas por host e tipo de evento | |
+| `host_summary_by_stages`, `x$host_summary_by_stages` | Estágios de Statement, agrupados por host | |
+| `host_summary_by_statement_latency`, `x$host_summary_by_statement_latency` | Estatísticas de Statement, agrupadas por host | |
+| `host_summary_by_statement_type`, `x$host_summary_by_statement_type` | Statements executados, agrupados por host e Statement | |
+| `innodb_buffer_stats_by_schema`, `x$innodb_buffer_stats_by_schema` | Informações do Buffer Pool do InnoDB, agrupadas por schema | |
+| `innodb_buffer_stats_by_table`, `x$innodb_buffer_stats_by_table` | Informações do Buffer Pool do InnoDB, agrupadas por schema e table | |
+| `innodb_lock_waits`, `x$innodb_lock_waits` | Informações de Lock do InnoDB | |
+| `io_by_thread_by_latency`, `x$io_by_thread_by_latency` | Consumidores de I/O, agrupados por Thread | |
+| `io_global_by_file_by_bytes`, `x$io_global_by_file_by_bytes` | Consumidores globais de I/O, agrupados por arquivo e bytes | |
+| `io_global_by_file_by_latency`, `x$io_global_by_file_by_latency` | Consumidores globais de I/O, agrupados por arquivo e latência | |
+| `io_global_by_wait_by_bytes`, `x$io_global_by_wait_by_bytes` | Consumidores globais de I/O, agrupados por bytes | |
+| `io_global_by_wait_by_latency`, `x$io_global_by_wait_by_latency` | Consumidores globais de I/O, agrupados por latência | |
+| `latest_file_io`, `x$latest_file_io` | I/O mais recente, agrupado por arquivo e Thread | |
+| `memory_by_host_by_current_bytes`, `x$memory_by_host_by_current_bytes` | Uso de memória, agrupado por host | |
+| `memory_by_thread_by_current_bytes`, `x$memory_by_thread_by_current_bytes` | Uso de memória, agrupado por Thread | |
+| `memory_by_user_by_current_bytes`, `x$memory_by_user_by_current_bytes` | Uso de memória, agrupado por user | |
+| `memory_global_by_current_bytes`, `x$memory_global_by_current_bytes` | Uso de memória, agrupado por tipo de alocação | |
+| `memory_global_total`, `x$memory_global_total` | Uso total de memória | |
+| `metrics` | Métricas do servidor | |
+| `processlist`, `x$processlist` | Informações do Processlist | |
+| `ps_check_lost_instrumentation` | Variáveis que perderam instrumentos | |
+| `schema_auto_increment_columns` | Informações de colunas AUTO_INCREMENT | |
+| `schema_index_statistics`, `x$schema_index_statistics` | Estatísticas de Index | |
+| `schema_object_overview` | Tipos de objetos dentro de cada schema | |
+| `schema_redundant_indexes` | Indexes duplicados ou redundantes | |
+| `schema_table_lock_waits`, `x$schema_table_lock_waits` | Sessões esperando por Locks de metadados | |
+| `schema_table_statistics`, `x$schema_table_statistics` | Estatísticas de Table | |
+| `schema_table_statistics_with_buffer`, `x$schema_table_statistics_with_buffer` | Estatísticas de Table, incluindo estatísticas do Buffer Pool do InnoDB | |
+| `schema_tables_with_full_table_scans`, `x$schema_tables_with_full_table_scans` | Tables sendo acessadas com full scans | |
+| `schema_unused_indexes` | Indexes não utilizados ativamente | |
+| `session`, `x$session` | Informações do Processlist para sessões de user | |
+| `session_ssl_status` | Informações SSL da conexão | |
+| `statement_analysis`, `x$statement_analysis` | Estatísticas agregadas de Statement | |
+| `statements_with_errors_or_warnings`, `x$statements_with_errors_or_warnings` | Statements que produziram erros ou warnings | |
+| `statements_with_full_table_scans`, `x$statements_with_full_table_scans` | Statements que realizaram full table scans | |
+| `statements_with_runtimes_in_95th_percentile`, `x$statements_with_runtimes_in_95th_percentile` | Statements com o maior tempo médio de execução | |
+| `statements_with_sorting`, `x$statements_with_sorting` | Statements que realizaram ordenações (sorts) | |
+| `statements_with_temp_tables`, `x$statements_with_temp_tables` | Statements que usaram temporary tables | |
+| `user_summary`, `x$user_summary` | Atividade de Statement e conexão do user | |
+| `user_summary_by_file_io`, `x$user_summary_by_file_io` | I/O de arquivo, agrupadas por user | |
+| `user_summary_by_file_io_type`, `x$user_summary_by_file_io_type` | I/O de arquivo, agrupadas por user e evento | |
+| `user_summary_by_stages`, `x$user_summary_by_stages` | Eventos de estágio, agrupados por user | |
+| `user_summary_by_statement_latency`, `x$user_summary_by_statement_latency` | Estatísticas de Statement, agrupadas por user | |
+| `user_summary_by_statement_type`, `x$user_summary_by_statement_type` | Statements executados, agrupados por user e Statement | |
+| `version` | Versões atuais do schema sys e do servidor MySQL | 5.7.28 |
+| `wait_classes_global_by_avg_latency`, `x$wait_classes_global_by_avg_latency` | Latência média de Wait class, agrupada por classe de evento | |
+| `wait_classes_global_by_latency`, `x$wait_classes_global_by_latency` | Latência total de Wait class, agrupada por classe de evento | |
+| `waits_by_host_by_latency`, `x$waits_by_host_by_latency` | Eventos de Wait, agrupados por host e evento | |
+| `waits_by_user_by_latency`, `x$waits_by_user_by_latency` | Eventos de Wait, agrupados por user e evento | |
+| `waits_global_by_latency`, `x$waits_global_by_latency` | Eventos de Wait, agrupados por evento | |
+| `x$ps_digest_95th_percentile_by_avg_us` | View auxiliar para views de percentil 95 | |
+| `x$ps_digest_avg_latency_distribution` | View auxiliar para views de percentil 95 | |
+| `x$ps_schema_table_statistics_io` | View auxiliar para views de estatísticas de table | |
+| `x$schema_flattened_keys` | View auxiliar para `schema_redundant_indexes` | |
 
-**Table 26.3 sys Schema Stored Procedures**
+**Tabela 26.3 Stored Procedures do Schema sys**
 
-<table frame="box" rules="all" summary="Stored procedures used in the sys schema implementation."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Procedure Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>create_synonym_db()</code></td> <td>Create synonym for schema</td> </tr><tr><td><code>diagnostics()</code></td> <td>Collect system diagnostic information</td> </tr><tr><td><code>execute_prepared_stmt()</code></td> <td>Execute prepared statement</td> </tr><tr><td><code>ps_setup_disable_background_threads()</code></td> <td>Disable background thread instrumentation</td> </tr><tr><td><code>ps_setup_disable_consumer()</code></td> <td>Disable consumers</td> </tr><tr><td><code>ps_setup_disable_instrument()</code></td> <td>Disable instruments</td> </tr><tr><td><code>ps_setup_disable_thread()</code></td> <td>Disable instrumentation for thread</td> </tr><tr><td><code>ps_setup_enable_background_threads()</code></td> <td>Enable background thread instrumentation</td> </tr><tr><td><code>ps_setup_enable_consumer()</code></td> <td>Enable consumers</td> </tr><tr><td><code>ps_setup_enable_instrument()</code></td> <td>Enable instruments</td> </tr><tr><td><code>ps_setup_enable_thread()</code></td> <td>Enable instrumentation for thread</td> </tr><tr><td><code>ps_setup_reload_saved()</code></td> <td>Reload saved Performance Schema configuration</td> </tr><tr><td><code>ps_setup_reset_to_default()</code></td> <td>Reset saved Performance Schema configuration</td> </tr><tr><td><code>ps_setup_save()</code></td> <td>Save Performance Schema configuration</td> </tr><tr><td><code>ps_setup_show_disabled()</code></td> <td>Display disabled Performance Schema configuration</td> </tr><tr><td><code>ps_setup_show_disabled_consumers()</code></td> <td>Display disabled Performance Schema consumers</td> </tr><tr><td><code>ps_setup_show_disabled_instruments()</code></td> <td>Display disabled Performance Schema instruments</td> </tr><tr><td><code>ps_setup_show_enabled()</code></td> <td>Display enabled Performance Schema configuration</td> </tr><tr><td><code>ps_setup_show_enabled_consumers()</code></td> <td>Display enabled Performance Schema consumers</td> </tr><tr><td><code>ps_setup_show_enabled_instruments()</code></td> <td>Display enabled Performance Schema instruments</td> </tr><tr><td><code>ps_statement_avg_latency_histogram()</code></td> <td>Display statement latency histogram</td> </tr><tr><td><code>ps_trace_statement_digest()</code></td> <td>Trace Performance Schema instrumentation for digest</td> </tr><tr><td><code>ps_trace_thread()</code></td> <td>Dump Performance Schema data for thread</td> </tr><tr><td><code>ps_truncate_all_tables()</code></td> <td>Truncate Performance Schema summary tables</td> </tr><tr><td><code>statement_performance_analyzer()</code></td> <td>Report of statements running on server</td> </tr><tr><td><code>table_exists()</code></td> <td>Whether a table exists</td> </tr></tbody></table>
+| Nome da Procedure | Descrição |
+| :--- | :--- |
+| `create_synonym_db()` | Cria sinônimo para schema |
+| `diagnostics()` | Coleta informações de diagnóstico do sistema |
+| `execute_prepared_stmt()` | Executa Statement preparado |
+| `ps_setup_disable_background_threads()` | Desabilita a instrumentação de Threads em segundo plano |
+| `ps_setup_disable_consumer()` | Desabilita consumers |
+| `ps_setup_disable_instrument()` | Desabilita instruments |
+| `ps_setup_disable_thread()` | Desabilita a instrumentação para Thread |
+| `ps_setup_enable_background_threads()` | Habilita a instrumentação de Threads em segundo plano |
+| `ps_setup_enable_consumer()` | Habilita consumers |
+| `ps_setup_enable_instrument()` | Habilita instruments |
+| `ps_setup_enable_thread()` | Habilita a instrumentação para Thread |
+| `ps_setup_reload_saved()` | Recarrega a configuração salva do Performance Schema |
+| `ps_setup_reset_to_default()` | Reseta a configuração salva do Performance Schema para o padrão |
+| `ps_setup_save()` | Salva a configuração do Performance Schema |
+| `ps_setup_show_disabled()` | Exibe a configuração desabilitada do Performance Schema |
+| `ps_setup_show_disabled_consumers()` | Exibe os consumers desabilitados do Performance Schema |
+| `ps_setup_show_disabled_instruments()` | Exibe os instruments desabilitados do Performance Schema |
+| `ps_setup_show_enabled()` | Exibe a configuração habilitada do Performance Schema |
+| `ps_setup_show_enabled_consumers()` | Exibe os consumers habilitados do Performance Schema |
+| `ps_setup_show_enabled_instruments()` | Exibe os instruments habilitados do Performance Schema |
+| `ps_statement_avg_latency_histogram()` | Exibe o histograma de latência média de Statement |
+| `ps_trace_statement_digest()` | Rastreia a instrumentação do Performance Schema para digest |
+| `ps_trace_thread()` | Despeja dados do Performance Schema para Thread |
+| `ps_truncate_all_tables()` | Trunca tabelas de resumo do Performance Schema |
+| `statement_performance_analyzer()` | Relatório de Statements em execução no servidor |
+| `table_exists()` | Verifica se uma table existe |
 
-**Table 26.4 sys Schema Stored Functions**
+**Tabela 26.4 Stored Functions do Schema sys**
 
-<table frame="box" rules="all" summary="Stored functions used in the sys schema implementation."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Function Name</th> <th>Description</th> <th>Introduced</th> </tr></thead><tbody><tr><th><code>extract_schema_from_file_name()</code></th> <td>Extract schema name part of file name</td> <td></td> </tr><tr><th><code>extract_table_from_file_name()</code></th> <td>Extract table name part of file name</td> <td></td> </tr><tr><th><code>format_bytes()</code></th> <td>Convert byte count to value with units</td> <td></td> </tr><tr><th><code>format_path()</code></th> <td>Replace directories in path name with symbolic system variable names</td> <td></td> </tr><tr><th><code>format_statement()</code></th> <td>Truncate long statement to fixed length</td> <td></td> </tr><tr><th><code>format_time()</code></th> <td>Convert picoseconds time to value with units</td> <td></td> </tr><tr><th><code>list_add()</code></th> <td>Add item to list</td> <td></td> </tr><tr><th><code>list_drop()</code></th> <td>Remove item from list</td> <td></td> </tr><tr><th><code>ps_is_account_enabled()</code></th> <td>Whether Performance Schema instrumentation for account is enabled</td> <td></td> </tr><tr><th><code>ps_is_consumer_enabled()</code></th> <td>Whether Performance Schema consumer is enabled</td> <td></td> </tr><tr><th><code>ps_is_instrument_default_enabled()</code></th> <td>Whether Performance Schema instrument is enabled by default</td> <td></td> </tr><tr><th><code>ps_is_instrument_default_timed()</code></th> <td>Whether Performance Schema instrument is timed by default</td> <td></td> </tr><tr><th><code>ps_is_thread_instrumented()</code></th> <td>Whether Performance Schema instrumentation for connection ID is enabled</td> <td></td> </tr><tr><th><code>ps_thread_account()</code></th> <td>Account associated with Performance Schema thread ID</td> <td></td> </tr><tr><th><code>ps_thread_id()</code></th> <td>Performance Schema thread ID associated with connection ID</td> <td></td> </tr><tr><th><code>ps_thread_stack()</code></th> <td>Event information for connection ID</td> <td></td> </tr><tr><th><code>ps_thread_trx_info()</code></th> <td>Transaction information for thread ID</td> <td></td> </tr><tr><th><code>quote_identifier()</code></th> <td>Quote string as identifier</td> <td>5.7.14</td> </tr><tr><th><code>sys_get_config()</code></th> <td>sys schema configuration option value</td> <td></td> </tr><tr><th><code>version_major()</code></th> <td>MySQL server major version number</td> <td></td> </tr><tr><th><code>version_minor()</code></th> <td>MySQL server minor version number</td> <td></td> </tr><tr><th><code>version_patch()</code></th> <td>MySQL server patch release version number</td> <td></td> </tr></tbody></table>
+| Nome da Function | Descrição | Introduzido |
+| :--- | :--- | :--- |
+| `extract_schema_from_file_name()` | Extrai a parte do nome do schema do nome do arquivo | |
+| `extract_table_from_file_name()` | Extrai a parte do nome da table do nome do arquivo | |
+| `format_bytes()` | Converte contagem de bytes para valor com unidades | |
+| `format_path()` | Substitui diretórios no nome do path por nomes de variáveis de sistema simbólicas | |
+| `format_statement()` | Trunca Statement longo para um comprimento fixo | |
+| `format_time()` | Converte tempo em picossegundos para valor com unidades | |
+| `list_add()` | Adiciona item à lista | |
+| `list_drop()` | Remove item da lista | |
+| `ps_is_account_enabled()` | Verifica se a instrumentação do Performance Schema para a conta está habilitada | |
+| `ps_is_consumer_enabled()` | Verifica se o consumer do Performance Schema está habilitado | |
+| `ps_is_instrument_default_enabled()` | Verifica se o instrument do Performance Schema está habilitado por padrão | |
+| `ps_is_instrument_default_timed()` | Verifica se o instrument do Performance Schema está temporizado por padrão | |
+| `ps_is_thread_instrumented()` | Verifica se a instrumentação do Performance Schema para o ID da conexão está habilitada | |
+| `ps_thread_account()` | Conta associada ao ID da Thread do Performance Schema | |
+| `ps_thread_id()` | ID da Thread do Performance Schema associado ao ID da conexão | |
+| `ps_thread_stack()` | Informações do evento para o ID da conexão | |
+| `ps_thread_trx_info()` | Informações da Transaction para o ID da Thread | |
+| `quote_identifier()` | Coloca string entre aspas como Identifier | 5.7.14 |
+| `sys_get_config()` | Valor da opção de configuração do schema sys | |
+| `version_major()` | Número da versão major do servidor MySQL | |
+| `version_minor()` | Número da versão minor do servidor MySQL | |
+| `version_patch()` | Número da versão de patch release do servidor MySQL | |

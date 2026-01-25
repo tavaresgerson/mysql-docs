@@ -1,12 +1,12 @@
-#### 25.12.2.1 The setup_actors Table
+#### 25.12.2.1 A Tabela setup_actors
 
-The [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") table contains information that determines whether to enable monitoring and historical event logging for new foreground server threads (threads associated with client connections). This table has a maximum size of 100 rows by default. To change the table size, modify the [`performance_schema_setup_actors_size`](performance-schema-system-variables.html#sysvar_performance_schema_setup_actors_size) system variable at server startup.
+A tabela [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") contém informações que determinam se o monitoramento e o registro de eventos históricos devem ser habilitados para novos foreground server threads (threads associados a conexões de cliente). Esta tabela tem um tamanho máximo padrão de 100 linhas. Para alterar o tamanho da tabela, modifique a variável de sistema [`performance_schema_setup_actors_size`](performance-schema-system-variables.html#sysvar_performance_schema_setup_actors_size) durante a inicialização do server.
 
-For each new foreground thread, the Performance Schema matches the user and host for the thread against the rows of the [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") table. If a row from that table matches, its `ENABLED` and `HISTORY` column values are used to set the `INSTRUMENTED` and `HISTORY` columns, respectively, of the [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table") table row for the thread. This enables instrumenting and historical event logging to be applied selectively per host, user, or account (user and host combination). If there is no match, the `INSTRUMENTED` and `HISTORY` columns for the thread are set to `NO`.
+Para cada novo foreground thread, o Performance Schema compara o user e o host do thread com as linhas da tabela [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table"). Se uma linha dessa tabela corresponder, seus valores de coluna `ENABLED` e `HISTORY` são usados para definir as colunas `INSTRUMENTED` e `HISTORY`, respectivamente, da linha da tabela [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table") para o thread. Isso permite que a instrumentação e o registro de eventos históricos sejam aplicados seletivamente por host, user ou account (combinação de user e host). Se não houver correspondência, as colunas `INSTRUMENTED` e `HISTORY` para o thread são definidas como `NO`.
 
-For background threads, there is no associated user. `INSTRUMENTED` and `HISTORY` are `YES` by default and [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") is not consulted.
+Para background threads, não há um user associado. `INSTRUMENTED` e `HISTORY` são `YES` por padrão e [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") não é consultada.
 
-The initial contents of the [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") table match any user and host combination, so monitoring and historical event collection are enabled by default for all foreground threads:
+O conteúdo inicial da tabela [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") corresponde a qualquer combinação de user e host, de modo que o monitoramento e a coleta de eventos históricos são habilitados por padrão para todos os foreground threads:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_actors;
@@ -17,30 +17,30 @@ mysql> SELECT * FROM performance_schema.setup_actors;
 +------+------+------+---------+---------+
 ```
 
-For information about how to use the [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") table to affect event monitoring, see [Section 25.4.6, “Pre-Filtering by Thread”](performance-schema-thread-filtering.html "25.4.6 Pre-Filtering by Thread").
+Para obter informações sobre como usar a tabela [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") para afetar o monitoramento de eventos, consulte [Seção 25.4.6, “Pre-Filtering by Thread”](performance-schema-thread-filtering.html "25.4.6 Pre-Filtering by Thread").
 
-Modifications to the [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") table affect only foreground threads created subsequent to the modification, not existing threads. To affect existing threads, modify the `INSTRUMENTED` and `HISTORY` columns of [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table") table rows.
+Modificações na tabela [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") afetam apenas foreground threads criados subsequentemente à modificação, e não os threads existentes. Para afetar threads existentes, modifique as colunas `INSTRUMENTED` e `HISTORY` das linhas da tabela [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table").
 
-The [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") table has these columns:
+A tabela [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") possui as seguintes colunas:
 
 * `HOST`
 
-  The host name. This should be a literal name, or `'%'` to mean “any host.”
+  O nome do host. Deve ser um nome literal, ou `'%'` para significar "qualquer host".
 
 * `USER`
 
-  The user name. This should be a literal name, or `'%'` to mean “any user.”
+  O nome do user. Deve ser um nome literal, ou `'%'` para significar "qualquer user".
 
 * `ROLE`
 
-  Unused.
+  Não utilizado.
 
 * `ENABLED`
 
-  Whether to enable instrumentation for foreground threads matched by the row. The value is `YES` or `NO`.
+  Se deve habilitar a instrumentation para foreground threads correspondidos pela linha. O valor é `YES` ou `NO`.
 
 * `HISTORY`
 
-  Whether to log historical events for foreground threads matched by the row. The value is `YES` or `NO`.
+  Se deve registrar eventos históricos para foreground threads correspondidos pela linha. O valor é `YES` ou `NO`.
 
-[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is permitted for the [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") table. It removes the rows.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") é permitido para a tabela [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table"). Ele remove as linhas.

@@ -1,74 +1,74 @@
-#### 26.4.4.25 The statement_performance_analyzer() Procedure
+#### 26.4.4.25 O Procedimento statement_performance_analyzer()
 
-Creates a report of the statements running on the server. The views are calculated based on the overall and/or delta activity.
+Cria um relatório das statements (instruções) sendo executadas no servidor. As views são calculadas com base na atividade geral (overall) e/ou Delta.
 
-This procedure disables binary logging during its execution by manipulating the session value of the `sql_log_bin` system variable. That is a restricted operation, so the procedure requires privileges sufficient to set restricted session variables. See Section 5.1.8.1, “System Variable Privileges”.
+Este procedimento desabilita o binary logging durante sua execução ao manipular o valor de sessão da variável de sistema `sql_log_bin`. Essa é uma operação restrita, portanto, o procedimento requer privilégios suficientes para definir variáveis de sessão restritas. Consulte a Seção 5.1.8.1, “Privilégios de Variáveis de Sistema”.
 
-##### Parameters
+##### Parâmetros
 
-* `in_action ENUM('snapshot', 'overall', 'delta', 'create_tmp', 'create_table', 'save', 'cleanup')`: The action to take. These values are permitted:
+* `in_action ENUM('snapshot', 'overall', 'delta', 'create_tmp', 'create_table', 'save', 'cleanup')`: A ação a ser executada. Estes valores são permitidos:
 
-  + `snapshot`: Store a snapshot. The default is to make a snapshot of the current content of the Performance Schema `events_statements_summary_by_digest` table. By setting `in_table`, this can be overwritten to copy the content of the specified table. The snapshot is stored in the `sys` schema `tmp_digests` temporary table.
+  + `snapshot`: Armazena um snapshot. O padrão é criar um snapshot do conteúdo atual da tabela `events_statements_summary_by_digest` do Performance Schema. Ao definir `in_table`, isso pode ser sobrescrito para copiar o conteúdo da tabela especificada. O snapshot é armazenado na tabela temporária `tmp_digests` do schema `sys`.
 
-  + `overall`: Generate an analysis based on the content of the table specified by `in_table`. For the overall analysis, `in_table` can be `NOW()` to use a fresh snapshot. This overwrites an existing snapshot. Use `NULL` for `in_table` to use the existing snapshot. If `in_table` is `NULL` and no snapshot exists, a new snapshot is created. The `in_views` parameter and the `statement_performance_analyzer.limit` configuration option affect the operation of this procedure.
+  + `overall`: Gera uma análise baseada no conteúdo da tabela especificada por `in_table`. Para a análise overall, `in_table` pode ser `NOW()` para usar um snapshot recente. Isso sobrescreve um snapshot existente. Use `NULL` para `in_table` para usar o snapshot existente. Se `in_table` for `NULL` e não houver um snapshot existente, um novo snapshot é criado. O parâmetro `in_views` e a opção de configuração `statement_performance_analyzer.limit` afetam a operação deste procedimento.
 
-  + `delta`: Generate a delta analysis. The delta is calculated between the reference table specified by `in_table` and the snapshot, which must exist. This action uses the `sys` schema `tmp_digests_delta` temporary table. The `in_views` parameter and the `statement_performance_analyzer.limit` configuration option affect the operation of this procedure.
+  + `delta`: Gera uma análise Delta. O Delta é calculado entre a tabela de referência especificada por `in_table` e o snapshot, que deve existir. Esta ação usa a tabela temporária `tmp_digests_delta` do schema `sys`. O parâmetro `in_views` e a opção de configuração `statement_performance_analyzer.limit` afetam a operação deste procedimento.
 
-  + `create_table`: Create a regular table suitable for storing the snapshot for later use (for example, for calculating deltas).
+  + `create_table`: Cria uma tabela regular adequada para armazenar o snapshot para uso posterior (por exemplo, para calcular Deltas).
 
-  + `create_tmp`: Create a temporary table suitable for storing the snapshot for later use (for example, for calculating deltas).
+  + `create_tmp`: Cria uma tabela temporária adequada para armazenar o snapshot para uso posterior (por exemplo, para calcular Deltas).
 
-  + `save`: Save the snapshot in the table specified by `in_table`. The table must exist and have the correct structure. If no snapshot exists, a new snapshot is created.
+  + `save`: Salva o snapshot na tabela especificada por `in_table`. A tabela deve existir e ter a estrutura correta. Se não houver snapshot, um novo snapshot é criado.
 
-  + `cleanup`: Remove the temporary tables used for the snapshot and delta.
+  + `cleanup`: Remove as tabelas temporárias usadas para o snapshot e o Delta.
 
-* `in_table VARCHAR(129)`: The table parameter used for some of the actions specified by the `in_action` parameter. Use the format *`db_name.tbl_name`* or *`tbl_name`* without using any backtick (`` ` ``) identifier-quoting characters. Periods (`.`) are not supported in database and table names.
+* `in_table VARCHAR(129)`: O parâmetro de tabela usado para algumas das ações especificadas pelo parâmetro `in_action`. Use o formato *`db_name.tbl_name`* ou *`tbl_name`* sem usar quaisquer caracteres de aspas de identificador (`` ` ``). Pontos (`.`) não são suportados em nomes de Database e tabela.
 
-  The meaning of the `in_table` value for each `in_action` value is detailed in the individual `in_action` value descriptions.
+  O significado do valor de `in_table` para cada valor de `in_action` é detalhado nas descrições individuais dos valores de `in_action`.
 
-* `in_views SET ('with_runtimes_in_95th_percentile', 'analysis', 'with_errors_or_warnings', 'with_full_table_scans', 'with_sorting', 'with_temp_tables', 'custom')`: Which views to include. This parameter is a `SET` value, so it can contain multiple view names, separated by commas. The default is to include all views except `custom`. The following values are permitted:
+* `in_views SET ('with_runtimes_in_95th_percentile', 'analysis', 'with_errors_or_warnings', 'with_full_table_scans', 'with_sorting', 'with_temp_tables', 'custom')`: Quais views incluir. Este parâmetro é um valor `SET`, podendo conter múltiplos nomes de view, separados por vírgulas. O padrão é incluir todas as views, exceto `custom`. Os seguintes valores são permitidos:
 
-  + `with_runtimes_in_95th_percentile`: Use the `statements_with_runtimes_in_95th_percentile` view.
+  + `with_runtimes_in_95th_percentile`: Usa a view `statements_with_runtimes_in_95th_percentile`.
 
-  + `analysis`: Use the `statement_analysis` view.
+  + `analysis`: Usa a view `statement_analysis`.
 
-  + `with_errors_or_warnings`: Use the `statements_with_errors_or_warnings` view.
+  + `with_errors_or_warnings`: Usa a view `statements_with_errors_or_warnings`.
 
-  + `with_full_table_scans`: Use the `statements_with_full_table_scans` view.
+  + `with_full_table_scans`: Usa a view `statements_with_full_table_scans`.
 
-  + `with_sorting`: Use the `statements_with_sorting` view.
+  + `with_sorting`: Usa a view `statements_with_sorting`.
 
-  + `with_temp_tables`: Use the `statements_with_temp_tables` view.
+  + `with_temp_tables`: Usa a view `statements_with_temp_tables`.
 
-  + `custom`: Use a custom view. This view must be specified using the `statement_performance_analyzer.view` configuration option to name a query or an existing view.
+  + `custom`: Usa uma view customizada. Esta view deve ser especificada usando a opção de configuração `statement_performance_analyzer.view` para nomear uma Query ou uma view existente.
 
-##### Configuration Options
+##### Opções de Configuração
 
-`statement_performance_analyzer()` Procedure") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 26.4.2.1, “The sys_config Table”):
+A operação do Procedimento `statement_performance_analyzer()` pode ser modificada usando as seguintes opções de configuração ou suas variáveis definidas pelo usuário correspondentes (consulte a Seção 26.4.2.1, “A Tabela sys_config”):
 
 * `debug`, `@sys.debug`
 
-  If this option is `ON`, produce debugging output. The default is `OFF`.
+  Se esta opção for `ON`, produz saída de debug. O padrão é `OFF`.
 
 * `statement_performance_analyzer.limit`, `@sys.statement_performance_analyzer.limit`
 
-  The maximum number of rows to return for views that have no built-in limit. The default is 100.
+  O número máximo de linhas a retornar para views que não possuem um limit integrado. O padrão é 100.
 
 * `statement_performance_analyzer.view`, `@sys.statement_performance_analyzer.view`
 
-  The custom query or view to be used. If the option value contains a space, it is interpreted as a query. Otherwise, it must be the name of an existing view that queries the Performance Schema `events_statements_summary_by_digest` table. There cannot be any `LIMIT` clause in the query or view definition if the `statement_performance_analyzer.limit` configuration option is greater than 0. If specifying a view, use the same format as for the `in_table` parameter. The default is `NULL` (no custom view defined).
+  A Query ou view customizada a ser usada. Se o valor da opção contiver um espaço, ele será interpretado como uma Query. Caso contrário, deve ser o nome de uma view existente que consulta a tabela `events_statements_summary_by_digest` do Performance Schema. Não pode haver uma cláusula `LIMIT` na definição da Query ou view se a opção de configuração `statement_performance_analyzer.limit` for maior que 0. Se estiver especificando uma view, use o mesmo formato que para o parâmetro `in_table`. O padrão é `NULL` (nenhuma view customizada definida).
 
-##### Example
+##### Exemplo
 
-To create a report with the queries in the 95th percentile since the last truncation of `events_statements_summary_by_digest` and with a one-minute delta period:
+Para criar um relatório com as Queries no 95º percentil desde o último truncamento de `events_statements_summary_by_digest` e com um período Delta de um minuto:
 
-1. Create a temporary table to store the initial snapshot.
-2. Create the initial snapshot.
-3. Save the initial snapshot in the temporary table.
-4. Wait one minute.
-5. Create a new snapshot.
-6. Perform analysis based on the new snapshot.
-7. Perform analysis based on the delta between the initial and new snapshots.
+1. Cria uma tabela temporária para armazenar o snapshot inicial.
+2. Cria o snapshot inicial.
+3. Salva o snapshot inicial na tabela temporária.
+4. Espera um minuto.
+5. Cria um novo snapshot.
+6. Executa a análise baseada no novo snapshot.
+7. Executa a análise baseada no Delta entre os snapshots inicial e novo.
 
 ```sql
 mysql> CALL sys.statement_performance_analyzer('create_tmp', 'mydb.tmp_digests_ini', NULL);
@@ -107,7 +107,7 @@ mysql> CALL sys.statement_performance_analyzer('delta', 'mydb.tmp_digests_ini', 
 ...
 ```
 
-Create an overall report of the 95th percentile queries and the top 10 queries with full table scans:
+Cria um relatório overall das Queries do 95º percentil e as 10 principais Queries com full table scans:
 
 ```sql
 mysql> CALL sys.statement_performance_analyzer('snapshot', NULL, NULL);
@@ -136,7 +136,7 @@ mysql> CALL sys.statement_performance_analyzer('overall', NULL, 'with_runtimes_i
 ...
 ```
 
-Use a custom view showing the top 10 queries sorted by total execution time, refreshing the view every minute using the **watch** command in Linux:
+Use uma view customizada mostrando as 10 principais Queries ordenadas pelo tempo total de execução, atualizando a view a cada minuto usando o comando **watch** no Linux:
 
 ```sql
 mysql> CREATE OR REPLACE VIEW mydb.my_statements AS

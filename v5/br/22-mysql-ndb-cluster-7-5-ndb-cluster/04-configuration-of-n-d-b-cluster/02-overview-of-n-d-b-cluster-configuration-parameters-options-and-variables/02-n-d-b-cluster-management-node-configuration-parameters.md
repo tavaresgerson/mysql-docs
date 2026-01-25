@@ -1,41 +1,41 @@
-#### 21.4.2.2 NDB Cluster Management Node Configuration Parameters
+#### 21.4.2.2 Parâmetros de Configuração do Node de Gerenciamento do NDB Cluster
 
-The listing in this section provides information about parameters used in the `[ndb_mgmd]` or `[mgm]` section of a `config.ini` file for configuring NDB Cluster management nodes. For detailed descriptions and other additional information about each of these parameters, see [Section 21.4.3.5, “Defining an NDB Cluster Management Server”](mysql-cluster-mgm-definition.html "21.4.3.5 Defining an NDB Cluster Management Server").
+A listagem nesta seção fornece informações sobre os parâmetros usados na seção `[ndb_mgmd]` ou `[mgm]` de um arquivo `config.ini` para configurar os nodes de gerenciamento do NDB Cluster. Para descrições detalhadas e outras informações adicionais sobre cada um desses parâmetros, consulte [Section 21.4.3.5, “Defining an NDB Cluster Management Server”](mysql-cluster-mgm-definition.html "21.4.3.5 Defining an NDB Cluster Management Server").
 
-* `ArbitrationDelay`: When asked to arbitrate, arbitrator waits this long before voting (milliseconds).
+* `ArbitrationDelay`: Quando solicitado a arbitrar, o *arbitrator* espera por este período antes de votar (milissegundos).
 
-* `ArbitrationRank`: If 0, then management node is not arbitrator. Kernel selects arbitrators in order 1, 2.
+* `ArbitrationRank`: Se 0, o node de gerenciamento não é um *arbitrator*. O *Kernel* seleciona os *arbitrators* na ordem 1, 2.
 
-* `DataDir`: Data directory for this node.
+* `DataDir`: Data directory para este node.
 
-* `ExecuteOnComputer`: String referencing earlier defined COMPUTER.
+* `ExecuteOnComputer`: String que referencia um COMPUTER definido anteriormente.
 
-* `ExtraSendBufferMemory`: Memory to use for send buffers in addition to any allocated by TotalSendBufferMemory or SendBufferMemory. Default (0) allows up to 16MB.
+* `ExtraSendBufferMemory`: Memory a ser usada para *send buffers* adicionalmente a qualquer *memory* alocada por TotalSendBufferMemory ou SendBufferMemory. O Default (0) permite até 16MB.
 
-* `HeartbeatIntervalMgmdMgmd`: Time between management-node-to-management-node heartbeats; connection between management nodes is considered lost after 3 missed heartbeats.
+* `HeartbeatIntervalMgmdMgmd`: Tempo entre os *heartbeats* de node de gerenciamento para node de gerenciamento; a conexão entre os nodes de gerenciamento é considerada perdida após 3 *heartbeats* não recebidos.
 
-* `HeartbeatThreadPriority`: Set heartbeat thread policy and priority for management nodes; see manual for allowed values.
+* `HeartbeatThreadPriority`: Define a política e a *priority* da *heartbeat thread* para nodes de gerenciamento; consulte o manual para valores permitidos.
 
-* `HostName`: Host name or IP address for this management node.
+* `HostName`: Host name ou endereço IP para este node de gerenciamento.
 
-* `Id`: Number identifying management node. Now deprecated; use NodeId instead.
+* `Id`: Número que identifica o node de gerenciamento. Agora descontinuado (*deprecated*); use NodeId em vez disso.
 
-* `LocationDomainId`: Assign this management node to specific availability domain or zone. 0 (default) leaves this unset.
+* `LocationDomainId`: Atribui este node de gerenciamento a um *availability domain* ou *zone* específico. 0 (*default*) mantém esta configuração não definida.
 
-* `LogDestination`: Where to send log messages: console, system log, or specified log file.
+* `LogDestination`: Onde enviar as mensagens de *log*: console, *system log* ou arquivo de *log* especificado.
 
-* `NodeId`: Number uniquely identifying management node among all nodes in cluster.
+* `NodeId`: Número que identifica o node de gerenciamento de forma única entre todos os nodes no *cluster*.
 
-* `PortNumber`: Port number to send commands to and fetch configuration from management server.
+* `PortNumber`: Port number para enviar comandos e buscar a configuração do *management server*.
 
-* `PortNumberStats`: Port number used to get statistical information from management server.
+* `PortNumberStats`: Port number usada para obter informações estatísticas do *management server*.
 
-* `TotalSendBufferMemory`: Total memory to use for all transporter send buffers.
+* `TotalSendBufferMemory`: Total de *memory* a ser usada para todos os *transporter send buffers*.
 
-* `wan`: Use WAN TCP setting as default.
+* `wan`: Usa a configuração WAN TCP como *default*.
 
-Note
+**Nota**
 
-After making changes in a management node's configuration, it is necessary to perform a rolling restart of the cluster for the new configuration to take effect. See [Section 21.4.3.5, “Defining an NDB Cluster Management Server”](mysql-cluster-mgm-definition.html "21.4.3.5 Defining an NDB Cluster Management Server"), for more information.
+Após fazer alterações na configuração de um node de gerenciamento, é necessário realizar um *rolling restart* do *cluster* para que a nova configuração entre em vigor. Consulte [Section 21.4.3.5, “Defining an NDB Cluster Management Server”](mysql-cluster-mgm-definition.html "21.4.3.5 Defining an NDB Cluster Management Server"), para mais informações.
 
-To add new management servers to a running NDB Cluster, it is also necessary perform a rolling restart of all cluster nodes after modifying any existing `config.ini` files. For more information about issues arising when using multiple management nodes, see [Section 21.2.7.10, “Limitations Relating to Multiple NDB Cluster Nodes”](mysql-cluster-limitations-multiple-nodes.html "21.2.7.10 Limitations Relating to Multiple NDB Cluster Nodes").
+Para adicionar novos *management servers* a um NDB Cluster em execução, também é necessário realizar um *rolling restart* de todos os *cluster nodes* após modificar quaisquer arquivos `config.ini` existentes. Para mais informações sobre problemas que surgem ao usar múltiplos nodes de gerenciamento, consulte [Section 21.2.7.10, “Limitations Relating to Multiple NDB Cluster Nodes”](mysql-cluster-limitations-multiple-nodes.html "21.2.7.10 Limitations Relating to Multiple NDB Cluster Nodes").

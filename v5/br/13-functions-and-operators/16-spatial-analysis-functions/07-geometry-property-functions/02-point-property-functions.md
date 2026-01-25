@@ -1,10 +1,10 @@
-#### 12.16.7.2 Point Property Functions
+#### 12.16.7.2 Funções de Propriedade de Point
 
-A `Point` consists of X and Y coordinates, which may be obtained using the following functions:
+Um `Point` consiste em coordenadas X e Y, que podem ser obtidas usando as seguintes funções:
 
 * `ST_X(p)`
 
-  Returns the X-coordinate value for the `Point` object *`p`* as a double-precision number.
+  Retorna o valor da coordenada X para o objeto `Point` *`p`* como um número de precisão dupla (`double-precision number`).
 
   ```sql
   mysql> SELECT ST_X(Point(56.7, 53.34));
@@ -15,11 +15,11 @@ A `Point` consists of X and Y coordinates, which may be obtained using the follo
   +--------------------------+
   ```
 
-  `ST_X()` and `X()` are synonyms.
+  `ST_X()` e `X()` são sinônimos.
 
 * `ST_Y(p)`
 
-  Returns the Y-coordinate value for the `Point` object *`p`* as a double-precision number.
+  Retorna o valor da coordenada Y para o objeto `Point` *`p`* como um número de precisão dupla (`double-precision number`).
 
   ```sql
   mysql> SELECT ST_Y(Point(56.7, 53.34));
@@ -30,16 +30,16 @@ A `Point` consists of X and Y coordinates, which may be obtained using the follo
   +--------------------------+
   ```
 
-  `ST_Y()` and `Y()` are synonyms.
+  `ST_Y()` e `Y()` são sinônimos.
 
 * `X(p)`
 
-  `ST_X()` and `X()` are synonyms. For more information, see the description of `ST_X()`.
+  `ST_X()` e `X()` são sinônimos. Para mais informações, consulte a descrição de `ST_X()`.
 
-  `X()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_X()` instead.
+  `X()` está obsoleto (`deprecated`); espere que seja removido em um futuro lançamento do MySQL. Use `ST_X()` em seu lugar.
 
 * `Y(p)`
 
-  `ST_Y()` and `Y()` are synonyms. For more information, see the description of `ST_Y()`.
+  `ST_Y()` e `Y()` são sinônimos. Para mais informações, consulte a descrição de `ST_Y()`.
 
-  `Y()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_Y()` instead.
+  `Y()` está obsoleto (`deprecated`); espere que seja removido em um futuro lançamento do MySQL. Use `ST_Y()` em seu lugar.

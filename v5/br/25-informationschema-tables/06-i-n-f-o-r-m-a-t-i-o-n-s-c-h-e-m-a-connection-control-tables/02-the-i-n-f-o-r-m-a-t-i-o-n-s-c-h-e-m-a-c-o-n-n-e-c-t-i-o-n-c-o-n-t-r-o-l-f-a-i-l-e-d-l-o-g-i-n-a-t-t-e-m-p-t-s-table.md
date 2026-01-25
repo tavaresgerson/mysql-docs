@@ -1,21 +1,21 @@
-### 24.6.2 The INFORMATION_SCHEMA CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS Table
+### 24.6.2 A Tabela INFORMATION_SCHEMA CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS
 
-This table provides information about the current number of consecutive failed connection attempts per account (user/host combination). The table was added in MySQL 5.7.17.
+Esta tabela fornece informações sobre o número atual de tentativas de *connection* falhas consecutivas por conta (combinação *user*/host). A tabela foi adicionada no MySQL 5.7.17.
 
-[`CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS`](information-schema-connection-control-failed-login-attempts-table.html "24.6.2 The INFORMATION_SCHEMA CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS Table") has these columns:
+A [`CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS`](information-schema-connection-control-failed-login-attempts-table.html "24.6.2 The INFORMATION_SCHEMA CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS Table") possui estas colunas:
 
 * `USERHOST`
 
-  The user/host combination indicating an account that has failed connection attempts, in `'user_name'@'host_name'` format.
+  A combinação *user*/host indicando uma conta que teve tentativas de *connection* falhas, no formato `'user_name'@'host_name'`.
 
 * `FAILED_ATTEMPTS`
 
-  The current number of consecutive failed connection attempts for the `USERHOST` value. This counts all failed attempts, regardless of whether they were delayed. The number of attempts for which the server added a delay to its response is the difference between the `FAILED_ATTEMPTS` value and the [`connection_control_failed_connections_threshold`](connection-control-plugin-variables.html#sysvar_connection_control_failed_connections_threshold) system variable value.
+  O número atual de tentativas de *connection* falhas consecutivas para o valor `USERHOST`. Isso contabiliza todas as tentativas falhas, independentemente de terem sido atrasadas. O número de tentativas para as quais o servidor adicionou um atraso (*delay*) à sua resposta é a diferença entre o valor de `FAILED_ATTEMPTS` e o valor da variável de sistema [`connection_control_failed_connections_threshold`](connection-control-plugin-variables.html#sysvar_connection_control_failed_connections_threshold).
 
-#### Notes
+#### Notas
 
-* The `CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS` plugin must be activated for this table to be available, and the `CONNECTION_CONTROL` plugin must be activated or the table contents are always empty. See [Section 6.4.2, “Connection Control Plugins”](connection-control-plugin.html "6.4.2 Connection Control Plugins").
+* O *plugin* `CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS` deve estar ativado para que esta tabela esteja disponível, e o *plugin* `CONNECTION_CONTROL` deve estar ativado ou o conteúdo da tabela estará sempre vazio. Consulte [Seção 6.4.2, “Connection Control Plugins”](connection-control-plugin.html "6.4.2 Connection Control Plugins").
 
-* The table contains rows only for accounts that have had one or more consecutive failed connection attempts without a subsequent successful attempt. When an account connects successfully, its failed-connection count is reset to zero and the server removes any row corresponding to the account.
+* A tabela contém linhas apenas para contas que tiveram uma ou mais tentativas de *connection* falhas consecutivas sem uma tentativa de sucesso subsequente. Quando uma conta se conecta com sucesso, seu *count* de *connections* falhas é redefinido para zero e o servidor remove qualquer linha correspondente à conta.
 
-* Assigning a value to the [`connection_control_failed_connections_threshold`](connection-control-plugin-variables.html#sysvar_connection_control_failed_connections_threshold) system variable at runtime resets all accumulated failed-connection counters to zero, which causes the table to become empty.
+* A atribuição de um valor à variável de sistema [`connection_control_failed_connections_threshold`](connection-control-plugin-variables.html#sysvar_connection_control_failed_connections_threshold) em tempo de execução (*runtime*) redefine todos os *counters* acumulados de *connections* falhas para zero, o que faz com que a tabela fique vazia.

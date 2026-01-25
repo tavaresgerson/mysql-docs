@@ -1,4 +1,4 @@
-#### 13.7.1.1 ALTER USER Statement
+#### 13.7.1.1 Instrução ALTER USER
 
 ```sql
 ALTER USER [IF EXISTS]
@@ -48,51 +48,51 @@ lock_option: {
 }
 ```
 
-The [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") statement modifies MySQL accounts. It enables authentication, SSL/TLS, resource-limit, and password-management properties to be modified for existing accounts. It can also be used to lock and unlock accounts.
+A instrução [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") modifica contas MySQL. Ela permite que propriedades de authentication, SSL/TLS, limite de resource e gerenciamento de password sejam modificadas para contas existentes. Também pode ser usada para Lock e Unlock de contas.
 
-To use [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement"), you must have the global [`CREATE USER`](privileges-provided.html#priv_create-user) privilege or the [`UPDATE`](privileges-provided.html#priv_update) privilege for the `mysql` system database. When the [`read_only`](server-system-variables.html#sysvar_read_only) system variable is enabled, [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") additionally requires the [`SUPER`](privileges-provided.html#priv_super) privilege.
+Para usar [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement"), você deve ter o privilégio global [`CREATE USER`](privileges-provided.html#priv_create-user) ou o privilégio [`UPDATE`](privileges-provided.html#priv_update) para o Database de sistema `mysql`. Quando a variável de sistema [`read_only`](server-system-variables.html#sysvar_read_only) estiver habilitada, [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") exige adicionalmente o privilégio [`SUPER`](privileges-provided.html#priv_super).
 
-By default, an error occurs if you try to modify a user that does not exist. If the `IF EXISTS` clause is given, the statement produces a warning for each named user that does not exist, rather than an error.
+Por padrão, ocorre um error se você tentar modificar um user que não existe. Se a cláusula `IF EXISTS` for fornecida, a instrução produz um warning para cada user nomeado que não existe, em vez de um error.
 
-Important
+Importante
 
-Under some circumstances, [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") may be recorded in server logs or on the client side in a history file such as `~/.mysql_history`, which means that cleartext passwords may be read by anyone having read access to that information. For information about the conditions under which this occurs for the server logs and how to control it, see [Section 6.1.2.3, “Passwords and Logging”](password-logging.html "6.1.2.3 Passwords and Logging"). For similar information about client-side logging, see [Section 4.5.1.3, “mysql Client Logging”](mysql-logging.html "4.5.1.3 mysql Client Logging").
+Em algumas circunstâncias, [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") pode ser registrado em logs do Server ou no lado do Client em um arquivo de histórico, como `~/.mysql_history`, o que significa que passwords em cleartext podem ser lidas por qualquer pessoa que tenha acesso de leitura a essa informação. Para obter informações sobre as condições sob as quais isso ocorre para os logs do Server e como controlá-lo, consulte [Seção 6.1.2.3, “Passwords and Logging”](password-logging.html "6.1.2.3 Passwords and Logging"). Para informações semelhantes sobre logging no lado do Client, consulte [Seção 4.5.1.3, “mysql Client Logging”](mysql-logging.html "4.5.1.3 mysql Client Logging").
 
-There are several aspects to the [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") statement, described under the following topics:
+Existem vários aspectos na instrução [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement"), descritos nos tópicos a seguir:
 
-* [ALTER USER Overview](alter-user.html#alter-user-overview "ALTER USER Overview")
-* [ALTER USER Authentication Options](alter-user.html#alter-user-authentication "ALTER USER Authentication Options")
-* [ALTER USER SSL/TLS Options](alter-user.html#alter-user-tls "ALTER USER SSL/TLS Options")
-* [ALTER USER Resource-Limit Options](alter-user.html#alter-user-resource-limits "ALTER USER Resource-Limit Options")
-* [ALTER USER Password-Management Options](alter-user.html#alter-user-password-management "ALTER USER Password-Management Options")
-* [ALTER USER Account-Locking Options](alter-user.html#alter-user-account-locking "ALTER USER Account-Locking Options")
+* [Visão Geral do ALTER USER](alter-user.html#alter-user-overview "ALTER USER Overview")
+* [Opções de Authentication do ALTER USER](alter-user.html#alter-user-authentication "ALTER USER Authentication Options")
+* [Opções SSL/TLS do ALTER USER](alter-user.html#alter-user-tls "ALTER USER SSL/TLS Options")
+* [Opções de Limite de Resource do ALTER USER](alter-user.html#alter-user-resource-limits "ALTER USER Resource-Limit Options")
+* [Opções de Gerenciamento de Password do ALTER USER](alter-user.html#alter-user-password-management "ALTER USER Password-Management Options")
+* [Opções de Locking de Conta do ALTER USER](alter-user.html#alter-user-account-locking "ALTER USER Account-Locking Options")
 
-##### ALTER USER Overview
+##### Visão Geral do ALTER USER
 
-For each affected account, [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") modifies the corresponding row in the `mysql.user` system table to reflect the properties specified in the statement. Unspecified properties retain their current values.
+Para cada conta afetada, [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") modifica a linha correspondente na tabela de sistema `mysql.user` para refletir as propriedades especificadas na instrução. Propriedades não especificadas mantêm seus valores atuais.
 
-Each account name uses the format described in [Section 6.2.4, “Specifying Account Names”](account-names.html "6.2.4 Specifying Account Names"). The host name part of the account name, if omitted, defaults to `'%'`. It is also possible to specify [`CURRENT_USER`](information-functions.html#function_current-user) or [`CURRENT_USER()`](information-functions.html#function_current-user) to refer to the account associated with the current session.
+Cada nome de conta usa o formato descrito na [Seção 6.2.4, “Specifying Account Names”](account-names.html "6.2.4 Specifying Account Names"). A parte do nome do Host da conta, se omitida, assume o padrão `'%'`. Também é possível especificar [`CURRENT_USER`](information-functions.html#function_current-user) ou [`CURRENT_USER()`](information-functions.html#function_current-user) para se referir à conta associada à Session atual.
 
-In one case only, the account may be specified with the [`USER()`](information-functions.html#function_user) function:
+Em apenas um caso, a conta pode ser especificada com a função [`USER()`](information-functions.html#function_user):
 
 ```sql
 ALTER USER USER() IDENTIFIED BY 'auth_string';
 ```
 
-This syntax enables changing your own password without naming your account literally.
+Esta sintaxe permite alterar seu próprio password sem nomear explicitamente sua conta.
 
-For [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") syntax that permits an *`auth_option`* value to follow a *`user`* value, *`auth_option`* indicates how the account authenticates by specifying an account authentication plugin, credentials (for example, a password), or both. Each *`auth_option`* value applies *only* to the account named immediately preceding it.
+Para a sintaxe [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") que permite que um valor *`auth_option`* siga um valor *`user`*, *`auth_option`* indica como a conta autentica, especificando um authentication plugin da conta, credentials (por exemplo, um password) ou ambos. Cada valor *`auth_option`* se aplica *apenas* à conta nomeada imediatamente antes dele.
 
-Following the *`user`* specifications, the statement may include options for SSL/TLS, resource-limit, password-management, and locking properties. All such options are *global* to the statement and apply to *all* accounts named in the statement.
+Após as especificações de *`user`*, a instrução pode incluir opções para propriedades SSL/TLS, limite de resource, gerenciamento de password e locking. Todas essas opções são *globais* para a instrução e se aplicam a *todas* as contas nomeadas na instrução.
 
-Example: Change an account's password and expire it. As a result, the user must connect with the named password and choose a new one at the next connection:
+Exemplo: Altera o password de uma conta e o expira. Como resultado, o user deve se conectar com o password nomeado e escolher um novo na próxima connection:
 
 ```sql
 ALTER USER 'jeffrey'@'localhost'
   IDENTIFIED BY 'new_password' PASSWORD EXPIRE;
 ```
 
-Example: Modify an account to use the `sha256_password` authentication plugin and the given password. Require that a new password be chosen every 180 days:
+Exemplo: Modifica uma conta para usar o authentication plugin `sha256_password` e o password fornecido. Exige que um novo password seja escolhido a cada 180 dias:
 
 ```sql
 ALTER USER 'jeffrey'@'localhost'
@@ -100,21 +100,21 @@ ALTER USER 'jeffrey'@'localhost'
   PASSWORD EXPIRE INTERVAL 180 DAY;
 ```
 
-Example: Lock or unlock an account:
+Exemplo: Lock ou Unlock de uma conta:
 
 ```sql
 ALTER USER 'jeffrey'@'localhost' ACCOUNT LOCK;
 ALTER USER 'jeffrey'@'localhost' ACCOUNT UNLOCK;
 ```
 
-Example: Require an account to connect using SSL and establish a limit of 20 connections per hour:
+Exemplo: Exige que uma conta se conecte usando SSL e estabelece um limite de 20 connections por hora:
 
 ```sql
 ALTER USER 'jeffrey'@'localhost'
   REQUIRE SSL WITH MAX_CONNECTIONS_PER_HOUR 20;
 ```
 
-Example: Alter multiple accounts, specifying some per-account properties and some global properties:
+Exemplo: Altera múltiplas contas, especificando algumas propriedades por conta e algumas propriedades globais:
 
 ```sql
 ALTER USER
@@ -123,59 +123,59 @@ ALTER USER
   REQUIRE SSL WITH MAX_USER_CONNECTIONS 2;
 ```
 
-The `IDENTIFIED BY` value following `jeffrey` applies only to its immediately preceding account, so it changes the password to `'jeffrey_new_password'` only for `jeffrey`. For `jeanne`, there is no per-account value (thus leaving the password unchanged).
+O valor `IDENTIFIED BY` que segue `jeffrey` se aplica apenas à conta imediatamente anterior a ele, então ele altera o password para `'jeffrey_new_password'` apenas para `jeffrey`. Para `jeanne`, não há valor por conta (assim, deixando o password inalterado).
 
-The remaining properties apply globally to all accounts named in the statement, so for both accounts:
+As propriedades restantes se aplicam globalmente a todas as contas nomeadas na instrução, então, para ambas as contas:
 
-* Connections are required to use SSL.
-* The account can be used for a maximum of two simultaneous connections.
+* As Connections são obrigadas a usar SSL.
+* A conta pode ser usada para um máximo de duas Connections simultâneas.
 
-In the absence of a particular type of option, the account remains unchanged in that respect. For example, with no locking option, the locking state of the account is not changed.
+Na ausência de um tipo particular de opção, a conta permanece inalterada nesse aspecto. Por exemplo, sem uma opção de locking, o estado de locking da conta não é alterado.
 
-##### ALTER USER Authentication Options
+##### Opções de Authentication do ALTER USER
 
-An account name may be followed by an *`auth_option`* authentication option that specifies the account authentication plugin, credentials, or both:
+Um nome de conta pode ser seguido por uma opção de authentication *`auth_option`* que especifica o authentication plugin da conta, credentials, ou ambos:
 
-* *`auth_plugin`* names an authentication plugin. The plugin name can be a quoted string literal or an unquoted name. Plugin names are stored in the `plugin` column of the `mysql.user` system table.
+* *`auth_plugin`* nomeia um authentication plugin. O nome do plugin pode ser um string literal entre aspas ou um nome sem aspas. Os nomes dos Plugins são armazenados na coluna `plugin` da tabela de sistema `mysql.user`.
 
-  For *`auth_option`* syntax that does not specify an authentication plugin, the default plugin is indicated by the value of the [`default_authentication_plugin`](server-system-variables.html#sysvar_default_authentication_plugin) system variable. For descriptions of each plugin, see [Section 6.4.1, “Authentication Plugins”](authentication-plugins.html "6.4.1 Authentication Plugins").
+  Para a sintaxe *`auth_option`* que não especifica um authentication plugin, o default plugin é indicado pelo valor da variável de sistema [`default_authentication_plugin`](server-system-variables.html#sysvar_default_authentication_plugin). Para descrições de cada plugin, consulte [Seção 6.4.1, “Authentication Plugins”](authentication-plugins.html "6.4.1 Authentication Plugins").
 
-* Credentials are stored in the `mysql.user` system table. An `'auth_string'` value specifies account credentials, either as a cleartext (unencrypted) string or hashed in the format expected by the authentication plugin associated with the account, respectively:
+* Credentials são armazenadas na tabela de sistema `mysql.user`. Um valor `'auth_string'` especifica credentials da conta, seja como um string (não criptografada) em cleartext ou Hashed no formato esperado pelo authentication plugin associado à conta, respectivamente:
 
-  + For syntax that uses `BY 'auth_string'`, the string is cleartext and is passed to the authentication plugin for possible hashing. The result returned by the plugin is stored in the `mysql.user` table. A plugin may use the value as specified, in which case no hashing occurs.
+  + Para a sintaxe que usa `BY 'auth_string'`, a string é cleartext e é passada para o authentication plugin para possível hashing. O resultado retornado pelo plugin é armazenado na tabela `mysql.user`. Um plugin pode usar o valor conforme especificado, caso em que nenhum hashing ocorre.
 
-  + For syntax that uses `AS 'auth_string'`, the string is assumed to be already in the format the authentication plugin requires, and is stored as is in the `mysql.user` table. If a plugin requires a hashed value, the value must be already hashed in a format appropriate for the plugin, or the value cannot be used by the plugin and correct authentication of client connections cannot occur.
+  + Para a sintaxe que usa `AS 'auth_string'`, presume-se que a string já esteja no formato que o authentication plugin exige, e é armazenada como está na tabela `mysql.user`. Se um plugin exigir um valor Hashed, o valor já deve estar Hashed em um formato apropriado para o plugin, ou o valor não poderá ser usado pelo plugin e a authentication correta das Connections Client não poderá ocorrer.
 
-  + If an authentication plugin performs no hashing of the authentication string, the `BY 'auth_string'` and `AS 'auth_string'` clauses have the same effect: The authentication string is stored as is in the `mysql.user` system table.
+  + Se um authentication plugin não realizar hashing da string de authentication, as cláusulas `BY 'auth_string'` e `AS 'auth_string'` terão o mesmo efeito: A string de authentication é armazenada como está na tabela de sistema `mysql.user`.
 
-[`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") permits these *`auth_option`* syntaxes:
+[`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") permite estas sintaxes *`auth_option`*:
 
 * `IDENTIFIED BY 'auth_string'`
 
-  Sets the account authentication plugin to the default plugin, passes the cleartext `'auth_string'` value to the plugin for possible hashing, and stores the result in the account row in the `mysql.user` system table.
+  Define o authentication plugin da conta para o default plugin, passa o valor `'auth_string'` em cleartext para o plugin para possível hashing e armazena o resultado na linha da conta na tabela de sistema `mysql.user`.
 
 * `IDENTIFIED WITH auth_plugin`
 
-  Sets the account authentication plugin to *`auth_plugin`*, clears the credentials to the empty string (the credentials are associated with the old authentication plugin, not the new one), and stores the result in the account row in the `mysql.user` system table.
+  Define o authentication plugin da conta para *`auth_plugin`*, limpa as credentials para a string vazia (as credentials estão associadas ao authentication plugin antigo, não ao novo) e armazena o resultado na linha da conta na tabela de sistema `mysql.user`.
 
-  In addition, the password is marked expired. The user must choose a new one when next connecting.
+  Além disso, o password é marcado como expired (expirado). O user deve escolher um novo ao se conectar novamente.
 
 * `IDENTIFIED WITH auth_plugin BY 'auth_string'`
 
-  Sets the account authentication plugin to *`auth_plugin`*, passes the cleartext `'auth_string'` value to the plugin for possible hashing, and stores the result in the account row in the `mysql.user` system table.
+  Define o authentication plugin da conta para *`auth_plugin`*, passa o valor `'auth_string'` em cleartext para o plugin para possível hashing e armazena o resultado na linha da conta na tabela de sistema `mysql.user`.
 
 * `IDENTIFIED WITH auth_plugin AS 'auth_string'`
 
-  Sets the account authentication plugin to *`auth_plugin`* and stores the `'auth_string'` value as is in the `mysql.user` account row. If the plugin requires a hashed string, the string is assumed to be already hashed in the format the plugin requires.
+  Define o authentication plugin da conta para *`auth_plugin`* e armazena o valor `'auth_string'` como está na linha da conta `mysql.user`. Se o plugin exigir uma string Hashed, presume-se que a string já esteja Hashed no formato que o plugin exige.
 
-Example: Specify the password as cleartext; the default plugin is used:
+Exemplo: Especifica o password como cleartext; o default plugin é usado:
 
 ```sql
 ALTER USER 'jeffrey'@'localhost'
   IDENTIFIED BY 'password';
 ```
 
-Example: Specify the authentication plugin, along with a cleartext password value:
+Exemplo: Especifica o authentication plugin, juntamente com um valor de password em cleartext:
 
 ```sql
 ALTER USER 'jeffrey'@'localhost'
@@ -183,7 +183,7 @@ ALTER USER 'jeffrey'@'localhost'
              BY 'password';
 ```
 
-Example: Specify the authentication plugin, along with a hashed password value:
+Exemplo: Especifica o authentication plugin, juntamente com um valor de password Hashed:
 
 ```sql
 ALTER USER 'jeffrey'@'localhost'
@@ -191,51 +191,51 @@ ALTER USER 'jeffrey'@'localhost'
              AS '*6C8989366EAF75BB670AD8EA7A7FC1176A95CEF4';
 ```
 
-For additional information about setting passwords and authentication plugins, see [Section 6.2.10, “Assigning Account Passwords”](assigning-passwords.html "6.2.10 Assigning Account Passwords"), and [Section 6.2.13, “Pluggable Authentication”](pluggable-authentication.html "6.2.13 Pluggable Authentication").
+Para informações adicionais sobre a definição de passwords e authentication plugins, consulte [Seção 6.2.10, “Assigning Account Passwords”](assigning-passwords.html "6.2.10 Assigning Account Passwords") e [Seção 6.2.13, “Pluggable Authentication”](pluggable-authentication.html "6.2.13 Pluggable Authentication").
 
-##### ALTER USER SSL/TLS Options
+##### Opções SSL/TLS do ALTER USER
 
-MySQL can check X.509 certificate attributes in addition to the usual authentication that is based on the user name and credentials. For background information on the use of SSL/TLS with MySQL, see [Section 6.3, “Using Encrypted Connections”](encrypted-connections.html "6.3 Using Encrypted Connections").
+O MySQL pode verificar atributos de certificado X.509, além da authentication usual baseada no nome de user e credentials. Para informações básicas sobre o uso de SSL/TLS com MySQL, consulte [Seção 6.3, “Using Encrypted Connections”](encrypted-connections.html "6.3 Using Encrypted Connections").
 
-To specify SSL/TLS-related options for a MySQL account, use a `REQUIRE` clause that specifies one or more *`tls_option`* values.
+Para especificar opções relacionadas a SSL/TLS para uma conta MySQL, use uma cláusula `REQUIRE` que especifique um ou mais valores *`tls_option`*.
 
-Order of `REQUIRE` options does not matter, but no option can be specified twice. The `AND` keyword is optional between `REQUIRE` options.
+A ordem das opções `REQUIRE` não importa, mas nenhuma opção pode ser especificada duas vezes. A palavra-chave `AND` é opcional entre as opções `REQUIRE`.
 
-[`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") permits these *`tls_option`* values:
+[`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") permite estes valores *`tls_option`*:
 
 * `NONE`
 
-  Indicates that all accounts named by the statement have no SSL or X.509 requirements. Unencrypted connections are permitted if the user name and password are valid. Encrypted connections can be used, at the client's option, if the client has the proper certificate and key files.
+  Indica que todas as contas nomeadas pela instrução não têm requisitos SSL ou X.509. Conexões não criptografadas são permitidas se o nome de user e o password forem válidos. Conexões criptografadas podem ser usadas, a critério do Client, se o Client tiver os arquivos de certificado e key apropriados.
 
   ```sql
   ALTER USER 'jeffrey'@'localhost' REQUIRE NONE;
   ```
 
-  Clients attempt to establish a secure connection by default. For clients that have `REQUIRE NONE`, the connection attempt falls back to an unencrypted connection if a secure connection cannot be established. To require an encrypted connection, a client need specify only the [`--ssl-mode=REQUIRED`](connection-options.html#option_general_ssl-mode) option; the connection attempt fails if a secure connection cannot be established.
+  Os Clients tentam estabelecer uma conexão segura por padrão. Para Clients que têm `REQUIRE NONE`, a tentativa de connection retorna a uma conexão não criptografada se uma conexão segura não puder ser estabelecida. Para exigir uma conexão criptografada, um Client precisa especificar apenas a opção [`--ssl-mode=REQUIRED`](connection-options.html#option_general_ssl-mode); a tentativa de connection falha se uma conexão segura não puder ser estabelecida.
 
 * `SSL`
 
-  Tells the server to permit only encrypted connections for all accounts named by the statement.
+  Informa ao Server para permitir apenas conexões criptografadas para todas as contas nomeadas pela instrução.
 
   ```sql
   ALTER USER 'jeffrey'@'localhost' REQUIRE SSL;
   ```
 
-  Clients attempt to establish a secure connection by default. For accounts that have `REQUIRE SSL`, the connection attempt fails if a secure connection cannot be established.
+  Os Clients tentam estabelecer uma conexão segura por padrão. Para contas que têm `REQUIRE SSL`, a tentativa de connection falha se uma conexão segura não puder ser estabelecida.
 
 * `X509`
 
-  For all accounts named by the statement, requires that clients present a valid certificate, but the exact certificate, issuer, and subject do not matter. The only requirement is that it should be possible to verify its signature with one of the CA certificates. Use of X.509 certificates always implies encryption, so the `SSL` option is unnecessary in this case.
+  Para todas as contas nomeadas pela instrução, exige que os Clients apresentem um certificado válido, mas o certificado exato, issuer e subject não importam. O único requisito é que seja possível verificar sua signature com um dos certificados CA. O uso de certificados X.509 sempre implica em criptografia, então a opção `SSL` é desnecessária neste caso.
 
   ```sql
   ALTER USER 'jeffrey'@'localhost' REQUIRE X509;
   ```
 
-  For accounts with `REQUIRE X509`, clients must specify the [`--ssl-key`](connection-options.html#option_general_ssl-key) and [`--ssl-cert`](connection-options.html#option_general_ssl-cert) options to connect. (It is recommended but not required that [`--ssl-ca`](connection-options.html#option_general_ssl-ca) also be specified so that the public certificate provided by the server can be verified.) This is true for `ISSUER` and `SUBJECT` as well because those `REQUIRE` options imply the requirements of `X509`.
+  Para contas com `REQUIRE X509`, os Clients devem especificar as opções [`--ssl-key`](connection-options.html#option_general_ssl-key) e [`--ssl-cert`](connection-options.html#option_general_ssl-cert) para se conectar. (É recomendável, mas não obrigatório, que [`--ssl-ca`](connection-options.html#option_general_ssl-ca) também seja especificado para que o certificado público fornecido pelo Server possa ser verificado.) Isso também é verdade para `ISSUER` e `SUBJECT` porque essas opções `REQUIRE` implicam nos requisitos de `X509`.
 
 * `ISSUER 'issuer'`
 
-  For all accounts named by the statement, requires that clients present a valid X.509 certificate issued by CA `'issuer'`. If a client presents a certificate that is valid but has a different issuer, the server rejects the connection. Use of X.509 certificates always implies encryption, so the `SSL` option is unnecessary in this case.
+  Para todas as contas nomeadas pela instrução, exige que os Clients apresentem um certificado X.509 válido emitido pelo CA `'issuer'`. Se um Client apresentar um certificado que é válido, mas tem um issuer diferente, o Server rejeita a connection. O uso de certificados X.509 sempre implica em criptografia, então a opção `SSL` é desnecessária neste caso.
 
   ```sql
   ALTER USER 'jeffrey'@'localhost'
@@ -243,11 +243,11 @@ Order of `REQUIRE` options does not matter, but no option can be specified twice
       O=MySQL/CN=CA/emailAddress=ca@example.com';
   ```
 
-  Because `ISSUER` implies the requirements of `X509`, clients must specify the [`--ssl-key`](connection-options.html#option_general_ssl-key) and [`--ssl-cert`](connection-options.html#option_general_ssl-cert) options to connect. (It is recommended but not required that [`--ssl-ca`](connection-options.html#option_general_ssl-ca) also be specified so that the public certificate provided by the server can be verified.)
+  Como `ISSUER` implica nos requisitos de `X509`, os Clients devem especificar as opções [`--ssl-key`](connection-options.html#option_general_ssl-key) e [`--ssl-cert`](connection-options.html#option_general_ssl-cert) para se conectar. (É recomendável, mas não obrigatório, que [`--ssl-ca`](connection-options.html#option_general_ssl-ca) também seja especificado para que o certificado público fornecido pelo Server possa ser verificado.)
 
 * `SUBJECT 'subject'`
 
-  For all accounts named by the statement, requires that clients present a valid X.509 certificate containing the subject *`subject`*. If a client presents a certificate that is valid but has a different subject, the server rejects the connection. Use of X.509 certificates always implies encryption, so the `SSL` option is unnecessary in this case.
+  Para todas as contas nomeadas pela instrução, exige que os Clients apresentem um certificado X.509 válido contendo o subject *`subject`*. Se um Client apresentar um certificado que é válido, mas tem um subject diferente, o Server rejeita a connection. O uso de certificados X.509 sempre implica em criptografia, então a opção `SSL` é desnecessária neste caso.
 
   ```sql
   ALTER USER 'jeffrey'@'localhost'
@@ -256,20 +256,20 @@ Order of `REQUIRE` options does not matter, but no option can be specified twice
       CN=client/emailAddress=client@example.com';
   ```
 
-  MySQL does a simple string comparison of the `'subject'` value to the value in the certificate, so lettercase and component ordering must be given exactly as present in the certificate.
+  O MySQL realiza uma simples comparação de string do valor `'subject'` com o valor no certificado, portanto, a capitalização e a ordem dos componentes devem ser fornecidas exatamente como presentes no certificado.
 
-  Because `SUBJECT` implies the requirements of `X509`, clients must specify the [`--ssl-key`](connection-options.html#option_general_ssl-key) and [`--ssl-cert`](connection-options.html#option_general_ssl-cert) options to connect. (It is recommended but not required that [`--ssl-ca`](connection-options.html#option_general_ssl-ca) also be specified so that the public certificate provided by the server can be verified.)
+  Como `SUBJECT` implica nos requisitos de `X509`, os Clients devem especificar as opções [`--ssl-key`](connection-options.html#option_general_ssl-key) e [`--ssl-cert`](connection-options.html#option_general_ssl-cert) para se conectar. (É recomendável, mas não obrigatório, que [`--ssl-ca`](connection-options.html#option_general_ssl-ca) também seja especificado para que o certificado público fornecido pelo Server possa ser verificado.)
 
 * `CIPHER 'cipher'`
 
-  For all accounts named by the statement, requires a specific cipher method for encrypting connections. This option is needed to ensure that ciphers and key lengths of sufficient strength are used. Encryption can be weak if old algorithms using short encryption keys are used.
+  Para todas as contas nomeadas pela instrução, exige um método Cipher específico para criptografar Connections. Esta opção é necessária para garantir que Ciphers e key lengths de força suficiente sejam usados. A criptografia pode ser fraca se forem usados algoritmos antigos que utilizam short encryption keys.
 
   ```sql
   ALTER USER 'jeffrey'@'localhost'
     REQUIRE CIPHER 'EDH-RSA-DES-CBC3-SHA';
   ```
 
-The `SUBJECT`, `ISSUER`, and `CIPHER` options can be combined in the `REQUIRE` clause:
+As opções `SUBJECT`, `ISSUER` e `CIPHER` podem ser combinadas na cláusula `REQUIRE`:
 
 ```sql
 ALTER USER 'jeffrey'@'localhost'
@@ -281,50 +281,50 @@ ALTER USER 'jeffrey'@'localhost'
   AND CIPHER 'EDH-RSA-DES-CBC3-SHA';
 ```
 
-##### ALTER USER Resource-Limit Options
+##### Opções de Limite de Resource do ALTER USER
 
-It is possible to place limits on use of server resources by an account, as discussed in [Section 6.2.16, “Setting Account Resource Limits”](user-resources.html "6.2.16 Setting Account Resource Limits"). To do so, use a `WITH` clause that specifies one or more *`resource_option`* values.
+É possível impor limites ao uso de resources do Server por uma conta, conforme discutido na [Seção 6.2.16, “Setting Account Resource Limits”](user-resources.html "6.2.16 Setting Account Resource Limits"). Para fazer isso, use uma cláusula `WITH` que especifique um ou mais valores *`resource_option`*.
 
-Order of `WITH` options does not matter, except that if a given resource limit is specified multiple times, the last instance takes precedence.
+A ordem das opções `WITH` não importa, exceto que, se um determinado limite de resource for especificado várias vezes, a última instância terá precedência.
 
-[`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") permits these *`resource_option`* values:
+[`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") permite estes valores *`resource_option`*:
 
 * `MAX_QUERIES_PER_HOUR count`, `MAX_UPDATES_PER_HOUR count`, `MAX_CONNECTIONS_PER_HOUR count`
 
-  For all accounts named by the statement, these options restrict how many queries, updates, and connections to the server are permitted to each account during any given one-hour period. (Queries for which results are served from the query cache do not count against the `MAX_QUERIES_PER_HOUR` limit.) If *`count`* is `0` (the default), this means that there is no limitation for the account.
+  Para todas as contas nomeadas pela instrução, essas opções restringem quantas Queries, Updates e Connections ao Server são permitidas a cada conta durante um determinado período de uma hora. (Queries cujos resultados são servidos a partir do Query Cache não contam para o limite `MAX_QUERIES_PER_HOUR`.) Se *`count`* for `0` (o padrão), isso significa que não há limitação para a conta.
 
 * `MAX_USER_CONNECTIONS count`
 
-  For all accounts named by the statement, restricts the maximum number of simultaneous connections to the server by each account. A nonzero *`count`* specifies the limit for the account explicitly. If *`count`* is `0` (the default), the server determines the number of simultaneous connections for the account from the global value of the [`max_user_connections`](server-system-variables.html#sysvar_max_user_connections) system variable. If [`max_user_connections`](server-system-variables.html#sysvar_max_user_connections) is also zero, there is no limit for the account.
+  Para todas as contas nomeadas pela instrução, restringe o número máximo de Connections simultâneas ao Server por cada conta. Um *`count`* diferente de zero especifica o limite para a conta explicitamente. Se *`count`* for `0` (o padrão), o Server determina o número de Connections simultâneas para a conta a partir do valor global da variável de sistema [`max_user_connections`](server-system-variables.html#sysvar_max_user_connections). Se [`max_user_connections`](server-system-variables.html#sysvar_max_user_connections) também for zero, não há limite para a conta.
 
-Example:
+Exemplo:
 
 ```sql
 ALTER USER 'jeffrey'@'localhost'
   WITH MAX_QUERIES_PER_HOUR 500 MAX_UPDATES_PER_HOUR 100;
 ```
 
-##### ALTER USER Password-Management Options
+##### Opções de Gerenciamento de Password do ALTER USER
 
-[`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") supports several *`password_option`* values for password expiration management, to either expire an account password manually or establish its password expiration policy. Policy options do not expire the password. Instead, they determine how the server applies automatic expiration to the account based on account password age. For a given account, its password age is assessed from the date and time of the most recent password change.
+[`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") suporta vários valores *`password_option`* para gerenciamento de expiration de password, para expirar manualmente um password de conta ou estabelecer sua política de expiration de password. As opções de política não expiram o password. Em vez disso, elas determinam como o Server aplica a expiration automática à conta com base na idade do password da conta. Para uma determinada conta, a idade do password é avaliada a partir da data e hora da alteração mais recente do password.
 
-This section describes the syntax for password-management options. For information about establishing policy for password management, see [Section 6.2.11, “Password Management”](password-management.html "6.2.11 Password Management").
+Esta seção descreve a sintaxe para opções de gerenciamento de password. Para obter informações sobre o estabelecimento de políticas para gerenciamento de password, consulte [Seção 6.2.11, “Password Management”](password-management.html "6.2.11 Password Management").
 
-If multiple password-management options are specified, the last one takes precedence.
+Se múltiplas opções de gerenciamento de password forem especificadas, a última terá precedência.
 
-These options apply only to accounts that use an authentication plugin that stores credentials internally to MySQL. For accounts that use a plugin that performs authentication against a credentials system that is external to MySQL, password management must be handled externally against that system as well. For more information about internal credentials storage, see [Section 6.2.11, “Password Management”](password-management.html "6.2.11 Password Management").
+Essas opções se aplicam apenas a contas que usam um authentication plugin que armazena credentials internamente no MySQL. Para contas que usam um plugin que realiza authentication contra um sistema de credentials externo ao MySQL, o gerenciamento de password deve ser tratado externamente contra esse sistema também. Para obter mais informações sobre o armazenamento interno de credentials, consulte [Seção 6.2.11, “Password Management”](password-management.html "6.2.11 Password Management").
 
-A client session operates in restricted mode if the account password was expired manually or if the password age is considered greater than its permitted lifetime per the automatic expiration policy. In restricted mode, operations performed within the session result in an error until the user establishes a new account password. For information about restricted mode, see [Section 6.2.12, “Server Handling of Expired Passwords”](expired-password-handling.html "6.2.12 Server Handling of Expired Passwords").
+Uma Session Client opera em modo restrito se o password da conta foi expirado manualmente ou se a idade do password for considerada maior do que seu tempo de vida permitido pela política de expiration automática. No modo restrito, as operações realizadas dentro da Session resultam em um error até que o user estabeleça um novo password de conta. Para obter informações sobre o modo restrito, consulte [Seção 6.2.12, “Server Handling of Expired Passwords”](expired-password-handling.html "6.2.12 Server Handling of Expired Passwords").
 
-Note
+Nota
 
-Although it is possible to “reset” an expired password by setting it to its current value, it is preferable, as a matter of good policy, to choose a different password.
+Embora seja possível "resetar" um password expirado definindo-o para seu valor atual, é preferível, como uma questão de boa política, escolher um password diferente.
 
-[`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") permits these *`password_option`* values for controlling password expiration:
+[`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") permite estes valores *`password_option`* para controlar a expiration de password:
 
 * `PASSWORD EXPIRE`
 
-  Immediately marks the password expired for all accounts named by the statement.
+  Marca imediatamente o password como expired (expirado) para todas as contas nomeadas pela instrução.
 
   ```sql
   ALTER USER 'jeffrey'@'localhost' PASSWORD EXPIRE;
@@ -332,7 +332,7 @@ Although it is possible to “reset” an expired password by setting it to its 
 
 * `PASSWORD EXPIRE DEFAULT`
 
-  Sets all accounts named by the statement so that the global expiration policy applies, as specified by the [`default_password_lifetime`](server-system-variables.html#sysvar_default_password_lifetime) system variable.
+  Define todas as contas nomeadas pela instrução para que a política de expiration global se aplique, conforme especificado pela variável de sistema [`default_password_lifetime`](server-system-variables.html#sysvar_default_password_lifetime).
 
   ```sql
   ALTER USER 'jeffrey'@'localhost' PASSWORD EXPIRE DEFAULT;
@@ -340,7 +340,7 @@ Although it is possible to “reset” an expired password by setting it to its 
 
 * `PASSWORD EXPIRE NEVER`
 
-  This expiration option overrides the global policy for all accounts named by the statement. For each, it disables password expiration so that the password never expires.
+  Esta opção de expiration sobrescreve a política global para todas as contas nomeadas pela instrução. Para cada uma, desabilita a expiration de password para que ele nunca expire.
 
   ```sql
   ALTER USER 'jeffrey'@'localhost' PASSWORD EXPIRE NEVER;
@@ -348,14 +348,14 @@ Although it is possible to “reset” an expired password by setting it to its 
 
 * `PASSWORD EXPIRE INTERVAL N DAY`
 
-  This expiration option overrides the global policy for all accounts named by the statement. For each, it sets the password lifetime to *`N`* days. The following statement requires the password to be changed every 180 days:
+  Esta opção de expiration sobrescreve a política global para todas as contas nomeadas pela instrução. Para cada uma, define o tempo de vida do password para *`N`* days. A instrução a seguir exige que o password seja alterado a cada 180 dias:
 
   ```sql
   ALTER USER 'jeffrey'@'localhost' PASSWORD EXPIRE INTERVAL 180 DAY;
   ```
 
-##### ALTER USER Account-Locking Options
+##### Opções de Locking de Conta do ALTER USER
 
-MySQL supports account locking and unlocking using the `ACCOUNT LOCK` and `ACCOUNT UNLOCK` options, which specify the locking state for an account. For additional discussion, see [Section 6.2.15, “Account Locking”](account-locking.html "6.2.15 Account Locking").
+O MySQL suporta locking e unlocking de contas usando as opções `ACCOUNT LOCK` e `ACCOUNT UNLOCK`, que especificam o estado de locking para uma conta. Para discussão adicional, consulte [Seção 6.2.15, “Account Locking”](account-locking.html "6.2.15 Account Locking").
 
-If multiple account-locking options are specified, the last one takes precedence.
+Se múltiplas opções de locking de conta forem especificadas, a última terá precedência.

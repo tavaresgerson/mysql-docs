@@ -1,53 +1,53 @@
-#### 26.4.3.41 The user_summary and x$user_summary Views
+#### 26.4.3.41 As Views user_summary e x$user_summary
 
-These views summarize statement activity, file I/O, and connections, grouped by user. By default, rows are sorted by descending total latency.
+Essas Views resumem a atividade de statement, I/O de arquivo e Connections, agrupadas por usuário. Por padrão, as linhas são ordenadas pela Latency total descendente.
 
-The `user_summary` and `x$user_summary` views have these columns:
+As Views `user_summary` e `x$user_summary` possuem estas colunas:
 
 * `user`
 
-  The client user name. Rows for which the `USER` column in the underlying Performance Schema table is `NULL` are assumed to be for background threads and are reported with a host name of `background`.
+  O nome do usuário cliente. Linhas para as quais a coluna `USER` na tabela subjacente do Performance Schema é `NULL` são assumidas como sendo para Threads em background e são reportadas com um nome de host de `background`.
 
 * `statements`
 
-  The total number of statements for the user.
+  O número total de statements para o usuário.
 
 * `statement_latency`
 
-  The total wait time of timed statements for the user.
+  O tempo de espera total de statements cronometrados para o usuário.
 
 * `statement_avg_latency`
 
-  The average wait time per timed statement for the user.
+  O tempo de espera médio por statement cronometrado para o usuário.
 
 * `table_scans`
 
-  The total number of table scans for the user.
+  O número total de Table Scans para o usuário.
 
 * `file_ios`
 
-  The total number of file I/O events for the user.
+  O número total de eventos de I/O de arquivo para o usuário.
 
 * `file_io_latency`
 
-  The total wait time of timed file I/O events for the user.
+  O tempo de espera total de eventos de I/O de arquivo cronometrados para o usuário.
 
 * `current_connections`
 
-  The current number of connections for the user.
+  O número atual de Connections para o usuário.
 
 * `total_connections`
 
-  The total number of connections for the user.
+  O número total de Connections para o usuário.
 
 * `unique_hosts`
 
-  The number of distinct hosts from which connections for the user have originated.
+  O número de hosts distintos dos quais as Connections para o usuário se originaram.
 
 * `current_memory`
 
-  The current amount of allocated memory for the user.
+  A quantidade atual de memória alocada para o usuário.
 
 * `total_memory_allocated`
 
-  The total amount of allocated memory for the user.
+  A quantidade total de memória alocada para o usuário.

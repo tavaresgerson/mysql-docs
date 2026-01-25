@@ -1,32 +1,32 @@
-### 11.1.1 Numeric Data Type Syntax
+### 11.1.1 Sintaxe de Tipos de Dados Numéricos
 
-For integer data types, *`M`* indicates the minimum display width. The maximum display width is 255. Display width is unrelated to the range of values a type can store, as described in Section 11.1.6, “Numeric Type Attributes”.
+Para tipos de dados inteiros, *`M`* indica a largura mínima de exibição. A largura máxima de exibição é 255. A largura de exibição não está relacionada ao intervalo de valores que um tipo pode armazenar, conforme descrito na Seção 11.1.6, “Atributos de Tipo Numérico”.
 
-For floating-point and fixed-point data types, *`M`* is the total number of digits that can be stored.
+Para tipos de dados de ponto flutuante e de ponto fixo, *`M`* é o número total de dígitos que podem ser armazenados.
 
-If you specify `ZEROFILL` for a numeric column, MySQL automatically adds the `UNSIGNED` attribute to the column.
+Se você especificar `ZEROFILL` para uma coluna numérica, o MySQL adiciona automaticamente o atributo `UNSIGNED` à coluna.
 
-Numeric data types that permit the `UNSIGNED` attribute also permit `SIGNED`. However, these data types are signed by default, so the `SIGNED` attribute has no effect.
+Tipos de dados numéricos que permitem o atributo `UNSIGNED` também permitem `SIGNED`. No entanto, esses tipos de dados são signed (com sinal) por padrão, portanto, o atributo `SIGNED` não tem efeito.
 
-`SERIAL` is an alias for `BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE`.
+`SERIAL` é um alias para `BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE`.
 
-`SERIAL DEFAULT VALUE` in the definition of an integer column is an alias for `NOT NULL AUTO_INCREMENT UNIQUE`.
+`SERIAL DEFAULT VALUE` na definição de uma coluna inteira é um alias para `NOT NULL AUTO_INCREMENT UNIQUE`.
 
-Warning
+Aviso
 
-When you use subtraction between integer values where one is of type `UNSIGNED`, the result is unsigned unless the `NO_UNSIGNED_SUBTRACTION` SQL mode is enabled. See Section 12.10, “Cast Functions and Operators”.
+Ao usar a subtração entre valores inteiros onde um é do tipo `UNSIGNED`, o resultado é unsigned (sem sinal), a menos que o modo SQL `NO_UNSIGNED_SUBTRACTION` esteja habilitado. Consulte a Seção 12.10, “Funções e Operadores de Cast”.
 
 * `BIT[(M)]`
 
-  A bit-value type. *`M`* indicates the number of bits per value, from 1 to 64. The default is 1 if *`M`* is omitted.
+  Um tipo de valor de bit. *`M`* indica o número de bits por valor, de 1 a 64. O padrão é 1 se *`M`* for omitido.
 
-* `TINYINT[(M)] [UNSIGNED] [ZEROFILL]` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")
+* `TINYINT[(M)] [UNSIGNED] [ZEROFILL]`
 
-  A very small integer. The signed range is `-128` to `127`. The unsigned range is `0` to `255`.
+  Um inteiro muito pequeno. O intervalo signed é de `-128` a `127`. O intervalo unsigned é de `0` a `255`.
 
-* `BOOL` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), `BOOLEAN` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")
+* `BOOL`, `BOOLEAN`
 
-  These types are synonyms for `TINYINT(1)` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"). A value of zero is considered false. Nonzero values are considered true:
+  Esses tipos são sinônimos de `TINYINT(1)`. Um valor zero é considerado false. Valores não zero são considerados true:
 
   ```sql
   mysql> SELECT IF(0, 'true', 'false');
@@ -51,7 +51,7 @@ When you use subtraction between integer values where one is of type `UNSIGNED`,
   +------------------------+
   ```
 
-  However, the values `TRUE` and `FALSE` are merely aliases for `1` and `0`, respectively, as shown here:
+  No entanto, os valores `TRUE` e `FALSE` são meramente aliases para `1` e `0`, respectivamente, conforme mostrado aqui:
 
   ```sql
   mysql> SELECT IF(0 = FALSE, 'true', 'false');
@@ -83,86 +83,86 @@ When you use subtraction between integer values where one is of type `UNSIGNED`,
   +--------------------------------+
   ```
 
-  The last two statements display the results shown because `2` is equal to neither `1` nor `0`.
+  As últimas duas instruções exibem os resultados mostrados porque `2` não é igual a `1` nem a `0`.
 
-* `SMALLINT[(M)] [UNSIGNED] [ZEROFILL]` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")
+* `SMALLINT[(M)] [UNSIGNED] [ZEROFILL]`
 
-  A small integer. The signed range is `-32768` to `32767`. The unsigned range is `0` to `65535`.
+  Um inteiro pequeno. O intervalo signed é de `-32768` a `32767`. O intervalo unsigned é de `0` a `65535`.
 
-* `MEDIUMINT[(M)] [UNSIGNED] [ZEROFILL]` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")
+* `MEDIUMINT[(M)] [UNSIGNED] [ZEROFILL]`
 
-  A medium-sized integer. The signed range is `-8388608` to `8388607`. The unsigned range is `0` to `16777215`.
+  Um inteiro de tamanho médio. O intervalo signed é de `-8388608` a `8388607`. O intervalo unsigned é de `0` a `16777215`.
 
-* `INT[(M)] [UNSIGNED] [ZEROFILL]` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")
+* `INT[(M)] [UNSIGNED] [ZEROFILL]`
 
-  A normal-size integer. The signed range is `-2147483648` to `2147483647`. The unsigned range is `0` to `4294967295`.
+  Um inteiro de tamanho normal. O intervalo signed é de `-2147483648` a `2147483647`. O intervalo unsigned é de `0` a `4294967295`.
 
-* `INTEGER[(M)] [UNSIGNED] [ZEROFILL]` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")
+* `INTEGER[(M)] [UNSIGNED] [ZEROFILL]`
 
-  This type is a synonym for `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT").
+  Este tipo é um sinônimo para `INT`.
 
-* `BIGINT[(M)] [UNSIGNED] [ZEROFILL]` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")
+* `BIGINT[(M)] [UNSIGNED] [ZEROFILL]`
 
-  A large integer. The signed range is `-9223372036854775808` to `9223372036854775807`. The unsigned range is `0` to `18446744073709551615`.
+  Um inteiro grande. O intervalo signed é de `-9223372036854775808` a `9223372036854775807`. O intervalo unsigned é de `0` a `18446744073709551615`.
 
-  `SERIAL` is an alias for `BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE`.
+  `SERIAL` é um alias para `BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE`.
 
-  Some things you should be aware of with respect to `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") columns:
+  Algumas coisas que você deve estar ciente em relação às colunas `BIGINT`:
 
-  + All arithmetic is done using signed `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") or `DOUBLE` - FLOAT, DOUBLE") values, so you should not use unsigned big integers larger than `9223372036854775807` (63 bits) except with bit functions! If you do that, some of the last digits in the result may be wrong because of rounding errors when converting a `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") value to a `DOUBLE` - FLOAT, DOUBLE").
+  + Toda a aritmética é feita usando valores `BIGINT` signed ou `DOUBLE`, então você não deve usar big integers unsigned maiores que `9223372036854775807` (63 bits), exceto com funções de bit! Se você fizer isso, alguns dos últimos dígitos no resultado podem estar errados devido a erros de arredondamento ao converter um valor `BIGINT` para um `DOUBLE`.
 
-    MySQL can handle `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") in the following cases:
+    O MySQL pode lidar com `BIGINT` nos seguintes casos:
 
-    - When using integers to store large unsigned values in a `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") column.
+    - Ao usar integers para armazenar grandes valores unsigned em uma coluna `BIGINT`.
 
-    - In `MIN(col_name)` or `MAX(col_name)`, where *`col_name`* refers to a `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") column.
+    - Em `MIN(col_name)` ou `MAX(col_name)`, onde *`col_name`* se refere a uma coluna `BIGINT`.
 
-    - When using operators (`+`, `-`, `*`, and so on) where both operands are integers.
+    - Ao usar operadores (`+`, `-`, `*`, e assim por diante) onde ambos os operandos são integers.
 
-  + You can always store an exact integer value in a `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") column by storing it using a string. In this case, MySQL performs a string-to-number conversion that involves no intermediate double-precision representation.
+  + Você sempre pode armazenar um valor inteiro exato em uma coluna `BIGINT` armazenando-o usando uma string. Neste caso, o MySQL executa uma conversão de string para número que não envolve representação intermediária de precisão double.
 
-  + The `-`, `+`, and `*` operators use `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") arithmetic when both operands are integer values. This means that if you multiply two big integers (or results from functions that return integers), you may get unexpected results when the result is larger than `9223372036854775807`.
+  + Os operadores `-`, `+` e `*` usam aritmética `BIGINT` quando ambos os operandos são valores inteiros. Isso significa que, se você multiplicar dois big integers (ou resultados de funções que retornam integers), você pode obter resultados inesperados quando o resultado for maior que `9223372036854775807`.
 
-* [`DECIMAL[(M[,D])] [UNSIGNED] [ZEROFILL]`](fixed-point-types.html "11.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC")
+* [`DECIMAL[(M[,D])] [UNSIGNED] [ZEROFILL]`](fixed-point-types.html "11.1.3 Tipos de Ponto Fixo (Valor Exato) - DECIMAL, NUMERIC")
 
-  A packed “exact” fixed-point number. *`M`* is the total number of digits (the precision) and *`D`* is the number of digits after the decimal point (the scale). The decimal point and (for negative numbers) the `-` sign are not counted in *`M`*. If *`D`* is 0, values have no decimal point or fractional part. The maximum number of digits (*`M`*) for `DECIMAL` - DECIMAL, NUMERIC") is 65. The maximum number of supported decimals (*`D`*) is 30. If *`D`* is omitted, the default is 0. If *`M`* is omitted, the default is 10. (There is also a limit on how long the text of `DECIMAL` - DECIMAL, NUMERIC") literals can be; see Section 12.21.3, “Expression Handling”.)
+  Um número de ponto fixo “exato” packed. *`M`* é o número total de dígitos (a precisão) e *`D`* é o número de dígitos após o ponto decimal (a escala). O ponto decimal e (para números negativos) o sinal `-` não são contados em *`M`*. Se *`D`* for 0, os valores não têm ponto decimal ou parte fracionária. O número máximo de dígitos (*`M`*) para `DECIMAL` é 65. O número máximo de casas decimais suportadas (*`D`*) é 30. Se *`D`* for omitido, o padrão é 0. Se *`M`* for omitido, o padrão é 10. (Existe também um limite para o quão longo pode ser o texto de literais `DECIMAL`; consulte a Seção 12.21.3, “Manipulação de Expressões”.)
 
-  `UNSIGNED`, if specified, disallows negative values.
+  `UNSIGNED`, se especificado, não permite valores negativos.
 
-  All basic calculations (`+, -, *, /`) with `DECIMAL` - DECIMAL, NUMERIC") columns are done with a precision of 65 digits.
+  Todos os cálculos básicos (`+, -, *, /`) com colunas `DECIMAL` são feitos com uma precisão de 65 dígitos.
 
-* [`DEC[(M[,D])] [UNSIGNED] [ZEROFILL]`](fixed-point-types.html "11.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC"), [`NUMERIC[(M[,D])] [UNSIGNED] [ZEROFILL]`](fixed-point-types.html "11.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC"), [`FIXED[(M[,D])] [UNSIGNED] [ZEROFILL]`](fixed-point-types.html "11.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC")
+* [`DEC[(M[,D])] [UNSIGNED] [ZEROFILL]`](fixed-point-types.html "11.1.3 Tipos de Ponto Fixo (Valor Exato) - DECIMAL, NUMERIC"), [`NUMERIC[(M[,D])] [UNSIGNED] [ZEROFILL]`](fixed-point-types.html "11.1.3 Tipos de Ponto Fixo (Valor Exato) - DECIMAL, NUMERIC"), [`FIXED[(M[,D])] [UNSIGNED] [ZEROFILL]`](fixed-point-types.html "11.1.3 Tipos de Ponto Fixo (Valor Exato) - DECIMAL, NUMERIC")
 
-  These types are synonyms for `DECIMAL` - DECIMAL, NUMERIC"). The `FIXED` - DECIMAL, NUMERIC") synonym is available for compatibility with other database systems.
+  Estes tipos são sinônimos de `DECIMAL`. O sinônimo `FIXED` está disponível para compatibilidade com outros sistemas Database.
 
-* `FLOAT[(M,D)] [UNSIGNED] [ZEROFILL]` - FLOAT, DOUBLE")
+* `FLOAT[(M,D)] [UNSIGNED] [ZEROFILL]`
 
-  A small (single-precision) floating-point number. Permissible values are `-3.402823466E+38` to `-1.175494351E-38`, `0`, and `1.175494351E-38` to `3.402823466E+38`. These are the theoretical limits, based on the IEEE standard. The actual range might be slightly smaller depending on your hardware or operating system.
+  Um número de ponto flutuante pequeno (single-precision). Os valores permitidos são `-3.402823466E+38` a `-1.175494351E-38`, `0` e `1.175494351E-38` a `3.402823466E+38`. Estes são os limites teóricos, baseados no padrão IEEE. O intervalo real pode ser ligeiramente menor dependendo do seu hardware ou sistema operacional.
 
-  *`M`* is the total number of digits and *`D`* is the number of digits following the decimal point. If *`M`* and *`D`* are omitted, values are stored to the limits permitted by the hardware. A single-precision floating-point number is accurate to approximately 7 decimal places.
+  *`M`* é o número total de dígitos e *`D`* é o número de dígitos após o ponto decimal. Se *`M`* e *`D`* forem omitidos, os valores são armazenados até os limites permitidos pelo hardware. Um número de ponto flutuante single-precision tem precisão de aproximadamente 7 casas decimais.
 
-  `FLOAT(M,D)` is a nonstandard MySQL extension.
+  `FLOAT(M,D)` é uma extensão não padrão do MySQL.
 
-  `UNSIGNED`, if specified, disallows negative values.
+  `UNSIGNED`, se especificado, não permite valores negativos.
 
-  Using `FLOAT` - FLOAT, DOUBLE") might give you some unexpected problems because all calculations in MySQL are done with double precision. See Section B.3.4.7, “Solving Problems with No Matching Rows”.
+  O uso de `FLOAT` pode gerar alguns problemas inesperados porque todos os cálculos no MySQL são feitos com precisão double. Consulte a Seção B.3.4.7, “Solucionando Problemas Sem Linhas Correspondentes”.
 
-* `FLOAT(p) [UNSIGNED] [ZEROFILL]` - FLOAT, DOUBLE")
+* `FLOAT(p) [UNSIGNED] [ZEROFILL]`
 
-  A floating-point number. *`p`* represents the precision in bits, but MySQL uses this value only to determine whether to use `FLOAT` - FLOAT, DOUBLE") or `DOUBLE` - FLOAT, DOUBLE") for the resulting data type. If *`p`* is from 0 to 24, the data type becomes `FLOAT` - FLOAT, DOUBLE") with no *`M`* or *`D`* values. If *`p`* is from 25 to 53, the data type becomes `DOUBLE` - FLOAT, DOUBLE") with no *`M`* or *`D`* values. The range of the resulting column is the same as for the single-precision `FLOAT` - FLOAT, DOUBLE") or double-precision `DOUBLE` - FLOAT, DOUBLE") data types described earlier in this section.
+  Um número de ponto flutuante. *`p`* representa a precisão em bits, mas o MySQL usa este valor apenas para determinar se deve usar `FLOAT` ou `DOUBLE` para o tipo de dado resultante. Se *`p`* for de 0 a 24, o tipo de dado se torna `FLOAT` sem valores *`M`* ou *`D`*. Se *`p`* for de 25 a 53, o tipo de dado se torna `DOUBLE` sem valores *`M`* ou *`D`*. O intervalo da coluna resultante é o mesmo que para os tipos de dados `FLOAT` single-precision ou `DOUBLE` double-precision descritos anteriormente nesta seção.
 
-  `FLOAT(p)` - FLOAT, DOUBLE") syntax is provided for ODBC compatibility.
+  A sintaxe `FLOAT(p)` é fornecida para compatibilidade com ODBC.
 
-* `DOUBLE[(M,D)] [UNSIGNED] [ZEROFILL]` - FLOAT, DOUBLE")
+* `DOUBLE[(M,D)] [UNSIGNED] [ZEROFILL]`
 
-  A normal-size (double-precision) floating-point number. Permissible values are `-1.7976931348623157E+308` to `-2.2250738585072014E-308`, `0`, and `2.2250738585072014E-308` to `1.7976931348623157E+308`. These are the theoretical limits, based on the IEEE standard. The actual range might be slightly smaller depending on your hardware or operating system.
+  Um número de ponto flutuante de tamanho normal (double-precision). Os valores permitidos são `-1.7976931348623157E+308` a `-2.2250738585072014E-308`, `0` e `2.2250738585072014E-308` a `1.7976931348623157E+308`. Estes são os limites teóricos, baseados no padrão IEEE. O intervalo real pode ser ligeiramente menor dependendo do seu hardware ou sistema operacional.
 
-  *`M`* is the total number of digits and *`D`* is the number of digits following the decimal point. If *`M`* and *`D`* are omitted, values are stored to the limits permitted by the hardware. A double-precision floating-point number is accurate to approximately 15 decimal places.
+  *`M`* é o número total de dígitos e *`D`* é o número de dígitos após o ponto decimal. Se *`M`* e *`D`* forem omitidos, os valores são armazenados até os limites permitidos pelo hardware. Um número de ponto flutuante double-precision tem precisão de aproximadamente 15 casas decimais.
 
-  `DOUBLE(M,D)` is a nonstandard MySQL extension.
+  `DOUBLE(M,D)` é uma extensão não padrão do MySQL.
 
-  `UNSIGNED`, if specified, disallows negative values.
+  `UNSIGNED`, se especificado, não permite valores negativos.
 
-* `DOUBLE PRECISION[(M,D)] [UNSIGNED] [ZEROFILL]` - FLOAT, DOUBLE"), `REAL[(M,D)] [UNSIGNED] [ZEROFILL]` - FLOAT, DOUBLE")
+* `DOUBLE PRECISION[(M,D)] [UNSIGNED] [ZEROFILL]`, `REAL[(M,D)] [UNSIGNED] [ZEROFILL]`
 
-  These types are synonyms for `DOUBLE` - FLOAT, DOUBLE"). Exception: If the `REAL_AS_FLOAT` SQL mode is enabled, `REAL` - FLOAT, DOUBLE") is a synonym for `FLOAT` - FLOAT, DOUBLE") rather than `DOUBLE` - FLOAT, DOUBLE").
+  Estes tipos são sinônimos de `DOUBLE`. Exceção: Se o modo SQL `REAL_AS_FLOAT` estiver habilitado, `REAL` é um sinônimo de `FLOAT` em vez de `DOUBLE`.

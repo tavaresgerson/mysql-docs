@@ -1,12 +1,12 @@
-#### 16.1.5.1 Configuring Multi-Source Replication
+#### 16.1.5.1 Configurando Replicação Multi-Source
 
-A multi-source replication topology requires at least two sources and one replica configured. In these tutorials, we assume you have two sources `source1` and `source2`, and a replica `replicahost`. The replica replicates one database from each of the sources, `db1` from `source1` and `db2` from `source2`.
+Uma topologia de replicação multi-source requer pelo menos dois sources e um replica configurados. Nestes tutoriais, assumimos que você tem dois sources, `source1` e `source2`, e um replica, `replicahost`. O replica replica um Database de cada um dos sources, `db1` do `source1` e `db2` do `source2`.
 
-Sources in a multi-source replication topology can be configured to use either GTID-based replication, or binary log position-based replication. See [Section 16.1.3.4, “Setting Up Replication Using GTIDs”](replication-gtids-howto.html "16.1.3.4 Setting Up Replication Using GTIDs") for how to configure a source using GTID-based replication. See [Section 16.1.2.1, “Setting the Replication Source Configuration”](replication-howto-masterbaseconfig.html "16.1.2.1 Setting the Replication Source Configuration") for how to configure a source using file position based replication.
+Sources em uma topologia de replicação multi-source podem ser configurados para usar replicação baseada em GTID ou replicação baseada na posição do Binary Log. Veja [Section 16.1.3.4, “Setting Up Replication Using GTIDs”](replication-gtids-howto.html "16.1.3.4 Setting Up Replication Using GTIDs") para saber como configurar um source usando replicação baseada em GTID. Veja [Section 16.1.2.1, “Setting the Replication Source Configuration”](replication-howto-masterbaseconfig.html "16.1.2.1 Setting the Replication Source Configuration") para saber como configurar um source usando replicação baseada na posição do arquivo.
 
-Replicas in a multi-source replication topology require `TABLE` repositories for the connection metadata repository and applier metadata repository, as specified by the [`master_info_repository`](replication-options-replica.html#sysvar_master_info_repository) and [`relay_log_info_repository`](replication-options-replica.html#sysvar_relay_log_info_repository) system variables. Multi-source replication is not compatible with `FILE` repositories.
+Replicas em uma topologia de replicação multi-source requerem repositórios `TABLE` para o repositório de metadados de conexão e o repositório de metadados do *applier*, conforme especificado pelas variáveis de sistema [`master_info_repository`](replication-options-replica.html#sysvar_master_info_repository) e [`relay_log_info_repository`](replication-options-replica.html#sysvar_relay_log_info_repository). Replicação multi-source não é compatível com repositórios `FILE`.
 
-To modify an existing replica that is using `FILE` repositories for the replication metadata repositories to use `TABLE` repositories, you can convert the existing repositories dynamically by using the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client to issue the following statements on the replica:
+Para modificar um replica existente que está usando repositórios `FILE` para os repositórios de metadados de replicação para que use repositórios `TABLE`, você pode converter os repositórios existentes dinamicamente usando o cliente [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") para emitir as seguintes declarações no replica:
 
 ```sql
 mysql> STOP SLAVE;
@@ -14,11 +14,11 @@ mysql> SET GLOBAL master_info_repository = 'TABLE';
 mysql> SET GLOBAL relay_log_info_repository = 'TABLE';
 ```
 
-Create a suitable user account on all the replication source servers that the replica can use to connect. You can use the same account on all the sources, or a different account on each. If you create an account solely for the purposes of replication, that account needs only the [`REPLICATION SLAVE`](privileges-provided.html#priv_replication-slave) privilege. For example, to set up a new user, `ted`, that can connect from the replica `replicahost`, use the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client to issue these statements on each of the sources:
+Crie uma conta de usuário adequada em todos os servidores source de replicação que o replica possa usar para se conectar. Você pode usar a mesma conta em todos os sources ou uma conta diferente em cada um. Se você criar uma conta apenas para fins de replicação, essa conta precisa apenas do privilégio [`REPLICATION SLAVE`](privileges-provided.html#priv_replication-slave). Por exemplo, para configurar um novo usuário, `ted`, que pode se conectar a partir do replica `replicahost`, use o cliente [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") para emitir estas declarações em cada um dos sources:
 
 ```sql
 mysql> CREATE USER 'ted'@'replicahost' IDENTIFIED BY 'password';
 mysql> GRANT REPLICATION SLAVE ON *.* TO 'ted'@'replicahost';
 ```
 
-For more details, see [Section 16.1.2.2, “Creating a User for Replication”](replication-howto-repuser.html "16.1.2.2 Creating a User for Replication").
+Para mais detalhes, veja [Section 16.1.2.2, “Creating a User for Replication”](replication-howto-repuser.html "16.1.2.2 Creating a User for Replication").

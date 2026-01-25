@@ -1,9 +1,9 @@
-## 19.4 X Plugin
+## 19.4 X Plugin
 
-19.4.1 Using Encrypted Connections with X Plugin
+19.4.1 Usando Conexões Criptografadas com o X Plugin
 
-19.4.2 X Plugin Options and Variables
+19.4.2 Opções e Variáveis do X Plugin
 
-19.4.3 Monitoring X Plugin
+19.4.3 Monitoramento do X Plugin
 
-This section explains how to configure and monitor the X Plugin.
+Esta seção explica como configurar e monitorar o X Plugin.

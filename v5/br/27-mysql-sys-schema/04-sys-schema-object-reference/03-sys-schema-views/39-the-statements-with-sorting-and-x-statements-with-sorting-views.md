@@ -1,57 +1,57 @@
-#### 26.4.3.39 The statements_with_sorting and x$statements_with_sorting Views
+#### 26.4.3.39 As Views statements_with_sorting e x$statements_with_sorting
 
-These views list normalized statements that have performed sorts. By default, rows are sorted by descending total latency.
+Estas Views listam as statements normalizadas que executaram ordenações (`sorts`). Por padrão, as linhas são ordenadas pela `total_latency` descendente.
 
-The `statements_with_sorting` and `x$statements_with_sorting` views have these columns:
+As Views `statements_with_sorting` e `x$statements_with_sorting` possuem estas colunas:
 
 * `query`
 
-  The normalized statement string.
+  A string da statement normalizada.
 
 * `db`
 
-  The default database for the statement, or `NULL` if there is none.
+  O Database padrão para a statement, ou `NULL` se não houver um.
 
 * `exec_count`
 
-  The total number of times the statement has executed.
+  O número total de vezes que a statement foi executada.
 
 * `total_latency`
 
-  The total wait time of timed occurrences of the statement.
+  O tempo total de espera de ocorrências cronometradas da statement.
 
 * `sort_merge_passes`
 
-  The total number of sort merge passes by occurrences of the statement.
+  O número total de passagens de mesclagem de ordenação (`sort merge passes`) por ocorrências da statement.
 
 * `avg_sort_merges`
 
-  The average number of sort merge passes per occurrence of the statement.
+  O número médio de passagens de mesclagem de ordenação (`sort merge passes`) por ocorrência da statement.
 
 * `sorts_using_scans`
 
-  The total number of sorts using table scans by occurrences of the statement.
+  O número total de ordenações (`sorts`) utilizando `table scans` por ocorrências da statement.
 
 * `sort_using_range`
 
-  The total number of sorts using range accesses by occurrences of the statement.
+  O número total de ordenações (`sorts`) utilizando acessos de `range` por ocorrências da statement.
 
 * `rows_sorted`
 
-  The total number of rows sorted by occurrences of the statement.
+  O número total de linhas ordenadas por ocorrências da statement.
 
 * `avg_rows_sorted`
 
-  The average number of rows sorted per occurrence of the statement.
+  O número médio de linhas ordenadas por ocorrência da statement.
 
 * `first_seen`
 
-  The time at which the statement was first seen.
+  O momento em que a statement foi vista pela primeira vez.
 
 * `last_seen`
 
-  The time at which the statement was most recently seen.
+  O momento em que a statement foi vista mais recentemente.
 
 * `digest`
 
-  The statement digest.
+  O Digest da statement.

@@ -1,32 +1,32 @@
-### 24.4.20 The INFORMATION_SCHEMA INNODB_SYS_FOREIGN Table
+### 24.4.20 A Tabela INNODB_SYS_FOREIGN do INFORMATION_SCHEMA
 
-The [`INNODB_SYS_FOREIGN`](information-schema-innodb-sys-foreign-table.html "24.4.20 The INFORMATION_SCHEMA INNODB_SYS_FOREIGN Table") table provides metadata about `InnoDB` [foreign keys](glossary.html#glos_foreign_key "foreign key"), equivalent to the information from the `SYS_FOREIGN` table in the `InnoDB` data dictionary.
+A tabela [`INNODB_SYS_FOREIGN`](information-schema-innodb-sys-foreign-table.html "24.4.20 A Tabela INNODB_SYS_FOREIGN do INFORMATION_SCHEMA") fornece metadados sobre [foreign keys](glossary.html#glos_foreign_key "foreign key") do `InnoDB`, equivalente às informações da tabela `SYS_FOREIGN` no data dictionary do `InnoDB`.
 
-For related usage information and examples, see [Section 14.16.3, “InnoDB INFORMATION_SCHEMA System Tables”](innodb-information-schema-system-tables.html "14.16.3 InnoDB INFORMATION_SCHEMA System Tables").
+Para informações de uso e exemplos relacionados, consulte [Seção 14.16.3, “Tabelas do Sistema INFORMATION_SCHEMA do InnoDB”](innodb-information-schema-system-tables.html "14.16.3 Tabelas do Sistema INFORMATION_SCHEMA do InnoDB").
 
-The [`INNODB_SYS_FOREIGN`](information-schema-innodb-sys-foreign-table.html "24.4.20 The INFORMATION_SCHEMA INNODB_SYS_FOREIGN Table") table has these columns:
+A tabela [`INNODB_SYS_FOREIGN`](information-schema-innodb-sys-foreign-table.html "24.4.20 A Tabela INNODB_SYS_FOREIGN do INFORMATION_SCHEMA") possui as seguintes colunas:
 
 * `ID`
 
-  The name (not a numeric value) of the foreign key index, preceded by the schema (database) name (for example, `test/products_fk`).
+  O nome (não um valor numérico) do Index da foreign key, precedido pelo nome do schema (Database) (por exemplo, `test/products_fk`).
 
 * `FOR_NAME`
 
-  The name of the [child table](glossary.html#glos_child_table "child table") in this foreign key relationship.
+  O nome da [child table](glossary.html#glos_child_table "child table") neste relacionamento de foreign key.
 
 * `REF_NAME`
 
-  The name of the [parent table](glossary.html#glos_parent_table "parent table") in this foreign key relationship.
+  O nome da [parent table](glossary.html#glos_parent_table "parent table") neste relacionamento de foreign key.
 
 * `N_COLS`
 
-  The number of columns in the foreign key index.
+  O número de colunas no Index da foreign key.
 
 * `TYPE`
 
-  A collection of bit flags with information about the foreign key column, ORed together. 0 = `ON DELETE/UPDATE RESTRICT`, 1 = `ON DELETE CASCADE`, 2 = `ON DELETE SET NULL`, 4 = `ON UPDATE CASCADE`, 8 = `ON UPDATE SET NULL`, 16 = `ON DELETE NO ACTION`, 32 = `ON UPDATE NO ACTION`.
+  Uma coleção de bit flags com informações sobre a coluna da foreign key, combinadas com OR. 0 = `ON DELETE/UPDATE RESTRICT`, 1 = `ON DELETE CASCADE`, 2 = `ON DELETE SET NULL`, 4 = `ON UPDATE CASCADE`, 8 = `ON UPDATE SET NULL`, 16 = `ON DELETE NO ACTION`, 32 = `ON UPDATE NO ACTION`.
 
-#### Example
+#### Exemplo
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_SYS_FOREIGN\G
@@ -38,8 +38,8 @@ REF_NAME: test/parent
     TYPE: 1
 ```
 
-#### Notes
+#### Notas
 
-* You must have the [`PROCESS`](privileges-provided.html#priv_process) privilege to query this table.
+* Você deve ter o privilege [`PROCESS`](privileges-provided.html#priv_process) para realizar Query nesta tabela.
 
-* Use the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table or the [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") statement to view additional information about the columns of this table, including data types and default values.
+* Use a tabela [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") do `INFORMATION_SCHEMA` ou o statement [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") para visualizar informações adicionais sobre as colunas desta tabela, incluindo data types e default values.

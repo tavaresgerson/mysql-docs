@@ -1,49 +1,49 @@
-#### 21.6.15.38 The ndbinfo table_info Table
+#### 21.6.15.38 A Tabela ndbinfo table_info
 
-The `table_info` table provides information about logging, checkpointing, distribution, and storage options in effect for individual `NDB` tables.
+A tabela `table_info` fornece informações sobre as opções de logging, checkpointing, distribuição e armazenamento em vigor para tabelas `NDB` individuais.
 
-The `table_info` table contains the following columns:
+A tabela `table_info` contém as seguintes colunas:
 
 * `table_id`
 
-  Table ID
+  ID da Table
 
 * `logged_table`
 
-  Whether table is logged (1) or not (0)
+  Indica se a table está logged (1) ou não (0)
 
 * `row_contains_gci`
 
-  Whether table rows contain GCI (1 true, 0 false)
+  Indica se as linhas da table contêm GCI (1 true, 0 false)
 
 * `row_contains_checksum`
 
-  Whether table rows contain checksum (1 true, 0 false)
+  Indica se as linhas da table contêm checksum (1 true, 0 false)
 
 * `read_backup`
 
-  If backup fragment replicas are read this is 1, otherwise 0
+  Se as réplicas de fragmentos de backup são lidas, este valor é 1; caso contrário, é 0
 
 * `fully_replicated`
 
-  If table is fully replicated this is 1, otherwise 0
+  Se a table estiver fully replicated, este valor é 1; caso contrário, é 0
 
 * `storage_type`
 
-  Table storage type; one of `MEMORY` or `DISK`
+  Tipo de storage da Table; um de `MEMORY` ou `DISK`
 
 * `hashmap_id`
 
-  Hashmap ID
+  ID do Hashmap
 
 * `partition_balance`
 
-  Partition balance (fragment count type) used for table; one of `FOR_RP_BY_NODE`, `FOR_RA_BY_NODE`, `FOR_RP_BY_LDM`, or `FOR_RA_BY_LDM`
+  Balanceamento de Partition (tipo de contagem de fragmentos) usado para a table; um de `FOR_RP_BY_NODE`, `FOR_RA_BY_NODE`, `FOR_RP_BY_LDM`, ou `FOR_RA_BY_LDM`
 
 * `create_gci`
 
-  GCI in which table was created
+  GCI no qual a table foi criada
 
-##### Notes
+##### Notas
 
-The `table_info` table was added in NDB 7.5.4.
+A tabela `table_info` foi adicionada no NDB 7.5.4.

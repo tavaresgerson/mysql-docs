@@ -1,8 +1,8 @@
-### 21.5.10 ndb_desc — Describe NDB Tables
+### 21.5.10 ndb_desc — Descreve Tabelas NDB
 
-[**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") provides a detailed description of one or more [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables.
+[**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") fornece uma descrição detalhada de uma ou mais tabelas [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6").
 
-#### Usage
+#### Uso
 
 ```sql
 ndb_desc -c connection_string tbl_name -d db_name [options]
@@ -10,11 +10,11 @@ ndb_desc -c connection_string tbl_name -d db_name [options]
 ndb_desc -c connection_string index_name -d db_name -t tbl_name
 ```
 
-Additional options that can be used with [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") are listed later in this section.
+Opções adicionais que podem ser usadas com [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") estão listadas mais adiante nesta seção.
 
-#### Sample Output
+#### Exemplo de Saída
 
-MySQL table creation and population statements:
+Instruções de criação e população de tabela MySQL:
 
 ```sql
 USE test;
@@ -35,7 +35,7 @@ INSERT INTO fish VALUES
     (NULL, 'grouper', 900, 125000), (NULL ,'puffer', 250, 2500);
 ```
 
-Output from [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables"):
+Saída de [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables"):
 
 ```sql
 $> ./ndb_desc -c localhost fish -d test -p
@@ -81,9 +81,9 @@ Partition       Row count       Commit count    Frag fixed memory       Frag var
 NDBT_ProgramExit: 0 - OK
 ```
 
-Information about multiple tables can be obtained in a single invocation of [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") by using their names, separated by spaces. All of the tables must be in the same database.
+Informações sobre múltiplas tabelas podem ser obtidas em uma única invocação de [**ndb_desc**] usando seus nomes, separados por espaços. Todas as tabelas devem estar no mesmo Database.
 
-You can obtain additional information about a specific index using the `--table` (short form: `-t`) option and supplying the name of the index as the first argument to [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables"), as shown here:
+Você pode obter informações adicionais sobre um Index específico usando a opção `--table` (forma abreviada: `-t`) e fornecendo o nome do Index como o primeiro argumento para [**ndb_desc**], conforme mostrado aqui:
 
 ```sql
 $> ./ndb_desc uk -d test -t fish
@@ -127,11 +127,11 @@ PRIMARY KEY(NDB$TNODE) - UniqueHashIndex
 NDBT_ProgramExit: 0 - OK
 ```
 
-When an index is specified in this way, the [`--extra-partition-info`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_extra-partition-info) and [`--extra-node-info`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_extra-node-info) options have no effect.
+Quando um Index é especificado desta forma, as opções [`--extra-partition-info`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_extra-partition-info) e [`--extra-node-info`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_extra-node-info) não têm efeito.
 
-The `Version` column in the output contains the table's schema object version. For information about interpreting this value, see [NDB Schema Object Versions](/doc/ndb-internals/en/ndb-internals-schema-object-versions.html).
+A coluna `Version` na saída contém a versão do objeto schema da tabela. Para obter informações sobre a interpretação deste valor, consulte [NDB Schema Object Versions](/doc/ndb-internals/en/ndb-internals-schema-object-versions.html).
 
-Three of the table properties that can be set using `NDB_TABLE` comments embedded in [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") and [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statements are also visible in [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") output. The table's `FRAGMENT_COUNT_TYPE` is always shown in the `FragmentCountType` column. `READ_ONLY` and `FULLY_REPLICATED`, if set to 1, are shown in the `Table options` column. You can see this after executing the following [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement in the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client:
+Três das propriedades da tabela que podem ser definidas usando comentários `NDB_TABLE` incorporados nas instruções [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") e [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") também são visíveis na saída de [**ndb_desc**]. O `FRAGMENT_COUNT_TYPE` da tabela é sempre mostrado na coluna `FragmentCountType`. `READ_ONLY` e `FULLY_REPLICATED`, se definidos como 1, são mostrados na coluna `Table options`. Você pode ver isso após executar a seguinte instrução [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") no cliente [**mysql**]:
 
 ```sql
 mysql> ALTER TABLE fish COMMENT='NDB_TABLE=READ_ONLY=1,FULLY_REPLICATED=1';
@@ -146,7 +146,7 @@ mysql> SHOW WARNINGS\G
 1 row in set (0.00 sec)
 ```
 
-The warning is issued because `READ_ONLY=1` requires that the table's fragment count type is (or be set to) `ONE_PER_LDM_PER_NODE_GROUP`; `NDB` sets this automatically in such cases. You can check that the `ALTER TABLE` statement has the desired effect using [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement"):
+O aviso é emitido porque `READ_ONLY=1` exige que o tipo de contagem de fragmentos da tabela seja (ou seja definido como) `ONE_PER_LDM_PER_NODE_GROUP`; o `NDB` define isso automaticamente em tais casos. Você pode verificar se a instrução `ALTER TABLE` tem o efeito desejado usando [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement"):
 
 ```sql
 mysql> SHOW CREATE TABLE fish\G
@@ -164,7 +164,7 @@ COMMENT='NDB_TABLE=READ_BACKUP=1,FULLY_REPLICATED=1'
 1 row in set (0.01 sec)
 ```
 
-Because `FRAGMENT_COUNT_TYPE` was not set explicitly, its value is not shown in the comment text printed by `SHOW CREATE TABLE`. [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables"), however, displays the updated value for this attribute. The `Table options` column shows the binary properties just enabled. You can see this in the output shown here (emphasized text):
+Como `FRAGMENT_COUNT_TYPE` não foi definido explicitamente, seu valor não é mostrado no texto do comentário impresso por `SHOW CREATE TABLE`. O [**ndb_desc**], no entanto, exibe o valor atualizado para este atributo. A coluna `Table options` mostra as propriedades binárias que acabaram de ser habilitadas. Você pode ver isso na saída mostrada aqui (texto enfatizado):
 
 ```sql
 $> ./ndb_desc -c localhost fish -d test -p
@@ -207,11 +207,11 @@ Partition       Row count       Commit count    Frag fixed memory       Frag var
 NDBT_ProgramExit: 0 - OK
 ```
 
-For more information about these table properties, see [Section 13.1.18.9, “Setting NDB Comment Options”](create-table-ndb-comment-options.html "13.1.18.9 Setting NDB Comment Options").
+Para mais informações sobre essas propriedades de tabela, consulte [Seção 13.1.18.9, “Definindo Opções de Comentário NDB”](create-table-ndb-comment-options.html "13.1.18.9 Setting NDB Comment Options").
 
-The `Extent_space` and `Free extent_space` columns are applicable only to `NDB` tables having columns on disk; for tables having only in-memory columns, these columns always contain the value `0`.
+As colunas `Extent_space` e `Free extent_space` são aplicáveis apenas a tabelas `NDB` que possuem colunas em disco; para tabelas que possuem apenas colunas in-memory, essas colunas sempre contêm o valor `0`.
 
-To illustrate their use, we modify the previous example. First, we must create the necessary Disk Data objects, as shown here:
+Para ilustrar seu uso, modificamos o exemplo anterior. Primeiro, devemos criar os objetos Disk Data necessários, conforme mostrado aqui:
 
 ```sql
 CREATE LOGFILE GROUP lg_1
@@ -237,9 +237,9 @@ ALTER TABLESPACE ts_1
     ENGINE NDB;
 ```
 
-(For more information on the statements just shown and the objects created by them, see [Section 21.6.11.1, “NDB Cluster Disk Data Objects”](mysql-cluster-disk-data-objects.html "21.6.11.1 NDB Cluster Disk Data Objects"), as well as [Section 13.1.15, “CREATE LOGFILE GROUP Statement”](create-logfile-group.html "13.1.15 CREATE LOGFILE GROUP Statement"), and [Section 13.1.19, “CREATE TABLESPACE Statement”](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement").)
+(Para mais informações sobre as instruções que acabaram de ser mostradas e os objetos criados por elas, consulte [Seção 21.6.11.1, “NDB Cluster Disk Data Objects”](mysql-cluster-disk-data-objects.html "21.6.11.1 NDB Cluster Disk Data Objects"), bem como [Seção 13.1.15, “Instrução CREATE LOGFILE GROUP”](create-logfile-group.html "13.1.15 CREATE LOGFILE GROUP Statement"), e [Seção 13.1.19, “Instrução CREATE TABLESPACE”](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement").)
 
-Now we can create and populate a version of the `fish` table that stores 2 of its columns on disk (deleting the previous version of the table first, if it already exists):
+Agora podemos criar e popular uma versão da tabela `fish` que armazena 2 de suas colunas em disco (excluindo a versão anterior da tabela primeiro, se ela já existir):
 
 ```sql
 CREATE TABLE fish (
@@ -259,7 +259,7 @@ INSERT INTO fish VALUES
     (NULL, 'grouper', 900, 125000), (NULL ,'puffer', 250, 2500);
 ```
 
-When run against this version of the table, [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") displays the following output:
+Quando executado contra esta versão da tabela, [**ndb_desc**] exibe a seguinte saída:
 
 ```sql
 $> ./ndb_desc -c localhost fish -d test -p
@@ -305,163 +305,163 @@ Partition       Row count       Commit count    Frag fixed memory       Frag var
 NDBT_ProgramExit: 0 - OK
 ```
 
-This means that 1048576 bytes are allocated from the tablespace for this table on each partition, of which 1044440 bytes remain free for additional storage. In other words, 1048576 - 1044440 = 4136 bytes per partition is currently being used to store the data from this table's disk-based columns. The number of bytes shown as `Free extent_space` is available for storing on-disk column data from the `fish` table only; for this reason, it is not visible when selecting from the Information Schema [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") table.
+Isto significa que 1048576 bytes são alocados do tablespace para esta tabela em cada partição, dos quais 1044440 bytes permanecem livres para armazenamento adicional. Em outras palavras, 1048576 - 1044440 = 4136 bytes por partição estão sendo usados atualmente para armazenar os dados das colunas baseadas em disco desta tabela. O número de bytes mostrado como `Free extent_space` está disponível apenas para armazenar dados de coluna em disco da tabela `fish`; por esta razão, não é visível ao selecionar da tabela [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") do Information Schema.
 
-For fully replicated tables, [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") shows only the nodes holding primary partition fragment replicas; nodes with copy fragment replicas (only) are ignored. Beginning with NDB 7.5.4, you can obtain such information, using the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client, from the [`table_distribution_status`](mysql-cluster-ndbinfo-table-distribution-status.html "21.6.15.36 The ndbinfo table_distribution_status Table"), [`table_fragments`](mysql-cluster-ndbinfo-table-fragments.html "21.6.15.37 The ndbinfo table_fragments Table"), [`table_info`](mysql-cluster-ndbinfo-table-info.html "21.6.15.38 The ndbinfo table_info Table"), and [`table_replicas`](mysql-cluster-ndbinfo-table-replicas.html "21.6.15.39 The ndbinfo table_replicas Table") tables in the [`ndbinfo`](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database") database.
+Para tabelas totalmente replicadas, [**ndb_desc**] mostra apenas os nós que contêm réplicas de fragmentos de partição primários; nós com réplicas de fragmentos de cópia (somente) são ignorados. Começando com o NDB 7.5.4, você pode obter tais informações, usando o cliente [**mysql**], das tabelas [`table_distribution_status`](mysql-cluster-ndbinfo-table-distribution-status.html "21.6.15.36 The ndbinfo table_distribution_status Table"), [`table_fragments`](mysql-cluster-ndbinfo-table-fragments.html "21.6.15.37 The ndbinfo table_fragments Table"), [`table_info`](mysql-cluster-ndbinfo-table-info.html "21.6.15.38 The ndbinfo table_info Table") e [`table_replicas`](mysql-cluster-ndbinfo-table-replicas.html "21.6.15.39 The ndbinfo table_replicas Table") no Database [`ndbinfo`](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database").
 
-Options that can be used with [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") are shown in the following table. Additional descriptions follow the table.
+As opções que podem ser usadas com [**ndb_desc**] são mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
-**Table 21.29 Command-line options used with the program ndb_desc**
+**Tabela 21.29 Opções de linha de comando usadas com o programa ndb_desc**
 
-<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code>--auto-inc</code>, </p><p> <code> -a </code> </p></th> <td>Show next value for AUTO_INCREMENT oolumn if table has one</td> <td><p> ADDED: NDB 7.6.14 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--blob-info</code>, </p><p> <code> -b </code> </p></th> <td>Include partition information for BLOB tables in output. Requires that the -p option also be used</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --character-sets-dir=path </code> </p></th> <td>Directory containing character sets</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retries=# </code> </p></th> <td>Number of times to retry connection before giving up</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retry-delay=# </code> </p></th> <td>Number of seconds to wait between attempts to contact management server</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Same as --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--context</code>, </p><p> <code> -x </code> </p></th> <td>Show extra information for table such as database, schema, name, and internal ID</td> <td><p> ADDED: NDB 7.6.14 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --core-file </code> </p></th> <td>Write core file on error; used in debugging</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--database=name</code>, </p><p> <code> -d name </code> </p></th> <td>Name of database containing table</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-extra-file=path </code> </p></th> <td>Read given file after global files are read</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-file=path </code> </p></th> <td>Read default options from given file only</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-group-suffix=string </code> </p></th> <td>Also read groups with concat(group, suffix)</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--extra-node-info</code>, </p><p> <code> -n </code> </p></th> <td>Include partition-to-data-node mappings in output; requires --extra-partition-info</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--extra-partition-info</code>, </p><p> <code> -p </code> </p></th> <td>Display information about partitions</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>, </p><p> <code> -? </code> </p></th> <td>Display help text and exit</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --login-path=path </code> </p></th> <td>Read given path from login file</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Set connect string for connecting to ndb_mgmd. Syntax: "[nodeid=id;][host=]hostname[:port]". Overrides entries in NDB_CONNECTSTRING and my.cnf</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Same as --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb-nodeid=# </code> </p></th> <td>Set node ID for this node, overriding any ID set by --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb-optimized-node-selection </code> </p></th> <td>Enable optimizations for selection of nodes for transactions. Enabled by default; use --skip-ndb-optimized-node-selection to disable</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --no-defaults </code> </p></th> <td>Do not read default options from any option file other than login file</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --print-defaults </code> </p></th> <td>Print program argument list and exit</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--retries=#</code>, </p><p> <code> <a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_retries">-r
-                #</a> </code> </p></th> <td>Number of times to retry the connection (once per second)</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--table=name</code>, </p><p> <code> -t name </code> </p></th> <td>Specify the table in which to find an index. When this option is used, -p and -n have no effect and are ignored</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--unqualified</code>, </p><p> <code> -u </code> </p></th> <td>Use unqualified table names</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>, </p><p> <code> -? </code> </p></th> <td>Display help text and exit; same as --help</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>, </p><p> <code> -V </code> </p></th> <td>Display version information and exit</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody></table>
+<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Formato</th> <th>Descrição</th> <th>Adicionada, Descontinuada ou Removida</th> </tr></thead><tbody><tr> <th><p> <code>--auto-inc</code>, </p><p> <code> -a </code> </p></th> <td>Mostra o próximo valor para a coluna AUTO_INCREMENT se a tabela tiver uma</td> <td><p> ADICIONADA: NDB 7.6.14 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--blob-info</code>, </p><p> <code> -b </code> </p></th> <td>Inclui informações de partição para tabelas BLOB na saída. Requer que a opção -p também seja usada</td> <td><p> (Suportada em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --character-sets-dir=path </code> </p></th> <td>Diretório contendo character sets</td> <td><p> (Suportada em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retries=# </code> </p></th> <td>Número de vezes para tentar novamente a conexão antes de desistir</td> <td><p> (Suportada em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retry-delay=# </code> </p></th> <td>Número de segundos de espera entre as tentativas de contato com o servidor de gerenciamento</td> <td><p> (Suportada em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p> (Suportada em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--context</code>, </p><p> <code> -x </code> </p></th> <td>Mostra informações extras para a tabela, como Database, schema, nome e ID interno</td> <td><p> ADICIONADA: NDB 7.6.14 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --core-file </code> </p></th> <td>Escreve core file em caso de erro; usado na depuração</td> <td><p> (Suportada em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--database=name</code>, </p><p> <code> -d name </code> </p></th> <td>Nome do Database contendo a tabela</td> <td><p> (Suportada em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-extra-file=path </code> </p></th> <td>Lê o arquivo fornecido após a leitura dos arquivos globais</td> <td><p> (Suportada em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-file=path </code> </p></th> <td>Lê as opções default apenas do arquivo fornecido</td> <td><p> (Suportada em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-group-suffix=string </code> </p></th> <td>Também lê grupos com concat(group, suffix)</td> <td><p> (Suportada em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--extra-node-info</code>, </p><p> <code> -n </code> </p></th> <td>Inclui mapeamentos de partição para data node na saída; requer --extra-partition-info</td> <td><p> (Suportada em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--extra-partition-info</code>, </p><p> <code> -p </code> </p></th> <td>Exibe informações sobre partições</td> <td><p> (Suportada em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>, </p><p> <code> -? </code> </p></th> <td>Exibe texto de ajuda e sai</td> <td><p> (Suportada em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --login-path=path </code> </p></th> <td>Lê o path fornecido do login file</td> <td><p> (Suportada em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Define a connect string para conexão com ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Sobrescreve entradas em NDB_CONNECTSTRING e my.cnf</td> <td><p> (Suportada em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p> (Suportada em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb-nodeid=# </code> </p></th> <td>Define o ID de node para este node, sobrescrevendo qualquer ID definido por --ndb-connectstring</td> <td><p> (Suportada em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb-optimized-node-selection </code> </p></th> <td>Habilita otimizações para seleção de nodes para transactions. Habilitado por default; use --skip-ndb-optimized-node-selection para desabilitar</td> <td><p> (Suportada em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --no-defaults </code> </p></th> <td>Não lê as opções default de nenhum arquivo de opção, exceto o login file</td> <td><p> (Suportada em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --print-defaults </code> </p></th> <td>Imprime a lista de argumentos do programa e sai</td> <td><p> (Suportada em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--retries=#</code>, </p><p> <code> <a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_retries">-r
+                #</a> </code> </p></th> <td>Número de vezes para tentar novamente a conexão (uma vez por segundo)</td> <td><p> (Suportada em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--table=name</code>, </p><p> <code> -t name </code> </p></th> <td>Especifica a tabela na qual buscar um Index. Quando esta opção é usada, -p e -n não têm efeito e são ignoradas</td> <td><p> (Suportada em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--unqualified</code>, </p><p> <code> -u </code> </p></th> <td>Usa nomes de tabela não qualificados</td> <td><p> (Suportada em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>, </p><p> <code> -? </code> </p></th> <td>Exibe texto de ajuda e sai; o mesmo que --help</td> <td><p> (Suportada em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>, </p><p> <code> -V </code> </p></th> <td>Exibe informações de versão e sai</td> <td><p> (Suportada em todas as releases NDB baseadas no MySQL 5.7) </p></td> </tr></tbody></table>
 
 * `--auto-inc`, `-a`
 
-  Show the next value for a table's `AUTO_INCREMENT` column, if it has one.
+  Mostra o próximo valor para a coluna `AUTO_INCREMENT` de uma tabela, se ela tiver uma.
 
 * `--blob-info`, `-b`
 
-  Include information about subordinate [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") and [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") columns.
+  Inclui informações sobre colunas [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") e [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") subordinadas.
 
-  Use of this option also requires the use of the [`--extra-partition-info`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_extra-partition-info) (`-p`) option.
+  O uso desta opção também requer o uso da opção [`--extra-partition-info`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_extra-partition-info) (`-p`).
 
 * `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Directory containing character sets.
+  Diretório contendo character sets.
 
 * `--connect-retries`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Default</th> <td><code>12</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Number of times to retry connection before giving up.
+  Número de vezes para tentar novamente a conexão antes de desistir.
 
 * `--connect-retry-delay`
 
-  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>5</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>5</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Default</th> <td><code>5</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>5</code></td> </tr></tbody></table>
 
-  Number of seconds to wait between attempts to contact management server.
+  Número de segundos de espera entre as tentativas de contato com o servidor de gerenciamento.
 
 * `--connect-string`
 
-  <table frame="box" rules="all" summary="Properties for connect-string"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-string=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-string"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connect-string=connection_string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Default</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Same as --ndb-connectstring.
+  O mesmo que --ndb-connectstring.
 
 * `--context`, `-x`
 
-  Show additional contextual information for the table such as schema, database name, table name, and the table's internal ID.
+  Mostra informações contextuais adicionais para a tabela, como schema, nome do Database, nome da tabela e o ID interno da tabela.
 
 * `--core-file`
 
-  <table frame="box" rules="all" summary="Properties for core-file"><tbody><tr><th>Command-Line Format</th> <td><code>--core-file</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for core-file"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--core-file</code></td> </tr></tbody></table>
 
-  Write core file on error; used in debugging.
+  Escreve core file em caso de erro; usado na depuração (debugging).
 
 * `--database=db_name`, `-d`
 
-  Specify the database in which the table should be found.
+  Especifica o Database no qual a tabela deve ser encontrada.
 
 * `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Default</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Read given file after global files are read.
+  Lê o arquivo fornecido após a leitura dos arquivos globais.
 
 * `--defaults-file`
 
-  <table frame="box" rules="all" summary="Properties for defaults-file"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-file"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--defaults-file=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Default</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Read default options from given file only.
+  Lê as opções default apenas do arquivo fornecido.
 
 * `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-group-suffix=string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--defaults-group-suffix=string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Default</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Also read groups with concat(group, suffix).
+  Também lê grupos com concat(group, suffix).
 
 * `--extra-node-info`, `-n`
 
-  Include information about the mappings between table partitions and the data nodes upon which they reside. This information can be useful for verifying distribution awareness mechanisms and supporting more efficient application access to the data stored in NDB Cluster.
+  Inclui informações sobre os mapeamentos entre partições de tabela e os data nodes nos quais elas residem. Esta informação pode ser útil para verificar mecanismos de distribuição awareness e suportar um acesso à aplicação mais eficiente aos dados armazenados no NDB Cluster.
 
-  Use of this option also requires the use of the [`--extra-partition-info`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_extra-partition-info) (`-p`) option.
+  O uso desta opção também requer o uso da opção [`--extra-partition-info`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_extra-partition-info) (`-p`).
 
 * `--extra-partition-info`, `-p`
 
-  Print additional information about the table's partitions.
+  Imprime informações adicionais sobre as partições da tabela.
 
 * `--help`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Display help text and exit.
+  Exibe texto de ajuda e sai.
 
 * `--login-path`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Read given path from login file.
+  Lê o path fornecido do login file.
 
 * `--ndb-connectstring`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Set connect string for connecting to ndb_mgmd. Syntax: "[nodeid=id;][host=]hostname[:port]". Overrides entries in NDB_CONNECTSTRING and my.cnf.
+  Define a connect string para conexão com ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Sobrescreve entradas em NDB_CONNECTSTRING e my.cnf.
 
 * `--ndb-mgmd-host`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Same as --ndb-connectstring.
+  O mesmo que --ndb-connectstring.
 
 * `--ndb-nodeid`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Set node ID for this node, overriding any ID set by --ndb-connectstring.
+  Define o ID de node para este node, sobrescrevendo qualquer ID definido por --ndb-connectstring.
 
 * `--ndb-optimized-node-selection`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Enable optimizations for selection of nodes for transactions. Enabled by default; use `--skip-ndb-optimized-node-selection` to disable.
+  Habilita otimizações para seleção de nodes para transactions. Habilitado por default; use `--skip-ndb-optimized-node-selection` para desabilitar.
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Do not read default options from any option file other than login file.
+  Não lê as opções default de nenhum arquivo de opção, exceto o login file.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Print program argument list and exit.
+  Imprime a lista de argumentos do programa e sai.
 
 * `--retries=#`, `-r`
 
-  Try to connect this many times before giving up. One connect attempt is made per second.
+  Tenta conectar-se este número de vezes antes de desistir. Uma tentativa de conexão é feita por segundo.
 
 * `--table=tbl_name`, `-t`
 
-  Specify the table in which to look for an index.
+  Especifica a tabela na qual buscar um Index.
 
 * `--unqualified`, `-u`
 
-  Use unqualified table names.
+  Usa nomes de tabela não qualificados.
 
 * `--usage`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Display help text and exit; same as --help.
+  Exibe texto de ajuda e sai; o mesmo que --help.
 
 * `--version`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Display version information and exit.
+  Exibe informações de versão e sai.
 
-In NDB 7.5.3 and later, table indexes listed in the output are ordered by ID. Previously, this was not deterministic and could vary between platforms. (Bug #81763, Bug #23547742)
+No NDB 7.5.3 e posterior, os Indexes de tabela listados na saída são ordenados por ID. Anteriormente, isso não era determinístico e podia variar entre plataformas. (Bug #81763, Bug #23547742)

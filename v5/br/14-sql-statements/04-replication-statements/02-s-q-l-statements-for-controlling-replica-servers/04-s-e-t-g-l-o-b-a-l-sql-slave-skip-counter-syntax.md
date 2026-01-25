@@ -1,21 +1,21 @@
-#### 13.4.2.4 SET GLOBAL sql_slave_skip_counter Syntax
+#### 13.4.2.4 Sintaxe de SET GLOBAL sql_slave_skip_counter
 
 ```sql
 SET GLOBAL sql_slave_skip_counter = N
 ```
 
-This statement skips the next *`N`* events from the master. This is useful for recovering from replication stops caused by a statement.
+Esta statement ignora os próximos *`N`* events do master. Isso é útil para recuperação de paradas de replication causadas por uma statement.
 
-This statement is valid only when the slave threads are not running. Otherwise, it produces an error.
+Esta statement é válida apenas quando as slave threads não estão em execução. Caso contrário, ela produz um error.
 
-When using this statement, it is important to understand that the binary log is actually organized as a sequence of groups known as event groups. Each event group consists of a sequence of events.
+Ao usar esta statement, é importante entender que o binary log está, na verdade, organizado como uma sequência de grupos conhecidos como event groups (grupos de eventos). Cada event group consiste em uma sequência de events.
 
-* For transactional tables, an event group corresponds to a transaction.
+* Para tabelas transacionais, um event group corresponde a uma transaction.
 
-* For nontransactional tables, an event group corresponds to a single SQL statement.
+* Para tabelas não transacionais, um event group corresponde a uma única SQL statement.
 
-Note
+Nota
 
-A single transaction can contain changes to both transactional and nontransactional tables.
+Uma única transaction pode conter alterações em tabelas transacionais e não transacionais.
 
-When you use [`SET GLOBAL sql_slave_skip_counter`](set-global-sql-slave-skip-counter.html "13.4.2.4 SET GLOBAL sql_slave_skip_counter Syntax") to skip events and the result is in the middle of a group, the slave continues to skip events until it reaches the end of the group. Execution then starts with the next event group.
+Quando você usa [`SET GLOBAL sql_slave_skip_counter`](set-global-sql-slave-skip-counter.html "13.4.2.4 SET GLOBAL sql_slave_skip_counter Syntax") para ignorar events e o resultado está no meio de um grupo, o slave continua a ignorar events até atingir o final do grupo. A execução então começa com o próximo event group.

@@ -1,301 +1,301 @@
-#### 16.1.6.1 Replication and Binary Logging Option and Variable Reference
+#### 16.1.6.1 Referência de Opções e Variáveis de Replication e Binary Logging
 
-The following two sections provide basic information about the MySQL command-line options and system variables applicable to replication and the binary log.
+As duas seções a seguir fornecem informações básicas sobre as opções de linha de comando do MySQL e variáveis de sistema aplicáveis à Replication e ao Binary Log.
 
-##### Replication Options and Variables
+##### Opções e Variáveis de Replication
 
-The command-line options and system variables in the following list relate to replication source servers and replicas. [Section 16.1.6.2, “Replication Source Options and Variables”](replication-options-source.html "16.1.6.2 Replication Source Options and Variables") provides more detailed information about options and variables relating to replication source servers. For more information about options and variables relating to replicas, see [Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables").
+As opções de linha de comando e variáveis de sistema na lista a seguir se relacionam a servidores source de Replication e a replicas. [Seção 16.1.6.2, “Opções e Variáveis do Source de Replication”](replication-options-source.html "16.1.6.2 Opções e Variáveis do Source de Replication") fornece informações mais detalhadas sobre opções e variáveis relacionadas a servidores source de Replication. Para mais informações sobre opções e variáveis relacionadas a replicas, consulte [Seção 16.1.6.3, “Opções e Variáveis do Servidor Replica”](replication-options-replica.html "16.1.6.3 Opções e Variáveis do Servidor Replica").
 
-* `abort-slave-event-count`: Option used by mysql-test for debugging and testing of replication.
+* `abort-slave-event-count`: Opção usada pelo mysql-test para debugging e testes de Replication.
 
-* `auto_increment_increment`: AUTO_INCREMENT columns are incremented by this value.
+* `auto_increment_increment`: Colunas AUTO_INCREMENT são incrementadas por este valor.
 
-* `auto_increment_offset`: Offset added to AUTO_INCREMENT columns.
+* `auto_increment_offset`: Offset adicionado às colunas AUTO_INCREMENT.
 
-* `Com_change_master`: Count of CHANGE REPLICATION SOURCE TO and CHANGE MASTER TO statements.
+* `Com_change_master`: Contagem de comandos CHANGE REPLICATION SOURCE TO e CHANGE MASTER TO.
 
-* `Com_show_master_status`: Count of SHOW MASTER STATUS statements.
+* `Com_show_master_status`: Contagem de comandos SHOW MASTER STATUS.
 
-* `Com_show_slave_hosts`: Count of SHOW REPLICAS and SHOW SLAVE HOSTS statements.
+* `Com_show_slave_hosts`: Contagem de comandos SHOW REPLICAS e SHOW SLAVE HOSTS.
 
-* `Com_show_slave_status`: Count of SHOW REPLICA STATUS and SHOW SLAVE STATUS statements.
+* `Com_show_slave_status`: Contagem de comandos SHOW REPLICA STATUS e SHOW SLAVE STATUS.
 
-* `Com_slave_start`: Count of START REPLICA and START SLAVE statements.
+* `Com_slave_start`: Contagem de comandos START REPLICA e START SLAVE.
 
-* `Com_slave_stop`: Count of STOP REPLICA and STOP SLAVE statements.
+* `Com_slave_stop`: Contagem de comandos STOP REPLICA e STOP SLAVE.
 
-* `disconnect-slave-event-count`: Option used by mysql-test for debugging and testing of replication.
+* `disconnect-slave-event-count`: Opção usada pelo mysql-test para debugging e testes de Replication.
 
-* `enforce_gtid_consistency`: Prevents execution of statements that cannot be logged in transactionally safe manner.
+* `enforce_gtid_consistency`: Impede a execução de comandos que não podem ser registrados de maneira transacionalmente segura.
 
-* `expire_logs_days`: Purge binary logs after this many days.
+* `expire_logs_days`: Limpa (Purge) os Binary Logs após este número de dias.
 
-* `gtid_executed`: Global: All GTIDs in binary log (global) or current transaction (session). Read-only.
+* `gtid_executed`: Global: Todos os GTIDs no Binary Log (global) ou na transação atual (session). Somente leitura (Read-only).
 
-* `gtid_executed_compression_period`: Compress gtid_executed table each time this many transactions have occurred. 0 means never compress this table. Applies only when binary logging is disabled.
+* `gtid_executed_compression_period`: Compacta a tabela `gtid_executed` cada vez que este número de transações ocorre. 0 significa nunca compactar esta tabela. Aplica-se apenas quando o Binary Logging está desabilitado.
 
-* `gtid_mode`: Controls whether GTID based logging is enabled and what type of transactions logs can contain.
+* `gtid_mode`: Controla se o logging baseado em GTID está habilitado e qual tipo de transações os logs podem conter.
 
-* `gtid_next`: Specifies GTID for subsequent transaction or transactions; see documentation for details.
+* `gtid_next`: Especifica o GTID para a transação ou transações subsequentes; veja a documentação para detalhes.
 
-* `gtid_owned`: Set of GTIDs owned by this client (session), or by all clients, together with thread ID of owner (global). Read-only.
+* `gtid_owned`: Conjunto de GTIDs pertencentes a este cliente (session), ou a todos os clientes, juntamente com o ID do Thread do proprietário (global). Somente leitura (Read-only).
 
-* `gtid_purged`: Set of all GTIDs that have been purged from binary log.
+* `gtid_purged`: Conjunto de todos os GTIDs que foram limpos (purged) do Binary Log.
 
-* `init_slave`: Statements that are executed when replica connects to source.
+* `init_slave`: Comandos que são executados quando a replica se conecta ao source.
 
-* `log_bin_trust_function_creators`: If equal to 0 (default), then when --log-bin is used, stored function creation is allowed only to users having SUPER privilege and only if function created does not break binary logging.
+* `log_bin_trust_function_creators`: Se igual a 0 (padrão), então quando --log-bin é usado, a criação de Stored Function é permitida apenas a usuários com privilégio SUPER e somente se a função criada não interromper o Binary Logging.
 
-* `log_builtin_as_identified_by_password`: Whether to log CREATE/ALTER USER, GRANT in backward-compatible fashion.
+* `log_builtin_as_identified_by_password`: Se deve registrar CREATE/ALTER USER, GRANT de maneira retrocompatível.
 
-* `log_statements_unsafe_for_binlog`: Disables error 1592 warnings being written to error log.
+* `log_statements_unsafe_for_binlog`: Desabilita os avisos de erro 1592 de serem escritos no Error Log.
 
-* `master-info-file`: Location and name of file that remembers source and where I/O replication thread is in source's binary log.
+* `master-info-file`: Localização e nome do arquivo que lembra o source e onde o Thread de I/O de Replication está no Binary Log do source.
 
-* `master-retry-count`: Number of tries replica makes to connect to source before giving up.
+* `master-retry-count`: Número de tentativas que a replica faz para se conectar ao source antes de desistir.
 
-* `master_info_repository`: Whether to write connection metadata repository, containing source information and replication I/O thread location in source's binary log, to file or table.
+* `master_info_repository`: Se deve escrever o repositório de metadados de conexão, contendo informações do source e a localização do Thread de I/O de Replication no Binary Log do source, para arquivo ou tabela.
 
-* `max_relay_log_size`: If nonzero, relay log is rotated automatically when its size exceeds this value. If zero, size at which rotation occurs is determined by value of max_binlog_size.
+* `max_relay_log_size`: Se for diferente de zero, o Relay Log é rotacionado automaticamente quando seu tamanho excede este valor. Se for zero, o tamanho em que a rotação ocorre é determinado pelo valor de `max_binlog_size`.
 
-* `relay_log`: Location and base name to use for relay logs.
+* `relay_log`: Localização e nome base a serem usados para os Relay Logs.
 
-* `relay_log_basename`: Complete path to relay log, including file name.
+* `relay_log_basename`: Caminho completo para o Relay Log, incluindo o nome do arquivo.
 
-* `relay_log_index`: Location and name to use for file that keeps list of last relay logs.
+* `relay_log_index`: Localização e nome a serem usados para o arquivo que mantém a lista dos últimos Relay Logs.
 
-* `relay_log_info_file`: File name for applier metadata repository in which replica records information about relay logs.
+* `relay_log_info_file`: Nome do arquivo para o repositório de metadados do Applier no qual a replica registra informações sobre os Relay Logs.
 
-* `relay_log_info_repository`: Whether to write location of replication SQL thread in relay logs to file or table.
+* `relay_log_info_repository`: Se deve escrever a localização do Thread SQL de Replication nos Relay Logs para arquivo ou tabela.
 
-* `relay_log_purge`: Determines whether relay logs are purged.
+* `relay_log_purge`: Determina se os Relay Logs são limpos (purged).
 
-* `relay_log_recovery`: Whether automatic recovery of relay log files from source at startup is enabled; must be enabled for crash-safe replica.
+* `relay_log_recovery`: Se a recuperação automática dos arquivos de Relay Log a partir do source na inicialização está habilitada; deve estar habilitado para uma replica "crash-safe".
 
-* `relay_log_space_limit`: Maximum space to use for all relay logs.
+* `relay_log_space_limit`: Espaço máximo a ser usado para todos os Relay Logs.
 
-* `replicate-do-db`: Tells replication SQL thread to restrict replication to specified database.
+* `replicate-do-db`: Informa ao Thread SQL de Replication para restringir a Replication ao Database especificado.
 
-* `replicate-do-table`: Tells replication SQL thread to restrict replication to specified table.
+* `replicate-do-table`: Informa ao Thread SQL de Replication para restringir a Replication à Table especificada.
 
-* `replicate-ignore-db`: Tells replication SQL thread not to replicate to specified database.
+* `replicate-ignore-db`: Informa ao Thread SQL de Replication para não replicar para o Database especificado.
 
-* `replicate-ignore-table`: Tells replication SQL thread not to replicate to specified table.
+* `replicate-ignore-table`: Informa ao Thread SQL de Replication para não replicar para a Table especificada.
 
-* `replicate-rewrite-db`: Updates to database with different name from original.
+* `replicate-rewrite-db`: Atualizações para um Database com nome diferente do original.
 
-* `replicate-same-server-id`: In replication, if enabled, do not skip events having our server id.
+* `replicate-same-server-id`: Na Replication, se habilitado, não pula eventos que tenham nosso Server ID.
 
-* `replicate-wild-do-table`: Tells replication SQL thread to restrict replication to tables that match specified wildcard pattern.
+* `replicate-wild-do-table`: Informa ao Thread SQL de Replication para restringir a Replication a tables que correspondam ao padrão wildcard especificado.
 
-* `replicate-wild-ignore-table`: Tells replication SQL thread not to replicate to tables that match given wildcard pattern.
+* `replicate-wild-ignore-table`: Informa ao Thread SQL de Replication para não replicar para tables que correspondam ao padrão wildcard fornecido.
 
-* `replication_optimize_for_static_plugin_config`: Shared locks for semisynchronous replication.
+* `replication_optimize_for_static_plugin_config`: Locks compartilhados para Replication semissíncrona.
 
-* `replication_sender_observe_commit_only`: Limited callbacks for semisynchronous replication.
+* `replication_sender_observe_commit_only`: Callbacks limitados para Replication semissíncrona.
 
-* `report_host`: Host name or IP of replica to be reported to source during replica registration.
+* `report_host`: Nome do Host ou IP da replica a ser reportado ao source durante o registro da replica.
 
-* `report_password`: Arbitrary password which replica server should report to source; not same as password for replication user account.
+* `report_password`: Senha arbitrária que o servidor replica deve reportar ao source; não é a mesma senha da conta de usuário de Replication.
 
-* `report_port`: Port for connecting to replica reported to source during replica registration.
+* `report_port`: Porta para conexão com a replica reportada ao source durante o registro da replica.
 
-* `report_user`: Arbitrary user name which replica server should report to source; not same as name used for replication user account.
+* `report_user`: Nome de usuário arbitrário que o servidor replica deve reportar ao source; não é o mesmo nome usado para a conta de usuário de Replication.
 
-* `Rpl_semi_sync_master_clients`: Number of semisynchronous replicas.
+* `Rpl_semi_sync_master_clients`: Número de replicas semissíncronas.
 
-* `rpl_semi_sync_master_enabled`: Whether semisynchronous replication is enabled on source.
+* `rpl_semi_sync_master_enabled`: Se a Replication semissíncrona está habilitada no source.
 
-* `Rpl_semi_sync_master_net_avg_wait_time`: Average time source has waited for replies from replica.
+* `Rpl_semi_sync_master_net_avg_wait_time`: Tempo médio que o source esperou por respostas da replica.
 
-* `Rpl_semi_sync_master_net_wait_time`: Total time source has waited for replies from replica.
+* `Rpl_semi_sync_master_net_wait_time`: Tempo total que o source esperou por respostas da replica.
 
-* `Rpl_semi_sync_master_net_waits`: Total number of times source waited for replies from replica.
+* `Rpl_semi_sync_master_net_waits`: Número total de vezes que o source esperou por respostas da replica.
 
-* `Rpl_semi_sync_master_no_times`: Number of times source turned off semisynchronous replication.
+* `Rpl_semi_sync_master_no_times`: Número de vezes que o source desativou a Replication semissíncrona.
 
-* `Rpl_semi_sync_master_no_tx`: Number of commits not acknowledged successfully.
+* `Rpl_semi_sync_master_no_tx`: Número de Commits não confirmados com sucesso.
 
-* `Rpl_semi_sync_master_status`: Whether semisynchronous replication is operational on source.
+* `Rpl_semi_sync_master_status`: Se a Replication semissíncrona está operacional no source.
 
-* `Rpl_semi_sync_master_timefunc_failures`: Number of times source failed when calling time functions.
+* `Rpl_semi_sync_master_timefunc_failures`: Número de vezes que o source falhou ao chamar funções de tempo.
 
-* `rpl_semi_sync_master_timeout`: Number of milliseconds to wait for replica acknowledgment.
+* `rpl_semi_sync_master_timeout`: Número de milissegundos a aguardar pela confirmação da replica.
 
-* `rpl_semi_sync_master_trace_level`: Semisynchronous replication debug trace level on source.
+* `rpl_semi_sync_master_trace_level`: Nível de Trace de Debug da Replication semissíncrona no source.
 
-* `Rpl_semi_sync_master_tx_avg_wait_time`: Average time source waited for each transaction.
+* `Rpl_semi_sync_master_tx_avg_wait_time`: Tempo médio que o source esperou por cada transação.
 
-* `Rpl_semi_sync_master_tx_wait_time`: Total time source waited for transactions.
+* `Rpl_semi_sync_master_tx_wait_time`: Tempo total que o source esperou por transações.
 
-* `Rpl_semi_sync_master_tx_waits`: Total number of times source waited for transactions.
+* `Rpl_semi_sync_master_tx_waits`: Número total de vezes que o source esperou por transações.
 
-* `rpl_semi_sync_master_wait_for_slave_count`: Number of replica acknowledgments source must receive per transaction before proceeding.
+* `rpl_semi_sync_master_wait_for_slave_count`: Número de confirmações da replica que o source deve receber por transação antes de prosseguir.
 
-* `rpl_semi_sync_master_wait_no_slave`: Whether source waits for timeout even with no replicas.
+* `rpl_semi_sync_master_wait_no_slave`: Se o source espera pelo timeout mesmo sem replicas.
 
-* `rpl_semi_sync_master_wait_point`: Wait point for replica transaction receipt acknowledgment.
+* `rpl_semi_sync_master_wait_point`: Ponto de espera para confirmação de recebimento de transação da replica.
 
-* `Rpl_semi_sync_master_wait_pos_backtraverse`: Total number of times source has waited for event with binary coordinates lower than events waited for previously.
+* `Rpl_semi_sync_master_wait_pos_backtraverse`: Número total de vezes que o source esperou por um evento com coordenadas binárias inferiores aos eventos esperados anteriormente.
 
-* `Rpl_semi_sync_master_wait_sessions`: Number of sessions currently waiting for replica replies.
+* `Rpl_semi_sync_master_wait_sessions`: Número de sessions atualmente esperando por respostas da replica.
 
-* `Rpl_semi_sync_master_yes_tx`: Number of commits acknowledged successfully.
+* `Rpl_semi_sync_master_yes_tx`: Número de Commits confirmados com sucesso.
 
-* `rpl_semi_sync_slave_enabled`: Whether semisynchronous replication is enabled on replica.
+* `rpl_semi_sync_slave_enabled`: Se a Replication semissíncrona está habilitada na replica.
 
-* `Rpl_semi_sync_slave_status`: Whether semisynchronous replication is operational on replica.
+* `Rpl_semi_sync_slave_status`: Se a Replication semissíncrona está operacional na replica.
 
-* `rpl_semi_sync_slave_trace_level`: Semisynchronous replication debug trace level on replica.
+* `rpl_semi_sync_slave_trace_level`: Nível de Trace de Debug da Replication semissíncrona na replica.
 
-* `rpl_stop_slave_timeout`: Number of seconds that STOP REPLICA or STOP SLAVE waits before timing out.
+* `rpl_stop_slave_timeout`: Número de segundos que STOP REPLICA ou STOP SLAVE aguarda antes de atingir o timeout.
 
-* `server_uuid`: Server's globally unique ID, automatically (re)generated at server start.
+* `server_uuid`: ID globalmente único do Server, automaticamente (re)gerado na inicialização do Server.
 
-* `show-slave-auth-info`: Show user name and password in SHOW REPLICAS and SHOW SLAVE HOSTS on this source.
+* `show-slave-auth-info`: Mostra o nome de usuário e senha em SHOW REPLICAS e SHOW SLAVE HOSTS neste source.
 
-* `skip-slave-start`: If set, replication is not autostarted when replica server starts.
+* `skip-slave-start`: Se configurado, a Replication não é iniciada automaticamente quando o servidor replica é iniciado.
 
-* `slave-skip-errors`: Tells replication thread to continue replication when query returns error from provided list.
+* `slave-skip-errors`: Informa ao Thread de Replication para continuar a Replication quando a Query retornar um erro da lista fornecida.
 
-* `slave_checkpoint_group`: Maximum number of transactions processed by multithreaded replica before checkpoint operation is called to update progress status. Not supported by NDB Cluster.
+* `slave_checkpoint_group`: Número máximo de transações processadas pela replica multithreaded antes que a operação de Checkpoint seja chamada para atualizar o status de progresso. Não é suportado pelo NDB Cluster.
 
-* `slave_checkpoint_period`: Update progress status of multithreaded replica and flush relay log info to disk after this number of milliseconds. Not supported by NDB Cluster.
+* `slave_checkpoint_period`: Atualiza o status de progresso da replica multithreaded e faz flush das informações do Relay Log para o disco após este número de milissegundos. Não é suportado pelo NDB Cluster.
 
-* `slave_compressed_protocol`: Use compression of source/replica protocol.
+* `slave_compressed_protocol`: Usa compressão do Protocolo source/replica.
 
-* `slave_exec_mode`: Allows for switching replication thread between IDEMPOTENT mode (key and some other errors suppressed) and STRICT mode; STRICT mode is default, except for NDB Cluster, where IDEMPOTENT is always used.
+* `slave_exec_mode`: Permite alternar o Thread de Replication entre o modo IDEMPOTENT (Key e alguns outros erros suprimidos) e o modo STRICT; o modo STRICT é o padrão, exceto para NDB Cluster, onde IDEMPOTENT é sempre usado.
 
-* `Slave_heartbeat_period`: Replica's replication heartbeat interval, in seconds.
+* `Slave_heartbeat_period`: Intervalo de Heartbeat de Replication da replica, em segundos.
 
-* `Slave_last_heartbeat`: Shows when latest heartbeat signal was received, in TIMESTAMP format.
+* `Slave_last_heartbeat`: Mostra quando o sinal de Heartbeat mais recente foi recebido, no formato TIMESTAMP.
 
-* `slave_load_tmpdir`: Location where replica should put its temporary files when replicating LOAD DATA statements.
+* `slave_load_tmpdir`: Localização onde a replica deve colocar seus arquivos temporários ao replicar comandos LOAD DATA.
 
-* `slave_max_allowed_packet`: Maximum size, in bytes, of packet that can be sent from replication source server to replica; overrides max_allowed_packet.
+* `slave_max_allowed_packet`: Tamanho máximo, em bytes, do Packet que pode ser enviado do servidor source de Replication para a replica; sobrescreve `max_allowed_packet`.
 
-* `slave_net_timeout`: Number of seconds to wait for more data from source/replica connection before aborting read.
+* `slave_net_timeout`: Número de segundos a aguardar por mais dados da conexão source/replica antes de abortar a leitura.
 
-* `Slave_open_temp_tables`: Number of temporary tables that replication SQL thread currently has open.
+* `Slave_open_temp_tables`: Número de Temporary Tables que o Thread SQL de Replication tem abertas atualmente.
 
-* `slave_parallel_type`: Tells replica to use timestamp information (LOGICAL_CLOCK) or database partioning (DATABASE) to parallelize transactions.
+* `slave_parallel_type`: Informa à replica para usar informações de timestamp (LOGICAL_CLOCK) ou partição de Database (DATABASE) para paralelizar transações.
 
-* `slave_parallel_workers`: Number of applier threads for executing replication transactions in parallel; 0 or 1 disables replica multithreading. NDB Cluster: see documentation.
+* `slave_parallel_workers`: Número de Threads Applier para executar transações de Replication em paralelo; 0 ou 1 desabilita o multithreading da replica. NDB Cluster: veja a documentação.
 
-* `slave_pending_jobs_size_max`: Maximum size of replica worker queues holding events not yet applied.
+* `slave_pending_jobs_size_max`: Tamanho máximo das filas de worker da replica que contêm eventos ainda não aplicados.
 
-* `slave_preserve_commit_order`: Ensures that all commits by replica workers happen in same order as on source to maintain consistency when using parallel applier threads.
+* `slave_preserve_commit_order`: Garante que todos os Commits pelos workers da replica ocorram na mesma ordem que no source para manter a consistência ao usar Threads Applier paralelos.
 
-* `Slave_received_heartbeats`: Number of heartbeats received by replica since previous reset.
+* `Slave_received_heartbeats`: Número de Heartbeats recebidos pela replica desde o último reset.
 
-* `Slave_retried_transactions`: Total number of times since startup that replication SQL thread has retried transactions.
+* `Slave_retried_transactions`: Número total de vezes desde a inicialização que o Thread SQL de Replication tentou novamente as transações (retried transactions).
 
-* `Slave_rows_last_search_algorithm_used`: Search algorithm most recently used by this replica to locate rows for row-based replication (index, table, or hash scan).
+* `Slave_rows_last_search_algorithm_used`: Algoritmo de busca usado mais recentemente por esta replica para localizar linhas para Replication baseada em linha (Index, Table ou Hash Scan).
 
-* `slave_rows_search_algorithms`: Determines search algorithms used for replica update batching. Any 2 or 3 from this list: INDEX_SEARCH, TABLE_SCAN, HASH_SCAN.
+* `slave_rows_search_algorithms`: Determina os algoritmos de busca usados para o batching de Update da replica. Quaisquer 2 ou 3 desta lista: INDEX_SEARCH, TABLE_SCAN, HASH_SCAN.
 
-* `Slave_running`: State of this server as replica (replication I/O thread status).
+* `Slave_running`: Estado deste servidor como replica (status do Thread de I/O de Replication).
 
-* `slave_transaction_retries`: Number of times replication SQL thread retries transaction in case it failed with deadlock or elapsed lock wait timeout, before giving up and stopping.
+* `slave_transaction_retries`: Número de vezes que o Thread SQL de Replication tenta novamente a transação caso ela falhe com Deadlock ou Lock Wait Timeout expirado, antes de desistir e parar.
 
-* `slave_type_conversions`: Controls type conversion mode on replica. Value is list of zero or more elements from this list: ALL_LOSSY, ALL_NON_LOSSY. Set to empty string to disallow type conversions between source and replica.
+* `slave_type_conversions`: Controla o modo de conversão de tipo na replica. O valor é uma lista de zero ou mais elementos desta lista: ALL_LOSSY, ALL_NON_LOSSY. Defina como string vazia para proibir conversões de tipo entre source e replica.
 
-* `sql_log_bin`: Controls binary logging for current session.
+* `sql_log_bin`: Controla o Binary Logging para a session atual.
 
-* `sql_slave_skip_counter`: Number of events from source that replica should skip. Not compatible with GTID replication.
+* `sql_slave_skip_counter`: Número de eventos do source que a replica deve pular. Não é compatível com Replication GTID.
 
-* `sync_master_info`: Synchronize source information after every #th event.
+* `sync_master_info`: Sincroniza informações do source após o evento de número #.
 
-* `sync_relay_log`: Synchronize relay log to disk after every #th event.
+* `sync_relay_log`: Sincroniza o Relay Log para o disco após o evento de número #.
 
-* `sync_relay_log_info`: Synchronize relay.info file to disk after every #th event.
+* `sync_relay_log_info`: Sincroniza o arquivo relay.info para o disco após o evento de número #.
 
-* `transaction_write_set_extraction`: Defines algorithm used to hash writes extracted during transaction.
+* `transaction_write_set_extraction`: Define o algoritmo usado para fazer hash das Writes extraídas durante a transação.
 
-For a listing of all command-line options, system variables, and status variables used with [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), see [Section 5.1.3, “Server Option, System Variable, and Status Variable Reference”](server-option-variable-reference.html "5.1.3 Server Option, System Variable, and Status Variable Reference").
+Para uma listagem de todas as opções de linha de comando, variáveis de sistema e variáveis de status usadas com [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), consulte [Seção 5.1.3, “Referência de Opções de Servidor, Variáveis de Sistema e Variáveis de Status”](server-option-variable-reference.html "5.1.3 Referência de Opções de Servidor, Variáveis de Sistema e Variáveis de Status").
 
-##### Binary Logging Options and Variables
+##### Opções e Variáveis de Binary Logging
 
-The command-line options and system variables in the following list relate to the binary log. [Section 16.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "16.1.6.4 Binary Logging Options and Variables"), provides more detailed information about options and variables relating to binary logging. For additional general information about the binary log, see [Section 5.4.4, “The Binary Log”](binary-log.html "5.4.4 The Binary Log").
+As opções de linha de comando e variáveis de sistema na lista a seguir se relacionam ao Binary Log. [Seção 16.1.6.4, “Opções e Variáveis de Binary Logging”](replication-options-binary-log.html "16.1.6.4 Opções e Variáveis de Binary Logging"), fornece informações mais detalhadas sobre opções e variáveis relacionadas ao Binary Logging. Para informações gerais adicionais sobre o Binary Log, consulte [Seção 5.4.4, “O Binary Log”](binary-log.html "5.4.4 O Binary Log").
 
-* `binlog-checksum`: Enable or disable binary log checksums.
+* `binlog-checksum`: Habilita ou desabilita os Checksums do Binary Log.
 
-* `binlog-do-db`: Limits binary logging to specific databases.
+* `binlog-do-db`: Limita o Binary Logging a Databases específicos.
 
-* `binlog-ignore-db`: Tells source that updates to given database should not be written to binary log.
+* `binlog-ignore-db`: Informa ao source que Updates para o Database fornecido não devem ser escritos no Binary Log.
 
-* `binlog-row-event-max-size`: Binary log max event size.
+* `binlog-row-event-max-size`: Tamanho máximo de evento do Binary Log.
 
-* `Binlog_cache_disk_use`: Number of transactions which used temporary file instead of binary log cache.
+* `Binlog_cache_disk_use`: Número de transações que usaram arquivo temporário em vez do Binary Log Cache.
 
-* `binlog_cache_size`: Size of cache to hold SQL statements for binary log during transaction.
+* `binlog_cache_size`: Tamanho do Cache para armazenar comandos SQL para o Binary Log durante a transação.
 
-* `Binlog_cache_use`: Number of transactions that used temporary binary log cache.
+* `Binlog_cache_use`: Número de transações que usaram Cache de Binary Log temporário.
 
-* `binlog_checksum`: Enable or disable binary log checksums.
+* `binlog_checksum`: Habilita ou desabilita os Checksums do Binary Log.
 
-* `binlog_direct_non_transactional_updates`: Causes updates using statement format to nontransactional engines to be written directly to binary log. See documentation before using.
+* `binlog_direct_non_transactional_updates`: Faz com que os Updates usando o formato Statement para engines não transacionais sejam escritos diretamente no Binary Log. Consulte a documentação antes de usar.
 
-* `binlog_error_action`: Controls what happens when server cannot write to binary log.
+* `binlog_error_action`: Controla o que acontece quando o Server não consegue escrever no Binary Log.
 
-* `binlog_format`: Specifies format of binary log.
+* `binlog_format`: Especifica o formato do Binary Log.
 
-* `binlog_group_commit_sync_delay`: Sets number of microseconds to wait before synchronizing transactions to disk.
+* `binlog_group_commit_sync_delay`: Define o número de microssegundos a aguardar antes de sincronizar transações para o disco.
 
-* `binlog_group_commit_sync_no_delay_count`: Sets maximum number of transactions to wait for before aborting current delay specified by binlog_group_commit_sync_delay.
+* `binlog_group_commit_sync_no_delay_count`: Define o número máximo de transações a aguardar antes de abortar o atraso atual especificado por `binlog_group_commit_sync_delay`.
 
-* `binlog_gtid_simple_recovery`: Controls how binary logs are iterated during GTID recovery.
+* `binlog_gtid_simple_recovery`: Controla como os Binary Logs são iterados durante a recuperação de GTID.
 
-* `binlog_max_flush_queue_time`: How long to read transactions before flushing to binary log.
+* `binlog_max_flush_queue_time`: Quanto tempo ler transações antes de fazer flush para o Binary Log.
 
-* `binlog_order_commits`: Whether to commit in same order as writes to binary log.
+* `binlog_order_commits`: Se deve fazer Commit na mesma ordem das Writes para o Binary Log.
 
-* `binlog_row_image`: Use full or minimal images when logging row changes.
+* `binlog_row_image`: Usa imagens completas ou mínimas ao registrar alterações de linha (row changes).
 
-* `binlog_rows_query_log_events`: When enabled, enables logging of rows query log events when using row-based logging. Disabled by default..
+* `binlog_rows_query_log_events`: Quando habilitado, permite o logging de eventos de Query de linha ao usar logging baseado em linha (row-based logging). Desabilitado por padrão.
 
-* `Binlog_stmt_cache_disk_use`: Number of nontransactional statements that used temporary file instead of binary log statement cache.
+* `Binlog_stmt_cache_disk_use`: Número de comandos não transacionais que usaram arquivo temporário em vez do Binary Log Statement Cache.
 
-* `binlog_stmt_cache_size`: Size of cache to hold nontransactional statements for binary log during transaction.
+* `binlog_stmt_cache_size`: Tamanho do Cache para armazenar comandos não transacionais para o Binary Log durante a transação.
 
-* `Binlog_stmt_cache_use`: Number of statements that used temporary binary log statement cache.
+* `Binlog_stmt_cache_use`: Número de comandos que usaram Cache de Binary Log Statement temporário.
 
-* `binlog_transaction_dependency_history_size`: Number of row hashes kept for looking up transaction that last updated some row.
+* `binlog_transaction_dependency_history_size`: Número de hashes de linha mantidos para buscar a transação que atualizou pela última vez alguma linha.
 
-* `binlog_transaction_dependency_tracking`: Source of dependency information (commit timestamps or transaction write sets) from which to assess which transactions can be executed in parallel by replica's multithreaded applier.
+* `binlog_transaction_dependency_tracking`: Fonte de informações de dependência (timestamps de Commit ou Write Sets de transação) a partir da qual avaliar quais transações podem ser executadas em paralelo pelo Applier multithreaded da replica.
 
-* `Com_show_binlog_events`: Count of SHOW BINLOG EVENTS statements.
+* `Com_show_binlog_events`: Contagem de comandos SHOW BINLOG EVENTS.
 
-* `Com_show_binlogs`: Count of SHOW BINLOGS statements.
+* `Com_show_binlogs`: Contagem de comandos SHOW BINLOGS.
 
-* `log-bin`: Base name for binary log files.
+* `log-bin`: Nome base para arquivos de Binary Log.
 
-* `log-bin-index`: Name of binary log index file.
+* `log-bin-index`: Nome do arquivo Index do Binary Log.
 
-* `log_bin`: Whether binary log is enabled.
+* `log_bin`: Se o Binary Log está habilitado.
 
-* `log_bin_basename`: Path and base name for binary log files.
+* `log_bin_basename`: Caminho e nome base para arquivos de Binary Log.
 
-* `log_bin_use_v1_row_events`: Whether server is using version 1 binary log row events.
+* `log_bin_use_v1_row_events`: Se o Server está usando eventos de linha (row events) da versão 1 do Binary Log.
 
-* `log_slave_updates`: Whether replica should log updates performed by its replication SQL thread to its own binary log.
+* `log_slave_updates`: Se a replica deve registrar os Updates realizados pelo seu Thread SQL de Replication em seu próprio Binary Log.
 
-* `master_verify_checksum`: Cause source to examine checksums when reading from binary log.
+* `master_verify_checksum`: Faz com que o source examine Checksums ao ler do Binary Log.
 
-* `max-binlog-dump-events`: Option used by mysql-test for debugging and testing of replication.
+* `max-binlog-dump-events`: Opção usada pelo mysql-test para debugging e testes de Replication.
 
-* `max_binlog_cache_size`: Can be used to restrict total size in bytes used to cache multi-statement transactions.
+* `max_binlog_cache_size`: Pode ser usado para restringir o tamanho total em bytes usado para armazenar em Cache transações com múltiplos Statements.
 
-* `max_binlog_size`: Binary log is rotated automatically when size exceeds this value.
+* `max_binlog_size`: O Binary Log é rotacionado automaticamente quando o tamanho excede este valor.
 
-* `max_binlog_stmt_cache_size`: Can be used to restrict total size used to cache all nontransactional statements during transaction.
+* `max_binlog_stmt_cache_size`: Pode ser usado para restringir o tamanho total usado para armazenar em Cache todos os comandos não transacionais durante a transação.
 
-* `slave-sql-verify-checksum`: Cause replica to examine checksums when reading from relay log.
+* `slave-sql-verify-checksum`: Faz com que a replica examine Checksums ao ler do Relay Log.
 
-* `slave_sql_verify_checksum`: Cause replica to examine checksums when reading from relay log.
+* `slave_sql_verify_checksum`: Faz com que a replica examine Checksums ao ler do Relay Log.
 
-* `sporadic-binlog-dump-fail`: Option used by mysql-test for debugging and testing of replication.
+* `sporadic-binlog-dump-fail`: Opção usada pelo mysql-test para debugging e testes de Replication.
 
-* `sync_binlog`: Synchronously flush binary log to disk after every #th event.
+* `sync_binlog`: Faz Flush síncrono do Binary Log para o disco após o evento de número #.
 
-For a listing of all command-line options, system and status variables used with [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), see [Section 5.1.3, “Server Option, System Variable, and Status Variable Reference”](server-option-variable-reference.html "5.1.3 Server Option, System Variable, and Status Variable Reference").
+Para uma listagem de todas as opções de linha de comando, variáveis de sistema e status usadas com [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), consulte [Seção 5.1.3, “Referência de Opções de Servidor, Variáveis de Sistema e Variáveis de Status”](server-option-variable-reference.html "5.1.3 Referência de Opções de Servidor, Variáveis de Sistema e Variáveis de Status").

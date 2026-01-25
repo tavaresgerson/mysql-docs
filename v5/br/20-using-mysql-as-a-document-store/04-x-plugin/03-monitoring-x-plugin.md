@@ -1,3 +1,3 @@
-### 19.4.3 Monitoring X Plugin
+### 19.4.3 Monitorando o X Plugin
 
-To monitor X Plugin, use the status variables that it exposes. See Section 19.4.2.3, “X Plugin Status Variables”.
+Para monitorar o X Plugin, use as status variables que ele expõe. Consulte a Seção 19.4.2.3, “X Plugin Status Variables”.

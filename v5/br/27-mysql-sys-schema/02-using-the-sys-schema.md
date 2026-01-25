@@ -1,6 +1,6 @@
-## 26.2 Using the sys Schema
+## 26.2 Usando o Schema sys
 
-You can make the `sys` schema the default schema so that references to its objects need not be qualified with the schema name:
+Você pode definir o schema `sys` como o schema padrão, de modo que as referências aos seus objetos não precisem ser qualificadas com o nome do schema:
 
 ```sql
 mysql> USE sys;
@@ -13,9 +13,9 @@ mysql> SELECT * FROM version;
 +-------------+------------------+
 ```
 
-(The `version` view shows the `sys` schema and MySQL server versions.)
+(A view `version` exibe as versões do schema `sys` e do servidor MySQL.)
 
-To access `sys` schema objects while a different schema is the default (or simply to be explicit), qualify object references with the schema name:
+Para acessar objetos do schema `sys` enquanto um schema diferente é o padrão (ou simplesmente para ser explícito), qualifique as referências de objetos com o nome do schema:
 
 ```sql
 mysql> SELECT * FROM sys.version;
@@ -26,7 +26,7 @@ mysql> SELECT * FROM sys.version;
 +-------------+------------------+
 ```
 
-The `sys` schema contains many views that summarize Performance Schema tables in various ways. Most of these views come in pairs, such that one member of the pair has the same name as the other member, plus a `x$` prefix. For example, the `host_summary_by_file_io` view summarizes file I/O grouped by host and displays latencies converted from picoseconds to more readable values (with units);
+O schema `sys` contém muitas views que resumem as tabelas do Performance Schema de várias maneiras. A maioria dessas views vem em pares, onde um membro do par tem o mesmo nome que o outro membro, mais um prefixo `x$`. Por exemplo, a view `host_summary_by_file_io` resume o File I/O (I/O de arquivo) agrupado por host e exibe latências convertidas de picosegundos para valores mais legíveis (com unidades);
 
 ```sql
 mysql> SELECT * FROM sys.host_summary_by_file_io;
@@ -38,7 +38,7 @@ mysql> SELECT * FROM sys.host_summary_by_file_io;
 +------------+-------+------------+
 ```
 
-The `x$host_summary_by_file_io` view summarizes the same data but displays unformatted picosecond latencies:
+A view `x$host_summary_by_file_io` resume os mesmos dados, mas exibe latências não formatadas em picosegundos:
 
 ```sql
 mysql> SELECT * FROM sys.x$host_summary_by_file_io;
@@ -50,25 +50,25 @@ mysql> SELECT * FROM sys.x$host_summary_by_file_io;
 +------------+-------+---------------+
 ```
 
-The view without the `x$` prefix is intended to provide output that is more user friendly and easier for humans to read. The view with the `x$` prefix that displays the same values in raw form is intended more for use with other tools that perform their own processing on the data. For additional information about the differences between non-`x$` and `x$` views, see Section 26.4.3, “sys Schema Views”.
+A view sem o prefixo `x$` se destina a fornecer uma saída que é mais amigável ao usuário e mais fácil de ler para humanos. A view com o prefixo `x$`, que exibe os mesmos valores em formato bruto (raw form), destina-se mais ao uso com outras ferramentas que realizam seu próprio processamento nos dados. Para informações adicionais sobre as diferenças entre views non-`x$` e `x$`, consulte a Seção 26.4.3, “Views do Schema sys”.
 
-To examine `sys` schema object definitions, use the appropriate `SHOW` statement or `INFORMATION_SCHEMA` query. For example, to examine the definitions of the `session` view and `format_bytes()` Function") function, use these statements:
+Para examinar as definições de objeto do schema `sys`, use a instrução `SHOW` apropriada ou uma Query no `INFORMATION_SCHEMA`. Por exemplo, para examinar as definições da view `session` e da Function `format_bytes()`, utilize estas instruções:
 
 ```sql
 mysql> SHOW CREATE VIEW sys.session;
 mysql> SHOW CREATE FUNCTION sys.format_bytes;
 ```
 
-However, those statements display the definitions in relatively unformatted form. To view object definitions with more readable formatting, access the individual `.sql` files found under the `scripts/sys_schema` in MySQL source distributions. Prior to MySQL 5.7.28, the sources are maintained in a separate distribution available from the `sys` schema development website at <https://github.com/mysql/mysql-sys>.
+No entanto, essas instruções exibem as definições em um formato relativamente não formatado. Para visualizar as definições de objeto com formatação mais legível, acesse os arquivos `.sql` individuais encontrados em `scripts/sys_schema` nas distribuições de código-fonte (source distributions) do MySQL. Antes do MySQL 5.7.28, os códigos-fonte eram mantidos em uma distribuição separada, disponível no site de desenvolvimento do schema `sys` em <https://github.com/mysql/mysql-sys>.
 
-Neither **mysqldump** nor **mysqlpump** dump the `sys` schema by default. To generate a dump file, name the `sys` schema explicitly on the command line using either of these commands:
+Nem o **mysqldump** nem o **mysqlpump** realizam o dump (despejo) do schema `sys` por padrão. Para gerar um dump file, nomeie o schema `sys` explicitamente na linha de comando usando qualquer um destes comandos:
 
 ```sql
 mysqldump --databases --routines sys > sys_dump.sql
 mysqlpump sys > sys_dump.sql
 ```
 
-To reinstall the schema from the dump file, use this command:
+Para reinstalar o schema a partir do dump file, use este comando:
 
 ```sql
 mysql < sys_dump.sql

@@ -1,44 +1,43 @@
-#### 21.2.7.2 Limits and Differences of NDB Cluster from Standard MySQL Limits
+#### 21.2.7.2 Limites e Diferenças do NDB Cluster em Relação aos Limites do MySQL Padrão
 
-In this section, we list limits found in NDB Cluster that either differ from limits found in, or that are not found in, standard MySQL.
+Nesta seção, listamos os limites encontrados no NDB Cluster que diferem dos limites encontrados ou que não são encontrados no MySQL padrão.
 
-**Memory usage and recovery.** Memory consumed when data is inserted into an [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table is not automatically recovered when deleted, as it is with other storage engines. Instead, the following rules hold true:
+**Uso de memória e recuperação.** A memória consumida quando dados são inseridos em uma tabela [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") não é recuperada automaticamente quando deletada, como ocorre com outros *storage engines*. Em vez disso, as seguintes regras são válidas:
 
-* A [`DELETE`](delete.html "13.2.2 DELETE Statement") statement on an [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table makes the memory formerly used by the deleted rows available for re-use by inserts on the same table only. However, this memory can be made available for general re-use by performing [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement").
+* Uma instrução [`DELETE`](delete.html "13.2.2 DELETE Statement") em uma tabela [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") torna a memória anteriormente usada pelas linhas deletadas disponível para reuso apenas por *inserts* na mesma tabela. No entanto, essa memória pode ser disponibilizada para reuso geral executando [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement").
 
-  A rolling restart of the cluster also frees any memory used by deleted rows. See [Section 21.6.5, “Performing a Rolling Restart of an NDB Cluster”](mysql-cluster-rolling-restart.html "21.6.5 Performing a Rolling Restart of an NDB Cluster").
+  Um *rolling restart* do Cluster também libera qualquer memória usada pelas linhas deletadas. Consulte [Section 21.6.5, “Performing a Rolling Restart of an NDB Cluster”](mysql-cluster-rolling-restart.html "21.6.5 Performing a Rolling Restart of an NDB Cluster").
 
-* A [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") or [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") operation on an [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table frees the memory that was used by this table for re-use by any [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table, either by the same table or by another [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table.
+* Uma operação [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") ou [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") em uma tabela [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") libera a memória que foi usada por essa tabela para reuso por qualquer tabela [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"), seja pela mesma tabela ou por outra tabela [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6").
 
   Note
 
-  Recall that [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") drops and re-creates the table. See [Section 13.1.34, “TRUNCATE TABLE Statement”](truncate-table.html "13.1.34 TRUNCATE TABLE Statement").
+  Lembre-se de que [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") deleta e recria a tabela. Consulte [Section 13.1.34, “TRUNCATE TABLE Statement”](truncate-table.html "13.1.34 TRUNCATE TABLE Statement").
 
-* **Limits imposed by the cluster's configuration.** A number of hard limits exist which are configurable, but available main memory in the cluster sets limits. See the complete list of configuration parameters in [Section 21.4.3, “NDB Cluster Configuration Files”](mysql-cluster-config-file.html "21.4.3 NDB Cluster Configuration Files"). Most configuration parameters can be upgraded online. These hard limits include:
+* **Limites impostos pela configuração do Cluster.** Existe uma série de limites rígidos que são configuráveis, mas a memória principal disponível no Cluster estabelece limites. Consulte a lista completa de parâmetros de configuração em [Section 21.4.3, “NDB Cluster Configuration Files”](mysql-cluster-config-file.html "21.4.3 NDB Cluster Configuration Files"). A maioria dos parâmetros de configuração pode ser atualizada *online*. Esses limites rígidos incluem:
 
-  + Database memory size and index memory size ([`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) and [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory), respectively).
+  + Tamanho da memória do Database e tamanho da memória de Index ([`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) e [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory), respectivamente).
 
-    [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) is allocated as 32KB pages. As each [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) page is used, it is assigned to a specific table; once allocated, this memory cannot be freed except by dropping the table.
+    [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) é alocado em páginas de 32KB. À medida que cada página de [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) é usada, ela é atribuída a uma tabela específica; uma vez alocada, essa memória não pode ser liberada, exceto excluindo a tabela (*dropping the table*).
 
-    See [Section 21.4.3.6, “Defining NDB Cluster Data Nodes”](mysql-cluster-ndbd-definition.html "21.4.3.6 Defining NDB Cluster Data Nodes"), for more information.
+    Consulte [Section 21.4.3.6, “Defining NDB Cluster Data Nodes”](mysql-cluster-ndbd-definition.html "21.4.3.6 Defining NDB Cluster Data Nodes"), para mais informações.
 
-  + The maximum number of operations that can be performed per transaction is set using the configuration parameters [`MaxNoOfConcurrentOperations`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofconcurrentoperations) and [`MaxNoOfLocalOperations`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooflocaloperations).
+  + O número máximo de operações que podem ser executadas por *transaction* é definido usando os parâmetros de configuração [`MaxNoOfConcurrentOperations`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofconcurrentoperations) e [`MaxNoOfLocalOperations`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooflocaloperations).
 
     Note
 
-    Bulk loading, [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement"), and [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") are handled as special cases by running multiple transactions, and so are not subject to this limitation.
+    *Bulk loading*, [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") e [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") são tratados como casos especiais por executarem múltiplas *transactions*, e, portanto, não estão sujeitos a esta limitação.
 
-  + Different limits related to tables and indexes. For example, the maximum number of ordered indexes in the cluster is determined by [`MaxNoOfOrderedIndexes`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooforderedindexes), and the maximum number of ordered indexes per table is 16.
+  + Limites diferentes relacionados a tabelas e *Indexes*. Por exemplo, o número máximo de *ordered Indexes* no Cluster é determinado por [`MaxNoOfOrderedIndexes`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooforderedindexes), e o número máximo de *ordered Indexes* por tabela é 16.
 
-* **Node and data object maximums.** The following limits apply to numbers of cluster nodes and metadata objects:
+* **Máximos de Node e Objeto de Dados.** Os seguintes limites se aplicam ao número de *Nodes* do Cluster e objetos de metadados:
 
-  + The maximum number of data nodes is 48.
+  + O número máximo de *data Nodes* é 48.
 
-    A data node must have a node ID in the range of 1 to 48, inclusive. (Management and API nodes may use node IDs in the range 1 to 255, inclusive.)
+    Um *data Node* deve ter um *Node ID* no intervalo de 1 a 48, inclusive. (*Management Nodes* e *API Nodes* podem usar *Node IDs* no intervalo de 1 a 255, inclusive.)
 
-  + The total maximum number of nodes in an NDB Cluster is
-    255. This number includes all SQL nodes (MySQL Servers), API nodes (applications accessing the cluster other than MySQL servers), data nodes, and management servers.
+  + O número máximo total de *Nodes* em um NDB Cluster é 255. Este número inclui todos os *SQL Nodes* (MySQL Servers), *API Nodes* (aplicativos acessando o Cluster que não sejam MySQL Servers), *data Nodes* e *management servers*.
 
-  + The maximum number of metadata objects in current versions of NDB Cluster is 20320. This limit is hard-coded.
+  + O número máximo de objetos de metadados nas versões atuais do NDB Cluster é 20320. Este limite é *hard-coded*.
 
-  See [Previous NDB Cluster Issues Resolved in NDB Cluster 8.0](/doc/refman/8.0/en/mysql-cluster-limitations-resolved.html), for more information.
+  Consulte [Previous NDB Cluster Issues Resolved in NDB Cluster 8.0](/doc/refman/8.0/en/mysql-cluster-limitations-resolved.html), para mais informações.

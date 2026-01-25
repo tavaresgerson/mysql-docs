@@ -1,17 +1,17 @@
-### 12.9.4 Full-Text Stopwords
+### 12.9.4 Stopwords de Texto Completo (Full-Text Stopwords)
 
-The stopword list is loaded and searched for full-text queries using the server character set and collation (the values of the `character_set_server` and `collation_server` system variables). False hits or misses might occur for stopword lookups if the stopword file or columns used for full-text indexing or searches have a character set or collation different from `character_set_server` or `collation_server`.
+A lista de stopwords é carregada e pesquisada para Queries de Full-Text usando o Character Set e a Collation do servidor (os valores das variáveis de sistema `character_set_server` e `collation_server`). Falsos positivos ou negativos podem ocorrer para buscas de stopword se o arquivo de stopword ou as colunas usadas para Indexing ou buscas de Full-Text tiverem um Character Set ou uma Collation diferente de `character_set_server` ou `collation_server`.
 
-Case sensitivity of stopword lookups depends on the server collation. For example, lookups are case-insensitive if the collation is `latin1_swedish_ci`, whereas lookups are case-sensitive if the collation is `latin1_general_cs` or `latin1_bin`.
+A sensibilidade a maiúsculas e minúsculas (case sensitivity) das buscas de stopword depende da Collation do servidor. Por exemplo, as buscas são case-insensitive se a Collation for `latin1_swedish_ci`, enquanto as buscas são case-sensitive se a Collation for `latin1_general_cs` ou `latin1_bin`.
 
-* Stopwords for InnoDB Search Indexes
-* Stopwords for MyISAM Search Indexes
+* Stopwords para Indexes de Busca InnoDB
+* Stopwords para Indexes de Busca MyISAM
 
-#### Stopwords for InnoDB Search Indexes
+#### Stopwords para Indexes de Busca InnoDB
 
-`InnoDB` has a relatively short list of default stopwords, because documents from technical, literary, and other sources often use short words as keywords or in significant phrases. For example, you might search for “to be or not to be” and expect to get a sensible result, rather than having all those words ignored.
+O `InnoDB` possui uma lista relativamente curta de stopwords padrão, pois documentos de fontes técnicas, literárias e outras, frequentemente usam palavras curtas como keywords ou em frases significativas. Por exemplo, você pode pesquisar por “to be or not to be” e esperar obter um resultado sensato, em vez de ter todas essas palavras ignoradas.
 
-To see the default `InnoDB` stopword list, query the Information Schema `INNODB_FT_DEFAULT_STOPWORD` table.
+Para ver a lista de stopwords padrão do `InnoDB`, execute uma Query na tabela `INNODB_FT_DEFAULT_STOPWORD` do Information Schema.
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_FT_DEFAULT_STOPWORD;
@@ -58,7 +58,7 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_FT_DEFAULT_STOPWORD;
 36 rows in set (0.00 sec)
 ```
 
-To define your own stopword list for all `InnoDB` tables, define a table with the same structure as the `INNODB_FT_DEFAULT_STOPWORD` table, populate it with stopwords, and set the value of the `innodb_ft_server_stopword_table` option to a value in the form `db_name/table_name` before creating the full-text index. The stopword table must have a single `VARCHAR` column named `value`. The following example demonstrates creating and configuring a new global stopword table for `InnoDB`.
+Para definir sua própria lista de stopwords para todas as tabelas `InnoDB`, defina uma tabela com a mesma estrutura da tabela `INNODB_FT_DEFAULT_STOPWORD`, popule-a com stopwords e defina o valor da opção `innodb_ft_server_stopword_table` para um valor no formato `db_name/table_name` antes de criar o Index de Full-Text. A tabela de stopword deve ter uma única coluna `VARCHAR` chamada `value`. O exemplo a seguir demonstra a criação e configuração de uma nova tabela de stopword global para o `InnoDB`.
 
 ```sql
 -- Create a new stopword table
@@ -107,11 +107,11 @@ Query OK, 0 rows affected, 1 warning (1.17 sec)
 Records: 0  Duplicates: 0  Warnings: 1
 ```
 
-Verify that the specified stopword ('Ishmael') does not appear by querying the Information Schema `INNODB_FT_INDEX_TABLE` table.
+Verifique se a stopword especificada ('Ishmael') não aparece executando uma Query na tabela `INNODB_FT_INDEX_TABLE` do Information Schema.
 
-Note
+Nota
 
-By default, words less than 3 characters in length or greater than 84 characters in length do not appear in an `InnoDB` full-text search index. Maximum and minimum word length values are configurable using the `innodb_ft_max_token_size` and `innodb_ft_min_token_size` variables. This default behavior does not apply to the ngram parser plugin. ngram token size is defined by the `ngram_token_size` option.
+Por padrão, palavras com menos de 3 caracteres de comprimento ou mais de 84 caracteres de comprimento não aparecem em um Index de busca Full-Text do `InnoDB`. Os valores de comprimento máximo e mínimo de palavras são configuráveis usando as variáveis `innodb_ft_max_token_size` e `innodb_ft_min_token_size`. Este comportamento padrão não se aplica ao plugin de parser ngram. O tamanho do token ngram é definido pela opção `ngram_token_size`.
 
 ```sql
 mysql> SET GLOBAL innodb_ft_aux_table='test/opening_lines';
@@ -140,17 +140,17 @@ mysql> SELECT word FROM INFORMATION_SCHEMA.INNODB_FT_INDEX_TABLE LIMIT 15;
 15 rows in set (0.00 sec)
 ```
 
-To create stopword lists on a table-by-table basis, create other stopword tables and use the `innodb_ft_user_stopword_table` option to specify the stopword table that you want to use before you create the full-text index.
+Para criar listas de stopwords tabela por tabela, crie outras tabelas de stopword e use a opção `innodb_ft_user_stopword_table` para especificar a tabela de stopword que você deseja usar antes de criar o Index de Full-Text.
 
-#### Stopwords for MyISAM Search Indexes
+#### Stopwords para Indexes de Busca MyISAM
 
-The stopword file is loaded and searched using `latin1` if `character_set_server` is `ucs2`, `utf16`, `utf16le`, or `utf32`.
+O arquivo de stopword é carregado e pesquisado usando `latin1` se `character_set_server` for `ucs2`, `utf16`, `utf16le` ou `utf32`.
 
-To override the default stopword list for MyISAM tables, set the `ft_stopword_file` system variable. (See Section 5.1.7, “Server System Variables”.) The variable value should be the path name of the file containing the stopword list, or the empty string to disable stopword filtering. The server looks for the file in the data directory unless an absolute path name is given to specify a different directory. After changing the value of this variable or the contents of the stopword file, restart the server and rebuild your `FULLTEXT` indexes.
+Para substituir a lista de stopwords padrão para tabelas MyISAM, defina a variável de sistema `ft_stopword_file`. (Consulte a Seção 5.1.7, “Server System Variables”.) O valor da variável deve ser o nome do caminho do arquivo contendo a lista de stopword, ou uma string vazia para desativar a filtragem de stopword. O servidor procura o arquivo no diretório de dados, a menos que um nome de caminho absoluto seja fornecido para especificar um diretório diferente. Depois de alterar o valor desta variável ou o conteúdo do arquivo de stopword, reinicie o servidor e reconstrua seus Indexes `FULLTEXT`.
 
-The stopword list is free-form, separating stopwords with any nonalphanumeric character such as newline, space, or comma. Exceptions are the underscore character (`_`) and a single apostrophe (`'`) which are treated as part of a word. The character set of the stopword list is the server's default character set; see Section 10.3.2, “Server Character Set and Collation”.
+A lista de stopwords é de formato livre, separando stopwords com qualquer caractere não alfanumérico, como quebra de linha (newline), espaço ou vírgula. As exceções são o caractere de sublinhado (`_`) e um único apóstrofo (`'`), que são tratados como parte de uma palavra. O Character Set da lista de stopword é o Character Set padrão do servidor; consulte a Seção 10.3.2, “Server Character Set and Collation”.
 
-The following list shows the default stopwords for `MyISAM` search indexes. In a MySQL source distribution, you can find this list in the `storage/myisam/ft_static.c` file.
+A lista a seguir mostra as stopwords padrão para Indexes de busca `MyISAM`. Em uma distribuição de código-fonte do MySQL, você pode encontrar esta lista no arquivo `storage/myisam/ft_static.c`.
 
 ```sql
 a's           able          about         above         according

@@ -1,55 +1,55 @@
-## 14.14 InnoDB Data-at-Rest Encryption
+## 14.14 Criptografia de Dados em Repouso do InnoDB (`Data-at-Rest Encryption`)
 
-`InnoDB` supports data-at-rest encryption for file-per-table tablespaces.
+O `InnoDB` suporta criptografia de dados em repouso (`data-at-rest encryption`) para *tablespaces file-per-table*.
 
-* About Data-at-Rest Encryption
-* Encryption Prerequisites
-* Enabling File-Per-Table Tablespace Encryption
-* Master Key Rotation
-* Encryption and Recovery
-* Exporting Encrypted Tablespaces
-* Encryption and Replication
-* Identifying Encrypted Tablespaces
-* Encryption Usage Notes
-* Encryption Limitations
+* Sobre a Criptografia de Dados em Repouso
+* Pré-requisitos de Criptografia
+* Habilitando a Criptografia de Tablespace File-Per-Table
+* Rotação da Master Key
+* Criptografia e Recuperação
+* Exportando Tablespaces Criptografados
+* Criptografia e Replicação
+* Identificando Tablespaces Criptografados
+* Notas de Uso da Criptografia
+* Limitações da Criptografia
 
-### About Data-at-Rest Encryption
+### Sobre a Criptografia de Dados em Repouso
 
-`InnoDB` uses a two tier encryption key architecture, consisting of a master encryption key and tablespace keys. When a tablespace is encrypted, a tablespace key is encrypted and stored in the tablespace header. When an application or authenticated user wants to access encrypted data, `InnoDB` uses a master encryption key to decrypt the tablespace key. The decrypted version of a tablespace key never changes, but the master encryption key can be changed as required. This action is referred to as *master key rotation*.
+O `InnoDB` utiliza uma arquitetura de chave de criptografia de dois níveis, consistindo em uma *master encryption key* e *tablespace keys*. Quando um *tablespace* é criptografado, uma *tablespace key* é criptografada e armazenada no *header* do *tablespace*. Quando um aplicativo ou usuário autenticado deseja acessar dados criptografados, o `InnoDB` usa uma *master encryption key* para descriptografar a *tablespace key*. A versão descriptografada de uma *tablespace key* nunca muda, mas a *master encryption key* pode ser alterada conforme necessário. Essa ação é denominada *master key rotation* (rotação da *master key*).
 
-The data-at-rest encryption feature relies on a keyring plugin for master encryption key management.
+O recurso de criptografia de dados em repouso depende de um *keyring plugin* para o gerenciamento da *master encryption key*.
 
-All MySQL editions provide a `keyring_file` plugin, which stores keyring data in a file local to the server host.
+Todas as edições do MySQL fornecem o *plugin* `keyring_file`, que armazena dados de *keyring* em um arquivo local no *host* do servidor.
 
-MySQL Enterprise Edition offers additional keyring plugins:
+O MySQL Enterprise Edition oferece *keyring plugins* adicionais:
 
-* `keyring_encrypted_file`: Stores keyring data in an encrypted, password-protected file local to the server host.
+* `keyring_encrypted_file`: Armazena dados de *keyring* em um arquivo criptografado e protegido por senha, local no *host* do servidor.
 
-* `keyring_okv`: A KMIP 1.1 plugin for use with KMIP-compatible back end keyring storage products. Supported KMIP-compatible products include centralized key management solutions such as Oracle Key Vault, Gemalto KeySecure, Thales Vormetric key management server, and Fornetix Key Orchestration.
+* `keyring_okv`: Um *plugin* KMIP 1.1 para uso com produtos de armazenamento *keyring back end* compatíveis com KMIP. Produtos compatíveis com KMIP suportados incluem soluções centralizadas de gerenciamento de chaves, como Oracle Key Vault, Gemalto KeySecure, Thales Vormetric key management server e Fornetix Key Orchestration.
 
-* `keyring_aws`: Communicates with the Amazon Web Services Key Management Service (AWS KMS) as a back end for key generation and uses a local file for key storage.
+* `keyring_aws`: Comunica-se com o Amazon Web Services Key Management Service (AWS KMS) como um *back end* para geração de chaves e usa um arquivo local para armazenamento de chaves.
 
-Warning
+Aviso
 
-For encryption key management, the `keyring_file` and `keyring_encrypted_file` plugins are not intended as a regulatory compliance solution. Security standards such as PCI, FIPS, and others require use of key management systems to secure, manage, and protect encryption keys in key vaults or hardware security modules (HSMs).
+Para o gerenciamento de chaves de criptografia, os *plugins* `keyring_file` e `keyring_encrypted_file` não são projetados como uma solução de conformidade regulatória. Padrões de segurança como PCI, FIPS e outros exigem o uso de sistemas de gerenciamento de chaves para proteger, gerenciar e preservar chaves de criptografia em *key vaults* ou módulos de segurança de hardware (HSMs).
 
-A secure and robust encryption key management solution is critical for security and for compliance with various security standards. When the data-at-rest encryption feature uses a centralized key management solution, the feature is referred to as “MySQL Enterprise Transparent Data Encryption (TDE)”.
+Uma solução de gerenciamento de chave de criptografia segura e robusta é crítica para a segurança e para a conformidade com vários padrões de segurança. Quando o recurso de criptografia de dados em repouso utiliza uma solução centralizada de gerenciamento de chaves, o recurso é denominado “MySQL Enterprise Transparent Data Encryption (TDE)”.
 
-The data-at-rest encryption feature supports the Advanced Encryption Standard (AES) block-based encryption algorithm. It uses Electronic Codebook (ECB) block encryption mode for tablespace key encryption and Cipher Block Chaining (CBC) block encryption mode for data encryption.
+O recurso de criptografia de dados em repouso suporta o *Advanced Encryption Standard* (AES), um *algorithm* de criptografia baseado em blocos. Ele usa o modo de criptografia de bloco *Electronic Codebook* (ECB) para criptografia da *tablespace key* e o modo de criptografia de bloco *Cipher Block Chaining* (CBC) para criptografia de dados.
 
-For frequently asked questions about the data-at-rest encryption feature, see Section A.17, “MySQL 5.7 FAQ: InnoDB Data-at-Rest Encryption”.
+Para perguntas frequentes sobre o recurso de criptografia de dados em repouso, consulte a Seção A.17, “MySQL 5.7 FAQ: InnoDB Data-at-Rest Encryption”.
 
-### Encryption Prerequisites
+### Pré-requisitos de Criptografia
 
-* A keyring plugin must be installed and configured. Keyring plugin installation is performed at startup using the `early-plugin-load` option. Early loading ensures that the plugin is available prior to initialization of the `InnoDB` storage engine. For keyring plugin installation and configuration instructions, see Section 6.4.4, “The MySQL Keyring”.
+* Um *keyring plugin* deve ser instalado e configurado. A instalação do *keyring plugin* é realizada na inicialização usando a opção `early-plugin-load`. O carregamento antecipado garante que o *plugin* esteja disponível antes da inicialização do *storage engine* `InnoDB`. Para obter instruções de instalação e configuração do *keyring plugin*, consulte a Seção 6.4.4, “The MySQL Keyring”.
 
-  Only one keyring plugin should be enabled at a time. Enabling multiple keyring plugins is unsupported and results may not be as anticipated.
+  Apenas um *keyring plugin* deve ser habilitado por vez. A habilitação de múltiplos *keyring plugins* não é suportada, e os resultados podem não ser os esperados.
 
-  Important
+  Importante
 
-  Once encrypted tablespaces are created in a MySQL instance, the keyring plugin that was loaded when creating the encrypted tablespace must continue to be loaded at startup using the `early-plugin-load` option. Failing to do so results in errors when starting the server and during `InnoDB` recovery.
+  Uma vez que *tablespaces* criptografados são criados em uma *Instance* MySQL, o *keyring plugin* que foi carregado ao criar o *tablespace* criptografado deve continuar a ser carregado na inicialização usando a opção `early-plugin-load`. Não fazer isso resulta em erros ao iniciar o servidor e durante a recuperação do `InnoDB`.
 
-  To verify that a keyring plugin is active, use the `SHOW PLUGINS` statement or query the Information Schema `PLUGINS` table. For example:
+  Para verificar se um *keyring plugin* está ativo, use a instrução `SHOW PLUGINS` ou consulte a tabela `PLUGINS` do Information Schema. Por exemplo:
 
   ```sql
   mysql> SELECT PLUGIN_NAME, PLUGIN_STATUS
@@ -62,75 +62,75 @@ For frequently asked questions about the data-at-rest encryption feature, see Se
   +--------------+---------------+
   ```
 
-* When encrypting production data, ensure that you take steps to prevent loss of the master encryption key. *If the master encryption key is lost, data stored in encrypted tablespace files is unrecoverable.* If you use the `keyring_file` or `keyring_encrypted_file` plugin, create a backup of the keyring data file immediately after creating the first encrypted tablespace, before master key rotation, and after master key rotation. The `keyring_file_data` configuration option defines the keyring data file location for the `keyring_file` plugin. The `keyring_encrypted_file_data` configuration option defines the keyring data file location for the `keyring_encrypted_file` plugin. If you use the `keyring_okv` or `keyring_aws` plugin, ensure that you have performed the necessary configuration. For instructions, see Section 6.4.4, “The MySQL Keyring”.
+* Ao criptografar dados de produção, certifique-se de tomar medidas para evitar a perda da *master encryption key*. *Se a master encryption key for perdida, os dados armazenados em arquivos de tablespace criptografados são irrecuperáveis.* Se você usar o *plugin* `keyring_file` ou `keyring_encrypted_file`, crie um *backup* do arquivo de dados do *keyring* imediatamente após criar o primeiro *tablespace* criptografado, antes da *master key rotation* e após a *master key rotation*. A opção de configuração `keyring_file_data` define a localização do arquivo de dados do *keyring* para o *plugin* `keyring_file`. A opção de configuração `keyring_encrypted_file_data` define a localização do arquivo de dados do *keyring* para o *plugin* `keyring_encrypted_file`. Se você usar o *plugin* `keyring_okv` ou `keyring_aws`, certifique-se de ter realizado a configuração necessária. Para obter instruções, consulte a Seção 6.4.4, “The MySQL Keyring”.
 
-### Enabling File-Per-Table Tablespace Encryption
+### Habilitando a Criptografia de Tablespace File-Per-Table
 
-To enable encryption for a new file-per-table tablespace, specify the `ENCRYPTION` option in a `CREATE TABLE` statement. The following example assumes that `innodb_file_per_table` is enabled.
+Para habilitar a criptografia para um novo *tablespace file-per-table*, especifique a opção `ENCRYPTION` em uma instrução `CREATE TABLE`. O exemplo a seguir pressupõe que `innodb_file_per_table` esteja habilitado.
 
 ```sql
 mysql> CREATE TABLE t1 (c1 INT) ENCRYPTION='Y';
 ```
 
-To enable encryption for an existing file-per-table tablespace, specify the `ENCRYPTION` option in an `ALTER TABLE` statement.
+Para habilitar a criptografia para um *tablespace file-per-table* existente, especifique a opção `ENCRYPTION` em uma instrução `ALTER TABLE`.
 
 ```sql
 mysql> ALTER TABLE t1 ENCRYPTION='Y';
 ```
 
-To disable encryption for file-per-table tablespace, set `ENCRYPTION='N'` using `ALTER TABLE`.
+Para desabilitar a criptografia para um *tablespace file-per-table*, defina `ENCRYPTION='N'` usando `ALTER TABLE`.
 
 ```sql
 mysql> ALTER TABLE t1 ENCRYPTION='N';
 ```
 
-### Master Key Rotation
+### Rotação da Master Key
 
-The master encryption key should be rotated periodically and whenever you suspect that the key has been compromised.
+A *master encryption key* deve ser rotacionada periodicamente e sempre que houver suspeita de que a chave tenha sido comprometida.
 
-Master key rotation is an atomic, instance-level operation. Each time the master encryption key is rotated, all tablespace keys in the MySQL instance are re-encrypted and saved back to their respective tablespace headers. As an atomic operation, re-encryption must succeed for all tablespace keys once a rotation operation is initiated. If master key rotation is interrupted by a server failure, `InnoDB` rolls the operation forward on server restart. For more information, see Encryption and Recovery.
+A *Master Key Rotation* é uma operação atômica no nível da *Instance*. Toda vez que a *master encryption key* é rotacionada, todas as *tablespace keys* na *Instance* MySQL são recriptografadas e salvas de volta nos seus respectivos *tablespace headers*. Como uma operação atômica, a recriptografia deve ser bem-sucedida para todas as *tablespace keys* assim que uma operação de rotação é iniciada. Se a *master key rotation* for interrompida por uma falha do servidor, o `InnoDB` avança a operação na reinicialização do servidor. Para mais informações, consulte Criptografia e Recuperação.
 
-Rotating the master encryption key only changes the master encryption key and re-encrypts tablespace keys. It does not decrypt or re-encrypt associated tablespace data.
+Rotacionar a *master encryption key* apenas altera a *master encryption key* e recriptografa as *tablespace keys*. Isso não descriptografa ou recriptografa os dados associados ao *tablespace*.
 
-Rotating the master encryption key requires the `SUPER` privilege.
+A rotação da *master encryption key* requer o privilégio `SUPER`.
 
-To rotate the master encryption key, run:
+Para rotacionar a *master encryption key*, execute:
 
 ```sql
 mysql> ALTER INSTANCE ROTATE INNODB MASTER KEY;
 ```
 
-`ALTER INSTANCE ROTATE INNODB MASTER KEY` supports concurrent DML. However, it cannot be run concurrently with tablespace encryption operations, and locks are taken to prevent conflicts that could arise from concurrent execution. If an `ALTER INSTANCE ROTATE INNODB MASTER KEY` operation is running, it must finish before a tablespace encryption operation can proceed, and vice versa.
+`ALTER INSTANCE ROTATE INNODB MASTER KEY` suporta DML concorrente. No entanto, ele não pode ser executado concomitantemente com operações de criptografia de *tablespace*, e *locks* são aplicados para evitar conflitos que possam surgir da execução concorrente. Se uma operação `ALTER INSTANCE ROTATE INNODB MASTER KEY` estiver em execução, ela deve ser concluída antes que uma operação de criptografia de *tablespace* possa prosseguir, e vice-versa.
 
-### Encryption and Recovery
+### Criptografia e Recuperação
 
-If a server failure occurs during an encryption operation, the operation is rolled forward when the server is restarted.
+Se ocorrer uma falha do servidor durante uma operação de criptografia, a operação é avançada (*rolled forward*) quando o servidor é reiniciado.
 
-If a server failure occurs during master key rotation, `InnoDB` continues the operation on server restart.
+Se ocorrer uma falha do servidor durante a *master key rotation*, o `InnoDB` continua a operação na reinicialização do servidor.
 
-The keyring plugin must be loaded prior to storage engine initialization so that the information necessary to decrypt tablespace data pages can be retrieved from tablespace headers before `InnoDB` initialization and recovery activities access tablespace data. (See Encryption Prerequisites.)
+O *keyring plugin* deve ser carregado antes da inicialização do *storage engine* para que as informações necessárias para descriptografar as páginas de dados do *tablespace* possam ser recuperadas dos *tablespace headers* antes que as atividades de inicialização e recuperação do `InnoDB` acessem os dados do *tablespace*. (Consulte Pré-requisitos de Criptografia.)
 
-When `InnoDB` initialization and recovery begin, the master key rotation operation resumes. Due to the server failure, some tablespace keys may already be encrypted using the new master encryption key. `InnoDB` reads the encryption data from each tablespace header, and if the data indicates that the tablespace key is encrypted using the old master encryption key, `InnoDB` retrieves the old key from the keyring and uses it to decrypt the tablespace key. `InnoDB` then re-encrypts the tablespace key using the new master encryption key and saves the re-encrypted tablespace key back to the tablespace header.
+Quando a inicialização e a recuperação do `InnoDB` começam, a operação de *master key rotation* é retomada. Devido à falha do servidor, algumas *tablespace keys* já podem estar criptografadas usando a nova *master encryption key*. O `InnoDB` lê os dados de criptografia de cada *tablespace header* e, se os dados indicarem que a *tablespace key* está criptografada usando a *master encryption key* antiga, o `InnoDB` recupera a chave antiga do *keyring* e a usa para descriptografar a *tablespace key*. O `InnoDB` então recriptografa a *tablespace key* usando a nova *master encryption key* e salva a *tablespace key* recriptografada de volta no *tablespace header*.
 
-### Exporting Encrypted Tablespaces
+### Exportando Tablespaces Criptografados
 
-When an encrypted tablespace is exported, `InnoDB` generates a *transfer key* that is used to encrypt the tablespace key. The encrypted tablespace key and transfer key are stored in a `tablespace_name.cfp` file. This file together with the encrypted tablespace file is required to perform an import operation. On import, `InnoDB` uses the transfer key to decrypt the tablespace key in the `tablespace_name.cfp` file. For related information, see Section 14.6.1.3, “Importing InnoDB Tables”.
+Quando um *tablespace* criptografado é exportado, o `InnoDB` gera uma *transfer key* que é usada para criptografar a *tablespace key*. A *tablespace key* criptografada e a *transfer key* são armazenadas em um arquivo `tablespace_name.cfp`. Este arquivo, juntamente com o arquivo de *tablespace* criptografado, é necessário para realizar uma operação de *Import*. No *Import*, o `InnoDB` usa a *transfer key* para descriptografar a *tablespace key* no arquivo `tablespace_name.cfp`. Para obter informações relacionadas, consulte a Seção 14.6.1.3, “Importing InnoDB Tables”.
 
-### Encryption and Replication
+### Criptografia e Replicação
 
-* The `ALTER INSTANCE ROTATE INNODB MASTER KEY` statement is only supported in replication environments where the source and replicas run a version of MySQL that supports at-rest data encryption.
+* A instrução `ALTER INSTANCE ROTATE INNODB MASTER KEY` é suportada apenas em ambientes de *Replication* onde a *source* e as *replicas* executam uma versão do MySQL que suporta criptografia de dados em repouso.
 
-* Successful `ALTER INSTANCE ROTATE INNODB MASTER KEY` statements are written to the binary log for replication on replicas.
+* Instruções `ALTER INSTANCE ROTATE INNODB MASTER KEY` bem-sucedidas são escritas no *binary log* para *Replication* nas *replicas*.
 
-* If an `ALTER INSTANCE ROTATE INNODB MASTER KEY` statement fails, it is not logged to the binary log and is not replicated on replicas.
+* Se uma instrução `ALTER INSTANCE ROTATE INNODB MASTER KEY` falhar, ela não é registrada no *binary log* e não é replicada nas *replicas*.
 
-* Replication of an `ALTER INSTANCE ROTATE INNODB MASTER KEY` operation fails if the keyring plugin is installed on the source but not on the replica.
+* A *Replication* de uma operação `ALTER INSTANCE ROTATE INNODB MASTER KEY` falha se o *keyring plugin* estiver instalado na *source*, mas não na *replica*.
 
-* If the `keyring_file` or `keyring_encrypted_file` plugin is installed on both the source and a replica but the replica does not have a keyring data file, the replicated `ALTER INSTANCE ROTATE INNODB MASTER KEY` statement creates the keyring data file on the replica, assuming the keyring file data is not cached in memory. `ALTER INSTANCE ROTATE INNODB MASTER KEY` uses keyring file data that is cached in memory, if available.
+* Se o *plugin* `keyring_file` ou `keyring_encrypted_file` estiver instalado tanto na *source* quanto em uma *replica*, mas a *replica* não tiver um arquivo de dados do *keyring*, a instrução `ALTER INSTANCE ROTATE INNODB MASTER KEY` replicada cria o arquivo de dados do *keyring* na *replica*, assumindo que os dados do arquivo *keyring* não estejam em *cache* na memória. `ALTER INSTANCE ROTATE INNODB MASTER KEY` usa dados de arquivo *keyring* que estejam em *cache* na memória, se disponíveis.
 
-### Identifying Encrypted Tablespaces
+### Identificando Tablespaces Criptografados
 
-When the `ENCRYPTION` option is specified in a `CREATE TABLE` or `ALTER TABLE` statement, it is recorded in the `CREATE_OPTIONS` column of the Information Schema `TABLES` table. This column can be queried to identify tables that reside in encrypted file-per-table tablespaces.
+Quando a opção `ENCRYPTION` é especificada em uma instrução `CREATE TABLE` ou `ALTER TABLE`, ela é registrada na coluna `CREATE_OPTIONS` da tabela `TABLES` do Information Schema. Esta coluna pode ser consultada para identificar tabelas que residem em *tablespaces file-per-table* criptografados.
 
 ```sql
 mysql> SELECT TABLE_SCHEMA, TABLE_NAME, CREATE_OPTIONS FROM INFORMATION_SCHEMA.TABLES
@@ -142,7 +142,7 @@ mysql> SELECT TABLE_SCHEMA, TABLE_NAME, CREATE_OPTIONS FROM INFORMATION_SCHEMA.T
 +--------------+------------+----------------+
 ```
 
-Query `INFORMATION_SCHEMA.INNODB_SYS_TABLESPACES` to retrieve information about the tablespace associated with a particular schema and table.
+Consulte `INFORMATION_SCHEMA.INNODB_SYS_TABLESPACES` para recuperar informações sobre o *tablespace* associado a um determinado *schema* e *table*.
 
 ```sql
 mysql> SELECT SPACE, NAME, SPACE_TYPE FROM INFORMATION_SCHEMA.INNODB_SYS_TABLESPACES WHERE NAME='test/t1';
@@ -153,38 +153,38 @@ mysql> SELECT SPACE, NAME, SPACE_TYPE FROM INFORMATION_SCHEMA.INNODB_SYS_TABLESP
 +-------+---------+------------+
 ```
 
-### Encryption Usage Notes
+### Notas de Uso da Criptografia
 
-* Plan appropriately when altering an existing tablespace with the `ENCRYPTION` option. The table is rebuilt using the `COPY` algorithm. The `INPLACE` algorithm is not supported.
+* Planeje adequadamente ao alterar um *tablespace* existente com a opção `ENCRYPTION`. A *table* é reconstruída usando o *Algorithm* `COPY`. O *Algorithm* `INPLACE` não é suportado.
 
-* If the server exits or is stopped during normal operation, it is recommended to restart the server using the same encryption settings that were configured previously.
+* Se o servidor for encerrado ou parado durante a operação normal, é recomendável reiniciar o servidor usando as mesmas configurações de criptografia configuradas anteriormente.
 
-* The first master encryption key is generated when the first new or existing tablespace is encrypted.
+* A primeira *master encryption key* é gerada quando o primeiro *tablespace* novo ou existente é criptografado.
 
-* Master key rotation re-encrypts tablespaces keys but does not change the tablespace key itself. To change a tablespace key, you must disable and re-enable encryption, which is an `ALGORITHM=COPY` operation that rebuilds the table.
+* A *Master Key Rotation* recriptografa as *tablespaces keys*, mas não altera a *tablespace key* em si. Para alterar uma *tablespace key*, você deve desabilitar e reabilitar a criptografia, o que é uma operação `ALGORITHM=COPY` que reconstrói a *table*.
 
-* If a table is created with both the `COMPRESSION` and `ENCRYPTION` options, compression is performed before tablespace data is encrypted.
+* Se uma *table* for criada com as opções `COMPRESSION` e `ENCRYPTION`, a compressão é realizada antes que os dados do *tablespace* sejam criptografados.
 
-* If a keyring data file (the file named by `keyring_file_data` or `keyring_encrypted_file_data`) is empty or missing, the first execution of `ALTER INSTANCE ROTATE INNODB MASTER KEY` creates a master encryption key.
+* Se um arquivo de dados do *keyring* (o arquivo nomeado por `keyring_file_data` ou `keyring_encrypted_file_data`) estiver vazio ou ausente, a primeira execução de `ALTER INSTANCE ROTATE INNODB MASTER KEY` cria uma *master encryption key*.
 
-* Uninstalling the `keyring_file` or `keyring_encrypted_file` plugin does not remove an existing keyring data file.
+* Desinstalar o *plugin* `keyring_file` ou `keyring_encrypted_file` não remove um arquivo de dados do *keyring* existente.
 
-* It is recommended that you not place a keyring data file under the same directory as tablespace data files.
+* É recomendável que você não coloque um arquivo de dados do *keyring* no mesmo diretório dos arquivos de dados do *tablespace*.
 
-* Modifying the `keyring_file_data` or `keyring_encrypted_file_data` setting at runtime or when restarting the server can cause previously encrypted tablespaces to become inaccessible, resulting in lost data.
+* Modificar a configuração de `keyring_file_data` ou `keyring_encrypted_file_data` em tempo de execução ou ao reiniciar o servidor pode fazer com que *tablespaces* criptografados anteriormente se tornem inacessíveis, resultando em perda de dados.
 
-### Encryption Limitations
+### Limitações da Criptografia
 
-* Advanced Encryption Standard (AES) is the only supported encryption algorithm. `InnoDB` data-at-rest encryption uses Electronic Codebook (ECB) block encryption mode for tablespace key encryption and Cipher Block Chaining (CBC) block encryption mode for data encryption. Padding is not used with CBC block encryption mode. Instead, `InnoDB` ensures that the text to be encrypted is a multiple of the block size.
+* O *Advanced Encryption Standard* (AES) é o único *encryption algorithm* suportado. A criptografia de dados em repouso do `InnoDB` usa o modo de criptografia de bloco *Electronic Codebook* (ECB) para criptografia da *tablespace key* e o modo de criptografia de bloco *Cipher Block Chaining* (CBC) para criptografia de dados. O *Padding* não é usado com o modo de criptografia de bloco CBC. Em vez disso, o `InnoDB` garante que o texto a ser criptografado seja um múltiplo do tamanho do bloco.
 
-* Altering the `ENCRYPTION` attribute of a table is performed using the `COPY` algorithm. The `INPLACE` algorithm is not supported.
+* A alteração do atributo `ENCRYPTION` de uma *table* é realizada usando o *Algorithm* `COPY`. O *Algorithm* `INPLACE` não é suportado.
 
-* Encryption is only supported for file-per-table tablespaces. Encryption is not supported for other tablespace types including general tablespaces and the system tablespace.
+* A criptografia é suportada apenas para *tablespaces file-per-table*. A criptografia não é suportada para outros tipos de *tablespace*, incluindo *general tablespaces* e o *system tablespace*.
 
-* You cannot move or copy a table from an encrypted file-per-table tablespace to a tablespace type that does not support encryption.
+* Não é possível mover ou copiar uma *table* de um *tablespace file-per-table* criptografado para um tipo de *tablespace* que não suporte criptografia.
 
-* Encryption only applies to data in the tablespace. Data is not encrypted in the redo log, undo log, or binary log.
+* A criptografia se aplica apenas aos dados no *tablespace*. Os dados não são criptografados no *redo log*, *undo log* ou *binary log*.
 
-* It is not permitted to change the storage engine of a table that resides in, or previously resided in, an encrypted tablespace.
+* Não é permitido alterar o *storage engine* de uma *table* que reside, ou residiu anteriormente, em um *tablespace* criptografado.
 
-* Encryption is not supported for the `InnoDB` `FULLTEXT` index tables that are created implicitly when adding a `FULLTEXT` index. For related information, see InnoDB Full-Text Index Tables.
+* A criptografia não é suportada para as *index tables* `FULLTEXT` do `InnoDB` que são criadas implicitamente ao adicionar um *Index* `FULLTEXT`. Para obter informações relacionadas, consulte InnoDB Full-Text Index Tables.

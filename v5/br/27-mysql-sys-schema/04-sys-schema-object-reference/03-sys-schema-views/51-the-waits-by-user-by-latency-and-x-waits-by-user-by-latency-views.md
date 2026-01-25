@@ -1,29 +1,29 @@
-#### 26.4.3.51 The waits_by_user_by_latency and x$waits_by_user_by_latency Views
+#### 26.4.3.51 As Views waits_by_user_by_latency e x$waits_by_user_by_latency
 
-These views summarize wait events, grouped by user and event. By default, rows are sorted by user and descending total latency. Idle events are ignored.
+Essas Views resumem eventos de espera (wait events), agrupados por user e event. Por padrão, as linhas são ordenadas por user e total latency descendente. Eventos ociosos (Idle events) são ignorados.
 
-The `waits_by_user_by_latency` and `x$waits_by_user_by_latency` views have these columns:
+As Views `waits_by_user_by_latency` e `x$waits_by_user_by_latency` possuem estas colunas:
 
 * `user`
 
-  The user associated with the connection.
+  O user associado à conexão.
 
 * `event`
 
-  The event name.
+  O nome do event.
 
 * `total`
 
-  The total number of occurrences of the event for the user.
+  O número total de ocorrências do event para o user.
 
 * `total_latency`
 
-  The total wait time of timed occurrences of the event for the user.
+  O tempo total de espera (wait time) das ocorrências cronometradas do event para o user.
 
 * `avg_latency`
 
-  The average wait time per timed occurrence of the event for the user.
+  O tempo médio de espera (wait time) por ocorrência cronometrada do event para o user.
 
 * `max_latency`
 
-  The maximum single wait time of timed occurrences of the event for the user.
+  O tempo máximo de espera (wait time) de uma única ocorrência cronometrada do event para o user.

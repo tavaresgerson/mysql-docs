@@ -1,68 +1,68 @@
-### 21.6.4 Summary of NDB Cluster Start Phases
+### 21.6.4 Sumário das Fases de Inicialização do NDB Cluster
 
-This section provides a simplified outline of the steps involved when NDB Cluster data nodes are started. More complete information can be found in [NDB Cluster Start Phases](/doc/ndb-internals/en/ndb-internals-start-phases.html), in the *`NDB` Internals Guide*.
+Esta seção fornece um esboço simplificado das etapas envolvidas quando os data nodes do NDB Cluster são iniciados. Informações mais completas podem ser encontradas em [NDB Cluster Start Phases](/doc/ndb-internals/en/ndb-internals-start-phases.html), no *`NDB` Internals Guide*.
 
-These phases are the same as those reported in the output from the [`node_id STATUS`](mysql-cluster-mgm-client-commands.html#ndbclient-status) command in the management client (see [Section 21.6.1, “Commands in the NDB Cluster Management Client”](mysql-cluster-mgm-client-commands.html "21.6.1 Commands in the NDB Cluster Management Client")). These start phases are also reported in the `start_phase` column of the [`ndbinfo.nodes`](mysql-cluster-ndbinfo-nodes.html "21.6.15.28 The ndbinfo nodes Table") table.
+Estas fases são as mesmas relatadas na saída do comando [`node_id STATUS`](mysql-cluster-mgm-client-commands.html#ndbclient-status) no management client (veja [Seção 21.6.1, “Comandos no NDB Cluster Management Client”](mysql-cluster-mgm-client-commands.html "21.6.1 Comandos no NDB Cluster Management Client")). Essas fases de inicialização também são relatadas na coluna `start_phase` da tabela [`ndbinfo.nodes`](mysql-cluster-ndbinfo-nodes.html "21.6.15.28 The ndbinfo nodes Table").
 
-**Start types.** There are several different startup types and modes, as shown in the following list:
+**Tipos de Inicialização.** Existem diversos tipos e modos de startup diferentes, conforme mostrado na lista a seguir:
 
-* **Initial start.** The cluster starts with a clean file system on all data nodes. This occurs either when the cluster started for the very first time, or when all data nodes are restarted using the [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial) option.
-
-  Note
-
-  Disk Data files are not removed when restarting a node using [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial).
-
-* **System restart.** The cluster starts and reads data stored in the data nodes. This occurs when the cluster has been shut down after having been in use, when it is desired for the cluster to resume operations from the point where it left off.
-
-* **Node restart.** This is the online restart of a cluster node while the cluster itself is running.
-
-* **Initial node restart.** This is the same as a node restart, except that the node is reinitialized and started with a clean file system.
-
-**Setup and initialization (phase -1).** Prior to startup, each data node ([**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") process) must be initialized. Initialization consists of the following steps:
-
-1. Obtain a node ID
-2. Fetch configuration data
-3. Allocate ports to be used for inter-node communications
-4. Allocate memory according to settings obtained from the configuration file
-
-When a data node or SQL node first connects to the management node, it reserves a cluster node ID. To make sure that no other node allocates the same node ID, this ID is retained until the node has managed to connect to the cluster and at least one [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") reports that this node is connected. This retention of the node ID is guarded by the connection between the node in question and [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon").
-
-After each data node has been initialized, the cluster startup process can proceed. The stages which the cluster goes through during this process are listed here:
-
-* **Phase 0.** The [`NDBFS`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-ndbfs.html) and [`NDBCNTR`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-ndbcntr.html) blocks start. Data node file systems are cleared on those data nodes that were started with [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial) option.
-
-* **Phase 1.** In this stage, all remaining [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") kernel blocks are started. NDB Cluster connections are set up, inter-block communications are established, and heartbeats are started. In the case of a node restart, API node connections are also checked.
+* **Initial start (Inicialização Inicial).** O Cluster é iniciado com um clean file system em todos os data nodes. Isso ocorre quando o Cluster é iniciado pela primeira vez ou quando todos os data nodes são reiniciados usando a opção [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial).
 
   Note
 
-  When one or more nodes hang in Phase 1 while the remaining node or nodes hang in Phase 2, this often indicates network problems. One possible cause of such issues is one or more cluster hosts having multiple network interfaces. Another common source of problems causing this condition is the blocking of TCP/IP ports needed for communications between cluster nodes. In the latter case, this is often due to a misconfigured firewall.
+  Os arquivos Disk Data não são removidos ao reiniciar um Node usando [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial).
 
-* **Phase 2.** The `NDBCNTR` kernel block checks the states of all existing nodes. The master node is chosen, and the cluster schema file is initialized.
+* **System restart (Reinicialização do Sistema).** O Cluster inicia e lê os dados armazenados nos data nodes. Isso ocorre quando o Cluster foi desligado após ter sido usado, e quando se deseja que o Cluster retome as operações do ponto em que parou.
 
-* **Phase 3.** The [`DBLQH`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dblqh.html) and [`DBTC`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbtc.html) kernel blocks set up communications between them. The startup type is determined; if this is a restart, the [`DBDIH`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbdih.html) block obtains permission to perform the restart.
+* **Node restart (Reinicialização do Node).** Este é o restart online de um Cluster Node enquanto o Cluster em si está em execução.
 
-* **Phase 4.** For an initial start or initial node restart, the redo log files are created. The number of these files is equal to [`NoOfFragmentLogFiles`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-nooffragmentlogfiles).
+* **Initial node restart (Reinicialização Inicial do Node).** É o mesmo que um Node restart, exceto que o Node é reinicializado e iniciado com um clean file system.
 
-  For a system restart:
+**Configuração e inicialização (fase -1).** Antes do startup, cada data node (processo [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon")) deve ser inicializado. A inicialização consiste nas seguintes etapas:
 
-  + Read schema or schemas.
-  + Read data from the local checkpoint.
-  + Apply all redo information until the latest restorable global checkpoint has been reached.
+1. Obter um Node ID
+2. Buscar dados de configuração (Fetch configuration data)
+3. Alocar ports a serem usados para comunicações inter-node
+4. Alocar memory de acordo com as configurações obtidas no arquivo de configuração
 
-  For a node restart, find the tail of the redo log.
+Quando um data node ou SQL node se conecta pela primeira vez ao management node, ele reserva um Cluster Node ID. Para garantir que nenhum outro Node aloque o mesmo Node ID, este ID é retido até que o Node consiga se conectar ao Cluster e pelo menos um [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") relate que este Node está conectado. Essa retenção do Node ID é protegida pela conexão entre o Node em questão e [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon").
 
-* **Phase 5.** Most of the database-related portion of a data node start is performed during this phase. For an initial start or system restart, a local checkpoint is executed, followed by a global checkpoint. Periodic checks of memory usage begin during this phase, and any required node takeovers are performed.
+Após cada data node ser inicializado, o processo de startup do Cluster pode prosseguir. Os estágios pelos quais o Cluster passa durante esse processo estão listados aqui:
 
-* **Phase 6.** In this phase, node groups are defined and set up.
+* **Fase 0.** Os blocks [`NDBFS`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-ndbfs.html) e [`NDBCNTR`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-ndbcntr.html) são iniciados. Os file systems dos data nodes são limpos naqueles data nodes que foram iniciados com a opção [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial).
 
-* **Phase 7.** The arbitrator node is selected and begins to function. The next backup ID is set, as is the backup disk write speed. Nodes reaching this start phase are marked as `Started`. It is now possible for API nodes (including SQL nodes) to connect to the cluster.
+* **Fase 1.** Nesta fase, todos os blocks kernel [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") restantes são iniciados. As conexões do NDB Cluster são configuradas, as comunicações inter-block são estabelecidas e os heartbeats são iniciados. No caso de um node restart, as conexões do API node também são verificadas.
 
-* **Phase 8.** If this is a system restart, all indexes are rebuilt (by [`DBDIH`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbdih.html)).
+  Note
 
-* **Phase 9.** The node internal startup variables are reset.
+  Quando um ou mais Nodes ficam travados (hang) na Fase 1 enquanto o Node ou Nodes restantes ficam travados na Fase 2, isso geralmente indica problemas de network. Uma possível causa para tais problemas é um ou mais hosts do Cluster possuírem múltiplas network interfaces. Outra fonte comum de problemas que causa essa condição é o bloqueio de ports TCP/IP necessários para a comunicação entre os Cluster Nodes. Neste último caso, isso geralmente se deve a um firewall mal configurado.
 
-* **Phase 100 (OBSOLETE).** Formerly, it was at this point during a node restart or initial node restart that API nodes could connect to the node and begin to receive events. Currently, this phase is empty.
+* **Fase 2.** O kernel block `NDBCNTR` verifica os states de todos os Nodes existentes. O master node é escolhido, e o arquivo de schema do Cluster é inicializado.
 
-* **Phase 101.** At this point in a node restart or initial node restart, event delivery is handed over to the node joining the cluster. The newly-joined node takes over responsibility for delivering its primary data to subscribers. This phase is also referred to as [`SUMA`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-suma.html) handover phase.
+* **Fase 3.** Os kernel blocks [`DBLQH`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dblqh.html) e [`DBTC`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbtc.html) configuram as comunicações entre eles. O tipo de startup é determinado; se for um restart, o block [`DBDIH`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbdih.html) obtém permissão para realizar o restart.
 
-After this process is completed for an initial start or system restart, transaction handling is enabled. For a node restart or initial node restart, completion of the startup process means that the node may now act as a transaction coordinator.
+* **Fase 4.** Para um initial start ou initial node restart, os redo log files são criados. O número desses arquivos é igual a [`NoOfFragmentLogFiles`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-nooffragmentlogfiles).
+
+  Para um system restart:
+
+  + Ler o schema ou schemas.
+  + Ler os dados a partir do local checkpoint.
+  + Aplicar todas as informações de redo até que o latest restorable global checkpoint tenha sido alcançado.
+
+  Para um node restart, encontrar o tail do redo log.
+
+* **Fase 5.** A maior parte da porção de um data node start relacionada ao Database é realizada durante esta fase. Para um initial start ou system restart, um local checkpoint é executado, seguido por um global checkpoint. Verificações periódicas de uso de memory começam durante esta fase, e quaisquer node takeovers necessários são realizados.
+
+* **Fase 6.** Nesta fase, os node groups são definidos e configurados.
+
+* **Fase 7.** O arbitrator node é selecionado e começa a funcionar. O próximo backup ID é definido, assim como a velocidade de write do disk de backup. Os Nodes que atingem esta fase de start são marcados como `Started`. Agora é possível que API nodes (incluindo SQL nodes) se conectem ao Cluster.
+
+* **Fase 8.** Se for um system restart, todos os Indexes são reconstruídos (pelo [`DBDIH`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbdih.html)).
+
+* **Fase 9.** As variáveis internas de startup do Node são redefinidas (reset).
+
+* **Fase 100 (OBSOLETA).** Anteriormente, era neste ponto durante um node restart ou initial node restart que os API nodes podiam se conectar ao Node e começar a receber events. Atualmente, esta fase está vazia.
+
+* **Fase 101.** Neste ponto em um node restart ou initial node restart, a entrega de events é transferida (handed over) para o Node que está se juntando ao Cluster. O Node recém-conectado assume a responsabilidade pela entrega de seus primary data aos subscribers. Esta fase também é conhecida como fase de handover do [`SUMA`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-suma.html).
+
+Após a conclusão deste processo para um initial start ou system restart, o transaction handling é habilitado. Para um node restart ou initial node restart, a conclusão do processo de startup significa que o Node agora pode atuar como um transaction coordinator.

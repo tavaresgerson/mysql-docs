@@ -1,12 +1,12 @@
-#### 26.4.4.8 The ps_setup_enable_background_threads() Procedure
+#### 26.4.4.8 O Procedure ps_setup_enable_background_threads()
 
-Enables Performance Schema instrumentation for all background threads. Produces a result set indicating how many background threads were enabled. Already enabled threads do not count.
+Habilita a instrumentação do Performance Schema para todos os background threads. Produz um conjunto de resultados indicando quantos background threads foram habilitados. Threads já habilitados não são contabilizados.
 
-##### Parameters
+##### Parâmetros
 
-None.
+Nenhum.
 
-##### Example
+##### Exemplo
 
 ```sql
 mysql> CALL sys.ps_setup_enable_background_threads();

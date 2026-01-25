@@ -1,22 +1,22 @@
-#### 13.1.18.6 Silent Column Specification Changes
+#### 13.1.18.6 Alterações Silenciosas na Especificação de Colunas
 
-In some cases, MySQL silently changes column specifications from those given in a [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") or [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement. These might be changes to a data type, to attributes associated with a data type, or to an index specification.
+Em alguns casos, o MySQL altera silenciosamente as especificações de colunas em relação às fornecidas em uma instrução [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") ou [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"). Essas podem ser alterações no tipo de dado, em atributos associados a um tipo de dado ou em uma especificação de Index.
 
-All changes are subject to the internal row-size limit of 65,535 bytes, which may cause some attempts at data type changes to fail. See [Section 8.4.7, “Limits on Table Column Count and Row Size”](column-count-limit.html "8.4.7 Limits on Table Column Count and Row Size").
+Todas as alterações estão sujeitas ao limite interno de tamanho de linha (row-size limit) de 65.535 bytes, o que pode fazer com que algumas tentativas de alteração de tipo de dado falhem. Consulte [Section 8.4.7, “Limits on Table Column Count and Row Size”](column-count-limit.html "8.4.7 Limits on Table Column Count and Row Size").
 
-* Columns that are part of a `PRIMARY KEY` are made `NOT NULL` even if not declared that way.
+* Colunas que fazem parte de uma `PRIMARY KEY` são definidas como `NOT NULL`, mesmo que não tenham sido declaradas dessa forma.
 
-* Trailing spaces are automatically deleted from [`ENUM`](enum.html "11.3.5 The ENUM Type") and [`SET`](set.html "11.3.6 The SET Type") member values when the table is created.
+* Espaços finais (trailing spaces) são automaticamente excluídos dos valores de membros [`ENUM`](enum.html "11.3.5 The ENUM Type") e [`SET`](set.html "11.3.6 The SET Type") quando a Table é criada.
 
-* MySQL maps certain data types used by other SQL database vendors to MySQL types. See [Section 11.9, “Using Data Types from Other Database Engines”](other-vendor-data-types.html "11.9 Using Data Types from Other Database Engines").
+* O MySQL mapeia certos tipos de dados usados por outros fornecedores de Database SQL para tipos MySQL. Consulte [Section 11.9, “Using Data Types from Other Database Engines”](other-vendor-data-types.html "11.9 Using Data Types from Other Database Engines").
 
-* If you include a `USING` clause to specify an index type that is not permitted for a given storage engine, but there is another index type available that the engine can use without affecting query results, the engine uses the available type.
+* Se você incluir uma cláusula `USING` para especificar um tipo de Index que não é permitido para um determinado storage engine, mas houver outro tipo de Index disponível que o engine possa usar sem afetar os resultados da Query, o engine usará o tipo disponível.
 
-* If strict SQL mode is not enabled, a [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") column with a length specification greater than 65535 is converted to [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types"), and a [`VARBINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types") column with a length specification greater than 65535 is converted to [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types"). Otherwise, an error occurs in either of these cases.
+* Se o modo SQL estrito (strict SQL mode) não estiver habilitado, uma coluna [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") com uma especificação de comprimento maior que 65535 é convertida para [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types"), e uma coluna [`VARBINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types") com uma especificação de comprimento maior que 65535 é convertida para [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types"). Caso contrário, ocorre um erro em qualquer um desses casos.
 
-* Specifying the `CHARACTER SET binary` attribute for a character data type causes the column to be created as the corresponding binary data type: [`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") becomes [`BINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"), [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") becomes [`VARBINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"), and [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") becomes [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types"). For the [`ENUM`](enum.html "11.3.5 The ENUM Type") and [`SET`](set.html "11.3.6 The SET Type") data types, this does not occur; they are created as declared. Suppose that you specify a table using this definition:
+* Especificar o atributo `CHARACTER SET binary` para um tipo de dado de caractere faz com que a coluna seja criada como o tipo de dado binário correspondente: [`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") se torna [`BINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"), [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") se torna [`VARBINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"), e [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") se torna [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types"). Para os tipos de dados [`ENUM`](enum.html "11.3.5 The ENUM Type") e [`SET`](set.html "11.3.6 The SET Type"), isso não ocorre; eles são criados conforme declarados. Suponha que você especifique uma Table usando esta definição:
 
-  ```sql
+```sql
   CREATE TABLE t
   (
     c1 VARCHAR(10) CHARACTER SET binary,
@@ -25,9 +25,9 @@ All changes are subject to the internal row-size limit of 65,535 bytes, which ma
   );
   ```
 
-  The resulting table has this definition:
+A Table resultante tem esta definição:
 
-  ```sql
+```sql
   CREATE TABLE t
   (
     c1 VARBINARY(10),
@@ -36,6 +36,6 @@ All changes are subject to the internal row-size limit of 65,535 bytes, which ma
   );
   ```
 
-To see whether MySQL used a data type other than the one you specified, issue a [`DESCRIBE`](describe.html "13.8.1 DESCRIBE Statement") or [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement") statement after creating or altering the table.
+Para verificar se o MySQL usou um tipo de dado diferente do que você especificou, execute uma instrução [`DESCRIBE`](describe.html "13.8.1 DESCRIBE Statement") ou [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement") após criar ou alterar a Table.
 
-Certain other data type changes can occur if you compress a table using [**myisampack**](myisampack.html "4.6.5 myisampack — Generate Compressed, Read-Only MyISAM Tables"). See [Section 15.2.3.3, “Compressed Table Characteristics”](compressed-format.html "15.2.3.3 Compressed Table Characteristics").
+Certas outras alterações de tipo de dado podem ocorrer se você comprimir uma Table usando [**myisampack**](myisampack.html "4.6.5 myisampack — Generate Compressed, Read-Only MyISAM Tables"). Consulte [Section 15.2.3.3, “Compressed Table Characteristics”](compressed-format.html "15.2.3.3 Compressed Table Characteristics").

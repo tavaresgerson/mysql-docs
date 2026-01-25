@@ -1,5 +1,5 @@
-#### 16.4.1.38 Replication and Views
+#### 16.4.1.38 Replicação e Views
 
-Views are always replicated to replicas. Views are filtered by their own name, not by the tables they refer to. This means that a view can be replicated to the replica even if the view contains a table that would normally be filtered out by `replication-ignore-table` rules. Care should therefore be taken to ensure that views do not replicate table data that would normally be filtered for security reasons.
+Views são sempre replicadas para as replicas. As Views são filtradas pelo seu próprio nome, e não pelas Tables que elas referenciam. Isso significa que uma View pode ser replicada para a replica mesmo que a View contenha uma Table que seria normalmente filtrada pelas regras de `replication-ignore-table`. Portanto, deve-se ter cautela para garantir que as Views não repliquem dados de Tables que seriam normalmente filtrados por motivos de segurança.
 
-Replication from a table to a same-named view is supported using statement-based logging, but not when using row-based logging. Trying to do so when row-based logging is in effect causes an error. (Bug #11752707, Bug #43975)
+A Replication de uma Table para uma View com o mesmo nome é suportada usando statement-based logging, mas não quando se utiliza row-based logging. Tentar fazer isso quando o row-based logging está ativo causa um erro. (Bug #11752707, Bug #43975)

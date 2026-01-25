@@ -1,61 +1,61 @@
-#### 21.6.15.10 The ndbinfo counters Table
+#### 21.6.15.10 A Tabela ndbinfo counters
 
-The `counters` table provides running totals of events such as reads and writes for specific kernel blocks and data nodes. Counts are kept from the most recent node start or restart; a node start or restart resets all counters on that node. Not all kernel blocks have all types of counters.
+A tabela `counters` fornece totais em execução de eventos, como reads e writes, para kernel blocks específicos e data nodes. As contagens são mantidas desde a inicialização ou reinicialização mais recente do node; uma inicialização ou reinicialização do node zera todos os counters nesse node. Nem todos os kernel blocks possuem todos os tipos de counters.
 
-The `counters` table contains the following columns:
+A tabela `counters` contém as seguintes colunas:
 
 * `node_id`
 
-  The data node ID
+  O ID do data node
 
 * `block_name`
 
-  Name of the associated NDB kernel block (see [NDB Kernel Blocks](/doc/ndb-internals/en/ndb-internals-kernel-blocks.html)).
+  Nome do NDB kernel block associado (consulte [NDB Kernel Blocks](/doc/ndb-internals/en/ndb-internals-kernel-blocks.html)).
 
 * `block_instance`
 
-  Block instance
+  Instância do Block
 
 * `counter_id`
 
-  The counter's internal ID number; normally an integer between 1 and 10, inclusive.
+  O número ID interno do counter; normalmente um inteiro entre 1 e 10, inclusive.
 
 * `counter_name`
 
-  The name of the counter. See text for names of individual counters and the NDB kernel block with which each counter is associated.
+  O nome do counter. Consulte o texto para nomes de counters individuais e o NDB kernel block ao qual cada counter está associado.
 
 * `val`
 
-  The counter's value
+  O valor do counter
 
-##### Notes
+##### Notas
 
-Each counter is associated with a particular NDB kernel block.
+Cada counter está associado a um NDB kernel block específico.
 
-The `OPERATIONS` counter is associated with the [`DBLQH`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dblqh.html) (local query handler) kernel block (see [The DBLQH Block](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dblqh.html)). A primary-key read counts as one operation, as does a primary-key update. For reads, there is one operation in [`DBLQH`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dblqh.html) per operation in [`DBTC`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbtc.html). For writes, there is one operation counted per fragment replica.
+O counter `OPERATIONS` está associado ao kernel block [`DBLQH`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dblqh.html) (local query handler) (consulte [The DBLQH Block](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dblqh.html)). Uma primary-key read conta como uma operation, assim como um primary-key update. Para reads, há uma operation em [`DBLQH`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dblqh.html) por operation em [`DBTC`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbtc.html). Para writes, há uma operation contada por fragment replica.
 
-The `ATTRINFO`, `TRANSACTIONS`, `COMMITS`, `READS`, `LOCAL_READS`, `SIMPLE_READS`, `WRITES`, `LOCAL_WRITES`, `ABORTS`, `TABLE_SCANS`, and `RANGE_SCANS` counters are associated with the DBTC (transaction co-ordinator) kernel block (see [The DBTC Block](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbtc.html)).
+Os counters `ATTRINFO`, `TRANSACTIONS`, `COMMITS`, `READS`, `LOCAL_READS`, `SIMPLE_READS`, `WRITES`, `LOCAL_WRITES`, `ABORTS`, `TABLE_SCANS` e `RANGE_SCANS` estão associados ao kernel block DBTC (transaction co-ordinator) (consulte [The DBTC Block](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbtc.html)).
 
-`LOCAL_WRITES` and `LOCAL_READS` are primary-key operations using a transaction coordinator in a node that also holds the primary fragment replica of the record.
+`LOCAL_WRITES` e `LOCAL_READS` são operations de primary-key que usam um transaction coordinator em um node que também contém a primary fragment replica do registro.
 
-The `READS` counter includes all reads. `LOCAL_READS` includes only those reads of the primary fragment replica on the same node as this transaction coordinator. `SIMPLE_READS` includes only those reads in which the read operation is the beginning and ending operation for a given transaction. Simple reads do not hold locks but are part of a transaction, in that they observe uncommitted changes made by the transaction containing them but not of any other uncommitted transactions. Such reads are “simple” from the point of view of the TC block; since they hold no locks they are not durable, and once [`DBTC`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbtc.html) has routed them to the relevant LQH block, it holds no state for them.
+O counter `READS` inclui todas as reads. `LOCAL_READS` inclui apenas aquelas reads da primary fragment replica no mesmo node que este transaction coordinator. `SIMPLE_READS` inclui apenas aquelas reads nas quais a operation de read é a operation de início e fim para uma determinada transaction. Simple reads não mantêm locks, mas fazem parte de uma transaction, no sentido de que observam alterações não confirmadas feitas pela transaction que as contém, mas não de quaisquer outras transactions não confirmadas. Tais reads são “simples” do ponto de vista do block TC; como não mantêm locks, elas não são duráveis e, assim que [`DBTC`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbtc.html) as roteia para o block LQH relevante, ele não mantém state para elas.
 
-`ATTRINFO` keeps a count of the number of times an interpreted program is sent to the data node. See [NDB Protocol Messages](/doc/ndb-internals/en/ndb-internals-ndb-protocol-messages.html), for more information about `ATTRINFO` messages in the `NDB` kernel.
+`ATTRINFO` mantém uma contagem do número de vezes que um programa interpretado é enviado ao data node. Consulte [NDB Protocol Messages](/doc/ndb-internals/en/ndb-internals-ndb-protocol-messages.html) para obter mais informações sobre mensagens `ATTRINFO` no NDB kernel.
 
-The `LOCAL_TABLE_SCANS_SENT`, `READS_RECEIVED`, `PRUNED_RANGE_SCANS_RECEIVED`, `RANGE_SCANS_RECEIVED`, `LOCAL_READS_SENT`, `CONST_PRUNED_RANGE_SCANS_RECEIVED`, `LOCAL_RANGE_SCANS_SENT`, `REMOTE_READS_SENT`, `REMOTE_RANGE_SCANS_SENT`, `READS_NOT_FOUND`, `SCAN_BATCHES_RETURNED`, `TABLE_SCANS_RECEIVED`, and `SCAN_ROWS_RETURNED` counters are associated with the [`DBSPJ`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbspj.html) (select push-down join) kernel block (see [The DBSPJ Block](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbspj.html)).
+Os counters `LOCAL_TABLE_SCANS_SENT`, `READS_RECEIVED`, `PRUNED_RANGE_SCANS_RECEIVED`, `RANGE_SCANS_RECEIVED`, `LOCAL_READS_SENT`, `CONST_PRUNED_RANGE_SCANS_RECEIVED`, `LOCAL_RANGE_SCANS_SENT`, `REMOTE_READS_SENT`, `REMOTE_RANGE_SCANS_SENT`, `READS_NOT_FOUND`, `SCAN_BATCHES_RETURNED`, `TABLE_SCANS_RECEIVED` e `SCAN_ROWS_RETURNED` estão associados ao kernel block [`DBSPJ`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbspj.html) (select push-down join) (consulte [The DBSPJ Block](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbspj.html)).
 
-The `block_name` and `block_instance` columns provide, respectively, the applicable NDB kernel block name and instance number. You can use these to obtain information about specific threads from the [`threadblocks`](mysql-cluster-ndbinfo-threadblocks.html "21.6.15.41 The ndbinfo threadblocks Table") table.
+As colunas `block_name` e `block_instance` fornecem, respectivamente, o nome e o número da instância do NDB kernel block aplicável. Você pode usá-las para obter informações sobre threads específicos da tabela [`threadblocks`](mysql-cluster-ndbinfo-threadblocks.html "21.6.15.41 The ndbinfo threadblocks Table").
 
-A number of counters provide information about transporter overload and send buffer sizing when troubleshooting such issues. For each LQH instance, there is one instance of each counter in the following list:
+Vários counters fornecem informações sobre transporter overload (sobrecarga de transportador) e dimensionamento de send buffer ao solucionar tais problemas. Para cada instância LQH, há uma instância de cada counter na lista a seguir:
 
-* `LQHKEY_OVERLOAD`: Number of primary key requests rejected at the LQH block instance due to transporter overload
+* `LQHKEY_OVERLOAD`: Número de solicitações de primary key rejeitadas na instância do block LQH devido a transporter overload
 
-* `LQHKEY_OVERLOAD_TC`: Count of instances of `LQHKEY_OVERLOAD` where the TC node transporter was overloaded
+* `LQHKEY_OVERLOAD_TC`: Contagem de instâncias de `LQHKEY_OVERLOAD` onde o transporter do node TC estava sobrecarregado
 
-* `LQHKEY_OVERLOAD_READER`: Count of instances of `LQHKEY_OVERLOAD` where the API reader (reads only) node was overloaded.
+* `LQHKEY_OVERLOAD_READER`: Contagem de instâncias de `LQHKEY_OVERLOAD` onde o node API reader (somente reads) estava sobrecarregado.
 
-* `LQHKEY_OVERLOAD_NODE_PEER`: Count of instances of `LQHKEY_OVERLOAD` where the next backup data node (writes only) was overloaded
+* `LQHKEY_OVERLOAD_NODE_PEER`: Contagem de instâncias de `LQHKEY_OVERLOAD` onde o próximo backup data node (somente writes) estava sobrecarregado
 
-* `LQHKEY_OVERLOAD_SUBSCRIBER`: Count of instances of `LQHKEY_OVERLOAD` where a event subscriber (writes only) was overloaded.
+* `LQHKEY_OVERLOAD_SUBSCRIBER`: Contagem de instâncias de `LQHKEY_OVERLOAD` onde um event subscriber (somente writes) estava sobrecarregado.
 
-* `LQHSCAN_SLOWDOWNS`: Count of instances where a fragment scan batch size was reduced due to scanning API transporter overload.
+* `LQHSCAN_SLOWDOWNS`: Contagem de instâncias onde o tamanho do batch de fragment scan foi reduzido devido a scanning API transporter overload.

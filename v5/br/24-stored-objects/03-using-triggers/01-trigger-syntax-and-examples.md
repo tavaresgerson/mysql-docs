@@ -1,8 +1,8 @@
-### 23.3.1 Trigger Syntax and Examples
+### 23.3.1 Sintaxe e Exemplos de Trigger
 
-To create a trigger or drop a trigger, use the `CREATE TRIGGER` or `DROP TRIGGER` statement, described in Section 13.1.20, “CREATE TRIGGER Statement”, and Section 13.1.31, “DROP TRIGGER Statement”.
+Para criar um Trigger ou eliminar um Trigger, use as instruções `CREATE TRIGGER` ou `DROP TRIGGER`, descritas na Seção 13.1.20, “Instrução CREATE TRIGGER”, e na Seção 13.1.31, “Instrução DROP TRIGGER”.
 
-Here is a simple example that associates a trigger with a table, to activate for `INSERT` operations. The trigger acts as an accumulator, summing the values inserted into one of the columns of the table.
+Aqui está um exemplo simples que associa um Trigger a uma tabela, para ser ativado em operações de `INSERT`. O Trigger atua como um acumulador, somando os valores inseridos em uma das colunas da tabela.
 
 ```sql
 mysql> CREATE TABLE account (acct_num INT, amount DECIMAL(10,2));
@@ -13,15 +13,15 @@ mysql> CREATE TRIGGER ins_sum BEFORE INSERT ON account
 Query OK, 0 rows affected (0.01 sec)
 ```
 
-The `CREATE TRIGGER` statement creates a trigger named `ins_sum` that is associated with the `account` table. It also includes clauses that specify the trigger action time, the triggering event, and what to do when the trigger activates:
+A instrução `CREATE TRIGGER` cria um Trigger nomeado `ins_sum` que está associado à tabela `account`. Ela também inclui cláusulas que especificam o tempo de ação do Trigger, o evento de acionamento e o que fazer quando o Trigger for ativado:
 
-* The keyword `BEFORE` indicates the trigger action time. In this case, the trigger activates before each row inserted into the table. The other permitted keyword here is `AFTER`.
+* A palavra-chave `BEFORE` indica o tempo de ação do Trigger. Neste caso, o Trigger é ativado antes de cada linha inserida na tabela. A outra palavra-chave permitida aqui é `AFTER`.
 
-* The keyword `INSERT` indicates the trigger event; that is, the type of operation that activates the trigger. In the example, `INSERT` operations cause trigger activation. You can also create triggers for `DELETE` and `UPDATE` operations.
+* A palavra-chave `INSERT` indica o evento do Trigger; isto é, o tipo de operação que ativa o Trigger. No exemplo, operações de `INSERT` causam a ativação do Trigger. Você também pode criar Triggers para operações de `DELETE` e `UPDATE`.
 
-* The statement following `FOR EACH ROW` defines the trigger body; that is, the statement to execute each time the trigger activates, which occurs once for each row affected by the triggering event. In the example, the trigger body is a simple `SET` that accumulates into a user variable the values inserted into the `amount` column. The statement refers to the column as `NEW.amount` which means “the value of the `amount` column to be inserted into the new row.”
+* A instrução após `FOR EACH ROW` define o corpo do Trigger; isto é, a instrução a ser executada toda vez que o Trigger for ativado, o que ocorre uma vez para cada linha afetada pelo evento de acionamento. No exemplo, o corpo do Trigger é um simples `SET` que acumula em uma variável de usuário os valores inseridos na coluna `amount`. A instrução se refere à coluna como `NEW.amount`, o que significa "o valor da coluna `amount` a ser inserido na nova linha".
 
-To use the trigger, set the accumulator variable to zero, execute an `INSERT` statement, and then see what value the variable has afterward:
+Para usar o Trigger, defina a variável acumuladora como zero, execute uma instrução `INSERT` e, em seguida, verifique qual valor a variável terá depois:
 
 ```sql
 mysql> SET @sum = 0;
@@ -34,21 +34,21 @@ mysql> SELECT @sum AS 'Total amount inserted';
 +-----------------------+
 ```
 
-In this case, the value of `@sum` after the `INSERT` statement has executed is `14.98 + 1937.50 - 100`, or `1852.48`.
+Neste caso, o valor de `@sum` após a execução da instrução `INSERT` é `14.98 + 1937.50 - 100`, ou `1852.48`.
 
-To destroy the trigger, use a `DROP TRIGGER` statement. You must specify the schema name if the trigger is not in the default schema:
+Para destruir o Trigger, use uma instrução `DROP TRIGGER`. Você deve especificar o nome do schema se o Trigger não estiver no schema padrão:
 
 ```sql
 mysql> DROP TRIGGER test.ins_sum;
 ```
 
-If you drop a table, any triggers for the table are also dropped.
+Se você eliminar uma tabela, quaisquer Triggers para essa tabela também serão eliminados.
 
-Trigger names exist in the schema namespace, meaning that all triggers must have unique names within a schema. Triggers in different schemas can have the same name.
+Nomes de Triggers existem no namespace do schema, o que significa que todos os Triggers devem ter nomes exclusivos dentro de um schema. Triggers em schemas diferentes podem ter o mesmo nome.
 
-As of MySQL 5.7.2, it is possible to define multiple triggers for a given table that have the same trigger event and action time. For example, you can have two `BEFORE UPDATE` triggers for a table. By default, triggers that have the same trigger event and action time activate in the order they were created. To affect trigger order, specify a clause after `FOR EACH ROW` that indicates `FOLLOWS` or `PRECEDES` and the name of an existing trigger that also has the same trigger event and action time. With `FOLLOWS`, the new trigger activates after the existing trigger. With `PRECEDES`, the new trigger activates before the existing trigger.
+A partir do MySQL 5.7.2, é possível definir múltiplos Triggers para uma determinada tabela que tenham o mesmo evento de Trigger e tempo de ação. Por exemplo, você pode ter dois Triggers `BEFORE UPDATE` para uma tabela. Por padrão, Triggers que têm o mesmo evento de Trigger e tempo de ação ativam na ordem em que foram criados. Para afetar a ordem de ativação, especifique uma cláusula após `FOR EACH ROW` que indique `FOLLOWS` ou `PRECEDES` e o nome de um Trigger existente que também tenha o mesmo evento de Trigger e tempo de ação. Com `FOLLOWS`, o novo Trigger ativa após o Trigger existente. Com `PRECEDES`, o novo Trigger ativa antes do Trigger existente.
 
-For example, the following trigger definition defines another `BEFORE INSERT` trigger for the `account` table:
+Por exemplo, a seguinte definição de Trigger define outro Trigger `BEFORE INSERT` para a tabela `account`:
 
 ```sql
 mysql> CREATE TRIGGER ins_transaction BEFORE INSERT ON account
@@ -59,19 +59,19 @@ mysql> CREATE TRIGGER ins_transaction BEFORE INSERT ON account
 Query OK, 0 rows affected (0.01 sec)
 ```
 
-This trigger, `ins_transaction`, is similar to `ins_sum` but accumulates deposits and withdrawals separately. It has a `PRECEDES` clause that causes it to activate before `ins_sum`; without that clause, it would activate after `ins_sum` because it is created after `ins_sum`.
+Este Trigger, `ins_transaction`, é semelhante a `ins_sum`, mas acumula depósitos e saques separadamente. Ele tem uma cláusula `PRECEDES` que faz com que ele seja ativado antes de `ins_sum`; sem essa cláusula, ele seria ativado após `ins_sum` porque foi criado depois de `ins_sum`.
 
-Before MySQL 5.7.2, there cannot be multiple triggers for a given table that have the same trigger event and action time. For example, you cannot have two `BEFORE UPDATE` triggers for a table. To work around this, you can define a trigger that executes multiple statements by using the `BEGIN ... END` compound statement construct after `FOR EACH ROW`. (An example appears later in this section.)
+Antes do MySQL 5.7.2, não pode haver múltiplos Triggers para uma determinada tabela que tenham o mesmo evento de Trigger e tempo de ação. Por exemplo, você não pode ter dois Triggers `BEFORE UPDATE` para uma tabela. Para contornar isso, você pode definir um Trigger que executa múltiplas instruções usando a construção de instrução composta `BEGIN ... END` após `FOR EACH ROW`. (Um exemplo aparece mais adiante nesta seção.)
 
-Within the trigger body, the `OLD` and `NEW` keywords enable you to access columns in the rows affected by a trigger. `OLD` and `NEW` are MySQL extensions to triggers; they are not case-sensitive.
+Dentro do corpo do Trigger, as palavras-chave `OLD` e `NEW` permitem que você acesse colunas nas linhas afetadas por um Trigger. `OLD` e `NEW` são extensões MySQL para Triggers; elas não diferenciam maiúsculas de minúsculas.
 
-In an `INSERT` trigger, only `NEW.col_name` can be used; there is no old row. In a `DELETE` trigger, only `OLD.col_name` can be used; there is no new row. In an `UPDATE` trigger, you can use `OLD.col_name` to refer to the columns of a row before it is updated and `NEW.col_name` to refer to the columns of the row after it is updated.
+Em um Trigger de `INSERT`, apenas `NEW.col_name` pode ser usado; não há linha antiga. Em um Trigger de `DELETE`, apenas `OLD.col_name` pode ser usado; não há linha nova. Em um Trigger de `UPDATE`, você pode usar `OLD.col_name` para se referir às colunas de uma linha antes de ser atualizada e `NEW.col_name` para se referir às colunas da linha após ser atualizada.
 
-A column named with `OLD` is read only. You can refer to it (if you have the `SELECT` privilege), but not modify it. You can refer to a column named with `NEW` if you have the `SELECT` privilege for it. In a `BEFORE` trigger, you can also change its value with `SET NEW.col_name = value` if you have the `UPDATE` privilege for it. This means you can use a trigger to modify the values to be inserted into a new row or used to update a row. (Such a `SET` statement has no effect in an `AFTER` trigger because the row change has already occurred.)
+Uma coluna nomeada com `OLD` é somente leitura. Você pode se referir a ela (se tiver o privilégio `SELECT`), mas não modificá-la. Você pode se referir a uma coluna nomeada com `NEW` se tiver o privilégio `SELECT` para ela. Em um Trigger `BEFORE`, você também pode alterar seu valor com `SET NEW.col_name = value` se tiver o privilégio `UPDATE` para ela. Isso significa que você pode usar um Trigger para modificar os valores a serem inseridos em uma nova linha ou usados para atualizar uma linha. (Tal instrução `SET` não tem efeito em um Trigger `AFTER` porque a alteração da linha já ocorreu.)
 
-In a `BEFORE` trigger, the `NEW` value for an `AUTO_INCREMENT` column is 0, not the sequence number that is generated automatically when the new row actually is inserted.
+Em um Trigger `BEFORE`, o valor `NEW` para uma coluna `AUTO_INCREMENT` é 0, não o número de sequência que é gerado automaticamente quando a nova linha é realmente inserida.
 
-By using the `BEGIN ... END` construct, you can define a trigger that executes multiple statements. Within the `BEGIN` block, you also can use other syntax that is permitted within stored routines such as conditionals and loops. However, just as for stored routines, if you use the **mysql** program to define a trigger that executes multiple statements, it is necessary to redefine the **mysql** statement delimiter so that you can use the `;` statement delimiter within the trigger definition. The following example illustrates these points. It defines an `UPDATE` trigger that checks the new value to be used for updating each row, and modifies the value to be within the range from 0 to 100. This must be a `BEFORE` trigger because the value must be checked before it is used to update the row:
+Ao usar a construção `BEGIN ... END`, você pode definir um Trigger que executa múltiplas instruções. Dentro do bloco `BEGIN`, você também pode usar outras sintaxes que são permitidas em stored routines (rotinas armazenadas), como condicionais e loops. No entanto, assim como para stored routines, se você usar o programa **mysql** para definir um Trigger que executa múltiplas instruções, é necessário redefinir o delimitador de instrução **mysql** para que você possa usar o delimitador de instrução `;` dentro da definição do Trigger. O exemplo a seguir ilustra esses pontos. Ele define um Trigger de `UPDATE` que verifica o novo valor a ser usado para atualizar cada linha e modifica o valor para que esteja no intervalo de 0 a 100. Isso deve ser um Trigger `BEFORE` porque o valor deve ser verificado antes de ser usado para atualizar a linha:
 
 ```sql
 mysql> delimiter //
@@ -87,29 +87,29 @@ mysql> CREATE TRIGGER upd_check BEFORE UPDATE ON account
 mysql> delimiter ;
 ```
 
-It can be easier to define a stored procedure separately and then invoke it from the trigger using a simple `CALL` statement. This is also advantageous if you want to execute the same code from within several triggers.
+Pode ser mais fácil definir uma stored procedure separadamente e depois invocá-la a partir do Trigger usando uma simples instrução `CALL`. Isso também é vantajoso se você quiser executar o mesmo código dentro de vários Triggers.
 
-There are limitations on what can appear in statements that a trigger executes when activated:
+Existem limitações sobre o que pode aparecer nas instruções que um Trigger executa quando ativado:
 
-* The trigger cannot use the `CALL` statement to invoke stored procedures that return data to the client or that use dynamic SQL. (Stored procedures are permitted to return data to the trigger through `OUT` or `INOUT` parameters.)
+* O Trigger não pode usar a instrução `CALL` para invocar stored procedures que retornam dados ao cliente ou que usam SQL dinâmico. (Stored procedures são permitidas a retornar dados ao Trigger por meio de parâmetros `OUT` ou `INOUT`.)
 
-* The trigger cannot use statements that explicitly or implicitly begin or end a transaction, such as `START TRANSACTION`, `COMMIT`, or `ROLLBACK`. (`ROLLBACK to SAVEPOINT` is permitted because it does not end a transaction.).
+* O Trigger não pode usar instruções que explícita ou implicitamente iniciam ou encerram uma transaction, como `START TRANSACTION`, `COMMIT` ou `ROLLBACK`. (`ROLLBACK to SAVEPOINT` é permitido porque não encerra uma transaction.).
 
-See also Section 23.8, “Restrictions on Stored Programs”.
+Consulte também a Seção 23.8, “Restrições em Programas Armazenados”.
 
-MySQL handles errors during trigger execution as follows:
+O MySQL trata erros durante a execução do Trigger da seguinte forma:
 
-* If a `BEFORE` trigger fails, the operation on the corresponding row is not performed.
+* Se um Trigger `BEFORE` falhar, a operação na linha correspondente não é executada.
 
-* A `BEFORE` trigger is activated by the *attempt* to insert or modify the row, regardless of whether the attempt subsequently succeeds.
+* Um Trigger `BEFORE` é ativado pela *tentativa* de inserir ou modificar a linha, independentemente de a tentativa ser bem-sucedida posteriormente.
 
-* An `AFTER` trigger is executed only if any `BEFORE` triggers and the row operation execute successfully.
+* Um Trigger `AFTER` é executado apenas se todos os Triggers `BEFORE` e a operação de linha forem executados com sucesso.
 
-* An error during either a `BEFORE` or `AFTER` trigger results in failure of the entire statement that caused trigger invocation.
+* Um erro durante um Trigger `BEFORE` ou `AFTER` resulta na falha de toda a instrução que causou a invocação do Trigger.
 
-* For transactional tables, failure of a statement should cause rollback of all changes performed by the statement. Failure of a trigger causes the statement to fail, so trigger failure also causes rollback. For nontransactional tables, such rollback cannot be done, so although the statement fails, any changes performed prior to the point of the error remain in effect.
+* Para tabelas transacionais, a falha de uma instrução deve causar o rollback de todas as alterações realizadas pela instrução. A falha de um Trigger faz com que a instrução falhe, portanto, a falha do Trigger também causa o rollback. Para tabelas não transacionais, tal rollback não pode ser feito, então, embora a instrução falhe, quaisquer alterações realizadas antes do ponto do erro permanecem em vigor.
 
-Triggers can contain direct references to tables by name, such as the trigger named `testref` shown in this example:
+Triggers podem conter referências diretas a tabelas por nome, como o Trigger nomeado `testref` mostrado neste exemplo:
 
 ```sql
 CREATE TABLE test1(a1 INT);
@@ -141,7 +141,7 @@ INSERT INTO test4 (a4) VALUES
   (0), (0), (0), (0), (0), (0), (0), (0), (0), (0);
 ```
 
-Suppose that you insert the following values into table `test1` as shown here:
+Suponha que você insira os seguintes valores na tabela `test1` conforme mostrado aqui:
 
 ```sql
 mysql> INSERT INTO test1 VALUES
@@ -150,7 +150,7 @@ Query OK, 8 rows affected (0.01 sec)
 Records: 8  Duplicates: 0  Warnings: 0
 ```
 
-As a result, the four tables contain the following data:
+Como resultado, as quatro tabelas contêm os seguintes dados:
 
 ```sql
 mysql> SELECT * FROM test1;

@@ -1,32 +1,32 @@
-### 11.2.9 Conversion Between Date and Time Types
+### 11.2.9 Conversão Entre Tipos de Data e Hora
 
-To some extent, you can convert a value from one temporal type to another. However, there may be some alteration of the value or loss of information. In all cases, conversion between temporal types is subject to the range of valid values for the resulting type. For example, although `DATE`, `DATETIME`, and `TIMESTAMP` values all can be specified using the same set of formats, the types do not all have the same range of values. `TIMESTAMP` values cannot be earlier than `1970` UTC or later than `'2038-01-19 03:14:07'` UTC. This means that a date such as `'1968-01-01'`, while valid as a `DATE` or `DATETIME` value, is not valid as a `TIMESTAMP` value and is converted to `0`.
+Em certa medida, é possível converter um valor de um tipo temporal para outro. No entanto, pode haver alguma alteração do valor ou perda de informação. Em todos os casos, a conversão entre tipos temporais está sujeita ao intervalo de valores válidos para o tipo resultante. Por exemplo, embora os valores `DATE`, `DATETIME` e `TIMESTAMP` possam ser especificados usando o mesmo conjunto de formatos, nem todos os tipos têm o mesmo intervalo de valores. Valores `TIMESTAMP` não podem ser anteriores a `1970` UTC ou posteriores a `'2038-01-19 03:14:07'` UTC. Isso significa que uma data como `'1968-01-01'`, embora válida como um valor `DATE` ou `DATETIME`, não é válida como um valor `TIMESTAMP` e é convertida para `0`.
 
-Conversion of `DATE` values:
+Conversão de valores `DATE`:
 
-* Conversion to a `DATETIME` or `TIMESTAMP` value adds a time part of `'00:00:00'` because the `DATE` value contains no time information.
+* A conversão para um valor `DATETIME` ou `TIMESTAMP` adiciona uma parte de hora de `'00:00:00'` porque o valor `DATE` não contém informação de hora.
 
-* Conversion to a `TIME` value is not useful; the result is `'00:00:00'`.
+* A conversão para um valor `TIME` não é útil; o resultado é `'00:00:00'`.
 
-Conversion of `DATETIME` and `TIMESTAMP` values:
+Conversão de valores `DATETIME` e `TIMESTAMP`:
 
-* Conversion to a `DATE` value takes fractional seconds into account and rounds the time part. For example, `'1999-12-31 23:59:59.499'` becomes `'1999-12-31'`, whereas `'1999-12-31 23:59:59.500'` becomes `'2000-01-01'`.
+* A conversão para um valor `DATE` leva em consideração os segundos fracionários e arredonda a parte da hora. Por exemplo, `'1999-12-31 23:59:59.499'` torna-se `'1999-12-31'`, enquanto `'1999-12-31 23:59:59.500'` torna-se `'2000-01-01'`.
 
-* Conversion to a `TIME` value discards the date part because the `TIME` type contains no date information.
+* A conversão para um valor `TIME` descarta a parte da data porque o tipo `TIME` não contém informação de data.
 
-For conversion of `TIME` values to other temporal types, the value of `CURRENT_DATE()` is used for the date part. The `TIME` is interpreted as elapsed time (not time of day) and added to the date. This means that the date part of the result differs from the current date if the time value is outside the range from `'00:00:00'` to `'23:59:59'`.
+Para a conversão de valores `TIME` para outros tipos temporais, o valor de `CURRENT_DATE()` é usado para a parte da data. O `TIME` é interpretado como tempo decorrido (e não hora do dia) e adicionado à data. Isso significa que a parte da data do resultado difere da data atual se o valor da hora estiver fora do intervalo de `'00:00:00'` a `'23:59:59'`.
 
-Suppose that the current date is `'2012-01-01'`. `TIME` values of `'12:00:00'`, `'24:00:00'`, and `'-12:00:00'`, when converted to `DATETIME` or `TIMESTAMP` values, result in `'2012-01-01 12:00:00'`, `'2012-01-02 00:00:00'`, and `'2011-12-31 12:00:00'`, respectively.
+Suponha que a data atual seja `'2012-01-01'`. Valores `TIME` de `'12:00:00'`, `'24:00:00'` e `'-12:00:00'`, quando convertidos para valores `DATETIME` ou `TIMESTAMP`, resultam em `'2012-01-01 12:00:00'`, `'2012-01-02 00:00:00'` e `'2011-12-31 12:00:00'`, respectivamente.
 
-Conversion of `TIME` to `DATE` is similar but discards the time part from the result: `'2012-01-01'`, `'2012-01-02'`, and `'2011-12-31'`, respectively.
+A conversão de `TIME` para `DATE` é similar, mas descarta a parte da hora do resultado: `'2012-01-01'`, `'2012-01-02'` e `'2011-12-31'`, respectivamente.
 
-Explicit conversion can be used to override implicit conversion. For example, in comparison of `DATE` and `DATETIME` values, the `DATE` value is coerced to the `DATETIME` type by adding a time part of `'00:00:00'`. To perform the comparison by ignoring the time part of the `DATETIME` value instead, use the `CAST()` function in the following way:
+A conversão explícita pode ser usada para sobrescrever a conversão implícita. Por exemplo, na comparação de valores `DATE` e `DATETIME`, o valor `DATE` é coagido ao tipo `DATETIME` adicionando uma parte da hora de `'00:00:00'`. Para realizar a comparação ignorando a parte da hora do valor `DATETIME`, use a função `CAST()` da seguinte forma:
 
 ```sql
 date_col = CAST(datetime_col AS DATE)
 ```
 
-Conversion of `TIME` and `DATETIME` values to numeric form (for example, by adding `+0`) depends on whether the value contains a fractional seconds part. `TIME(N)` or `DATETIME(N)` is converted to integer when *`N`* is 0 (or omitted) and to a `DECIMAL` value with *`N`* decimal digits when *`N`* is greater than 0:
+A conversão de valores `TIME` e `DATETIME` para a forma numérica (por exemplo, adicionando `+0`) depende se o valor contém uma parte de segundos fracionários. `TIME(N)` ou `DATETIME(N)` é convertido para integer quando *`N`* é 0 (ou omitido) e para um valor `DECIMAL` com *`N`* dígitos decimais quando *`N`* é maior que 0:
 
 ```sql
 mysql> SELECT CURTIME(), CURTIME()+0, CURTIME(3)+0;

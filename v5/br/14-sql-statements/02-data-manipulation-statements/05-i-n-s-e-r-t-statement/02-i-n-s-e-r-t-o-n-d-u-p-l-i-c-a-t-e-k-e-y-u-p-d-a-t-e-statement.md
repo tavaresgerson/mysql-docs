@@ -1,6 +1,6 @@
-#### 13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement
+#### 13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement
 
-If you specify an `ON DUPLICATE KEY UPDATE` clause and a row to be inserted would cause a duplicate value in a `UNIQUE` index or `PRIMARY KEY`, an [`UPDATE`](update.html "13.2.11 UPDATE Statement") of the old row occurs. For example, if column `a` is declared as `UNIQUE` and contains the value `1`, the following two statements have similar effect:
+Se você especificar uma cláusula `ON DUPLICATE KEY UPDATE` e uma linha a ser inserida causaria um valor duplicado em um `UNIQUE` index ou `PRIMARY KEY`, ocorre um [`UPDATE`](update.html "13.2.11 UPDATE Statement") da linha antiga. Por exemplo, se a coluna `a` for declarada como `UNIQUE` e contiver o valor `1`, as duas instruções a seguir têm efeito semelhante:
 
 ```sql
 INSERT INTO t1 (a,b,c) VALUES (1,2,3)
@@ -9,23 +9,23 @@ INSERT INTO t1 (a,b,c) VALUES (1,2,3)
 UPDATE t1 SET c=c+1 WHERE a=1;
 ```
 
-The effects are not quite identical: For an `InnoDB` table where `a` is an auto-increment column, the `INSERT` statement increases the auto-increment value but the `UPDATE` does not.
+Os efeitos não são exatamente idênticos: Para uma tabela `InnoDB` onde `a` é uma coluna auto-incremento, a instrução `INSERT` aumenta o valor de auto-incremento, mas o `UPDATE` não.
 
-If column `b` is also unique, the [`INSERT`](insert.html "13.2.5 INSERT Statement") is equivalent to this [`UPDATE`](update.html "13.2.11 UPDATE Statement") statement instead:
+Se a coluna `b` também for unique, o [`INSERT`](insert.html "13.2.5 INSERT Statement") é equivalente à seguinte instrução [`UPDATE`](update.html "13.2.11 UPDATE Statement"):
 
 ```sql
 UPDATE t1 SET c=c+1 WHERE a=1 OR b=2 LIMIT 1;
 ```
 
-If `a=1 OR b=2` matches several rows, only *one* row is updated. In general, you should try to avoid using an `ON DUPLICATE KEY UPDATE` clause on tables with multiple unique indexes.
+Se `a=1 OR b=2` corresponder a várias linhas, apenas *uma* linha é atualizada. Em geral, você deve tentar evitar usar uma cláusula `ON DUPLICATE KEY UPDATE` em tabelas com múltiplos unique indexes.
 
-With `ON DUPLICATE KEY UPDATE`, the affected-rows value per row is 1 if the row is inserted as a new row, 2 if an existing row is updated, and 0 if an existing row is set to its current values. If you specify the `CLIENT_FOUND_ROWS` flag to the [`mysql_real_connect()`](/doc/c-api/5.7/en/mysql-real-connect.html) C API function when connecting to [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), the affected-rows value is 1 (not 0) if an existing row is set to its current values.
+Com `ON DUPLICATE KEY UPDATE`, o valor de affected-rows por linha é 1 se a linha for inserida como uma nova linha, 2 se uma linha existente for atualizada e 0 se uma linha existente for definida com seus valores atuais. Se você especificar a flag `CLIENT_FOUND_ROWS` para a função C API [`mysql_real_connect()`](/doc/c-api/5.7/en/mysql-real-connect.html) ao se conectar ao [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), o valor de affected-rows é 1 (não 0) se uma linha existente for definida com seus valores atuais.
 
-If a table contains an `AUTO_INCREMENT` column and [`INSERT ... ON DUPLICATE KEY UPDATE`](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement") inserts or updates a row, the [`LAST_INSERT_ID()`](information-functions.html#function_last-insert-id) function returns the `AUTO_INCREMENT` value.
+Se uma tabela contiver uma coluna `AUTO_INCREMENT` e [`INSERT ... ON DUPLICATE KEY UPDATE`](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement") inserir ou atualizar uma linha, a função [`LAST_INSERT_ID()`](information-functions.html#function_last-insert-id) retorna o valor `AUTO_INCREMENT`.
 
-The `ON DUPLICATE KEY UPDATE` clause can contain multiple column assignments, separated by commas.
+A cláusula `ON DUPLICATE KEY UPDATE` pode conter múltiplas atribuições de coluna, separadas por vírgulas.
 
-It is possible to use `IGNORE` with `ON DUPLICATE KEY UPDATE` in an `INSERT` statement, but this may not behave as you expect when inserting multiple rows into a table that has multiple unique keys. This becomes apparent when an updated value is itself a duplicate key value. Consider the table `t`, created and populated by the statements shown here:
+É possível usar `IGNORE` com `ON DUPLICATE KEY UPDATE` em uma instrução `INSERT`, mas isso pode não se comportar como esperado ao inserir múltiplas linhas em uma tabela que possui múltiplas unique keys. Isso se torna aparente quando um valor atualizado é, ele próprio, um valor de duplicate key. Considere a tabela `t`, criada e populada pelas instruções mostradas aqui:
 
 ```sql
 mysql> CREATE TABLE t (a SERIAL, b BIGINT NOT NULL, UNIQUE KEY (b));;
@@ -45,7 +45,7 @@ mysql> SELECT * FROM t;
 2 rows in set (0.00 sec)
 ```
 
-Now we attempt to insert two rows, one of which contains a duplicate key value, using `ON DUPLICATE KEY UPDATE`, where the `UPDATE` clause itself results in a duplicate key value:
+Agora tentamos inserir duas linhas, uma das quais contém um valor de duplicate key, usando `ON DUPLICATE KEY UPDATE`, onde a própria cláusula `UPDATE` resulta em um valor de duplicate key:
 
 ```sql
 mysql> INSERT INTO t VALUES (2,3), (3,3) ON DUPLICATE KEY UPDATE a=a+1, b=b-1;
@@ -60,7 +60,7 @@ mysql> SELECT * FROM t;
 2 rows in set (0.00 sec)
 ```
 
-The first row contains a duplicate value for one of the table's unique keys (column `a`), but `b=b+1` in the `UPDATE` clause results in a unique key violation for column `b`; the statement is immediately rejected with an error, and no rows are updated. Let us repeat the statement, this time adding the **`IGNORE`** keyword, like this:
+A primeira linha contém um valor duplicado para uma das unique keys da tabela (coluna `a`), mas `b=b+1` na cláusula `UPDATE` resulta em uma violação de unique key para a coluna `b`; a instrução é imediatamente rejeitada com um erro, e nenhuma linha é atualizada. Vamos repetir a instrução, desta vez adicionando a palavra-chave **`IGNORE`**, assim:
 
 ```sql
 mysql> INSERT IGNORE INTO t VALUES (2,3), (3,3)
@@ -69,7 +69,7 @@ Query OK, 1 row affected, 1 warning (0.00 sec)
 Records: 2  Duplicates: 1  Warnings: 1
 ```
 
-This time, the previous error is demoted to a warning, as shown here:
+Desta vez, o erro anterior é rebaixado para um warning, conforme mostrado aqui:
 
 ```sql
 mysql> SHOW WARNINGS;
@@ -81,7 +81,7 @@ mysql> SHOW WARNINGS;
 1 row in set (0.00 sec)
 ```
 
-Because the statement was not rejected, execution continues. This means that the second row is inserted into `t`, as we can see here:
+Como a instrução não foi rejeitada, a execução continua. Isso significa que a segunda linha é inserida em `t`, como podemos ver aqui:
 
 ```sql
 mysql> SELECT * FROM t;
@@ -95,14 +95,14 @@ mysql> SELECT * FROM t;
 3 rows in set (0.00 sec)
 ```
 
-In assignment value expressions in the `ON DUPLICATE KEY UPDATE` clause, you can use the [`VALUES(col_name)`](miscellaneous-functions.html#function_values) function to refer to column values from the [`INSERT`](insert.html "13.2.5 INSERT Statement") portion of the [`INSERT ... ON DUPLICATE KEY UPDATE`](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement") statement. In other words, [`VALUES(col_name)`](miscellaneous-functions.html#function_values) in the `ON DUPLICATE KEY UPDATE` clause refers to the value of *`col_name`* that would be inserted, had no duplicate-key conflict occurred. This function is especially useful in multiple-row inserts. The [`VALUES()`](miscellaneous-functions.html#function_values) function is meaningful only as an introducer for `INSERT` statement value lists, or in the `ON DUPLICATE KEY UPDATE` clause of an [`INSERT`](insert.html "13.2.5 INSERT Statement") statement, and returns `NULL` otherwise. For example:
+Em expressões de valor de atribuição na cláusula `ON DUPLICATE KEY UPDATE`, você pode usar a função [`VALUES(col_name)`](miscellaneous-functions.html#function_values) para se referir aos valores de coluna da porção [`INSERT`](insert.html "13.2.5 INSERT Statement") da instrução [`INSERT ... ON DUPLICATE KEY UPDATE`](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement"). Em outras palavras, [`VALUES(col_name)`](miscellaneous-functions.html#function_values) na cláusula `ON DUPLICATE KEY UPDATE` refere-se ao valor de *`col_name`* que seria inserido, caso não tivesse ocorrido um conflito de duplicate-key. Esta função é especialmente útil em inserts de múltiplas linhas. A função [`VALUES()`](miscellaneous-functions.html#function_values) é significativa apenas como um introductor para listas de valores de instruções `INSERT`, ou na cláusula `ON DUPLICATE KEY UPDATE` de uma instrução [`INSERT`](insert.html "13.2.5 INSERT Statement"), e retorna `NULL` caso contrário. Por exemplo:
 
 ```sql
 INSERT INTO t1 (a,b,c) VALUES (1,2,3),(4,5,6)
   ON DUPLICATE KEY UPDATE c=VALUES(a)+VALUES(b);
 ```
 
-That statement is identical to the following two statements:
+Essa instrução é idêntica às duas instruções a seguir:
 
 ```sql
 INSERT INTO t1 (a,b,c) VALUES (1,2,3)
@@ -111,17 +111,14 @@ INSERT INTO t1 (a,b,c) VALUES (4,5,6)
   ON DUPLICATE KEY UPDATE c=9;
 ```
 
-For [`INSERT ... SELECT`](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement") statements, these rules apply regarding acceptable forms of `SELECT` query expressions that you can refer to in an `ON DUPLICATE KEY UPDATE` clause:
+Para instruções [`INSERT ... SELECT`](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement"), estas regras se aplicam em relação às formas aceitáveis de expressões de `SELECT` query às quais você pode se referir em uma cláusula `ON DUPLICATE KEY UPDATE`:
 
-* References to columns from queries on a single table, which may be a derived table.
+* Referências a colunas de queries em uma única tabela, que pode ser uma derived table.
+* Referências a colunas de queries em um JOIN sobre múltiplas tabelas.
+* Referências a colunas de queries `DISTINCT`.
+* Referências a colunas em outras tabelas, desde que o [`SELECT`](select.html "13.2.9 SELECT Statement") não use `GROUP BY`. Um efeito colateral é que você deve qualificar referências a nomes de colunas não únicos.
 
-* References to columns from queries on a join over multiple tables.
-
-* References to columns from `DISTINCT` queries.
-
-* References to columns in other tables, as long as the [`SELECT`](select.html "13.2.9 SELECT Statement") does not use `GROUP BY`. One side effect is that you must qualify references to nonunique column names.
-
-References to columns from a [`UNION`](union.html "13.2.9.3 UNION Clause") do not work reliably. To work around this restriction, rewrite the [`UNION`](union.html "13.2.9.3 UNION Clause") as a derived table so that its rows can be treated as a single-table result set. For example, this statement can produce incorrect results:
+Referências a colunas de um [`UNION`](union.html "13.2.9.3 UNION Clause") não funcionam de forma confiável. Para contornar essa restrição, reescreva o [`UNION`](union.html "13.2.9.3 UNION Clause") como uma derived table para que suas linhas possam ser tratadas como um result set de tabela única. Por exemplo, esta instrução pode produzir resultados incorretos:
 
 ```sql
 INSERT INTO t1 (a, b)
@@ -131,7 +128,7 @@ INSERT INTO t1 (a, b)
 ON DUPLICATE KEY UPDATE b = b + c;
 ```
 
-Instead, use an equivalent statement that rewrites the [`UNION`](union.html "13.2.9.3 UNION Clause") as a derived table:
+Em vez disso, use uma instrução equivalente que reescreve o [`UNION`](union.html "13.2.9.3 UNION Clause") como uma derived table:
 
 ```sql
 INSERT INTO t1 (a, b)
@@ -142,10 +139,10 @@ SELECT * FROM
 ON DUPLICATE KEY UPDATE b = b + c;
 ```
 
-The technique of rewriting a query as a derived table also enables references to columns from `GROUP BY` queries.
+A técnica de reescrever uma query como uma derived table também permite referências a colunas de queries `GROUP BY`.
 
-Because the results of [`INSERT ... SELECT`](insert-select.html "13.2.5.1 INSERT ... SELECT Statement") statements depend on the ordering of rows from the [`SELECT`](select.html "13.2.9 SELECT Statement") and this order cannot always be guaranteed, it is possible when logging [`INSERT ... SELECT ON DUPLICATE KEY UPDATE`](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement") statements for the source and the replica to diverge. Thus, [`INSERT ... SELECT ON DUPLICATE KEY UPDATE`](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement") statements are flagged as unsafe for statement-based replication. Such statements produce a warning in the error log when using statement-based mode and are written to the binary log using the row-based format when using `MIXED` mode. An [`INSERT ... ON DUPLICATE KEY UPDATE`](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement") statement against a table having more than one unique or primary key is also marked as unsafe. (Bug #11765650, Bug #58637)
+Como os resultados das instruções [`INSERT ... SELECT`](insert-select.html "13.2.5.1 INSERT ... SELECT Statement") dependem da ordenação das linhas do [`SELECT`](select.html "13.2.9 SELECT Statement") e essa ordem nem sempre pode ser garantida, é possível que, ao logar instruções [`INSERT ... SELECT ON DUPLICATE KEY UPDATE`](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement"), a source e a replica divergirem. Assim, as instruções [`INSERT ... SELECT ON DUPLICATE KEY UPDATE`](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement") são sinalizadas como inseguras (unsafe) para replication baseada em statement (statement-based replication). Tais instruções produzem um warning no error log ao usar o modo statement-based e são escritas no binary log usando o formato row-based ao usar o modo `MIXED`. Uma instrução [`INSERT ... ON DUPLICATE KEY UPDATE`](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement") contra uma tabela que tenha mais de um unique ou primary key também é marcada como insegura (unsafe). (Bug #11765650, Bug #58637)
 
-See also [Section 16.2.1.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”](replication-sbr-rbr.html "16.2.1.1 Advantages and Disadvantages of Statement-Based and Row-Based Replication").
+Veja também [Seção 16.2.1.1, “Vantagens e Desvantagens da Replication Baseada em Statement e Baseada em Row”](replication-sbr-rbr.html "16.2.1.1 Advantages and Disadvantages of Statement-Based and Row-Based Replication").
 
-An `INSERT ... ON DUPLICATE KEY UPDATE` on a partitioned table using a storage engine such as [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") that employs table-level locks locks any partitions of the table in which a partitioning key column is updated. (This does not occur with tables using storage engines such as [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") that employ row-level locking.) For more information, see [Section 22.6.4, “Partitioning and Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking").
+Um `INSERT ... ON DUPLICATE KEY UPDATE` em uma partitioned table que usa um storage engine como [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") e que emprega locks de nível de tabela (table-level locks) bloqueia quaisquer partitions da tabela nas quais uma coluna de partitioning key é atualizada. (Isso não ocorre com tabelas que usam storage engines como [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") que empregam row-level locking.) Para mais informações, veja [Section 22.6.4, “Partitioning and Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking").

@@ -1,9 +1,9 @@
-## 24.7 INFORMATION_SCHEMA MySQL Enterprise Firewall Tables
+## 24.7 Tabelas INFORMATION_SCHEMA do MySQL Enterprise Firewall
 
-[24.7.1 INFORMATION_SCHEMA Firewall Table Reference](information-schema-firewall-table-reference.html)
+[24.7.1 Referência da Tabela Firewall do INFORMATION_SCHEMA](information-schema-firewall-table-reference.html)
 
-[24.7.2 The INFORMATION_SCHEMA MYSQL_FIREWALL_USERS Table](information-schema-mysql-firewall-users-table.html)
+[24.7.2 A Tabela MYSQL_FIREWALL_USERS do INFORMATION_SCHEMA](information-schema-mysql-firewall-users-table.html)
 
-[24.7.3 The INFORMATION_SCHEMA MYSQL_FIREWALL_WHITELIST Table](information-schema-mysql-firewall-whitelist-table.html)
+[24.7.3 A Tabela MYSQL_FIREWALL_WHITELIST do INFORMATION_SCHEMA](information-schema-mysql-firewall-whitelist-table.html)
 
-The following sections describe the `INFORMATION_SCHEMA` tables associated with MySQL Enterprise Firewall (see [Section 6.4.6, “MySQL Enterprise Firewall”](firewall.html "6.4.6 MySQL Enterprise Firewall")). They provide views into the firewall in-memory data cache. These tables are available only if the appropriate firewall plugins are enabled.
+As seções a seguir descrevem as tabelas `INFORMATION_SCHEMA` associadas ao MySQL Enterprise Firewall (consulte [Seção 6.4.6, “MySQL Enterprise Firewall”](firewall.html "6.4.6 MySQL Enterprise Firewall")). Elas fornecem vistas (views) do cache de dados em memória do firewall. Essas tabelas estão disponíveis somente se os plugins de firewall apropriados estiverem habilitados.

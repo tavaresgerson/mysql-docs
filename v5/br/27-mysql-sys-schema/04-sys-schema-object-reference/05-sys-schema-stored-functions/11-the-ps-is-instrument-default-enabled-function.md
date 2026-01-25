@@ -1,16 +1,16 @@
-#### 26.4.5.11 The ps_is_instrument_default_enabled() Function
+#### 26.4.5.11 A Função ps_is_instrument_default_enabled()
 
-Returns `YES` or `NO` to indicate whether a given Performance Schema instrument is enabled by default.
+Retorna `YES` ou `NO` para indicar se um determinado *instrument* do *Performance Schema* está habilitado por padrão.
 
-##### Parameters
+##### Parâmetros
 
-* `in_instrument VARCHAR(128)`: The name of the instrument to check.
+* `in_instrument VARCHAR(128)`: O nome do *instrument* a ser verificado.
 
-##### Return Value
+##### Valor de Retorno
 
-An `ENUM('YES','NO')` value.
+Um valor `ENUM('YES','NO')`.
 
-##### Example
+##### Exemplo
 
 ```sql
 mysql> SELECT sys.ps_is_instrument_default_enabled('memory/innodb/row_log_buf');

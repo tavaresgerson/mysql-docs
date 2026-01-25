@@ -1,7 +1,7 @@
-## 17.3 Requirements and Limitations
+## 17.3 Requisitos e Limitações
 
-[17.3.1 Group Replication Requirements](group-replication-requirements.html)
+[17.3.1 Requisitos do Group Replication](group-replication-requirements.html)
 
-[17.3.2 Group Replication Limitations](group-replication-limitations.html)
+[17.3.2 Limitações do Group Replication](group-replication-limitations.html)
 
-This section lists and explains the requirements and limitations of Group Replication.
+Esta seção lista e explica os requisitos e as limitações do Group Replication.

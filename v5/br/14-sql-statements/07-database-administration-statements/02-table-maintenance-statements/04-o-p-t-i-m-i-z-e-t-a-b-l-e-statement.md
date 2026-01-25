@@ -1,50 +1,50 @@
-#### 13.7.2.4 OPTIMIZE TABLE Statement
+#### 13.7.2.4 Instrução OPTIMIZE TABLE
 
 ```sql
 OPTIMIZE [NO_WRITE_TO_BINLOG | LOCAL]
     TABLE tbl_name [, tbl_name] ...
 ```
 
-[`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") reorganizes the physical storage of table data and associated index data, to reduce storage space and improve I/O efficiency when accessing the table. The exact changes made to each table depend on the [storage engine](glossary.html#glos_storage_engine "storage engine") used by that table.
+[`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") reorganiza o armazenamento físico dos dados da tabela e dos dados de Index associados, para reduzir o espaço de armazenamento e melhorar a eficiência de I/O ao acessar a tabela. As alterações exatas feitas em cada tabela dependem do [storage engine](glossary.html#glos_storage_engine "storage engine") utilizado por essa tabela.
 
-Use [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") in these cases, depending on the type of table:
+Use [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") nestes casos, dependendo do tipo de tabela:
 
-* After doing substantial insert, update, or delete operations on an `InnoDB` table that has its own [.ibd file](glossary.html#glos_ibd_file ".ibd file") because it was created with the [`innodb_file_per_table`](innodb-parameters.html#sysvar_innodb_file_per_table) option enabled. The table and indexes are reorganized, and disk space can be reclaimed for use by the operating system.
+*   Após realizar operações substanciais de insert, update ou delete em uma tabela `InnoDB` que possui seu próprio [.ibd file](glossary.html#glos_ibd_file ".ibd file") porque foi criada com a opção [`innodb_file_per_table`](innodb-parameters.html#sysvar_innodb_file_per_table) habilitada. A tabela e os Indexes são reorganizados, e o espaço em disco pode ser recuperado para uso pelo sistema operacional.
 
-* After doing substantial insert, update, or delete operations on columns that are part of a `FULLTEXT` index in an `InnoDB` table. Set the configuration option [`innodb_optimize_fulltext_only=1`](innodb-parameters.html#sysvar_innodb_optimize_fulltext_only) first. To keep the index maintenance period to a reasonable time, set the [`innodb_ft_num_word_optimize`](innodb-parameters.html#sysvar_innodb_ft_num_word_optimize) option to specify how many words to update in the search index, and run a sequence of `OPTIMIZE TABLE` statements until the search index is fully updated.
+*   Após realizar operações substanciais de insert, update ou delete em colunas que fazem parte de um Index `FULLTEXT` em uma tabela `InnoDB`. Defina primeiro a opção de configuração [`innodb_optimize_fulltext_only=1`](innodb-parameters.html#sysvar_innodb_optimize_fulltext_only). Para manter o período de manutenção do Index em um tempo razoável, defina a opção [`innodb_ft_num_word_optimize`](innodb-parameters.html#sysvar_innodb_ft_num_word_optimize) para especificar quantas palavras atualizar no Index de pesquisa e execute uma sequência de instruções `OPTIMIZE TABLE` até que o Index de pesquisa esteja totalmente atualizado.
 
-* After deleting a large part of a `MyISAM` or `ARCHIVE` table, or making many changes to a `MyISAM` or `ARCHIVE`table with variable-length rows (tables that have [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), [`VARBINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"), [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types"), or [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") columns). Deleted rows are maintained in a linked list and subsequent [`INSERT`](insert.html "13.2.5 INSERT Statement") operations reuse old row positions. You can use [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") to reclaim the unused space and to defragment the data file. After extensive changes to a table, this statement may also improve performance of statements that use the table, sometimes significantly.
+*   Após deletar uma grande parte de uma tabela `MyISAM` ou `ARCHIVE`, ou fazer muitas alterações em uma tabela `MyISAM` ou `ARCHIVE` com linhas de comprimento variável (tabelas que possuem colunas [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), [`VARBINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"), [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types"), ou [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types")). Linhas deletadas são mantidas em uma lista ligada e operações subsequentes de [`INSERT`](insert.html "13.2.5 INSERT Statement") reutilizam posições antigas das linhas. Você pode usar [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") para recuperar o espaço não utilizado e desfragmentar o arquivo de dados. Após alterações extensas em uma tabela, esta instrução também pode melhorar o performance de instruções que utilizam a tabela, às vezes significativamente.
 
-This statement requires [`SELECT`](privileges-provided.html#priv_select) and [`INSERT`](privileges-provided.html#priv_insert) privileges for the table.
+Esta instrução requer privilégios [`SELECT`](privileges-provided.html#priv_select) e [`INSERT`](privileges-provided.html#priv_insert) para a tabela.
 
-[`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") works for [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"), [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine"), and [`ARCHIVE`](archive-storage-engine.html "15.5 The ARCHIVE Storage Engine") tables. [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") is also supported for dynamic columns of in-memory [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables. It does not work for fixed-width columns of in-memory tables, nor does it work for Disk Data tables. The performance of `OPTIMIZE` on NDB Cluster tables can be tuned using [`--ndb-optimization-delay`](mysql-cluster-options-variables.html#option_mysqld_ndb-optimization-delay), which controls the length of time to wait between processing batches of rows by [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement"). For more information, see [Previous NDB Cluster Issues Resolved in NDB Cluster 8.0](/doc/refman/8.0/en/mysql-cluster-limitations-resolved.html).
+[`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") funciona para tabelas [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"), [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") e [`ARCHIVE`](archive-storage-engine.html "15.5 The ARCHIVE Storage Engine"). [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") também é suportado para colunas dinâmicas de tabelas [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") in-memory. Não funciona para colunas de largura fixa de tabelas in-memory, nem funciona para tabelas Disk Data. O performance do `OPTIMIZE` em tabelas NDB Cluster pode ser ajustado usando [`--ndb-optimization-delay`](mysql-cluster-options-variables.html#option_mysqld_ndb-optimization-delay), que controla o tempo de espera entre o processamento de batches de linhas por [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement"). Para mais informações, consulte [Previous NDB Cluster Issues Resolved in NDB Cluster 8.0](/doc/refman/8.0/en/mysql-cluster-limitations-resolved.html).
 
-For NDB Cluster tables, [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") can be interrupted by (for example) killing the SQL thread performing the `OPTIMIZE` operation.
+Para tabelas NDB Cluster, [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") pode ser interrompido por (por exemplo) encerrando a Thread SQL que executa a operação `OPTIMIZE`.
 
-By default, [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") does *not* work for tables created using any other storage engine and returns a result indicating this lack of support. You can make [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") work for other storage engines by starting [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with the [`--skip-new`](server-options.html#option_mysqld_skip-new) option. In this case, [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") is just mapped to [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement").
+Por padrão, [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") *não* funciona para tabelas criadas usando qualquer outro storage engine e retorna um resultado indicando essa falta de suporte. Você pode fazer com que [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") funcione para outros storage engines iniciando o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") com a opção [`--skip-new`](server-options.html#option_mysqld_skip-new). Neste caso, [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") é apenas mapeado para [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement").
 
-This statement does not work with views.
+Esta instrução não funciona com views.
 
-[`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") is supported for partitioned tables. For information about using this statement with partitioned tables and table partitions, see [Section 22.3.4, “Maintenance of Partitions”](partitioning-maintenance.html "22.3.4 Maintenance of Partitions").
+[`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") é suportado para tabelas particionadas. Para informações sobre como usar esta instrução com tabelas e partições particionadas, consulte [Section 22.3.4, “Maintenance of Partitions”](partitioning-maintenance.html "22.3.4 Maintenance of Partitions").
 
-By default, the server writes [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") statements to the binary log so that they replicate to replicas. To suppress logging, specify the optional `NO_WRITE_TO_BINLOG` keyword or its alias `LOCAL`.
+Por padrão, o servidor escreve instruções [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") no binary log para que sejam replicadas para as réplicas. Para suprimir o log, especifique a palavra-chave opcional `NO_WRITE_TO_BINLOG` ou seu alias `LOCAL`.
 
-* [OPTIMIZE TABLE Output](optimize-table.html#optimize-table-output "OPTIMIZE TABLE Output")
-* [InnoDB Details](optimize-table.html#optimize-table-innodb-details "InnoDB Details")
-* [MyISAM Details](optimize-table.html#optimize-table-myisam-details "MyISAM Details")
-* [Other Considerations](optimize-table.html#optimize-table-other-considerations "Other Considerations")
+*   [Saída de OPTIMIZE TABLE](optimize-table.html#optimize-table-output "OPTIMIZE TABLE Output")
+*   [Detalhes do InnoDB](optimize-table.html#optimize-table-innodb-details "InnoDB Details")
+*   [Detalhes do MyISAM](optimize-table.html#optimize-table-myisam-details "MyISAM Details")
+*   [Outras Considerações](optimize-table.html#optimize-table-other-considerations "Other Considerations")
 
-##### OPTIMIZE TABLE Output
+##### Saída de OPTIMIZE TABLE
 
-[`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") returns a result set with the columns shown in the following table.
+[`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") retorna um result set com as colunas mostradas na tabela a seguir.
 
-<table summary="Columns of the OPTIMIZE TABLE result set."><col style="width: 15%"/><col style="width: 60%"/><thead><tr> <th>Column</th> <th>Value</th> </tr></thead><tbody><tr> <td><code>Table</code></td> <td>The table name</td> </tr><tr> <td><code>Op</code></td> <td>Always <code>optimize</code></td> </tr><tr> <td><code>Msg_type</code></td> <td><code>status</code>, <code>error</code>, <code>info</code>, <code>note</code>, or <code>warning</code></td> </tr><tr> <td><code>Msg_text</code></td> <td>An informational message</td> </tr></tbody></table>
+<table summary="Colunas do result set OPTIMIZE TABLE."><col style="width: 15%"/><col style="width: 60%"/><thead><tr> <th>Coluna</th> <th>Valor</th> </tr></thead><tbody><tr> <td><code>Table</code></td> <td>O nome da tabela</td> </tr><tr> <td><code>Op</code></td> <td>Sempre <code>optimize</code></td> </tr><tr> <td><code>Msg_type</code></td> <td><code>status</code>, <code>error</code>, <code>info</code>, <code>note</code>, ou <code>warning</code></td> </tr><tr> <td><code>Msg_text</code></td> <td>Uma mensagem informativa</td> </tr> </tbody></table>
 
-[`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") table catches and throws any errors that occur while copying table statistics from the old file to the newly created file. For example. if the user ID of the owner of the `.frm`, `.MYD`, or `.MYI` file is different from the user ID of the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") process, [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") generates a "cannot change ownership of the file" error unless [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") is started by the `root` user.
+[`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") captura e lança quaisquer erros que ocorram durante a cópia de estatísticas da tabela do arquivo antigo para o arquivo recém-criado. Por exemplo, se o ID de usuário do proprietário do arquivo `.frm`, `.MYD` ou `.MYI` for diferente do ID de usuário do processo [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") gera um erro "cannot change ownership of the file" (não é possível alterar a propriedade do arquivo), a menos que o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") seja iniciado pelo usuário `root`.
 
-##### InnoDB Details
+##### Detalhes do InnoDB
 
-For `InnoDB` tables, [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") is mapped to [`ALTER TABLE ... FORCE`](alter-table.html "13.1.8 ALTER TABLE Statement"), which rebuilds the table to update index statistics and free unused space in the clustered index. This is displayed in the output of [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") when you run it on an `InnoDB` table, as shown here:
+Para tabelas `InnoDB`, [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") é mapeado para [`ALTER TABLE ... FORCE`](alter-table.html "13.1.8 ALTER TABLE Statement"), que reconstrói a tabela para atualizar as estatísticas de Index e liberar espaço não utilizado no clustered Index. Isso é exibido na saída de [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") quando você o executa em uma tabela `InnoDB`, conforme mostrado aqui:
 
 ```sql
 mysql> OPTIMIZE TABLE foo;
@@ -56,36 +56,36 @@ mysql> OPTIMIZE TABLE foo;
 +----------+----------+----------+-------------------------------------------------------------------+
 ```
 
-[`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") uses [online DDL](innodb-online-ddl.html "14.13 InnoDB and Online DDL") for regular and partitioned `InnoDB` tables, which reduces downtime for concurrent DML operations. The table rebuild triggered by [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") is completed in place. An exclusive table lock is only taken briefly during the prepare phase and the commit phase of the operation. During the prepare phase, metadata is updated and an intermediate table is created. During the commit phase, table metadata changes are committed.
+[`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") usa [online DDL](innodb-online-ddl.html "14.13 InnoDB and Online DDL") para tabelas `InnoDB` regulares e particionadas, o que reduz o downtime para operações DML concorrentes. A reconstrução da tabela acionada por [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") é concluída no local. Um Lock de tabela exclusivo (exclusive table Lock) é aplicado brevemente apenas durante a fase de prepare e a fase de commit da operação. Durante a fase de prepare, os metadados são atualizados e uma tabela intermediária é criada. Durante a fase de commit, as alterações de metadados da tabela são confirmadas.
 
-[`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") rebuilds the table using the table copy method under the following conditions:
+[`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") reconstrói a tabela usando o método de cópia da tabela sob as seguintes condições:
 
-* When the [`old_alter_table`](server-system-variables.html#sysvar_old_alter_table) system variable is enabled.
+*   Quando a variável de sistema [`old_alter_table`](server-system-variables.html#sysvar_old_alter_table) está habilitada.
 
-* When the server is started with the [`--skip-new`](server-options.html#option_mysqld_skip-new) option.
+*   Quando o servidor é iniciado com a opção [`--skip-new`](server-options.html#option_mysqld_skip-new).
 
-[`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") using [online DDL](innodb-online-ddl.html "14.13 InnoDB and Online DDL") is not supported for `InnoDB` tables that contain `FULLTEXT` indexes. The table copy method is used instead.
+[`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") usando [online DDL](innodb-online-ddl.html "14.13 InnoDB and Online DDL") não é suportado para tabelas `InnoDB` que contêm Indexes `FULLTEXT`. O método de cópia da tabela é usado em vez disso.
 
-`InnoDB` stores data using a page-allocation method and does not suffer from fragmentation in the same way that legacy storage engines (such as `MyISAM`) do. When considering whether or not to run `OPTIMIZE TABLE`, consider the workload of transactions that your server is expected to process:
+O `InnoDB` armazena dados usando um método de alocação de page e não sofre de fragmentação da mesma forma que storage engines legados (como `MyISAM`). Ao considerar se deve ou não executar `OPTIMIZE TABLE`, considere a workload de transações que seu servidor deve processar:
 
-* Some level of fragmentation is expected. `InnoDB` fills [pages](glossary.html#glos_page "page") only 93% full, to leave room for updates without having to split pages.
+*   Algum nível de fragmentação é esperado. O `InnoDB` preenche as [pages](glossary.html#glos_page "page") apenas em 93%, para deixar espaço para updates sem ter que dividir as pages.
 
-* Delete operations might leave gaps that leave pages less filled than desired, which could make it worthwhile to optimize the table.
+*   Operações de Delete podem deixar lacunas que deixam as pages menos preenchidas do que o desejado, o que pode fazer com que valha a pena otimizar a tabela.
 
-* Updates to rows usually rewrite the data within the same page, depending on the data type and row format, when sufficient space is available. See [Section 14.9.1.5, “How Compression Works for InnoDB Tables”](innodb-compression-internals.html "14.9.1.5 How Compression Works for InnoDB Tables") and [Section 14.11, “InnoDB Row Formats”](innodb-row-format.html "14.11 InnoDB Row Formats").
+*   Updates em linhas geralmente reescrevem os dados dentro da mesma page, dependendo do tipo de dado e formato da linha, quando há espaço suficiente disponível. Consulte [Section 14.9.1.5, “How Compression Works for InnoDB Tables”](innodb-compression-internals.html "14.9.1.5 How Compression Works for InnoDB Tables") e [Section 14.11, “InnoDB Row Formats”](innodb-row-format.html "14.11 InnoDB Row Formats").
 
-* High-concurrency workloads might leave gaps in indexes over time, as `InnoDB` retains multiple versions of the same data due through its [MVCC](glossary.html#glos_mvcc "MVCC") mechanism. See [Section 14.3, “InnoDB Multi-Versioning”](innodb-multi-versioning.html "14.3 InnoDB Multi-Versioning").
+*   Workloads de alta concorrência podem deixar lacunas nos Indexes ao longo do tempo, visto que o `InnoDB` retém múltiplas versões dos mesmos dados através do seu mecanismo [MVCC](glossary.html#glos_mvcc "MVCC"). Consulte [Section 14.3, “InnoDB Multi-Versioning”](innodb-multi-versioning.html "14.3 InnoDB Multi-Versioning").
 
-##### MyISAM Details
+##### Detalhes do MyISAM
 
-For `MyISAM` tables, [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") works as follows:
+Para tabelas `MyISAM`, [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") funciona da seguinte forma:
 
-1. If the table has deleted or split rows, repair the table.
-2. If the index pages are not sorted, sort them.
-3. If the table's statistics are not up to date (and the repair could not be accomplished by sorting the index), update them.
+1.  Se a tabela tiver linhas deletadas ou divididas, repare a tabela.
+2.  Se as pages do Index não estiverem ordenadas, ordene-as.
+3.  Se as estatísticas da tabela não estiverem atualizadas (e o reparo não pôde ser realizado pela ordenação do Index), atualize-as.
 
-##### Other Considerations
+##### Outras Considerações
 
-[`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") is performed online for regular and partitioned `InnoDB` tables. Otherwise, MySQL [locks the table](glossary.html#glos_table_lock "table lock") during the time [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") is running.
+[`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") é executado online para tabelas `InnoDB` regulares e particionadas. Caso contrário, o MySQL [locks a tabela](glossary.html#glos_table_lock "table lock") (table Lock) durante o tempo em que o [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") está em execução.
 
-[`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") does not sort R-tree indexes, such as spatial indexes on `POINT` columns. (Bug #23578)
+[`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") não ordena Indexes R-tree, como Indexes espaciais em colunas `POINT`. (Bug #23578)

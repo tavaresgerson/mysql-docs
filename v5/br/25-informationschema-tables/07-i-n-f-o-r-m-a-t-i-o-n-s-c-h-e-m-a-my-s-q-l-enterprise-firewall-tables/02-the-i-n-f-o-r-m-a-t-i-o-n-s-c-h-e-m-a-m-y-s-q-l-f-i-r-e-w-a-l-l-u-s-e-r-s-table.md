@@ -1,13 +1,13 @@
-### 24.7.2 The INFORMATION_SCHEMA MYSQL_FIREWALL_USERS Table
+### 24.7.2 A Tabela INFORMATION_SCHEMA MYSQL_FIREWALL_USERS
 
-The [`MYSQL_FIREWALL_USERS`](information-schema-mysql-firewall-users-table.html "24.7.2 The INFORMATION_SCHEMA MYSQL_FIREWALL_USERS Table") table provides a view into the in-memory data cache for MySQL Enterprise Firewall. It lists names and operational modes of registered firewall account profiles. It is used in conjunction with the `mysql.firewall_users` system table that provides persistent storage of firewall data; see [MySQL Enterprise Firewall Tables](firewall-reference.html#firewall-tables "MySQL Enterprise Firewall Tables").
+A tabela [`MYSQL_FIREWALL_USERS`](information-schema-mysql-firewall-users-table.html "24.7.2 The INFORMATION_SCHEMA MYSQL_FIREWALL_USERS Table") oferece uma visualização do cache de dados em memória para o MySQL Enterprise Firewall. Ela lista nomes e modos operacionais de perfis de conta de firewall registrados. É utilizada em conjunto com a tabela de sistema `mysql.firewall_users`, que fornece armazenamento persistente dos dados do firewall; consulte [Tabelas do MySQL Enterprise Firewall](firewall-reference.html#firewall-tables "MySQL Enterprise Firewall Tables").
 
-The [`MYSQL_FIREWALL_USERS`](information-schema-mysql-firewall-users-table.html "24.7.2 The INFORMATION_SCHEMA MYSQL_FIREWALL_USERS Table") table has these columns:
+A tabela [`MYSQL_FIREWALL_USERS`](information-schema-mysql-firewall-users-table.html "24.7.2 The INFORMATION_SCHEMA MYSQL_FIREWALL_USERS Table") possui estas colunas:
 
 * `USERHOST`
 
-  The account profile name. Each account name has the format `user_name@host_name`.
+  O nome do perfil de conta. Cada nome de conta tem o formato `user_name@host_name`.
 
 * `MODE`
 
-  The current operational mode for the profile. Permitted mode values are `OFF`, `DETECTING`, `PROTECTING`, `RECORDING`, and `RESET`. For details about their meanings, see [Firewall Concepts](firewall-usage.html#firewall-concepts "Firewall Concepts").
+  O modo operacional atual para o perfil. Os valores de modo permitidos são `OFF`, `DETECTING`, `PROTECTING`, `RECORDING` e `RESET`. Para detalhes sobre seus significados, consulte [Conceitos do Firewall](firewall-usage.html#firewall-concepts "Firewall Concepts").

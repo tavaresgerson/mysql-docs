@@ -1,69 +1,69 @@
-#### 16.2.2.3 Startup Options and Replication Channels
+#### 16.2.2.3 Opções de Inicialização e Canais de Replicação
 
-This section describes startup options which are impacted by the addition of replication channels.
+Esta seção descreve as opções de inicialização que são afetadas pela adição de canais de replicação.
 
-The following startup settings *must* be configured correctly to use multi-source replication.
+As seguintes configurações de inicialização *devem* ser configuradas corretamente para usar a replicação multi-source.
 
 * [`relay_log_info_repository`](replication-options-replica.html#sysvar_relay_log_info_repository).
 
-  This must be set to `TABLE`. If this variable is set to `FILE`, attempting to add more sources to a replica fails with [`ER_SLAVE_NEW_CHANNEL_WRONG_REPOSITORY`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_slave_new_channel_wrong_repository).
+  Este deve ser definido como `TABLE`. Se esta variável for definida como `FILE`, a tentativa de adicionar mais sources a uma replica falhará com [`ER_SLAVE_NEW_CHANNEL_WRONG_REPOSITORY`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_slave_new_channel_wrong_repository).
 
 * [`master_info_repository`](replication-options-replica.html#sysvar_master_info_repository)
 
-  This must be set to `TABLE`. If this variable is set to `FILE`, attempting to add more sources to a replica fails with [`ER_SLAVE_NEW_CHANNEL_WRONG_REPOSITORY`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_slave_new_channel_wrong_repository).
+  Este deve ser definido como `TABLE`. Se esta variável for definida como `FILE`, a tentativa de adicionar mais sources a uma replica falhará com [`ER_SLAVE_NEW_CHANNEL_WRONG_REPOSITORY`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_slave_new_channel_wrong_repository).
 
-The following startup options now affect *all* channels in a replication topology.
+As seguintes opções de inicialização agora afetam *todos* os canais em uma topologia de replicação.
 
 * [`--log-slave-updates`](replication-options-binary-log.html#sysvar_log_slave_updates)
 
-  All transactions received by the replica (even from multiple sources) are written in the binary log.
+  Todas as transações recebidas pela replica (mesmo de múltiplas sources) são escritas no binary log.
 
 * [`--relay-log-purge`](replication-options-replica.html#sysvar_relay_log_purge)
 
-  When set, each channel purges its own relay log automatically.
+  Quando definido, cada canal purga seu próprio relay log automaticamente.
 
 * [`--slave_transaction_retries`](replication-options-replica.html#sysvar_slave_transaction_retries)
 
-  Applier threads of all channels retry transactions.
+  As Applier Threads de todos os canais fazem retry das transações.
 
 * [`--skip-slave-start`](replication-options-replica.html#option_mysqld_skip-slave-start)
 
-  No replication threads start on any channels.
+  Nenhuma Replication Thread é iniciada em nenhum dos canais.
 
 * [`--slave-skip-errors`](replication-options-replica.html#sysvar_slave_skip_errors)
 
-  Execution continues and errors are skipped for all channels.
+  A execução continua e os erros são ignorados (skipped) para todos os canais.
 
-The values set for the following startup options apply on each channel; since these are [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") startup options, they are applied on every channel.
+Os valores definidos para as seguintes opções de inicialização se aplicam a cada canal; visto que estas são opções de inicialização do [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), elas são aplicadas em todos os canais.
 
 * `--max-relay-log-size=size`
 
-  Maximum size of the individual relay log file for each channel; after reaching this limit, the file is rotated.
+  Tamanho máximo do arquivo de relay log individual para cada canal; após atingir este limite, o arquivo é rotacionado.
 
 * `--relay-log-space-limit=size`
 
-  Upper limit for the total size of all relay logs combined, for each individual channel. For *`N`* channels, the combined size of these logs is limited to [`relay_log_space_limit * N`](replication-options-replica.html#sysvar_relay_log_space_limit).
+  Limite superior para o tamanho total de todos os relay logs combinados, para cada canal individual. Para *`N`* canais, o tamanho combinado desses logs é limitado a [`relay_log_space_limit * N`](replication-options-replica.html#sysvar_relay_log_space_limit).
 
 * `--slave-parallel-workers=value`
 
-  Number of worker threads per channel.
+  Número de Worker Threads por canal.
 
 * [`slave_checkpoint_group`](replication-options-replica.html#sysvar_slave_checkpoint_group)
 
-  Waiting time by an I/O thread for each source.
+  Tempo de espera de uma I/O Thread para cada source.
 
 * `--relay-log-index=filename`
 
-  Base name for each channel's relay log index file. See [Section 16.2.2.4, “Replication Channel Naming Conventions”](channels-naming-conventions.html "16.2.2.4 Replication Channel Naming Conventions").
+  Nome base para o arquivo index do relay log de cada canal. Veja [Section 16.2.2.4, “Convenções de Nomenclatura de Canais de Replicação”](channels-naming-conventions.html "16.2.2.4 Convenções de Nomenclatura de Canais de Replicação").
 
 * `--relay-log=filename`
 
-  Denotes the base name of each channel's relay log file. See [Section 16.2.2.4, “Replication Channel Naming Conventions”](channels-naming-conventions.html "16.2.2.4 Replication Channel Naming Conventions").
+  Denota o nome base do arquivo de relay log de cada canal. Veja [Section 16.2.2.4, “Convenções de Nomenclatura de Canais de Replicação”](channels-naming-conventions.html "16.2.2.4 Convenções de Nomenclatura de Canais de Replicação").
 
 * `--slave_net-timeout=N`
 
-  This value is set per channel, so that each channel waits for *`N`* seconds to check for a broken connection.
+  Este valor é definido por canal, de modo que cada canal aguarda *`N`* segundos para verificar uma broken connection.
 
 * `--slave-skip-counter=N`
 
-  This value is set per channel, so that each channel skips *`N`* events from its source.
+  Este valor é definido por canal, de modo que cada canal pula *`N`* eventos de sua source.

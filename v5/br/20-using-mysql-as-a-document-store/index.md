@@ -1,44 +1,44 @@
-# Chapter 19 Using MySQL as a Document Store
+# Capítulo 19 Usando MySQL como um Document Store
 
-**Table of Contents**
+**Sumário**
 
-19.1 Key Concepts
+19.1 Conceitos Chave
 
-19.2 Setting Up MySQL as a Document Store :   19.2.1 Installing MySQL Shell
+19.2 Configurando o MySQL como um Document Store : 19.2.1 Instalando o MySQL Shell
 
-    19.2.2 Starting MySQL Shell
+    19.2.2 Iniciando o MySQL Shell
 
-19.3 Quick-Start Guide: MySQL for Visual Studio
+19.3 Guia de Início Rápido: MySQL para Visual Studio
 
-19.4 X Plugin :   19.4.1 Using Encrypted Connections with X Plugin
+19.4 X Plugin : 19.4.1 Usando Conexões Criptografadas com X Plugin
 
-    19.4.2 X Plugin Options and Variables
+    19.4.2 Opções e Variáveis do X Plugin
 
-    19.4.3 Monitoring X Plugin
+    19.4.3 Monitorando o X Plugin
 
-This chapter introduces an alternative way of working with MySQL as a document store, sometimes referred to as “using NoSQL”. If your intention is to use MySQL in a traditional (SQL) way, this chapter is probably not relevant to you.
+Este capítulo apresenta uma maneira alternativa de trabalhar com o MySQL como um document store, por vezes referido como “usar NoSQL”. Se sua intenção for usar o MySQL da maneira tradicional (SQL), este capítulo provavelmente não é relevante para você.
 
-Important
+Importante
 
-MySQL Shell 8.0 is the most recent version and is highly recommended for use with MySQL Server 5.7. Please upgrade to MySQL Shell 8.0. If you have not yet installed MySQL Shell, download it from the [download site](https://dev.mysql.com/downloads/shell). See the MySQL Shell 8.0 documentation for the latest documentation. This chapter covers configuring MySQL 5.7 server as a document store and is compatible with version 8.0 clients such as MySQL Shell and MySQL Connectors.
+O MySQL Shell 8.0 é a versão mais recente e é altamente recomendado para uso com o MySQL Server 5.7. Por favor, atualize para o MySQL Shell 8.0. Se você ainda não instalou o MySQL Shell, faça o download no [site de download](https://dev.mysql.com/downloads/shell). Consulte a documentação do MySQL Shell 8.0 para obter a documentação mais recente. Este capítulo aborda a configuração do servidor MySQL 5.7 como um document store e é compatível com clientes da versão 8.0, como o MySQL Shell e os MySQL Connectors.
 
-Relational databases such as MySQL usually required a document schema to be defined before documents can be stored. The features described in this section enable you to use MySQL as a document store, which is a schema-less, and therefore schema-flexible, storage system for documents. When using MySQL as a document store, to create documents describing products you do not need to know and define all possible attributes of any products before storing them and operating with them. This differs from working with a relational database and storing products in a table, when all columns of the table must be known and defined before adding any products to the database. The features described in this chapter enable you to choose how you configure MySQL, using only the document store model, or combining the flexibility of the document store model with the power of the relational model.
+Bancos de dados relacionais, como o MySQL, geralmente exigem que um *schema* de documento seja definido antes que os documentos possam ser armazenados. Os recursos descritos nesta seção permitem que você use o MySQL como um document store, que é um sistema de armazenamento sem *schema* (schema-less) e, portanto, flexível em relação ao *schema* (schema-flexible), para documentos. Ao usar o MySQL como um document store, para criar documentos descrevendo produtos, você não precisa saber e definir todos os atributos possíveis de quaisquer produtos antes de armazená-los e operar com eles. Isso difere de trabalhar com um banco de dados relacional e armazenar produtos em uma *table*, onde todas as *columns* da *table* devem ser conhecidas e definidas antes de adicionar quaisquer produtos ao *database*. Os recursos descritos neste capítulo permitem que você escolha como configurar o MySQL, usando apenas o modelo de *document store* ou combinando a flexibilidade do modelo de *document store* com o poder do modelo relacional.
 
-These sections cover the usage of MySQL as a document store:
+Estas seções abordam o uso do MySQL como um document store:
 
-* The Section 19.1, “Key Concepts” section covers concepts like Document, Collection, Session, and Schema to help you understand how to use MySQL as a document store.
+* O Seção 19.1, “Conceitos Chave” aborda conceitos como Document, Collection, Session e Schema para ajudar você a entender como usar o MySQL como um document store.
 
-* The Section 19.2, “Setting Up MySQL as a Document Store” section explains how to configure X Plugin on a MySQL Server, so it can function as a document store, and how to install MySQL Shell to use as a client.
+* O Seção 19.2, “Configurando o MySQL como um Document Store” explica como configurar o X Plugin em um MySQL Server, para que ele possa funcionar como um document store, e como instalar o MySQL Shell para usar como um cliente.
 
-* MySQL Shell 8.0 provides more detailed information about using MySQL Shell.
+* O MySQL Shell 8.0 fornece informações mais detalhadas sobre o uso do MySQL Shell.
 
 * *X DevAPI User guide.*
 
-  Clients that communicate with a MySQL Server using the X Protocol can use the X DevAPI to develop applications. For example MySQL Shell and MySQL Connectors provide this ability by implementing the X DevAPI. X DevAPI offers a modern programming interface with a simple yet powerful design which provides support for established industry standard concepts. See X DevAPI User Guide for in-depth tutorials on using X DevAPI.
+  Clientes que se comunicam com um MySQL Server usando o X Protocol podem usar o X DevAPI para desenvolver aplicações. Por exemplo, o MySQL Shell e os MySQL Connectors fornecem essa capacidade ao implementar o X DevAPI. O X DevAPI oferece uma interface de programação moderna com um design simples, mas poderoso, que fornece suporte para conceitos estabelecidos pelo padrão da indústria. Consulte o X DevAPI User Guide para tutoriais detalhados sobre o uso do X DevAPI.
 
-* The following MySQL products support the X Protocol and enable you to use X DevAPI in your chosen language to develop applications that communicate with a MySQL Server functioning as a document store.
+* Os seguintes produtos MySQL suportam o X Protocol e permitem que você use o X DevAPI em sua linguagem escolhida para desenvolver aplicações que se comunicam com um MySQL Server funcionando como um document store.
 
-  + MySQL Shell provides implementations of X DevAPI in JavaScript and Python.
+  + MySQL Shell fornece implementações de X DevAPI em JavaScript e Python.
 
   + Connector/C++
   + Connector/J

@@ -1,109 +1,109 @@
-#### 26.4.3.9 The innodb_lock_waits and x$innodb_lock_waits Views
+#### 26.4.3.9 As Views innodb_lock_waits e x$innodb_lock_waits
 
-These views summarize the `InnoDB` locks that transactions are waiting for. By default, rows are sorted by descending lock age.
+Essas Views resumem os Locks do `InnoDB` pelos quais as Transactions estão esperando. Por padrão, as linhas são ordenadas pela idade do Lock em ordem decrescente.
 
-The `innodb_lock_waits` and `x$innodb_lock_waits` views have these columns:
+As Views `innodb_lock_waits` e `x$innodb_lock_waits` possuem as seguintes colunas:
 
 * `wait_started`
 
-  The time at which the lock wait started.
+  A hora em que a espera pelo Lock começou.
 
 * `wait_age`
 
-  How long the lock has been waited for, as a `TIME` value.
+  Por quanto tempo o Lock foi esperado, como um valor `TIME`.
 
 * `wait_age_secs`
 
-  How long the lock has been waited for, in seconds.
+  Por quanto tempo o Lock foi esperado, em segundos.
 
 * `locked_table`
 
-  The name of the locked table. This column contains combined schema/table name values.
+  O nome da table Locked. Esta coluna contém valores combinados de schema/nome da table.
 
 * `locked_index`
 
-  The name of the locked index.
+  O nome do Index Locked.
 
 * `locked_type`
 
-  The type of the waiting lock.
+  O tipo do Lock em espera.
 
 * `waiting_trx_id`
 
-  The ID of the waiting transaction.
+  O ID da Transaction em espera.
 
 * `waiting_trx_started`
 
-  The time at which the waiting transaction started.
+  A hora em que a Transaction em espera começou.
 
 * `waiting_trx_age`
 
-  How long the waiting transaction has been waiting, as a `TIME` value.
+  Há quanto tempo a Transaction em espera está esperando, como um valor `TIME`.
 
 * `waiting_trx_rows_locked`
 
-  The number of rows locked by the waiting transaction.
+  O número de rows Locked pela Transaction em espera.
 
 * `waiting_trx_rows_modified`
 
-  The number of rows modified by the waiting transaction.
+  O número de rows modificadas pela Transaction em espera.
 
 * `waiting_pid`
 
-  The processlist ID of the waiting transaction.
+  O ID da processlist (PID) da Transaction em espera.
 
 * `waiting_query`
 
-  The statement that is waiting for the lock.
+  O statement (Query) que está esperando pelo Lock.
 
 * `waiting_lock_id`
 
-  The ID of the waiting lock.
+  O ID do Lock em espera.
 
 * `waiting_lock_mode`
 
-  The mode of the waiting lock.
+  O modo do Lock em espera.
 
 * `blocking_trx_id`
 
-  The ID of the transaction that is blocking the waiting lock.
+  O ID da Transaction que está bloqueando o Lock em espera.
 
 * `blocking_pid`
 
-  The processlist ID of the blocking transaction.
+  O ID da processlist (PID) da Transaction bloqueadora.
 
 * `blocking_query`
 
-  The statement the blocking transaction is executing. This field reports NULL if the session that issued the blocking query becomes idle. For more information, see Identifying a Blocking Query After the Issuing Session Becomes Idle.
+  O statement (Query) que a Transaction bloqueadora está executando. Este campo reporta NULL se a session que emitiu a Query bloqueadora se tornar idle (ociosa). Para mais informações, consulte Identifying a Blocking Query After the Issuing Session Becomes Idle.
 
 * `blocking_lock_id`
 
-  The ID of the lock that is blocking the waiting lock.
+  O ID do Lock que está bloqueando o Lock em espera.
 
 * `blocking_lock_mode`
 
-  The mode of the lock that is blocking the waiting lock.
+  O modo do Lock que está bloqueando o Lock em espera.
 
 * `blocking_trx_started`
 
-  The time at which the blocking transaction started.
+  A hora em que a Transaction bloqueadora começou.
 
 * `blocking_trx_age`
 
-  How long the blocking transaction has been executing, as a `TIME` value.
+  Há quanto tempo a Transaction bloqueadora está sendo executada, como um valor `TIME`.
 
 * `blocking_trx_rows_locked`
 
-  The number of rows locked by the blocking transaction.
+  O número de rows Locked pela Transaction bloqueadora.
 
 * `blocking_trx_rows_modified`
 
-  The number of rows modified by the blocking transaction.
+  O número de rows modificadas pela Transaction bloqueadora.
 
 * `sql_kill_blocking_query`
 
-  The `KILL` statement to execute to kill the blocking statement.
+  O statement `KILL` a ser executado para finalizar o statement bloqueador.
 
 * `sql_kill_blocking_connection`
 
-  The `KILL` statement to execute to kill the session running the blocking statement.
+  O statement `KILL` a ser executado para finalizar a session que está executando o statement bloqueador.

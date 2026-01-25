@@ -1,4 +1,4 @@
-#### 13.6.5.6 REPEAT Statement
+#### 13.6.5.6 Instrução REPEAT
 
 ```sql
 [begin_label:] REPEAT
@@ -7,11 +7,11 @@ UNTIL search_condition
 END REPEAT [end_label]
 ```
 
-The statement list within a [`REPEAT`](repeat.html "13.6.5.6 REPEAT Statement") statement is repeated until the *`search_condition`* expression is true. Thus, a [`REPEAT`](repeat.html "13.6.5.6 REPEAT Statement") always enters the loop at least once. *`statement_list`* consists of one or more statements, each terminated by a semicolon (`;`) statement delimiter.
+A lista de instruções dentro de uma instrução [`REPEAT`](repeat.html "13.6.5.6 REPEAT Statement") é repetida até que a expressão *`search_condition`* seja verdadeira. Assim, um [`REPEAT`](repeat.html "13.6.5.6 REPEAT Statement") sempre entra no loop pelo menos uma vez. A *`statement_list`* consiste em uma ou mais instruções, cada uma terminada por um ponto e vírgula (`;`), o delimitador de instrução.
 
-A [`REPEAT`](repeat.html "13.6.5.6 REPEAT Statement") statement can be labeled. For the rules regarding label use, see [Section 13.6.2, “Statement Labels”](statement-labels.html "13.6.2 Statement Labels").
+Uma instrução [`REPEAT`](repeat.html "13.6.5.6 REPEAT Statement") pode ser rotulada. Para as regras relativas ao uso de rótulos, consulte a [Seção 13.6.2, “Rótulos de Instrução”](statement-labels.html "13.6.2 Statement Labels").
 
-Example:
+Exemplo:
 
 ```sql
 mysql> delimiter //

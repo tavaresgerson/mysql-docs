@@ -1,12 +1,12 @@
-#### 26.4.4.16 The ps_setup_show_disabled_consumers() Procedure
+#### 26.4.4.16 O Procedure ps_setup_show_disabled_consumers()
 
-Displays all currently disabled Performance Schema consumers.
+Exibe todos os consumers do Performance Schema atualmente desabilitados.
 
-##### Parameters
+##### Parâmetros
 
-None.
+Nenhum.
 
-##### Example
+##### Exemplo
 
 ```sql
 mysql> CALL sys.ps_setup_show_disabled_consumers();

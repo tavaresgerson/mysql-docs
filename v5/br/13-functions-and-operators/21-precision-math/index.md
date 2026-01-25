@@ -1,29 +1,29 @@
-## 12.21 Precision Math
+## 12.21 Matemática de Precisão
 
-12.21.1 Types of Numeric Values
+12.21.1 Tipos de Valores Numéricos
 
-12.21.2 DECIMAL Data Type Characteristics
+12.21.2 Características do Tipo de Dados DECIMAL
 
-12.21.3 Expression Handling
+12.21.3 Tratamento de Expressões
 
-12.21.4 Rounding Behavior
+12.21.4 Comportamento de Arredondamento
 
-12.21.5 Precision Math Examples
+12.21.5 Exemplos de Matemática de Precisão
 
-MySQL provides support for precision math: numeric value handling that results in extremely accurate results and a high degree control over invalid values. Precision math is based on these two features:
+O MySQL oferece suporte para matemática de precisão: tratamento de valores numéricos que resulta em resultados extremamente precisos e um alto grau de controle sobre valores inválidos. A matemática de precisão é baseada nestas duas funcionalidades:
 
-* SQL modes that control how strict the server is about accepting or rejecting invalid data.
+* SQL modes que controlam o quão rigoroso o servidor é em aceitar ou rejeitar dados inválidos.
 
-* The MySQL library for fixed-point arithmetic.
+* A biblioteca do MySQL para aritmética de ponto fixo.
 
-These features have several implications for numeric operations and provide a high degree of compliance with standard SQL:
+Essas funcionalidades têm várias implicações para operações numéricas e oferecem um alto grau de conformidade com o SQL padrão:
 
-* **Precise calculations**: For exact-value numbers, calculations do not introduce floating-point errors. Instead, exact precision is used. For example, MySQL treats a number such as `.0001` as an exact value rather than as an approximation, and summing it 10,000 times produces a result of exactly `1`, not a value that is merely “close” to 1.
+* **Cálculos precisos**: Para números de valor exato, os cálculos não introduzem erros de ponto flutuante. Em vez disso, a precisão exata é usada. Por exemplo, o MySQL trata um número como `.0001` como um valor exato, e não como uma aproximação, e somá-lo 10.000 vezes produz um resultado de exatamente `1`, e não um valor que é meramente "próximo" de 1.
 
-* **Well-defined rounding behavior**: For exact-value numbers, the result of `ROUND()` depends on its argument, not on environmental factors such as how the underlying C library works.
+* **Comportamento de arredondamento bem definido**: Para números de valor exato, o resultado de `ROUND()` depende do seu argumento, e não de fatores ambientais, como o funcionamento da biblioteca C subjacente.
 
-* **Platform independence**: Operations on exact numeric values are the same across different platforms such as Windows and Unix.
+* **Independência de plataforma**: As operações em valores numéricos exatos são as mesmas em diferentes plataformas, como Windows e Unix.
 
-* **Control over handling of invalid values**: Overflow and division by zero are detectable and can be treated as errors. For example, you can treat a value that is too large for a column as an error rather than having the value truncated to lie within the range of the column's data type. Similarly, you can treat division by zero as an error rather than as an operation that produces a result of `NULL`. The choice of which approach to take is determined by the setting of the server SQL mode.
+* **Controle sobre o tratamento de valores inválidos**: Overflow e divisão por zero são detectáveis e podem ser tratados como erros. Por exemplo, você pode tratar um valor que é muito grande para uma column como um erro, em vez de ter o valor truncado para se enquadrar no intervalo do tipo de dados da column. Da mesma forma, você pode tratar a divisão por zero como um erro, em vez de como uma operação que produz um resultado `NULL`. A escolha de qual abordagem tomar é determinada pela configuração do SQL mode do servidor.
 
-The following discussion covers several aspects of how precision math works, including possible incompatibilities with older applications. At the end, some examples are given that demonstrate how MySQL handles numeric operations precisely. For information about controlling the SQL mode, see Section 5.1.10, “Server SQL Modes”.
+A discussão a seguir aborda vários aspectos de como a matemática de precisão funciona, incluindo possíveis incompatibilidades com aplicações mais antigas. No final, são apresentados alguns exemplos que demonstram como o MySQL lida com operações numéricas com precisão. Para obter informações sobre como controlar o SQL mode, consulte a Seção 5.1.10, “Server SQL Modes”.

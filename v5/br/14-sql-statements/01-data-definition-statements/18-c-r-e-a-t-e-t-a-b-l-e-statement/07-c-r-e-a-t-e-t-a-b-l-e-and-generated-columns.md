@@ -1,10 +1,10 @@
-#### 13.1.18.7 CREATE TABLE and Generated Columns
+#### 13.1.18.7 CREATE TABLE e Colunas Geradas
 
-[`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") supports the specification of generated columns. Values of a generated column are computed from an expression included in the column definition.
+O [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") suporta a especificação de colunas geradas. Os valores de uma coluna gerada são computados a partir de uma expressão incluída na definição da coluna.
 
-Generated columns are supported by the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine beginning with MySQL NDB Cluster 7.5.3.
+Colunas geradas são suportadas pelo storage engine [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") a partir do MySQL NDB Cluster 7.5.3.
 
-The following simple example shows a table that stores the lengths of the sides of right triangles in the `sidea` and `sideb` columns, and computes the length of the hypotenuse in `sidec` (the square root of the sums of the squares of the other sides):
+O seguinte exemplo simples mostra uma tabela que armazena os comprimentos dos lados de triângulos retângulos nas colunas `sidea` e `sideb`, e calcula o comprimento da hipotenusa em `sidec` (a raiz quadrada da soma dos quadrados dos outros lados):
 
 ```sql
 CREATE TABLE triangle (
@@ -15,7 +15,7 @@ CREATE TABLE triangle (
 INSERT INTO triangle (sidea, sideb) VALUES(1,1),(3,4),(6,8);
 ```
 
-Selecting from the table yields this result:
+A seleção da tabela resulta nisto:
 
 ```sql
 mysql> SELECT * FROM triangle;
@@ -28,9 +28,9 @@ mysql> SELECT * FROM triangle;
 +-------+-------+--------------------+
 ```
 
-Any application that uses the `triangle` table has access to the hypotenuse values without having to specify the expression that calculates them.
+Qualquer aplicação que utilize a tabela `triangle` tem acesso aos valores da hipotenusa sem ter que especificar a expressão que os calcula.
 
-Generated column definitions have this syntax:
+Definições de colunas geradas têm esta sintaxe:
 
 ```sql
 col_name data_type [GENERATED ALWAYS] AS (expr)
@@ -39,84 +39,84 @@ col_name data_type [GENERATED ALWAYS] AS (expr)
   [COMMENT 'string']
 ```
 
-`AS (expr)` indicates that the column is generated and defines the expression used to compute column values. `AS` may be preceded by `GENERATED ALWAYS` to make the generated nature of the column more explicit. Constructs that are permitted or prohibited in the expression are discussed later.
+`AS (expr)` indica que a coluna é gerada e define a expressão usada para computar os valores da coluna. `AS` pode ser precedido por `GENERATED ALWAYS` para tornar a natureza gerada da coluna mais explícita. Construções que são permitidas ou proibidas na expressão são discutidas posteriormente.
 
-The `VIRTUAL` or `STORED` keyword indicates how column values are stored, which has implications for column use:
+A palavra-chave `VIRTUAL` ou `STORED` indica como os valores da coluna são armazenados, o que tem implicações para o uso da coluna:
 
-* `VIRTUAL`: Column values are not stored, but are evaluated when rows are read, immediately after any `BEFORE` triggers. A virtual column takes no storage.
+* `VIRTUAL`: Os valores da coluna não são armazenados, mas são avaliados quando as linhas são lidas, imediatamente após quaisquer triggers `BEFORE`. Uma coluna virtual não requer armazenamento.
 
-  `InnoDB` supports secondary indexes on virtual columns. See [Section 13.1.18.8, “Secondary Indexes and Generated Columns”](create-table-secondary-indexes.html "13.1.18.8 Secondary Indexes and Generated Columns").
+  O `InnoDB` suporta Secondary Indexes em colunas virtual. Consulte [Section 13.1.18.8, “Secondary Indexes and Generated Columns”](create-table-secondary-indexes.html "13.1.18.8 Secondary Indexes and Generated Columns").
 
-* `STORED`: Column values are evaluated and stored when rows are inserted or updated. A stored column does require storage space and can be indexed.
+* `STORED`: Os valores da coluna são avaliados e armazenados quando as linhas são inseridas ou atualizadas. Uma coluna stored requer espaço de armazenamento e pode ser indexada.
 
-The default is `VIRTUAL` if neither keyword is specified.
+O padrão é `VIRTUAL` se nenhuma das palavras-chave for especificada.
 
-It is permitted to mix `VIRTUAL` and `STORED` columns within a table.
+É permitido misturar colunas `VIRTUAL` e `STORED` dentro de uma tabela.
 
-Other attributes may be given to indicate whether the column is indexed or can be `NULL`, or provide a comment.
+Outros atributos podem ser fornecidos para indicar se a coluna é indexada ou pode ser `NULL`, ou fornecer um comentário.
 
-Generated column expressions must adhere to the following rules. An error occurs if an expression contains disallowed constructs.
+As expressões de colunas geradas devem aderir às seguintes regras. Um erro ocorre se uma expressão contiver construções não permitidas.
 
-* Literals, deterministic built-in functions, and operators are permitted. A function is deterministic if, given the same data in tables, multiple invocations produce the same result, independently of the connected user. Examples of functions that are nondeterministic and fail this definition: [`CONNECTION_ID()`](information-functions.html#function_connection-id), [`CURRENT_USER()`](information-functions.html#function_current-user), [`NOW()`](date-and-time-functions.html#function_now).
+* Literais, funções built-in determinísticas e operadores são permitidos. Uma função é determinística se, dados os mesmos dados nas tabelas, múltiplas invocações produzem o mesmo resultado, independentemente do usuário conectado. Exemplos de funções que são não determinísticas e falham nesta definição: [`CONNECTION_ID()`](information-functions.html#function_connection-id), [`CURRENT_USER()`](information-functions.html#function_current-user), [`NOW()`](date-and-time-functions.html#function_now).
 
-* Stored functions and loadable functions are not permitted.
-* Stored procedure and function parameters are not permitted.
-* Variables (system variables, user-defined variables, and stored program local variables) are not permitted.
+* Funções armazenadas (Stored functions) e funções carregáveis (loadable functions) não são permitidas.
+* Parâmetros de stored procedure e function não são permitidos.
+* Variáveis (variáveis de sistema, variáveis definidas pelo usuário e variáveis locais de programas armazenados) não são permitidas.
 
-* Subqueries are not permitted.
-* A generated column definition can refer to other generated columns, but only those occurring earlier in the table definition. A generated column definition can refer to any base (nongenerated) column in the table whether its definition occurs earlier or later.
+* Subqueries não são permitidas.
+* Uma definição de coluna gerada pode referir-se a outras colunas geradas, mas apenas aquelas que ocorrem mais cedo na definição da tabela. Uma definição de coluna gerada pode referir-se a qualquer coluna base (não gerada) na tabela, quer sua definição ocorra mais cedo ou mais tarde.
 
-* The `AUTO_INCREMENT` attribute cannot be used in a generated column definition.
+* O atributo `AUTO_INCREMENT` não pode ser usado em uma definição de coluna gerada.
 
-* An `AUTO_INCREMENT` column cannot be used as a base column in a generated column definition.
+* Uma coluna `AUTO_INCREMENT` não pode ser usada como uma coluna base em uma definição de coluna gerada.
 
-* As of MySQL 5.7.10, if expression evaluation causes truncation or provides incorrect input to a function, the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement terminates with an error and the DDL operation is rejected.
+* A partir do MySQL 5.7.10, se a avaliação da expressão causar truncamento ou fornecer uma entrada incorreta para uma função, o comando [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") termina com um erro e a operação DDL é rejeitada.
 
-If the expression evaluates to a data type that differs from the declared column type, implicit coercion to the declared type occurs according to the usual MySQL type-conversion rules. See [Section 12.3, “Type Conversion in Expression Evaluation”](type-conversion.html "12.3 Type Conversion in Expression Evaluation").
+Se a expressão for avaliada como um tipo de dados que difere do tipo de coluna declarado, ocorre uma coerção implícita para o tipo declarado, de acordo com as regras usuais de conversão de tipos do MySQL. Consulte [Section 12.3, “Type Conversion in Expression Evaluation”](type-conversion.html "12.3 Type Conversion in Expression Evaluation").
 
 Note
 
-If any component of the expression depends on the SQL mode, different results may occur for different uses of the table unless the SQL mode is the same during all uses.
+Se algum componente da expressão depender do SQL mode, resultados diferentes podem ocorrer para diferentes usos da tabela, a menos que o SQL mode seja o mesmo durante todos os usos.
 
-For [`CREATE TABLE ... LIKE`](create-table-like.html "13.1.18.3 CREATE TABLE ... LIKE Statement"), the destination table preserves generated column information from the original table.
+Para [`CREATE TABLE ... LIKE`](create-table-like.html "13.1.18.3 CREATE TABLE ... LIKE Statement"), a tabela de destino preserva informações de colunas geradas da tabela original.
 
-For [`CREATE TABLE ... SELECT`](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement"), the destination table does not preserve information about whether columns in the selected-from table are generated columns. The [`SELECT`](select.html "13.2.9 SELECT Statement") part of the statement cannot assign values to generated columns in the destination table.
+Para [`CREATE TABLE ... SELECT`](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement"), a tabela de destino não preserva informações sobre se as colunas na tabela selecionada são colunas geradas. A parte `SELECT` do comando não pode atribuir valores a colunas geradas na tabela de destino.
 
-Partitioning by generated columns is permitted. See [Table Partitioning](create-table.html#create-table-partitioning "Table Partitioning").
+O particionamento por colunas geradas é permitido. Consulte [Table Partitioning](create-table.html#create-table-partitioning "Table Partitioning").
 
-A foreign key constraint on a stored generated column cannot use `CASCADE`, `SET NULL`, or `SET DEFAULT` as `ON UPDATE` referential actions, nor can it use `SET NULL` or `SET DEFAULT` as `ON DELETE` referential actions.
+Uma restrição de chave estrangeira (foreign key constraint) em uma coluna gerada STORED não pode usar `CASCADE`, `SET NULL` ou `SET DEFAULT` como ações referenciais `ON UPDATE`, nem pode usar `SET NULL` ou `SET DEFAULT` como ações referenciais `ON DELETE`.
 
-A foreign key constraint on the base column of a stored generated column cannot use `CASCADE`, `SET NULL`, or `SET DEFAULT` as `ON UPDATE` or `ON DELETE` referential actions.
+Uma restrição de chave estrangeira na coluna base de uma coluna gerada STORED não pode usar `CASCADE`, `SET NULL` ou `SET DEFAULT` como ações referenciais `ON UPDATE` ou `ON DELETE`.
 
-A foreign key constraint cannot reference a virtual generated column.
+Uma restrição de chave estrangeira não pode referenciar uma coluna gerada VIRTUAL.
 
-Triggers cannot use `NEW.col_name` or use `OLD.col_name` to refer to generated columns.
+Triggers não podem usar `NEW.col_name` ou `OLD.col_name` para referir-se a colunas geradas.
 
-For [`INSERT`](insert.html "13.2.5 INSERT Statement"), [`REPLACE`](replace.html "13.2.8 REPLACE Statement"), and [`UPDATE`](update.html "13.2.11 UPDATE Statement"), if a generated column is inserted into, replaced, or updated explicitly, the only permitted value is `DEFAULT`.
+Para [`INSERT`](insert.html "13.2.5 INSERT Statement"), [`REPLACE`](replace.html "13.2.8 REPLACE Statement") e [`UPDATE`](update.html "13.2.11 UPDATE Statement"), se uma coluna gerada for explicitamente inserida, substituída ou atualizada, o único valor permitido é `DEFAULT`.
 
-A generated column in a view is considered updatable because it is possible to assign to it. However, if such a column is updated explicitly, the only permitted value is `DEFAULT`.
+Uma coluna gerada em uma View é considerada atualizável porque é possível atribuir um valor a ela. No entanto, se tal coluna for atualizada explicitamente, o único valor permitido é `DEFAULT`.
 
-Generated columns have several use cases, such as these:
+Colunas geradas têm diversos casos de uso, como estes:
 
-* Virtual generated columns can be used as a way to simplify and unify queries. A complicated condition can be defined as a generated column and referred to from multiple queries on the table to ensure that all of them use exactly the same condition.
+* Colunas geradas VIRTUAL podem ser usadas como uma forma de simplificar e unificar Queries. Uma condição complicada pode ser definida como uma coluna gerada e referida a partir de múltiplas Queries na tabela para garantir que todas elas usem exatamente a mesma condição.
 
-* Stored generated columns can be used as a materialized cache for complicated conditions that are costly to calculate on the fly.
+* Colunas geradas STORED podem ser usadas como um cache materializado para condições complicadas que são custosas para calcular em tempo de execução.
 
-* Generated columns can simulate functional indexes: Use a generated column to define a functional expression and index it. This can be useful for working with columns of types that cannot be indexed directly, such as [`JSON`](json.html "11.5 The JSON Data Type") columns; see [Indexing a Generated Column to Provide a JSON Column Index](create-table-secondary-indexes.html#json-column-indirect-index "Indexing a Generated Column to Provide a JSON Column Index"), for a detailed example.
+* Colunas geradas podem simular Indexes funcionais: Use uma coluna gerada para definir uma expressão funcional e indexá-la. Isso pode ser útil para trabalhar com colunas de tipos que não podem ser indexados diretamente, como colunas [`JSON`](json.html "11.5 O Tipo de Dados JSON"); veja [Indexing a Generated Column to Provide a JSON Column Index](create-table-secondary-indexes.html#json-column-indirect-index "Indexing a Generated Column to Provide a JSON Column Index"), para um exemplo detalhado.
 
-  For stored generated columns, the disadvantage of this approach is that values are stored twice; once as the value of the generated column and once in the index.
+  Para colunas geradas STORED, a desvantagem desta abordagem é que os valores são armazenados duas vezes; uma vez como o valor da coluna gerada e uma vez no Index.
 
-* If a generated column is indexed, the optimizer recognizes query expressions that match the column definition and uses indexes from the column as appropriate during query execution, even if a query does not refer to the column directly by name. For details, see [Section 8.3.10, “Optimizer Use of Generated Column Indexes”](generated-column-index-optimizations.html "8.3.10 Optimizer Use of Generated Column Indexes").
+* Se uma coluna gerada é indexada, o otimizador reconhece expressões de Query que correspondem à definição da coluna e usa Indexes da coluna conforme apropriado durante a execução da Query, mesmo que uma Query não se refira à coluna diretamente pelo nome. Para detalhes, consulte [Section 8.3.10, “Optimizer Use of Generated Column Indexes”](generated-column-index-optimizations.html "8.3.10 Uso pelo Otimizador de Indexes de Colunas Geradas").
 
-Example:
+Exemplo:
 
-Suppose that a table `t1` contains `first_name` and `last_name` columns and that applications frequently construct the full name using an expression like this:
+Suponha que uma tabela `t1` contenha colunas `first_name` e `last_name` e que as aplicações frequentemente constroem o nome completo usando uma expressão como esta:
 
 ```sql
 SELECT CONCAT(first_name,' ',last_name) AS full_name FROM t1;
 ```
 
-One way to avoid writing out the expression is to create a view `v1` on `t1`, which simplifies applications by enabling them to select `full_name` directly without using an expression:
+Uma maneira de evitar escrever a expressão é criar uma View `v1` em `t1`, o que simplifica as aplicações, permitindo que selecionem `full_name` diretamente sem usar uma expressão:
 
 ```sql
 CREATE VIEW v1 AS
@@ -125,7 +125,7 @@ SELECT *, CONCAT(first_name,' ',last_name) AS full_name FROM t1;
 SELECT full_name FROM v1;
 ```
 
-A generated column also enables applications to select `full_name` directly without the need to define a view:
+Uma coluna gerada também permite que as aplicações selecionem `full_name` diretamente sem a necessidade de definir uma View:
 
 ```sql
 CREATE TABLE t1 (

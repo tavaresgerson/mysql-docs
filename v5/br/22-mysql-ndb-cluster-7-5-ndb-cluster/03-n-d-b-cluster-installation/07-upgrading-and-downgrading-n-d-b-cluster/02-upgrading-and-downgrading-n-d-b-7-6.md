@@ -1,36 +1,36 @@
-#### 21.3.7.2 Upgrading and Downgrading NDB 7.6
+#### 21.3.7.2 Upgrade e Downgrade do NDB 7.6
 
-This section provides information about compatibility between different NDB Cluster 7.6 releases with regard to performing upgrades and downgrades as well as compatibility matrices and notes. Additional information can also be found here regarding downgrades from NDB 7.6 to previous NDB release series. You should already be familiar with installation and configuration of NDB Cluster prior to attempting an upgrade or downgrade. See [Section 21.4, “Configuration of NDB Cluster”](mysql-cluster-configuration.html "21.4 Configuration of NDB Cluster").
+Esta seção fornece informações sobre a compatibilidade entre diferentes releases do NDB Cluster 7.6 em relação à realização de upgrades e downgrades, bem como matrizes e notas de compatibilidade. Informações adicionais também podem ser encontradas aqui sobre downgrades do NDB 7.6 para séries de releases NDB anteriores. Você já deve estar familiarizado com a instalação e configuração do NDB Cluster antes de tentar um upgrade ou downgrade. Consulte [Seção 21.4, “Configuração do NDB Cluster”](mysql-cluster-configuration.html "21.4 Configuração do NDB Cluster").
 
-The table shown here provides information on NDB Cluster upgrade and downgrade compatibility among different releases of NDB 7.6. Additional notes about upgrades and downgrades to, from, or within the NDB Cluster 7.6 release series can be found following the table.
+A tabela mostrada aqui fornece informações sobre a compatibilidade de upgrade e downgrade do NDB Cluster entre diferentes releases do NDB 7.6. Notas adicionais sobre upgrades e downgrades para, a partir de, ou dentro da série de releases NDB Cluster 7.6 podem ser encontradas após a tabela.
 
-**Figure 21.6 NDB Cluster Upgrade and Downgrade Compatibility, MySQL NDB Cluster 7.6**
+**Figura 21.6 Compatibilidade de Upgrade e Downgrade do NDB Cluster, MySQL NDB Cluster 7.6**
 
-![Graphical representation of the upgrade/downgrade matrix contained in the file storage/ndb/src/common/util/version.cpp from the NDB 7.6 source tree.](images/mysql-cluster-upgrade-downgrade-7-6.png)
+![Representação gráfica da matriz de upgrade/downgrade contida no arquivo storage/ndb/src/common/util/version.cpp da árvore de código-fonte NDB 7.6.](images/mysql-cluster-upgrade-downgrade-7-6.png)
 
-**Version support.** The following versions of NDB Cluster are supported for upgrades to GA releases of NDB Cluster 7.6 (7.6.6 and later):
+**Suporte a versões.** As seguintes versões do NDB Cluster são suportadas para upgrades para releases GA (General Availability) do NDB Cluster 7.6 (7.6.6 e posteriores):
 
-* NDB Cluster 7.5 GA releases (7.5.4 and later)
-* NDB Cluster 7.4 GA releases (7.4.4 and later)
-* NDB Cluster 7.3 GA releases (7.3.2 and later)
+* Releases GA do NDB Cluster 7.5 (7.5.4 e posteriores)
+* Releases GA do NDB Cluster 7.4 (7.4.4 e posteriores)
+* Releases GA do NDB Cluster 7.3 (7.3.2 e posteriores)
 
-**Known Issues When Upgrading or Downgrading NDB Cluster 7.6.** The following issues are known to occur when upgrading to, downgrading from, or between NDB 7.6 releases:
+**Problemas Conhecidos ao Fazer Upgrade ou Downgrade do NDB Cluster 7.6.** Os seguintes problemas são conhecidos por ocorrerem ao fazer upgrade para, downgrade de, ou entre releases do NDB 7.6:
 
-**Changes in Disk Data file format.** Due to changes in disk format, upgrading to or downgrading from either of the versions listed here requires an initial node restart of each data node:
+**Alterações no formato de arquivo Disk Data.** Devido a alterações no formato de disco, fazer upgrade para ou downgrade de qualquer uma das versões listadas aqui requer um `initial node restart` de cada `data node`:
 
 * NDB 7.6.2
 * NDB 7.6.4
 
-To avoid problems relating to the old format, you should re-create any existing tablespaces and undo log file groups when upgrading. You can do this by performing an initial restart of each data node (that is, using the [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial) option) as part of the upgrade process.
+Para evitar problemas relacionados ao formato antigo, você deve recriar quaisquer `tablespaces` e grupos de arquivos de `undo log` existentes ao fazer upgrade. Você pode fazer isso executando um `initial restart` de cada `data node` (ou seja, usando a opção [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial)) como parte do processo de upgrade.
 
-If you are using Disk Data tables, a downgrade from *any* NDB 7.6 release to any NDB 7.5 or earlier release requires that you restart all data nodes with [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial) as part of the downgrade process. This is because NDB 7.5 and earlier release series are not able to read the new Disk Data file format.
+Se você estiver usando tabelas Disk Data, um downgrade de *qualquer* release NDB 7.6 para qualquer release NDB 7.5 ou anterior exige que você reinicie todos os `data nodes` com [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial) como parte do processo de downgrade. Isso ocorre porque o NDB 7.5 e as séries de releases anteriores não conseguem ler o novo formato de arquivo Disk Data.
 
-**IndexMemory changes.** If you are downgrading from NDB 7.6 to NDB 7.5 (or earlier), you must set an explicit value for [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory) in the cluster configuration file if none is already present. This is because NDB 7.6 does not use this parameter and sets it to 0 by default, whereas it is required in NDB 7.5 and earlier releases, in which the cluster refuses to start with Invalid configuration received from Management Server... if `IndexMemory` is not set to a nonzero value.
+**Alterações no IndexMemory.** Se você estiver fazendo downgrade do NDB 7.6 para o NDB 7.5 (ou anterior), você deve definir um valor explícito para [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory) no arquivo de configuração do Cluster, caso nenhum esteja presente. Isso ocorre porque o NDB 7.6 não usa este parâmetro e o define como 0 por padrão, enquanto ele é obrigatório no NDB 7.5 e em releases anteriores, nos quais o Cluster se recusa a iniciar com `Invalid configuration received from Management Server...` se `IndexMemory` não estiver definido para um valor diferente de zero.
 
-Important
+Importante
 
-Upgrading to NDB 7.6 from an earlier release, or downgrading from NDB 7.6 to an earlier release, requires purging then re-creating the `NDB` data node file system, which means that each data node must be restarted using the [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial) option as part of the rolling restart or system restart normally required. (Starting a data node with no file system is already equivalent to an initial restart; in such cases, `--initial` is implied and not required. This is unchanged from previous releases of NDB Cluster.)
+Fazer upgrade para o NDB 7.6 a partir de um release anterior, ou downgrade do NDB 7.6 para um release anterior, requer a limpeza e a recriação do sistema de arquivos do `data node` do `NDB`, o que significa que cada `data node` deve ser reiniciado usando a opção [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial) como parte do `rolling restart` ou `system restart` normalmente exigido. (Iniciar um `data node` sem um sistema de arquivos já é equivalente a um `initial restart`; nesses casos, o `--initial` está implícito e não é obrigatório. Isso não foi alterado em relação aos releases anteriores do NDB Cluster.)
 
-When such a restart is performed as part of an upgrade to NDB 7.6, any existing LCP files are checked for the presence of the LCP `Sysfile`, indicating that the existing data node file system was written using NDB 7.6. If such a node file system exists, but does not contain the `Sysfile`, and if any data nodes are restarted without the [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial) option, `NDB` causes the restart to fail with an appropriate error message.
+Quando tal `restart` é realizado como parte de um upgrade para o NDB 7.6, quaisquer arquivos LCP existentes são verificados quanto à presença do `Sysfile` LCP, indicando que o sistema de arquivos do `data node` existente foi gravado usando o NDB 7.6. Se tal sistema de arquivos de `node` existir, mas não contiver o `Sysfile`, e se quaisquer `data nodes` forem reiniciados sem a opção [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial), o `NDB` fará com que o `restart` falhe com uma mensagem de erro apropriada.
 
-You should also be aware that no such protection is possible when downgrading from NDB 7.6 to a release previous to NDB 7.6.
+Você também deve estar ciente de que tal proteção não é possível ao fazer downgrade do NDB 7.6 para um release anterior ao NDB 7.6.

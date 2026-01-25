@@ -1,45 +1,45 @@
-#### 26.4.3.36 The statements_with_errors_or_warnings and x$statements_with_errors_or_warnings Views
+#### 26.4.3.36 As Views statements_with_errors_or_warnings e x$statements_with_errors_or_warnings
 
-These views display normalized statements that have produced errors or warnings. By default, rows are sorted by descending error and warning counts.
+Estas Views exibem statements normalizadas que produziram errors ou warnings. Por padrão, as linhas são ordenadas pela contagem descendente de errors e warnings.
 
-The `statements_with_errors_or_warnings` and `x$statements_with_errors_or_warnings` views have these columns:
+As Views `statements_with_errors_or_warnings` e `x$statements_with_errors_or_warnings` possuem estas colunas:
 
 * `query`
 
-  The normalized statement string.
+  A string do statement normalizado.
 
 * `db`
 
-  The default database for the statement, or `NULL` if there is none.
+  O Database padrão para o statement, ou `NULL` se não houver nenhum.
 
 * `exec_count`
 
-  The total number of times the statement has executed.
+  O número total de vezes que o statement foi executado.
 
 * `errors`
 
-  The total number of errors produced by occurrences of the statement.
+  O número total de errors produzidos pelas ocorrências do statement.
 
 * `error_pct`
 
-  The percentage of statement occurrences that produced errors.
+  A porcentagem de ocorrências do statement que produziram errors.
 
 * `warnings`
 
-  The total number of warnings produced by occurrences of the statement.
+  O número total de warnings produzidos pelas ocorrências do statement.
 
 * `warning_pct`
 
-  The percentage of statement occurrences that produced warnings.
+  A porcentagem de ocorrências do statement que produziram warnings.
 
 * `first_seen`
 
-  The time at which the statement was first seen.
+  O momento em que o statement foi visto pela primeira vez.
 
 * `last_seen`
 
-  The time at which the statement was most recently seen.
+  O momento em que o statement foi visto mais recentemente.
 
 * `digest`
 
-  The statement digest.
+  O Digest do statement.

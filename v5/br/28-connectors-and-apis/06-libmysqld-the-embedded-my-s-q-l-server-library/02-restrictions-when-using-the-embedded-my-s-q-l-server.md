@@ -1,21 +1,21 @@
-### 27.6.2 Restrictions When Using the Embedded MySQL Server
+### 27.6.2 Restrições ao Usar o Servidor MySQL Embutido
 
-The embedded server has the following limitations:
+O servidor embutido possui as seguintes limitações:
 
-* No loadable functions.
-* No stack trace on core dump.
-* You cannot set this up as a source or a replica (no replication).
+* Sem funções carregáveis (loadable functions).
+* Sem rastreamento de pilha (stack trace) em caso de core dump.
+* Não é possível configurá-lo como source ou replica (sem Replication).
 
-* Very large result sets may be unusable on low memory systems.
-* You cannot connect to an embedded server from an outside process with sockets or TCP/IP. However, you can connect to an intermediate application, which in turn can connect to an embedded server on the behalf of a remote client or outside process.
+* Conjuntos de resultados muito grandes podem se tornar inutilizáveis em sistemas com pouca memória.
+* Não é possível conectar-se a um servidor embutido a partir de um processo externo utilizando sockets ou TCP/IP. No entanto, você pode conectar-se a uma aplicação intermediária, que por sua vez pode se conectar ao servidor embutido em nome de um cliente remoto ou processo externo.
 
-* `libmysqld` does not support encrypted connections. An implication is that if an application linked against `libmysqld` establishes a connection to a remote server, the connection cannot be encrypted.
+* A `libmysqld` não oferece suporte a conexões criptografadas. Uma implicação é que se uma aplicação vinculada à `libmysqld` estabelecer uma conexão com um servidor remoto, essa conexão não poderá ser criptografada.
 
-* `InnoDB` is not reentrant in the embedded server and cannot be used for multiple connections, either successively or simultaneously.
+* O `InnoDB` não é reentrante no servidor embutido e não pode ser usado para múltiplas conexões, seja sucessivamente ou simultaneamente.
 
-* The Event Scheduler is not available. Because of this, the [`event_scheduler`](server-system-variables.html#sysvar_event_scheduler) system variable is disabled.
+* O Event Scheduler não está disponível. Por causa disso, a variável de sistema [`event_scheduler`](server-system-variables.html#sysvar_event_scheduler) é desativada.
 
-* The Performance Schema is not available.
-* The embedded server cannot share the same [`secure_file_priv`](server-system-variables.html#sysvar_secure_file_priv) directory with another server. As of MySQL 5.7.8, the default value for this directory can be set at build time with the [`INSTALL_SECURE_FILE_PRIV_EMBEDDEDDIR`](source-configuration-options.html#option_cmake_install_secure_file_priv_embeddeddir) **CMake** option.
+* O Performance Schema não está disponível.
+* O servidor embutido não pode compartilhar o mesmo diretório [`secure_file_priv`](server-system-variables.html#sysvar_secure_file_priv) com outro servidor. A partir do MySQL 5.7.8, o valor padrão para este diretório pode ser definido durante o tempo de compilação com a opção **CMake** [`INSTALL_SECURE_FILE_PRIV_EMBEDDEDDIR`](source-configuration-options.html#option_cmake_install_secure_file_priv_embeddeddir).
 
-Some of these limitations can be changed by editing the `mysql_embed.h` include file and recompiling MySQL.
+Algumas dessas limitações podem ser alteradas editando o arquivo de inclusão `mysql_embed.h` e recompilando o MySQL.

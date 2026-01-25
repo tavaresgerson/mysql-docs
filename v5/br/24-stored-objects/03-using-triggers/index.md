@@ -1,27 +1,27 @@
-## 23.3 Using Triggers
+## 23.3 Usando Triggers
 
-23.3.1 Trigger Syntax and Examples
+23.3.1 Sintaxe e Exemplos de Trigger
 
-23.3.2 Trigger Metadata
+23.3.2 Metadados de Trigger
 
-A trigger is a named database object that is associated with a table, and that activates when a particular event occurs for the table. Some uses for triggers are to perform checks of values to be inserted into a table or to perform calculations on values involved in an update.
+Um trigger é um objeto de database nomeado que está associado a uma table e que é ativado quando um determinado *event* ocorre na table. Alguns usos para *triggers* incluem a realização de verificações de valores a serem *inserted* em uma table ou a execução de cálculos em valores envolvidos em um *update*.
 
-A trigger is defined to activate when a statement inserts, updates, or deletes rows in the associated table. These row operations are trigger events. For example, rows can be inserted by `INSERT` or `LOAD DATA` statements, and an insert trigger activates for each inserted row. A trigger can be set to activate either before or after the trigger event. For example, you can have a trigger activate before each row that is inserted into a table or after each row that is updated.
+Um *trigger* é definido para ser ativado quando um *statement* *inserts*, *updates* ou *deletes* *rows* na *table* associada. Essas operações de *row* são *trigger events*. Por exemplo, *rows* podem ser *inserted* por *statements* `INSERT` ou `LOAD DATA`, e um *insert trigger* é ativado para cada *row* *inserted*. Um *trigger* pode ser configurado para ser ativado *before* (antes) ou *after* (depois) do *trigger event*. Por exemplo, você pode ter um *trigger* ativado *before* cada *row* que é *inserted* em uma *table* ou *after* cada *row* que é *updated*.
 
-Important
+Importante
 
-MySQL triggers activate only for changes made to tables by SQL statements. This includes changes to base tables that underlie updatable views. Triggers do not activate for changes to tables made by APIs that do not transmit SQL statements to the MySQL Server. This means that triggers are not activated by updates made using the `NDB` API.
+Triggers do MySQL ativam apenas para alterações feitas em tables por meio de SQL statements. Isso inclui alterações em base tables que sustentam views atualizáveis. Triggers não ativam para alterações em tables feitas por APIs que não transmitem SQL statements para o MySQL Server. Isso significa que triggers não são ativados por updates feitos usando a `NDB` API.
 
-Triggers are not activated by changes in `INFORMATION_SCHEMA` or `performance_schema` tables. Those tables are actually views and triggers are not permitted on views.
+Triggers não são ativados por alterações nas tables `INFORMATION_SCHEMA` ou `performance_schema`. Essas tables são, na verdade, views, e triggers não são permitidos em views.
 
-The following sections describe the syntax for creating and dropping triggers, show some examples of how to use them, and indicate how to obtain trigger metadata.
+As seções a seguir descrevem a *syntax* para criar e remover *triggers*, mostram alguns exemplos de como usá-los e indicam como obter *trigger metadata*.
 
-### Additional Resources
+### Recursos Adicionais
 
-* You may find the [MySQL User Forums](https://forums.mysql.com/list.php?20) helpful when working with triggers.
+* Você pode achar o [MySQL User Forums](https://forums.mysql.com/list.php?20) útil ao trabalhar com triggers.
 
-* For answers to commonly asked questions regarding triggers in MySQL, see Section A.5, “MySQL 5.7 FAQ: Triggers”.
+* Para respostas a perguntas frequentes sobre triggers no MySQL, consulte a Seção A.5, “MySQL 5.7 FAQ: Triggers”.
 
-* There are some restrictions on the use of triggers; see Section 23.8, “Restrictions on Stored Programs”.
+* Existem algumas restrições sobre o uso de triggers; consulte a Seção 23.8, “Restrições em Stored Programs”.
 
-* Binary logging for triggers takes place as described in Section 23.7, “Stored Program Binary Logging”.
+* O Binary logging para triggers ocorre conforme descrito na Seção 23.7, “Stored Program Binary Logging”.

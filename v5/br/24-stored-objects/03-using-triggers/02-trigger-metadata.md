@@ -1,9 +1,9 @@
-### 23.3.2 Trigger Metadata
+### 23.3.2 Metadados de Trigger
 
-To obtain metadata about triggers:
+Para obter metadados sobre triggers:
 
-* Query the `TRIGGERS` table of the `INFORMATION_SCHEMA` database. See Section 24.3.29, “The INFORMATION_SCHEMA TRIGGERS Table”.
+* Execute um Query na tabela `TRIGGERS` do `database` `INFORMATION_SCHEMA`. Consulte a Seção 24.3.29, “A Tabela INFORMATION_SCHEMA TRIGGERS”.
 
-* Use the `SHOW CREATE TRIGGER` statement. See Section 13.7.5.11, “SHOW CREATE TRIGGER Statement”.
+* Use o comando `SHOW CREATE TRIGGER`. Consulte a Seção 13.7.5.11, “Comando SHOW CREATE TRIGGER”.
 
-* Use the `SHOW TRIGGERS` statement. See Section 13.7.5.38, “SHOW TRIGGERS Statement”.
+* Use o comando `SHOW TRIGGERS`. Consulte a Seção 13.7.5.38, “Comando SHOW TRIGGERS”.

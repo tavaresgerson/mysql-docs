@@ -1,45 +1,45 @@
 #### 14.6.3.4 Undo Tablespaces
 
-Undo tablespaces contain undo logs, which are collections of records containing information about how to undo the latest change by a transaction to a clustered index record.
+Os Undo tablespaces contêm undo logs, que são coleções de registros que contêm informações sobre como desfazer a alteração mais recente feita por uma transaction em um registro de clustered index.
 
-Undo logs are stored in the system tablespace by default but can be stored in one or more undo tablespaces instead. Using undo tablespaces can reducing the amount of space required for undo logs in any one tablespace. The I/O patterns for undo logs also make undo tablespaces good candidates for SSD storage.
+Por padrão, os undo logs são armazenados no system tablespace, mas podem ser armazenados em um ou mais undo tablespaces. O uso de undo tablespaces pode reduzir a quantidade de espaço necessária para undo logs em qualquer tablespace. Os padrões de I/O para undo logs também tornam os undo tablespaces bons candidatos para armazenamento em SSD.
 
-The number of undo tablespaces used by `InnoDB` is controlled by the `innodb_undo_tablespaces` option. This option can only be configured when initializing the MySQL instance. It cannot be changed afterward.
+O número de undo tablespaces utilizados pelo `InnoDB` é controlado pela opção `innodb_undo_tablespaces`. Esta opção só pode ser configurada durante a inicialização da instância MySQL. Não pode ser alterada posteriormente.
 
 Note
 
-The `innodb_undo_tablespaces` option is deprecated; expect it to be removed in a future release.
+A opção `innodb_undo_tablespaces` está obsoleta (deprecated); espera-se que seja removida em uma versão futura.
 
-Undo tablespaces and individual segments inside those tablespaces cannot be dropped. However, undo logs stored in undo tablespaces can be truncated. For more information, see Truncating Undo Tablespaces.
+Os Undo tablespaces e segmentos individuais dentro desses tablespaces não podem ser descartados (dropped). No entanto, os undo logs armazenados em undo tablespaces podem ser truncados. Para mais informações, consulte Truncating Undo Tablespaces.
 
-##### Configuring Undo Tablespaces
+##### Configurando Undo Tablespaces
 
-This procedure describes how to configure undo tablespaces. When undo tablespaces are configured, undo logs are stored in the undo tablespaces instead of the system tablespace.
+Este procedimento descreve como configurar undo tablespaces. Quando os undo tablespaces são configurados, os undo logs são armazenados neles em vez do system tablespace.
 
-The number of undo tablespaces can only be configured when initializing a MySQL instance and is fixed for the life of the instance, so it is recommended that you perform the following procedure on a test instance with a representative workload before deploying the configuration to a production system.
+O número de undo tablespaces só pode ser configurado ao inicializar uma instância MySQL e é fixo durante toda a vida útil da instância. Portanto, é recomendável que você execute o procedimento a seguir em uma instância de teste com uma workload representativa antes de implantar a configuração em um sistema de produção.
 
-To configure undo tablespaces:
+Para configurar undo tablespaces:
 
-1. Specify a directory location for undo tablespaces using the `innodb_undo_directory` variable. If a directory location is not specified, undo tablespaces are created in the data directory.
+1. Especifique um local de diretório para os undo tablespaces usando a variável `innodb_undo_directory`. Se um local de diretório não for especificado, os undo tablespaces serão criados no data directory.
 
-2. Define the number of rollback segments using the `innodb_rollback_segments` variable. Start with a relatively low value and increase it incrementally over time to examine the effect on performance. The default setting for `innodb_rollback_segments` is 128, which is also the maximum value.
+2. Defina o número de rollback segments usando a variável `innodb_rollback_segments`. Comece com um valor relativamente baixo e aumente-o incrementalmente ao longo do tempo para examinar o efeito no desempenho. A configuração padrão para `innodb_rollback_segments` é 128, que também é o valor máximo.
 
-   One rollback segment is always assigned to the system tablespace, and 32 rollback segments are reserved for the temporary tablespace (`ibtmp1`). Therefore, to allocate rollback segments to undo tablespaces, set `innodb_rollback_segments` to a value greater than 33. For example, if you have two undo tablespaces, set `innodb_rollback_segments` to 35 to assign one rollback segment to each of the two undo tablespaces. Rollback segments are distributed among undo tablespaces in a circular fashion.
+   Um rollback segment é sempre atribuído ao system tablespace, e 32 rollback segments são reservados para o temporary tablespace (`ibtmp1`). Portanto, para alocar rollback segments para undo tablespaces, defina `innodb_rollback_segments` com um valor maior que 33. Por exemplo, se você tiver dois undo tablespaces, defina `innodb_rollback_segments` como 35 para atribuir um rollback segment a cada um dos dois undo tablespaces. Os rollback segments são distribuídos entre os undo tablespaces de forma circular.
 
-   When you add undo tablespaces, the rollback segment in the system tablespace is rendered inactive.
+   Quando você adiciona undo tablespaces, o rollback segment no system tablespace se torna inativo.
 
-3. Define the number of undo tablespaces using the `innodb_undo_tablespaces` option. The specified number of undo tablespaces is fixed for the life of the MySQL instance, so if you are uncertain about an optimal value, estimate on the high side.
+3. Defina o número de undo tablespaces usando a opção `innodb_undo_tablespaces`. O número especificado de undo tablespaces é fixo para a vida útil da instância MySQL, portanto, se você não tiver certeza sobre um valor ideal, estime um valor alto.
 
-4. Create a new MySQL test instance using the configuration settings you have chosen.
+4. Crie uma nova instância de teste MySQL usando as configurações escolhidas.
 
-5. Use a realistic workload on your test instance with data volume similar to your production servers to test the configuration.
+5. Use uma workload realista em sua instância de teste com volume de dados semelhante ao de seus servidores de produção para testar a configuração.
 
-6. Benchmark the performance of I/O intensive workloads.
-7. Periodically increase the value of `innodb_rollback_segments` and rerun performance tests until there are no further improvements in I/O performance.
+6. Faça um Benchmark do desempenho de workloads com uso intensivo de I/O.
+7. Aumente periodicamente o valor de `innodb_rollback_segments` e execute novamente os testes de desempenho até que não haja mais melhorias no desempenho de I/O.
 
-##### Truncating Undo Tablespaces
+##### Truncando Undo Tablespaces
 
-Truncating undo tablespaces requires that the MySQL instance have a minimum of two active undo tablespaces, which ensures that one undo tablespace remains active while the other is taken offline to be truncated. The number of undo tablespaces is defined by the `innodb_undo_tablespaces` variable. The default value is 0. Use this statement to check the value of `innodb_undo_tablespaces`:
+Para truncar undo tablespaces, é necessário que a instância MySQL tenha um mínimo de dois undo tablespaces ativos, o que garante que um undo tablespace permaneça ativo enquanto o outro é retirado de operação para ser truncado. O número de undo tablespaces é definido pela variável `innodb_undo_tablespaces`. O valor padrão é 0. Use esta instrução para verificar o valor de `innodb_undo_tablespaces`:
 
 ```sql
 mysql> SELECT @@innodb_undo_tablespaces;
@@ -50,13 +50,13 @@ mysql> SELECT @@innodb_undo_tablespaces;
 +---------------------------+
 ```
 
-To have undo tablespaces truncated, enable the `innodb_undo_log_truncate` variable. For example:
+Para que os undo tablespaces sejam truncados, habilite a variável `innodb_undo_log_truncate`. Por exemplo:
 
 ```sql
 mysql> SET GLOBAL innodb_undo_log_truncate=ON;
 ```
 
-When the `innodb_undo_log_truncate` variable is enabled, undo tablespaces that exceed the size limit defined by the `innodb_max_undo_log_size` variable are subject to truncation. The `innodb_max_undo_log_size` variable is dynamic and has a default value of 1073741824 bytes (1024 MiB).
+Quando a variável `innodb_undo_log_truncate` está habilitada, os undo tablespaces que excedem o limite de tamanho definido pela variável `innodb_max_undo_log_size` estão sujeitos a Truncation. A variável `innodb_max_undo_log_size` é dinâmica e tem um valor padrão de 1073741824 bytes (1024 MiB).
 
 ```sql
 mysql> SELECT @@innodb_max_undo_log_size;
@@ -67,25 +67,25 @@ mysql> SELECT @@innodb_max_undo_log_size;
 +----------------------------+
 ```
 
-When the `innodb_undo_log_truncate` variable is enabled:
+Quando a variável `innodb_undo_log_truncate` está habilitada:
 
-1. Undo tablespaces that exceed the `innodb_max_undo_log_size` setting are marked for truncation. Selection of an undo tablespace for truncation is performed in a circular fashion to avoid truncating the same undo tablespace each time.
+1. Os Undo tablespaces que excedem a configuração de `innodb_max_undo_log_size` são marcados para Truncation. A seleção de um undo tablespace para Truncation é realizada de forma circular para evitar truncar o mesmo undo tablespace repetidamente.
 
-2. Rollback segments residing in the selected undo tablespace are made inactive so that they are not assigned to new transactions. Existing transactions that are currently using rollback segments are permitted to finish.
+2. Os Rollback segments que residem no undo tablespace selecionado são tornados inativos para que não sejam atribuídos a novas transactions. As transactions existentes que estão atualmente usando rollback segments podem ser concluídas.
 
-3. The purge system empties rollback segments by freeing undo logs that are no longer in use.
+3. O sistema de purge esvazia os rollback segments, liberando undo logs que não estão mais em uso.
 
-4. After all rollback segments in the undo tablespace are freed, the truncate operation runs and truncates the undo tablespace to its initial size. The initial size of an undo tablespace depends on the `innodb_page_size` value. For the default 16KB page size, the initial undo tablespace file size is 10MiB. For 4KB, 8KB, 32KB, and 64KB page sizes, the initial undo tablespace files sizes are 7MiB, 8MiB, 20MiB, and 40MiB, respectively.
+4. Depois que todos os rollback segments no undo tablespace são liberados, a operação de Truncate é executada e trunca o undo tablespace para o seu tamanho inicial. O tamanho inicial de um undo tablespace depende do valor de `innodb_page_size`. Para o page size padrão de 16KB, o tamanho inicial do arquivo undo tablespace é 10MiB. Para page sizes de 4KB, 8KB, 32KB e 64KB, os tamanhos iniciais dos arquivos undo tablespace são 7MiB, 8MiB, 20MiB e 40MiB, respectivamente.
 
-   The size of an undo tablespace after a truncate operation may be larger than the initial size due to immediate use following the completion of the operation.
+   O tamanho de um undo tablespace após uma operação de Truncate pode ser maior do que o tamanho inicial devido ao uso imediato após a conclusão da operação.
 
-   The `innodb_undo_directory` variable defines the location of undo tablespace files. If the `innodb_undo_directory` variable is undefined, undo tablespaces reside in the data directory.
+   A variável `innodb_undo_directory` define a localização dos arquivos undo tablespace. Se a variável `innodb_undo_directory` não estiver definida, os undo tablespaces residem no data directory.
 
-5. Rollback segments are reactivated so that they can be assigned to new transactions.
+5. Os Rollback segments são reativados para que possam ser atribuídos a novas transactions.
 
-###### Expediting Truncation of Undo Tablespaces
+###### Acelerando o Truncation de Undo Tablespaces
 
-The purge thread is responsible for emptying and truncating undo tablespaces. By default, the purge thread looks for undo tablespaces to truncate once every 128 times that purge is invoked. The frequency with which the purge thread looks for undo tablespaces to truncate is controlled by the `innodb_purge_rseg_truncate_frequency` variable, which has a default setting of 128.
+O purge thread é responsável por esvaziar e truncar os undo tablespaces. Por padrão, o purge thread procura por undo tablespaces para truncar uma vez a cada 128 invocações do purge. A frequência com que o purge thread procura por undo tablespaces para truncar é controlada pela variável `innodb_purge_rseg_truncate_frequency`, que tem uma configuração padrão de 128.
 
 ```sql
 mysql> SELECT @@innodb_purge_rseg_truncate_frequency;
@@ -96,29 +96,29 @@ mysql> SELECT @@innodb_purge_rseg_truncate_frequency;
 +----------------------------------------+
 ```
 
-To increase the frequency, decrease the `innodb_purge_rseg_truncate_frequency` setting. For example, to have the purge thread look for undo tabespaces once every 32 timees that purge is invoked, set `innodb_purge_rseg_truncate_frequency` to 32.
+Para aumentar a frequência, diminua a configuração de `innodb_purge_rseg_truncate_frequency`. Por exemplo, para que o purge thread procure por undo tablespaces uma vez a cada 32 invocações do purge, defina `innodb_purge_rseg_truncate_frequency` como 32.
 
 ```sql
 mysql> SET GLOBAL innodb_purge_rseg_truncate_frequency=32;
 ```
 
-When the purge thread finds an undo tablespace that requires truncation, the purge thread returns with increased frequency to quickly empty and truncate the undo tablespace.
+Quando o purge thread encontra um undo tablespace que requer Truncation, o purge thread retorna com frequência aumentada para esvaziar e truncar rapidamente o undo tablespace.
 
-###### Performance Impact of Truncating Undo Tablespace Files
+###### Impacto no Desempenho ao Truncar Arquivos de Undo Tablespace
 
-When an undo tablespace is truncated, the rollback segments in the undo tablespace are deactivated. The active rollback segments in other undo tablespaces assume responsibility for the entire system load, which may result in a slight performance degradation. The extent to which performance is affected depends on a number of factors:
+Quando um undo tablespace é truncado, os rollback segments no undo tablespace são desativados. Os rollback segments ativos em outros undo tablespaces assumem a responsabilidade por toda a carga do sistema, o que pode resultar em uma leve degradação no desempenho. A extensão em que o desempenho é afetado depende de uma série de fatores:
 
-* Number of undo tablespaces
-* Number of undo logs
-* Undo tablespace size
-* Speed of the I/O susbsystem
-* Existing long running transactions
-* System load
+* Número de undo tablespaces
+* Número de undo logs
+* Tamanho do undo tablespace
+* Velocidade do subsistema de I/O
+* Transactions existentes de longa duração
+* Carga do sistema (System load)
 
-The easiest way to avoid the potential performance impact is to increase the number of undo tablespaces.
+A maneira mais fácil de evitar o potencial impacto no desempenho é aumentar o número de undo tablespaces.
 
-Also, two checkpoint operations are performed during an undo tablespace truncate operation. The first checkpoint operation removes the old undo tablespace pages from the buffer pool. The second checkpoint flushes the initial pages of the new undo tablespace to disk. On a busy system, the first checkpoint in particular can temporarily affect system performance if there is a large number of pages to remove.
+Além disso, duas operações de checkpoint são realizadas durante uma operação de Truncate de undo tablespace. A primeira operação de checkpoint remove as páginas antigas do undo tablespace do Buffer Pool. O segundo checkpoint descarrega as páginas iniciais do novo undo tablespace para o disco. Em um sistema ocupado, o primeiro checkpoint, em particular, pode afetar temporariamente o desempenho do sistema se houver um grande número de páginas a serem removidas.
 
-###### Undo Tablespace Truncation Recovery
+###### Recuperação de Truncation de Undo Tablespace
 
-An undo tablespace truncate operation creates a temporary `undo_space_number_trunc.log` file in the server log directory. That log directory is defined by `innodb_log_group_home_dir`. If a system failure occurs during the truncate operation, the temporary log file permits the startup process to identify undo tablespaces that were being truncated and to continue the operation.
+Uma operação de Truncate de undo tablespace cria um arquivo temporário `undo_space_number_trunc.log` no diretório de log do servidor. Esse diretório de log é definido por `innodb_log_group_home_dir`. Se ocorrer uma falha do sistema durante a operação de Truncate, o arquivo de log temporário permite que o processo de inicialização identifique os undo tablespaces que estavam sendo truncados e continue a operação.

@@ -1,13 +1,35 @@
-## A.7 MySQL 5.7 FAQ: INFORMATION_SCHEMA
+## A.7 FAQ do MySQL 5.7: INFORMATION_SCHEMA
 
-A.7.1. [Where can I find documentation for the MySQL INFORMATION_SCHEMA database?](faqs-information-schema.html#faq-mysql-where-docs-information-schema)
+A.7.1. [Onde posso encontrar a documentação para o Database INFORMATION_SCHEMA do MySQL?](faqs-information-schema.html#faq-mysql-where-docs-information-schema)
 
-A.7.2. [Is there a discussion forum for INFORMATION_SCHEMA?](faqs-information-schema.html#faq-mysql-where-forum-information-schema)
+A.7.2. [Existe um fórum de discussão para INFORMATION_SCHEMA?](faqs-information-schema.html#faq-mysql-where-forum-information-schema)
 
-A.7.3. [Where can I find the ANSI SQL 2003 specification for INFORMATION_SCHEMA?](faqs-information-schema.html#faq-mysql-where-ansi-information-schema)
+A.7.3. [Onde posso encontrar a especificação ANSI SQL 2003 para INFORMATION_SCHEMA?](faqs-information-schema.html#faq-mysql-where-ansi-information-schema)
 
-A.7.4. [What is the difference between the Oracle Data Dictionary and MySQL INFORMATION_SCHEMA?](faqs-information-schema.html#faq-mysql-compare-oracle-data-dir-info-schema)
+A.7.4. [Qual é a diferença entre o Dicionário de Dados do Oracle e o INFORMATION_SCHEMA do MySQL?](faqs-information-schema.html#faq-mysql-compare-oracle-data-dir-info-schema)
 
-A.7.5. [Can I add to or otherwise modify the tables found in the INFORMATION_SCHEMA database?](faqs-information-schema.html#faq-mysql-can-modify-information-schema)
+A.7.5. [Posso adicionar ou modificar de outra forma as tabelas encontradas no Database INFORMATION_SCHEMA?](faqs-information-schema.html#faq-mysql-can-modify-information-schema)
 
-<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><p><b>A.7.1.</b></p></td><td align="left" valign="top"><p> Where can I find documentation for the MySQL <code>INFORMATION_SCHEMA</code> database? </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p> See Chapter 24, <i>INFORMATION_SCHEMA Tables</i>. </p><p> You may also find the MySQL User Forums to be helpful. </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.7.2.</b></p></td><td align="left" valign="top"><p> Is there a discussion forum for <code>INFORMATION_SCHEMA</code>? </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p> See the MySQL User Forums. </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.7.3.</b></p></td><td align="left" valign="top"><p> Where can I find the ANSI SQL 2003 specification for <code>INFORMATION_SCHEMA</code>? </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p> Unfortunately, the official specifications are not freely available. (ANSI makes them available for purchase.) However, there are books available, such as <em class="citetitle">SQL-99 Complete, Really</em> by Peter Gulutzan and Trudy Pelzer, that provide a comprehensive overview of the standard, including <code>INFORMATION_SCHEMA</code>. </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.7.4.</b></p></td><td align="left" valign="top"><p> What is the difference between the Oracle Data Dictionary and MySQL <code>INFORMATION_SCHEMA</code>? </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p> Both Oracle and MySQL provide metadata in tables. However, Oracle and MySQL use different table names and column names. The MySQL implementation is more similar to those found in DB2 and SQL Server, which also support <code>INFORMATION_SCHEMA</code> as defined in the SQL standard. </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.7.5.</b></p></td><td align="left" valign="top"><p> Can I add to or otherwise modify the tables found in the <code>INFORMATION_SCHEMA</code> database? </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p> No. Since applications may rely on a certain standard structure, this should not be modified. For this reason, <span><em>we cannot support bugs or other issues which result from modifying <code>INFORMATION_SCHEMA</code> tables or data</em></span>. </p></td></tr></tbody></table>
+***
+
+**A.7.1. Onde posso encontrar a documentação para o Database `INFORMATION_SCHEMA` do MySQL?**
+
+Consulte o Capítulo 24, *INFORMATION_SCHEMA Tables*.
+
+Você também pode achar os Fóruns de Usuários do MySQL úteis.
+
+**A.7.2. Existe um fórum de discussão para `INFORMATION_SCHEMA`?**
+
+Consulte os Fóruns de Usuários do MySQL.
+
+**A.7.3. Onde posso encontrar a especificação ANSI SQL 2003 para `INFORMATION_SCHEMA`?**
+
+Infelizmente, as especificações oficiais não estão disponíveis gratuitamente. (A ANSI as disponibiliza para compra.) No entanto, existem livros disponíveis, como *SQL-99 Complete, Really* de Peter Gulutzan e Trudy Pelzer, que fornecem uma visão abrangente do padrão, incluindo `INFORMATION_SCHEMA`.
+
+**A.7.4. Qual é a diferença entre o Dicionário de Dados (Data Dictionary) do Oracle e o `INFORMATION_SCHEMA` do MySQL?**
+
+Tanto o Oracle quanto o MySQL fornecem metadata em tabelas. No entanto, o Oracle e o MySQL usam nomes de tabela e nomes de coluna diferentes. A implementação do MySQL é mais semelhante àquelas encontradas no DB2 e no SQL Server, que também suportam `INFORMATION_SCHEMA` conforme definido no padrão SQL.
+
+**A.7.5. Posso adicionar ou modificar de outra forma as tabelas encontradas no Database `INFORMATION_SCHEMA`?**
+
+Não. Visto que as aplicações podem depender de uma determinada estrutura padrão, ela não deve ser modificada. Por essa razão, *não podemos oferecer suporte a bugs ou outros problemas resultantes da modificação das tabelas ou dados de `INFORMATION_SCHEMA`*.

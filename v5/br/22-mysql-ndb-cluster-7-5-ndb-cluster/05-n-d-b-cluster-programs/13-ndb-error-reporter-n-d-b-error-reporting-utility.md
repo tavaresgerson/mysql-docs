@@ -1,51 +1,51 @@
-### 21.5.13 ndb_error_reporter — NDB Error-Reporting Utility
+### 21.5.13 ndb_error_reporter — Utilitário de Relatório de Erros NDB
 
-[**ndb_error_reporter**](mysql-cluster-programs-ndb-error-reporter.html "21.5.13 ndb_error_reporter — NDB Error-Reporting Utility") creates an archive from data node and management node log files that can be used to help diagnose bugs or other problems with a cluster. *It is highly recommended that you make use of this utility when filing reports of bugs in NDB Cluster*.
+[**ndb_error_reporter**](mysql-cluster-programs-ndb-error-reporter.html "21.5.13 ndb_error_reporter — NDB Error-Reporting Utility") cria um archive a partir de log files de data nodes e management nodes que podem ser usados para ajudar a diagnosticar bugs ou outros problemas em um cluster. *É altamente recomendável que você utilize este utilitário ao registrar relatórios de bugs no NDB Cluster*.
 
-Options that can be used with [**ndb_error_reporter**](mysql-cluster-programs-ndb-error-reporter.html "21.5.13 ndb_error_reporter — NDB Error-Reporting Utility") are shown in the following table. Additional descriptions follow the table.
+As opções que podem ser usadas com [**ndb_error_reporter**](mysql-cluster-programs-ndb-error-reporter.html "21.5.13 ndb_error_reporter — NDB Error-Reporting Utility") são mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
-**Table 21.32 Command-line options used with the program ndb_error_reporter**
+**Tabela 21.32 Opções de linha de comando usadas com o programa ndb_error_reporter**
 
-<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code> --connection-timeout=# </code> </p></th> <td>Number of seconds to wait when connecting to nodes before timing out</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --dry-scp </code> </p></th> <td>Disable scp with remote hosts; used in testing only</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --fs </code> </p></th> <td>Include file system data in error report; can use a large amount of disk space</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>, </p><p> <code> -? </code> </p></th> <td>Display help text and exit</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --skip-nodegroup=# </code> </p></th> <td>Skip all nodes in the node group having this ID</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody></table>
+<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Formato</th> <th>Descrição</th> <th>Adicionado, Descontinuado ou Removido</th> </tr></thead><tbody><tr> <th><p> <code> --connection-timeout=# </code> </p></th> <td>Número de segundos a esperar ao conectar-se a nodes antes de ocorrer timeout</td> <td><p> (Suportado em todos os lançamentos NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --dry-scp </code> </p></th> <td>Desabilita scp com hosts remotos; usado apenas em testes</td> <td><p> (Suportado em todos os lançamentos NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --fs </code> </p></th> <td>Inclui dados do file system no relatório de erro; pode usar uma grande quantidade de espaço em disco</td> <td><p> (Suportado em todos os lançamentos NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>, </p><p> <code> -? </code> </p></th> <td>Exibe texto de ajuda e sai</td> <td><p> (Suportado em todos os lançamentos NDB baseados no MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --skip-nodegroup=# </code> </p></th> <td>Pula todos os nodes no node group que possui este ID</td> <td><p> (Suportado em todos os lançamentos NDB baseados no MySQL 5.7) </p></td> </tr></tbody></table>
 
-#### Usage
+#### Uso
 
 ```sql
 ndb_error_reporter path/to/config-file [username] [options]
 ```
 
-This utility is intended for use on a management node host, and requires the path to the management host configuration file (usually named `config.ini`). Optionally, you can supply the name of a user that is able to access the cluster's data nodes using SSH, to copy the data node log files. [**ndb_error_reporter**](mysql-cluster-programs-ndb-error-reporter.html "21.5.13 ndb_error_reporter — NDB Error-Reporting Utility") then includes all of these files in archive that is created in the same directory in which it is run. The archive is named `ndb_error_report_YYYYMMDDhhmmss.tar.bz2`, where *`YYYYMMDDhhmmss`* is a datetime string.
+Este utilitário é destinado para uso em um host de management node e requer o caminho para o arquivo de configuração do host de gerenciamento (geralmente chamado `config.ini`). Opcionalmente, você pode fornecer o nome de um usuário que seja capaz de acessar os data nodes do cluster usando SSH, para copiar os log files dos data nodes. O [**ndb_error_reporter**](mysql-cluster-programs-ndb-error-reporter.html "21.5.13 ndb_error_reporter — NDB Error-Reporting Utility") então inclui todos esses arquivos no archive que é criado no mesmo diretório em que é executado. O archive é nomeado `ndb_error_report_YYYYMMDDhhmmss.tar.bz2`, onde *`YYYYMMDDhhmmss`* é uma string de data e hora.
 
-[**ndb_error_reporter**](mysql-cluster-programs-ndb-error-reporter.html "21.5.13 ndb_error_reporter — NDB Error-Reporting Utility") also accepts the options listed here:
+[**ndb_error_reporter**](mysql-cluster-programs-ndb-error-reporter.html "21.5.13 ndb_error_reporter — NDB Error-Reporting Utility") também aceita as opções listadas aqui:
 
 * `--connection-timeout=timeout`
 
-  <table frame="box" rules="all" summary="Properties for connection-timeout"><tbody><tr><th>Command-Line Format</th> <td><code>--connection-timeout=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connection-timeout"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connection-timeout=#</code></td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Padrão</th> <td><code>0</code></td> </tr> </tbody></table>
 
-  Wait this many seconds when trying to connect to nodes before timing out.
+  Espera este número de segundos ao tentar conectar-se a nodes antes de atingir o timeout.
 
 * `--dry-scp`
 
-  <table frame="box" rules="all" summary="Properties for dry-scp"><tbody><tr><th>Command-Line Format</th> <td><code>--dry-scp</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for dry-scp"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--dry-scp</code></td> </tr> </tbody></table>
 
-  Run [**ndb_error_reporter**](mysql-cluster-programs-ndb-error-reporter.html "21.5.13 ndb_error_reporter — NDB Error-Reporting Utility") without using scp from remote hosts. Used for testing only.
+  Executa [**ndb_error_reporter**](mysql-cluster-programs-ndb-error-reporter.html "21.5.13 ndb_error_reporter — NDB Error-Reporting Utility") sem usar scp de hosts remotos. Usado apenas para testes.
 
 * `--fs`
 
-  <table frame="box" rules="all" summary="Properties for fs"><tbody><tr><th>Command-Line Format</th> <td><code>--fs</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for fs"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--fs</code></td> </tr> </tbody></table>
 
-  Copy the data node file systems to the management host and include them in the archive.
+  Copia os file systems dos data nodes para o management host e os inclui no archive.
 
-  Because data node file systems can be extremely large, even after being compressed, we ask that you please do *not* send archives created using this option to Oracle unless you are specifically requested to do so.
+  Como os file systems dos data nodes podem ser extremamente grandes, mesmo após serem compactados, solicitamos que você *não* envie archives criados usando esta opção para a Oracle, a menos que seja especificamente solicitado.
 
 * `--help`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr> </tbody></table>
 
-  Display help text and exit.
+  Exibe o texto de ajuda e sai.
 
 * `--skip-nodegroup=nodegroup_id`
 
-  <table frame="box" rules="all" summary="Properties for connection-timeout"><tbody><tr><th>Command-Line Format</th> <td><code>--connection-timeout=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connection-timeout"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--connection-timeout=#</code></td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Padrão</th> <td><code>0</code></td> </tr> </tbody></table>
 
-  Skip all nodes belong to the node group having the supplied node group ID.
+  Pula todos os nodes pertencentes ao node group que possui o ID de node group fornecido.

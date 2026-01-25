@@ -1,14 +1,14 @@
-### 13.2.3 DO Statement
+### 13.2.3 Declaração DO
 
 ```sql
 DO expr [, expr] ...
 ```
 
-[`DO`](do.html "13.2.3 DO Statement") executes the expressions but does not return any results. In most respects, [`DO`](do.html "13.2.3 DO Statement") is shorthand for `SELECT expr, ...`, but has the advantage that it is slightly faster when you do not care about the result.
+O [`DO`](do.html "13.2.3 Declaração DO") executa as expressions, mas não retorna nenhum results. Na maioria dos aspectos, o [`DO`](do.html "13.2.3 Declaração DO") é uma forma abreviada para `SELECT expr, ...`, mas tem a vantagem de ser ligeiramente mais rápido quando você não se importa com o result.
 
-[`DO`](do.html "13.2.3 DO Statement") is useful primarily with functions that have side effects, such as [`RELEASE_LOCK()`](locking-functions.html#function_release-lock).
+O [`DO`](do.html "13.2.3 Declaração DO") é útil principalmente com functions que possuem side effects, como [`RELEASE_LOCK()`](locking-functions.html#function_release-lock).
 
-Example: This [`SELECT`](select.html "13.2.9 SELECT Statement") statement pauses, but also produces a result set:
+Exemplo: Esta declaração [`SELECT`](select.html "13.2.9 Declaração SELECT") pausa, mas também produz um result set:
 
 ```sql
 mysql> SELECT SLEEP(5);
@@ -20,13 +20,13 @@ mysql> SELECT SLEEP(5);
 1 row in set (5.02 sec)
 ```
 
-[`DO`](do.html "13.2.3 DO Statement"), on the other hand, pauses without producing a result set.:
+O [`DO`](do.html "13.2.3 Declaração DO"), por outro lado, pausa sem produzir um result set:
 
 ```sql
 mysql> DO SLEEP(5);
 Query OK, 0 rows affected (4.99 sec)
 ```
 
-This could be useful, for example in a stored function or trigger, which prohibit statements that produce result sets.
+Isso pode ser útil, por exemplo, em uma stored function ou trigger, que proíbem statements que produzem result sets.
 
-[`DO`](do.html "13.2.3 DO Statement") only executes expressions. It cannot be used in all cases where `SELECT` can be used. For example, `DO id FROM t1` is invalid because it references a table.
+O [`DO`](do.html "13.2.3 Declaração DO") executa apenas expressions. Ele não pode ser usado em todos os casos em que o `SELECT` pode ser usado. Por exemplo, `DO id FROM t1` é inválido porque faz referência a uma table.

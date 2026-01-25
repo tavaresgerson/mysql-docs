@@ -1,19 +1,19 @@
-### 14.1.2 Best Practices for InnoDB Tables
+### 14.1.2 Melhores Práticas para Tabelas InnoDB
 
-This section describes best practices when using `InnoDB` tables.
+Esta seção descreve as melhores práticas ao usar tabelas `InnoDB`.
 
-* Specify a primary key for every table using the most frequently queried column or columns, or an auto-increment value if there is no obvious primary key.
+* Especifique uma Primary Key para cada tabela usando a coluna ou colunas que são consultadas (queried) com mais frequência, ou um valor auto-increment se não houver uma Primary Key óbvia.
 
-* Use joins wherever data is pulled from multiple tables based on identical ID values from those tables. For fast join performance, define foreign keys on the join columns, and declare those columns with the same data type in each table. Adding foreign keys ensures that referenced columns are indexed, which can improve performance. Foreign keys also propagate deletes and updates to all affected tables, and prevent insertion of data in a child table if the corresponding IDs are not present in the parent table.
+* Use JOINs sempre que os dados forem extraídos de múltiplas tabelas com base em valores de ID idênticos dessas tabelas. Para um desempenho rápido do JOIN, defina Foreign Keys nas colunas de JOIN e declare essas colunas com o mesmo Data Type em cada tabela. Adicionar Foreign Keys garante que as colunas referenciadas sejam indexed, o que pode melhorar o desempenho. Foreign Keys também propagam DELETEs e UPDATEs para todas as tabelas afetadas e impedem a inserção de dados em uma tabela "child" (filha) se os IDs correspondentes não estiverem presentes na tabela "parent" (pai).
 
-* Turn off autocommit. Committing hundreds of times a second puts a cap on performance (limited by the write speed of your storage device).
+* Desative o autocommit. Realizar COMMIT hundreds de vezes por segundo limita o desempenho (limitado pela velocidade de escrita do seu dispositivo de armazenamento).
 
-* Group sets of related DML operations into transactions by bracketing them with `START TRANSACTION` and `COMMIT` statements. While you don't want to commit too often, you also don't want to issue huge batches of `INSERT`, `UPDATE`, or `DELETE` statements that run for hours without committing.
+* Agrupe conjuntos de operações DML relacionadas em TRANSACTIONs, delimitando-as com as instruções `START TRANSACTION` e `COMMIT`. Embora você não queira fazer COMMIT com muita frequência, você também não deve emitir grandes lotes de instruções `INSERT`, `UPDATE` ou `DELETE` que sejam executadas por horas sem realizar COMMIT.
 
-* Do not use `LOCK TABLES` statements. `InnoDB` can handle multiple sessions all reading and writing to the same table at once without sacrificing reliability or high performance. To get exclusive write access to a set of rows, use the `SELECT ... FOR UPDATE` syntax to lock just the rows you intend to update.
+* Não utilize instruções `LOCK TABLES`. O InnoDB pode lidar com múltiplas sessions lendo e escrevendo na mesma tabela simultaneamente sem sacrificar a confiabilidade ou o alto desempenho. Para obter acesso de escrita exclusivo a um conjunto de linhas, use a sintaxe `SELECT ... FOR UPDATE` para LOCK (bloquear) apenas as linhas que você pretende atualizar.
 
-* Enable the `innodb_file_per_table` variable or use general tablespaces to put the data and indexes for tables into separate files instead of the system tablespace. The `innodb_file_per_table` variable is enabled by default.
+* Habilite a variável `innodb_file_per_table` ou use general tablespaces para colocar os dados e Indexes das tabelas em arquivos separados, em vez do system tablespace. A variável `innodb_file_per_table` é habilitada por padrão.
 
-* Evaluate whether your data and access patterns benefit from the `InnoDB` table or page compression features. You can compress `InnoDB` tables without sacrificing read/write capability.
+* Avalie se seus dados e padrões de acesso se beneficiam dos recursos de compression (compressão) de tabela ou página do InnoDB. Você pode comprimir tabelas InnoDB sem sacrificar a capacidade de leitura/escrita (read/write capability).
 
-* Run the server with the `--sql_mode=NO_ENGINE_SUBSTITUTION` option to prevent tables from being created with storage engines that you do not want to use.
+* Execute o servidor com a opção `--sql_mode=NO_ENGINE_SUBSTITUTION` para evitar que tabelas sejam criadas com storage engines que você não deseja usar.

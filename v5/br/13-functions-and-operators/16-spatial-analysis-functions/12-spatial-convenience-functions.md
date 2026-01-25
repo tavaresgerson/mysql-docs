@@ -1,25 +1,25 @@
-### 12.16.12 Spatial Convenience Functions
+### 12.16.12 Funções de Conveniência Espacial
 
-The functions in this section provide convenience operations on geometry values.
+As funções nesta seção fornecem operações de conveniência em valores geometry.
 
 * `ST_Distance_Sphere(g1, g2 [, radius])`
 
-  Returns the mimimum spherical distance between two points and/or multipoints on a sphere, in meters, or `NULL` if any geometry argument is `NULL` or empty.
+  Retorna a distância esférica mínima entre dois Point e/ou MultiPoint em uma esfera, em metros, ou `NULL` se qualquer argumento geometry for `NULL` ou vazio.
 
-  Calculations use a spherical earth and a configurable radius. The optional *`radius`* argument should be given in meters. If omitted, the default radius is 6,370,986 meters. An `ER_WRONG_ARGUMENTS` error occurs if the *`radius`* argument is present but not positive.
+  Os cálculos usam uma terra esférica e um radius configurável. O argumento opcional *`radius`* deve ser fornecido em metros. Se omitido, o radius padrão é 6.370.986 metros. Um erro `ER_WRONG_ARGUMENTS` ocorre se o argumento *`radius`* estiver presente, mas não for positivo.
 
-  The geometry arguments should consist of points that specify (longitude, latitude) coordinate values:
+  Os argumentos geometry devem consistir em Points que especificam valores de coordenadas (longitude, latitude):
 
-  + Longitude and latitude are the first and second coordinates of the point, respectively.
+  + Longitude e latitude são a primeira e a segunda coordenada do Point, respectivamente.
 
-  + Both coordinates are in degrees.
-  + Longitude values must be in the range (-180, 180]. Positive values are east of the prime meridian.
+  + Ambas as coordenadas estão em graus.
+  + Os valores de Longitude devem estar no intervalo (-180, 180]. Valores positivos estão a leste do meridiano principal.
 
-  + Latitude values must be in the range [-90, 90]. Positive values are north of the equator.
+  + Os valores de Latitude devem estar no intervalo [-90, 90]. Valores positivos estão ao norte do equador.
 
-  Supported argument combinations are (`Point`, `Point`), (`Point`, `MultiPoint`), and (`MultiPoint`, `Point`). An `ER_GIS_UNSUPPORTED_ARGUMENT` error occurs for other combinations.
+  As combinações de argumentos suportadas são (`Point`, `Point`), (`Point`, `MultiPoint`) e (`MultiPoint`, `Point`). Um erro `ER_GIS_UNSUPPORTED_ARGUMENT` ocorre para outras combinações.
 
-  If any geometry argument is not a syntactically well-formed geometry byte string, an `ER_GIS_INVALID_DATA` error occurs.
+  Se qualquer argumento geometry não for uma string de bytes geometry sintaticamente bem formada, ocorrerá um erro `ER_GIS_INVALID_DATA`.
 
   ```sql
   mysql> SET @pt1 = ST_GeomFromText('POINT(0 0)');
@@ -34,11 +34,11 @@ The functions in this section provide convenience operations on geometry values.
 
 * `ST_IsValid(g)`
 
-  Returns 1 if the argument is syntactically well-formed and is geometrically valid, 0 if the argument is not syntactically well-formed or is not geometrically valid. If the argument is `NULL`, the return value is `NULL`. Geometry validity is defined by the OGC specification.
+  Retorna 1 se o argumento estiver sintaticamente bem formado e for geometricamente válido, 0 se o argumento não estiver sintaticamente bem formado ou não for geometricamente válido. Se o argumento for `NULL`, o valor de retorno é `NULL`. A validade da Geometry é definida pela especificação OGC.
 
-  The only valid empty geometry is represented in the form of an empty geometry collection value. `ST_IsValid()` returns 1 in this case.
+  A única Geometry vazia válida é representada na forma de um valor de Geometry collection vazio. `ST_IsValid()` retorna 1 neste caso.
 
-  `ST_IsValid()` works only for the Cartesian coordinate system and requires a geometry argument with an SRID of 0. An `ER_WRONG_ARGUMENTS` error occurs otherwise.
+  `ST_IsValid()` funciona apenas para o sistema de coordenadas Cartesiano e requer um argumento geometry com um SRID de 0. Caso contrário, ocorre um erro `ER_WRONG_ARGUMENTS`.
 
   ```sql
   mysql> SET @ls1 = ST_GeomFromText('LINESTRING(0 0,-0.00 0,0.0 0)');
@@ -59,23 +59,23 @@ The functions in this section provide convenience operations on geometry values.
 
 * `ST_MakeEnvelope(pt1, pt2)`
 
-  Returns the rectangle that forms the envelope around two points, as a `Point`, `LineString`, or `Polygon`. If any argument is `NULL`, the return value is `NULL`.
+  Retorna o retângulo que forma o envelope em torno de dois Points, como um `Point`, `LineString` ou `Polygon`. Se qualquer argumento for `NULL`, o valor de retorno é `NULL`.
 
-  Calculations are done using the Cartesian coordinate system rather than on a sphere, spheroid, or on earth.
+  Os cálculos são feitos usando o sistema de coordenadas Cartesiano em vez de em uma esfera, esferoide ou na Terra.
 
-  Given two points *`pt1`* and *`pt2`*, `ST_MakeEnvelope()` creates the result geometry on an abstract plane like this:
+  Dados dois Points *`pt1`* e *`pt2`*, `ST_MakeEnvelope()` cria a Geometry resultante em um plano abstrato da seguinte forma:
 
-  + If *`pt1`* and *`pt2`* are equal, the result is the point *`pt1`*.
+  + Se *`pt1`* e *`pt2`* forem iguais, o resultado é o Point *`pt1`*.
 
-  + Otherwise, if `(pt1, pt2)` is a vertical or horizontal line segment, the result is the line segment `(pt1, pt2)`.
+  + Caso contrário, se `(pt1, pt2)` for um segmento de reta vertical ou horizontal, o resultado é o segmento de reta `(pt1, pt2)`.
 
-  + Otherwise, the result is a polygon using *`pt1`* and *`pt2`* as diagonal points.
+  + Caso contrário, o resultado é um Polygon usando *`pt1`* e *`pt2`* como pontos diagonais.
 
-  The result geometry has an SRID of 0.
+  A Geometry resultante tem um SRID de 0.
 
-  `ST_MakeEnvelope()` requires `Point` geometry arguments with an SRID of 0. An `ER_WRONG_ARGUMENTS` error occurs otherwise.
+  `ST_MakeEnvelope()` requer argumentos geometry do tipo `Point` com um SRID de 0. Caso contrário, ocorre um erro `ER_WRONG_ARGUMENTS`.
 
-  If any argument is not a syntactically well-formed geometry byte string, or if any coordinate value of the two points is infinite or `NaN`, an `ER_GIS_INVALID_DATA` error occurs.
+  Se qualquer argumento não for uma string de bytes geometry sintaticamente bem formada, ou se qualquer valor de coordenada dos dois Points for infinito ou `NaN`, ocorrerá um erro `ER_GIS_INVALID_DATA`.
 
   ```sql
   mysql> SET @pt1 = ST_GeomFromText('POINT(0 0)');
@@ -90,15 +90,15 @@ The functions in this section provide convenience operations on geometry values.
 
 * `ST_Simplify(g, max_distance)`
 
-  Simplifies a geometry using the Douglas-Peucker algorithm and returns a simplified value of the same type. If any argument is `NULL`, the return value is `NULL`.
+  Simplifica uma Geometry usando o algoritmo Douglas-Peucker e retorna um valor simplificado do mesmo tipo. Se qualquer argumento for `NULL`, o valor de retorno é `NULL`.
 
-  The geometry may be any geometry type, although the Douglas-Peucker algorithm may not actually process every type. A geometry collection is processed by giving its components one by one to the simplification algorithm, and the returned geometries are put into a geometry collection as result.
+  A Geometry pode ser de qualquer tipo geometry, embora o algoritmo Douglas-Peucker possa não processar todos os tipos. Uma Geometry collection é processada passando seus componentes um por um para o algoritmo de simplificação, e as Geometries retornadas são colocadas em uma Geometry collection como resultado.
 
-  The *`max_distance`* argument is the distance (in units of the input coordinates) of a vertex to other segments to be removed. Vertices within this distance of the simplified linestring are removed. If the *`max_distance`* argument is not positive, or is `NaN`, an `ER_WRONG_ARGUMENTS` error occurs.
+  O argumento *`max_distance`* é a distância (em unidades das coordenadas de entrada) de um vertex para outros segmentos a serem removidos. Os vertices dentro dessa distância da linestring simplificada são removidos. Se o argumento *`max_distance`* não for positivo, ou for `NaN`, ocorre um erro `ER_WRONG_ARGUMENTS`.
 
-  According to Boost.Geometry, geometries might become invalid as a result of the simplification process, and the process might create self-intersections. To check the validity of the result, pass it to `ST_IsValid()`.
+  De acordo com Boost.Geometry, as geometries podem se tornar inválidas como resultado do processo de simplificação, e o processo pode criar autointerseções. Para verificar a validade do resultado, passe-o para `ST_IsValid()`.
 
-  If the geometry argument is not a syntactically well-formed geometry byte string, an `ER_GIS_INVALID_DATA` error occurs.
+  Se o argumento geometry não for uma string de bytes geometry sintaticamente bem formada, ocorrerá um erro `ER_GIS_INVALID_DATA`.
 
   ```sql
   mysql> SET @g = ST_GeomFromText('LINESTRING(0 0,0 1,1 1,1 2,2 2,2 3,3 3)');
@@ -118,17 +118,17 @@ The functions in this section provide convenience operations on geometry values.
 
 * `ST_Validate(g)`
 
-  Validates a geometry according to the OGC specification. A geometry can be syntactically well-formed (WKB value plus SRID) but geometrically invalid. For example, this polygon is geometrically invalid: `POLYGON((0 0, 0 0, 0 0, 0 0, 0 0))`
+  Valida uma Geometry de acordo com a especificação OGC. Uma Geometry pode ser sintaticamente bem formada (valor WKB mais SRID), mas geometricamente inválida. Por exemplo, este Polygon é geometricamente inválido: `POLYGON((0 0, 0 0, 0 0, 0 0, 0 0))`
 
-  `ST_Validate()` returns the geometry if it is syntactically well-formed and is geometrically valid, `NULL` if the argument is not syntactically well-formed or is not geometrically valid or is `NULL`.
+  `ST_Validate()` retorna a Geometry se ela estiver sintaticamente bem formada e for geometricamente válida, `NULL` se o argumento não estiver sintaticamente bem formado ou não for geometricamente válido, ou se for `NULL`.
 
-  `ST_Validate()` can be used to filter out invalid geometry data, although at a cost. For applications that require more precise results not tainted by invalid data, this penalty may be worthwhile.
+  `ST_Validate()` pode ser usado para filtrar dados geometry inválidos, embora a um custo. Para aplicações que exigem resultados mais precisos, não contaminados por dados inválidos, essa penalidade pode valer a pena.
 
-  If the geometry argument is valid, it is returned as is, except that if an input `Polygon` or `MultiPolygon` has clockwise rings, those rings are reversed before checking for validity. If the geometry is valid, the value with the reversed rings is returned.
+  Se o argumento geometry for válido, ele é retornado como está, exceto que se um `Polygon` ou `MultiPolygon` de entrada tiver anéis no sentido horário (clockwise rings), esses anéis são invertidos antes da verificação de validade. Se a Geometry for válida, o valor com os anéis invertidos é retornado.
 
-  The only valid empty geometry is represented in the form of an empty geometry collection value. `ST_Validate()` returns it directly without further checks in this case.
+  A única Geometry vazia válida é representada na forma de um valor de Geometry collection vazio. `ST_Validate()` o retorna diretamente sem verificações adicionais neste caso.
 
-  `ST_Validate()` works only for the Cartesian coordinate system and requires a geometry argument with an SRID of 0. An `ER_WRONG_ARGUMENTS` error occurs otherwise.
+  `ST_Validate()` funciona apenas para o sistema de coordenadas Cartesiano e requer um argumento geometry com um SRID de 0. Caso contrário, ocorre um erro `ER_WRONG_ARGUMENTS`.
 
   ```sql
   mysql> SET @ls1 = ST_GeomFromText('LINESTRING(0 0)');

@@ -1,20 +1,20 @@
-### 27.6.1 Compiling Programs with libmysqld
+### 27.6.1 Compilando Programs com libmysqld
 
-In precompiled binary MySQL distributions that include `libmysqld`, the embedded server library, MySQL builds the library using the appropriate vendor compiler if there is one.
+Em distribuições binárias pré-compiladas do MySQL que incluem a `libmysqld`, a biblioteca do servidor embarcado (embedded server library), o MySQL constrói a library usando o compiler do fornecedor apropriado, se houver um.
 
-To get a `libmysqld` library if you build MySQL from source yourself, you should configure MySQL with the [`-DWITH_EMBEDDED_SERVER=1`](source-configuration-options.html#option_cmake_with_embedded_server) option. See [Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options").
+Para obter uma `libmysqld` library se você construir o MySQL a partir do source (código-fonte), você deve configurar o MySQL com a option [`-DWITH_EMBEDDED_SERVER=1`](source-configuration-options.html#option_cmake_with_embedded_server). Consulte a [Seção 2.8.7, “Opções de Configuração do Source do MySQL”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options").
 
-When you link your program with `libmysqld`, you must also include the system-specific `pthread` libraries and some libraries that the MySQL server uses. You can get the full list of libraries by executing [**mysql_config --libmysqld-libs**](mysql-config.html "4.7.1 mysql_config — Display Options for Compiling Clients").
+Ao fazer o link do seu program com `libmysqld`, você também deve incluir as `pthread` libraries específicas do sistema e algumas libraries que o MySQL server utiliza. Você pode obter a lista completa de libraries executando [**mysql_config --libmysqld-libs**](mysql-config.html "4.7.1 mysql_config — Display Options for Compiling Clients").
 
-The correct flags for compiling and linking a threaded program must be used, even if you do not directly call any thread functions in your code.
+Os flags corretos para compiling e linking de um threaded program devem ser usados, mesmo que você não chame diretamente nenhuma função de thread no seu code.
 
-To compile a C program to include the necessary files to embed the MySQL server library into an executable version of a program, the compiler needs to know where to find various files and needs instructions on how to compile the program. The following example shows how a program could be compiled from the command line, assuming that you are using **gcc**, use the GNU C compiler:
+Para compilar um C program de modo a incluir os arquivos necessários para embarcar (embed) a MySQL server library em uma versão executable de um program, o compiler precisa saber onde encontrar vários arquivos e necessita de instruções sobre como compilar o program. O exemplo a seguir mostra como um program poderia ser compilado a partir da command line, assumindo que você está usando **gcc**, o GNU C compiler:
 
 ```sql
 gcc mysql_test.c -o mysql_test \
 `/usr/local/mysql/bin/mysql_config --include --libmysqld-libs`
 ```
 
-Immediately following the **gcc** command is the name of the C program source file. After it, the `-o` option is given to indicate that the file name that follows is the name that the compiler is to give to the output file, the compiled program. The next line of code tells the compiler to obtain the location of the include files and libraries and other settings for the system on which it is compiled. The [**mysql_config**](mysql-config.html "4.7.1 mysql_config — Display Options for Compiling Clients") command is contained in backticks, not single quotation marks.
+Imediatamente após o **gcc** command está o nome do C program source file. Depois dele, a option `-o` é fornecida para indicar que o nome do arquivo que a segue é o nome que o compiler deve dar ao output file, o compiled program. A próxima linha de code instrui o compiler a obter a localização dos include files e libraries, e outras configurações para o sistema no qual ele está sendo compilado. O [**mysql_config**](mysql-config.html "4.7.1 mysql_config — Display Options for Compiling Clients") command é contido em *backticks*, e não em aspas simples.
 
-On some non-**gcc** platforms, the embedded library depends on C++ runtime libraries and linking against the embedded library might result in missing-symbol errors. To solve this, link using a C++ compiler or explicitly list the required libraries on the link command line.
+Em algumas platforms que não utilizam **gcc**, a embedded library depende de C++ runtime libraries, e o linking contra a embedded library pode resultar em erros de símbolos ausentes (*missing-symbol errors*). Para resolver isso, faça o link usando um C++ compiler ou liste explicitamente as libraries necessárias na link command line.

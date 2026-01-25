@@ -1,5 +1,5 @@
-## 28.9 MySQL Telemetry
+## 28.9 Telemetria do MySQL
 
-The MySQL telemetry component is based on the OpenTelemetry (OTel) project, an open-source, vendor-neutral observability framework providing a common observability standard. It enables users to instrument their applications in order to export observability data: traces, metrics and logs, enabling increased granularity of debugging and testing.
+O componente de telemetria do MySQL é baseado no projeto OpenTelemetry (OTel), uma estrutura de observabilidade de código aberto, agnóstica a fornecedores, que fornece um padrão comum de observabilidade. Ele permite que os usuários instrumentem suas aplicações para exportar dados de observabilidade: traces, metrics e logs, possibilitando maior granularidade de debugging e testes.
 
-For more information, see Telemetry.
+Para mais informações, consulte Telemetria.

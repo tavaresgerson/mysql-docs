@@ -1,16 +1,16 @@
-#### 26.4.5.13 The ps_is_thread_instrumented() Function
+#### 26.4.5.13 A Função ps_is_thread_instrumented()
 
-Returns `YES` or `NO` to indicate whether Performance Schema instrumentation for a given connection ID is enabled, `UNKNOWN` if the ID is unknown, or `NULL` if the ID is `NULL`.
+Retorna `YES` ou `NO` para indicar se a instrumentação do Performance Schema para um determinado *connection ID* está habilitada, `UNKNOWN` se o *ID* for desconhecido, ou `NULL` se o *ID* for `NULL`.
 
-##### Parameters
+##### Parâmetros
 
-* `in_connection_id BIGINT UNSIGNED`: The connection ID. This is a value of the type given in the `PROCESSLIST_ID` column of the Performance Schema `threads` table or the `Id` column of `SHOW PROCESSLIST` output.
+* `in_connection_id BIGINT UNSIGNED`: O *connection ID*. Este é um valor do tipo fornecido na coluna `PROCESSLIST_ID` da tabela `threads` do *Performance Schema* ou na coluna `Id` da saída de `SHOW PROCESSLIST`.
 
-##### Return Value
+##### Valor de Retorno
 
-An `ENUM('YES','NO','UNKNOWN')` value.
+Um valor `ENUM('YES','NO','UNKNOWN')`.
 
-##### Example
+##### Exemplo
 
 ```sql
 mysql> SELECT sys.ps_is_thread_instrumented(43);

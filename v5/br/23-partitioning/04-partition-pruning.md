@@ -1,6 +1,6 @@
-## 22.4 Partition Pruning
+## 22.4 Eliminação de Partições (Partition Pruning)
 
-This section discusses an optimization known as partition pruning. The core concept behind partition pruning is relatively simple, and can be described as “Do not scan partitions where there can be no matching values”. Suppose that you have a partitioned table `t1` defined by this statement:
+Esta seção discute uma otimização conhecida como *partition pruning* (eliminação de partições). O conceito central por trás do *partition pruning* é relativamente simples e pode ser descrito como: "Não faça o *scan* de partições onde não pode haver valores correspondentes". Suponha que você tenha uma tabela particionada `t1` definida por esta instrução:
 
 ```sql
 CREATE TABLE t1 (
@@ -17,7 +17,7 @@ PARTITION BY RANGE( region_code ) (
 );
 ```
 
-Consider the case where you wish to obtain results from a [`SELECT`](select.html "13.2.9 SELECT Statement") statement such as this one:
+Considere o caso em que você deseja obter resultados de uma instrução [`SELECT`](select.html "13.2.9 SELECT Statement") como esta:
 
 ```sql
 SELECT fname, lname, region_code, dob
@@ -25,33 +25,33 @@ SELECT fname, lname, region_code, dob
     WHERE region_code > 125 AND region_code < 130;
 ```
 
-It is easy to see that none of the rows which ought to be returned are in either of the partitions `p0` or `p3`; that is, we need to search only in partitions `p1` and `p2` to find matching rows. By doing so, it is possible to expend much less time and effort in finding matching rows than would be required to scan all partitions in the table. This “cutting away” of unneeded partitions is known as pruning. When the optimizer can make use of partition pruning in performing this query, execution of the query can be an order of magnitude faster than the same query against a nonpartitioned table containing the same column definitions and data.
+É fácil ver que nenhuma das linhas que deveriam ser retornadas está nas partições `p0` ou `p3`; ou seja, precisamos pesquisar apenas nas partições `p1` e `p2` para encontrar as linhas correspondentes. Ao fazer isso, é possível gastar muito menos tempo e esforço na localização de linhas correspondentes do que seria necessário para fazer o *scan* de todas as partições na tabela. Esse “corte” de partições desnecessárias é conhecido como *pruning*. Quando o *optimizer* pode usar o *partition pruning* ao executar essa *query*, a execução da *query* pode ser uma ordem de magnitude mais rápida do que a mesma *query* em uma tabela não particionada contendo as mesmas definições de coluna e dados.
 
-Note
+Nota
 
-When pruning is performed on a partitioned [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") table, all partitions are opened, whether or not they are examined, due to the design of the `MyISAM` storage engine. This means that you must have a sufficient number of file descriptors available to cover all partitions of the table. See [MyISAM and partition file descriptor usage](partitioning-limitations.html#partitioning-limitations-myisam-file-descriptors "MyISAM and partition file descriptor usage").
+Quando o *pruning* é executado em uma tabela particionada [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine"), todas as partições são abertas, examinadas ou não, devido ao design do motor de armazenamento `MyISAM`. Isso significa que você deve ter um número suficiente de descritores de arquivo disponíveis para cobrir todas as partições da tabela. Consulte [Uso de descritores de arquivo MyISAM e de partição](partitioning-limitations.html#partitioning-limitations-myisam-file-descriptors "MyISAM and partition file descriptor usage").
 
-This limitation does not apply to partitioned tables using other MySQL storage engines such as [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine").
+Essa limitação não se aplica a tabelas particionadas que utilizam outros motores de armazenamento MySQL, como o [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine").
 
-The optimizer can perform pruning whenever a `WHERE` condition can be reduced to either one of the following two cases:
+O *optimizer* pode executar o *pruning* sempre que uma condição `WHERE` puder ser reduzida a um dos dois casos a seguir:
 
 * `partition_column = constant`
 
 * `partition_column IN (constant1, constant2, ..., constantN)`
 
-In the first case, the optimizer simply evaluates the partitioning expression for the value given, determines which partition contains that value, and scans only this partition. In many cases, the equal sign can be replaced with another arithmetic comparison, including `<`, `>`, `<=`, `>=`, and `<>`. Some queries using `BETWEEN` in the `WHERE` clause can also take advantage of partition pruning. See the examples later in this section.
+No primeiro caso, o *optimizer* simplesmente avalia a expressão de particionamento para o valor fornecido, determina qual partição contém esse valor e faz o *scan* apenas dessa partição. Em muitos casos, o sinal de igual pode ser substituído por outra comparação aritmética, incluindo `<`, `>`, `<=`, `>=`, e `<>`. Algumas *queries* que usam `BETWEEN` na cláusula `WHERE` também podem tirar proveito do *partition pruning*. Veja os exemplos mais adiante nesta seção.
 
-In the second case, the optimizer evaluates the partitioning expression for each value in the list, creates a list of matching partitions, and then scans only the partitions in this partition list.
+No segundo caso, o *optimizer* avalia a expressão de particionamento para cada valor na lista, cria uma lista de partições correspondentes e, em seguida, faz o *scan* apenas das partições nesta lista de partições.
 
-MySQL can apply partition pruning to [`SELECT`](select.html "13.2.9 SELECT Statement"), [`DELETE`](delete.html "13.2.2 DELETE Statement"), and [`UPDATE`](update.html "13.2.11 UPDATE Statement") statements. An [`INSERT`](insert.html "13.2.5 INSERT Statement") statement also accesses only one partition per inserted row; this is true even for a table that is partitioned by `HASH` or `KEY` although this is not currently shown in the output of [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement").
+O MySQL pode aplicar o *partition pruning* às instruções [`SELECT`](select.html "13.2.9 SELECT Statement"), [`DELETE`](delete.html "13.2.2 DELETE Statement") e [`UPDATE`](update.html "13.2.11 UPDATE Statement"). Uma instrução [`INSERT`](insert.html "13.2.5 INSERT Statement") também acessa apenas uma partição por linha inserida; isso é verdade mesmo para uma tabela particionada por `HASH` ou `KEY`, embora isso não seja exibido atualmente na saída do [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement").
 
-Pruning can also be applied to short ranges, which the optimizer can convert into equivalent lists of values. For instance, in the previous example, the `WHERE` clause can be converted to `WHERE region_code IN (126, 127, 128, 129)`. Then the optimizer can determine that the first two values in the list are found in partition `p1`, the remaining two values in partition `p2`, and that the other partitions contain no relevant values and so do not need to be searched for matching rows.
+O *Pruning* também pode ser aplicado a *ranges* curtos, que o *optimizer* pode converter em listas de valores equivalentes. Por exemplo, no exemplo anterior, a cláusula `WHERE` pode ser convertida para `WHERE region_code IN (126, 127, 128, 129)`. Assim, o *optimizer* pode determinar que os dois primeiros valores na lista são encontrados na partição `p1`, os dois valores restantes na partição `p2`, e que as outras partições não contêm valores relevantes e, portanto, não precisam ser pesquisadas por linhas correspondentes.
 
-The optimizer can also perform pruning for `WHERE` conditions that involve comparisons of the preceding types on multiple columns for tables that use `RANGE COLUMNS` or `LIST COLUMNS` partitioning.
+O *optimizer* também pode executar o *pruning* para condições `WHERE` que envolvem comparações dos tipos precedentes em múltiplas colunas para tabelas que usam particionamento `RANGE COLUMNS` ou `LIST COLUMNS`.
 
-This type of optimization can be applied whenever the partitioning expression consists of an equality or a range which can be reduced to a set of equalities, or when the partitioning expression represents an increasing or decreasing relationship. Pruning can also be applied for tables partitioned on a [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") or [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") column when the partitioning expression uses the [`YEAR()`](date-and-time-functions.html#function_year) or [`TO_DAYS()`](date-and-time-functions.html#function_to-days) function. In addition, in MySQL 5.7, pruning can be applied for such tables when the partitioning expression uses the [`TO_SECONDS()`](date-and-time-functions.html#function_to-seconds) function.
+Este tipo de otimização pode ser aplicado sempre que a expressão de particionamento consistir em uma igualdade ou em um *range* que possa ser reduzido a um conjunto de igualdades, ou quando a expressão de particionamento representar uma relação crescente ou decrescente. O *Pruning* também pode ser aplicado para tabelas particionadas em uma coluna [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") ou [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") quando a expressão de particionamento usa a função [`YEAR()`](date-and-time-functions.html#function_year) ou [`TO_DAYS()`](date-and-time-functions.html#function_to-days). Além disso, no MySQL 5.7, o *pruning* pode ser aplicado a tais tabelas quando a expressão de particionamento usa a função [`TO_SECONDS()`](date-and-time-functions.html#function_to-seconds).
 
-Suppose that table `t2`, defined as shown here, is partitioned on a [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") column:
+Suponha que a tabela `t2`, definida conforme mostrado aqui, esteja particionada em uma coluna [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"):
 
 ```sql
 CREATE TABLE t2 (
@@ -72,7 +72,7 @@ PARTITION BY RANGE( YEAR(dob) ) (
 );
 ```
 
-The following statements using `t2` can make of use partition pruning:
+As seguintes instruções usando `t2` podem fazer uso do *partition pruning*:
 
 ```sql
 SELECT * FROM t2 WHERE dob = '1982-06-23';
@@ -82,28 +82,27 @@ UPDATE t2 SET region_code = 8 WHERE dob BETWEEN '1991-02-15' AND '1997-04-25';
 DELETE FROM t2 WHERE dob >= '1984-06-21' AND dob <= '1999-06-21'
 ```
 
-In the case of the last statement, the optimizer can also act as follows:
+No caso da última instrução, o *optimizer* também pode agir da seguinte forma:
 
-1. *Find the partition containing the low end of the range*.
+1. *Encontrar a partição contendo o limite inferior do range*.
 
-   [`YEAR('1984-06-21')`](date-and-time-functions.html#function_year) yields the value `1984`, which is found in partition `d3`.
+   [`YEAR('1984-06-21')`](date-and-time-functions.html#function_year) retorna o valor `1984`, que é encontrado na partição `d3`.
 
-2. *Find the partition containing the high end of the range*.
+2. *Encontrar a partição contendo o limite superior do range*.
 
-   [`YEAR('1999-06-21')`](date-and-time-functions.html#function_year) evaluates to `1999`, which is found in partition `d5`.
+   [`YEAR('1999-06-21')`](date-and-time-functions.html#function_year) é avaliado como `1999`, que é encontrado na partição `d5`.
 
-3. *Scan only these two partitions and any partitions that may lie between them*.
+3. *Fazer o scan apenas dessas duas partições e de quaisquer partições que possam estar entre elas*.
 
-   In this case, this means that only partitions `d3`, `d4`, and `d5` are scanned. The remaining partitions may be safely ignored (and are ignored).
+   Neste caso, isso significa que apenas as partições `d3`, `d4` e `d5` são escaneadas. As partições restantes podem ser ignoradas com segurança (e são ignoradas).
 
-Important
+Importante
 
-Invalid `DATE` and `DATETIME` values referenced in the `WHERE` condition of a statement against a partitioned table are treated as `NULL`. This means that a query such as `SELECT * FROM partitioned_table WHERE date_column < '2008-12-00'` does not return any values (see Bug
-#40972).
+Valores `DATE` e `DATETIME` inválidos referenciados na condição `WHERE` de uma instrução contra uma tabela particionada são tratados como `NULL`. Isso significa que uma *query* como `SELECT * FROM partitioned_table WHERE date_column < '2008-12-00'` não retorna nenhum valor (consulte Bug #40972).
 
-So far, we have looked only at examples using `RANGE` partitioning, but pruning can be applied with other partitioning types as well.
+Até agora, analisamos apenas exemplos usando particionamento `RANGE`, mas o *pruning* também pode ser aplicado a outros tipos de particionamento.
 
-Consider a table that is partitioned by `LIST`, where the partitioning expression is increasing or decreasing, such as the table `t3` shown here. (In this example, we assume for the sake of brevity that the `region_code` column is limited to values between 1 and 10 inclusive.)
+Considere uma tabela particionada por `LIST`, onde a expressão de particionamento está aumentando ou diminuindo, como a tabela `t3` mostrada aqui. (Neste exemplo, assumimos, por uma questão de brevidade, que a coluna `region_code` está limitada a valores entre 1 e 10, inclusive.)
 
 ```sql
 CREATE TABLE t3 (
@@ -120,9 +119,9 @@ PARTITION BY LIST(region_code) (
 );
 ```
 
-For a statement such as `SELECT * FROM t3 WHERE region_code BETWEEN 1 AND 3`, the optimizer determines in which partitions the values 1, 2, and 3 are found (`r0` and `r1`) and skips the remaining ones (`r2` and `r3`).
+Para uma instrução como `SELECT * FROM t3 WHERE region_code BETWEEN 1 AND 3`, o *optimizer* determina em quais partições os valores 1, 2 e 3 são encontrados (`r0` e `r1`) e ignora as restantes (`r2` e `r3`).
 
-For tables that are partitioned by `HASH` or `[LINEAR] KEY`, partition pruning is also possible in cases in which the `WHERE` clause uses a simple `=` relation against a column used in the partitioning expression. Consider a table created like this:
+Para tabelas particionadas por `HASH` ou `[LINEAR] KEY`, o *partition pruning* também é possível em casos em que a cláusula `WHERE` usa uma relação de `=` simples contra uma coluna usada na expressão de particionamento. Considere uma tabela criada assim:
 
 ```sql
 CREATE TABLE t4 (
@@ -135,13 +134,13 @@ PARTITION BY KEY(region_code)
 PARTITIONS 8;
 ```
 
-A statement that compares a column value with a constant can be pruned:
+Uma instrução que compara um valor de coluna com uma constante pode ser podada (*pruned*):
 
 ```sql
 UPDATE t4 WHERE region_code = 7;
 ```
 
-Pruning can also be employed for short ranges, because the optimizer can turn such conditions into `IN` relations. For example, using the same table `t4` as defined previously, queries such as these can be pruned:
+O *Pruning* também pode ser empregado para *ranges* curtos, porque o *optimizer* pode transformar tais condições em relações `IN`. Por exemplo, usando a mesma tabela `t4` definida anteriormente, *queries* como estas podem ser podadas:
 
 ```sql
 SELECT * FROM t4 WHERE region_code > 2 AND region_code < 6;
@@ -149,25 +148,24 @@ SELECT * FROM t4 WHERE region_code > 2 AND region_code < 6;
 SELECT * FROM t4 WHERE region_code BETWEEN 3 AND 5;
 ```
 
-In both these cases, the `WHERE` clause is transformed by the optimizer into `WHERE region_code IN (3, 4, 5)`.
+Em ambos os casos, a cláusula `WHERE` é transformada pelo *optimizer* em `WHERE region_code IN (3, 4, 5)`.
 
-Important
+Importante
 
-This optimization is used only if the range size is smaller than the number of partitions. Consider this statement:
+Esta otimização é usada somente se o tamanho do *range* for menor que o número de partições. Considere esta instrução:
 
 ```sql
 DELETE FROM t4 WHERE region_code BETWEEN 4 AND 12;
 ```
 
-The range in the `WHERE` clause covers 9 values (4, 5, 6, 7, 8, 9, 10, 11, 12), but `t4` has only 8 partitions. This means that the `DELETE` cannot be pruned.
+O *range* na cláusula `WHERE` cobre 9 valores (4, 5, 6, 7, 8, 9, 10, 11, 12), mas `t4` tem apenas 8 partições. Isso significa que o `DELETE` não pode ser podado.
 
-When a table is partitioned by `HASH` or `[LINEAR] KEY`, pruning can be used only on integer columns. For example, this statement cannot use pruning because `dob` is a [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") column:
+Quando uma tabela é particionada por `HASH` ou `[LINEAR] KEY`, o *pruning* pode ser usado apenas em colunas *integer*. Por exemplo, esta instrução não pode usar o *pruning* porque `dob` é uma coluna [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"):
 
 ```sql
 SELECT * FROM t4 WHERE dob >= '2001-04-14' AND dob <= '2005-10-15';
 ```
 
-However, if the table stores year values in an [`INT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") column, then a query having `WHERE year_col >= 2001 AND year_col <= 2005` can be pruned.
+No entanto, se a tabela armazena valores de ano em uma coluna [`INT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), então uma *query* com `WHERE year_col >= 2001 AND year_col <= 2005` pode ser podada.
 
-Prior to MySQL 5.7.1, partition pruning was disabled for all tables using a storage engine that provides automatic partitioning, such as the `NDB` storage engine used by NDB Cluster. (Bug #14672885) Beginning with MySQL 5.7.1, such tables can be pruned if they are explicitly partitioned. (Bug
-#14827952)
+Antes do MySQL 5.7.1, o *partition pruning* era desabilitado para todas as tabelas que usavam um motor de armazenamento que fornecia particionamento automático, como o motor de armazenamento `NDB` usado pelo NDB Cluster. (Bug #14672885) A partir do MySQL 5.7.1, essas tabelas podem ser podadas se forem explicitamente particionadas. (Bug #14827952)

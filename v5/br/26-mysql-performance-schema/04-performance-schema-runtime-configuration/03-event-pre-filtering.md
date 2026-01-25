@@ -1,27 +1,27 @@
-### 25.4.3 Event Pre-Filtering
+### 25.4.3 Pré-Filtragem de Eventos
 
-Pre-filtering is done by the Performance Schema and has a global effect that applies to all users. Pre-filtering can be applied to either the producer or consumer stage of event processing:
+A pré-filtragem é realizada pelo Performance Schema e tem um efeito global que se aplica a todos os usuários. A pré-filtragem pode ser aplicada tanto no estágio *producer* quanto no estágio *consumer* do processamento de *events*:
 
-* To configure pre-filtering at the producer stage, several tables can be used:
+* Para configurar a pré-filtragem no estágio *producer*, várias tabelas podem ser usadas:
 
-  + [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") indicates which instruments are available. An instrument disabled in this table produces no events regardless of the contents of the other production-related setup tables. An instrument enabled in this table is permitted to produce events, subject to the contents of the other tables.
+  + [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") indica quais *instruments* estão disponíveis. Um *instrument* desabilitado nesta tabela não produz *events*, independentemente do conteúdo das outras tabelas *setup* relacionadas à produção. Um *instrument* habilitado nesta tabela tem permissão para produzir *events*, sujeito ao conteúdo das outras tabelas.
 
-  + [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") controls whether the Performance Schema monitors particular table and stored program objects.
+  + [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") controla se o Performance Schema monitora tabelas específicas e objetos de *stored program*.
 
-  + [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table") indicates whether monitoring is enabled for each server thread.
+  + [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table") indica se o *monitoring* está habilitado para cada *thread* do servidor.
 
-  + [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") determines the initial monitoring state for new foreground threads.
+  + [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") determina o estado inicial do *monitoring* para novas *foreground threads*.
 
-* To configure pre-filtering at the consumer stage, modify the [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table. This determines the destinations to which events are sent. [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") also implicitly affects event production. If a given event is not e sent to any destination (is not be consumed), the Performance Schema does not produce it.
+* Para configurar a pré-filtragem no estágio *consumer*, modifique a tabela [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table"). Isso determina os destinos para os quais os *events* são enviados. A [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") também afeta implicitamente a produção de *events*. Se um determinado *event* não for enviado a nenhum destino (não for consumido), o Performance Schema não o produz.
 
-Modifications to any of these tables affect monitoring immediately, with some exceptions:
+Modificações em qualquer uma dessas tabelas afetam o *monitoring* imediatamente, com algumas exceções:
 
-* Modifications to some instruments in the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table are effective only at server startup; changing them at runtime has no effect. This affects primarily mutexes, conditions, and rwlocks in the server, although there may be other instruments for which this is true. This restriction is lifted as of MySQL 5.7.12.
+* Modificações em alguns *instruments* na tabela [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") são efetivas apenas na inicialização do servidor (*server startup*); alterá-los em tempo de execução (*runtime*) não tem efeito. Isso afeta primariamente *mutexes*, *conditions* e *rwlocks* no servidor, embora possa haver outros *instruments* para os quais isso seja verdade. Essa restrição foi removida a partir do MySQL 5.7.12.
 
-* Modifications to the [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") table affect only foreground threads created subsequent to the modification, not existing threads.
+* Modificações na tabela [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") afetam apenas *foreground threads* criadas após a modificação, e não *threads* existentes.
 
-When you change the monitoring configuration, the Performance Schema does not flush the history tables. Events already collected remain in the current-events and history tables until displaced by newer events. If you disable instruments, you might need to wait a while before events for them are displaced by newer events of interest. Alternatively, use [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") to empty the history tables.
+Ao alterar a configuração de *monitoring*, o Performance Schema não realiza *flush* nas *history tables*. *Events* já coletados permanecem nas tabelas *current-events* e *history* até serem substituídos por *events* mais recentes. Se você desabilitar *instruments*, talvez seja necessário esperar um pouco antes que os *events* associados a eles sejam substituídos por *events* mais recentes de interesse. Alternativamente, use [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") para esvaziar as *history tables*.
 
-After making instrumentation changes, you might want to truncate the summary tables. Generally, the effect is to reset the summary columns to 0 or `NULL`, not to remove rows. This enables you to clear collected values and restart aggregation. That might be useful, for example, after you have made a runtime configuration change. Exceptions to this truncation behavior are noted in individual summary table sections.
+Após fazer alterações de instrumentação, você pode querer truncar as *summary tables*. Geralmente, o efeito é redefinir as colunas de resumo para 0 ou `NULL`, e não remover linhas. Isso permite limpar valores coletados e reiniciar a agregação. Isso pode ser útil, por exemplo, após fazer uma alteração de configuração em *runtime*. Exceções a esse comportamento de truncagem são observadas nas seções individuais das *summary tables*.
 
-The following sections describe how to use specific tables to control Performance Schema pre-filtering.
+As seções a seguir descrevem como usar tabelas específicas para controlar a pré-filtragem do Performance Schema.

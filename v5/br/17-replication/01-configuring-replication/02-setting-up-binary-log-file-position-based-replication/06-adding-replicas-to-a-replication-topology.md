@@ -1,33 +1,33 @@
-#### 16.1.2.6 Adding Replicas to a Replication Topology
+#### 16.1.2.6 Adicionando Replicas a uma Topologia de Replication
 
-You can add another replica to an existing replication configuration without stopping the source server. To do this, you can set up the new replica by copying the data directory of an existing replica, and giving the new replica a different server ID (which is user-specified) and server UUID (which is generated at startup).
+Você pode adicionar outra replica a uma configuração de replication existente sem parar o servidor source. Para fazer isso, você pode configurar a nova replica copiando o data directory de uma replica existente e fornecendo à nova replica um Server ID diferente (que é especificado pelo usuário) e um Server UUID (que é gerado na inicialização).
 
-To duplicate an existing replica:
+Para duplicar uma replica existente:
 
-1. Stop the existing replica and record the replica status information, particularly the source's binary log file and relay log file positions. You can view the replica status either in the Performance Schema replication tables (see [Section 25.12.11, “Performance Schema Replication Tables”](performance-schema-replication-tables.html "25.12.11 Performance Schema Replication Tables")), or by issuing [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") as follows:
+1. Pare a replica existente e registre as informações de status da replica, particularmente o arquivo binary log do source e as posições do arquivo relay log. Você pode visualizar o status da replica nas tabelas de replication do Performance Schema (consulte [Section 25.12.11, “Performance Schema Replication Tables”](performance-schema-replication-tables.html "25.12.11 Performance Schema Replication Tables")) ou executando [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") da seguinte forma:
 
    ```sql
    mysql> STOP SLAVE;
    mysql> SHOW SLAVE STATUS\G
    ```
 
-2. Shut down the existing replica:
+2. Encerre a replica existente:
 
    ```sql
    $> mysqladmin shutdown
    ```
 
-3. Copy the data directory from the existing replica to the new replica, including the log files and relay log files. You can do this by creating an archive using **tar** or `WinZip`, or by performing a direct copy using a tool such as **cp** or **rsync**.
+3. Copie o data directory da replica existente para a nova replica, incluindo os arquivos log e os arquivos relay log. Você pode fazer isso criando um arquivo morto usando **tar** ou `WinZip`, ou realizando uma cópia direta usando uma ferramenta como **cp** ou **rsync**.
 
-   Important
+   Importante
 
-   * Before copying, verify that all the files relating to the existing replica actually are stored in the data directory. For example, the `InnoDB` system tablespace, undo tablespace, and redo log might be stored in an alternative location. `InnoDB` tablespace files and file-per-table tablespaces might have been created in other directories. The binary logs and relay logs for the replica might be in their own directories outside the data directory. Check through the system variables that are set for the existing replica and look for any alternative paths that have been specified. If you find any, copy these directories over as well.
+   * Antes de copiar, verifique se todos os arquivos relacionados à replica existente estão de fato armazenados no data directory. Por exemplo, o `InnoDB` system tablespace, undo tablespace e redo log podem estar armazenados em um local alternativo. Os arquivos de tablespace do `InnoDB` e tablespaces file-per-table podem ter sido criados em outros diretórios. Os binary logs e relay logs para a replica podem estar em seus próprios diretórios fora do data directory. Verifique as system variables que estão definidas para a replica existente e procure quaisquer paths alternativos que tenham sido especificados. Se encontrar algum, copie esses diretórios também.
 
-   * During copying, if files have been used for the replication metadata repositories (see [Section 16.2.4, “Relay Log and Replication Metadata Repositories”](replica-logs.html "16.2.4 Relay Log and Replication Metadata Repositories")), which is the default in MySQL 5.7, ensure that you also copy these files from the existing replica to the new replica. If tables have been used for the repositories, the tables are in the data directory.
+   * Durante a cópia, se arquivos foram usados para os repositórios de metadados de replication (consulte [Section 16.2.4, “Relay Log and Replication Metadata Repositories”](replica-logs.html "16.2.4 Relay Log and Replication Metadata Repositories")), que é o padrão no MySQL 5.7, certifique-se de copiar esses arquivos da replica existente para a nova replica também. Se tabelas tiverem sido usadas para os repositórios, as tabelas estarão no data directory.
 
-   * After copying, delete the `auto.cnf` file from the copy of the data directory on the new replica, so that the new replica is started with a different generated server UUID. The server UUID must be unique.
+   * Após a cópia, exclua o arquivo `auto.cnf` da cópia do data directory na nova replica, para que a nova replica seja iniciada com um Server UUID gerado diferente. O Server UUID deve ser único.
 
-   A common problem that is encountered when adding new replicas is that the new replica fails with a series of warning and error messages like these:
+   Um problema comum encontrado ao adicionar novas replicas é que a nova replica falha com uma série de mensagens de aviso e erro como estas:
 
    ```sql
    071118 16:44:10 [Warning] Neither --relay-log nor --relay-log-index were used; so
@@ -39,26 +39,26 @@ To duplicate an existing replica:
    071118 16:44:10 [ERROR] Failed to initialize the master info structure
    ```
 
-   This situation can occur if the [`relay_log`](replication-options-replica.html#sysvar_relay_log) system variable is not specified, as the relay log files contain the host name as part of their file names. This is also true of the relay log index file if the [`relay_log_index`](replication-options-replica.html#sysvar_relay_log_index) system variable is not used. For more information about these variables, see [Section 16.1.6, “Replication and Binary Logging Options and Variables”](replication-options.html "16.1.6 Replication and Binary Logging Options and Variables").
+   Esta situação pode ocorrer se a system variable [`relay_log`](replication-options-replica.html#sysvar_relay_log) não for especificada, pois os arquivos relay log contêm o host name como parte de seus nomes de arquivo. Isso também é verdade para o arquivo relay log index se a system variable [`relay_log_index`](replication-options-replica.html#sysvar_relay_log_index) não for usada. Para obter mais informações sobre essas variáveis, consulte [Section 16.1.6, “Replication and Binary Logging Options and Variables”](replication-options.html "16.1.6 Replication and Binary Logging Options and Variables").
 
-   To avoid this problem, use the same value for [`relay_log`](replication-options-replica.html#sysvar_relay_log) on the new replica that was used on the existing replica. If this option was not set explicitly on the existing replica, use `existing_replica_hostname-relay-bin`. If this is not possible, copy the existing replica's relay log index file to the new replica and set the [`relay_log_index`](replication-options-replica.html#sysvar_relay_log_index) system variable on the new replica to match what was used on the existing replica. If this option was not set explicitly on the existing replica, use `existing_replica_hostname-relay-bin.index`. Alternatively, if you have already tried to start the new replica after following the remaining steps in this section and have encountered errors like those described previously, then perform the following steps:
+   Para evitar este problema, use o mesmo valor para [`relay_log`](replication-options-replica.html#sysvar_relay_log) na nova replica que foi usado na replica existente. Se esta opção não foi definida explicitamente na replica existente, use `existing_replica_hostname-relay-bin`. Se isso não for possível, copie o arquivo relay log index da replica existente para a nova replica e defina a system variable [`relay_log_index`](replication-options-replica.html#sysvar_relay_log_index) na nova replica para corresponder ao que foi usado na replica existente. Se esta opção não foi definida explicitamente na replica existente, use `existing_replica_hostname-relay-bin.index`. Alternativamente, se você já tentou iniciar a nova replica após seguir as etapas restantes nesta seção e encontrou erros como os descritos anteriormente, execute as seguintes etapas:
 
-   1. If you have not already done so, issue [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement") on the new replica.
+   1. Se ainda não o fez, execute [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement") na nova replica.
 
-      If you have already started the existing replica again, issue [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement") on the existing replica as well.
+      Se você já iniciou a replica existente novamente, execute [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement") na replica existente também.
 
-   2. Copy the contents of the existing replica's relay log index file into the new replica's relay log index file, making sure to overwrite any content already in the file.
+   2. Copie o conteúdo do arquivo relay log index da replica existente para o arquivo relay log index da nova replica, certificando-se de sobrescrever qualquer conteúdo que já esteja no arquivo.
 
-   3. Proceed with the remaining steps in this section.
-4. When copying is complete, restart the existing replica.
-5. On the new replica, edit the configuration and give the new replica a unique server ID (using the [`server_id`](replication-options.html#sysvar_server_id) system variable) that is not used by the source or any of the existing replicas.
+   3. Prossiga com as etapas restantes desta seção.
+4. Quando a cópia estiver completa, reinicie a replica existente.
+5. Na nova replica, edite a configuração e atribua à nova replica um Server ID exclusivo (usando a system variable [`server_id`](replication-options.html#sysvar_server_id)) que não seja usado pelo source ou por quaisquer replicas existentes.
 
-6. Start the new replica server, specifying the [`--skip-slave-start`](replication-options-replica.html#option_mysqld_skip-slave-start) option so that replication does not start yet. Use the Performance Schema replication tables or issue [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") to confirm that the new replica has the correct settings when compared with the existing replica. Also display the server ID and server UUID and verify that these are correct and unique for the new replica.
+6. Inicie o novo servidor replica, especificando a opção [`--skip-slave-start`](replication-options-replica.html#option_mysqld_skip-slave-start) para que o replication não comece ainda. Use as tabelas de replication do Performance Schema ou execute [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") para confirmar que a nova replica possui as configurações corretas em comparação com a replica existente. Exiba também o Server ID e o Server UUID e verifique se estão corretos e exclusivos para a nova replica.
 
-7. Start the replication threads by issuing a [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement") statement:
+7. Inicie os replication threads executando um statement [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement"):
 
    ```sql
    mysql> START SLAVE;
    ```
 
-   The new replica now uses the information in its connection metadata repository to start the replication process.
+   A nova replica agora usa as informações em seu repositório de metadados de conexão para iniciar o processo de replication.

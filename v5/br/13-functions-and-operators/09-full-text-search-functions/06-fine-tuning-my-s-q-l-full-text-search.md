@@ -1,30 +1,30 @@
-### 12.9.6 Fine-Tuning MySQL Full-Text Search
+### 12.9.6 Ajuste Fino da Busca Full-Text do MySQL
 
-MySQL's full-text search capability has few user-tunable parameters. You can exert more control over full-text searching behavior if you have a MySQL source distribution because some changes require source code modifications. See Section 2.8, “Installing MySQL from Source”.
+A capacidade de busca full-text do MySQL possui poucos parâmetros ajustáveis pelo usuário. Você pode exercer mais controle sobre o comportamento da busca full-text se tiver uma distribuição de código fonte do MySQL, pois algumas alterações exigem modificações no código fonte. Consulte a Seção 2.8, “Instalando o MySQL a partir do Código Fonte”.
 
-Full-text search is carefully tuned for effectiveness. Modifying the default behavior in most cases can actually decrease effectiveness. *Do not alter the MySQL sources unless you know what you are doing*.
+A busca full-text é criteriosamente ajustada para eficácia. Na maioria dos casos, modificar o comportamento padrão pode, na verdade, diminuir a eficácia. *Não altere os códigos fonte do MySQL a menos que você saiba o que está fazendo*.
 
-Most full-text variables described in this section must be set at server startup time. A server restart is required to change them; they cannot be modified while the server is running.
+A maioria das variáveis full-text descritas nesta seção deve ser definida no momento da inicialização do servidor. É necessário reiniciar o servidor para alterá-las; elas não podem ser modificadas enquanto o servidor estiver em execução.
 
-Some variable changes require that you rebuild the `FULLTEXT` indexes in your tables. Instructions for doing so are given later in this section.
+Algumas alterações de variáveis exigem que você reconstrua os Indexes `FULLTEXT` em suas tabelas. As instruções para fazer isso são fornecidas mais adiante nesta seção.
 
-* Configuring Minimum and Maximum Word Length
-* Configuring the Natural Language Search Threshold
-* Modifying Boolean Full-Text Search Operators
-* Character Set Modifications
-* Rebuilding InnoDB Full-Text Indexes
-* Optimizing InnoDB Full-Text Indexes
-* Rebuilding MyISAM Full-Text Indexes
+* Configurando o Comprimento Mínimo e Máximo de Palavras
+* Configurando o Limite de Busca em Linguagem Natural
+* Modificando Operadores de Busca Full-Text Booleana
+* Modificações de Conjunto de Caracteres (Character Set)
+* Reconstruindo Indexes Full-Text do InnoDB
+* Otimizando Indexes Full-Text do InnoDB
+* Reconstruindo Indexes Full-Text do MyISAM
 
-#### Configuring Minimum and Maximum Word Length
+#### Configurando o Comprimento Mínimo e Máximo de Palavras
 
-The minimum and maximum lengths of words to be indexed are defined by the `innodb_ft_min_token_size` and `innodb_ft_max_token_size` for `InnoDB` search indexes, and `ft_min_word_len` and `ft_max_word_len` for `MyISAM` ones.
+Os comprimentos mínimo e máximo das palavras a serem indexadas são definidos por `innodb_ft_min_token_size` e `innodb_ft_max_token_size` para Indexes de busca `InnoDB`, e `ft_min_word_len` e `ft_max_word_len` para Indexes `MyISAM`.
 
 Note
 
-Minimum and maximum word length full-text parameters do not apply to `FULLTEXT` indexes created using the ngram parser. ngram token size is defined by the `ngram_token_size` option.
+Os parâmetros full-text de comprimento mínimo e máximo de palavras não se aplicam a Indexes `FULLTEXT` criados usando o parser ngram. O tamanho do token ngram é definido pela opção `ngram_token_size`.
 
-After changing any of these options, rebuild your `FULLTEXT` indexes for the change to take effect. For example, to make two-character words searchable, you could put the following lines in an option file:
+Após alterar qualquer uma dessas opções, reconstrua seus Indexes `FULLTEXT` para que a alteração tenha efeito. Por exemplo, para tornar pesquisáveis palavras de dois caracteres, você pode colocar as seguintes linhas em um arquivo de opções:
 
 ```sql
 [mysqld]
@@ -32,53 +32,53 @@ innodb_ft_min_token_size=2
 ft_min_word_len=2
 ```
 
-Then restart the server and rebuild your `FULLTEXT` indexes. For `MyISAM` tables, note the remarks regarding **myisamchk** in the instructions that follow for rebuilding `MyISAM` full-text indexes.
+Em seguida, reinicie o servidor e reconstrua seus Indexes `FULLTEXT`. Para tabelas `MyISAM`, observe as observações referentes ao **myisamchk** nas instruções a seguir sobre a reconstrução de Indexes full-text do `MyISAM`.
 
-#### Configuring the Natural Language Search Threshold
+#### Configurando o Limite de Busca em Linguagem Natural
 
-For `MyISAM` search indexes, the 50% threshold for natural language searches is determined by the particular weighting scheme chosen. To disable it, look for the following line in `storage/myisam/ftdefs.h`:
+Para Indexes de busca `MyISAM`, o limite de 50% para buscas em linguagem natural (natural language searches) é determinado pelo esquema de ponderação particular escolhido. Para desabilitá-lo, procure pela seguinte linha em `storage/myisam/ftdefs.h`:
 
 ```sql
 #define GWS_IN_USE GWS_PROB
 ```
 
-Change that line to this:
+Altere essa linha para:
 
 ```sql
 #define GWS_IN_USE GWS_FREQ
 ```
 
-Then recompile MySQL. There is no need to rebuild the indexes in this case.
+Em seguida, recompile o MySQL. Não há necessidade de reconstruir os Indexes neste caso.
 
 Note
 
-By making this change, you *severely* decrease MySQL's ability to provide adequate relevance values for the `MATCH()` function. If you really need to search for such common words, it would be better to search using `IN BOOLEAN MODE` instead, which does not observe the 50% threshold.
+Ao fazer essa alteração, você *diminui drasticamente* a capacidade do MySQL de fornecer valores de relevância adequados para a função `MATCH()`. Se você realmente precisa buscar por palavras tão comuns, seria melhor buscar usando `IN BOOLEAN MODE` em vez disso, que não observa o limite de 50%.
 
-#### Modifying Boolean Full-Text Search Operators
+#### Modificando Operadores de Busca Full-Text Booleana
 
-To change the operators used for boolean full-text searches on `MyISAM` tables, set the `ft_boolean_syntax` system variable. (`InnoDB` does not have an equivalent setting.) This variable can be changed while the server is running, but you must have privileges sufficient to set global system variables (see Section 5.1.8.1, “System Variable Privileges”). No rebuilding of indexes is necessary in this case.
+Para alterar os operadores usados para buscas full-text booleanas em tabelas `MyISAM`, defina a variável de sistema `ft_boolean_syntax`. (`InnoDB` não possui uma configuração equivalente.) Esta variável pode ser alterada enquanto o servidor está em execução, mas você deve ter privilégios suficientes para definir variáveis de sistema globais (consulte a Seção 5.1.8.1, “Privilégios de Variáveis de Sistema”). Nenhuma reconstrução de Indexes é necessária neste caso.
 
-#### Character Set Modifications
+#### Modificações de Character Set
 
-For the built-in full-text parser, you can change the set of characters that are considered word characters in several ways, as described in the following list. After making the modification, rebuild the indexes for each table that contains any `FULLTEXT` indexes. Suppose that you want to treat the hyphen character ('-') as a word character. Use one of these methods:
+Para o parser full-text embutido, você pode alterar o conjunto de caracteres que são considerados caracteres de palavra de várias maneiras, conforme descrito na lista a seguir. Depois de fazer a modificação, reconstrua os Indexes para cada tabela que contém Indexes `FULLTEXT`. Suponha que você queira tratar o caractere hífen ('-') como um caractere de palavra. Use um destes métodos:
 
-* Modify the MySQL source: In `storage/innobase/handler/ha_innodb.cc` (for `InnoDB`), or in `storage/myisam/ftdefs.h` (for `MyISAM`), see the `true_word_char()` and `misc_word_char()` macros. Add `'-'` to one of those macros and recompile MySQL.
+*   Modifique o código fonte do MySQL: Em `storage/innobase/handler/ha_innodb.cc` (para `InnoDB`), ou em `storage/myisam/ftdefs.h` (para `MyISAM`), consulte as macros `true_word_char()` e `misc_word_char()`. Adicione `'-'` a uma dessas macros e recompile o MySQL.
 
-* Modify a character set file: This requires no recompilation. The `true_word_char()` macro uses a “character type” table to distinguish letters and numbers from other characters. . You can edit the contents of the `<ctype><map>` array in one of the character set XML files to specify that `'-'` is a “letter.” Then use the given character set for your `FULLTEXT` indexes. For information about the `<ctype><map>` array format, see Section 10.13.1, “Character Definition Arrays”.
+*   Modifique um arquivo de character set: Isso não requer recompilação. A macro `true_word_char()` usa uma tabela de “tipo de caractere” para distinguir letras e números de outros caracteres. Você pode editar o conteúdo do array `<ctype><map>` em um dos arquivos XML de character set para especificar que `'-'` é uma "letra". Em seguida, use o character set fornecido para seus Indexes `FULLTEXT`. Para obter informações sobre o formato do array `<ctype><map>`, consulte a Seção 10.13.1, “Arrays de Definição de Caracteres”.
 
-* Add a new collation for the character set used by the indexed columns, and alter the columns to use that collation. For general information about adding collations, see Section 10.14, “Adding a Collation to a Character Set”. For an example specific to full-text indexing, see Section 12.9.7, “Adding a User-Defined Collation for Full-Text Indexing”.
+*   Adicione um novo Collation para o character set usado pelas colunas indexadas e altere as colunas para usar esse Collation. Para obter informações gerais sobre como adicionar Collations, consulte a Seção 10.14, “Adicionando um Collation a um Character Set”. Para um exemplo específico de Indexação full-text, consulte a Seção 12.9.7, “Adicionando um Collation Definido pelo Usuário para Indexação Full-Text”.
 
-#### Rebuilding InnoDB Full-Text Indexes
+#### Reconstruindo Indexes Full-Text do InnoDB
 
-For the changes to take effect, `FULLTEXT` indexes must be rebuilt after modifying any of the following full-text index variables: `innodb_ft_min_token_size`; `innodb_ft_max_token_size`; `innodb_ft_server_stopword_table`; `innodb_ft_user_stopword_table`; `innodb_ft_enable_stopword`; `ngram_token_size`. Modifying `innodb_ft_min_token_size`, `innodb_ft_max_token_size`, or `ngram_token_size` requires restarting the server.
+Para que as alterações entrem em vigor, os Indexes `FULLTEXT` devem ser reconstruídos após a modificação de qualquer uma das seguintes variáveis de Index full-text: `innodb_ft_min_token_size`; `innodb_ft_max_token_size`; `innodb_ft_server_stopword_table`; `innodb_ft_user_stopword_table`; `innodb_ft_enable_stopword`; `ngram_token_size`. A modificação de `innodb_ft_min_token_size`, `innodb_ft_max_token_size` ou `ngram_token_size` requer a reinicialização do servidor.
 
-To rebuild `FULLTEXT` indexes for an `InnoDB` table, use `ALTER TABLE` with the `DROP INDEX` and `ADD INDEX` options to drop and re-create each index.
+Para reconstruir Indexes `FULLTEXT` para uma tabela `InnoDB`, use `ALTER TABLE` com as opções `DROP INDEX` e `ADD INDEX` para remover e recriar cada Index.
 
-#### Optimizing InnoDB Full-Text Indexes
+#### Otimizando Indexes Full-Text do InnoDB
 
-Running `OPTIMIZE TABLE` on a table with a full-text index rebuilds the full-text index, removing deleted Document IDs and consolidating multiple entries for the same word, where possible.
+A execução de `OPTIMIZE TABLE` em uma tabela com um Index full-text reconstrói o Index full-text, removendo IDs de Documentos excluídos e consolidando múltiplas entradas para a mesma palavra, sempre que possível.
 
-To optimize a full-text index, enable `innodb_optimize_fulltext_only` and run `OPTIMIZE TABLE`.
+Para otimizar um Index full-text, habilite `innodb_optimize_fulltext_only` e execute `OPTIMIZE TABLE`.
 
 ```sql
 mysql> set GLOBAL innodb_optimize_fulltext_only=ON;
@@ -93,31 +93,31 @@ mysql> OPTIMIZE TABLE opening_lines;
 1 row in set (0.01 sec)
 ```
 
-To avoid lengthy rebuild times for full-text indexes on large tables, you can use the `innodb_ft_num_word_optimize` option to perform the optimization in stages. The `innodb_ft_num_word_optimize` option defines the number of words that are optimized each time `OPTIMIZE TABLE` is run. The default setting is 2000, which means that 2000 words are optimized each time `OPTIMIZE TABLE` is run. Subsequent `OPTIMIZE TABLE` operations continue from where the preceding `OPTIMIZE TABLE` operation ended.
+Para evitar longos tempos de reconstrução para Indexes full-text em tabelas grandes, você pode usar a opção `innodb_ft_num_word_optimize` para realizar a otimização em estágios. A opção `innodb_ft_num_word_optimize` define o número de palavras que são otimizadas a cada vez que `OPTIMIZE TABLE` é executado. A configuração padrão é 2000, o que significa que 2000 palavras são otimizadas a cada execução de `OPTIMIZE TABLE`. As operações subsequentes de `OPTIMIZE TABLE` continuam de onde a operação `OPTIMIZE TABLE` anterior parou.
 
-#### Rebuilding MyISAM Full-Text Indexes
+#### Reconstruindo Indexes Full-Text do MyISAM
 
-If you modify full-text variables that affect indexing (`ft_min_word_len`, `ft_max_word_len`, or `ft_stopword_file`), or if you change the stopword file itself, you must rebuild your `FULLTEXT` indexes after making the changes and restarting the server.
+Se você modificar variáveis full-text que afetam a Indexação (`ft_min_word_len`, `ft_max_word_len` ou `ft_stopword_file`), ou se você alterar o próprio arquivo de stopword, você deve reconstruir seus Indexes `FULLTEXT` após fazer as alterações e reiniciar o servidor.
 
-To rebuild the `FULLTEXT` indexes for a `MyISAM` table, it is sufficient to do a `QUICK` repair operation:
+Para reconstruir os Indexes `FULLTEXT` de uma tabela `MyISAM`, é suficiente fazer uma operação de reparo `QUICK`:
 
 ```sql
 mysql> REPAIR TABLE tbl_name QUICK;
 ```
 
-Alternatively, use `ALTER TABLE` as just described. In some cases, this may be faster than a repair operation.
+Alternativamente, use `ALTER TABLE` conforme descrito anteriormente. Em alguns casos, isso pode ser mais rápido do que uma operação de reparo.
 
-Each table that contains any `FULLTEXT` index must be repaired as just shown. Otherwise, queries for the table may yield incorrect results, and modifications to the table cause the server to see the table as corrupt and in need of repair.
+Cada tabela que contém qualquer Index `FULLTEXT` deve ser reparada conforme mostrado. Caso contrário, as Queries para a tabela podem produzir resultados incorretos, e as modificações na tabela fazem com que o servidor veja a tabela como corrompida e precise de reparo.
 
-If you use **myisamchk** to perform an operation that modifies `MyISAM`  table indexes (such as repair or analyze), the `FULLTEXT` indexes are rebuilt using the *default* full-text parameter values for minimum word length, maximum word length, and stopword file unless you specify otherwise. This can result in queries failing.
+Se você usar **myisamchk** para realizar uma operação que modifica Indexes de tabela `MyISAM` (como reparo ou análise), os Indexes `FULLTEXT` são reconstruídos usando os valores *padrão* dos parâmetros full-text para comprimento mínimo de palavra, comprimento máximo de palavra e arquivo de stopword, a menos que você especifique o contrário. Isso pode resultar em falha das Queries.
 
-The problem occurs because these parameters are known only by the server. They are not stored in `MyISAM` index files. To avoid the problem if you have modified the minimum or maximum word length or stopword file values used by the server, specify the same `ft_min_word_len`, `ft_max_word_len`, and `ft_stopword_file` values for **myisamchk** that you use for **mysqld**. For example, if you have set the minimum word length to 3, you can repair a table with **myisamchk** like this:
+O problema ocorre porque esses parâmetros são conhecidos apenas pelo servidor. Eles não são armazenados em arquivos de Index `MyISAM`. Para evitar o problema, se você modificou os valores de comprimento mínimo ou máximo de palavra ou de arquivo de stopword usados pelo servidor, especifique os mesmos valores `ft_min_word_len`, `ft_max_word_len` e `ft_stopword_file` para **myisamchk** que você usa para **mysqld**. Por exemplo, se você definiu o comprimento mínimo da palavra para 3, você pode reparar uma tabela com **myisamchk** desta forma:
 
 ```sql
 myisamchk --recover --ft_min_word_len=3 tbl_name.MYI
 ```
 
-To ensure that **myisamchk** and the server use the same values for full-text parameters, place each one in both the `[mysqld]` and `[myisamchk]` sections of an option file:
+Para garantir que **myisamchk** e o servidor usem os mesmos valores para os parâmetros full-text, coloque cada um nas seções `[mysqld]` e `[myisamchk]` de um arquivo de opções:
 
 ```sql
 [mysqld]
@@ -127,4 +127,4 @@ ft_min_word_len=3
 ft_min_word_len=3
 ```
 
-An alternative to using **myisamchk** for `MyISAM` table index modification is to use the `REPAIR TABLE`, `ANALYZE TABLE`, `OPTIMIZE TABLE`, or `ALTER TABLE` statements. These statements are performed by the server, which knows the proper full-text parameter values to use.
+Uma alternativa ao uso de **myisamchk** para modificação de Index de tabela `MyISAM` é usar as instruções `REPAIR TABLE`, `ANALYZE TABLE`, `OPTIMIZE TABLE` ou `ALTER TABLE`. Essas instruções são executadas pelo servidor, que conhece os valores de parâmetro full-text apropriados a serem usados.

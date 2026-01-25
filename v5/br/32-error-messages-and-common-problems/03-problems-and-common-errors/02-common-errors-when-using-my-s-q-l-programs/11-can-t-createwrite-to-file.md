@@ -1,32 +1,32 @@
-#### B.3.2.11 Can't create/write to file
+#### B.3.2.11 Não é possível criar/escrever no arquivo
 
-If you get an error of the following type for some queries, it means that MySQL cannot create a temporary file for the result set in the temporary directory:
+Se você receber um erro do tipo a seguir para algumas Queries, isso significa que o MySQL não consegue criar um arquivo temporário para o conjunto de resultados no diretório temporário:
 
 ```sql
 Can't create/write to file '\\sqla3fe_0.ism'.
 ```
 
-The preceding error is a typical message for Windows; the Unix message is similar.
+O erro anterior é uma mensagem típica para Windows; a mensagem Unix é semelhante.
 
-One fix is to start [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with the [`--tmpdir`](server-options.html#option_mysqld_tmpdir) option or to add the option to the `[mysqld]` section of your option file. For example, to specify a directory of `C:\temp`, use these lines:
+Uma correção é iniciar o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") com a opção [`--tmpdir`](server-options.html#option_mysqld_tmpdir) ou adicionar a opção à seção `[mysqld]` do seu arquivo de opções. Por exemplo, para especificar um diretório `C:\temp`, use estas linhas:
 
 ```sql
 [mysqld]
 tmpdir=C:/temp
 ```
 
-The `C:\temp` directory must exist and have sufficient space for the MySQL server to write to. See [Section 4.2.2.2, “Using Option Files”](option-files.html "4.2.2.2 Using Option Files").
+O diretório `C:\temp` deve existir e ter espaço suficiente para o MySQL Server poder escrever. Veja [Seção 4.2.2.2, “Usando Arquivos de Opções”](option-files.html "4.2.2.2 Using Option Files").
 
-Another cause of this error can be permissions issues. Make sure that the MySQL server can write to the [`tmpdir`](server-system-variables.html#sysvar_tmpdir) directory.
+Outra causa deste erro pode ser problemas de permissão. Certifique-se de que o MySQL Server pode escrever no diretório [`tmpdir`](server-system-variables.html#sysvar_tmpdir).
 
-Check also the error code that you get with [**perror**](perror.html "4.8.2 perror — Display MySQL Error Message Information"). One reason the server cannot write to a table is that the file system is full:
+Verifique também o código de erro que você recebe com o [**perror**](perror.html "4.8.2 perror — Display MySQL Error Message Information"). Uma razão pela qual o Server não pode escrever em uma table é que o file system (sistema de arquivos) está cheio:
 
 ```sql
 $> perror 28
 OS error code  28:  No space left on device
 ```
 
-If you get an error of the following type during startup, it indicates that the file system or directory used for storing data files is write protected. Provided that the write error is to a test file, the error is not serious and can be safely ignored.
+Se você receber um erro do tipo a seguir durante a inicialização, isso indica que o file system ou diretório usado para armazenar arquivos de dados está protegido contra escrita. Se o erro de escrita for em um arquivo de teste, o erro não é grave e pode ser ignorado com segurança.
 
 ```sql
 Can't create test file /usr/local/mysql/data/master.lower-test

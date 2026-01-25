@@ -1,25 +1,25 @@
-## 11.1 Numeric Data Types
+## 11.1 Tipos de Dados Numéricos
 
-11.1.1 Numeric Data Type Syntax
+11.1.1 Sintaxe de Tipos de Dados Numéricos
 
-11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT
+11.1.2 Tipos Inteiros (Valor Exato) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT
 
-11.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC
+11.1.3 Tipos de Ponto Fixo (Valor Exato) - DECIMAL, NUMERIC
 
-11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE
+11.1.4 Tipos de Ponto Flutuante (Valor Aproximado) - FLOAT, DOUBLE
 
-11.1.5 Bit-Value Type - BIT
+11.1.5 Tipo de Valor Bit - BIT
 
-11.1.6 Numeric Type Attributes
+11.1.6 Atributos de Tipo Numérico
 
-11.1.7 Out-of-Range and Overflow Handling
+11.1.7 Tratamento de Valores Fora de Alcance e Overflow
 
-MySQL supports all standard SQL numeric data types. These types include the exact numeric data types (`INTEGER` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), `SMALLINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), `DECIMAL` - DECIMAL, NUMERIC"), and `NUMERIC` - DECIMAL, NUMERIC")), as well as the approximate numeric data types (`FLOAT` - FLOAT, DOUBLE"), `REAL` - FLOAT, DOUBLE"), and `DOUBLE PRECISION` - FLOAT, DOUBLE")). The keyword `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") is a synonym for `INTEGER` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), and the keywords `DEC` - DECIMAL, NUMERIC") and `FIXED` - DECIMAL, NUMERIC") are synonyms for `DECIMAL` - DECIMAL, NUMERIC"). MySQL treats `DOUBLE` - FLOAT, DOUBLE") as a synonym for `DOUBLE PRECISION` - FLOAT, DOUBLE") (a nonstandard extension). MySQL also treats `REAL` - FLOAT, DOUBLE") as a synonym for `DOUBLE PRECISION` - FLOAT, DOUBLE") (a nonstandard variation), unless the `REAL_AS_FLOAT` SQL mode is enabled.
+O MySQL suporta todos os tipos de dados numéricos SQL padrão. Esses tipos incluem os tipos de dados numéricos exatos (`INTEGER` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), `SMALLINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), `DECIMAL` - DECIMAL, NUMERIC"), e `NUMERIC` - DECIMAL, NUMERIC")), bem como os tipos de dados numéricos aproximados (`FLOAT` - FLOAT, DOUBLE"), `REAL` - FLOAT, DOUBLE"), e `DOUBLE PRECISION` - FLOAT, DOUBLE")). A palavra-chave `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") é um sinônimo para `INTEGER` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), e as palavras-chave `DEC` - DECIMAL, NUMERIC") e `FIXED` - DECIMAL, NUMERIC") são sinônimos para `DECIMAL` - DECIMAL, NUMERIC"). O MySQL trata `DOUBLE` - FLOAT, DOUBLE") como um sinônimo para `DOUBLE PRECISION` - FLOAT, DOUBLE") (uma extensão não padrão). O MySQL também trata `REAL` - FLOAT, DOUBLE") como um sinônimo para `DOUBLE PRECISION` - FLOAT, DOUBLE") (uma variação não padrão), a menos que o modo SQL `REAL_AS_FLOAT` esteja habilitado.
 
-The `BIT` data type stores bit values and is supported for `MyISAM`, `MEMORY`, `InnoDB`, and `NDB` tables.
+O tipo de dado `BIT` armazena valores bit e é suportado para tabelas `MyISAM`, `MEMORY`, `InnoDB` e `NDB`.
 
-For information about how MySQL handles assignment of out-of-range values to columns and overflow during expression evaluation, see Section 11.1.7, “Out-of-Range and Overflow Handling”.
+Para obter informações sobre como o MySQL lida com a atribuição de valores fora de alcance às colunas e com o *overflow* durante a avaliação de expressões, consulte a Seção 11.1.7, “Tratamento de Valores Fora de Alcance e Overflow”.
 
-For information about storage requirements of the numeric data types, see Section 11.7, “Data Type Storage Requirements”.
+Para obter informações sobre os requisitos de armazenamento dos tipos de dados numéricos, consulte a Seção 11.7, “Requisitos de Armazenamento de Tipos de Dados”.
 
-For descriptions of functions that operate on numeric values, see Section 12.6, “Numeric Functions and Operators”. The data type used for the result of a calculation on numeric operands depends on the types of the operands and the operations performed on them. For more information, see Section 12.6.1, “Arithmetic Operators”.
+Para descrições de funções que operam em valores numéricos, consulte a Seção 12.6, “Funções e Operadores Numéricos”. O tipo de dado usado para o resultado de um cálculo em operandos numéricos depende dos tipos dos operandos e das operações realizadas neles. Para mais informações, consulte a Seção 12.6.1, “Operadores Aritméticos”.
